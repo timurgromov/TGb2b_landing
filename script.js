@@ -1,4 +1,4 @@
-// TGb2b_landing - JavaScript для лендинга ведущего Тимура Громова
+// TGb2b_landing - JavaScript для лендинга ведущего Тимура Громова (UI Upgrade)
 
 // Инициализация dataLayer для аналитики
 window.dataLayer = window.dataLayer || [];
@@ -14,6 +14,49 @@ function trackCTAClick(label, element) {
     
     console.log('CTA Click tracked:', event);
     window.dataLayer.push(event);
+}
+
+// IntersectionObserver для reveal анимаций
+class RevealAnimations {
+    constructor() {
+        this.init();
+    }
+    
+    init() {
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { 
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            document.querySelectorAll('.reveal').forEach(el => {
+                io.observe(el);
+            });
+        }
+    }
+}
+
+// Sticky Header с эффектом сжатия
+class StickyHeader {
+    constructor() {
+        this.header = document.querySelector('.header');
+        this.init();
+    }
+    
+    init() {
+        if (this.header) {
+            window.addEventListener('scroll', () => {
+                this.header.classList.toggle('scrolled', window.scrollY > 8);
+            });
+        }
+    }
 }
 
 // Управление модальными окнами
@@ -59,12 +102,12 @@ class ModalManager {
             }
         });
         
-        // Обработчики для видео
+        // Обработчики для видео-карточек
         document.addEventListener('click', (e) => {
-            if (e.target.closest('.video-item')) {
-                const videoItem = e.target.closest('.video-item');
-                const videoId = videoItem.getAttribute('data-video');
-                this.openVideoModal(videoId);
+            const videoCard = e.target.closest('.video-card');
+            if (videoCard) {
+                const videoSrc = videoCard.getAttribute('data-video');
+                this.openVideoModal(videoSrc);
             }
         });
     }
@@ -75,7 +118,7 @@ class ModalManager {
             this.activeModal = modal;
             modal.classList.add('active');
             modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('no-scroll');
             
             // Фокус на модальном окне для доступности
             const focusableElement = modal.querySelector('button, input, textarea, select, a[href]');
@@ -85,23 +128,23 @@ class ModalManager {
         }
     }
     
-    openVideoModal(videoId) {
+    openVideoModal(videoSrc) {
         const modal = this.modals.get('videoModal');
         if (modal) {
             this.activeModal = modal;
             modal.classList.add('active');
             modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('no-scroll');
             
             // Устанавливаем источник видео
             const video = modal.querySelector('#modalVideo');
-            if (video) {
-                video.src = `assets/${videoId}.mp4`;
+            if (video && videoSrc) {
+                video.src = videoSrc;
                 video.load();
             }
             
             // Трекинг клика по видео
-            trackCTAClick('video_play', { videoId });
+            trackCTAClick('video_play', { videoSrc });
         }
     }
     
@@ -110,7 +153,7 @@ class ModalManager {
             this.activeModal.classList.remove('active');
             this.activeModal.setAttribute('aria-hidden', 'true');
             this.activeModal = null;
-            document.body.style.overflow = '';
+            document.body.classList.remove('no-scroll');
             
             // Останавливаем видео при закрытии
             const video = document.querySelector('#modalVideo');
@@ -145,7 +188,7 @@ class SmoothScroll {
     }
     
     scrollToElement(element) {
-        const headerHeight = document.querySelector('.nav').offsetHeight;
+        const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
         const elementPosition = element.offsetTop - headerHeight - 20;
         
         window.scrollTo({
@@ -214,33 +257,6 @@ class LazyLoader {
     }
 }
 
-// Анимации при скролле
-class ScrollAnimations {
-    constructor() {
-        this.init();
-    }
-    
-    init() {
-        if ('IntersectionObserver' in window) {
-            const animationObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-in');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-            
-            const animatedElements = document.querySelectorAll('.benefit-item, .hero__content, .cta__content');
-            animatedElements.forEach(el => {
-                animationObserver.observe(el);
-            });
-        }
-    }
-}
-
 // Управление видео
 class VideoManager {
     constructor() {
@@ -267,42 +283,49 @@ class VideoManager {
     }
 }
 
+// Плавающая кнопка WhatsApp
+class FloatingWhatsApp {
+    constructor() {
+        this.init();
+    }
+    
+    init() {
+        // Показываем/скрываем кнопку в зависимости от скролла
+        window.addEventListener('scroll', () => {
+            const waFab = document.querySelector('.wa-fab');
+            if (waFab) {
+                // Показываем кнопку только на мобильных устройствах
+                const isMobile = window.innerWidth <= 640;
+                if (isMobile) {
+                    waFab.style.display = window.scrollY > 200 ? 'block' : 'none';
+                }
+            }
+        });
+        
+        // Обработчик изменения размера окна
+        window.addEventListener('resize', () => {
+            const waFab = document.querySelector('.wa-fab');
+            if (waFab) {
+                const isMobile = window.innerWidth <= 640;
+                waFab.style.display = isMobile ? 'block' : 'none';
+            }
+        });
+    }
+}
+
 // Инициализация при загрузке DOM
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('TGb2b_landing - Лендинг загружен');
+    console.log('TGb2b_landing - Лендинг загружен (UI Upgrade)');
     
     // Инициализируем все компоненты
+    new RevealAnimations();
+    new StickyHeader();
     new ModalManager();
     new SmoothScroll();
     new CTATracker();
     new LazyLoader();
-    new ScrollAnimations();
     new VideoManager();
-    
-    // Добавляем CSS для анимаций
-    const style = document.createElement('style');
-    style.textContent = `
-        .benefit-item,
-        .hero__content,
-        .cta__content {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .benefit-item.animate-in,
-        .hero__content.animate-in,
-        .cta__content.animate-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .hero__content {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    `;
-    document.head.appendChild(style);
+    new FloatingWhatsApp();
     
     // Проверяем производительность
     if ('performance' in window) {
@@ -328,5 +351,8 @@ window.TGb2bLanding = {
     trackCTAClick,
     ModalManager,
     SmoothScroll,
-    CTATracker
+    CTATracker,
+    RevealAnimations,
+    StickyHeader,
+    FloatingWhatsApp
 };

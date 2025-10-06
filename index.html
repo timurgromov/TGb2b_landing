@@ -25,7 +25,7 @@
 </head>
 <body>
     <!-- Fixed Navigation -->
-    <nav class="nav">
+    <nav class="nav header">
         <div class="container">
             <div class="nav__content">
                 <div class="nav__logo">Тимур Громов</div>
@@ -48,40 +48,31 @@
                 <h1 class="hero__title">Ведущий на корпоратив в Москве — Тимур Громов</h1>
                 <p class="hero__subtitle">15 лет опыта. Спокойный, интеллигентный формат. Без пошлости и кринжа.</p>
                 
+                <!-- Trust Strip -->
+                <div class="trust-strip">
+                    <span>15 лет опыта</span><span class="dot"></span>
+                    <span>500+ мероприятий</span><span class="dot"></span>
+                    <span>Ведущий + DJ + звук</span>
+                </div>
+                
                 <!-- Video Grid -->
                 <div class="hero__videos">
                     <div class="video-grid">
-                        <div class="video-item" data-video="teaser1">
+                        <div class="video-card reveal" data-video="assets/teaser1.mp4">
                             <img src="assets/video-poster-1.jpg" alt="Видео 1" loading="lazy">
-                            <div class="video-play">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
+                            <div class="play" aria-label="Смотреть видео"></div>
                         </div>
-                        <div class="video-item" data-video="teaser2">
+                        <div class="video-card reveal" data-video="assets/teaser2.mp4">
                             <img src="assets/video-poster-2.jpg" alt="Видео 2" loading="lazy">
-                            <div class="video-play">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
+                            <div class="play" aria-label="Смотреть видео"></div>
                         </div>
-                        <div class="video-item" data-video="teaser3">
+                        <div class="video-card reveal" data-video="assets/teaser3.mp4">
                             <img src="assets/video-poster-3.jpg" alt="Видео 3" loading="lazy">
-                            <div class="video-play">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
+                            <div class="play" aria-label="Смотреть видео"></div>
                         </div>
-                        <div class="video-item" data-video="teaser4">
+                        <div class="video-card reveal" data-video="assets/teaser4.mp4">
                             <img src="assets/video-poster-4.jpg" alt="Видео 4" loading="lazy">
-                            <div class="video-play">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
+                            <div class="play" aria-label="Смотреть видео"></div>
                         </div>
                     </div>
                 </div>
@@ -102,58 +93,46 @@
                 <h2 class="benefits__lead">Под ключ. Чётко. Без лишнего.</h2>
                 
                 <div class="benefits__grid">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <p>Ведущий + DJ + звук</p>
+                    <div class="benefit reveal">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <div class="title">Ведущий + DJ + звук</div>
                     </div>
                     
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
-                            </svg>
-                        </div>
-                        <p>6 часов работы</p>
+                    <div class="benefit reveal">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+                        </svg>
+                        <div class="title">6 часов работы</div>
                     </div>
                     
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <p>Формат под стиль компании</p>
+                    <div class="benefit reveal">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        <div class="title">Формат под стиль компании</div>
                     </div>
                     
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                        </div>
-                        <p>500+ мероприятий</p>
+                    <div class="benefit reveal">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <div class="title">500+ мероприятий</div>
                     </div>
                     
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                        </div>
-                        <p>Без неловких конкурсов</p>
+                    <div class="benefit reveal">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <div class="title">Без неловких конкурсов</div>
                     </div>
                     
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                            </svg>
-                        </div>
-                        <p>Быстрые созвоны и согласования</p>
+                    <div class="benefit reveal">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <div class="title">Быстрые созвоны и согласования</div>
                     </div>
                 </div>
                 
@@ -242,6 +221,13 @@
             </div>
         </div>
     </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a class="btn btn--primary wa-fab" 
+       aria-label="Написать в WhatsApp" 
+       href="https://wa.me/79123456789?text=Здравствуйте,%20хочу%20обсудить%20корпоратив">
+        WhatsApp
+    </a>
 
     <script src="script.js"></script>
 </body>
