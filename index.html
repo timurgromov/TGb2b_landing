@@ -53,13 +53,14 @@
 
         <div class="hero__col hero__col--photo">
           <figure class="hero-photo" aria-label="Тимур Громов">
+            <!-- ВАЖНО: файл лежит в ./assets/hero/portrait.jpg -->
             <img
               src="./assets/hero/portrait.jpg"
               alt="Тимур Громов — ведущий на корпоратив"
-              width="1600" height="1000"
+              width="1200" height="1500"  <!-- 4:5, ок для портрета -->
               loading="lazy"
               decoding="async"
-              sizes="(max-width: 1024px) 100vw, 48vw">
+              sizes="(min-width:1280px) 40vw, (min-width:768px) 45vw, 92vw">
           </figure>
         </div>
       </div>
