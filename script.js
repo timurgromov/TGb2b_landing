@@ -84,7 +84,9 @@ function closeVideoModal(){
   modalVideo.removeAttribute('src');
 }
 document.querySelectorAll('.video-card').forEach(card=>{
-  card.addEventListener('click', ()=>{
+  card.addEventListener('click', (e)=>{
+    // Не обрабатываем клики по iframe
+    if (e.target.closest('.video-wrap')) return;
     const src = card.getAttribute('data-video');
     if (!src) return;
     openVideoModal(src);
