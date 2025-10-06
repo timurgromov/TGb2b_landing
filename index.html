@@ -35,19 +35,42 @@
 
   <main>
     <!-- HERO -->
-    <section id="hero" class="section hero" data-parallax="0.08">
-      <div class="container hero__content" data-stagger="80">
-        <h1 class="sr sr-up">Ведущий на корпоратив в Москве — Тимур Громов</h1>
-        <p class="sr sr-up">15 лет. Спокойно, интеллигентно, по-деловому. Без пошлости и «кринжа».</p>
-
-        <div class="trust-strip sr sr-fade">
-          <span>15 лет опыта</span><span class="dot"></span>
-          <span>500+ мероприятий</span><span class="dot"></span>
-          <span>Ведущий + DJ + звук</span>
+    <section class="hero">
+      <div class="hero__inner container">
+        <div class="hero__col hero__col--text">
+          <div class="hero__text">
+            <h1>Ведущий на корпоратив в Москве — Тимур Громов</h1>
+            <span class="accent-line" aria-hidden="true"></span>
+            <p class="lead">15 лет опыта. Спокойно, интеллигентно, по-деловому. Без пошлости и «кринжа».</p>
+            <ul class="hero__facts">
+              <li>15 лет опыта</li>
+              <li>500+ мероприятий</li>
+              <li>Ведущий + DJ + звук</li>
+            </ul>
+            <a href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив" class="cta-primary" target="_blank" rel="noopener" data-cta="whatsapp_hero">Написать в WhatsApp</a>
+          </div>
         </div>
 
-        <div class="video-grid" data-stagger="80">
-          <div class="video-wrap sr sr-zoom">
+        <div class="hero__col hero__col--photo">
+          <figure class="hero-photo" aria-label="Тимур Громов">
+            <img
+              src="/assets/hero/portrait.jpg"
+              alt="Тимур Громов — ведущий на корпоратив"
+              width="1600" height="1000"
+              loading="lazy"
+              decoding="async"
+              sizes="(max-width: 1024px) 100vw, 48vw">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section__title">Примеры работ</h2>
+        <div class="video-grid">
+          <div class="video-wrap">
             <iframe
               src="https://play.boomstream.com/jaSBpguo?color=false&title=0"
               class="video-iframe"
@@ -57,25 +80,20 @@
               referrerpolicy="no-referrer-when-downgrade">
             </iframe>
           </div>
-          <div class="video-card sr sr-zoom" data-video="/assets/teaser.mp4">
+          <div class="video-card" data-video="/assets/teaser.mp4">
             <img src="favicon.png" alt="Видео 2" loading="lazy" width="960" height="540">
             <button class="play" aria-label="Смотреть видео"></button>
           </div>
-          <div class="video-card sr sr-zoom" data-video="/assets/teaser.mp4">
+          <div class="video-card" data-video="/assets/teaser.mp4">
             <img src="favicon.png" alt="Видео 3" loading="lazy" width="960" height="540">
             <button class="play" aria-label="Смотреть видео"></button>
           </div>
-          <div class="video-card sr sr-zoom" data-video="/assets/teaser.mp4">
+          <div class="video-card" data-video="/assets/teaser.mp4">
             <img src="favicon.png" alt="Видео 4" loading="lazy" width="960" height="540">
             <button class="play" aria-label="Смотреть видео"></button>
           </div>
         </div>
-
-        <div class="hero__cta sr sr-up">
-          <a class="btn btn-primary" href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив" target="_blank" rel="noopener" data-cta="whatsapp_hero" aria-label="Написать в WhatsApp">Написать в WhatsApp</a>
-        </div>
       </div>
-      <div class="hero__glow" aria-hidden="true"></div>
     </section>
 
     <!-- BENEFITS -->
