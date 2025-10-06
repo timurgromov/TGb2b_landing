@@ -1,0 +1,28 @@
+/* TGb2b_landing - Стили для сайта ведущего Тимура Громова */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    color: #2c3e50;
+    font-size: 2.5rem;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #666;
+}
