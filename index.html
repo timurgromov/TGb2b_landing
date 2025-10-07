@@ -111,28 +111,23 @@
       </div>
     </section>
 
-    <!-- Фото-слайдер: Моменты с событий -->
     <section id="photos" class="section">
       <div class="container">
         <h2 class="section__title sr">Моменты с событий</h2>
-        <div class="slider is-photos sr" aria-label="Фотографии с мероприятий">
-          <button class="slider__btn prev" aria-label="Назад" data-dir="-1">‹</button>
-          <div class="slider__track" tabindex="0">
-            <!-- Замените src на ваши реальные пути -->
-            <figure class="slider__slide">
-              <img src="./assets/photos/gal/p1.jpg" alt="Корпоратив — момент 1" loading="lazy" decoding="async">
-            </figure>
-            <figure class="slider__slide">
-              <img src="./assets/photos/gal/p2.jpg" alt="Корпоратив — момент 2" loading="lazy" decoding="async">
-            </figure>
-            <figure class="slider__slide">
-              <img src="./assets/photos/gal/p3.jpg" alt="Корпоратив — момент 3" loading="lazy" decoding="async">
-            </figure>
-            <figure class="slider__slide">
-              <img src="./assets/photos/gal/p4.jpg" alt="Корпоратив — момент 4" loading="lazy" decoding="async">
-            </figure>
+
+        <div class="photos-slider sr" aria-label="Фотогалерея">
+          <button class="photos-btn prev" aria-label="Назад" data-dir="-1">‹</button>
+
+          <div class="photos-track" tabindex="0">
+            <!-- ПОДСТАВЬ СВОИ ПУТИ. Можно смешивать вертикальные/горизонтальные -->
+            <figure class="photo-card"><img src="./assets/photos/gal/p1.jpg" alt="Момент 1" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card"><img src="./assets/photos/gal/p2_vert.jpg" alt="Момент 2" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card"><img src="./assets/photos/gal/p3.jpg" alt="Момент 3" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card"><img src="./assets/photos/gal/p4_vert.jpg" alt="Момент 4" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card"><img src="./assets/photos/gal/p5.jpg" alt="Момент 5" loading="lazy" decoding="async"></figure>
           </div>
-          <button class="slider__btn next" aria-label="Вперёд" data-dir="1">›</button>
+
+          <button class="photos-btn next" aria-label="Вперёд" data-dir="1">›</button>
         </div>
       </div>
     </section>

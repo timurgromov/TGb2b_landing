@@ -185,3 +185,70 @@ const COUNTER_ID = 104468814;
     }
   });
 })();
+
+// === Фото-слайдер: расчёт ширины карточки по натуральному аспекту изображения ===
+(function initPhotosSlider(){
+  const root = document.querySelector('.photos-slider');
+  if (!root) return;
+
+  const track = root.querySelector('.photos-track');
+  const cards = Array.from(track.querySelectorAll('.photo-card'));
+  const prev  = root.querySelector('.photos-btn.prev');
+  const next  = root.querySelector('.photos-btn.next');
+
+  // Вычисляем ширину карточки: width = height * (naturalWidth / naturalHeight)
+  function fitCardWidth(card, img){
+    const h = card.getBoundingClientRect().height;          // текущая фактическая высота (учитывает медиа-правила)
+    const w = img.naturalWidth || img.width;
+    const nh = img.naturalHeight || img.height;
+    if (!w || !nh || !h) return;
+
+    const ratio = w / nh;                                   // аспект изображения
+    const target = Math.max(180, Math.min(h * ratio, 1000)); // защита от экстремумов
+    card.style.width = `${Math.round(target)}px`;
+  }
+
+  function layout(){
+    cards.forEach(card=>{
+      const img = card.querySelector('img');
+      if (!img) return;
+      if (img.complete) fitCardWidth(card, img);
+      else img.addEventListener('load', ()=>fitCardWidth(card, img), { once:true });
+    });
+  }
+
+  // Навигация (стрелки листают ~на ширину видимой области)
+  const scrollStep = () => track.clientWidth * 0.9;
+  const scrollByX  = dir => track.scrollBy({ left: dir * scrollStep(), behavior:'smooth' });
+  prev?.addEventListener('click', ()=>scrollByX(-1));
+  next?.addEventListener('click', ()=>scrollByX( 1));
+
+  // Клавиатура
+  track.addEventListener('keydown', (e)=>{
+    if (e.key === 'ArrowRight') scrollByX(1);
+    if (e.key === 'ArrowLeft')  scrollByX(-1);
+  });
+
+  // Drag / Swipe
+  let isDown = false, startX = 0, startScroll = 0;
+  track.addEventListener('pointerdown', (e)=>{
+    isDown = true; track.setPointerCapture(e.pointerId);
+    startX = e.clientX; startScroll = track.scrollLeft;
+  });
+  track.addEventListener('pointermove', (e)=>{
+    if(!isDown) return;
+    const dx = e.clientX - startX;
+    track.scrollLeft = startScroll - dx;
+  });
+  ['pointerup','pointercancel','mouseleave'].forEach(ev=>{
+    track.addEventListener(ev, ()=>{ isDown=false; });
+  });
+
+  // Первичная раскладка + пересчёт на ресайз (debounce)
+  layout();
+  let t=null;
+  window.addEventListener('resize', ()=>{
+    clearTimeout(t);
+    t=setTimeout(layout, 120);
+  });
+})();

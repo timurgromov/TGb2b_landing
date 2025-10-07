@@ -278,8 +278,48 @@ button{font-family:inherit;cursor:pointer}
 .slider__btn.prev{left:-4px}
 .slider__btn.next{right:-4px}
 
-/* Photos: чуть крупнее карточки */
-.slider.is-photos .slider__track{grid-auto-columns:min(520px, 85vw)}
+/* === Фото-слайдер: фикс. высота, авто-ширина по аспекту === */
+:root{ --photo-h: 420px; }                /* база на десктопе */
+
+.photos-slider{ position:relative; }
+.photos-track{
+  display:flex; gap:12px; overflow-x:auto;
+  scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+  padding:4px;
+}
+.photos-track:focus{ outline:1px solid var(--stroke); }
+
+.photo-card{
+  flex:0 0 auto;
+  height:var(--photo-h);                  /* фиксируем ЕДИНУЮ высоту */
+  width:auto;                             /* ширину выставит JS по аспекту */
+  scroll-snap-align:center;
+  background:#000; border-radius:16px; overflow:hidden;
+  border:1px solid var(--stroke);
+  display:flex; align-items:center; justify-content:center;
+}
+.photo-card img{
+  width:100%; height:100%;
+  object-fit:contain;                     /* без обрезки */
+  background:#000;
+  display:block;
+}
+
+.photos-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:40px; height:40px; border-radius:999px;
+  background:linear-gradient(120deg, var(--accent), var(--accent-2));
+  border:none;
+  color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; z-index:5;
+  transition:transform .15s ease, box-shadow .2s ease;
+  box-shadow:0 4px 20px rgba(255,106,61,0.4);
+  animation:pulse 2s ease-in-out infinite;
+}
+.photos-btn:hover{ transform:translateY(-50%) scale(1.06); }
+.photos-btn.prev{ left:-4px; }
+.photos-btn.next{ right:-4px; }
 /* === Слайдер писем (А4, одинаковая высота) ===
    Принцип:
    – фиксируем высоту карточки переменной --letter-h;
@@ -367,7 +407,7 @@ button{font-family:inherit;cursor:pointer}
 /* ===== Адаптив ===== */
 /* Адаптив: уменьшаем высоту карточки => ширина также уменьшится из-за aspect-ratio */
 @media (max-width:1024px){
-  :root{ --letter-h: 320px; }
+  :root{ --letter-h: 320px; --photo-h: 360px; }
 }
 @media (max-width:860px){
   .hero__grid{grid-template-columns:1fr}
@@ -377,13 +417,13 @@ button{font-family:inherit;cursor:pointer}
   .benefits{grid-template-columns:repeat(2,1fr)}
   .slider__track{grid-auto-columns:90vw}
   .footer__grid{grid-template-columns:1fr}
-  :root{ --letter-h: 280px; }
+  :root{ --letter-h: 280px; --photo-h: 300px; }
 }
 @media (max-width:640px){
-  :root{ --letter-h: 240px; }
+  :root{ --letter-h: 240px; --photo-h: 240px; }
 }
 @media (max-width:420px){
-  :root{ --letter-h: 200px; }
+  :root{ --letter-h: 200px; --photo-h: 200px; }
 }
 
 @media (max-width:640px){
