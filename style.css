@@ -119,6 +119,7 @@ button{font-family:inherit}
   position:relative;
   aspect-ratio:16/9;
   background:#000;
+  border-radius:16px;
   overflow:hidden;
   transition:transform 0.3s ease;
   cursor:pointer;
