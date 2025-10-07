@@ -287,11 +287,11 @@ button{font-family:inherit;cursor:pointer}
   box-shadow:0 15px 40px rgba(0,0,0,.25);
   border-radius: 12px;
   overflow: hidden;
+  aspect-ratio: 1.7 / 1; /* Делаем сам блок шире, как на скриншоте */
 }
 .slider.is-letters .slider__slide img{
   object-fit:contain; 
   background:#fff; 
-  aspect-ratio: 1.4/1;
   width: 100%;
   height: 100%;
   display: block;
