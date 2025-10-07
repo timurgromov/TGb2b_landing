@@ -313,10 +313,7 @@ button{font-family:inherit;cursor:pointer}
   border:none;
   border-radius:16px;
   box-shadow:0 12px 36px rgba(0,0,0,.35);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px;                  /* «поля» листа, чтобы печати/подписи не прилипали к краю */
+  overflow:hidden;               /* убираем белые поля */
 }
 
 .letter-card img{
