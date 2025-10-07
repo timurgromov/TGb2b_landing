@@ -179,3 +179,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+// ==================== CONNECTION WARMUP ====================
+// Предварительно прогревает соединение с Boomstream, чтобы видео запускалось быстрее
+function warmConnection(url){
+  if (!url) return;
+  const link = document.createElement('link');
+  link.rel = 'preconnect';
+  link.href = url;
+  link.crossOrigin = 'anonymous';
+  document.head.appendChild(link);
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const videoCards = document.querySelectorAll('.video-card');
+  videoCards.forEach(card => {
+    // подогрев при первом наведении
+    card.addEventListener('mouseenter', () => {
+      warmConnection('https://play.boomstream.com');
+      warmConnection('https://cdnv.boomstream.com');
+    }, { once: true });
+    // и на мобильных при первом касании
+    card.addEventListener('touchstart', () => {
+      warmConnection('https://play.boomstream.com');
+      warmConnection('https://cdnv.boomstream.com');
+    }, { once: true });
+  });
+});
