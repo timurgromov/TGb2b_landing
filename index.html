@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="classic">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ведущий на корпоратив в Москве — Тимур Громов</title>
   <meta name="description" content="Ведущий на корпоратив в Москве — Тимур Громов. 15 лет опыта. Спокойный, интеллигентный формат без пошлости. Ведущий + DJ + звук — под ключ.">
   <meta name="theme-color" content="#0c0f14">
@@ -30,35 +30,44 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container nav">
-      <div class="logo">Тимур Громов</div>
-      <a class="btn btn-primary nav__cta"
-         href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив"
-         target="_blank">WhatsApp</a>
+  <header class="site-header">
+    <div class="container header__row sr">
+      <div class="brand">Тимур Громов</div>
+
+      <!-- Переключатель тем (можно скрыть позже) -->
+      <div class="theme-switch">
+        <button class="theme-btn" data-set-theme="classic" aria-label="Classic">Classic</button>
+        <button class="theme-btn" data-set-theme="modern" aria-label="Modern">Modern</button>
+        <button class="theme-btn" data-set-theme="warm" aria-label="Warm">Warm</button>
+      </div>
+
+      <a class="btn wa"
+         href="https://api.whatsapp.com/send/?phone=%2B79253900772&text&type=phone_number&app_absent=0"
+         aria-label="Написать в WhatsApp">WhatsApp</a>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="hero__inner container">
-        <div class="hero__col hero__col--text">
-          <div class="hero__text">
-            <h1>Ведущий на корпоратив — Тимур Громов</h1>
-            <p class="lead">15 лет опыта. Спокойно, интеллигентно, по-деловому. Без пошлости и кринжа.</p>
-            <ul class="hero__facts">
-              <li>15 лет опыта</li><li>500+ мероприятий</li><li>Ведущий + DJ + звук</li>
-            </ul>
-            <a href="https://wa.me/79253900772"
-               class="cta-primary" target="_blank">Написать в WhatsApp</a>
+      <div class="container hero__grid">
+        <div class="hero__text sr">
+          <h1>Ведущий на корпоратив — Тимур Громов</h1>
+          <p class="sub">15 лет опыта. Спокойно, интеллигентно, по-деловому. Без пошлости и «кринжа».</p>
+          <ul class="hero__facts">
+            <li>15 лет опыта</li>
+            <li>500+ мероприятий</li>
+            <li>Ведущий + DJ + звук</li>
+          </ul>
+          <div class="hero__cta">
+            <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=%2B79253900772&text&type=phone_number&app_absent=0">Обсудить корпоратив</a>
+            <a class="btn btn-ghost" href="tel:+79253900772">Позвонить</a>
           </div>
         </div>
-        <div class="hero__col hero__col--photo">
-          <figure class="hero-photo">
-            <img src="./assets/hero/portrait.jpg"
-                 alt="Тимур Громов — ведущий на корпоратив" />
-          </figure>
-        </div>
+        <figure class="hero__photo sr" aria-label="Тимур Громов">
+          <img src="./assets/hero/portrait.jpg"
+               alt="Тимур Громов — ведущий на корпоратив"
+               width="1200" height="1500" loading="lazy" decoding="async">
+        </figure>
       </div>
     </section>
 
@@ -120,62 +129,6 @@
     <div class="container"><p>© 2025 Тимур Громов. Все права защищены.</p></div>
   </footer>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Видео функциональность (НЕ МЕНЯТЬ)
-    document.querySelectorAll(".video-wrapper").forEach(wrapper => {
-      const videoSrc = wrapper.dataset.video;
-      const coverSrc = wrapper.dataset.cover;
-      wrapper.innerHTML = `
-        <div class="video-poster"><img src="${coverSrc}" alt=""></div>
-        <div class="play-button"></div>`;
-      const playBtn = wrapper.querySelector(".play-button");
-      playBtn.addEventListener("click", () => {
-        wrapper.innerHTML = `<video controls autoplay><source src="${videoSrc}" type="video/mp4"></video>`;
-        const video = wrapper.querySelector("video");
-        video.muted = false;
-        video.volume = 1.0;
-        video.play();
-      });
-    });
-
-    // ===== Scroll-Reveal: лёгкая анимация появления всех .sr =====
-    (function(){
-      document.documentElement.classList.add('js');
-
-      const els = Array.from(document.querySelectorAll('.sr'));
-      if (!els.length) return;
-
-      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce || typeof IntersectionObserver === 'undefined'){
-        els.forEach(el => el.classList.add('show'));
-        return;
-      }
-
-      // Стаггер внутри одного контейнера
-      const byContainer = new Map();
-      els.forEach(el=>{
-        const parent = el.closest('.container') || document.body;
-        if(!byContainer.has(parent)) byContainer.set(parent,[]);
-        byContainer.get(parent).push(el);
-      });
-      byContainer.forEach(list=>{
-        list.forEach((el,i)=> el.style.setProperty('--reveal-delay', `${Math.min(i*80, 400)}ms`));
-      });
-
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if(!entry.isIntersecting) return;
-          const el = entry.target;
-          el.style.transitionDelay = getComputedStyle(el).getPropertyValue('--reveal-delay') || '0ms';
-          el.classList.add('show');
-          io.unobserve(el);
-        });
-      },{threshold:0.12, rootMargin:'0px 0px -10% 0px'});
-
-      els.forEach(el=>io.observe(el));
-    })();
-  });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
