@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (type === 'mp4') {
         const video = document.createElement('video');
+        video.className = 'video-element';
         video.src = src;
         video.controls = true;
         video.playsInline = true;
@@ -27,15 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
         video.play().catch(err => console.log('Autoplay blocked:', err));
       }
 
-      if (type === 'boomstream') {
-        const code = card.dataset.code;
+      if (type === 'boom') {
+        const code = card.dataset.boom;
         const iframe = document.createElement('iframe');
+        iframe.className = 'video-iframe';
         iframe.src = `https://play.boomstream.com/${code}?autoplay=0`;
         iframe.allow = 'autoplay; fullscreen';
         iframe.frameBorder = '0';
         iframe.allowFullscreen = true;
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
         iframe.loading = 'eager';
 
         card.appendChild(iframe);
