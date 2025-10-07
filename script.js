@@ -150,7 +150,7 @@ document.querySelectorAll('[data-cta]').forEach(el=>{
         iframe.className = 'video-iframe';
         iframe.allow = 'autoplay; fullscreen; picture-in-picture';
         iframe.referrerPolicy = 'no-referrer-when-downgrade';
-        iframe.src = `https://play.boomstream.com/${code}?color=false&title=0&autoplay=1&muted=0`;
+        iframe.src = `https://play.boomstream.com/${code}?color=false&title=0&autoplay=1`;
         card.appendChild(iframe);
         // Так как это пользовательский клик — звук доступен сразу в плеере Boomstream.
       }
