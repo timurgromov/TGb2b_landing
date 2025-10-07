@@ -137,20 +137,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const src  = (card.dataset.src  || '').trim();
     const boom = (card.dataset.boom || '').trim();   // код BoomStream
 
-    // контейнер под плеер
-    const wrap = document.createElement('div');
-    wrap.className = 'player-wrap';
-    card.innerHTML = '';
-    card.appendChild(wrap);
+    // Добавляем класс is-playing для скрытия кнопки и постера
+    card.classList.add('is-playing');
 
     if (type === 'mp4'){
       const v = document.createElement('video');
+      v.className = 'video-element';
       v.src = src;
       v.controls = true;
       v.playsInline = true;
       v.autoplay = true;
       v.muted = true; // для автоплея на мобильных
-      wrap.appendChild(v);
+      card.appendChild(v);
       v.focus();
       return;
     }
@@ -166,11 +164,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     const iframe = document.createElement('iframe');
+    iframe.className = 'video-iframe';
     iframe.src = boomUrl;
     iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
     iframe.referrerPolicy = 'no-referrer-when-downgrade';
     iframe.loading = 'lazy';
-    wrap.appendChild(iframe);
+    card.appendChild(iframe);
   }
 
   function buildBoomUrl(raw, params = {}){
