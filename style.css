@@ -232,6 +232,40 @@ button{font-family:inherit;cursor:pointer}
 .programs-list b{color:var(--accent)}
 .modal .muted{color:var(--muted);font-size:14px;margin:0 0 24px;line-height:1.5}
 
+/* ===== Плавающая кнопка WhatsApp ===== */
+.wa-fab{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:56px;
+  height:56px;
+  background:linear-gradient(120deg,var(--accent),var(--accent-2));
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  text-decoration:none;
+  box-shadow:0 4px 20px rgba(255,106,61,0.4);
+  transition:all 0.3s ease;
+  z-index:1000;
+  animation:pulse-fab 2s ease-in-out infinite;
+}
+.wa-fab:hover{
+  transform:scale(1.1);
+  box-shadow:0 6px 25px rgba(255,106,61,0.6);
+}
+.wa-fab svg{
+  width:24px;
+  height:24px;
+}
+
+@keyframes pulse-fab {
+  0% { box-shadow:0 4px 20px rgba(255,106,61,0.4); }
+  50% { box-shadow:0 4px 20px rgba(255,106,61,0.4), 0 0 0 10px rgba(255,106,61,0.1); }
+  100% { box-shadow:0 4px 20px rgba(255,106,61,0.4); }
+}
+
 /* ===== FOOTER ===== */
 .footer{background:#0a0d12;border-top:1px solid var(--stroke);padding:24px 0;text-align:center;color:var(--muted);font-size:14px}
 

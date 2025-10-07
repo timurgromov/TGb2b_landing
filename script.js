@@ -101,9 +101,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
-// ===== Логирование CTA кликов =====
+// ===== Логирование CTA кликов для Яндекс.Метрики =====
 (function(){
-  const log = (label) => console.log({event: 'cta_click', label, ts: Date.now()});
+  // Инициализируем dataLayer если его нет
+  window.dataLayer = window.dataLayer || [];
+  
+  const log = (label) => {
+    const event = {
+      event: 'cta_click',
+      label: label,
+      ts: Date.now()
+    };
+    
+    // Отправляем в dataLayer для Яндекс.Метрики
+    window.dataLayer.push(event);
+    
+    // Дублируем в консоль для отладки
+    console.log(event);
+    
+    // Отправляем в Яндекс.Метрику (если ym доступен)
+    if (typeof ym !== 'undefined') {
+      ym(COUNTER_ID, 'reachGoal', 'cta_click_' + label);
+    }
+  };
   
   document.querySelectorAll('[data-cta]').forEach(el => {
     el.addEventListener('click', () => {
