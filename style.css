@@ -122,6 +122,8 @@ button{font-family:inherit;cursor:pointer}
 .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 36px color-mix(in oklab, var(--accent) 55%, transparent)}
 .btn-ghost{background:transparent;color:var(--text);border-color:var(--stroke)}
 .btn-ghost:hover{background:rgba(255,255,255,0.04)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--accent)}
+.btn-outline:hover{background:var(--accent);color:#fff}
 .wa{background:linear-gradient(120deg,var(--accent),var(--accent-2));color:#fff;font-size:14px;padding:10px 16px}
 
 /* ===== Видео-обёртка на весь экран (ВЕРСТКУ ВНУТРИ НЕ МЕНЯЕМ) ===== */
@@ -213,6 +215,22 @@ button{font-family:inherit;cursor:pointer}
   transform:translate(-50%,-50%) scale(1.1);
   box-shadow:0 0 40px rgba(255,100,20,0.9);
 }
+
+/* ===== Benefits CTA ===== */
+.benefits__cta{text-align:center;margin-top:32px}
+
+/* ===== Модалка ===== */
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s ease}
+.modal.active{opacity:1;visibility:visible}
+.modal__overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px)}
+.modal__content{position:relative;background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:32px;max-width:500px;width:90vw;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.modal__close{position:absolute;top:16px;right:16px;background:transparent;border:none;color:var(--muted);font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s ease}
+.modal__close:hover{background:rgba(255,255,255,0.1)}
+.modal h3{color:var(--text);margin:0 0 20px;font-size:24px;font-weight:700}
+.programs-list{list-style:none;padding:0;margin:0 0 20px}
+.programs-list li{margin-bottom:16px;padding-left:0;color:var(--text);line-height:1.6}
+.programs-list b{color:var(--accent)}
+.modal .muted{color:var(--muted);font-size:14px;margin:0 0 24px;line-height:1.5}
 
 /* ===== FOOTER ===== */
 .footer{background:#0a0d12;border-top:1px solid var(--stroke);padding:24px 0;text-align:center;color:var(--muted);font-size:14px}

@@ -36,8 +36,10 @@
 
 
       <a class="btn wa"
-         href="https://api.whatsapp.com/send/?phone=%2B79253900772&text&type=phone_number&app_absent=0"
-         aria-label="Написать в WhatsApp">WhatsApp</a>
+         href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив"
+         target="_blank" rel="noopener"
+         aria-label="Написать в WhatsApp"
+         data-cta="whatsapp_header">WhatsApp</a>
     </div>
   </header>
 
@@ -53,7 +55,10 @@
             <li>Ведущий + DJ + звук</li>
           </ul>
           <div class="hero__cta">
-            <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=%2B79253900772&text&type=phone_number&app_absent=0">Обсудить корпоратив</a>
+            <a class="btn btn-primary" 
+               href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив"
+               target="_blank" rel="noopener"
+               data-cta="whatsapp_hero">Обсудить корпоратив</a>
           </div>
         </div>
         <figure class="hero__photo sr" aria-label="Тимур Громов">
@@ -104,6 +109,9 @@
             <p>500+ событий: корпораты, юбилеи, тим-билдинги.</p>
           </div>
         </div>
+        <div class="benefits__cta">
+          <button class="btn btn-outline" data-cta="programs_modal">Получить 2 варианта программы</button>
+        </div>
       </div>
     </section>
 
@@ -111,8 +119,13 @@
       <div class="container cta__box sr">
         <h2 class="cta__title">Праздники проходят — впечатления остаются.</h2>
         <div class="cta__actions">
-          <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=%2B79253900772&text&type=phone_number&app_absent=0">Связаться в WhatsApp</a>
-          <a class="btn btn-ghost" href="mailto:gromov@timur.ru">Написать на почту</a>
+          <a class="btn btn-primary" 
+             href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив"
+             target="_blank" rel="noopener"
+             data-cta="whatsapp_cta">Связаться в WhatsApp</a>
+          <a class="btn btn-ghost" 
+             href="tel:+7XXXXXXXXXX" 
+             data-cta="call_cta">Позвонить</a>
         </div>
       </div>
     </section>
@@ -121,6 +134,26 @@
   <footer class="footer">
     <div class="container"><p>© 2025 Тимур Громов. Все права защищены.</p></div>
   </footer>
+
+  <!-- Модалка "2 варианта программы" -->
+  <div id="programs-modal" class="modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+      <button class="modal__close" aria-label="Закрыть">&times;</button>
+      <h3>Два спокойных формата на выбор</h3>
+      <ul class="programs-list">
+        <li><b>Интеллигентный вечер (6 часов)</b> — тёплая подача, приветствие, интерактив-лайт, награждения, поддержка DJ, чёткий тайминг без навязчивости.</li>
+        <li><b>Short&Smart (4–5 часов)</b> — компактно: открытие, камерные включения, награждения, финальный блок. Всё по-деловому и без «кринжа».</li>
+      </ul>
+      <p class="muted">Подберём под стиль вашей компании. Могу прислать короткое видео-пример в WhatsApp.</p>
+      <a class="btn btn-primary"
+         href="https://wa.me/79253900772?text=Здравствуйте,%20интересуют%202%20варианта%20программы"
+         target="_blank" rel="noopener" 
+         data-cta="whatsapp_programs">
+        Получить варианты в WhatsApp
+      </a>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

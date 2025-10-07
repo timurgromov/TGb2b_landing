@@ -69,3 +69,46 @@ document.addEventListener("DOMContentLoaded", () => {
     setActive(t);
   }));
 })();
+
+// ===== Модалка "2 варианта программы" =====
+(function(){
+  const modal = document.getElementById('programs-modal');
+  const openBtn = document.querySelector('[data-cta="programs_modal"]');
+  const closeBtn = modal?.querySelector('.modal__close');
+  const overlay = modal?.querySelector('.modal__overlay');
+
+  if (!modal || !openBtn) return;
+
+  function openModal() {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', closeModal);
+
+  // Закрытие по Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+})();
+
+// ===== Логирование CTA кликов =====
+(function(){
+  const log = (label) => console.log({event: 'cta_click', label, ts: Date.now()});
+  
+  document.querySelectorAll('[data-cta]').forEach(el => {
+    el.addEventListener('click', () => {
+      const label = el.getAttribute('data-cta') || 'cta';
+      log(label);
+    });
+  });
+})();
