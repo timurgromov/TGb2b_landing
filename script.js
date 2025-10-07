@@ -107,7 +107,7 @@ document.querySelectorAll('[data-cta]').forEach(el=>{
   el.addEventListener('click', ()=> log(el.getAttribute('data-cta') || 'cta'));
 });
 
-// Video Cards Poster Loading
+// Video Cards Poster Loading & Play Button Logic
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.video-card').forEach(card => {
     const coverPath = card.dataset.cover || '';
@@ -124,5 +124,58 @@ document.addEventListener('DOMContentLoaded', () => {
         img.remove(); // не показывать «сломанный» значок
       }, { once:true });
     }
+
+    // Обработка клика по кнопке Play
+    const playBtn = card.querySelector('.play-btn');
+    if (playBtn) {
+      playBtn.addEventListener('click', () => mountPlayer(card));
+    }
   });
+
+  function mountPlayer(card){
+    const type = (card.dataset.type || '').trim();   // 'boom' | 'mp4'
+    const src  = (card.dataset.src  || '').trim();
+
+    // контейнер под плеер
+    const wrap = document.createElement('div');
+    wrap.className = 'player-wrap';
+    card.innerHTML = '';
+    card.appendChild(wrap);
+
+    if (type === 'mp4'){
+      const v = document.createElement('video');
+      v.src = src;
+      v.controls = true;
+      v.playsInline = true;
+      v.autoplay = true;
+      v.muted = true; // для автоплея на мобильных
+      wrap.appendChild(v);
+      v.focus();
+      return;
+    }
+
+    // BoomStream iframe (в src — полная ссылка https://play.boomstream.com/{код})
+    const url = buildBoomUrl(src, { autoplay: 1, muted: 1 });
+    const iframe = document.createElement('iframe');
+    iframe.src = url;
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.loading = 'lazy';
+    wrap.appendChild(iframe);
+  }
+
+  function buildBoomUrl(raw, params = {}){
+    try {
+      const u = new URL(raw);
+      Object.entries(params).forEach(([k,v]) => u.searchParams.set(k, String(v)));
+      return u.toString();
+    } catch(e){
+      // если передан только код — соберём URL
+      const base = 'https://play.boomstream.com/';
+      const path = raw.replace(/^https?:\/\/[^/]+\//,'').replace(/^\/+/,'');
+      const url  = new URL(base + path);
+      Object.entries(params).forEach(([k,v]) => url.searchParams.set(k, String(v)));
+      return url.toString();
+    }
+  }
 });
