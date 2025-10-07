@@ -287,7 +287,7 @@ body{
 .video-grid-fullscreen {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0;
+  gap: 8px 0;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -297,6 +297,12 @@ body{
   aspect-ratio: 16/9;
   background: #000;
   overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.video-fullscreen .video-wrapper:hover {
+  transform: scale(1.02);
+  z-index: 2;
 }
 
 .video-fullscreen .video-poster img,
