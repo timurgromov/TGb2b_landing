@@ -29,14 +29,14 @@ html[data-theme="modern"]{
   --stroke:rgba(255,255,255,.06);
 }
 
-/* Warm — более тёплый, мягкий фон */
-html[data-theme="warm"]{
-  --bg:#0d0f12;
-  --bg-2:#121416;
+/* Zen Gromov — soft warm purple + bronze accent */
+html[data-theme="zen"]{
+  --bg:#1a1217;
+  --bg-2:#251b2b;
   --text:#f2f5fa;
   --muted:#a7b0bb;
-  --accent:#ff8756;
-  --accent-2:#ff6a3a;
+  --accent:#ffb070;
+  --accent-2:#ffe2c1;
   --card:#14181f;
   --stroke:rgba(255,255,255,.05);
 }
@@ -57,9 +57,23 @@ button{font-family:inherit;cursor:pointer}
 .brand{font-weight:800;letter-spacing:.2px;font-size:18px}
 
 /* Переключатель тем */
-.theme-switch{display:flex;gap:6px}
-.theme-btn{background:rgba(255,255,255,0.05);border:1px solid var(--stroke);padding:6px 12px;border-radius:8px;font-size:12px;color:var(--muted);transition:.2s}
-.theme-btn:hover{background:rgba(255,255,255,0.08);color:var(--text)}
+.theme-switch{display:flex;gap:.5rem;align-items:center}
+.theme-btn{
+  padding:.45rem .9rem;border-radius:.9rem;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--stroke);
+  color:var(--text);
+  backdrop-filter:blur(6px);
+  transition:transform .15s ease,box-shadow .2s ease,background .2s ease,border-color .2s;
+  font-size:12px;
+}
+.theme-btn:hover{transform:translateY(-1px)}
+.theme-btn.active{
+  background:linear-gradient(180deg,var(--accent-2),var(--accent));
+  color:#1a1a1a;
+  box-shadow:0 6px 18px rgba(255,138,76,.18);
+  border-color:transparent;
+}
 
 /* ===== Hero с «цветным» фоном (Classic ближе к исходнику) ===== */
 .hero{

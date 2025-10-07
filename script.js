@@ -42,18 +42,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ===== Переключение темы =====
 (function(){
+  const KEY = 'site-theme';
   const root = document.documentElement;
-  document.querySelectorAll('.theme-btn')?.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const theme = btn.getAttribute('data-set-theme');
-      if(!theme) return;
-      root.setAttribute('data-theme', theme);
-      try{ localStorage.setItem('tg_theme', theme); }catch(e){}
-    });
-  });
-  // восстановление из localStorage
-  try{
-    const saved = localStorage.getItem('tg_theme');
-    if(saved) document.documentElement.setAttribute('data-theme', saved);
-  }catch(e){}
+  const btns = document.querySelectorAll('.theme-btn');
+
+  // restore theme
+  const saved = localStorage.getItem(KEY);
+  if (saved) root.setAttribute('data-theme', saved);
+  else if (!root.hasAttribute('data-theme')) root.setAttribute('data-theme','classic');
+
+  function setActive(theme){
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem(KEY, theme);
+    btns.forEach(b => b.classList.toggle('active', b.dataset.theme === theme));
+  }
+
+  // sync active state on load
+  const current = root.getAttribute('data-theme') || 'classic';
+  btns.forEach(b => b.classList.toggle('active', b.dataset.theme === current));
+
+  // wire clicks
+  btns.forEach(b => b.addEventListener('click', e => {
+    e.preventDefault();
+    const t = b.dataset.theme;
+    if (!t) return;
+    setActive(t);
+  }));
 })();
