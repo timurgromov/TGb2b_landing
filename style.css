@@ -288,7 +288,7 @@ button{font-family:inherit;cursor:pointer}
    – горизонтальный скролл + scroll-snap, стрелки, тени.
 */
 :root{
-  --letter-h: 540px;   /* базовая высота карточки на десктопе */
+  --letter-h: 360px;   /* базовая высота карточки на десктопе */
 }
 
 .letters-slider{
@@ -367,7 +367,7 @@ button{font-family:inherit;cursor:pointer}
 /* ===== Адаптив ===== */
 /* Адаптив: уменьшаем высоту карточки => ширина также уменьшится из-за aspect-ratio */
 @media (max-width:1024px){
-  :root{ --letter-h: 460px; }
+  :root{ --letter-h: 320px; }
 }
 @media (max-width:860px){
   .hero__grid{grid-template-columns:1fr}
@@ -377,13 +377,13 @@ button{font-family:inherit;cursor:pointer}
   .benefits{grid-template-columns:repeat(2,1fr)}
   .slider__track{grid-auto-columns:90vw}
   .footer__grid{grid-template-columns:1fr}
-  :root{ --letter-h: 400px; }
+  :root{ --letter-h: 280px; }
 }
 @media (max-width:640px){
-  :root{ --letter-h: 320px; }
+  :root{ --letter-h: 240px; }
 }
 @media (max-width:420px){
-  :root{ --letter-h: 280px; }
+  :root{ --letter-h: 200px; }
 }
 
 @media (max-width:640px){
