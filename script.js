@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Обработка клика по кнопке Play
-    const playBtn = card.querySelector('.play-btn');
+    const playBtn = card.querySelector('.play-btn, .video-play');
     if (playBtn) {
       playBtn.addEventListener('click', () => mountPlayer(card));
     }
@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function mountPlayer(card){
     const type = (card.dataset.type || '').trim();   // 'boom' | 'mp4'
     const src  = (card.dataset.src  || '').trim();
+    const boom = (card.dataset.boom || '').trim();   // код BoomStream
 
     // контейнер под плеер
     const wrap = document.createElement('div');
@@ -154,10 +155,18 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // BoomStream iframe (в src — полная ссылка https://play.boomstream.com/{код})
-    const url = buildBoomUrl(src, { autoplay: 1, muted: 1 });
+    // BoomStream iframe
+    let boomUrl;
+    if (boom) {
+      // если есть data-boom, используем его
+      boomUrl = `https://play.boomstream.com/${boom}?color=false&title=0`;
+    } else {
+      // иначе используем data-src
+      boomUrl = buildBoomUrl(src, { autoplay: 1, muted: 1, color: false, title: 0 });
+    }
+    
     const iframe = document.createElement('iframe');
-    iframe.src = url;
+    iframe.src = boomUrl;
     iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
     iframe.referrerPolicy = 'no-referrer-when-downgrade';
     iframe.loading = 'lazy';
