@@ -98,3 +98,44 @@ const COUNTER_ID = 104468814;
     });
   });
 })();
+
+// === Инициализация "недеpганого" слайдера без библиотек (scroll-snap + кнопки + drag) ===
+(function initSliders(){
+  const sliders = document.querySelectorAll('.slider');
+  if (!sliders.length) return;
+
+  sliders.forEach(slider => {
+    const track = slider.querySelector('.slider__track');
+    const prev  = slider.querySelector('.slider__btn.prev');
+    const next  = slider.querySelector('.slider__btn.next');
+    if (!track) return;
+
+    const getCardWidth = () => track.querySelector('.slider__slide')?.getBoundingClientRect().width || 300;
+    const scrollByCard = (dir) => track.scrollBy({ left: dir * (getCardWidth() + 12), behavior: 'smooth' });
+
+    prev?.addEventListener('click', () => scrollByCard(-1));
+    next?.addEventListener('click', () => scrollByCard( 1));
+
+    // Клавиатура
+    track.addEventListener('keydown', (e)=>{
+      if (e.key === 'ArrowRight') scrollByCard(1);
+      if (e.key === 'ArrowLeft')  scrollByCard(-1);
+    });
+
+    // Drag / Swipe (pointer events)
+    let isDown = false, startX = 0, startScroll = 0;
+    track.addEventListener('pointerdown', (e)=>{
+      isDown = true;
+      track.setPointerCapture(e.pointerId);
+      startX = e.clientX; startScroll = track.scrollLeft;
+    });
+    track.addEventListener('pointermove', (e)=>{
+      if(!isDown) return;
+      const dx = e.clientX - startX;
+      track.scrollLeft = startScroll - dx;
+    });
+    ['pointerup','pointercancel','mouseleave'].forEach(ev=>{
+      track.addEventListener(ev, ()=>{ isDown=false; });
+    });
+  });
+})();

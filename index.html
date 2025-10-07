@@ -86,6 +86,10 @@
                href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив"
                target="_blank" rel="noopener"
                data-cta="whatsapp_hero">Обсудить корпоратив</a>
+            <a class="btn btn-ghost"
+               href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20получить%20видеопрезентацию%20формата%20корпоратива"
+               target="_blank" rel="noopener"
+               data-cta="video_call_hero">Видеоконсультация</a>
           </div>
         </div>
         <figure class="hero__photo sr" aria-label="Тимур Громов">
@@ -104,6 +108,32 @@
         <div class="video-wrapper" data-video="https://cdnv.boomstream.com/balancer/mutbwKHj-SxJPiQup.mp4" data-cover="./assets/photos/cover2.jpg"></div>
         <div class="video-wrapper" data-video="https://cdnv.boomstream.com/balancer/x1xsDQws-SxJPiQup.mp4" data-cover="./assets/photos/cover3.jpg"></div>
         <div class="video-wrapper" data-video="https://cdnv.boomstream.com/balancer/QCDV8bgf-EuQeQgfF.mp4" data-cover="./assets/photos/cover4.jpg"></div>
+      </div>
+    </section>
+
+    <!-- Фото-слайдер: Моменты с событий -->
+    <section id="photos" class="section">
+      <div class="container">
+        <h2 class="section__title sr">Моменты с событий</h2>
+        <div class="slider is-photos sr" aria-label="Фотографии с мероприятий">
+          <button class="slider__btn prev" aria-label="Назад" data-dir="-1">‹</button>
+          <div class="slider__track" tabindex="0">
+            <!-- Замените src на ваши реальные пути -->
+            <figure class="slider__slide">
+              <img src="./assets/photos/gal/p1.jpg" alt="Корпоратив — момент 1" loading="lazy" decoding="async">
+            </figure>
+            <figure class="slider__slide">
+              <img src="./assets/photos/gal/p2.jpg" alt="Корпоратив — момент 2" loading="lazy" decoding="async">
+            </figure>
+            <figure class="slider__slide">
+              <img src="./assets/photos/gal/p3.jpg" alt="Корпоратив — момент 3" loading="lazy" decoding="async">
+            </figure>
+            <figure class="slider__slide">
+              <img src="./assets/photos/gal/p4.jpg" alt="Корпоратив — момент 4" loading="lazy" decoding="async">
+            </figure>
+          </div>
+          <button class="slider__btn next" aria-label="Вперёд" data-dir="1">›</button>
+        </div>
       </div>
     </section>
 
@@ -142,6 +172,29 @@
       </div>
     </section>
 
+    <!-- Благодарственные письма -->
+    <section id="letters" class="section">
+      <div class="container">
+        <h2 class="section__title sr">Благодарности компаний</h2>
+        <div class="slider is-letters sr" aria-label="Благодарственные письма">
+          <button class="slider__btn prev" aria-label="Назад" data-dir="-1">‹</button>
+          <div class="slider__track" tabindex="0">
+            <!-- Рекомендация: сканы с печатями, горизонтальная ориентация -->
+            <figure class="slider__slide">
+              <img src="./assets/letters/l1.jpg" alt="Благодарственное письмо 1" loading="lazy" decoding="async">
+            </figure>
+            <figure class="slider__slide">
+              <img src="./assets/letters/l2.jpg" alt="Благодарственное письмо 2" loading="lazy" decoding="async">
+            </figure>
+            <figure class="slider__slide">
+              <img src="./assets/letters/l3.jpg" alt="Благодарственное письмо 3" loading="lazy" decoding="async">
+            </figure>
+          </div>
+          <button class="slider__btn next" aria-label="Вперёд" data-dir="1">›</button>
+        </div>
+      </div>
+    </section>
+
     <section id="cta" class="section cta">
       <div class="container cta__box sr">
         <h2 class="cta__title">Праздники проходят — впечатления остаются.</h2>
@@ -156,7 +209,31 @@
   </main>
 
   <footer class="footer">
-    <div class="container"><p>© 2025 Тимур Громов. Все права защищены.</p></div>
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <div class="brand">Тимур Громов</div>
+        <div class="footer__tagline">Ведущий мероприятий • Москва</div>
+      </div>
+
+      <div class="footer__contacts">
+        <a href="tel:+79253900772" class="footer__link" data-cta="tel_footer">+7 (925) 390-07-72</a>
+        <a href="mailto:info@timurgromov.ru" class="footer__link" data-cta="email_footer">info@timurgromov.ru</a>
+        <div class="footer__socials">
+          <!-- Замените href на реальные -->
+          <a href="#" target="_blank" rel="noopener" aria-label="Instagram" class="footer__icon" data-cta="social_inst">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a3.5 3.5 0 1 0 .001 7.001A3.5 3.5 0 0 0 12 9.5zM18 6.3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="Telegram" class="footer__icon" data-cta="social_tg">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9.9 16.2l-.4 5.6c.6 0 .9-.2 1.3-.6l3-2.8 6.1 4.5c1.1.6 1.9.3 2.2-1l4-18.8c.4-1.7-.6-2.4-1.7-2L1.4 9.7c-1.6.6-1.6 1.5-.3 1.9l6.3 2 14.5-9.2c.7-.4 1.3-.2.8.2"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="footer__icon" data-cta="social_yt">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.6 15.5v-7l6.4 3.5-6.4 3.5z"/></svg>
+          </a>
+        </div>
+        <div class="footer__legal">ИП Громов Т.А. · ОГРНИП 000000000000000 · ИНН 000000000000</div>
+      </div>
+    </div>
+    <div class="container"><p class="footer__copy">© 2025 Тимур Громов. Все права защищены.</p></div>
   </footer>
 
   <!-- Модалка "2 варианта программы" -->
