@@ -268,18 +268,6 @@ body{
 }
 
 /* Новая видео галерея */
-.video-gallery {
-  margin-top: 60px;
-  text-align: left;
-  padding: 72px 0;
-}
-
-.video-gallery h2 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 25px;
-}
-
 .video-gallery .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
