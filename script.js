@@ -106,3 +106,23 @@ const log = (label)=>console.log({event:'cta_click', label, ts:Date.now()});
 document.querySelectorAll('[data-cta]').forEach(el=>{
   el.addEventListener('click', ()=> log(el.getAttribute('data-cta') || 'cta'));
 });
+
+// Video Cards Poster Loading
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.video-card').forEach(card => {
+    const coverPath = card.dataset.cover || '';
+    const img = card.querySelector('.video-cover');
+
+    // если есть data-cover, но <img> пустой — проставим
+    if (coverPath && img && !img.getAttribute('src')) {
+      img.src = coverPath;
+    }
+
+    // если картинка не загрузилась — оставим градиент фоном (фолбэк)
+    if (img) {
+      img.addEventListener('error', () => {
+        img.remove(); // не показывать «сломанный» значок
+      }, { once:true });
+    }
+  });
+});

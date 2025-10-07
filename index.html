@@ -71,28 +71,45 @@
       <div class="container">
         <h2 class="section__title">Примеры работ</h2>
         <div class="video-grid">
-          <div class="video-wrap">
-            <iframe
-              src="https://play.boomstream.com/jaSBpguo?color=false&title=0"
-              class="video-iframe"
-              loading="lazy"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowfullscreen
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-          </div>
-          <div class="video-card" data-video="/assets/teaser.mp4">
-            <img src="favicon.png" alt="Видео 2" loading="lazy" width="960" height="540">
-            <button class="play" aria-label="Смотреть видео"></button>
-          </div>
-          <div class="video-card" data-video="/assets/teaser.mp4">
-            <img src="favicon.png" alt="Видео 3" loading="lazy" width="960" height="540">
-            <button class="play" aria-label="Смотреть видео"></button>
-          </div>
-          <div class="video-card" data-video="/assets/teaser.mp4">
-            <img src="favicon.png" alt="Видео 4" loading="lazy" width="960" height="540">
-            <button class="play" aria-label="Смотреть видео"></button>
-          </div>
+          <article class="video-card"
+                   data-type="boom"
+                   data-src="https://play.boomstream.com/jaSBpguo"
+                   data-title="Корпоратив — кейс 1"
+                   data-cover="./assets/photos/cover1.jpg">
+            <img src="./assets/photos/cover1.jpg" alt="Корпоратив — кейс 1" class="video-cover" loading="lazy">
+            <div class="card-vignette" aria-hidden="true"></div>
+            <button class="play-btn" aria-label="Смотреть видео"><span class="triangle"></span></button>
+          </article>
+
+          <article class="video-card"
+                   data-type="boom"
+                   data-src="https://play.boomstream.com/XXXXYYYY"
+                   data-title="Корпоратив — кейс 2"
+                   data-cover="./assets/photos/cover2.jpg">
+            <img src="./assets/photos/cover2.jpg" alt="Корпоратив — кейс 2" class="video-cover" loading="lazy">
+            <div class="card-vignette" aria-hidden="true"></div>
+            <button class="play-btn" aria-label="Смотреть видео"><span class="triangle"></span></button>
+          </article>
+
+          <article class="video-card"
+                   data-type="mp4"
+                   data-src="https://cdnv.boomstream.com/balancer/o3LLb1w5-SxJPiQup.mp4"
+                   data-title="Корпоратив — кейс 3"
+                   data-cover="./assets/photos/cover3.jpg">
+            <img src="./assets/photos/cover3.jpg" alt="Корпоратив — кейс 3" class="video-cover" loading="lazy">
+            <div class="card-vignette" aria-hidden="true"></div>
+            <button class="play-btn" aria-label="Смотреть видео"><span class="triangle"></span></button>
+          </article>
+
+          <article class="video-card"
+                   data-type="boom"
+                   data-src="https://play.boomstream.com/ZZZZ1111"
+                   data-title="Корпоратив — кейс 4"
+                   data-cover="./assets/photos/cover4.jpg">
+            <img src="./assets/photos/cover4.jpg" alt="Корпоратив — кейс 4" class="video-cover" loading="lazy">
+            <div class="card-vignette" aria-hidden="true"></div>
+            <button class="play-btn" aria-label="Смотреть видео"><span class="triangle"></span></button>
+          </article>
         </div>
       </div>
     </section>

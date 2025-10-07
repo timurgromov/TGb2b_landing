@@ -180,3 +180,58 @@ h1.hero__title, .hero h1{font-size:42px;line-height:1.15;margin:0 0 16px;letter-
   .cta__title{font-size:26px}
   .cta__buttons{flex-direction:column}
 }
+
+/* ==== Video Cards ==== */
+/* Базовый фолбэк-фон, если нет постера */
+.video-card{
+  position:relative;
+  aspect-ratio:16/9;
+  border-radius:18px;
+  overflow:hidden;
+  background:
+    radial-gradient(120% 120% at 30% 30%, #1a1f25 0%, #0f1216 60%, #0b0e12 100%);
+  box-shadow:0 10px 40px rgba(0,0,0,.35);
+  isolation:isolate;
+}
+
+/* Постер всегда под оверлеями, но виден */
+.video-card .video-cover{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scale(1.02);
+  transition:transform .35s ease, filter .35s ease;
+  z-index:0;
+}
+
+/* Мягкая «маска» по краям (НЕ закрывает постер) */
+.video-card .card-vignette{
+  position:absolute; inset:0;
+  pointer-events:none;
+  z-index:1;
+  background:
+    radial-gradient(80% 80% at 50% 50%, rgba(0,0,0,0) 60%, rgba(0,0,0,.20) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.20) 100%);
+}
+
+/* Hover эффект — чуть ярче и ближе */
+.video-card:hover .video-cover{
+  filter:brightness(.98);
+  transform:scale(1.04);
+}
+
+/* Кнопка Play (поверх) */
+.play-btn{ z-index:2; }
+
+/* Контейнер плеера после клика (поверх всего, чтобы закрыть постер) */
+.video-card .player-wrap,
+.video-card iframe,
+.video-card video{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  border:0; outline:0;
+  border-radius:18px;
+  background:#000;
+  z-index:3;
+}
