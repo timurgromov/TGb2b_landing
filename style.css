@@ -265,13 +265,14 @@ button{font-family:inherit;cursor:pointer}
 .slider__btn{
   position:absolute; top:50%; transform:translateY(-50%);
   width:40px; height:40px; border-radius:999px;
-  background:rgba(255,255,255,.06);
-  border:1px solid var(--stroke);
-  color:var(--text);
+  background:linear-gradient(120deg, var(--accent), var(--accent-2));
+  border:none;
+  color:#fff;
   display:flex; align-items:center; justify-content:center;
   cursor:pointer; z-index:5;
-  transition:transform .15s ease, background .2s ease, box-shadow .2s ease;
-  backdrop-filter: blur(6px);
+  transition:transform .15s ease, box-shadow .2s ease;
+  box-shadow:0 4px 20px rgba(255,106,61,0.4);
+  animation:pulse 2s ease-in-out infinite;
 }
 .slider__btn:hover{transform:translateY(-50%) scale(1.06)}
 .slider__btn.prev{left:-4px}
@@ -326,13 +327,14 @@ button{font-family:inherit;cursor:pointer}
 .letters-btn{
   position:absolute; top:50%; transform:translateY(-50%);
   width:40px; height:40px; border-radius:999px;
-  background:rgba(255,255,255,.06);
-  border:1px solid var(--stroke);
-  color:var(--text);
+  background:linear-gradient(120deg, var(--accent), var(--accent-2));
+  border:none;
+  color:#fff;
   display:flex; align-items:center; justify-content:center;
   cursor:pointer; z-index:5;
-  transition:transform .15s ease, background .2s ease, box-shadow .2s ease;
-  backdrop-filter: blur(6px);
+  transition:transform .15s ease, box-shadow .2s ease;
+  box-shadow:0 4px 20px rgba(255,106,61,0.4);
+  animation:pulse 2s ease-in-out infinite;
 }
 .letters-btn:hover{transform:translateY(-50%) scale(1.06)}
 .letters-btn.prev{left:-4px}
