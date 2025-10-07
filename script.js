@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // restore theme
   const saved = localStorage.getItem(KEY);
   if (saved) root.setAttribute('data-theme', saved);
-  else if (!root.hasAttribute('data-theme')) root.setAttribute('data-theme','classic');
+  else if (!root.hasAttribute('data-theme')) root.setAttribute('data-theme','modern');
 
   function setActive(theme){
     root.setAttribute('data-theme', theme);
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // sync active state on load
-  const current = root.getAttribute('data-theme') || 'classic';
+  const current = root.getAttribute('data-theme') || 'modern';
   btns.forEach(b => b.classList.toggle('active', b.dataset.theme === current));
 
   // wire clicks
