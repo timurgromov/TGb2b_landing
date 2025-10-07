@@ -145,14 +145,19 @@ document.querySelectorAll('[data-cta]').forEach(el=>{
 
       } else if (type === 'boom') {
         const code = card.dataset.boom; // например "jaSBpguo"
-        // Встраиваем с автозапуском и скрытым названием
+        // Встраиваем без автозапуска, как MP4
         const iframe = document.createElement('iframe');
         iframe.className = 'video-iframe';
         iframe.allow = 'autoplay; fullscreen; picture-in-picture';
         iframe.referrerPolicy = 'no-referrer-when-downgrade';
-        iframe.src = `https://play.boomstream.com/${code}?color=false&title=0&autoplay=1&muted=0`;
+        iframe.src = `https://play.boomstream.com/${code}?color=false&title=0`;
         card.appendChild(iframe);
-        // Так как это пользовательский клик — звук доступен сразу в плеере Boomstream.
+        // Пытаемся запустить видео программно
+        setTimeout(() => {
+          try {
+            iframe.contentWindow.postMessage('play', '*');
+          } catch(e) {}
+        }, 100);
       }
     }, { once: true });
   });
