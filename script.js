@@ -1,190 +1,91 @@
-// Sticky header
-const header = document.querySelector('.header');
-window.addEventListener('scroll', () => {
-  if (header) header.classList.toggle('scrolled', window.scrollY > 12);
-});
+// Единая логика старта видео со звуком по клику для MP4 и Boomstream.
+// Требования к разметке карточки:
+// <div class="video-card" data-type="mp4" data-src="...mp4" data-poster="./photo/cover1.jpg"> или
+// <div class="video-card" data-type="boom" data-boom="jaSBpguo" data-poster="./photo/cover2.jpg">
+// Внутри должны быть .video-poster (img) и .video-play (кнопка).
 
-// Reveal on scroll + stagger
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (!prefersReduced) {
-  // Авто-стэггер: для контейнеров с data-stagger проставим data-delay детям .sr
-  document.querySelectorAll('[data-stagger]').forEach(group => {
-    const step = parseInt(group.getAttribute('data-stagger') || '80', 10);
-    let d = 0;
-    [...group.querySelectorAll('.sr')].forEach(el => {
-      el.dataset.delay = el.dataset.delay || String(d);
-      d += step;
+(function () {
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+  // Инициализация всех карточек один раз
+  const cards = $$('.video-card');
+  if (!cards.length) return;
+
+  // Хелперы
+  function mountMp4(card, src, poster) {
+    // Создаем видео-элемент БЕЗ muted и БЕЗ предварительного autoplay
+    const video = document.createElement('video');
+    video.className = 'video-element';
+    video.src = src;
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = 'metadata';
+    if (poster) video.poster = poster;
+
+    // Вставляем поверх карточки
+    card.appendChild(video);
+
+    // Так как есть пользовательский клик — сразу играем СО ЗВУКОМ
+    video.play().catch(() => {
+      // Если вдруг браузер попросил явного взаимодействия (редко):
+      // оставляем controls — юзер нажмёт Play вручную
+      video.setAttribute('controls', 'controls');
     });
-  });
+  }
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target;
-      const delay = parseInt(el.dataset.delay || '0', 10);
-      setTimeout(() => el.classList.add('show'), delay);
-      io.unobserve(el);
-    });
-  }, { threshold: 0.18 });
+  function mountBoomstream(card, code) {
+    // Встраиваем iframe без программного mute.
+    // Поскольку вызов идёт из обработчика клика, звук разрешён политиками браузера.
+    // Добавляем autoplay=1, чтобы старт произошёл сразу после клика и загрузки iframe.
+    const url = `https://play.boomstream.com/${code}?autoplay=1`;
+    const iframe = document.createElement('iframe');
+    iframe.className = 'video-iframe';
+    iframe.src = url;
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.loading = 'eager';
+    card.appendChild(iframe);
+  }
 
-  document.querySelectorAll('.sr').forEach(el => io.observe(el));
-}
+  function startPlayback(card) {
+    if (card.classList.contains('is-playing')) return; // защита от дубля
+    const type   = (card.dataset.type || '').trim();     // "mp4" | "boom"
+    const src    = (card.dataset.src || '').trim();      // mp4 url
+    const boom   = (card.dataset.boom || '').trim();     // boom code
+    const poster = (card.dataset.poster || '').trim();   // poster url
 
-// Parallax (тонкий, без дерганий)
-(function(){
-  if (prefersReduced) return;
-  const px = [];
-  document.querySelectorAll('[data-parallax]').forEach(el=>{
-    const speed = parseFloat(el.getAttribute('data-parallax') || '0.05');
-    px.push({ el, speed, base: 0 });
-  });
-  if (!px.length) return;
+    // Скрываем постер и оверлейную кнопку (если есть)
+    const btn = $('.video-play', card);
+    if (btn) btn.remove();
+    const img = $('.video-poster', card);
+    if (img) img.remove();
 
-  let ticking = false;
-  document.documentElement.classList.add('parallax-active');
+    card.classList.add('is-playing');
 
-  const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const vh = window.innerHeight;
-      px.forEach(item => {
-        const rect = item.el.getBoundingClientRect();
-        // Нормируем: −1 … +1 вокруг центра экрана
-        const centerDist = (rect.top + rect.height/2 - vh/2) / (vh/2);
-        const translate = -centerDist * 12 * item.speed; // до ~10–12px
-        item.el.style.transform = `translate3d(0, ${translate}px, 0)`;
-      });
-      ticking = false;
-    });
-  };
+    if (type === 'mp4' && src) {
+      mountMp4(card, src, poster);
+      return;
+    }
+    if (type === 'boom' && boom) {
+      mountBoomstream(card, boom);
+      return;
+    }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  onScroll();
+    // Если конфигурация невалидна — откатим состояние
+    card.classList.remove('is-playing');
+    console.warn('[video-card] Missing data attributes:', { type, src, boom });
+  }
+
+  function bindCard(card) {
+    // Клик по кнопке Play
+    const btn = $('.video-play', card);
+    if (btn) btn.addEventListener('click', (e) => { e.preventDefault(); startPlayback(card); }, { once: true });
+
+    // Клик по постеру тоже запускает
+    const img = $('.video-poster', card);
+    if (img) img.addEventListener('click', (e) => { e.preventDefault(); startPlayback(card); }, { once: true });
+  }
+
+  cards.forEach(bindCard);
 })();
-
-// Video modal
-const videoModal = document.getElementById('videoModal');
-const modalVideo = document.getElementById('modalVideo');
-
-function openVideoModal(src){
-  if (!videoModal || !modalVideo) return;
-  videoModal.classList.add('show');
-  document.body.style.overflow = 'hidden';
-  modalVideo.src = src || '';
-  modalVideo.load();
-  try { modalVideo.play(); } catch(_) {}
-}
-function closeVideoModal(){
-  if (!videoModal || !modalVideo) return;
-  videoModal.classList.remove('show');
-  document.body.style.overflow = '';
-  try { modalVideo.pause(); } catch(_) {}
-  modalVideo.removeAttribute('src');
-}
-document.querySelectorAll('.video-card').forEach(card=>{
-  card.addEventListener('click', (e)=>{
-    // Не обрабатываем клики по iframe
-    if (e.target.closest('.video-wrap')) return;
-    const src = card.getAttribute('data-video');
-    if (!src) return;
-    openVideoModal(src);
-  });
-});
-document.querySelectorAll('[data-close="video"]').forEach(el=> el.addEventListener('click', closeVideoModal));
-
-// Programs modal
-const programsModal = document.getElementById('programsModal');
-function openPrograms(){ if (programsModal){ programsModal.classList.add('show'); document.body.style.overflow='hidden'; } }
-function closePrograms(){ if (programsModal){ programsModal.classList.remove('show'); document.body.style.overflow=''; } }
-document.getElementById('openPrograms')?.addEventListener('click', openPrograms);
-document.querySelectorAll('[data-close="programs"]').forEach(el=> el.addEventListener('click', closePrograms));
-
-// CTA logging
-const log = (label)=>console.log({event:'cta_click', label, ts:Date.now()});
-document.querySelectorAll('[data-cta]').forEach(el=>{
-  el.addEventListener('click', ()=> log(el.getAttribute('data-cta') || 'cta'));
-});
-
-// Карточки видео: старт со звуком по клику (без muted/autoplay).
-// Поддержка MP4 и Boomstream (код в data-boom). В Boomstream отключите "Автостарт".
-
-(() => {
-  const cards = document.querySelectorAll('.video-card');
-
-  cards.forEach(card => {
-    const btn = card.querySelector('.video-play');
-    if (!btn) return;
-
-    btn.addEventListener('click', () => {
-      const type = card.dataset.type;     // "mp4" | "boom"
-      card.classList.add('is-playing');
-
-      // Удаляем оверлей
-      const posterEl = card.querySelector('.video-poster');
-      if (posterEl) posterEl.remove();
-      btn.remove();
-
-      if (type === 'mp4') {
-        const src = card.dataset.src;
-        const video = document.createElement('video');
-        video.className = 'video-element';
-        video.src = src;
-        video.controls = true;
-        video.playsInline = true;
-        video.preload = 'metadata';
-        // ВАЖНО: НЕ ставим muted и НЕ включаем autoplay
-        card.appendChild(video);
-
-        // Это произошло после пользовательского клика — звук допустим
-        video.play().catch(() => {
-          // На всякий случай оставим controls — пользователь нажмёт Play вручную
-          video.setAttribute('controls', 'controls');
-        });
-
-      } else if (type === 'boom') {
-        const code = card.dataset.boom; // например "jaSBpguo"
-        // Встраиваем без автозапуска, как MP4
-        const iframe = document.createElement('iframe');
-        iframe.className = 'video-iframe';
-        iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-        iframe.referrerPolicy = 'no-referrer-when-downgrade';
-        iframe.src = `https://play.boomstream.com/${code}?color=false&title=0`;
-        card.appendChild(iframe);
-        // Пытаемся запустить видео программно
-        setTimeout(() => {
-          try {
-            iframe.contentWindow.postMessage('play', '*');
-          } catch(e) {}
-        }, 100);
-      }
-    }, { once: true });
-  });
-})();
-
-// ==================== CONNECTION WARMUP ====================
-// Предварительно прогревает соединение с Boomstream, чтобы видео запускалось быстрее
-function warmConnection(url){
-  if (!url) return;
-  const link = document.createElement('link');
-  link.rel = 'preconnect';
-  link.href = url;
-  link.crossOrigin = 'anonymous';
-  document.head.appendChild(link);
-}
-document.addEventListener('DOMContentLoaded', () => {
-  const videoCards = document.querySelectorAll('.video-card');
-  videoCards.forEach(card => {
-    // подогрев при первом наведении
-    card.addEventListener('mouseenter', () => {
-      warmConnection('https://play.boomstream.com');
-      warmConnection('https://cdnv.boomstream.com');
-    }, { once: true });
-    // и на мобильных при первом касании
-    card.addEventListener('touchstart', () => {
-      warmConnection('https://play.boomstream.com');
-      warmConnection('https://cdnv.boomstream.com');
-    }, { once: true });
-  });
-});
