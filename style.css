@@ -280,17 +280,17 @@ button{font-family:inherit;cursor:pointer}
 /* Photos: чуть крупнее карточки */
 .slider.is-photos .slider__track{grid-auto-columns:min(520px, 85vw)}
 /* Letters: фиксируем фон и белизну документа, делаем "лист" с тенью */
-.slider.is-letters .slider__track{grid-auto-columns:min(600px, 90vw)}
+.slider.is-letters .slider__track{grid-auto-columns:min(450px, calc((100% - 1 * 12px) / 2))}
 .slider.is-letters .slider__slide{
   background: #fff;
   border: none;
   box-shadow:0 15px 40px rgba(0,0,0,.25);
   border-radius: 12px;
   overflow: hidden;
-  aspect-ratio: 1 / 1.414; /* Пропорции A4 (210×297 мм) */
+  aspect-ratio: 1.4 / 1; /* Более горизонтальные пропорции, как на скриншоте */
 }
 .slider.is-letters .slider__slide img{
-  object-fit:contain; 
+  object-fit:contain; /* Письмо целиком помещается внутри блока */
   background:#fff; 
   width: 100%;
   height: 100%;
