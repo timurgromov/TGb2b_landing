@@ -107,86 +107,56 @@ document.querySelectorAll('[data-cta]').forEach(el=>{
   el.addEventListener('click', ()=> log(el.getAttribute('data-cta') || 'cta'));
 });
 
-// Video Cards Poster Loading & Play Button Logic
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.video-card').forEach(card => {
-    const coverPath = card.dataset.cover || '';
-    const img = card.querySelector('.video-cover');
+// Карточки видео: старт со звуком по клику (без muted/autoplay).
+// Поддержка MP4 и Boomstream (код в data-boom). В Boomstream отключите "Автостарт".
 
-    // если есть data-cover, но <img> пустой — проставим
-    if (coverPath && img && !img.getAttribute('src')) {
-      img.src = coverPath;
-    }
+(() => {
+  const cards = document.querySelectorAll('.video-card');
 
-    // если картинка не загрузилась — оставим градиент фоном (фолбэк)
-    if (img) {
-      img.addEventListener('error', () => {
-        img.remove(); // не показывать «сломанный» значок
-      }, { once:true });
-    }
+  cards.forEach(card => {
+    const btn = card.querySelector('.video-play');
+    if (!btn) return;
 
-    // Обработка клика по кнопке Play
-    const playBtn = card.querySelector('.play-btn, .video-play');
-    if (playBtn) {
-      playBtn.addEventListener('click', () => mountPlayer(card));
-    }
+    btn.addEventListener('click', () => {
+      const type = card.dataset.type;     // "mp4" | "boom"
+      card.classList.add('is-playing');
+
+      // Удаляем оверлей
+      const posterEl = card.querySelector('.video-poster');
+      if (posterEl) posterEl.remove();
+      btn.remove();
+
+      if (type === 'mp4') {
+        const src = card.dataset.src;
+        const video = document.createElement('video');
+        video.className = 'video-element';
+        video.src = src;
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = 'metadata';
+        // ВАЖНО: НЕ ставим muted и НЕ включаем autoplay
+        card.appendChild(video);
+
+        // Это произошло после пользовательского клика — звук допустим
+        video.play().catch(() => {
+          // На всякий случай оставим controls — пользователь нажмёт Play вручную
+          video.setAttribute('controls', 'controls');
+        });
+
+      } else if (type === 'boom') {
+        const code = card.dataset.boom; // например "jaSBpguo"
+        // Встраиваем без автостарта и без принудительного muted
+        const iframe = document.createElement('iframe');
+        iframe.className = 'video-iframe';
+        iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.src = `https://play.boomstream.com/${code}`;
+        card.appendChild(iframe);
+        // Так как это пользовательский клик — звук доступен сразу в плеере Boomstream.
+      }
+    }, { once: true });
   });
-
-  function mountPlayer(card){
-    const type = (card.dataset.type || '').trim();   // 'boom' | 'mp4'
-    const src  = (card.dataset.src  || '').trim();
-    const boom = (card.dataset.boom || '').trim();   // код BoomStream
-
-    // Добавляем класс is-playing для скрытия кнопки и постера
-    card.classList.add('is-playing');
-
-    if (type === 'mp4'){
-      const v = document.createElement('video');
-      v.className = 'video-element';
-      v.src = src;
-      v.controls = true;
-      v.playsInline = true;
-      v.autoplay = true;
-      v.muted = true; // для автоплея на мобильных
-      card.appendChild(v);
-      v.focus();
-      return;
-    }
-
-    // BoomStream iframe
-    let boomUrl;
-    if (boom) {
-      // если есть data-boom, используем его
-      boomUrl = `https://play.boomstream.com/${boom}?color=false&title=0`;
-    } else {
-      // иначе используем data-src
-      boomUrl = buildBoomUrl(src, { autoplay: 1, muted: 1, color: false, title: 0 });
-    }
-    
-    const iframe = document.createElement('iframe');
-    iframe.className = 'video-iframe';
-    iframe.src = boomUrl;
-    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
-    iframe.referrerPolicy = 'no-referrer-when-downgrade';
-    iframe.loading = 'lazy';
-    card.appendChild(iframe);
-  }
-
-  function buildBoomUrl(raw, params = {}){
-    try {
-      const u = new URL(raw);
-      Object.entries(params).forEach(([k,v]) => u.searchParams.set(k, String(v)));
-      return u.toString();
-    } catch(e){
-      // если передан только код — соберём URL
-      const base = 'https://play.boomstream.com/';
-      const path = raw.replace(/^https?:\/\/[^/]+\//,'').replace(/^\/+/,'');
-      const url  = new URL(base + path);
-      Object.entries(params).forEach(([k,v]) => url.searchParams.set(k, String(v)));
-      return url.toString();
-    }
-  }
-});
+})();
 
 // ==================== CONNECTION WARMUP ====================
 // Предварительно прогревает соединение с Boomstream, чтобы видео запускалось быстрее
