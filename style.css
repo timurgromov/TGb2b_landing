@@ -287,9 +287,10 @@ body{
 .video-grid-fullscreen {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px 0;
+  gap: 8px 12px;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 12px;
 }
 
 .video-fullscreen .video-wrapper {
@@ -301,7 +302,7 @@ body{
 }
 
 .video-fullscreen .video-wrapper:hover {
-  transform: scale(1.02);
+  transform: scale(1.015);
   z-index: 2;
 }
 
