@@ -267,10 +267,10 @@ body{
   .video-play { width: 84px; height: 84px; }
 }
 
-/* Новая видео галерея */
+/* Видео галерея */
 .video-gallery .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
@@ -328,4 +328,14 @@ video {
   width: 100%;
   height: auto;
   border-radius: 16px;
+}
+
+/* Footer */
+.footer {
+  background: #0a0d12;
+  border-top: 1px solid var(--line);
+  padding: 24px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
 }
