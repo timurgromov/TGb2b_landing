@@ -1,12 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Видео функциональность
   const wrappers = document.querySelectorAll(".video-wrapper");
-  console.log("Found wrappers:", wrappers.length);
-  
-  wrappers.forEach((wrapper, index) => {
+  wrappers.forEach((wrapper) => {
     const videoSrc = wrapper.dataset.video;
     const coverSrc = wrapper.dataset.cover;
-    
-    console.log(`Wrapper ${index}:`, videoSrc, coverSrc);
 
     wrapper.innerHTML = `
       <div class="video-poster">
@@ -17,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const playBtn = wrapper.querySelector(".play-button");
     playBtn.addEventListener("click", () => {
-      console.log("Play clicked for:", videoSrc);
       wrapper.innerHTML = `
         <video controls autoplay>
           <source src="${videoSrc}" type="video/mp4">
@@ -27,6 +23,40 @@ document.addEventListener("DOMContentLoaded", () => {
       video.muted = false;
       video.volume = 1.0;
       video.play().catch(e => console.log("Play error:", e));
+    });
+  });
+
+  // Анимации при скролле
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (!prefersReduced) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          const delay = parseInt(element.dataset.delay || '0', 10);
+          const stagger = parseInt(element.dataset.stagger || '0', 10);
+          
+          setTimeout(() => {
+            element.classList.add('show');
+          }, delay + stagger);
+          
+          observer.unobserve(element);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Наблюдаем за элементами с классами анимации
+    document.querySelectorAll('.sr').forEach(el => observer.observe(el));
+  }
+
+  // Параллакс эффект
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    
+    document.querySelectorAll('[data-parallax]').forEach(element => {
+      const rate = scrolled * -element.dataset.parallax;
+      element.style.transform = `translateY(${rate}px)`;
     });
   });
 });
