@@ -30,102 +30,86 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container nav">
-      <div class="logo">Тимур Громов</div>
-      <a class="btn btn-primary nav__cta"
-         href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив"
-         target="_blank">WhatsApp</a>
+  <header class="site-header">
+    <div class="container header__row sr">
+      <div class="brand">Тимур Громов</div>
+      <a class="btn wa" href="https://api.whatsapp.com/send/?phone=%2B79253900772&text&type=phone_number&app_absent=0" aria-label="Написать в WhatsApp">WhatsApp</a>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="hero__inner container">
-        <div class="hero__col hero__col--text">
-          <div class="hero__text">
-            <h1>Ведущий на корпоратив в Москве — Тимур Громов</h1>
-            <p class="lead">15 лет опыта. Спокойно, интеллигентно, по-деловому. Без пошлости и кринжа.</p>
-            <ul class="hero__facts">
-              <li>15 лет опыта</li><li>500+ мероприятий</li><li>Ведущий + DJ + звук</li>
-            </ul>
-            <a href="https://wa.me/79253900772"
-               class="cta-primary" target="_blank">Написать в WhatsApp</a>
+      <div class="container hero__grid">
+        <div class="hero__text sr">
+          <h1>Ведущий на корпоратив в Москве — Тимур Громов</h1>
+          <p class="sub">15 лет опыта. Спокойно, интеллигентно, по-деловому. Без пошлости и «кринжа».</p>
+          <ul class="hero__facts">
+            <li>15 лет опыта</li>
+            <li>500+ мероприятий</li>
+            <li>Ведущий + DJ + звук</li>
+          </ul>
+          <div class="hero__cta">
+            <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=%2B79253900772&text&type=phone_number&app_absent=0">Обсудить ваш корпоратив</a>
+            <a class="btn btn-ghost" href="tel:+79253900772">Позвонить</a>
           </div>
         </div>
-        <div class="hero__col hero__col--photo">
-          <figure class="hero-photo">
-            <img src="./assets/hero/portrait.jpg"
-                 alt="Тимур Громов — ведущий на корпоратив" />
-          </figure>
-        </div>
+        <figure class="hero__photo sr" aria-label="Тимур Громов">
+          <img src="./assets/hero/portrait.jpg" alt="Тимур Громов — ведущий на корпоратив" width="1200" height="1500" loading="lazy" decoding="async">
+        </figure>
       </div>
     </section>
 
     <!-- Видео на весь экран -->
-    <section class="video-fullscreen" id="cases">
-      <h2 class="video-title">Примеры работ</h2>
-      <div class="video-grid-fullscreen">
-        <div class="video-wrapper" data-video="https://cdnv.boomstream.com/balancer/o3LLb1w5-SxJPiQup.mp4" data-cover="./assets/photos/cover1.jpg"></div>
-        <div class="video-wrapper" data-video="https://cdnv.boomstream.com/balancer/mutbwKHj-SxJPiQup.mp4" data-cover="./assets/photos/cover2.jpg"></div>
-        <div class="video-wrapper" data-video="https://cdnv.boomstream.com/balancer/x1xsDQws-SxJPiQup.mp4" data-cover="./assets/photos/cover3.jpg"></div>
-        <div class="video-wrapper" data-video="https://cdnv.boomstream.com/balancer/YYYYYY.mp4" data-cover="./assets/photos/cover4.jpg"></div>
+    <section class="section video-gallery" id="cases">
+      <div class="container sr">
+        <h2 class="section__title">Примеры работ</h2>
+        <div class="video-grid">
+          <div class="video-wrapper" data-video="https://cdnv.boomstream.com/balancer/o3LLb1w5-SxJPiQup.mp4" data-cover="./assets/photos/cover1.jpg"></div>
+          <div class="video-wrapper" data-video="https://cdnv.boomstream.com/balancer/mutbwKHj-SxJPiQup.mp4" data-cover="./assets/photos/cover2.jpg"></div>
+          <div class="video-wrapper" data-video="https://cdnv.boomstream.com/balancer/x1xsDQws-SxJPiQup.mp4" data-cover="./assets/photos/cover3.jpg"></div>
+          <div class="video-wrapper" data-video="https://cdnv.boomstream.com/balancer/YYYYYY.mp4" data-cover="./assets/photos/cover4.jpg"></div>
+        </div>
       </div>
     </section>
 
-    <section id="benefits" class="section" data-parallax="0.05">
-      <div class="container" data-stagger="60">
-        <h2 class="section__title sr sr-up">Под ключ. Чётко. Без лишнего.</h2>
+    <section id="benefits" class="section">
+      <div class="container">
+        <h2 class="section__title sr">Под ключ. Чётко. Без лишнего.</h2>
         <div class="benefits">
-          <div class="benefit sr sr-left">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
+          <div class="benefit sr">
             <div class="title">Ведущий + DJ + звук (под ключ)</div>
+            <p>Оборудование и команда — в одном контракте.</p>
           </div>
-          <div class="benefit sr sr-left">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
-            </svg>
+          <div class="benefit sr">
             <div class="title">До 6 часов работы</div>
+            <p>Чёткий тайминг, без провисаний.</p>
           </div>
-          <div class="benefit sr sr-left">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-            <div class="title">Программа под ваш корпоративный стиль</div>
+          <div class="benefit sr">
+            <div class="title">Формат под вашу культуру</div>
+            <p>Интеллигентно, без неловких конкурсов.</p>
           </div>
-          <div class="benefit sr sr-right">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-            </svg>
+          <div class="benefit sr">
             <div class="title">Официальный договор ИП</div>
+            <p>Быстрое согласование у бухгалтерии/юристов.</p>
           </div>
-          <div class="benefit sr sr-right">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-            </svg>
-            <div class="title">Проверенная база артистов</div>
+          <div class="benefit sr">
+            <div class="title">Проверенные подрядчики</div>
+            <p>Артисты, кавер-группы, шоу — подключу быстро.</p>
           </div>
-          <div class="benefit sr sr-right">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-            </svg>
-            <div class="title">Без неловких конкурсов</div>
+          <div class="benefit sr">
+            <div class="title">15 лет опыта</div>
+            <p>500+ событий: корпораты, юбилеи, тим-билдинги.</p>
           </div>
-        </div>
-        <div class="programs-cta sr sr-up">
-          <button class="btn btn-outline" id="openPrograms">Получить 2 варианта программы</button>
         </div>
       </div>
     </section>
 
-    <section id="cta" class="section cta" data-parallax="0.03">
-      <div class="container" data-stagger="80">
-        <h2 class="cta__title sr sr-up">Праздники проходят — впечатления остаются.</h2>
-        <div class="cta__buttons sr sr-fade">
-          <a class="btn btn-primary" href="https://wa.me/79253900772" target="_blank">Написать в WhatsApp</a>
-          <a class="btn btn-outline" href="tel:+7XXXXXXXXXX">Позвонить</a>
+    <section id="cta" class="section cta">
+      <div class="container cta__box sr">
+        <h2 class="cta__title">Праздники проходят — впечатления остаются.</h2>
+        <div class="cta__actions">
+          <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=%2B79253900772&text&type=phone_number&app_absent=0">Связаться в WhatsApp</a>
+          <a class="btn btn-ghost" href="mailto:gromov@timur.ru">Написать на почту</a>
         </div>
       </div>
     </section>
@@ -137,7 +121,7 @@
 
   <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // Видео функциональность
+    // Видео функциональность (НЕ МЕНЯТЬ)
     document.querySelectorAll(".video-wrapper").forEach(wrapper => {
       const videoSrc = wrapper.dataset.video;
       const coverSrc = wrapper.dataset.cover;
@@ -154,36 +138,42 @@
       });
     });
 
-    // Анимации при скролле
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!prefersReduced) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const element = entry.target;
-            const delay = parseInt(element.dataset.delay || '0', 10);
-            setTimeout(() => {
-              element.classList.add('show');
-            }, delay);
-            observer.unobserve(element);
-          }
-        });
-      }, { threshold: 0.1 });
+    // ===== Scroll-Reveal: лёгкая анимация появления всех .sr =====
+    (function(){
+      document.documentElement.classList.add('js');
 
-      document.querySelectorAll('.sr').forEach(el => observer.observe(el));
-    } else {
-      // Если пользователь отключил анимации — показываем всё сразу
-      document.querySelectorAll('.sr').forEach(el => el.classList.add('show'));
-    }
+      const els = Array.from(document.querySelectorAll('.sr'));
+      if (!els.length) return;
 
-    // Параллакс эффект
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      document.querySelectorAll('[data-parallax]').forEach(element => {
-        const rate = scrolled * -element.dataset.parallax;
-        element.style.transform = `translateY(${rate}px)`;
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || typeof IntersectionObserver === 'undefined'){
+        els.forEach(el => el.classList.add('show'));
+        return;
+      }
+
+      // Стаггер внутри одного контейнера
+      const byContainer = new Map();
+      els.forEach(el=>{
+        const parent = el.closest('.container') || document.body;
+        if(!byContainer.has(parent)) byContainer.set(parent,[]);
+        byContainer.get(parent).push(el);
       });
-    });
+      byContainer.forEach(list=>{
+        list.forEach((el,i)=> el.style.setProperty('--reveal-delay', `${Math.min(i*80, 400)}ms`));
+      });
+
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(!entry.isIntersecting) return;
+          const el = entry.target;
+          el.style.transitionDelay = getComputedStyle(el).getPropertyValue('--reveal-delay') || '0ms';
+          el.classList.add('show');
+          io.unobserve(el);
+        });
+      },{threshold:0.12, rootMargin:'0px 0px -10% 0px'});
+
+      els.forEach(el=>io.observe(el));
+    })();
   });
   </script>
 </body>
