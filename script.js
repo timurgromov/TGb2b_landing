@@ -99,47 +99,46 @@ const COUNTER_ID = 104468814;
   });
 })();
 
-// === Инициализация "недеpганого" слайдера без библиотек (scroll-snap + кнопки + drag) ===
-(function initSliders(){
-  const sliders = document.querySelectorAll('.slider');
-  if (!sliders.length) return;
+// === Инициализация слайдера писем (стрелки, клавиатура, drag/swipe) ===
+(function initLettersSlider(){
+  const root = document.querySelector('.letters-slider');
+  if (!root) return;
 
-  sliders.forEach(slider => {
-    const track = slider.querySelector('.slider__track');
-    const prev  = slider.querySelector('.slider__btn.prev');
-    const next  = slider.querySelector('.slider__btn.next');
-    if (!track) return;
+  const track = root.querySelector('.letters-track');
+  const prev  = root.querySelector('.letters-btn.prev');
+  const next  = root.querySelector('.letters-btn.next');
 
-    const getCardWidth = () => {
-      const slide = track.querySelector('.slider__slide');
-      if (!slide) return 300;
-      return slide.getBoundingClientRect().width + 12; // + gap
-    };
-    const scrollByCard = (dir) => track.scrollBy({ left: dir * getCardWidth(), behavior: 'smooth' });
+  const cardWidth = () => {
+    const card = track.querySelector('.letter-card');
+    return card ? card.getBoundingClientRect().width : 320;
+  };
 
-    prev?.addEventListener('click', () => scrollByCard(-1));
-    next?.addEventListener('click', () => scrollByCard( 1));
+  const scrollByCard = (dir) => {
+    track.scrollBy({ left: dir * (cardWidth() + 12), behavior: 'smooth' });
+  };
 
-    // Клавиатура
-    track.addEventListener('keydown', (e)=>{
-      if (e.key === 'ArrowRight') scrollByCard(1);
-      if (e.key === 'ArrowLeft')  scrollByCard(-1);
-    });
+  prev?.addEventListener('click', () => scrollByCard(-1));
+  next?.addEventListener('click', () => scrollByCard( 1));
 
-    // Drag / Swipe (pointer events)
-    let isDown = false, startX = 0, startScroll = 0;
-    track.addEventListener('pointerdown', (e)=>{
-      isDown = true;
-      track.setPointerCapture(e.pointerId);
-      startX = e.clientX; startScroll = track.scrollLeft;
-    });
-    track.addEventListener('pointermove', (e)=>{
-      if(!isDown) return;
-      const dx = e.clientX - startX;
-      track.scrollLeft = startScroll - dx;
-    });
-    ['pointerup','pointercancel','mouseleave'].forEach(ev=>{
-      track.addEventListener(ev, ()=>{ isDown=false; });
-    });
+  // Клавиатура
+  track.addEventListener('keydown', (e)=>{
+    if (e.key === 'ArrowRight') scrollByCard(1);
+    if (e.key === 'ArrowLeft')  scrollByCard(-1);
+  });
+
+  // Drag / Swipe (pointer events)
+  let isDown = false, startX = 0, startScroll = 0;
+  track.addEventListener('pointerdown', (e)=>{
+    isDown = true;
+    track.setPointerCapture(e.pointerId);
+    startX = e.clientX; startScroll = track.scrollLeft;
+  });
+  track.addEventListener('pointermove', (e)=>{
+    if(!isDown) return;
+    const dx = e.clientX - startX;
+    track.scrollLeft = startScroll - dx;
+  });
+  ['pointerup','pointercancel','mouseleave'].forEach(ev=>{
+    track.addEventListener(ev, ()=>{ isDown=false; });
   });
 })();

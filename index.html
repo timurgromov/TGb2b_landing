@@ -172,31 +172,35 @@
       </div>
     </section>
 
-    <!-- Благодарственные письма -->
+    <!-- Благодарственные письма (формат А4, слайдер) -->
     <section id="letters" class="section">
       <div class="container">
         <h2 class="section__title sr">Благодарности компаний</h2>
-        <div class="slider is-letters sr" aria-label="Благодарственные письма">
-          <button class="slider__btn prev" aria-label="Назад" data-dir="-1">‹</button>
-          <div class="slider__track" tabindex="0">
-            <!-- Универсальная система: L1, L2, L3, L4, L5... -->
-            <figure class="slider__slide">
+
+        <div class="letters-slider sr" aria-label="Благодарственные письма">
+          <button class="letters-btn prev" aria-label="Назад" data-dir="-1">‹</button>
+
+          <div class="letters-track" tabindex="0">
+            <!-- ВАЖНО: сюда подставить реальные пути к изображениям писем -->
+            <figure class="letter-card">
               <img src="./assets/letters/L1.jpg" alt="Благодарственное письмо 1" loading="lazy" decoding="async">
             </figure>
-            <figure class="slider__slide">
+            <figure class="letter-card">
               <img src="./assets/letters/L2.jpg" alt="Благодарственное письмо 2" loading="lazy" decoding="async">
             </figure>
-            <figure class="slider__slide">
+            <figure class="letter-card">
               <img src="./assets/letters/L3.jpg" alt="Благодарственное письмо 3" loading="lazy" decoding="async">
             </figure>
-            <figure class="slider__slide">
+            <figure class="letter-card">
               <img src="./assets/letters/L4.jpg" alt="Благодарственное письмо 4" loading="lazy" decoding="async">
             </figure>
-            <figure class="slider__slide">
+            <figure class="letter-card">
               <img src="./assets/letters/L5.jpg" alt="Благодарственное письмо 5" loading="lazy" decoding="async">
             </figure>
+            <!-- можно добавить ещё карточки -->
           </div>
-          <button class="slider__btn next" aria-label="Вперёд" data-dir="1">›</button>
+
+          <button class="letters-btn next" aria-label="Вперёд" data-dir="1">›</button>
         </div>
       </div>
     </section>
