@@ -77,6 +77,9 @@ body{
 /* ==== Scroll-reveal (как на трейдинговом) ==== */
 .sr{opacity:0;transform:translateY(16px);will-change:transform,opacity}
 .sr.show{opacity:1;transform:none;transition:opacity .65s ease,transform .65s ease}
+
+/* Временно показываем все элементы для отладки */
+.sr{opacity:1;transform:none !important;}
 .sr-up{transform:translateY(22px)}
 .sr-left{transform:translateX(22px)}
 .sr-right{transform:translateX(-22px)}
