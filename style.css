@@ -79,20 +79,91 @@ button{font-family:inherit}
 .btn-ghost:hover{background:rgba(255,255,255,0.04)}
 .wa{background:linear-gradient(120deg,var(--accent),var(--accent-2));color:#fff;font-size:14px;padding:10px 16px}
 
-/* ВИДЕО-КАРТОЧКИ — только обёртка. ВНУТРЕННЮЮ ЛОГИКУ НЕ ТРОГАЕМ */
-.video-gallery{padding:72px 0}
-.video-gallery .container{padding-top:8px}
-.video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:8px}
+/* ВИДЕО НА ВЕСЬ ЭКРАН */
+.video-fullscreen{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+  padding:80px 0;
+  background:linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,.2) 30%,transparent 100%);
+}
 
-/* Сохраняем существующие стили для video-wrapper */
-.video-wrapper{position:relative;overflow:hidden;border-radius:16px;background:#111;cursor:pointer;transition:transform 0.3s ease;aspect-ratio:16/9}
-.video-wrapper:hover{transform:scale(1.02)}
-.video-poster{width:100%;height:100%;position:absolute;top:0;left:0}
-.video-poster img{width:100%;height:100%;object-fit:cover;display:block}
-.play-button{position:absolute;top:50%;left:50%;width:90px;height:90px;background:radial-gradient(circle at center,#ff8040 0%,#ff5722 70%);border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 20px rgba(255,120,40,0.6);transition:transform 0.25s ease,box-shadow 0.25s ease;cursor:pointer;z-index:2}
-.play-button::before{content:"";position:absolute;top:50%;left:55%;transform:translate(-50%,-50%);width:0;height:0;border-left:18px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent}
-.play-button:hover{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 35px rgba(255,100,20,0.9)}
-video{width:100%;height:100%;border-radius:16px;display:block}
+.video-title{
+  text-align:center;
+  font-size:32px;
+  font-weight:700;
+  margin:0 0 40px;
+  color:var(--text);
+}
+
+.video-grid-fullscreen{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px 12px;
+  max-width:1400px;
+  margin:0 auto;
+  padding:0 12px;
+}
+
+.video-fullscreen .video-wrapper{
+  position:relative;
+  aspect-ratio:16/9;
+  background:#000;
+  overflow:hidden;
+  transition:transform 0.3s ease;
+  cursor:pointer;
+}
+
+.video-fullscreen .video-wrapper:hover{
+  transform:scale(1.015);
+  z-index:2;
+}
+
+.video-fullscreen .video-poster{width:100%;height:100%;position:absolute;top:0;left:0}
+.video-fullscreen .video-poster img{width:100%;height:100%;object-fit:cover;display:block}
+.video-fullscreen video{width:100%;height:100%;object-fit:cover;display:block}
+
+.video-fullscreen .play-button{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:100px;
+  height:100px;
+  background:radial-gradient(circle at center,#ff8040 0%,#ff5722 70%);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 30px rgba(255,120,40,0.6);
+  transition:transform 0.25s ease,box-shadow 0.25s ease;
+  cursor:pointer;
+  z-index:2;
+}
+
+.video-fullscreen .play-button::before{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:55%;
+  transform:translate(-50%,-50%);
+  width:0;
+  height:0;
+  border-left:20px solid #fff;
+  border-top:14px solid transparent;
+  border-bottom:14px solid transparent;
+}
+
+.video-fullscreen .play-button:hover{
+  transform:translate(-50%,-50%) scale(1.1);
+  box-shadow:0 0 40px rgba(255,100,20,0.9);
+}
+
+/* Мобилка для fullscreen видео */
+@media (max-width:768px){
+  .video-fullscreen{padding:60px 0}
+  .video-title{font-size:24px;margin-bottom:30px}
+  .video-grid-fullscreen{grid-template-columns:1fr}
+  .video-fullscreen .play-button{width:80px;height:80px}
+  .video-fullscreen .play-button::before{border-left:16px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent}
+}
 
 /* FOOTER */
 .footer{background:#0a0d12;border-top:1px solid var(--stroke);padding:24px 0;text-align:center;color:var(--muted);font-size:14px}
