@@ -72,30 +72,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
-// ===== Логирование CTA кликов для Яндекс.Метрики =====
+// ===== Настройки Метрики =====
+const COUNTER_ID = 104468814;
+
+// ===== Логирование CTA кликов =====
 (function(){
-  // Инициализируем dataLayer если его нет
   window.dataLayer = window.dataLayer || [];
-  
+
   const log = (label) => {
-    const event = {
-      event: 'cta_click',
-      label: label,
-      ts: Date.now()
-    };
-    
-    // Отправляем в dataLayer для Яндекс.Метрики
+    const event = { event: 'cta_click', label, ts: Date.now() };
     window.dataLayer.push(event);
-    
-    // Дублируем в консоль для отладки
     console.log(event);
-    
-    // Отправляем в Яндекс.Метрику (если ym доступен)
-    if (typeof ym !== 'undefined') {
+
+    if (typeof ym === 'function') {
       ym(COUNTER_ID, 'reachGoal', 'cta_click_' + label);
+    } else {
+      console.warn('Метрика недоступна, событие не отправлено:', label);
     }
   };
-  
+
   document.querySelectorAll('[data-cta]').forEach(el => {
     el.addEventListener('click', () => {
       const label = el.getAttribute('data-cta') || 'cta';
