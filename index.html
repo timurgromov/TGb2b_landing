@@ -182,19 +182,19 @@
 
           <div class="letters-track" tabindex="0">
             <!-- ВАЖНО: сюда подставить реальные пути к изображениям писем -->
-            <figure class="letter-card">
+            <figure class="letter-card" data-letter-modal>
               <img src="./assets/letters/L1.jpg" alt="Благодарственное письмо 1" loading="lazy" decoding="async">
             </figure>
-            <figure class="letter-card">
+            <figure class="letter-card" data-letter-modal>
               <img src="./assets/letters/L2.jpg" alt="Благодарственное письмо 2" loading="lazy" decoding="async">
             </figure>
-            <figure class="letter-card">
+            <figure class="letter-card" data-letter-modal>
               <img src="./assets/letters/L3.jpg" alt="Благодарственное письмо 3" loading="lazy" decoding="async">
             </figure>
-            <figure class="letter-card">
+            <figure class="letter-card" data-letter-modal>
               <img src="./assets/letters/L4.jpg" alt="Благодарственное письмо 4" loading="lazy" decoding="async">
             </figure>
-            <figure class="letter-card">
+            <figure class="letter-card" data-letter-modal>
               <img src="./assets/letters/L5.jpg" alt="Благодарственное письмо 5" loading="lazy" decoding="async">
             </figure>
             <!-- можно добавить ещё карточки -->
@@ -263,6 +263,15 @@
          data-cta="whatsapp_programs">
         Получить варианты в WhatsApp
       </a>
+    </div>
+  </div>
+
+  <!-- Модальное окно для писем -->
+  <div id="letter-modal" class="modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content letter-modal-content">
+      <button class="modal__close" aria-label="Закрыть">×</button>
+      <img class="letter-modal-img" src="" alt="Благодарственное письмо">
     </div>
   </div>
 

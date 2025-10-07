@@ -142,3 +142,46 @@ const COUNTER_ID = 104468814;
     track.addEventListener(ev, ()=>{ isDown=false; });
   });
 })();
+
+// === Модальное окно для писем ===
+(function initLetterModal(){
+  const modal = document.getElementById('letter-modal');
+  const modalImg = modal?.querySelector('.letter-modal-img');
+  const closeBtn = modal?.querySelector('.modal__close');
+  const overlay = modal?.querySelector('.modal__overlay');
+  
+  if (!modal || !modalImg) return;
+
+  function openModal(imgSrc, imgAlt) {
+    modalImg.src = imgSrc;
+    modalImg.alt = imgAlt;
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  // Клики по письмам
+  document.querySelectorAll('[data-letter-modal]').forEach(card => {
+    card.addEventListener('click', () => {
+      const img = card.querySelector('img');
+      if (img && img.src) {
+        openModal(img.src, img.alt);
+      }
+    });
+  });
+
+  // Закрытие модального окна
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', closeModal);
+  
+  // Закрытие по Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) {
+      closeModal();
+    }
+  });
+})();
