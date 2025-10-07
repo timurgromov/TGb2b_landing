@@ -271,6 +271,7 @@ body{
 .video-gallery {
   margin-top: 60px;
   text-align: left;
+  padding: 72px 0;
 }
 
 .video-gallery h2 {
@@ -279,7 +280,7 @@ body{
   margin-bottom: 25px;
 }
 
-.video-grid {
+.video-gallery .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 20px;
