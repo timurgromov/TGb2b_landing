@@ -110,8 +110,12 @@ const COUNTER_ID = 104468814;
     const next  = slider.querySelector('.slider__btn.next');
     if (!track) return;
 
-    const getCardWidth = () => track.querySelector('.slider__slide')?.getBoundingClientRect().width || 300;
-    const scrollByCard = (dir) => track.scrollBy({ left: dir * (getCardWidth() + 12), behavior: 'smooth' });
+    const getCardWidth = () => {
+      const slide = track.querySelector('.slider__slide');
+      if (!slide) return 300;
+      return slide.getBoundingClientRect().width + 12; // + gap
+    };
+    const scrollByCard = (dir) => track.scrollBy({ left: dir * getCardWidth(), behavior: 'smooth' });
 
     prev?.addEventListener('click', () => scrollByCard(-1));
     next?.addEventListener('click', () => scrollByCard( 1));
