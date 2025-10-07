@@ -84,6 +84,7 @@
 
   <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // Видео функциональность
     document.querySelectorAll(".video-wrapper").forEach(wrapper => {
       const videoSrc = wrapper.dataset.video;
       const coverSrc = wrapper.dataset.cover;
@@ -97,6 +98,37 @@
         video.muted = false;
         video.volume = 1.0;
         video.play();
+      });
+    });
+
+    // Анимации при скролле
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const delay = parseInt(element.dataset.delay || '0', 10);
+            setTimeout(() => {
+              element.classList.add('show');
+            }, delay);
+            observer.unobserve(element);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.sr').forEach(el => observer.observe(el));
+    } else {
+      // Если пользователь отключил анимации — показываем всё сразу
+      document.querySelectorAll('.sr').forEach(el => el.classList.add('show'));
+    }
+
+    // Параллакс эффект
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      document.querySelectorAll('[data-parallax]').forEach(element => {
+        const rate = scrolled * -element.dataset.parallax;
+        element.style.transform = `translateY(${rate}px)`;
       });
     });
   });
