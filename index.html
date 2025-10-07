@@ -30,32 +30,35 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header__row sr">
-      <div class="brand">Тимур Громов</div>
-      <a class="btn wa" href="https://api.whatsapp.com/send/?phone=%2B79253900772&text&type=phone_number&app_absent=0" aria-label="Написать в WhatsApp">WhatsApp</a>
+  <header class="header">
+    <div class="container nav">
+      <div class="logo">Тимур Громов</div>
+      <a class="btn btn-primary nav__cta"
+         href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив"
+         target="_blank">WhatsApp</a>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="container hero__grid">
-        <div class="hero__text sr">
-          <h1>Ведущий на корпоратив в Москве — Тимур Громов</h1>
-          <p class="sub">15 лет опыта. Спокойно, интеллигентно, по-деловому. Без пошлости и «кринжа».</p>
-          <ul class="hero__facts">
-            <li>15 лет опыта</li>
-            <li>500+ мероприятий</li>
-            <li>Ведущий + DJ + звук</li>
-          </ul>
-          <div class="hero__cta">
-            <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=%2B79253900772&text&type=phone_number&app_absent=0">Обсудить ваш корпоратив</a>
-            <a class="btn btn-ghost" href="tel:+79253900772">Позвонить</a>
+      <div class="hero__inner container">
+        <div class="hero__col hero__col--text">
+          <div class="hero__text">
+            <h1>Ведущий на корпоратив в Москве — Тимур Громов</h1>
+            <p class="lead">15 лет опыта. Спокойно, интеллигентно, по-деловому. Без пошлости и кринжа.</p>
+            <ul class="hero__facts">
+              <li>15 лет опыта</li><li>500+ мероприятий</li><li>Ведущий + DJ + звук</li>
+            </ul>
+            <a href="https://wa.me/79253900772"
+               class="cta-primary" target="_blank">Написать в WhatsApp</a>
           </div>
         </div>
-        <figure class="hero__photo sr" aria-label="Тимур Громов">
-          <img src="./assets/hero/portrait.jpg" alt="Тимур Громов — ведущий на корпоратив" width="1200" height="1500" loading="lazy" decoding="async">
-        </figure>
+        <div class="hero__col hero__col--photo">
+          <figure class="hero-photo">
+            <img src="./assets/hero/portrait.jpg"
+                 alt="Тимур Громов — ведущий на корпоратив" />
+          </figure>
+        </div>
       </div>
     </section>
 
