@@ -266,3 +266,77 @@ body{
   .video-card { min-height: 240px; }
   .video-play { width: 84px; height: 84px; }
 }
+
+/* Новая видео галерея */
+.video-gallery {
+  margin-top: 60px;
+  text-align: left;
+}
+
+.video-gallery h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.video-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #111;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.video-wrapper:hover {
+  transform: scale(1.02);
+}
+
+.video-poster img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle at center, #ff8040 0%, #ff5722 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px rgba(255, 120, 40, 0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.play-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-left: 18px solid #fff;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+.play-button:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 35px rgba(255, 100, 20, 0.9);
+}
+
+video {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}

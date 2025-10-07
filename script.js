@@ -1,52 +1,27 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.video-card');
+document.addEventListener("DOMContentLoaded", () => {
+  const wrappers = document.querySelectorAll(".video-wrapper");
+  wrappers.forEach(wrapper => {
+    const videoSrc = wrapper.dataset.video;
+    const coverSrc = wrapper.dataset.cover;
 
-  cards.forEach(card => {
-    const playBtn = card.querySelector('.video-play');
-    const poster = card.querySelector('.video-poster');
+    wrapper.innerHTML = `
+      <div class="video-poster">
+        <img src="${coverSrc}" alt="Видео">
+        <div class="play-button"></div>
+      </div>
+    `;
 
-    const startPlayback = () => {
-      if (card.classList.contains('is-playing')) return;
-      card.classList.add('is-playing');
-      if (playBtn) playBtn.style.display = 'none';
-      if (poster) poster.style.display = 'none';
-
-      const type = card.dataset.type;
-      const src = card.dataset.src;
-
-      if (type === 'mp4') {
-        const video = document.createElement('video');
-        video.className = 'video-element';
-        video.src = src;
-        video.controls = true;
-        video.playsInline = true;
-        video.preload = 'metadata';
-        video.autoplay = false;
-        video.muted = false;
-
-        card.appendChild(video);
-        video.play().catch(err => console.log('Autoplay blocked:', err));
-      }
-
-      if (type === 'boom') {
-        const code = card.dataset.boom;
-        // Используем MP4 напрямую вместо iframe для одинакового поведения
-        const video = document.createElement('video');
-        video.className = 'video-element';
-        video.src = `https://cdnv.boomstream.com/balancer/${code}.mp4`;
-        video.controls = true;
-        video.playsInline = true;
-        video.preload = 'metadata';
-        video.autoplay = false;
-        video.muted = false;
-
-        card.appendChild(video);
-        video.play().catch(err => console.log('Autoplay blocked:', err));
-      }
-    };
-
-    // Клик по кнопке или по постеру
-    if (playBtn) playBtn.addEventListener('click', startPlayback, { once: true });
-    if (poster) poster.addEventListener('click', startPlayback, { once: true });
+    const playBtn = wrapper.querySelector(".play-button");
+    playBtn.addEventListener("click", () => {
+      wrapper.innerHTML = `
+        <video controls autoplay>
+          <source src="${videoSrc}" type="video/mp4">
+        </video>
+      `;
+      const video = wrapper.querySelector("video");
+      video.muted = false;
+      video.volume = 1.0;
+      video.play();
+    });
   });
 });
