@@ -1,24 +1,5 @@
-/* ===== Темизация: 3 темы на CSS-переменных ===== */
+/* ===== Modern Theme (единственная тема) ===== */
 :root{
-  /* базовые fallback, если нет темы */
-  --bg:#0c0f14; --bg-2:#10141b; --text:#e9edf3; --muted:#a1aab6;
-  --accent:#ff7a45; --accent-2:#ed6e3a; --card:#121720; --stroke:rgba(255,255,255,.06);
-}
-
-/* Classic — более «цветной», как в самом начале */
-html[data-theme="classic"]{
-  --bg:#0a0f1a;
-  --bg-2:#0f1420;
-  --text:#edf2ff;
-  --muted:#a9b3c7;
-  --accent:#ff7a45;       /* яркий апельсин */
-  --accent-2:#7b5cff;     /* фиолетовый блик */
-  --card:#11182a;
-  --stroke:rgba(255,255,255,.08);
-}
-
-/* Modern — строгий тёмный (текущий) */
-html[data-theme="modern"]{
   --bg:#0c0f14;
   --bg-2:#0f1216;
   --text:#e7ebf1;
@@ -27,18 +8,6 @@ html[data-theme="modern"]{
   --accent-2:#ed6e3a;
   --card:#12161d;
   --stroke:rgba(255,255,255,.06);
-}
-
-/* Zen Gromov — soft warm purple + bronze accent */
-html[data-theme="zen"]{
-  --bg:#1a1217;
-  --bg-2:#251b2b;
-  --text:#f2f5fa;
-  --muted:#a7b0bb;
-  --accent:#ffb070;
-  --accent-2:#ffe2c1;
-  --card:#14181f;
-  --stroke:rgba(255,255,255,.05);
 }
 
 /* ===== БАЗА/СЕТКИ ===== */

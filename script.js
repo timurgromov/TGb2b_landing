@@ -40,35 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
   els.forEach(el=>io.observe(el));
 })();
 
-// ===== Переключение темы =====
-(function(){
-  const KEY = 'site-theme';
-  const root = document.documentElement;
-  const btns = document.querySelectorAll('.theme-btn');
-
-  // restore theme
-  const saved = localStorage.getItem(KEY);
-  if (saved) root.setAttribute('data-theme', saved);
-  else if (!root.hasAttribute('data-theme')) root.setAttribute('data-theme','modern');
-
-  function setActive(theme){
-    root.setAttribute('data-theme', theme);
-    localStorage.setItem(KEY, theme);
-    btns.forEach(b => b.classList.toggle('active', b.dataset.theme === theme));
-  }
-
-  // sync active state on load
-  const current = root.getAttribute('data-theme') || 'modern';
-  btns.forEach(b => b.classList.toggle('active', b.dataset.theme === current));
-
-  // wire clicks
-  btns.forEach(b => b.addEventListener('click', e => {
-    e.preventDefault();
-    const t = b.dataset.theme;
-    if (!t) return;
-    setActive(t);
-  }));
-})();
 
 // ===== Модалка "2 варианта программы" =====
 (function(){
