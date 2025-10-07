@@ -30,15 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (type === 'boom') {
         const code = card.dataset.boom;
-        const iframe = document.createElement('iframe');
-        iframe.className = 'video-iframe';
-        iframe.src = `https://play.boomstream.com/${code}?autoplay=0`;
-        iframe.allow = 'autoplay; fullscreen';
-        iframe.frameBorder = '0';
-        iframe.allowFullscreen = true;
-        iframe.loading = 'eager';
+        // Используем MP4 напрямую вместо iframe для одинакового поведения
+        const video = document.createElement('video');
+        video.className = 'video-element';
+        video.src = `https://cdnv.boomstream.com/balancer/${code}.mp4`;
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = 'metadata';
+        video.autoplay = false;
+        video.muted = false;
 
-        card.appendChild(iframe);
+        card.appendChild(video);
+        video.play().catch(err => console.log('Autoplay blocked:', err));
       }
     };
 
