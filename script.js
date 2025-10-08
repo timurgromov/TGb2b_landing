@@ -317,7 +317,7 @@ function unlockPageScroll() {
 
     modalImg.src = src;
     modalImg.alt = alt || '';
-    modalImg.classList.add('loaded');
+    modalImg.classList.add('fade-in-right'); // Add initial fade-in class
     // Переключаем белый фон в зависимости от источника (письма/фото)
     if (groupName === 'photos') modal.classList.add('modal--photo');
     else modal.classList.remove('modal--photo');
@@ -351,31 +351,31 @@ function unlockPageScroll() {
   function navigate(dir){
     if (!currentList.length || index < 0) return;
     
-    console.log('🎬 Starting animation for direction:', dir);
+    const oldIndex = index;
+    index = (index + dir + currentList.length) % currentList.length;
     
-    // Добавляем класс анимации исчезновения
-    modalImg.classList.add('changing');
-    console.log('📉 Added changing class');
+    // Определяем направление анимации
+    const outClass = dir === 1 ? 'fade-out-left' : 'fade-out-right';
+    const inClass = dir === 1 ? 'fade-in-right' : 'fade-in-left';
+    
+    // Убираем старые классы и добавляем fade-out
+    modalImg.classList.remove('fade-in-left', 'fade-in-right');
+    modalImg.classList.add(outClass);
     
     setTimeout(() => {
-      index = (index + dir + currentList.length) % currentList.length;
       const card = currentList[index];
       modalImg.src = srcFromCard(card);
       modalImg.alt = altFromCard(card);
       
-      console.log('📈 Loading new image, index:', index);
-      
-      // Убираем класс анимации и добавляем класс загрузки
-      modalImg.classList.remove('changing');
-      modalImg.classList.add('loaded');
-      
-      console.log('✅ Animation complete');
+      // Убираем fade-out и добавляем fade-in
+      modalImg.classList.remove(outClass);
+      modalImg.classList.add(inClass);
       
       // Применяем адаптивный размер при навигации
       applySizingWhenReady();
       // Прелоад следующего в направлении навигации
       preload((index+dir+currentList.length)%currentList.length);
-    }, 300); // Увеличили время для более заметной анимации
+    }, 300); // Чуть меньше transition .45s
   }
 
   // Навигационные стрелки

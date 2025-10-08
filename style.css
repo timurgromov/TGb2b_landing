@@ -534,16 +534,26 @@ html.is-modal-open, body.is-modal-open {
 .letter-card, .photo-card { cursor: zoom-in; }
 
 /* Анимация смены изображений в модальном окне */
-.letter-modal-img.changing {
-  opacity: 0 !important;
-  transform: scale(0.7) !important;
-  filter: blur(3px) !important;
+.letter-modal-img {
+  transition: transform .45s ease, opacity .45s ease !important;
 }
 
-.letter-modal-img.loaded {
-  opacity: 1 !important;
-  transform: scale(1) !important;
-  filter: blur(0px) !important;
+/* Состояния для анимации */
+.letter-modal-img.fade-out-right {
+  opacity: 0;
+  transform: translateX(60px);
+}
+.letter-modal-img.fade-out-left {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+.letter-modal-img.fade-in-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+.letter-modal-img.fade-in-left {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Modal navigation arrows */
