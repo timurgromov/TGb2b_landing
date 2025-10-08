@@ -323,6 +323,7 @@ function unlockPageScroll() {
 
     modalImg.src = src;
     modalImg.alt = alt || '';
+    modalImg.classList.add('loaded');
     // Переключаем белый фон в зависимости от источника (письма/фото)
     if (groupName === 'photos') modal.classList.add('modal--photo');
     else modal.classList.remove('modal--photo');
@@ -355,14 +356,25 @@ function unlockPageScroll() {
 
   function navigate(dir){
     if (!currentList.length || index < 0) return;
-    index = (index + dir + currentList.length) % currentList.length;
-    const card = currentList[index];
-    modalImg.src = srcFromCard(card);
-    modalImg.alt = altFromCard(card);
-    // Применяем адаптивный размер при навигации
-    applySizingWhenReady();
-    // Прелоад следующего в направлении навигации
-    preload((index+dir+currentList.length)%currentList.length);
+    
+    // Добавляем класс анимации исчезновения
+    modalImg.classList.add('changing');
+    
+    setTimeout(() => {
+      index = (index + dir + currentList.length) % currentList.length;
+      const card = currentList[index];
+      modalImg.src = srcFromCard(card);
+      modalImg.alt = altFromCard(card);
+      
+      // Убираем класс анимации и добавляем класс загрузки
+      modalImg.classList.remove('changing');
+      modalImg.classList.add('loaded');
+      
+      // Применяем адаптивный размер при навигации
+      applySizingWhenReady();
+      // Прелоад следующего в направлении навигации
+      preload((index+dir+currentList.length)%currentList.length);
+    }, 150); // Половина времени анимации
   }
 
   // Навигационные стрелки

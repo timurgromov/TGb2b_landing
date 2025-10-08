@@ -498,6 +498,7 @@ html.is-modal-open, body.is-modal-open {
   background: #fff;              /* письма читаются как «лист» */
   max-width: 100%;
   max-height: 100%;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 /* Для фото без белого фона */
 .modal--photo .letter-modal-img{ background: transparent; }
@@ -530,6 +531,17 @@ html.is-modal-open, body.is-modal-open {
 
 /* Курсор для карточек */
 .letter-card, .photo-card { cursor: zoom-in; }
+
+/* Анимация смены изображений в модальном окне */
+.letter-modal-img.changing {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.letter-modal-img.loaded {
+  opacity: 1;
+  transform: scale(1);
+}
 
 /* Modal navigation arrows */
 .modal-nav {
