@@ -593,6 +593,46 @@ button{font-family:inherit;cursor:pointer}
   .hero-actions{ justify-content: center; margin-top: 18px; gap: 12px; }
 }
 
+/* ===== HERO: верхний внутренний отступ блока ===== */
+/* Чуть уменьшаем «подушку» сверху, чтобы заголовок поднялся ближе к шапке. */
+.hero, .hero-section, .hero-content {
+  padding-top: clamp(40px, 5.2vw, 64px);  /* было ощущение 80–96px */
+}
+
+/* ===== Подзаголовок → чипсы ===== */
+/* Небольшой, но стабильный зазор от подзаголовка к чипсам. */
+.hero-tags {
+  margin-top: 18px;          /* было 22px */
+  margin-bottom: 0;          /* сбросим, чтобы контролировать отступ через .hero-actions */
+}
+
+/* ===== Чипсы → CTA-кнопки ===== */
+/* Даём «кислорода» между чипсами и блоком кнопок. */
+.hero-actions {
+  margin-top: 28px;          /* было 18–22px: увеличиваем, чтобы не «слипалось» */
+}
+
+/* Если кнопки идут без .hero-actions — подстрахуемся на общих классах. */
+.hero-tags + .button-row,
+.hero-tags + .cta-row,
+.hero-tags + .hero-ctas {
+  margin-top: 28px;
+}
+
+/* ===== Мобилка: аккуратнее, но читаемо ===== */
+@media (max-width: 768px){
+  .hero, .hero-section, .hero-content {
+    padding-top: clamp(28px, 6vw, 40px);  /* ещё компактнее сверху на маленьких экранах */
+  }
+  .hero-tags { margin-top: 14px; }
+  .hero-actions,
+  .hero-tags + .button-row,
+  .hero-tags + .cta-row,
+  .hero-tags + .hero-ctas {
+    margin-top: 22px;                      /* чуть меньше, чтобы не разваливалось */
+  }
+}
+
 @media (max-width:640px){
   .benefits{grid-template-columns:1fr}
   .section{padding:48px 0}
