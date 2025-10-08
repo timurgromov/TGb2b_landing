@@ -179,8 +179,27 @@ function unlockPageScroll() {
   track.addEventListener('scroll', deb(()=>{ current = nearestIndex(); updateArrows(); }, 40));
   window.addEventListener('resize', deb(()=> scrollToIndex(current, 'auto'), 120));
 
-  // старт
-  requestAnimationFrame(()=>{ scrollToIndex(0,'auto'); });
+  // старт - ждем когда все изображения загрузятся и геометрия будет готова
+  const init = () => {
+    scrollToIndex(0, 'auto');
+    updateArrows(); // явно обновляем стрелки при старте
+  };
+  
+  // Проверяем загружены ли изображения
+  const images = cards.map(c => c.querySelector('img')).filter(Boolean);
+  if (images.length && images.some(img => !img.complete)) {
+    // Если есть незагруженные, ждем загрузки первого
+    Promise.all(images.map(img => {
+      if (img.complete) return Promise.resolve();
+      return new Promise(resolve => {
+        img.addEventListener('load', resolve, { once: true });
+        img.addEventListener('error', resolve, { once: true });
+      });
+    })).then(() => requestAnimationFrame(init));
+  } else {
+    // Все загружено, инициализируем сразу
+    requestAnimationFrame(init);
+  }
 
   // --- 3) ПИНГ-ПОНГ (опционально): включается только если data-pp="on" на .letters-slider ---
   if (root.getAttribute('data-pp') === 'on'){
