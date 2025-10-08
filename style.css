@@ -1349,11 +1349,7 @@ body.is-modal-open{
 
 /* ====== 5) РАСКЛАДКА И РИТМ ====== */
 
-/* Отступы hero-блока */
-:root .hero {
-  padding-top: 68px !important;
-  padding-bottom: 68px !important;
-}
+/* АРТЕФАКТ УДАЛЕН - конфликтовал с #hero padding-bottom: 64px */
 
 /* Фото: скругление для унификации с карточками */
 :root .hero__photo {
@@ -1458,7 +1454,7 @@ body.is-modal-open{
   }
   #hero {
     padding-top: 52px !important;
-    padding-bottom: 52px !important;
+    padding-bottom: 58px !important; /* увеличен для дыхания на низких экранах */
   }
 }
 
