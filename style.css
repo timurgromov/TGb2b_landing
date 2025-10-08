@@ -669,7 +669,7 @@ body {
 }
 @media (max-width:860px){
   .hero__grid{grid-template-columns:1fr}
-  .hero__photo{justify-self:center;order:2}
+  .hero__photo{justify-self:center;order:3} /* order:3 чтобы фото было ПОСЛЕ текста и кнопок */
   .hero__text{order:1}
   .video-grid-fullscreen{grid-template-columns:1fr}
   .benefits{grid-template-columns:repeat(2,1fr)}
