@@ -470,14 +470,14 @@ button{font-family:inherit;cursor:pointer}
 .footer-contacts .footer-social__btn{
   width: 36px; height: 36px; border-radius: 50%;
   display: inline-flex; justify-content: center; align-items: center;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.12);
-  transition: transform .12s ease, background .12s ease, opacity .12s ease;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  transition: transform .12s ease, color .12s ease;
 }
 .footer-contacts .footer-social__btn:hover{
   transform: translateY(-1px);
-  background: rgba(255,255,255,.14);
-  opacity: .95;
+  color: var(--accent);
 }
 /* Мобилка — центр */
 @media (max-width: 768px){
