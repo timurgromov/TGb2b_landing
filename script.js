@@ -126,7 +126,7 @@ function unlockPageScroll() {
   window.scrollTo(0, __scrollY);
 }
 
-// === Letters slider: бесконечные кнопки в обе стороны (логические индексы) ===
+// === Letters slider: простая версия без клонов (fallback) ===
 (function initLettersSliderLoop(){
   const root  = document.querySelector('.letters-slider');
   if (!root) return;
@@ -215,9 +215,9 @@ function unlockPageScroll() {
       cardsLength: cards.length
     });
     
-    // Мгновенный «телепорт» при переходе через край, внутри — плавно
-    // (в любом случае мы ставим логическую цель, физика и maxScroll не мешают)
-    snapLogical(nextLi, 'smooth');
+    // Мгновенный телепорт при переходе через край (0 ↔ N-1), иначе плавно
+    const isEdgeTransition = (dir > 0 && li === N-1) || (dir < 0 && li === 0);
+    snapLogical(nextLi, isEdgeTransition ? 'auto' : 'smooth');
   }
 
   prev?.addEventListener('click', ()=> moveLogical(-1));
