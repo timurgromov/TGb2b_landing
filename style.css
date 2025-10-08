@@ -1578,3 +1578,109 @@ body.is-modal-open{
       transparent 60%),
     rgba(0,0,0,.82) !important;
 }
+
+/* ========================================
+   МОБИЛЬНАЯ ОПТИМИЗАЦИЯ (консолидированная)
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* === HERO: Типографика === */
+  :root #hero-left h1 .h1-prefix {
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+  }
+  
+  :root #hero-left h1 .h1-name {
+    font-size: 32px !important;
+    line-height: 1.15 !important;
+  }
+  
+  :root #hero-subtitle {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 20px !important;
+  }
+  
+  /* === HERO: Фото === */
+  :root .hero__photo {
+    order: 3 !important; /* после текста и кнопок */
+    justify-self: center !important;
+    max-width: 380px !important;
+    max-height: 380px !important;
+    margin: 32px auto 0 !important;
+    transform: none !important;
+  }
+  
+  :root .hero__photo img {
+    transform: none !important;
+  }
+  
+  /* === HERO: Чипсы (временно не трогаем размер) === */
+  :root #hero-tags {
+    justify-content: center !important;
+    margin-bottom: 24px !important;
+  }
+  
+  /* === HERO: CTA кнопки === */
+  :root #hero-actions {
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 24px !important;
+    width: 100% !important;
+  }
+  
+  :root #hero-actions .btn {
+    width: 100% !important;
+    height: 52px !important;
+    font-size: 16px !important;
+    padding: 0 20px !important;
+  }
+  
+  /* === HERO: Левый блок === */
+  :root #hero-left {
+    padding-top: 24px !important;
+    transform: none !important;
+  }
+  
+  /* === Видео секция === */
+  .video-title {
+    font-size: 26px !important;
+    margin-bottom: 24px !important;
+  }
+  
+  .video-fullscreen {
+    padding: 48px 0 !important;
+  }
+  
+  /* === Секции === */
+  .section {
+    padding: 48px 0 !important;
+  }
+  
+  .section__title {
+    font-size: 26px !important;
+    margin-bottom: 24px !important;
+  }
+}
+
+/* === Экстра-маленькие экраны === */
+@media (max-width: 480px) {
+  :root #hero-left h1 .h1-prefix {
+    font-size: 22px !important;
+  }
+  
+  :root #hero-left h1 .h1-name {
+    font-size: 28px !important;
+  }
+  
+  :root .hero__photo {
+    max-width: 320px !important;
+    max-height: 320px !important;
+    margin-top: 24px !important;
+  }
+  
+  :root #hero-actions .btn {
+    height: 50px !important;
+    font-size: 15px !important;
+  }
+}
