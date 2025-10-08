@@ -231,6 +231,14 @@ button{font-family:inherit;cursor:pointer}
   transition:all 0.3s ease;
   z-index:1000;
   animation:pulse 2s ease-in-out infinite;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(20px);
+}
+.wa-fab.show{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
 }
 .wa-fab:hover{
   transform:scale(1.1);

@@ -557,3 +557,27 @@ function unlockPageScroll() {
     }
   });
 })();
+
+// ===== ПОКАЗ ПЛАВАЮЩЕЙ КНОПКИ WHATSAPP ПОСЛЕ ПРОКРУТКИ =====
+(function initWhatsAppFAB() {
+  const waFab = document.querySelector('.wa-fab');
+  if (!waFab) return;
+
+  // Показываем кнопку когда пользователь прокрутил больше чем высота первого экрана
+  function toggleFab() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    
+    if (scrollTop > windowHeight * 0.8) { // После 80% первого экрана
+      waFab.classList.add('show');
+    } else {
+      waFab.classList.remove('show');
+    }
+  }
+
+  // Добавляем обработчик прокрутки
+  window.addEventListener('scroll', toggleFab);
+  
+  // Проверяем при загрузке (на случай если страница уже прокручена)
+  toggleFab();
+})();
