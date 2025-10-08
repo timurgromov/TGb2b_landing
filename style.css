@@ -1014,7 +1014,7 @@ body.is-modal-open{
   line-height: 1.6 !important;
   max-width: 740px !important;
   margin-bottom: 30px !important;
-  color: rgba(255,255,255,0.78) !important;
+  color: rgba(255,255,255,0.85) !important;
 }
 
 /* 2) Чипсы (бейджи) */
@@ -1163,4 +1163,24 @@ body.is-modal-open{
     bottom: 20px !important;
     right: 20px !important;
   }
+}
+
+/* ====== 6) КОНТРАСТ И ЦВЕТ ====== */
+
+/* Градиент фона: более длинный переход, чтобы чипсы и CTA не проваливались */
+:root body {
+  background: linear-gradient(135deg, 
+    #1a1a1d 0%, 
+    #242428 35%, 
+    #2a2a32 70%, 
+    #1f1f23 100%) !important;
+}
+
+:root .hero {
+  background: radial-gradient(
+    ellipse 120% 100% at 50% -10%,
+    rgba(255, 106, 61, 0.08) 0%,
+    rgba(198, 168, 105, 0.05) 30%,
+    transparent 65%
+  ) !important;
 }
