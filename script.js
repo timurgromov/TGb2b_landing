@@ -172,7 +172,7 @@ function unlockPageScroll() {
 
   function snapLogical(li, behavior='auto'){
     currentLi = (li % N + N) % N;
-    scrollToPhys(physFromLogical(currentLi), behavior);
+    scrollToPhys(physFromLogical(currentLi), 'auto'); // всегда мгновенно, без анимации
   }
 
   // Мгновенный прыжок через край (без snap, чтобы не было второго клика)
@@ -193,7 +193,7 @@ function unlockPageScroll() {
     if (dir > 0 && atLast){ jumpLogical(0); return; }
     if (dir < 0 && atFirst){ jumpLogical(N-1); return; }
 
-    snapLogical(currentLi + dir, 'smooth');
+    snapLogical(currentLi + dir, 'auto');  // мгновенно, без анимации
   }
 
   prev?.addEventListener('click', ()=> move(-1));
