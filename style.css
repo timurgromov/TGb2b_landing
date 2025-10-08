@@ -1336,9 +1336,123 @@ body.is-modal-open{
 
 /* ====== ВОССТАНОВЛЕНИЕ ТЁПЛОГО ОРАНЖЕВО-БРОНЗОВОГО ГРАДИЕНТА ====== */
 
-/* ОРИГИНАЛЬНЫЙ ГРАДИЕНТ ИЗ ЭТАЛОН 3 */
+/* ====== ПРЕМИАЛЬНЫЙ ДИЗАЙН С ГРАДИЕНТАМИ (ФИНАЛЬНЫЙ) ====== */
+
+/* Hero - оригинальный градиент из Эталон 3 */
 .hero {
   background:
     radial-gradient(120% 120% at 15% 10%, color-mix(in oklab, var(--accent) 35%, transparent) 0%, transparent 44%),
     radial-gradient(120% 120% at 85% 15%, color-mix(in oklab, var(--accent-2) 40%, transparent) 0%, transparent 46%) !important;
+}
+
+/* Видео-секция */
+.video-fullscreen {
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 0%, 
+      rgba(255, 106, 61, 0.10) 0%, 
+      transparent 50%),
+    linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,.2) 30%,transparent 100%) !important;
+}
+
+.video-fullscreen .video-wrapper {
+  border: 1px solid rgba(255,106,61,0.15) !important;
+}
+
+.video-fullscreen .video-wrapper:hover {
+  border-color: rgba(255,106,61,0.5) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,106,61,0.3),
+    0 12px 48px rgba(255,106,61,0.25) !important;
+}
+
+/* Benefits - градиент под заголовком */
+#benefits {
+  position: relative !important;
+}
+
+#benefits::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 250px;
+  background: radial-gradient(ellipse 90% 100% at 50% 0%, 
+    rgba(255, 106, 61, 0.08) 0%, 
+    transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.benefits {
+  position: relative;
+  z-index: 1;
+}
+
+.benefit {
+  background: linear-gradient(135deg, 
+    rgba(255,106,61,0.06) 0%, 
+    rgba(198,168,105,0.04) 100%) !important;
+}
+
+.benefit:hover {
+  background: linear-gradient(135deg, 
+    rgba(255,106,61,0.12) 0%, 
+    rgba(198,168,105,0.08) 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,106,61,0.4),
+    0 8px 40px rgba(255,106,61,0.25) !important;
+}
+
+/* Фотогалерея */
+#photos {
+  background: radial-gradient(ellipse 120% 70% at 50% 50%, 
+    rgba(198,168,105,0.08) 0%, 
+    transparent 70%) !important;
+}
+
+.photo-card {
+  border: 1px solid rgba(255,106,61,0.20) !important;
+}
+
+.photo-card:hover {
+  box-shadow: 0 8px 32px rgba(255,106,61,0.35) !important;
+  border-color: rgba(255,106,61,0.40) !important;
+}
+
+/* Letters */
+#letters {
+  background: radial-gradient(ellipse 100% 80% at 50% 50%, 
+    rgba(255,106,61,0.08) 0%, 
+    transparent 70%) !important;
+}
+
+.letter-card {
+  border: 1px solid rgba(198,168,105,0.25) !important;
+}
+
+.letter-card:hover {
+  box-shadow: 0 12px 48px rgba(255,106,61,0.30) !important;
+  border-color: rgba(255,106,61,0.35) !important;
+}
+
+/* CTA */
+.cta__box {
+  background:
+    radial-gradient(ellipse 150% 120% at 50% 0%, 
+      rgba(255,106,61,0.12) 0%, 
+      rgba(198,168,105,0.06) 40%,
+      transparent 75%),
+    radial-gradient(120% 120% at 30% 30%, #1a1f25 0%, #0f1216 72%, #0b0e12 100%) !important;
+  border: 1px solid rgba(255,106,61,0.20) !important;
+}
+
+/* Modal overlay */
+#letter-modal .modal__overlay {
+  background:
+    radial-gradient(ellipse 70% 70% at 50% 50%, 
+      rgba(255,106,61,0.12) 0%, 
+      transparent 60%),
+    rgba(0,0,0,.82) !important;
 }
