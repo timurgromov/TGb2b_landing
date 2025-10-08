@@ -389,8 +389,8 @@ button{font-family:inherit;cursor:pointer}
 }
 .footer__tagline{color:var(--muted);margin-top:6px}
 .footer__contacts{display:flex;flex-direction:column;gap:8px}
-.footer__link{color:var(--text);text-decoration:none;border-bottom:1px dashed transparent}
-.footer__link:hover{border-bottom-color:var(--accent)}
+.footer__link{color:var(--text);text-decoration:none}
+.footer__link:hover{color:var(--accent)}
 .footer__socials{display:flex;gap:10px;margin:6px 0}
 .footer__icon{
   width:36px; height:36px; display:flex; align-items:center; justify-content:center;
