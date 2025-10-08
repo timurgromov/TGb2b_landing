@@ -1060,3 +1060,15 @@ body.is-modal-open{
 #hero-left #hero-tags {
   margin-top: 22px !important;
 }
+
+/* Выравнивание фотографии с заголовком */
+:root .hero__photo {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  align-self: start !important;
+}
+
+:root .hero__photo img {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
