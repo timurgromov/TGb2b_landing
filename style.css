@@ -1182,5 +1182,43 @@ body.is-modal-open{
     rgba(255, 106, 61, 0.08) 0%,
     rgba(198, 168, 105, 0.05) 30%,
     transparent 65%
+  ),
+  radial-gradient(
+    ellipse 80% 50% at 50% 100%,
+    rgba(255, 120, 66, 0.08) 0%,
+    transparent 50%
   ) !important;
+}
+
+/* ====== 4) МИКРООПТИМИЗАЦИИ ====== */
+
+/* Отступ шапки от верхнего края */
+:root .site-header {
+  padding-top: 26px !important;
+  padding-bottom: 26px !important;
+}
+
+/* Фото смещаем чуть вниз для баланса взгляда */
+:root .hero__photo {
+  transform: translateY(16px) !important;
+}
+
+/* Общая высота hero для золотого соотношения "одним взглядом" */
+:root .hero {
+  min-height: clamp(680px, 85vh, 770px) !important;
+}
+
+@media (max-width: 768px) {
+  :root .site-header {
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+  }
+  
+  :root .hero__photo {
+    transform: translateY(8px) !important;
+  }
+  
+  :root .hero {
+    min-height: auto !important;
+  }
 }
