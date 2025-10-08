@@ -166,13 +166,25 @@ function unlockPageScroll() {
     let currentIdx = getCurrentIndex();
     let nextIdx = currentIdx + dir;
     
+    console.log('🔄 MOVE:', {
+      direction: dir > 0 ? 'вперёд →' : 'назад ←',
+      currentIdx,
+      nextIdx,
+      totalCards: cards.length,
+      scrollLeft: track.scrollLeft,
+      step: step()
+    });
+    
     // Циклическая логика
     if (nextIdx < 0) {
+      console.log('⬅️ Дошли до начала, прыгаем на последнюю:', cards.length - 1);
       nextIdx = cards.length - 1; // На последнюю
     } else if (nextIdx >= cards.length) {
+      console.log('➡️ Дошли до конца, прыгаем на первую: 0');
       nextIdx = 0; // На первую
     }
     
+    console.log('✅ Прокручиваем к индексу:', nextIdx);
     scrollToIndex(nextIdx, true);
   }
 
