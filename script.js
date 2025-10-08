@@ -161,24 +161,27 @@ function unlockPageScroll() {
 
   let currentLi = 0;
 
-  function snapLogical(li, behavior='auto'){
-    currentLi = (li % N + N) % N;
-    const el = cards[physFromLogical(currentLi)];
-    el.scrollIntoView({ behavior, inline:'center', block:'nearest' });
+  // 3) Геометрия: координата центра карточки i
+  function centerLeft(pi){
+    const el = cards[pi];
+    return el.offsetLeft - (track.clientWidth - el.offsetWidth)/2;
+  }
+  function scrollToPhys(pi, behavior='smooth'){
+    track.scrollTo({ left: centerLeft(pi), behavior });
   }
 
-  // === Мгновенный прыжок без scroll-snap (телепорт)
+  function snapLogical(li, behavior='auto'){
+    currentLi = (li % N + N) % N;
+    scrollToPhys(physFromLogical(currentLi), behavior);
+  }
+
+  // Мгновенный прыжок через край (без snap, чтобы не было второго клика)
   function jumpLogical(li){
     currentLi = (li % N + N) % N;
-    const el = cards[physFromLogical(currentLi)];
-    // временно отключаем snap и анимацию
     const prevSnap = track.style.scrollSnapType;
     track.style.scrollSnapType = 'none';
-    const left = el.offsetLeft - (track.clientWidth - el.offsetWidth)/2;
-    track.scrollLeft = left;
-    // принудительный reflow
-    void track.offsetWidth;
-    // возвращаем snap
+    track.scrollLeft = centerLeft(physFromLogical(currentLi));
+    void track.offsetWidth; // reflow
     track.style.scrollSnapType = prevSnap || 'x mandatory';
   }
 
@@ -208,13 +211,25 @@ function unlockPageScroll() {
   ['pointerup','pointercancel','mouseleave'].forEach(ev=>track.addEventListener(ev, ()=>{ isDown=false; }));
   track.addEventListener('click', e=>{ if (moved>dragThreshold){ e.preventDefault(); e.stopPropagation(); } });
 
-  // === Нормализация при скролле
-  const deb = (fn,t=60)=>{ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t);} };
+  // 7) Надёжное определение текущего слайда: ближайший к центру
+  function nearestPhysIndex(){
+    const center = track.scrollLeft + track.clientWidth/2;
+    let best=0, bestD=Infinity;
+    for (let i=0;i<cards.length;i++){
+      const el  = cards[i];
+      const mid = el.offsetLeft + el.offsetWidth/2;
+      const d   = Math.abs(mid - center);
+      if (d < bestD){ bestD = d; best = i; }
+    }
+    return best;
+  }
+
+  const deb = (fn,t=60)=>{ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t); }; };
   track.addEventListener('scroll', deb(()=>{
-    const pi = Math.round(track.scrollLeft / (cards[1].offsetWidth + 12));
-    if (pi === 0)   { jumpLogical(N-1); return; }
-    if (pi === N+1) { jumpLogical(0); return; }
-    currentLi = logicalFromPhys(pi);
+    const pi = nearestPhysIndex();
+    if (pi === 0)       { jumpLogical(N-1); return; }   // на левом клоне → телепорт на последний
+    if (pi === N + 1)   { jumpLogical(0);   return; }   // на правом клоне → телепорт на первый
+    currentLi = logicalFromPhys(pi);                   // обновить логический индекс
   }, 40));
 
   // === Ресайз
