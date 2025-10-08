@@ -585,3 +585,38 @@ function unlockPageScroll() {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll(); // применить состояние при загрузке
 })();
+
+// ===== УМНАЯ ПЛАВАЮЩАЯ КНОПКА WHATSAPP =====
+(function initSmartWhatsAppFAB() {
+  const waFab = document.querySelector('.wa-fab');
+  if (!waFab) return;
+
+  // Показываем FAB только когда пользователь прокрутил > 1 экрана
+  // Это убирает дублирование с header на первом экране
+  function toggleFab() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    
+    // Появляется после 100vh (полный экран)
+    if (scrollTop > windowHeight) {
+      waFab.classList.add('show');
+    } else {
+      waFab.classList.remove('show');
+    }
+  }
+
+  // Throttled scroll с requestAnimationFrame для производительности
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        toggleFab();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  toggleFab(); // проверка при загрузке
+})();
