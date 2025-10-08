@@ -165,10 +165,12 @@ const COUNTER_ID = 104468814;
   let index = -1;
 
   function openModal(src, alt, groupName, idx){
+    console.log(`openModal вызвана: src=${src}, groupName=${groupName}`); // отладка
     modalImg.src = src;
     modalImg.alt = alt || '';
     modal.classList.add('active');           // <-- фикc: используем 'active' как и в других модалках
     document.body.style.overflow = 'hidden';
+    console.log(`Модальное окно открыто, класс: ${modal.className}`); // отладка
 
     // Метрика
     if (typeof ym === 'function') {
@@ -201,11 +203,19 @@ const COUNTER_ID = 104468814;
 
   // Делегируем клики для каждой группы
   groups.forEach(group => {
+    console.log(`Найдено ${group.nodes.length} элементов для группы ${group.name}`); // отладка
     group.nodes.forEach((card, i)=>{
       card.addEventListener('click', ()=>{
+        console.log(`Клик по ${group.name}, элемент ${i}`); // отладка
         const src = group.src(card);
         const alt = group.alt(card);
-        if (src) openModal(src, alt, group.name, i);
+        console.log(`Src: ${src}, Alt: ${alt}`); // отладка
+        if (src) {
+          console.log(`Открываем модальное окно для ${group.name}`); // отладка
+          openModal(src, alt, group.name, i);
+        } else {
+          console.log(`Ошибка: нет src для ${group.name}`); // отладка
+        }
       });
     });
   });
