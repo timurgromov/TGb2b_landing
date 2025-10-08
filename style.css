@@ -1167,23 +1167,7 @@ body.is-modal-open{
 
 /* ====== 6) КОНТРАСТ И ЦВЕТ ====== */
 
-/* Градиент фона: более длинный переход, чтобы чипсы и CTA не проваливались */
-:root body {
-  background: linear-gradient(135deg, 
-    #1a1a1d 0%, 
-    #242428 35%, 
-    #2a2a32 70%, 
-    #1f1f23 100%) !important;
-}
-
-:root .hero {
-  background: radial-gradient(
-    ellipse 120% 100% at 50% -10%,
-    rgba(255, 106, 61, 0.12) 0%,
-    rgba(198, 168, 105, 0.10) 30%,
-    transparent 65%
-  ) !important;
-}
+/* Старые градиенты удалены */
 
 /* ====== 4) МИКРООПТИМИЗАЦИИ ====== */
 
@@ -1266,22 +1250,12 @@ body.is-modal-open{
 
 /* ====== ВОССТАНОВЛЕНИЕ ТЁПЛОГО ОРАНЖЕВО-БРОНЗОВОГО ГРАДИЕНТА ====== */
 
-.hero-safe,
-section.hero,
-section[id*="hero"],
-section:has(h1:lang(ru)) {
+/* ОРИГИНАЛЬНЫЙ ОРАНЖЕВЫЙ ГРАДИЕНТ (из коммита 059f4d4) */
+.hero {
   background: radial-gradient(
-      circle at 20% 20%,
-      rgba(255, 165, 95, 0.28) 0%,
-      rgba(255, 120, 66, 0.20) 30%,
-      rgba(90, 40, 20, 0.55) 100%
-    ),
-    linear-gradient(
-      180deg,
-      #2b1a13 0%,
-      #1b1411 60%,
-      #0d0c0b 100%
-    );
-  background-blend-mode: overlay, normal;
-  color: #fff;
+    ellipse 120% 100% at 50% -10%,
+    rgba(255, 106, 61, 0.12) 0%,
+    rgba(198, 168, 105, 0.10) 30%,
+    transparent 65%
+  ) !important;
 }
