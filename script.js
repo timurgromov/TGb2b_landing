@@ -151,14 +151,22 @@ function unlockPageScroll() {
   // Бесконечная прокрутка по кругу
   const scrollByCard = (dir) => {
     const cw = cardWidth() + gap;
+    const maxScroll = track.scrollWidth - track.clientWidth;
     const currentIdx = Math.round(track.scrollLeft / cw);
     let nextIdx = currentIdx + dir;
     
     // Если вышли за границы - переходим по кругу
-    if (nextIdx < 0) nextIdx = cards.length - 1;
-    if (nextIdx >= cards.length) nextIdx = 0;
+    if (nextIdx < 0) {
+      // С первого на последний
+      nextIdx = cards.length - 1;
+    } else if (nextIdx >= cards.length) {
+      // С последнего на первый
+      nextIdx = 0;
+    }
     
-    track.scrollTo({ left: nextIdx * cw, behavior: 'smooth' });
+    // Прокручиваем к нужному индексу
+    const targetScroll = Math.min(nextIdx * cw, maxScroll);
+    track.scrollTo({ left: targetScroll, behavior: 'smooth' });
   };
 
   prev?.addEventListener('click', () => scrollByCard(-1));
