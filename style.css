@@ -531,6 +531,53 @@ html.is-modal-open, body.is-modal-open {
 /* Курсор для карточек */
 .letter-card, .photo-card { cursor: zoom-in; }
 
+/* Modal navigation arrows */
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-size: 42px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s;
+  z-index: 2001;
+}
+
+.modal-nav:hover { 
+  background: rgba(255,255,255,0.25); 
+}
+
+.modal-prev { 
+  left: 40px; 
+}
+
+.modal-next { 
+  right: 40px; 
+}
+
+@media (max-width: 768px) {
+  .modal-nav { 
+    width: 44px; 
+    height: 44px; 
+    font-size: 30px; 
+  }
+  .modal-prev { 
+    left: 20px; 
+  }
+  .modal-next { 
+    right: 20px; 
+  }
+}
+
 /* ===== Скрываем системные скроллбары у горизонтальных треков ===== */
 .letters-track, .photos-track{
   scrollbar-width: none;          /* Firefox */

@@ -365,9 +365,15 @@ function unlockPageScroll() {
     preload((index+dir+currentList.length)%currentList.length);
   }
 
+  // Навигационные стрелки
+  const prevBtn = modal?.querySelector('.modal-prev');
+  const nextBtn = modal?.querySelector('.modal-next');
+  
   closeBtn?.addEventListener('click', closeModal);
   overlay?.addEventListener('click', closeModal);
   modalImg?.addEventListener('click', closeModal);
+  prevBtn?.addEventListener('click', ()=> navigate(-1));
+  nextBtn?.addEventListener('click', ()=> navigate(+1));
 
   document.addEventListener('keydown', (e)=>{
     if (!modal.classList.contains('active')) return;
