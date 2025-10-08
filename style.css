@@ -216,14 +216,12 @@ button{font-family:inherit;cursor:pointer}
   justify-content:center;
   color:#fff;
   text-decoration:none;
-  box-shadow:0 4px 20px rgba(255,106,61,0.4);
   transition:all 0.3s ease;
   z-index:1000;
   animation:pulse 2s ease-in-out infinite;
 }
 .wa-fab:hover{
   transform:scale(1.1);
-  box-shadow:0 6px 25px rgba(255,106,61,0.6);
 }
 .wa-fab svg{
   width:24px;
