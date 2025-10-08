@@ -157,7 +157,7 @@ function unlockPageScroll() {
   // После вставки клонов пересобираем список (включая клоны)
   const allCards = Array.from(track.querySelectorAll('.letter-card'));
   const firstIndex = 1;                       // индекс оригинального "0" в ленте с клонами
-  const lastIndex  = allCards.length - 2;     // индекс оригинального "N-1"
+  const lastIndex  = originals.length;        // индекс последнего оригинала (originals.length, т.к. первый клон на позиции 0)
 
   // Создаём индикатор точек (только для оригиналов)
   if (dots){
@@ -192,9 +192,11 @@ function unlockPageScroll() {
       from: from,
       firstIndex: firstIndex,
       lastIndex: lastIndex,
+      originalsLength: originals.length,
       totalCards: allCards.length,
       'from === lastIndex': from === lastIndex,
-      'from === firstIndex': from === firstIndex
+      'from === firstIndex': from === firstIndex,
+      'lastIndex === originals.length': lastIndex === originals.length
     });
 
     // Мы стоим на последнем ОРИГИНАЛЕ и жмём "вперёд" — упор в maxScroll.
