@@ -126,8 +126,8 @@ function unlockPageScroll() {
   window.scrollTo(0, __scrollY);
 }
 
-// === Letters slider: бесконечные кнопки в обе стороны (телепорт через край) ===
-(function initLettersSliderLoop(){
+// === Letters slider: простой слайдер без бесконечности ===
+(function initLettersSlider(){
   const root  = document.querySelector('.letters-slider');
   if (!root) return;
 
@@ -193,9 +193,14 @@ function unlockPageScroll() {
     track.style.scrollSnapType = prevSnap || 'x mandatory';
   }
 
-  // 5) Кнопки (в обе стороны симметрично)
-  prev?.addEventListener('click', ()=> snapLogical(currentLi - 1, 'smooth'));
-  next?.addEventListener('click', ()=> snapLogical(currentLi + 1, 'smooth'));
+  // Кнопки
+  prev?.addEventListener('click', ()=> {
+    if (currentLi > 0) snapLogical(currentLi - 1, 'smooth');
+  });
+  
+  next?.addEventListener('click', ()=> {
+    if (currentLi < N - 1) snapLogical(currentLi + 1, 'smooth');
+  });
 
   // === Drag/swipe (без pointer-capture)
   let isDown=false, startX=0, startScroll=0, moved=0;
@@ -222,14 +227,12 @@ function unlockPageScroll() {
     return best;
   }
 
-  // 8) Нормализация: если попали на клон — мгновенно переносим на соответствующий оригинал.
+  // Обновление индекса при скролле
   const deb = (fn,t=60)=>{ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t); }; };
   track.addEventListener('scroll', deb(()=>{
     const pi = nearestPhysIndex();
-    if (pi === leftCloneIndex)  { snapLogical(N-1, 'auto'); return; }
-    if (pi === rightCloneIndex) { snapLogical(0,   'auto'); return; }
-    // если обычный оригинал — обновляем логический индекс
-    currentLi = logicalFromPhys(pi);
+    // Просто обновляем текущий индекс
+    if (pi >= 0 && pi < N) currentLi = pi;
   }, 40));
 
   // === Ресайз
