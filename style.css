@@ -793,3 +793,149 @@ body.is-modal-open{
   pointer-events:none;
   transition:opacity .2s ease;
 }
+/* Блок-обёртка: не режем и слегка поднимаем левую колонку */
+:root #hero-left{
+  overflow: visible !important;
+  transform: translateY(-6px);
+}
+
+/* Подзаголовок — комфортная читабельность */
+:root #hero-subtitle{
+  margin-top: 10px !important;
+  line-height: 1.7 !important;
+  color: rgba(255,255,255,0.78) !important;
+}
+
+/* Чипсы — ближе к тексту, светлее */
+:root #hero-tags{
+  margin-top: 14px !important;
+  margin-bottom: 0 !important;
+}
+:root #hero-tags .tag{
+  background: rgba(255,255,255,0.04) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.85) !important;
+  transition: none !important;
+}
+
+/* Кнопки — больше воздуха */
+:root #hero-actions{
+  margin-top: 36px !important;
+  gap: 18px !important;
+}
+
+/* Мобилка — компактнее, но без слипаний */
+@media (max-width: 768px){
+  :root #hero-left{ transform: translateY(-4px) !important; }
+  :root #hero-subtitle{ margin-top: 8px !important; line-height: 1.65 !important; }
+  :root #hero-actions{ margin-top: 28px !important; gap: 14px !important; }
+}
+
+/* Запасной случай: снять скрытие переполнений */
+:root .hero-left, :root .hero-content, :root .hero-card { overflow: visible !important; }
+
+/* ===== СОВРЕМЕННЫЙ СТИЛЬ HERO-БЛОКА (2025) ===== */
+:root #hero-left {
+  padding-top: clamp(32px, 5vw, 60px);
+  transform: translateY(-8px);
+}
+
+:root #hero-left h1 {
+  font-size: clamp(38px, 4vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  margin-bottom: 18px !important;
+}
+
+:root #hero-left .hero-subtitle {
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 28px !important;
+  max-width: 540px;
+}
+
+:root #hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-bottom: 42px !important;
+}
+
+:root #hero-tags .tag {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  padding: 8px 16px !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  transition: none !important; /* без ховера, чтобы не казалось кликабельным */
+}
+
+:root #hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 42px !important;
+}
+
+:root #hero-actions .cta-primary {
+  background: #ff7b42 !important;
+  color: white !important;
+  font-weight: 600;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 3px 8px rgba(255, 123, 66, 0.35);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+:root #hero-actions .cta-primary:hover {
+  background: #ff905f !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 123, 66, 0.4);
+}
+
+:root #hero-actions .cta-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px 22px;
+}
+
+:root header button.call-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+:root header button.call-btn::before {
+  content: url('icons/phone.svg'); /* заменить на реальный SVG */
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  transform: translateY(2px);
+}
+
+:root header button.call-btn span {
+  display: inline;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  :root #hero-left {
+    padding-top: 20px;
+    transform: none;
+  }
+  :root #hero-tags {
+    margin-bottom: 32px !important;
+  }
+  :root #hero-actions {
+    margin-top: 32px !important;
+    gap: 16px !important;
+  }
+  :root #hero-left h1 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+}
