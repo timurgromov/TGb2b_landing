@@ -354,9 +354,11 @@ function unlockPageScroll() {
     const oldIndex = index;
     index = (index + dir + currentList.length) % currentList.length;
     
-    // Определяем направление анимации
-    const outClass = dir === 1 ? 'fade-out-left' : 'fade-out-right';
-    const inClass = dir === 1 ? 'fade-in-right' : 'fade-in-left';
+    // === Главное исправление направления ===
+    // dir > 0 — вперёд (→), старое уходит влево, новое въезжает справа
+    // dir < 0 — назад (←), старое уходит вправо, новое въезжает слева
+    const outClass = dir === 1 ? 'fade-out-left'  : 'fade-out-right';
+    const inClass  = dir === 1 ? 'fade-in-right'  : 'fade-in-left';
     
     // Убираем старые классы и добавляем fade-out
     modalImg.classList.remove('fade-in-left', 'fade-in-right');
