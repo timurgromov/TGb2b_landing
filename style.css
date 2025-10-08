@@ -655,3 +655,7 @@ html.is-modal-open, body.is-modal-open {
 .fade-out-left  { opacity:0; transform: translateX(-60px); }
 .fade-out-right { opacity:0; transform: translateX( 60px); }
 .fade-in-right, .fade-in-left { opacity:1; transform: translateX(0); }
+
+/* стартовые состояния (кадр 0) для появления */
+.letter-modal-img.enter-from-right { opacity: 0; transform: translateX(60px); }
+.letter-modal-img.enter-from-left  { opacity: 0; transform: translateX(-60px); }
