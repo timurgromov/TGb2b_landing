@@ -66,7 +66,6 @@ button{font-family:inherit;cursor:pointer}
   cursor: pointer;
 }
 .hero__facts li:hover{
-  animation: pulse 2s ease-in-out infinite;
   transform: translateY(-1px);
   box-shadow: 0 4px 20px rgba(255,120,40,0.3);
 }
