@@ -942,29 +942,30 @@ body.is-modal-open{
 
 /* ====== Верхние кнопки: одинаковые метрики и выравнивание ====== */
 :root #top-cta{
-  display:flex; align-items:center; gap:12px;
+  display:flex; align-items:center; gap:14px;
 }
 :root #top-cta .btn{
   display:inline-flex; align-items:center; justify-content:center;
-  height:40px;                           /* одинаковая высота */
-  padding:0 16px;                         /* одинаковые паддинги */
+  height:46px;                           /* одинаковая высота */
+  padding:0 20px;                         /* одинаковые паддинги */
   border-radius:12px;
   font-size:15px; line-height:1; font-weight:600;
   white-space:nowrap;
+  min-width: 154px;                       /* минимальная ширина для равной массы */
 }
 :root #top-cta .btn .btn__text{ display:inline-block; }
 
 /* Иконка телефона */
 :root #top-cta .btn .btn__icon{
-  width:18px; height:18px; margin-right:8px;
+  width:19px; height:19px; margin-right:8px;
   display:inline-block; vertical-align:middle;
   background-repeat:no-repeat; background-position:center; background-size:contain;
 }
 
-/* Визуальные стили (оставляем существующие, но делаем равными размеры) */
+/* Визуальные стили */
 :root #top-cta .btn.btn--call{
-  background: rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
   color:#fff;
 }
 :root #top-cta .btn.btn--wa{
@@ -991,8 +992,8 @@ body.is-modal-open{
 
 /* Мобилка — ещё компактнее, но без склеивания */
 @media (max-width: 768px){
-  :root #top-cta .btn{ height:38px; padding:0 14px; font-size:14px; }
-  :root #top-cta .btn .btn__icon{ width:16px; height:16px; margin-right:6px; }
+  :root #top-cta .btn{ height:42px; padding:0 16px; font-size:14px; min-width: 140px; }
+  :root #top-cta .btn .btn__icon{ width:18px; height:18px; margin-right:6px; }
   :root #hero-tags{ max-width: 100%; gap:8px; }
   :root #hero-tags .tag{ font-size:13.5px !important; padding:6px 10px !important; }
 }
@@ -1048,6 +1049,51 @@ body.is-modal-open{
 /* 3) CTA кнопки */
 :root #hero-actions {
   margin-top: 56px !important; /* кислород над кнопками */
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 18px !important;
+}
+
+:root #hero-actions .btn {
+  height: 56px !important;
+  padding: 0 26px !important;
+  border-radius: 14px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+:root #hero-actions .btn-primary {
+  background: #FF7B42 !important;
+  color: white !important;
+  box-shadow: 0 10px 32px rgba(255, 123, 66, 0.25) !important;
+  border: none !important;
+}
+
+:root #hero-actions .btn-primary:hover {
+  background: #e66d39 !important;
+  box-shadow: 0 12px 40px rgba(255, 123, 66, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+
+:root #hero-actions .btn-primary:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 8px 24px rgba(255, 123, 66, 0.2) !important;
+}
+
+:root #hero-actions .btn-ghost {
+  background: rgba(255,255,255,0.06) !important;
+  color: white !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+:root #hero-actions .btn-ghost:hover {
+  background: rgba(255,255,255,0.1) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+:root #hero-actions .btn-ghost:active {
+  transform: translateY(0) !important;
 }
 
 /* Для надёжности перекрываем любые вложенные селекторы */
