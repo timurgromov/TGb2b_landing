@@ -1063,12 +1063,11 @@ body.is-modal-open{
   line-height: 1.15;
   letter-spacing: -0.3px;
   margin-bottom: 18px !important;
-  white-space: nowrap; /* одна строка */
 }
 
 :root #hero-left h1 .h1-prefix {
-  font-size: 42px !important;    /* "Ведущий на корпоратив" */
-  font-weight: 600;
+  font-size: 42px !important;    /* "Ведущий на корпоратив" — меньше */
+  font-weight: 800;
 }
 
 :root #hero-left h1 .h1-name {
