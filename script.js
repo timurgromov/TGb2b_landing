@@ -357,8 +357,11 @@ function unlockPageScroll() {
   function navigate(dir){
     if (!currentList.length || index < 0) return;
     
+    console.log('🎬 Starting animation for direction:', dir);
+    
     // Добавляем класс анимации исчезновения
     modalImg.classList.add('changing');
+    console.log('📉 Added changing class');
     
     setTimeout(() => {
       index = (index + dir + currentList.length) % currentList.length;
@@ -366,9 +369,13 @@ function unlockPageScroll() {
       modalImg.src = srcFromCard(card);
       modalImg.alt = altFromCard(card);
       
+      console.log('📈 Loading new image, index:', index);
+      
       // Убираем класс анимации и добавляем класс загрузки
       modalImg.classList.remove('changing');
       modalImg.classList.add('loaded');
+      
+      console.log('✅ Animation complete');
       
       // Применяем адаптивный размер при навигации
       applySizingWhenReady();
