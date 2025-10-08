@@ -512,17 +512,16 @@ button{font-family:inherit;cursor:pointer}
   overflow: visible !important;   /* ключ к проблеме "часть чипсов спряталась" */
 }
 
-/* ===== ОПТИЧЕСКОЕ ВЫРАВНИВАНИЕ ===== */
-/* Поднимаем левый контент для компенсации визуального веса правой колонки */
-.hero-text {
-  transform: translateY(-6px);    /* уменьшен сдвиг для более точного баланса */
+/* === 2. Визуальная коррекция блока === */
+.hero-text, .hero-left {
+  transform: translateY(-6px);    /* лёгкий подъём всей колонки для выравнивания с фото */
 }
 
-/* ===== УЛУЧШЕНИЕ ЧИТАЕМОСТИ ПОДЗАГОЛОВКА ===== */
-.hero .sub {
-  margin-top: 10px;               /* добавим воздуха между H1 и подзаголовком */
-  line-height: 1.7;               /* увеличено с 1.6 для лучшей читаемости */
-  color: rgba(255,255,255,0.78);  /* мягче белого, выглядит дороже */
+/* === 1. Вертикальный ритм === */
+.hero .sub, .hero-subtitle {
+  margin-top: 10px;               /* немного больше воздуха под H1 */
+  line-height: 1.7;               /* комфортное чтение */
+  color: rgba(255,255,255,0.78);
 }
 
 /* ---- блок с чипсами ---- */
@@ -538,25 +537,21 @@ button{font-family:inherit;cursor:pointer}
   flex-wrap: wrap;
   gap: 10px;                      /* горизонтальный зазор между чипсами */
 }
+/* === 3. Цвет и лёгкость чипсов === */
 .hero-tags .tag{
-  background: rgba(255,255,255,0.04);    /* уменьшен контраст */
-  border: 1px solid rgba(255,255,255,0.08); /* более мягкая граница */
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--tag-radius);
   padding: var(--tag-py) var(--tag-px);
   font-size: var(--tag-font);
   font-weight: 500;
-  color: rgba(255,255,255,0.85);         /* мягче для подчинения H1 */
+  color: rgba(255,255,255,0.85);
   line-height: 1.25;
-  /* убираем интерактивность по ощущениям */
-  transition: none;
-  transform: none;
-  cursor: default;
+  transition: all 0.25s ease;
 }
-/* никаких визуальных изменений при наведении */
-.hero-tags .tag:hover{
-  background: var(--tag-bg);
-  border-color: var(--tag-border);
-  transform: none;
+.hero-tags .tag:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
 }
 
 /* === CALL BUTTON === */
@@ -587,9 +582,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* ---- блок с кнопками под чипсами ---- */
 .hero-actions{
-  margin-top: 22px;               /* дополнительный зазор от чипсов */
   display: flex;
-  gap: 18px;                      /* увеличен зазор между кнопками */
   flex-wrap: wrap;
 }
 
@@ -620,17 +613,16 @@ button{font-family:inherit;cursor:pointer}
   padding-top: clamp(48px, 6vw, 72px);  /* увеличен до 72px для дыхания */
 }
 
-/* ===== Подзаголовок → чипсы ===== */
-/* Уменьшаем зазор для визуальной плотности сверху. */
+/* Чипсы */
 .hero-tags {
-  margin-top: 15px;          /* уменьшено до 15px для плотности */
-  margin-bottom: 0;          /* сбросим, чтобы контролировать отступ через .hero-actions */
+  margin-top: 14px;             /* ближе к подзаголовку */
+  margin-bottom: 0;
 }
 
-/* ===== Чипсы → CTA-кнопки ===== */
-/* Увеличиваем зазор для дыхания снизу. */
+/* Кнопки CTA */
 .hero-actions {
-  margin-top: 36px;          /* уменьшено до 36px для оптимального ритма */
+  margin-top: 36px;             /* добавляем воздуха снизу — визуально легче */
+  gap: 18px;                    /* увеличиваем расстояние между кнопками */
 }
 
 /* Если кнопки идут без .hero-actions — подстрахуемся на общих классах. */
@@ -640,21 +632,11 @@ button{font-family:inherit;cursor:pointer}
   margin-top: 36px;
 }
 
-/* ===== Мобилка: аккуратнее, но читаемо ===== */
-@media (max-width: 768px){
-  .hero, .hero-section, .hero-content {
-    padding-top: clamp(32px, 6vw, 48px);  /* слегка увеличен для дыхания */
-  }
-  .hero-text {
-    transform: none;                       /* убираем сдвиг на мобильных */
-  }
-  .hero-tags { margin-top: 12px; }
-  .hero-actions,
-  .hero-tags + .button-row,
-  .hero-tags + .cta-row,
-  .hero-tags + .hero-ctas {
-    margin-top: 28px;                      /* оптимальный ритм для мобильных */
-  }
+/* === 4. Адаптив === */
+@media (max-width: 768px) {
+  .hero-actions { margin-top: 28px; gap: 14px; }
+  .hero .sub, .hero-subtitle { margin-top: 8px; line-height: 1.65; }
+  .hero-text, .hero-left { transform: translateY(-4px); }
 }
 
 @media (max-width:640px){
