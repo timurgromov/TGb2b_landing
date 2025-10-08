@@ -1582,7 +1582,7 @@ body.is-modal-open{
   
   /* === HERO: Чипсы === */
   :root #hero-tags {
-    justify-content: center !important;
+    justify-content: flex-start !important; /* выравнивание по левому краю */
     max-width: 100% !important;
     gap: 8px !important;
     margin-bottom: 24px !important;
