@@ -148,29 +148,38 @@ function unlockPageScroll() {
 
   const cardWidth = () => track.querySelector('.letter-card')?.getBoundingClientRect().width || 320;
   
+  // Получаем текущий индекс карточки
+  const getCurrentIndex = () => {
+    const cw = cardWidth() + gap;
+    return Math.round(track.scrollLeft / cw);
+  };
+  
+  // Прокручиваем к конкретному индексу
+  const scrollToIndex = (idx) => {
+    const cw = cardWidth() + gap;
+    track.scrollTo({ left: idx * cw, behavior: 'smooth' });
+  };
+  
   // Бесконечная прокрутка по кругу
   const scrollByCard = (dir) => {
-    const cw = cardWidth() + gap;
-    const maxScroll = track.scrollWidth - track.clientWidth;
-    const currentIdx = Math.round(track.scrollLeft / cw);
+    let currentIdx = getCurrentIndex();
     let nextIdx = currentIdx + dir;
     
-    // Если вышли за границы - переходим по кругу
+    console.log('Current:', currentIdx, 'Next:', nextIdx, 'Total:', cards.length);
+    
+    // Циклическая логика
     if (nextIdx < 0) {
-      // С первого на последний
-      nextIdx = cards.length - 1;
+      nextIdx = cards.length - 1; // На последнюю карточку
     } else if (nextIdx >= cards.length) {
-      // С последнего на первый
-      nextIdx = 0;
+      nextIdx = 0; // На первую карточку
     }
     
-    // Прокручиваем к нужному индексу
-    const targetScroll = Math.min(nextIdx * cw, maxScroll);
-    track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+    console.log('Scrolling to:', nextIdx);
+    scrollToIndex(nextIdx);
   };
 
   prev?.addEventListener('click', () => scrollByCard(-1));
-  next?.addEventListener('click', () => scrollByCard( 1));
+  next?.addEventListener('click', () => scrollByCard(1));
 
   track.addEventListener('keydown', (e)=>{
     if (e.key === 'ArrowRight') scrollByCard(1);
