@@ -563,19 +563,35 @@ function unlockPageScroll() {
   });
 })();
 
-// ===== GLASS HEADER SCROLL EFFECT =====
+// ===== HEADER: HIDE ON SCROLL DOWN, SHOW ON SCROLL UP =====
 (function initHeaderScroll() {
   const header = document.querySelector('.site-header.glass.fixed');
   if (!header) return;
 
-  const THRESHOLD = 80;
+  const HIDE_AFTER = window.innerHeight; // скрывать после первого экрана
+  let lastScroll = 0;
   let ticking = false;
 
   function onScroll() {
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        const y = window.scrollY || window.pageYOffset;
-        header.classList.toggle('scrolled', y > THRESHOLD);
+        const currentScroll = window.scrollY || window.pageYOffset;
+        
+        // Скрываем header при скролле вниз ПОСЛЕ первого экрана
+        if (currentScroll > HIDE_AFTER) {
+          if (currentScroll > lastScroll) {
+            // скролл вниз → скрыть
+            header.classList.add('header-hidden');
+          } else {
+            // скролл вверх → показать
+            header.classList.remove('header-hidden');
+          }
+        } else {
+          // в пределах первого экрана — всегда показываем
+          header.classList.remove('header-hidden');
+        }
+        
+        lastScroll = currentScroll;
         ticking = false;
       });
       ticking = true;

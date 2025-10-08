@@ -40,12 +40,17 @@ button{font-family:inherit;cursor:pointer}
   backdrop-filter: blur(var(--blur));
   -webkit-backdrop-filter: blur(var(--blur));
   border-bottom: 1px solid rgba(255,255,255,0.06);
-  transition: background-color .25s ease, height .25s ease, box-shadow .25s ease;
+  transition: background-color .25s ease, height .25s ease, box-shadow .25s ease, transform .3s ease;
+  transform: translateY(0);
 }
 
 .site-header.glass.fixed.scrolled {
   background: var(--header-bg-scrolled);
   box-shadow: 0 6px 24px rgba(0,0,0,.18);
+}
+
+.site-header.glass.fixed.header-hidden {
+  transform: translateY(-100%);
 }
 
 .header-row {
