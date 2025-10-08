@@ -161,6 +161,10 @@ function unlockPageScroll() {
 
   // 4) Измерение шага: расстояние между левыми краями двух соседних ОРИГИНАЛОВ
   function measureSlot(){
+    if (cards.length < 3) {
+      // Если мало карточек, используем первую оригинальную
+      return cards[1]?.getBoundingClientRect().width + GAP || 320;
+    }
     const a = cards[1].getBoundingClientRect().left;  // физ. индекс 1 = логический 0
     const b = cards[2].getBoundingClientRect().left;  // физ. индекс 2 = логический 1
     return Math.round(b - a) || (cards[1].getBoundingClientRect().width + GAP);
@@ -190,7 +194,9 @@ function unlockPageScroll() {
     track.scrollTo({ left: pi * slot(), behavior });
   }
   function snapLogical(li, behavior='auto'){
-    snapPhys(physFromLogical((li+N)%N), behavior);
+    const pi = physFromLogical((li+N)%N);
+    console.log('📍 SNAP:', { logical: li, physical: pi, behavior });
+    snapPhys(pi, behavior);
   }
 
   // Старт: логический 0 (физически 1)
@@ -200,6 +206,15 @@ function unlockPageScroll() {
   function moveLogical(dir){
     const li = currentLogical();              // 0..N-1
     const nextLi = (li + dir + N) % N;        // кольцо
+    
+    console.log('🔄 MOVE:', {
+      direction: dir > 0 ? '→' : '←',
+      currentLogical: li,
+      nextLogical: nextLi,
+      N: N,
+      cardsLength: cards.length
+    });
+    
     // Мгновенный «телепорт» при переходе через край, внутри — плавно
     // (в любом случае мы ставим логическую цель, физика и maxScroll не мешают)
     snapLogical(nextLi, 'smooth');
