@@ -996,3 +996,36 @@ body.is-modal-open{
   :root #hero-tags{ max-width: 100%; gap:8px; }
   :root #hero-tags .tag{ font-size:13.5px !important; padding:6px 10px !important; }
 }
+
+/* ====== УВЕЛИЧЕНИЕ КИСЛОРОДА МЕЖДУ ЧИПСАМИ И CTA ====== */
+:root #hero-left {
+  display: flex;
+  flex-direction: column;
+}
+
+:root #hero-tags {
+  margin-bottom: 52px !important; /* увеличено расстояние под чипсами */
+}
+
+:root #hero-actions {
+  margin-top: 52px !important; /* добавлен воздух над кнопками */
+}
+
+:root #hero-left h1 {
+  margin-bottom: 20px !important;
+}
+
+:root #hero-left .hero-subtitle {
+  margin-bottom: 32px !important;
+}
+
+/* Для надёжности перекрываем любые вложенные селекторы с более высокой специфичностью */
+#hero-left #hero-tags,
+#hero-left #hero-actions {
+  margin-bottom: 52px !important;
+  margin-top: 52px !important;
+}
+
+/* Проверка визуального эффекта: можно временно включить рамки */
+#hero-left #hero-tags { /* border: 1px dashed red; */ }
+#hero-left #hero-actions { /* border: 1px dashed blue; */ }
