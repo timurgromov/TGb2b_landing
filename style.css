@@ -515,12 +515,14 @@ button{font-family:inherit;cursor:pointer}
 /* ===== ОПТИЧЕСКОЕ ВЫРАВНИВАНИЕ ===== */
 /* Поднимаем левый контент для компенсации визуального веса правой колонки */
 .hero-text {
-  transform: translateY(-10px);   /* компенсация визуального веса фото */
+  transform: translateY(-6px);    /* уменьшен сдвиг для более точного баланса */
 }
 
 /* ===== УЛУЧШЕНИЕ ЧИТАЕМОСТИ ПОДЗАГОЛОВКА ===== */
 .hero .sub {
+  margin-top: 10px;               /* добавим воздуха между H1 и подзаголовком */
   line-height: 1.7;               /* увеличено с 1.6 для лучшей читаемости */
+  color: rgba(255,255,255,0.78);  /* мягче белого, выглядит дороже */
 }
 
 /* ---- блок с чипсами ---- */
@@ -537,13 +539,13 @@ button{font-family:inherit;cursor:pointer}
   gap: 10px;                      /* горизонтальный зазор между чипсами */
 }
 .hero-tags .tag{
-  background: var(--tag-bg);
-  border: 1px solid var(--tag-border);
+  background: rgba(255,255,255,0.04);    /* уменьшен контраст */
+  border: 1px solid rgba(255,255,255,0.08); /* более мягкая граница */
   border-radius: var(--tag-radius);
   padding: var(--tag-py) var(--tag-px);
   font-size: var(--tag-font);
   font-weight: 500;
-  color: #e9e9ea;
+  color: rgba(255,255,255,0.85);         /* мягче для подчинения H1 */
   line-height: 1.25;
   /* убираем интерактивность по ощущениям */
   transition: none;
@@ -587,7 +589,7 @@ button{font-family:inherit;cursor:pointer}
 .hero-actions{
   margin-top: 22px;               /* дополнительный зазор от чипсов */
   display: flex;
-  gap: 14px;
+  gap: 18px;                      /* увеличен зазор между кнопками */
   flex-wrap: wrap;
 }
 
