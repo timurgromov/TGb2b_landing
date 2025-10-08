@@ -442,6 +442,54 @@ button{font-family:inherit;cursor:pointer}
   :root{ --letter-h: 200px; --photo-h: 200px; }
 }
 
+/* ===== footer: прижимаем контакты вправо, нормализуем ссылки и ритм ===== */
+.footer-contacts{
+  margin-left: auto;          /* прижать вправо в родительском флексе/гриде */
+  max-width: 520px;
+  text-align: right;
+  line-height: 1.6;           /* читаемость */
+  font-size: 15.5px;          /* чуть меньше, чтобы не спорило с заголовками */
+}
+.footer-contacts .footer-link{
+  color: #e9e9ea;             /* убираем синий дефолт */
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: border-color .15s ease, opacity .15s ease;
+}
+.footer-contacts .footer-link:hover{
+  border-bottom-color: rgba(233,233,234,.75);
+  opacity: .92;
+}
+.footer-contacts .footer-social{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;  /* иконки тоже вправо */
+  align-items: center;
+  margin-top: 10px;
+}
+.footer-contacts .footer-social__btn{
+  width: 36px; height: 36px; border-radius: 50%;
+  display: inline-flex; justify-content: center; align-items: center;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  transition: transform .12s ease, background .12s ease, opacity .12s ease;
+}
+.footer-contacts .footer-social__btn:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.14);
+  opacity: .95;
+}
+/* Мобилка — центр */
+@media (max-width: 768px){
+  .footer-contacts{
+    margin: 18px auto 0;
+    text-align: center;
+  }
+  .footer-contacts .footer-social{
+    justify-content: center;
+  }
+}
+
 @media (max-width:640px){
   .benefits{grid-template-columns:1fr}
   .section{padding:48px 0}
