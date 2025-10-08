@@ -183,39 +183,25 @@ function unlockPageScroll() {
     return Math.max(0, Math.min(idx, allCards.length - 1));
   }
 
-  // 4) Перемещение по кнопкам + бесшовный телепорт
+  // 4) Перемещение по кнопкам + бесшовный телепорт (фикс края справа)
   function move(dir){
     const from = currentIndex();
+
+    // Грани: последний → первый, первый → последний
+    if (dir > 0 && from === lastIndex){
+      // Быстрое возвращение на первый оригинал
+      snapTo(firstIndex, 'auto');
+      return;
+    }
+    if (dir < 0 && from === firstIndex){
+      // Быстрое возвращение на последний оригинал
+      snapTo(lastIndex, 'auto');
+      return;
+    }
+
+    // Обычный шаг внутри диапазона (плавно)
     const to = from + dir;
     track.scrollTo({ left: to * step(), behavior: 'smooth' });
-
-    // После завершения плавного скролла делаем "телепорт", если ушли на клон
-    const onEnd = ()=>{
-      const idx = currentIndex();
-      // Если попали на правый клон (после последнего оригинала) → телепорт на первый оригинал
-      if (idx === allCards.length - 1) {
-        snapTo(firstIndex, 'auto');
-      }
-      // Если попали на левый клон (перед первым оригиналом) → телепорт на последний оригинал
-      else if (idx === 0) {
-        snapTo(lastIndex, 'auto');
-      }
-      track.removeEventListener('scroll', waitScrollEnd);
-    };
-    // ловим окончание скролла по таймауту без движения
-    let timer=null, prevPos=-1;
-    const waitScrollEnd = ()=>{
-      const pos = track.scrollLeft;
-      if (pos === prevPos){
-        clearTimeout(timer); onEnd();
-      } else {
-        prevPos = pos;
-        clearTimeout(timer);
-        timer = setTimeout(waitScrollEnd, 80);
-      }
-    };
-    track.addEventListener('scroll', waitScrollEnd);
-    waitScrollEnd();
   }
 
   prev?.addEventListener('click', ()=> move(-1));
