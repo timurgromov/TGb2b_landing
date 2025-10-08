@@ -126,8 +126,8 @@ function unlockPageScroll() {
   window.scrollTo(0, __scrollY);
 }
 
-// === Инициализация слайдера писем с бесконечной прокруткой (клоны по краям) ===
-(function initLettersSliderLoop(){
+// === Инициализация слайдера писем с простой бесконечной прокруткой ===
+(function initLettersSliderSimple(){
   const root  = document.querySelector('.letters-slider');
   if (!root) return;
   const track = root.querySelector('.letters-track');
@@ -137,82 +137,54 @@ function unlockPageScroll() {
   if (!track) return;
 
   const GAP = 12;
-  const raf = window.requestAnimationFrame;
+  const cards = Array.from(track.querySelectorAll('.letter-card'));
+  
+  if (cards.length === 0) return;
 
-  // 1) Собираем исходные карточки и делаем клоны по краям
-  let originals = Array.from(track.querySelectorAll('.letter-card'));
-  if (originals.length < 2) return; // смысла в лупе нет
-
-  // Если клоны уже есть — не дублируем снова
-  if (!track.__loopReady){
-    const firstClone = originals[0].cloneNode(true);
-    const lastClone  = originals[originals.length - 1].cloneNode(true);
-    firstClone.classList.add('is-clone');
-    lastClone.classList.add('is-clone');
-    track.insertBefore(lastClone, originals[0]);       // [CLAST, 0, 1, ..., N-1]
-    track.appendChild(firstClone);                     // [CLAST, 0, 1, ..., N-1, CFIRST]
-    track.__loopReady = true;
-  }
-
-  // После вставки клонов пересобираем список (включая клоны)
-  const allCards = Array.from(track.querySelectorAll('.letter-card'));
-  const firstIndex = 1;                       // индекс оригинального "0" в ленте с клонами
-  const lastIndex  = allCards.length - 2;     // индекс оригинального "N-1"
-
-  // Создаём индикатор точек (только для оригиналов)
+  // Создаём индикатор точек
   if (dots){
-    dots.innerHTML = originals.map(()=>'<span class="slider-dot"></span>').join('');
+    dots.innerHTML = cards.map(()=>'<span class="slider-dot"></span>').join('');
   }
 
-  // Хелперы размеров
-  const cardWidth = () => allCards[firstIndex].getBoundingClientRect().width;
+  // Хелперы
+  const cardWidth = () => cards[0]?.getBoundingClientRect().width || 320;
   const step = () => cardWidth() + GAP;
+  
+  const getCurrentIndex = () => {
+    return Math.round(track.scrollLeft / step());
+  };
+  
+  const scrollToIndex = (idx, smooth = true) => {
+    track.scrollTo({ 
+      left: idx * step(), 
+      behavior: smooth ? 'smooth' : 'auto' 
+    });
+  };
 
-  // 2) Стартовая позиция — ровно на первом оригинале (после левого клона)
-  function snapTo(index, behavior='auto'){
-    // index — индекс в "allCards"
-    track.scrollTo({ left: index * step(), behavior });
-    updateDotsByScroll();
-  }
-  // Если не на первом оригинале — установим
-  raf(()=> snapTo(firstIndex, 'auto'));
-
-  // 3) Навигация по индексам (внутренним, с учётом клонов)
-  function currentIndex(){
-    const idx = Math.round(track.scrollLeft / step());
-    return Math.max(0, Math.min(idx, allCards.length - 1));
-  }
-
-  // 4) Перемещение по кнопкам + бесшовный телепорт (фикс края справа)
+  // Навигация с циклом
   function move(dir){
-    const from = currentIndex();
-
-    // Грани: последний → первый, первый → последний
-    if (dir > 0 && from === lastIndex){
-      // Быстрое возвращение на первый оригинал
-      snapTo(firstIndex, 'auto');
-      return;
+    let currentIdx = getCurrentIndex();
+    let nextIdx = currentIdx + dir;
+    
+    // Циклическая логика
+    if (nextIdx < 0) {
+      nextIdx = cards.length - 1; // На последнюю
+    } else if (nextIdx >= cards.length) {
+      nextIdx = 0; // На первую
     }
-    if (dir < 0 && from === firstIndex){
-      // Быстрое возвращение на последний оригинал
-      snapTo(lastIndex, 'auto');
-      return;
-    }
-
-    // Обычный шаг внутри диапазона (плавно)
-    const to = from + dir;
-    track.scrollTo({ left: to * step(), behavior: 'smooth' });
+    
+    scrollToIndex(nextIdx, true);
   }
 
   prev?.addEventListener('click', ()=> move(-1));
-  next?.addEventListener('click', ()=> move(+1));
+  next?.addEventListener('click', ()=> move(1));
 
   track.addEventListener('keydown', (e)=>{
     if (e.key === 'ArrowRight') move(1);
     if (e.key === 'ArrowLeft')  move(-1);
   });
 
-  // 5) Drag/swipe — оставить как было (если уже есть). Важно: без pointer-capture.
+  // Drag/swipe
   let isDown=false, startX=0, startScroll=0, moved=0;
   const dragThreshold=5;
   track.addEventListener('pointerdown', e=>{ isDown=true; moved=0; startX=e.clientX; startScroll=track.scrollLeft; });
@@ -224,33 +196,20 @@ function unlockPageScroll() {
   ['pointerup','pointercancel','mouseleave'].forEach(ev=>track.addEventListener(ev, ()=>{ isDown=false; }));
   track.addEventListener('click', e=>{ if (moved>dragThreshold){ e.preventDefault(); e.stopPropagation(); } });
 
-  // 6) Бесшовный телепорт и при ручной прокрутке (колесо/свайп) — по достижении клонов
-  const normalizeOnScroll = debounce(()=>{
-    const idx = currentIndex();
-    if (idx === 0) snapTo(lastIndex, 'auto');
-    else if (idx === allCards.length - 1) snapTo(firstIndex, 'auto');
-    updateDotsByScroll();
-  }, 50);
-  track.addEventListener('scroll', normalizeOnScroll);
-
-  // 7) Индикатор-точки (если есть контейнер dots)
-  function updateDotsByScroll(){
+  // Обновление точек
+  const updateDots = debounce(()=>{
     if (!dots) return;
-    const total = originals.length;
-    const idxAll = currentIndex();
-    // Преобразуем индекс "с клонами" в индекс "оригиналов"
-    let logical = idxAll - 1;
-    if (logical < 0) logical = total - 1;
-    if (logical >= total) logical = 0;
-    dots.querySelectorAll('.slider-dot').forEach((d,i)=> d.classList.toggle('is-active', i===logical));
-  }
-  updateDotsByScroll();
-
-  // 8) При ресайзе — пересчёт позиции на ближайшую карточку, чтобы не съезжало
+    const idx = getCurrentIndex();
+    dots.querySelectorAll('.slider-dot').forEach((d,i)=> d.classList.toggle('is-active', i===idx));
+  }, 50);
+  
+  track.addEventListener('scroll', updateDots);
   window.addEventListener('resize', debounce(()=>{
-    const logical = Math.max(0, Math.min(originals.length-1, currentIndex()-1)); // индекс без клонов
-    snapTo(logical+1, 'auto'); // +1 из-за левого клона
+    const idx = getCurrentIndex();
+    scrollToIndex(idx, false);
   }, 150));
+  
+  updateDots();
 })();
 
 // === Общий лайтбокс (письма + фото) с делегированным кликом + свайп + прелоад ===
