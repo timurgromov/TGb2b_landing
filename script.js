@@ -357,33 +357,31 @@ function unlockPageScroll() {
   function navigate(dir){
     if (!currentList.length || index < 0) return;
     
-    const oldIndex = index;
-    index = (index + dir + currentList.length) % currentList.length;
-    
-    // === Главное исправление направления ===
-    // dir > 0 — вперёд (→), старое уходит влево, новое въезжает справа
-    // dir < 0 — назад (←), старое уходит вправо, новое въезжает слева
+    const next = (index + dir + currentList.length) % currentList.length;
     const outClass = dir === 1 ? 'fade-out-left'  : 'fade-out-right';
-    const inClass  = dir === 1 ? 'fade-in-right'  : 'fade-in-left';
-    
-    // Убираем старые классы и добавляем fade-out
-    modalImg.classList.remove('fade-in-left', 'fade-in-right');
+    const prepIn   = dir === 1 ? 'enter-from-right' : 'enter-from-left';
+    const inClass  = dir === 1 ? 'fade-in-right'    : 'fade-in-left';
+
+    // уводим текущее
+    modalImg.classList.remove('fade-in-left','fade-in-right','enter-from-left','enter-from-right');
     modalImg.classList.add(outClass);
-    
+
     setTimeout(() => {
-      const card = currentList[index];
+      const card = currentList[next];
       modalImg.src = srcFromCard(card);
       modalImg.alt = altFromCard(card);
-      
-      // Убираем fade-out и добавляем fade-in
+
+      // готовим новое с правильной стороны -> запускаем въезд
       modalImg.classList.remove(outClass);
+      modalImg.classList.add(prepIn);
+      void modalImg.offsetWidth;            // тик
+      modalImg.classList.remove(prepIn);
       modalImg.classList.add(inClass);
-      
-      // Применяем адаптивный размер при навигации
+
+      index = next;
       applySizingWhenReady();
-      // Прелоад следующего в направлении навигации
-      preload((index+dir+currentList.length)%currentList.length);
-    }, 300); // Чуть меньше transition .45s
+      preload((index + dir + currentList.length) % currentList.length);
+    }, 180); // короче .45s, чтобы ощущалось быстрее
   }
 
   // Навигационные стрелки
