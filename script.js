@@ -148,24 +148,33 @@ function unlockPageScroll() {
     }
     return best;
   }
-  function scrollToIndex(i, behavior='smooth'){
-    i = Math.max(0, Math.min(cards.length-1, i));
-    track.scrollTo({ left: centerLeft(cards[i]), behavior });
-    current = i; updateArrows();
+  function scrollToIndex(i, behavior = 'smooth') {
+    i = Math.max(0, Math.min(cards.length - 1, i));
+    const target = Math.round(centerLeft(cards[i]));
+
+    // анти-липкость: если целевое ≈ текущее, толкнём на 1px, затем в цель
+    if (Math.abs(track.scrollLeft - target) < 1) {
+      track.scrollBy({ left: 1, behavior: 'auto' });
+    }
+    requestAnimationFrame(() => {
+      track.scrollTo({ left: target, behavior });
+    });
+    // ВАЖНО: current НЕ трогаем здесь — обновится в scroll-хендлере
   }
 
-  // --- 1) Видимость стрелок (левая скрыта на первом, правая — на последнем) ---
   let current = 0;
-  function updateArrows(){
+
+  function updateArrowsByNearest() {
+    current = nearestIndex();
     const atFirst = current === 0;
-    const atLast  = current === cards.length-1;
-    if (btnPrev) btnPrev.classList.toggle('is-hidden', atFirst);
-    if (btnNext) btnNext.classList.toggle('is-hidden', atLast);
+    const atLast  = current === cards.length - 1;
+    btnPrev?.classList.toggle('is-hidden', atFirst);
+    btnNext?.classList.toggle('is-hidden', atLast);
   }
 
-  // обработчики стрелок
-  btnPrev?.addEventListener('click', ()=> scrollToIndex(current-1, 'smooth'));
-  btnNext?.addEventListener('click', ()=> scrollToIndex(current+1, 'smooth'));
+  // стрелки
+  btnPrev?.addEventListener('click', () => scrollToIndex(current - 1, 'smooth'));
+  btnNext?.addEventListener('click', () => scrollToIndex(current + 1, 'smooth'));
 
   // drag/swipe (без pointer-capture)
   let down=false, sx=0, ss=0, moved=0; const TH=5;
@@ -174,32 +183,13 @@ function unlockPageScroll() {
   ['pointerup','pointercancel','mouseleave'].forEach(ev=> track.addEventListener(ev, ()=>{ down=false; }));
   track.addEventListener('click', e=>{ if(moved>TH){ e.preventDefault(); e.stopPropagation(); } });
 
-  // синхронизация индекса и стрелок
-  const deb=(fn,t=60)=>{ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t);} };
-  track.addEventListener('scroll', deb(()=>{ current = nearestIndex(); updateArrows(); }, 40));
-  window.addEventListener('resize', deb(()=> scrollToIndex(current, 'auto'), 120));
+  // синхронизация по фактической прокрутке
+  const deb = (fn, t = 60) => { let id = null; return (...a) => { clearTimeout(id); id = setTimeout(() => fn(...a), t); }; };
+  track.addEventListener('scroll', deb(updateArrowsByNearest, 40));
+  window.addEventListener('resize', deb(() => scrollToIndex(current, 'auto'), 120));
 
-  // старт - ждем когда все изображения загрузятся и геометрия будет готова
-  const init = () => {
-    scrollToIndex(0, 'auto');
-    updateArrows(); // явно обновляем стрелки при старте
-  };
-  
-  // Проверяем загружены ли изображения
-  const images = cards.map(c => c.querySelector('img')).filter(Boolean);
-  if (images.length && images.some(img => !img.complete)) {
-    // Если есть незагруженные, ждем загрузки первого
-    Promise.all(images.map(img => {
-      if (img.complete) return Promise.resolve();
-      return new Promise(resolve => {
-        img.addEventListener('load', resolve, { once: true });
-        img.addEventListener('error', resolve, { once: true });
-      });
-    })).then(() => requestAnimationFrame(init));
-  } else {
-    // Все загружено, инициализируем сразу
-    requestAnimationFrame(init);
-  }
+  // старт
+  requestAnimationFrame(() => { scrollToIndex(0, 'auto'); updateArrowsByNearest(); });
 
   // --- 3) ПИНГ-ПОНГ (опционально): включается только если data-pp="on" на .letters-slider ---
   if (root.getAttribute('data-pp') === 'on'){
