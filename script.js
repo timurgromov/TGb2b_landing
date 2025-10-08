@@ -143,50 +143,84 @@ const COUNTER_ID = 104468814;
   });
 })();
 
-// === Модальное окно для писем ===
-(function initLetterModal(){
-  const modal = document.getElementById('letter-modal');
-  const modalImg = modal?.querySelector('.letter-modal-img');
-  const closeBtn = modal?.querySelector('.modal__close');
-  const overlay = modal?.querySelector('.modal__overlay');
-  
+// === ЛАЙТБОКС ДЛЯ ПИСЕМ И ФОТО ===
+(function initImageLightbox(){
+  const modal     = document.getElementById('letter-modal');           // используем существующую модалку
+  const modalImg  = modal?.querySelector('.letter-modal-img');
+  const closeBtn  = modal?.querySelector('.modal__close');
+  const overlay   = modal?.querySelector('.modal__overlay');
   if (!modal || !modalImg) return;
 
-  function openModal(imgSrc, imgAlt) {
-    modalImg.src = imgSrc;
-    modalImg.alt = imgAlt;
-    modal.classList.add('show');
+  // Собираем источники кликов из двух секций
+  const letterNodes = Array.from(document.querySelectorAll('[data-letter-modal]'));
+  const photoNodes  = Array.from(document.querySelectorAll('[data-image-modal]'));
+
+  // Список "групп" для навигации (по секциям)
+  const groups = [
+    { name: 'letters', nodes: letterNodes, selector: 'img', src: (el)=>el.querySelector('img')?.src, alt: (el)=>el.querySelector('img')?.alt },
+    { name: 'photos',  nodes: photoNodes,  selector: 'img', src: (el)=>el.getAttribute('data-full') || el.querySelector('img')?.src, alt: (el)=>el.querySelector('img')?.alt }
+  ];
+
+  let activeGroup = null;  // { name, nodes, index }
+  let index = -1;
+
+  function openModal(src, alt, groupName, idx){
+    modalImg.src = src;
+    modalImg.alt = alt || '';
+    modal.classList.add('active');           // <-- фикc: используем 'active' как и в других модалках
     document.body.style.overflow = 'hidden';
+
+    // Метрика
+    if (typeof ym === 'function') {
+      ym(COUNTER_ID, 'reachGoal', 'lightbox_open_' + groupName);
+    }
+    activeGroup = groups.find(g => g.name === groupName) || null;
+    index = typeof idx === 'number' ? idx : -1;
   }
 
-  function closeModal() {
-    modal.classList.remove('show');
+  function closeModal(){
+    modal.classList.remove('active');        // <-- фикc
     document.body.style.overflow = '';
+    modalImg.src = '';
+    activeGroup = null;
+    index = -1;
   }
 
-  // Клики по письмам
-  document.querySelectorAll('[data-letter-modal]').forEach(card => {
-    card.addEventListener('click', () => {
-      console.log('Письмо кликнуто!'); // отладка
-      const img = card.querySelector('img');
-      if (img && img.src) {
-        console.log('Открываем модальное окно:', img.src); // отладка
-        openModal(img.src, img.alt);
-      } else {
-        console.log('Изображение не найдено или нет src'); // отладка
-      }
+  function navigate(dir){
+    if (!activeGroup || !activeGroup.nodes || index < 0) return;
+    const total = activeGroup.nodes.length;
+    index = (index + dir + total) % total;
+    const el  = activeGroup.nodes[index];
+    const src = activeGroup.src(el);
+    const alt = activeGroup.alt(el);
+    if (src){
+      modalImg.src = src;
+      modalImg.alt = alt || '';
+    }
+  }
+
+  // Делегируем клики для каждой группы
+  groups.forEach(group => {
+    group.nodes.forEach((card, i)=>{
+      card.addEventListener('click', ()=>{
+        const src = group.src(card);
+        const alt = group.alt(card);
+        if (src) openModal(src, alt, group.name, i);
+      });
     });
   });
 
-  // Закрытие модального окна
+  // Закрытие
   closeBtn?.addEventListener('click', closeModal);
   overlay?.addEventListener('click', closeModal);
-  
-  // Закрытие по Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('show')) {
-      closeModal();
-    }
+  modalImg?.addEventListener('click', closeModal); // тап по картинке тоже закрывает
+
+  // Клавиатура
+  document.addEventListener('keydown', (e)=>{
+    if (!modal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowRight') navigate(+1);
+    if (e.key === 'ArrowLeft')  navigate(-1);
   });
 })();
 

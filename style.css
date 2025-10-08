@@ -474,3 +474,6 @@ button{font-family:inherit;cursor:pointer}
 .letter-modal-content .modal__close:hover{
   background:rgba(0,0,0,.7);
 }
+
+/* Курсор для изображения в лайтбоксе */
+.letter-modal-img{ cursor: zoom-out; }
