@@ -342,7 +342,7 @@ button{font-family:inherit;cursor:pointer}
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   padding:4px;
-  scroll-behavior: auto; /* убираем плавную прокрутку */
+  scroll-behavior: smooth; /* возвращаем плавную прокрутку */
 }
 .letters-track:focus{outline:1px solid var(--stroke)}
 
