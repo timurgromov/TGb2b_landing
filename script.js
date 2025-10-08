@@ -440,10 +440,16 @@ function unlockPageScroll() {
 
 // ==============================
 // Letters — пинг-понг быстрее + плавное ускорение/замедление + настройка speed
+// ВРЕМЕННО ОТКЛЮЧЕНО ДЛЯ ОТЛАДКИ
 // ==============================
+/*
 (function initLettersPingPongFaster(){
   const root  = document.querySelector('.letters-slider');
-  if (!root) return;
+  if (!root) {
+    console.log('[PingPong] Letters slider root not found');
+    return;
+  }
+  console.log('[PingPong] Letters slider found:', root);
   const track = root.querySelector('.letters-track');
   const cards = Array.from(track.querySelectorAll('.letter-card'));
   if (cards.length < 2) return;
@@ -531,3 +537,4 @@ function unlockPageScroll() {
   // 6) Инициализация: старт с левой границы → вправо
   const { left } = bounds(); track.scrollLeft = left; dir = +1; start();
 })();
+*/
