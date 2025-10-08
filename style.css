@@ -1086,19 +1086,19 @@ body.is-modal-open{
 :root #hero-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 12px;
-  margin-bottom: 52px !important;  /* увеличен отступ до кнопок */
+  gap: 8px 10px;  /* уменьшен gap */
+  margin-bottom: 52px !important;
 }
 
 :root #hero-tags .tag {
   background: rgba(255, 255, 255, 0.06) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 12px !important;
-  padding: 8px 16px !important;
+  padding: 7px 12px !important;  /* уменьшен padding */
   color: rgba(255, 255, 255, 0.85) !important;
-  font-size: 15px !important;
+  font-size: 13.5px !important;  /* уменьшен шрифт */
   font-weight: 500 !important;
-  transition: none !important; /* без ховера, чтобы не казалось кликабельным */
+  transition: none !important;
 }
 
 :root #hero-actions {
