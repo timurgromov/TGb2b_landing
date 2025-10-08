@@ -513,3 +513,28 @@ button{font-family:inherit;cursor:pointer}
 
 /* Курсор для карточек */
 .letter-card, .photo-card { cursor: zoom-in; }
+
+/* ===== Скрываем системные скроллбары у горизонтальных треков ===== */
+.letters-track, .photos-track{
+  scrollbar-width: none;          /* Firefox */
+}
+.letters-track::-webkit-scrollbar,
+.photos-track::-webkit-scrollbar{ display:none; } /* WebKit */
+
+/* Делаем "подглядывание" следующей карточки: внешний паддинг, кнопки у края */
+.letters-slider, .photos-slider{ overflow: hidden; padding-inline: 6px; }
+.letters-btn.prev, .photos-btn.prev{ left: 2px; }
+.letters-btn.next, .photos-btn.next{ right: 2px; }
+
+/* ===== Индикатор (точки) ===== */
+.slider-dots{
+  display:flex; gap:6px; justify-content:center; align-items:center;
+  margin-top: 10px;
+}
+.slider-dot{
+  width:6px; height:6px; border-radius:50%;
+  background:rgba(255,255,255,.25);
+  transition:transform .18s ease, background .18s ease;
+  cursor: pointer;
+}
+.slider-dot.is-active{ background:rgba(255,255,255,.8); transform:scale(1.2); }

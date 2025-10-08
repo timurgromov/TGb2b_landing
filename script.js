@@ -99,7 +99,10 @@ const COUNTER_ID = 104468814;
   });
 })();
 
-// === Инициализация слайдера писем (без pointer-capture; drag-порог) ===
+// Утилита: дебаунс
+function debounce(fn, t=120){ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t);} }
+
+// === Инициализация слайдера писем (без pointer-capture; drag-порог + индикатор) ===
 (function initLettersSlider(){
   const root = document.querySelector('.letters-slider');
   if (!root) return;
@@ -107,10 +110,20 @@ const COUNTER_ID = 104468814;
   const track = root.querySelector('.letters-track');
   const prev  = root.querySelector('.letters-btn.prev');
   const next  = root.querySelector('.letters-btn.next');
+  const dots  = document.getElementById('letters-dots');
   if (!track) return;
 
+  const cards = Array.from(track.querySelectorAll('.letter-card'));
+  const gap = 12;
+
+  // Создаём индикатор точек
+  if (dots){
+    dots.innerHTML = cards.map(()=>'<span class="slider-dot"></span>').join('');
+  }
+  const dotEls = dots ? Array.from(dots.children) : [];
+
   const cardWidth = () => track.querySelector('.letter-card')?.getBoundingClientRect().width || 320;
-  const scrollByCard = (dir) => track.scrollBy({ left: dir * (cardWidth() + 12), behavior: 'smooth' });
+  const scrollByCard = (dir) => track.scrollBy({ left: dir * (cardWidth() + gap), behavior: 'smooth' });
 
   prev?.addEventListener('click', () => scrollByCard(-1));
   next?.addEventListener('click', () => scrollByCard( 1));
@@ -119,6 +132,17 @@ const COUNTER_ID = 104468814;
     if (e.key === 'ArrowRight') scrollByCard(1);
     if (e.key === 'ArrowLeft')  scrollByCard(-1);
   });
+
+  // Обновление активной точки ~ по левому краю
+  const updateDots = ()=>{
+    if (!dotEls.length) return;
+    const cw = cardWidth()+gap;
+    const idx = Math.round(track.scrollLeft / cw);
+    dotEls.forEach((d,i)=>d.classList.toggle('is-active', i===idx));
+  };
+  track.addEventListener('scroll', debounce(updateDots, 50));
+  window.addEventListener('resize', debounce(updateDots, 150));
+  updateDots();
 
   // Drag / Swipe без pointer-capture
   let isDown = false, startX = 0, startScroll = 0, moved = 0;
@@ -141,7 +165,7 @@ const COUNTER_ID = 104468814;
   track.addEventListener('click', (e)=>{ if (moved > dragThreshold) { e.stopPropagation(); e.preventDefault(); } });
 })();
 
-// === Общий лайтбокс (письма + фото) с делегированным кликом ===
+// === Общий лайтбокс (письма + фото) с делегированным кликом + свайп + прелоад ===
 (function initImageLightbox(){
   const modal    = document.getElementById('letter-modal');
   const modalImg = modal?.querySelector('.letter-modal-img');
@@ -153,6 +177,7 @@ const COUNTER_ID = 104468814;
   const PADDING = 64; // px (32 с каждой стороны)
 
   function fitToViewport(imgEl){
+    if (!modal.classList.contains('active')) return;
     // Натуральные размеры файла
     const natW = imgEl.naturalWidth  || imgEl.width  || 1000;
     const natH = imgEl.naturalHeight || imgEl.height || 1400;
@@ -177,11 +202,9 @@ const COUNTER_ID = 104468814;
   }
 
   // Пересчёт на ресайз (debounce)
-  let t=null;
-  window.addEventListener('resize', ()=>{
-    if (!modal.classList.contains('active')) return;
-    clearTimeout(t); t=setTimeout(()=>fitToViewport(modalImg), 120);
-  });
+  window.addEventListener('resize', debounce(()=>{
+    if (modal.classList.contains('active')) fitToViewport(modalImg);
+  }, 100));
 
   function srcFromCard(card){
     const img = card.querySelector('img');
@@ -191,6 +214,14 @@ const COUNTER_ID = 104468814;
     const img = card.querySelector('img');
     return img?.alt || '';
   }
+
+  // Прелоад изображения для соседней карточки
+  const preload = (i)=>{
+    const el = currentList[i]; if (!el) return;
+    const src = srcFromCard(el);
+    if (!src) return;
+    const im = new Image(); im.src = src;
+  };
 
   let currentList = []; // массив элементов внутри активной секции
   let index = -1;
@@ -222,6 +253,10 @@ const COUNTER_ID = 104468814;
     
     // Применяем адаптивный размер
     applySizingWhenReady();
+    
+    // Прелоад соседей
+    preload((index+1)%currentList.length);
+    preload((index-1+currentList.length)%currentList.length);
   }
 
   // Делегированный клик по документу — сработает и при сложной вложенности
@@ -246,6 +281,8 @@ const COUNTER_ID = 104468814;
     modalImg.alt = altFromCard(card);
     // Применяем адаптивный размер при навигации
     applySizingWhenReady();
+    // Прелоад следующего в направлении навигации
+    preload((index+dir+currentList.length)%currentList.length);
   }
 
   closeBtn?.addEventListener('click', closeModal);
@@ -257,6 +294,15 @@ const COUNTER_ID = 104468814;
     if (e.key === 'Escape')     closeModal();
     if (e.key === 'ArrowRight') navigate(+1);
     if (e.key === 'ArrowLeft')  navigate(-1);
+  });
+
+  // Свайп внутри модалки
+  let down=false, sx=0;
+  modal.addEventListener('pointerdown', e=>{ down=true; sx=e.clientX; });
+  modal.addEventListener('pointerup', e=>{
+    if(!down) return; down=false;
+    const dx=e.clientX-sx;
+    if (Math.abs(dx)>40) navigate(dx<0?+1:-1);
   });
 })();
 
