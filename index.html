@@ -61,18 +61,22 @@
     <div class="container header__row sr">
       <div class="brand">Тимур Громов</div>
 
-      <div class="header__cta">
-        <button class="call-btn" data-cta="tel_header" title="Нажмите для звонка">
-          <svg class="call-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none">
-            <path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.73 19.73 0 0 1 3 4.18 2 2 0 0 1 5 2h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.27.95l-2.2 2.2a16 16 0 0 0 6.34 6.34l2.2-2.2a1 1 0 0 1 .95-.27l4 1a1 1 0 0 1 .75 1z" fill="currentColor"/>
-          </svg>
-          Позвонить
+      <div id="top-cta">
+        <button class="btn btn--call" data-cta="tel_header" title="Нажмите для звонка">
+          <span class="btn__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.73 19.73 0 0 1 3 4.18 2 2 0 0 1 5 2h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.27.95l-2.2 2.2a16 16 0 0 0 6.34 6.34l2.2-2.2a1 1 0 0 1 .95-.27l4 1a1 1 0 0 1 .75 1z"/>
+            </svg>
+          </span>
+          <span class="btn__text">Позвонить</span>
         </button>
-        <a class="btn wa"
+        <a class="btn btn--wa"
            href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив"
            target="_blank" rel="noopener"
            aria-label="Написать в WhatsApp"
-           data-cta="whatsapp_header">WhatsApp</a>
+           data-cta="whatsapp_header">
+          <span class="btn__text">WhatsApp</span>
+        </a>
       </div>
     </div>
   </header>
@@ -279,7 +283,7 @@
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a3.5 3.5 0 1 0 .001 7.001A3.5 3.5 0 0 0 12 9.5zM18 6.3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>
           </a>
           <a href="#" target="_blank" rel="noopener" aria-label="VKontakte" class="footer-social__btn" data-cta="social_vk">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1.01-1.49-.857-1.744-.857-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.864 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.678.186.254.27.406 1.006.406h1.744c.525 0 .729-.254.593-.677-.254-.762-1.186-1.744-1.744-2.322-.22-.186-.17-.356-.068-.559.102-.186.678-.847 1.02-1.353.678-.847 1.186-1.492 1.186-1.967 0-.254-.17-.491-.593-.491z"/></svg>
           </a>
           <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="footer-social__btn" data-cta="social_yt">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.6 15.5v-7l6.4 3.5-6.4 3.5z"/></svg>

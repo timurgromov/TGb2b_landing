@@ -939,3 +939,60 @@ body.is-modal-open{
     line-height: 1.2;
   }
 }
+
+/* ====== Верхние кнопки: одинаковые метрики и выравнивание ====== */
+:root #top-cta{
+  display:flex; align-items:center; gap:12px;
+}
+:root #top-cta .btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:40px;                           /* одинаковая высота */
+  padding:0 16px;                         /* одинаковые паддинги */
+  border-radius:12px;
+  font-size:15px; line-height:1; font-weight:600;
+  white-space:nowrap;
+}
+:root #top-cta .btn .btn__text{ display:inline-block; }
+
+/* Иконка телефона */
+:root #top-cta .btn .btn__icon{
+  width:18px; height:18px; margin-right:8px;
+  display:inline-block; vertical-align:middle;
+  background-repeat:no-repeat; background-position:center; background-size:contain;
+}
+
+/* Визуальные стили (оставляем существующие, но делаем равными размеры) */
+:root #top-cta .btn.btn--call{
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  color:#fff;
+}
+:root #top-cta .btn.btn--wa{
+  background:#FF7B42; color:#fff;
+  box-shadow: 0 3px 8px rgba(255,123,66,0.35);
+}
+:root #top-cta .btn.btn--wa:hover{ background:#FF905F; }
+
+/* ====== Чипсы: компактнее, 1–2 ряда, без лишнего расползания ====== */
+:root #hero-tags{
+  display:flex; flex-wrap:wrap; gap:8px 10px;
+  margin-bottom:36px !important;
+  max-width: clamp(520px, 48vw, 620px);   /* ограничение ширины — не уедут в 3 ряд */
+}
+:root #hero-tags .tag{
+  font-size:14px !important;
+  padding:6px 12px !important;
+  border-radius:10px !important;
+  background: rgba(255,255,255,0.06) !important;
+  border:1px solid rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.85) !important;
+  transition:none !important;
+}
+
+/* Мобилка — ещё компактнее, но без склеивания */
+@media (max-width: 768px){
+  :root #top-cta .btn{ height:38px; padding:0 14px; font-size:14px; }
+  :root #top-cta .btn .btn__icon{ width:16px; height:16px; margin-right:6px; }
+  :root #hero-tags{ max-width: 100%; gap:8px; }
+  :root #hero-tags .tag{ font-size:13.5px !important; padding:6px 10px !important; }
+}
