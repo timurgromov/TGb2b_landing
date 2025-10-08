@@ -180,7 +180,8 @@ function unlockPageScroll() {
     currentLi = (li % N + N) % N;
     const prevSnap = track.style.scrollSnapType;
     track.style.scrollSnapType = 'none';
-    track.scrollLeft = centerLeft(physFromLogical(currentLi));
+    const targetLeft = centerLeft(physFromLogical(currentLi));
+    track.scrollLeft = targetLeft;
     void track.offsetWidth; // reflow
     track.style.scrollSnapType = prevSnap || 'x mandatory';
   }
