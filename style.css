@@ -1250,12 +1250,9 @@ body.is-modal-open{
 
 /* ====== ВОССТАНОВЛЕНИЕ ТЁПЛОГО ОРАНЖЕВО-БРОНЗОВОГО ГРАДИЕНТА ====== */
 
-/* ОРИГИНАЛЬНЫЙ ОРАНЖЕВЫЙ ГРАДИЕНТ (из коммита 059f4d4) */
+/* ОРИГИНАЛЬНЫЙ ГРАДИЕНТ ИЗ ЭТАЛОН 3 */
 .hero {
-  background: radial-gradient(
-    ellipse 120% 100% at 50% -10%,
-    rgba(255, 106, 61, 0.12) 0%,
-    rgba(198, 168, 105, 0.10) 30%,
-    transparent 65%
-  ) !important;
+  background:
+    radial-gradient(120% 120% at 15% 10%, color-mix(in oklab, var(--accent) 35%, transparent) 0%, transparent 44%),
+    radial-gradient(120% 120% at 85% 15%, color-mix(in oklab, var(--accent-2) 40%, transparent) 0%, transparent 46%) !important;
 }
