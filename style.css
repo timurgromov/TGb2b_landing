@@ -609,14 +609,14 @@ button{font-family:inherit;cursor:pointer}
 /* ===== Чипсы → CTA-кнопки ===== */
 /* Даём «кислорода» между чипсами и блоком кнопок. */
 .hero-actions {
-  margin-top: 28px;          /* было 18–22px: увеличиваем, чтобы не «слипалось» */
+  margin-top: 42px;          /* было 28px: ещё больше увеличиваем для "кислорода" */
 }
 
 /* Если кнопки идут без .hero-actions — подстрахуемся на общих классах. */
 .hero-tags + .button-row,
 .hero-tags + .cta-row,
 .hero-tags + .hero-ctas {
-  margin-top: 28px;
+  margin-top: 42px;
 }
 
 /* ===== Мобилка: аккуратнее, но читаемо ===== */
@@ -629,7 +629,7 @@ button{font-family:inherit;cursor:pointer}
   .hero-tags + .button-row,
   .hero-tags + .cta-row,
   .hero-tags + .hero-ctas {
-    margin-top: 22px;                      /* чуть меньше, чтобы не разваливалось */
+    margin-top: 32px;                      /* увеличиваем и на мобильных для "кислорода" */
   }
 }
 
