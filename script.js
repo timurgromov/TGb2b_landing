@@ -164,12 +164,13 @@ function unlockPageScroll() {
 
   let current = 0;
 
-  function updateArrowsByNearest() {
+  function updateArrowsByScroll() {
     current = nearestIndex();
-    const atFirst = current === 0;
-    const atLast  = current === cards.length - 1;
-    btnPrev?.classList.toggle('is-hidden', atFirst);
-    btnNext?.classList.toggle('is-hidden', atLast);
+    const leftEdge  = track.scrollLeft;
+    const rightEdge = track.scrollWidth - track.clientWidth - track.scrollLeft;
+    const EPS = 4; // порог, компенсирующий дробные значения scrollLeft
+    btnPrev?.classList.toggle('is-hidden', leftEdge <= EPS);
+    btnNext?.classList.toggle('is-hidden', rightEdge <= EPS);
   }
 
   // стрелки
@@ -185,11 +186,11 @@ function unlockPageScroll() {
 
   // синхронизация по фактической прокрутке
   const deb = (fn, t = 60) => { let id = null; return (...a) => { clearTimeout(id); id = setTimeout(() => fn(...a), t); }; };
-  track.addEventListener('scroll', deb(updateArrowsByNearest, 40));
-  window.addEventListener('resize', deb(() => scrollToIndex(current, 'auto'), 120));
+  track.addEventListener('scroll', deb(updateArrowsByScroll, 40));
+  window.addEventListener('resize', deb(() => { scrollToIndex(current, 'auto'); updateArrowsByScroll(); }, 120));
 
   // старт
-  requestAnimationFrame(() => { scrollToIndex(0, 'auto'); updateArrowsByNearest(); });
+  requestAnimationFrame(() => { scrollToIndex(0, 'auto'); updateArrowsByScroll(); });
 
   // --- 3) ПИНГ-ПОНГ (опционально): включается только если data-pp="on" на .letters-slider ---
   if (root.getAttribute('data-pp') === 'on'){
@@ -451,6 +452,14 @@ function unlockPageScroll() {
   prev?.addEventListener('click', ()=>scrollByX(-1));
   next?.addEventListener('click', ()=>scrollByX( 1));
 
+  function updateArrows() {
+    const leftEdge  = track.scrollLeft;
+    const rightEdge = track.scrollWidth - track.clientWidth - track.scrollLeft;
+    const EPS = 4;
+    prev?.classList.toggle('is-hidden', leftEdge <= EPS);
+    next?.classList.toggle('is-hidden', rightEdge <= EPS);
+  }
+
   track.addEventListener('keydown', (e)=>{
     if (e.key === 'ArrowRight') scrollByX(1);
     if (e.key === 'ArrowLeft')  scrollByX(-1);
@@ -475,7 +484,8 @@ function unlockPageScroll() {
   });
   track.addEventListener('click', (e)=>{ if (moved > dragThreshold) { e.stopPropagation(); e.preventDefault(); } });
 
+  track.addEventListener('scroll', debounce(updateArrows, 40));
   layout();
-  let t=null; window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(layout, 120); });
+  let t=null; window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(()=>{ layout(); updateArrows(); }, 120); });
+  requestAnimationFrame(updateArrows);
 })();
-
