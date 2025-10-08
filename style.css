@@ -498,7 +498,7 @@ html.is-modal-open, body.is-modal-open {
   background: #fff;              /* письма читаются как «лист» */
   max-width: 100%;
   max-height: 100%;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
 }
 /* Для фото без белого фона */
 .modal--photo .letter-modal-img{ background: transparent; }
