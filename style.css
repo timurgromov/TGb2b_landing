@@ -8,6 +8,12 @@
   --accent-2:#ed6e3a;
   --card:#12161d;
   --stroke:rgba(255,255,255,.06);
+  
+  /* Glass header variables */
+  --header-h: 72px;
+  --header-bg: rgba(15, 17, 20, 0.42);
+  --header-bg-scrolled: rgba(15, 17, 20, 0.66);
+  --blur: 16px;
 }
 
 /* ===== БАЗА/СЕТКИ ===== */
@@ -20,11 +26,148 @@ button{font-family:inherit;cursor:pointer}
 .section{padding:72px 0}
 .section__title{font-size:28px;font-weight:800;margin:0 0 24px;text-align:center}
 
-/* ===== HEADER ===== */
-.site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(15,18,22,.85),rgba(15,18,22,.55) 60%,rgba(15,18,22,0));backdrop-filter:blur(8px)}
-.header__row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px;flex-wrap:wrap}
-.brand{font-weight:800;letter-spacing:.2px;font-size:18px}
-.header__cta{display:flex;align-items:center;gap:12px}
+/* ===== HEADER (Glass Fixed) ===== */
+.site-header {
+  padding-top: env(safe-area-inset-top);
+}
+
+.site-header.glass.fixed {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--header-h);
+  z-index: 1000;
+  background: var(--header-bg);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background-color .25s ease, height .25s ease, box-shadow .25s ease;
+}
+
+.site-header.glass.fixed.scrolled {
+  background: var(--header-bg-scrolled);
+  box-shadow: 0 6px 24px rgba(0,0,0,.18);
+}
+
+.header-row {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 800;
+  letter-spacing: .2px;
+  font-size: 18px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.main-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.header-cta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Компенсация фиксированного header */
+.page {
+  padding-top: calc(var(--header-h) + env(safe-area-inset-top));
+}
+
+.burger {
+  display: none;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+/* ===== КНОПКИ ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform .15s ease, background-color .2s ease, border-color .2s ease;
+  will-change: transform;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: #ff7a45;
+  color: #111;
+  border-color: rgba(255,255,255,.08);
+}
+
+.btn-primary:hover {
+  background: #ff925f;
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  border-color: rgba(255,255,255,.12);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,.12);
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 1024px) {
+  :root {
+    --header-h: 64px;
+  }
+  
+  .header-cta .call-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 56px;
+  }
+  
+  .main-nav {
+    display: none;
+  }
+  
+  .burger {
+    display: inline-flex;
+  }
+  
+  .header-cta {
+    gap: 8px;
+  }
+  
+  .wa-btn--mobile {
+    display: inline-flex;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
 
 /* Переключатель тем */
 .theme-switch{display:flex;gap:.5rem;align-items:center}
@@ -220,18 +363,7 @@ button{font-family:inherit;cursor:pointer}
   }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { 
-    box-shadow: 
-      0 8px 32px rgba(255,106,61,0.4),
-      0 0 0 0 rgba(255,106,61,0.4);
-  }
-  50% { 
-    box-shadow: 
-      0 8px 32px rgba(255,106,61,0.6),
-      0 0 20px 10px rgba(255,106,61,0);
-  }
-}
+/* pulse-glow удален вместе с FAB */
 
 .video-fullscreen .play-button::before, .video-wrapper .play-button::before{
   content:"";
@@ -267,42 +399,7 @@ button{font-family:inherit;cursor:pointer}
 .programs-list b{color:var(--accent)}
 #programs-modal .muted{color:var(--muted);font-size:14px;margin:0 0 24px;line-height:1.5}
 
-/* ===== Плавающая кнопка WhatsApp ===== */
-.wa-fab{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  width:56px;
-  height:56px;
-  background:linear-gradient(120deg,var(--accent),var(--accent-2));
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  text-decoration:none;
-  box-shadow:
-    0 8px 32px rgba(255,106,61,0.4),
-    0 0 0 0 rgba(255,106,61,0.4);
-  transition:all 0.3s ease;
-  z-index:1000;
-  animation:pulse-glow 2s ease-in-out infinite;
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(20px);
-}
-.wa-fab.show{
-  opacity:1;
-  visibility:visible;
-  transform:translateY(0);
-}
-.wa-fab:hover{
-  transform:scale(1.1);
-}
-.wa-fab svg{
-  width:24px;
-  height:24px;
-}
+/* WhatsApp FAB удален - используем единую кнопку в хедере */
 
 
 /* ===== Slider (zero-deps, scroll-snap) ===== */
@@ -1232,11 +1329,7 @@ body.is-modal-open{
   box-shadow: none !important;
 }
 
-/* Плавающий WhatsApp-виджет */
-:root .wa-fab {
-  bottom: 24px !important;
-  right: 24px !important;
-}
+/* WhatsApp FAB удален */
 
 /* Мобильная адаптация */
 @media (max-width: 768px) {
@@ -1245,10 +1338,7 @@ body.is-modal-open{
     padding-bottom: 48px !important;
   }
   
-  :root .wa-fab {
-    bottom: 20px !important;
-    right: 20px !important;
-  }
+  /* WhatsApp FAB удален */
 }
 
 /* ====== 6) КОНТРАСТ И ЦВЕТ ====== */

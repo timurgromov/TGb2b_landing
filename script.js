@@ -563,26 +563,25 @@ function unlockPageScroll() {
   });
 })();
 
-// ===== ПОКАЗ ПЛАВАЮЩЕЙ КНОПКИ WHATSAPP ПОСЛЕ ПРОКРУТКИ =====
-(function initWhatsAppFAB() {
-  const waFab = document.querySelector('.wa-fab');
-  if (!waFab) return;
+// ===== GLASS HEADER SCROLL EFFECT =====
+(function initHeaderScroll() {
+  const header = document.querySelector('.site-header.glass.fixed');
+  if (!header) return;
 
-  // Показываем кнопку когда пользователь прокрутил больше чем высота первого экрана
-  function toggleFab() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const windowHeight = window.innerHeight;
-    
-    if (scrollTop > windowHeight * 0.8) { // После 80% первого экрана
-      waFab.classList.add('show');
-    } else {
-      waFab.classList.remove('show');
+  const THRESHOLD = 80;
+  let ticking = false;
+
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY || window.pageYOffset;
+        header.classList.toggle('scrolled', y > THRESHOLD);
+        ticking = false;
+      });
+      ticking = true;
     }
   }
 
-  // Добавляем обработчик прокрутки
-  window.addEventListener('scroll', toggleFab);
-  
-  // Проверяем при загрузке (на случай если страница уже прокручена)
-  toggleFab();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // применить состояние при загрузке
 })();
