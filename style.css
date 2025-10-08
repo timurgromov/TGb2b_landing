@@ -1125,3 +1125,42 @@ body.is-modal-open{
   margin-top: 0 !important;
   align-self: start !important;
 }
+
+/* ====== 5) РАСКЛАДКА И РИТМ ====== */
+
+/* Отступы hero-блока */
+:root .hero {
+  padding-top: 68px !important;
+  padding-bottom: 68px !important;
+}
+
+/* Фото: скругление для унификации с карточками */
+:root .hero__photo {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+
+:root .hero__photo img {
+  border-radius: 16px !important;
+  box-shadow: none !important;
+}
+
+/* Плавающий WhatsApp-виджет */
+:root .wa-fab {
+  bottom: 24px !important;
+  right: 24px !important;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  :root .hero {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  
+  :root .wa-fab {
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+}
