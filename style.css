@@ -18,7 +18,7 @@ button{font-family:inherit;cursor:pointer}
 
 .container{width:min(1120px,92vw);margin:0 auto}
 .section{padding:72px 0}
-.section__title{font-size:28px;font-weight:800;margin:0 0 24px}
+.section__title{font-size:28px;font-weight:800;margin:0 0 24px;text-align:center}
 
 /* ===== HEADER ===== */
 .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(15,18,22,.85),rgba(15,18,22,.55) 60%,rgba(15,18,22,0));backdrop-filter:blur(8px)}
