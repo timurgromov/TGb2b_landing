@@ -535,12 +535,14 @@ html.is-modal-open, body.is-modal-open {
 /* Анимация смены изображений в модальном окне */
 .letter-modal-img.changing {
   opacity: 0 !important;
-  transform: scale(0.8) !important;
+  transform: scale(0.7) !important;
+  filter: blur(3px) !important;
 }
 
 .letter-modal-img.loaded {
   opacity: 1 !important;
   transform: scale(1) !important;
+  filter: blur(0px) !important;
 }
 
 /* Modal navigation arrows */

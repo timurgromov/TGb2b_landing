@@ -381,7 +381,7 @@ function unlockPageScroll() {
       applySizingWhenReady();
       // Прелоад следующего в направлении навигации
       preload((index+dir+currentList.length)%currentList.length);
-    }, 150); // Половина времени анимации
+    }, 300); // Увеличили время для более заметной анимации
   }
 
   // Навигационные стрелки
