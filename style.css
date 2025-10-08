@@ -24,6 +24,7 @@ button{font-family:inherit;cursor:pointer}
 .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(15,18,22,.85),rgba(15,18,22,.55) 60%,rgba(15,18,22,0));backdrop-filter:blur(8px)}
 .header__row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px;flex-wrap:wrap}
 .brand{font-weight:800;letter-spacing:.2px;font-size:18px}
+.header__cta{display:flex;align-items:center;gap:12px}
 
 /* Переключатель тем */
 .theme-switch{display:flex;gap:.5rem;align-items:center}
