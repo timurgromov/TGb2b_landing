@@ -151,15 +151,20 @@ function unlockPageScroll() {
     track.__loopReady = true;
   }
 
+  // 3) Полный список + индексы
   const cards = Array.from(track.querySelectorAll('.letter-card'));
-  const physFromLogical = (li)=> ((li % N + N) % N) + 1;
+  const leftCloneIndex  = 0;
+  const rightCloneIndex = cards.length - 1;
+
+  const physFromLogical = (li)=> ( (li % N + N) % N ) + 1;  // 0..N-1 -> 1..N
   const logicalFromPhys = (pi)=> {
-    if (pi <= 0)   return N-1;
-    if (pi >= N+1) return 0;
-    return pi - 1;
+    if (pi <= 0)       return N-1;   // левый клон
+    if (pi >= N+1)     return 0;     // правый клон
+    return pi - 1;                    // середина — обычный оригинал
   };
 
-  let currentLi = 0;
+  // 4) Навигационное состояние
+  let currentLi = 0; // 0..N-1
 
   // 3) Геометрия: координата центра карточки i
   function centerLeft(pi){
@@ -170,9 +175,11 @@ function unlockPageScroll() {
     track.scrollTo({ left: centerLeft(pi), behavior });
   }
 
+  // Прокрутка к логическому индексу через scrollIntoView — не упирается в maxScroll
   function snapLogical(li, behavior='auto'){
     currentLi = (li % N + N) % N;
-    scrollToPhys(physFromLogical(currentLi), behavior); // используем переданный behavior
+    const el = cards[physFromLogical(currentLi)];
+    el.scrollIntoView({ behavior, inline: 'center', block: 'nearest' });
   }
 
   // Мгновенный прыжок через край (без snap, чтобы не было второго клика)
@@ -186,25 +193,9 @@ function unlockPageScroll() {
     track.style.scrollSnapType = prevSnap || 'x mandatory';
   }
 
-  // === Управление стрелками
-  function move(dir){
-    const atFirst = currentLi === 0;
-    const atLast  = currentLi === N-1;
-
-    if (dir > 0 && atLast){ 
-      jumpLogical(0); 
-      return; 
-    }
-    if (dir < 0 && atFirst){ 
-      jumpLogical(N-1); 
-      return; 
-    }
-
-    snapLogical(currentLi + dir, 'smooth');  // с анимацией для обычных переходов
-  }
-
-  prev?.addEventListener('click', ()=> move(-1));
-  next?.addEventListener('click', ()=> move(+1));
+  // 5) Кнопки (в обе стороны симметрично)
+  prev?.addEventListener('click', ()=> snapLogical(currentLi - 1, 'smooth'));
+  next?.addEventListener('click', ()=> snapLogical(currentLi + 1, 'smooth'));
 
   // === Drag/swipe (без pointer-capture)
   let isDown=false, startX=0, startScroll=0, moved=0;
@@ -231,12 +222,14 @@ function unlockPageScroll() {
     return best;
   }
 
+  // 8) Нормализация: если попали на клон — мгновенно переносим на соответствующий оригинал.
   const deb = (fn,t=60)=>{ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t); }; };
   track.addEventListener('scroll', deb(()=>{
     const pi = nearestPhysIndex();
-    if (pi === 0)       { jumpLogical(N-1); return; }   // на левом клоне → телепорт на последний
-    if (pi === N + 1)   { jumpLogical(0);   return; }   // на правом клоне → телепорт на первый
-    currentLi = logicalFromPhys(pi);                   // обновить логический индекс
+    if (pi === leftCloneIndex)  { snapLogical(N-1, 'auto'); return; }
+    if (pi === rightCloneIndex) { snapLogical(0,   'auto'); return; }
+    // если обычный оригинал — обновляем логический индекс
+    currentLi = logicalFromPhys(pi);
   }, 40));
 
   // === Ресайз
