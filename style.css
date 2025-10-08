@@ -502,20 +502,25 @@ body.is-modal-open{
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: none;
-  background: rgba(0,0,0,.55);
+  background: rgba(0,0,0,.7);
   color: #fff;
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 300;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background .2s ease;
+  transition: all .2s ease;
+  z-index: 10;
 }
-#letter-modal .modal__close:hover{ background: rgba(0,0,0,.75); }
+#letter-modal .modal__close:hover{ 
+  background: rgba(0,0,0,.9); 
+  transform: scale(1.1);
+}
 
 #letter-modal .modal-nav{
   position: absolute;
