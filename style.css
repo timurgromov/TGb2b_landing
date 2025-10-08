@@ -1066,7 +1066,7 @@ body.is-modal-open{
 }
 
 :root #hero-left h1 .h1-prefix {
-  font-size: 31px !important;    /* "Ведущий на корпоратив" — меньше для визуального баланса */
+  font-size: 30.5px !important;    /* "Ведущий на корпоратив" — меньше для визуального баланса */
   font-weight: 800;
 }
 
