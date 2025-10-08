@@ -644,3 +644,14 @@ html.is-modal-open, body.is-modal-open {
   cursor: pointer;
 }
 .slider-dot.is-active{ background:rgba(255,255,255,.8); transform:scale(1.2); }
+
+/* ===== Скрытие стрелок без сдвига вёрстки ===== */
+.letters-btn.is-hidden{ opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s ease; }
+
+/* ===== Попап-анимации для модального окна ===== */
+.modal-image, .letter-modal-img{
+  transition: transform .45s ease, opacity .45s ease;
+}
+.fade-out-left  { opacity:0; transform: translateX(-60px); }
+.fade-out-right { opacity:0; transform: translateX( 60px); }
+.fade-in-right, .fade-in-left { opacity:1; transform: translateX(0); }

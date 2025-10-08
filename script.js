@@ -126,119 +126,107 @@ function unlockPageScroll() {
   window.scrollTo(0, __scrollY);
 }
 
-// === Letters slider: bounded + dots + ping-pong (единственная версия) ===
-(function initLettersBoundedDotsPingPong(){
+// === Letters slider: arrows visibility + optional ping-pong ===
+(function lettersPatched(){
   const root  = document.querySelector('.letters-slider');
   if (!root) return;
   const track = root.querySelector('.letters-track');
   const cards = Array.from(track.querySelectorAll('.letter-card'));
-  const prev  = root.querySelector('.letters-btn.prev');
-  const next  = root.querySelector('.letters-btn.next');
-  const dotsEl = document.getElementById('letters-dots');
+  const btnPrev = root.querySelector('.letters-btn.prev');
+  const btnNext = root.querySelector('.letters-btn.next');
   if (cards.length < 2) return;
 
-  // ---------- геометрия ----------
-  const GAP = 12;
-  const centerLeft = (el) => el.offsetLeft - (track.clientWidth - el.offsetWidth)/2;
-
+  // --- геометрия/утилиты ---
+  const centerLeft = (el)=> el.offsetLeft - (track.clientWidth - el.offsetWidth)/2;
   function nearestIndex(){
     const center = track.scrollLeft + track.clientWidth/2;
     let best=0, dmin=Infinity;
-    for (let i=0;i<cards.length;i++){
+    for(let i=0;i<cards.length;i++){
       const mid = cards[i].offsetLeft + cards[i].offsetWidth/2;
       const d = Math.abs(mid - center);
       if (d<dmin){ dmin=d; best=i; }
     }
     return best;
   }
-
   function scrollToIndex(i, behavior='smooth'){
     i = Math.max(0, Math.min(cards.length-1, i));
     track.scrollTo({ left: centerLeft(cards[i]), behavior });
-    current = i; setActiveDot(i);
+    current = i; updateArrows();
   }
 
-  // ---------- точки ----------
-  function buildDots(){
-    if (!dotsEl) return;
-    dotsEl.innerHTML = cards.map((_,k)=>`<button class="slider-dot" data-k="${k}" aria-label="Слайд ${k+1}"></button>`).join('');
-    dotsEl.addEventListener('click', (e)=>{
-      const btn = e.target.closest('.slider-dot'); if(!btn) return;
-      const k = +btn.dataset.k; if (Number.isInteger(k)) scrollToIndex(k, 'smooth');
-    });
-    setActiveDot(0);
-  }
-  function setActiveDot(i){
-    if (!dotsEl) return;
-    dotsEl.querySelectorAll('.slider-dot').forEach((d,idx)=>{
-      d.classList.toggle('is-active', idx===i);
-    });
-  }
-
-  // ---------- стрелки ----------
+  // --- 1) Видимость стрелок (левая скрыта на первом, правая — на последнем) ---
   let current = 0;
-  prev?.addEventListener('click', ()=> scrollToIndex(current-1, 'smooth'));
-  next?.addEventListener('click', ()=> scrollToIndex(current+1, 'smooth'));
+  function updateArrows(){
+    const atFirst = current === 0;
+    const atLast  = current === cards.length-1;
+    if (btnPrev) btnPrev.classList.toggle('is-hidden', atFirst);
+    if (btnNext) btnNext.classList.toggle('is-hidden', atLast);
+  }
 
-  // ---------- drag/swipe ----------
+  // обработчики стрелок
+  btnPrev?.addEventListener('click', ()=> scrollToIndex(current-1, 'smooth'));
+  btnNext?.addEventListener('click', ()=> scrollToIndex(current+1, 'smooth'));
+
+  // drag/swipe (без pointer-capture)
   let down=false, sx=0, ss=0, moved=0; const TH=5;
-  track.addEventListener('pointerdown', e=>{ down=true; sx=e.clientX; ss=track.scrollLeft; moved=0; });
+  track.addEventListener('pointerdown', e=>{down=true; sx=e.clientX; ss=track.scrollLeft; moved=0;});
   track.addEventListener('pointermove', e=>{ if(!down) return; const dx=e.clientX-sx; moved=Math.max(moved,Math.abs(dx)); track.scrollLeft=ss-dx; });
   ['pointerup','pointercancel','mouseleave'].forEach(ev=> track.addEventListener(ev, ()=>{ down=false; }));
   track.addEventListener('click', e=>{ if(moved>TH){ e.preventDefault(); e.stopPropagation(); } });
 
-  // ---------- sync индекса + точек ----------
-  const deb = (fn,t=60)=>{ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t);} };
-  track.addEventListener('scroll', deb(()=>{ current = nearestIndex(); setActiveDot(current); }, 40));
+  // синхронизация индекса и стрелок
+  const deb=(fn,t=60)=>{ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t);} };
+  track.addEventListener('scroll', deb(()=>{ current = nearestIndex(); updateArrows(); }, 40));
   window.addEventListener('resize', deb(()=> scrollToIndex(current, 'auto'), 120));
 
-  // ---------- пинг-понг (туда-сюда) ----------
-  const attrSpeed = Number(root.getAttribute('data-pp-speed'));
-  const SPEED_DESK = isNaN(attrSpeed) ? 40 : attrSpeed;
-  const SPEED_MOB  = isNaN(attrSpeed) ? 26 : attrSpeed;
-  const SPEED = window.matchMedia('(max-width: 860px)').matches ? SPEED_MOB : SPEED_DESK;
+  // старт
+  requestAnimationFrame(()=>{ scrollToIndex(0,'auto'); });
 
-  let rafId=0, playing=false, userHold=false, lastTs=0, dir=+1;
-  let prevSnap = '';
-  const snapOff = ()=>{ prevSnap=track.style.scrollSnapType; track.style.scrollSnapType='none'; };
-  const snapOn  = ()=>{ track.style.scrollSnapType= prevSnap || 'x mandatory'; };
+  // --- 3) ПИНГ-ПОНГ (опционально): включается только если data-pp="on" на .letters-slider ---
+  if (root.getAttribute('data-pp') === 'on'){
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!reduced.matches){
+      const attrSpeed = Number(root.getAttribute('data-pp-speed'));
+      const SPEED_DESK = isNaN(attrSpeed) ? 40 : attrSpeed;
+      const SPEED_MOB  = isNaN(attrSpeed) ? 26 : attrSpeed;
+      const SPEED = window.matchMedia('(max-width: 860px)').matches ? SPEED_MOB : SPEED_DESK;
 
-  function bounds(){
-    const left  = Math.max(0, Math.round(centerLeft(cards[0])));
-    const right = Math.max(0, Math.round(centerLeft(cards[cards.length-1])));
-    return {left, right, span: Math.max(1, right-left)};
+      let rafId=0, playing=false, userHold=false, lastTs=0, dir=+1;
+      let prevSnap=''; const snapOff=()=>{ prevSnap=track.style.scrollSnapType; track.style.scrollSnapType='none'; };
+      const snapOn =()=>{ track.style.scrollSnapType=prevSnap||'x mandatory'; };
+
+      function bounds(){
+        const left  = Math.max(0, Math.round(centerLeft(cards[0])));
+        const right = Math.max(0, Math.round(centerLeft(cards[cards.length-1])));
+        return {left,right,span:Math.max(1,right-left)};
+      }
+      const speedFactor = (p)=> 0.6 + 0.4*Math.sin(Math.PI * Math.max(0,Math.min(1,p))); // быстрее в середине
+
+      function step(ts){
+        if(!lastTs) lastTs=ts;
+        const dt=(ts-lastTs)/1000; lastTs=ts;
+        const {left,right,span}=bounds();
+        const prog=(track.scrollLeft-left)/span;
+        const v=SPEED*speedFactor(prog);
+        let next=track.scrollLeft + dir*v*dt;
+        if (next<=left){ next=left; dir=+1; }
+        if (next>=right){ next=right; dir=-1; }
+        track.scrollLeft=next;
+        rafId=requestAnimationFrame(step);
+      }
+      function start(){ if(playing||userHold) return; playing=true; lastTs=0; snapOff(); rafId=requestAnimationFrame(step); }
+      function stop(){ if(!playing) return; playing=false; cancelAnimationFrame(rafId); rafId=0; snapOn(); }
+
+      const io=new IntersectionObserver((en)=>{ const vis=en[0]?.isIntersecting; if (vis && !userHold) start(); else stop(); }, {threshold:0.2});
+      io.observe(root);
+
+      ['pointerdown','mouseenter','focusin','touchstart'].forEach(ev=> root.addEventListener(ev, ()=>{userHold=true; stop();},{passive:true}));
+      ['pointerup','mouseleave','focusout','touchend','touchcancel'].forEach(ev=> root.addEventListener(ev, ()=>{userHold=false; setTimeout(start,800);},{passive:true}));
+
+      // инициализация пинг-понга
+      const {left}=bounds(); track.scrollLeft=left; dir=+1; start();
+    }
   }
-  const speedFactor = (p)=> 0.6 + 0.4 * Math.sin(Math.PI * Math.max(0, Math.min(1, p))); // быстрее в середине
-
-  function step(ts){
-    if (!lastTs) lastTs = ts;
-    const dt = (ts - lastTs) / 1000; lastTs = ts;
-
-    const {left,right,span} = bounds();
-    const prog = (track.scrollLeft - left) / span;
-    const v = SPEED * speedFactor(prog);
-    let next = track.scrollLeft + dir * v * dt;
-
-    if (next <= left){ next = left; dir = +1; }
-    if (next >= right){ next = right; dir = -1; }
-
-    track.scrollLeft = next;
-    rafId = requestAnimationFrame(step);
-  }
-  function start(){ if (playing || userHold) return; playing=true; lastTs=0; snapOff(); rafId=requestAnimationFrame(step); }
-  function stop(){ if (!playing) return; playing=false; cancelAnimationFrame(rafId); rafId=0; snapOn(); }
-
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (!reduced.matches){
-    const io = new IntersectionObserver((en)=>{ const vis = en[0]?.isIntersecting; if (vis && !userHold) start(); else stop(); }, {threshold:0.2});
-    io.observe(root);
-    ['pointerdown','mouseenter','focusin','touchstart'].forEach(ev => root.addEventListener(ev, ()=>{ userHold=true; stop(); }, {passive:true}));
-    ['pointerup','mouseleave','focusout','touchend','touchcancel'].forEach(ev => root.addEventListener(ev, ()=>{ userHold=false; setTimeout(start,800); }, {passive:true}));
-  }
-
-  // init
-  buildDots();
-  requestAnimationFrame(()=> scrollToIndex(0, 'auto'));
 })();
 
 // === Общий лайтбокс (письма + фото) с делегированным кликом + свайп + прелоад ===
