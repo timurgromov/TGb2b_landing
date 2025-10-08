@@ -1222,3 +1222,49 @@ body.is-modal-open{
     min-height: auto !important;
   }
 }
+
+/* ====== АДАПТАЦИЯ ПОД MACBOOK (ОПТИМИЗАЦИЯ ВЫСОТЫ) ====== */
+
+/* Универсальная версия (desktop ≥1280px) */
+#hero {
+  padding-top: 56px !important;  /* было 72px */
+  padding-bottom: 56px !important; /* было 72px */
+}
+
+#hero-left h1 {
+  font-size: 56px !important;    /* было ~60–62px */
+  line-height: 1.05 !important;
+  margin-bottom: 20px !important;
+}
+
+#hero-left .hero-subtitle {
+  font-size: 20px !important;
+  line-height: 1.6 !important;
+  margin-bottom: 28px !important;
+  max-width: 740px !important;
+}
+
+#hero-tags {
+  margin-bottom: 48px !important; /* вместо 56px */
+}
+
+#hero-actions {
+  margin-top: 48px !important;
+}
+
+/* Адаптивная версия для ноутбуков с небольшой высотой экрана */
+@media (max-height: 800px) {
+  #hero-left h1 {
+    font-size: 52px !important;
+  }
+  #hero-left .hero-subtitle {
+    font-size: 18px !important;
+  }
+  #hero-tags {
+    margin-bottom: 44px !important;
+  }
+  #hero {
+    padding-top: 52px !important;
+    padding-bottom: 52px !important;
+  }
+}
