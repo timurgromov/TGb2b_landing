@@ -399,7 +399,7 @@ button{font-family:inherit;cursor:pointer}
 }
 .footer__icon:hover{transform:translateY(-1px); background:rgba(255,255,255,.04)}
 .footer__legal{color:var(--muted);font-size:12px;margin-top:4px}
-.footer__copy{color:var(--muted);font-size:13px;margin-top:14px;text-align:center}
+.footer__copy{color:var(--muted);font-size:13px;margin-top:14px;text-align:left}
 
 /* ===== Scroll-reveal (плавные появления) ===== */
 .sr{opacity:0;transform:translateY(18px);will-change:opacity,transform}
@@ -578,4 +578,10 @@ body.is-modal-open{
 .slider-dot.is-active{ background:rgba(255,255,255,.8); transform:scale(1.2); }
 
 /* ===== Скрытие стрелок без сдвига вёрстки ===== */
-.letters-btn.is-hidden{ opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s ease; }
+.letters-btn.is-hidden,
+.photos-btn.is-hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .2s ease;
+}
