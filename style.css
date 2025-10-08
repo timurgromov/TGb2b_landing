@@ -809,13 +809,8 @@ body {
 }
 
 /* Чипсы */
-.hero-tags {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;                     /* вертикальный ритм между рядами */
-  margin-top: 14px;             /* ближе к подзаголовку */
-  margin-bottom: 0;
-}
+/* АРТЕФАКТ УДАЛЕН - flex-direction:column ломал desktop версию (чипсы в 3 ряда) */
+/* Стили для #hero-tags теперь только в :root блоках ниже */
 
 /* Кнопки CTA */
 .hero-actions {
