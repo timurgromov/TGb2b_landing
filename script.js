@@ -539,12 +539,21 @@ function unlockPageScroll() {
     }
   }
 
-  // Добавляем обработчики для всех телефонных ссылок
+  // Добавляем обработчики для всех телефонных ссылок и кнопок
   document.addEventListener('DOMContentLoaded', function() {
     const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
     
     phoneLinks.forEach(link => {
       link.addEventListener('click', handlePhoneClick);
     });
+    
+    // Добавляем обработчик для кнопки "Позвонить"
+    const callBtn = document.querySelector('.call-btn');
+    if (callBtn) {
+      callBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        handlePhoneClick(e);
+      });
+    }
   });
 })();

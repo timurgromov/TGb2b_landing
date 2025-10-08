@@ -62,7 +62,12 @@
       <div class="brand">Тимур Громов</div>
 
       <div class="header__cta">
-        <a href="tel:+79253900772" class="btn btn-ghost" data-cta="tel_header" title="Нажмите для звонка">📞 Позвонить</a>
+        <button class="call-btn" data-cta="tel_header" title="Нажмите для звонка">
+          <svg class="call-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.73 19.73 0 0 1 3 4.18 2 2 0 0 1 5 2h4.09a1 1 0 0 1 1 .75l1 4a1 1 0 0 1-.27.95l-2.2 2.2a16 16 0 0 0 6.34 6.34l2.2-2.2a1 1 0 0 1 .95-.27l4 1a1 1 0 0 1 .75 1z" fill="currentColor"/>
+          </svg>
+          Позвонить
+        </button>
         <a class="btn wa"
            href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив"
            target="_blank" rel="noopener"
@@ -78,16 +83,19 @@
         <div class="hero__text sr">
             <h1>Ведущий на корпоратив Тимур Громов</h1>
           <p class="sub">Интеллигентно, но динамично. С юмором, но без пошлости и неловких моментов.</p>
-          <ul class="hero__facts">
-            <li>15 лет опыта</li>
-            <li>800+ мероприятий</li>
-            <li>3 года в эфире Love Radio</li>
-            <li>10 лет КВН</li>
-            <li>Импровизация</li>
-            <li>Добрый юмор</li>
-            <li>Ведущий + DJ + звук</li>
-            <li>Договор ИП</li>
-          </ul>
+          <div class="hero-tags">
+            <div class="tag-row">
+              <span class="tag">15 лет опыта</span>
+              <span class="tag">800+ мероприятий</span>
+              <span class="tag">3 года в эфире Love Radio</span>
+            </div>
+            <div class="tag-row">
+              <span class="tag">Импровизация</span>
+              <span class="tag">Добрый юмор</span>
+              <span class="tag">Ведущий + DJ + звук</span>
+              <span class="tag">Договор ИП</span>
+            </div>
+          </div>
           <div class="hero__cta">
             <a class="btn btn-primary" 
                href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив"
