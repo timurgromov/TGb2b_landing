@@ -188,18 +188,18 @@ button{font-family:inherit;cursor:pointer}
 /* ===== Benefits CTA ===== */
 .benefits__cta{text-align:center;margin-top:32px}
 
-/* ===== Модалка ===== */
-.modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s ease}
-.modal.active{opacity:1;visibility:visible}
-.modal__overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px)}
-.modal__content{position:relative;background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:32px;max-width:500px;width:90vw;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
-.modal__close{position:absolute;top:16px;right:16px;background:transparent;border:none;color:var(--muted);font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s ease}
-.modal__close:hover{background:rgba(255,255,255,0.1)}
-.modal h3{color:var(--text);margin:0 0 20px;font-size:24px;font-weight:700}
+/* ===== Модалка (программы) ===== */
+#programs-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s ease}
+#programs-modal.active{opacity:1;visibility:visible}
+#programs-modal .modal__overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px)}
+#programs-modal .modal__content{position:relative;background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:32px;max-width:500px;width:90vw;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+#programs-modal .modal__close{position:absolute;top:16px;right:16px;background:transparent;border:none;color:var(--muted);font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s ease}
+#programs-modal .modal__close:hover{background:rgba(255,255,255,0.1)}
+#programs-modal h3{color:var(--text);margin:0 0 20px;font-size:24px;font-weight:700}
 .programs-list{list-style:none;padding:0;margin:0 0 20px}
 .programs-list li{margin-bottom:16px;padding-left:0;color:var(--text);line-height:1.6}
 .programs-list b{color:var(--accent)}
-.modal .muted{color:var(--muted);font-size:14px;margin:0 0 24px;line-height:1.5}
+#programs-modal .muted{color:var(--muted);font-size:14px;margin:0 0 24px;line-height:1.5}
 
 /* ===== Плавающая кнопка WhatsApp ===== */
 .wa-fab{
@@ -442,183 +442,118 @@ button{font-family:inherit;cursor:pointer}
   .btn,.video-wrapper{transition:none!important}
 }
 
-/* ===== Модальное окно для писем и фото ===== */
-/* Флаг блокировки скролла для документа */
-html.is-modal-open, body.is-modal-open {
+/* ===== Лайтбокс благодарственных писем ===== */
+html.is-modal-open,
+body.is-modal-open{
   overflow: hidden !important;
   height: 100%;
 }
 
-/* 1) Базовая обёртка модалки: занимаем весь вьюпорт и ЦЕНТРИРУЕМ через grid */
-.modal{
+#letter-modal{
   position: fixed;
   inset: 0;
-  display: none;                 /* по умолчанию скрыта */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2100;
 }
-.modal.active{
-  display: grid;                 /* grid для простого центрирования */
-  place-items: center;           /* вертикально и горизонтально по центру */
-  z-index: 1000;
-  overflow: hidden;              /* ключ: модалка сама никогда не прокручивается */
-}
-
-/* 2) Затемнение — независимый слой с pointer-events */
-.modal__overlay{
-  position: absolute; inset: 0;
-  background: rgba(0,0,0,.78);
-  pointer-events: auto;
+#letter-modal.active{
+  display: flex;
 }
 
-/* 3) Контентный слой модалки — НИКАКИХ контейнеров/паддингов/смещений */
-.modal__content{
-  position: relative;            /* в центре грида */
-  pointer-events: none;          /* клики проходят к overlay, кроме изображения/крестика */
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  
-  /* ВАЖНО: именно эти две строки устраняют «прилипание» слева */
-  justify-self: center;
-  align-self: center;
-  
-  /* не растягиваем на всю ширину — иначе визуально будет «слева» */
-  width: auto;
-  max-width: calc(100vw - 64px);
+#letter-modal .modal__overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.82);
+}
+
+#letter-modal .modal__content{
+  position: relative;
+  z-index: 1;
+  max-width: min(92vw, 960px);
   max-height: calc(100vh - 64px);
-  overflow: hidden;              /* ключ: внутри модалки тоже нет скролла */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
-/* 4) Само изображение — центрируем, размеры выставляет JS */
-.letter-modal-img{
+#letter-modal .letter-modal-img{
   display: block;
-  margin: 0;                     /* на всякий случай убираем авто-центровку браузера */
-  border-radius: 14px;
-  box-shadow: 0 18px 50px rgba(0,0,0,.45);
-  cursor: zoom-out;
-  pointer-events: auto;          /* кликабельно (закрытие) */
-  background: #fff;              /* письма читаются как «лист» */
   max-width: 100%;
   max-height: 100%;
-  transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.45);
+  background: #fff;
+  transition: transform .45s ease, opacity .45s ease;
+  cursor: zoom-out;
 }
-/* Для фото без белого фона */
-.modal--photo .letter-modal-img{ background: transparent; }
+#letter-modal.modal--photo .letter-modal-img{ background: transparent; }
 
-/* 5) Крестик — фиксирован сверху справа, поверх всего */
-.modal__close{
-  position: fixed; top: 18px; right: 18px;
-  z-index: 1001;
-  pointer-events: auto;
-  background:rgba(0,0,0,.5);
-  color:#fff;
-  border-radius:50%;
-  width:40px;
-  height:40px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  cursor:pointer;
+#letter-modal .modal__close{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .2s ease;
 }
-.modal__close:hover{
-  background:rgba(0,0,0,.7);
-}
+#letter-modal .modal__close:hover{ background: rgba(0,0,0,.75); }
 
-/* Предохранители от внешних контейнеров: никакого влияния .container на модалку */
-.modal .container{ all: unset; }
-
-/* Курсор для изображения в лайтбоксе */
-.letter-modal-img{ cursor: zoom-out; }
-
-/* Курсор для карточек */
-.letter-card, .photo-card { cursor: zoom-in; }
-
-/* Анимация смены изображений в модальном окне */
-.letter-modal-img {
-  transition: transform .45s ease, opacity .45s ease !important;
-}
-
-/* Состояния для анимации */
-.letter-modal-img.fade-out-right {
-  opacity: 0;
-  transform: translateX(60px);
-}
-.letter-modal-img.fade-out-left {
-  opacity: 0;
-  transform: translateX(-60px);
-}
-.letter-modal-img.fade-in-right {
-  opacity: 1;
-  transform: translateX(0);
-}
-.letter-modal-img.fade-in-left {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Modal navigation arrows */
-.modal-nav {
+#letter-modal .modal-nav{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: linear-gradient(135deg, #ff6a39, #ff8c42);
-  color: white;
-  font-size: 42px;
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   border: none;
-  cursor: pointer;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: #fff;
+  font-size: 42px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 15px rgba(255, 106, 57, 0.4);
-  transition: all 0.2s ease;
-  z-index: 2001;
-  opacity: 1;
-  visibility: visible;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .18s ease;
+  box-shadow: 0 10px 28px color-mix(in oklab, var(--accent) 45%, transparent);
+  z-index: 2;
   animation: pulse 2s ease-in-out infinite;
 }
-
-.modal-nav:hover { 
-  background: linear-gradient(135deg, #ff8c42, #ff6a39); 
+#letter-modal .modal-nav:hover{
   transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 20px rgba(255, 106, 57, 0.6);
+  box-shadow: 0 12px 36px color-mix(in oklab, var(--accent) 55%, transparent);
+}
+#letter-modal .modal-prev{ left: 32px; }
+#letter-modal .modal-next{ right: 32px; }
+
+@media (max-width: 768px){
+  #letter-modal .modal-nav{
+    width: 44px;
+    height: 44px;
+    font-size: 30px;
+  }
+  #letter-modal .modal-prev{ left: 16px; }
+  #letter-modal .modal-next{ right: 16px; }
 }
 
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 120, 40, 0.6);
-  }
-  70% {
-    box-shadow: 0 0 0 16px rgba(255, 120, 40, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 120, 40, 0);
-  }
-}
+#letter-modal .letter-modal-img.enter-from-right{ opacity:0; transform: translateX(60px); }
+#letter-modal .letter-modal-img.enter-from-left { opacity:0; transform: translateX(-60px); }
+#letter-modal .letter-modal-img.fade-out-left  { opacity:0; transform: translateX(-60px); }
+#letter-modal .letter-modal-img.fade-out-right { opacity:0; transform: translateX(60px); }
+#letter-modal .letter-modal-img.fade-in-right,
+#letter-modal .letter-modal-img.fade-in-left  { opacity:1; transform: translateX(0); }
 
-.modal-prev { 
-  left: 40px; 
-}
-
-.modal-next { 
-  right: 40px; 
-}
-
-@media (max-width: 768px) {
-  .modal-nav { 
-    width: 44px; 
-    height: 44px; 
-    font-size: 30px; 
-  }
-  .modal-prev { 
-    left: 20px; 
-  }
-  .modal-next { 
-    right: 20px; 
-  }
-}
+.letter-card, .photo-card { cursor: zoom-in; }
 
 /* ===== Скрываем системные скроллбары у горизонтальных треков ===== */
 .letters-track, .photos-track{
@@ -647,15 +582,3 @@ html.is-modal-open, body.is-modal-open {
 
 /* ===== Скрытие стрелок без сдвига вёрстки ===== */
 .letters-btn.is-hidden{ opacity:0; visibility:hidden; pointer-events:none; transition:opacity .2s ease; }
-
-/* ===== Попап-анимации для модального окна ===== */
-.modal-image, .letter-modal-img{
-  transition: transform .45s ease, opacity .45s ease;
-}
-.fade-out-left  { opacity:0; transform: translateX(-60px); }
-.fade-out-right { opacity:0; transform: translateX( 60px); }
-.fade-in-right, .fade-in-left { opacity:1; transform: translateX(0); }
-
-/* стартовые состояния (кадр 0) для появления */
-.letter-modal-img.enter-from-right { opacity: 0; transform: translateX(60px); }
-.letter-modal-img.enter-from-left  { opacity: 0; transform: translateX(-60px); }
