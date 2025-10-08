@@ -178,8 +178,16 @@ function unlockPageScroll() {
   requestAnimationFrame(()=> snapLogical(0, 'auto'));
 
   // 5) Кнопки (в обе стороны симметрично)
-  prev?.addEventListener('click', ()=> snapLogical(currentLi - 1, 'smooth'));
-  next?.addEventListener('click', ()=> snapLogical(currentLi + 1, 'smooth'));
+  function moveSlider(dir) {
+    const nextLi = currentLi + dir;
+    // Проверяем переход через край (0 ↔ N-1)
+    const isEdgeTransition = (dir > 0 && currentLi === N-1) || (dir < 0 && currentLi === 0);
+    // Для переходов через край используем мгновенный телепорт, иначе плавно
+    snapLogical(nextLi, isEdgeTransition ? 'auto' : 'smooth');
+  }
+  
+  prev?.addEventListener('click', ()=> moveSlider(-1));
+  next?.addEventListener('click', ()=> moveSlider(+1));
 
   // 6) Drag/swipe без pointer-capture (как было)
   let isDown=false, startX=0, startScroll=0, moved=0;
