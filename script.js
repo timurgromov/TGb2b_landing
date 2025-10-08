@@ -149,6 +149,41 @@ const COUNTER_ID = 104468814;
   const overlay  = modal?.querySelector('.modal__overlay');
   if (!modal || !modalImg) return;
 
+  // Безопасные отступы от краёв окна (чтобы не прилипало)
+  const PADDING_VW = 32; // px
+  const PADDING_VH = 32; // px
+
+  function fitToViewport(imgEl){
+    // Натуральные размеры файла
+    const natW = imgEl.naturalWidth  || imgEl.width  || 1000;
+    const natH = imgEl.naturalHeight || imgEl.height || 1400;
+
+    // Доступная область экрана (минус безопасные поля)
+    const vw = Math.max(0, window.innerWidth  - PADDING_VW*2);
+    const vh = Math.max(0, window.innerHeight - PADDING_VH*2);
+
+    // Масштаб без обрезки
+    const scale = Math.min(vw / natW, vh / natH, 1); // не увеличиваем сверх 100% качества
+    const w = Math.floor(natW * scale);
+    const h = Math.floor(natH * scale);
+
+    imgEl.style.width  = w + 'px';
+    imgEl.style.height = h + 'px';
+  }
+
+  // Публичный хук: вызывать после установки src
+  function applySizingWhenReady(){
+    if (modalImg.complete) fitToViewport(modalImg);
+    else modalImg.addEventListener('load', ()=>fitToViewport(modalImg), { once:true });
+  }
+
+  // Пересчёт на ресайз (debounce)
+  let t=null;
+  window.addEventListener('resize', ()=>{
+    if (!modal.classList.contains('active')) return;
+    clearTimeout(t); t=setTimeout(()=>fitToViewport(modalImg), 120);
+  });
+
   function srcFromCard(card){
     const img = card.querySelector('img');
     return card.getAttribute('data-full') || img?.src || '';
@@ -177,11 +212,17 @@ const COUNTER_ID = 104468814;
     if (!src) return;
 
     modalImg.src = src;
-    modalImg.alt = alt;
+    modalImg.alt = alt || '';
+    // Переключаем белый фон в зависимости от источника (письма/фото)
+    if (groupName === 'photos') modal.classList.add('modal--photo');
+    else modal.classList.remove('modal--photo');
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
     if (typeof ym === 'function') ym(COUNTER_ID, 'reachGoal', 'lightbox_open_' + groupName);
+    
+    // Применяем адаптивный размер
+    applySizingWhenReady();
   }
 
   // Делегированный клик по документу — сработает и при сложной вложенности
@@ -204,6 +245,8 @@ const COUNTER_ID = 104468814;
     const card = currentList[index];
     modalImg.src = srcFromCard(card);
     modalImg.alt = altFromCard(card);
+    // Применяем адаптивный размер при навигации
+    applySizingWhenReady();
   }
 
   closeBtn?.addEventListener('click', closeModal);

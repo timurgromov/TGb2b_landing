@@ -441,23 +441,24 @@ button{font-family:inherit;cursor:pointer}
   .btn,.video-wrapper{transition:none!important}
 }
 
-/* ===== Модальное окно для писем ===== */
-.letter-modal-content{
-  max-width:90vw;
-  max-height:90vh;
-  padding:0;
-  background:#fff;
-  border-radius:16px;
-  overflow:hidden;
+/* ===== Модальное окно для писем и фото ===== */
+/* Тёмный фон во весь экран — как есть */
+.modal__overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.78); /* чуть темнее, чтобы белые письма читались лучше */
 }
-.letter-modal-img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-  max-height:90vh;
+
+/* Контент модалки — БЕЗ белого фона и без внутренних отступов */
+.modal__content{
+  position:fixed; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  background:transparent;          /* было: белое/серое — убрать */
+  padding:0;                       /* убрать внутренние отступы, поля даём у картинки при необходимости */
 }
-.letter-modal-content .modal__close{
+
+/* Крестик оставить как есть, но поверх изображения */
+.modal__close{
+  position:fixed; top:18px; right:18px; z-index:10;
   background:rgba(0,0,0,.5);
   color:#fff;
   border-radius:50%;
@@ -466,14 +467,25 @@ button{font-family:inherit;cursor:pointer}
   display:flex;
   align-items:center;
   justify-content:center;
-  top:16px;
-  right:16px;
   font-size:20px;
-  z-index:10;
+  cursor:pointer;
 }
-.letter-modal-content .modal__close:hover{
+.modal__close:hover{
   background:rgba(0,0,0,.7);
 }
+
+/* Картинка в лайтбоксе. Размер ставим из JS, тут только базовые стили */
+.letter-modal-img{
+  display:block;
+  max-width:100%; max-height:100%; /* страховка */
+  border-radius:14px;
+  box-shadow:0 18px 50px rgba(0,0,0,.45);
+  cursor:zoom-out;
+  background:#fff;                 /* ВАЖНО: белый фон для сканов писем, чтобы края были «листом» */
+}
+
+/* Если нужна картинка без белого фона (обычные фото), добавим модификатор .modal--photo */
+.modal--photo .letter-modal-img{ background:transparent; }
 
 /* Курсор для изображения в лайтбоксе */
 .letter-modal-img{ cursor: zoom-out; }
