@@ -401,6 +401,13 @@ button{font-family:inherit;cursor:pointer}
 .footer__legal{color:var(--muted);font-size:12px;margin-top:4px}
 .footer__copy{color:var(--muted);font-size:13px;margin-top:14px;text-align:left}
 
+/* Разделительная черта перед блоком с информацией об ИП */
+.footer > .container:last-child {
+  border-top: 1px solid var(--stroke);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
 /* ===== Scroll-reveal (плавные появления) ===== */
 .sr{opacity:0;transform:translateY(18px);will-change:opacity,transform}
 .sr.show{opacity:1;transform:none;transition:opacity .55s ease, transform .55s ease}
