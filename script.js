@@ -190,8 +190,17 @@ function unlockPageScroll() {
     const nextLi = currentLi + dir;
     // Проверяем переход через край (0 ↔ N-1)
     const isEdgeTransition = (dir > 0 && currentLi === N-1) || (dir < 0 && currentLi === 0);
-    // Для переходов через край используем мгновенный телепорт, иначе плавно
-    snapLogical(nextLi, isEdgeTransition ? 'auto' : 'smooth');
+    
+    if (isEdgeTransition) {
+      // Мгновенный телепорт через прямой scrollLeft
+      currentLi = nextLi;
+      const el = cards[physFromLogical(currentLi)];
+      const targetLeft = el.offsetLeft - (track.clientWidth - el.offsetWidth) / 2;
+      track.scrollLeft = targetLeft;
+    } else {
+      // Обычная прокрутка через scrollIntoView
+      snapLogical(nextLi, 'smooth');
+    }
   }
   
   prev?.addEventListener('click', ()=> moveSlider(-1));
