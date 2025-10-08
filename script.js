@@ -439,106 +439,95 @@ function unlockPageScroll() {
 })();
 
 // ==============================
-// Letters — медленный автодрейф «пинг-понг» (туда-сюда)
+// Letters — пинг-понг быстрее + плавное ускорение/замедление + настройка speed
 // ==============================
-(function initLettersPingPong(){
+(function initLettersPingPongFaster(){
   const root  = document.querySelector('.letters-slider');
   if (!root) return;
   const track = root.querySelector('.letters-track');
   const cards = Array.from(track.querySelectorAll('.letter-card'));
   if (cards.length < 2) return;
 
-  // Уважение системной настройки
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // 1) Настройка скорости:
+  //    — по умолчанию быстрее: 40 px/s desktop, 26 px/s mobile
+  //    — можно переопределить: <div class="letters-slider" data-pp-speed="48">
+  const attrSpeed = Number(root.getAttribute('data-pp-speed'));
+  const DEF_DESKTOP = isNaN(attrSpeed) ? 40 : attrSpeed;
+  const DEF_MOBILE  = isNaN(attrSpeed) ? 26 : attrSpeed;
+  const SPEED = window.matchMedia('(max-width: 860px)').matches ? DEF_MOBILE : DEF_DESKTOP;
 
-  // Геометрия: координата центра карточки
-  const centerLeft = (el) => el.offsetLeft - (track.clientWidth - el.offsetWidth) / 2;
-
-  // Левая и правая границы движения
+  // 2) Геометрия
+  const centerLeft = (el) => el.offsetLeft - (track.clientWidth - el.offsetWidth)/2;
   const bounds = () => {
     const left  = Math.max(0, Math.round(centerLeft(cards[0])));
-    const right = Math.max(0, Math.round(centerLeft(cards[cards.length - 1])));
-    return { left, right };
+    const right = Math.max(0, Math.round(centerLeft(cards[cards.length-1])));
+    return { left, right, span: Math.max(1, right - left) };
   };
 
-  // Скорость (px/сек)
-  const SPEED_DESKTOP = 18;
-  const SPEED_MOBILE  = 12;
-  const SPEED = window.matchMedia('(max-width: 860px)').matches ? SPEED_MOBILE : SPEED_DESKTOP;
+  // 3) Управление движком
+  let rafId = 0, playing = false, userHold = false, lastTs = 0, dir = +1;
 
-  // Управление анимацией
-  let rafId = 0;
-  let playing = false;
-  let userHold = false;
-  let lastTs = 0;
-  let dir = +1; // +1 вправо, -1 влево
-
-  // Во время автодрейфа отключаем scroll-snap, чтобы не было рывков
+  // На время авто-дрейфа отключаем scroll-snap — иначе будут «прилипать» шаги
   let prevSnap = '';
   const snapOff = () => { prevSnap = track.style.scrollSnapType; track.style.scrollSnapType = 'none'; };
   const snapOn  = () => { track.style.scrollSnapType = prevSnap || 'x mandatory'; };
 
-  function start() {
+  function start(){
     if (playing || userHold) return;
-    playing = true; lastTs = 0;
-    snapOff();
+    playing = true; lastTs = 0; snapOff();
     rafId = requestAnimationFrame(step);
   }
-
-  function stop() {
+  function stop(){
     if (!playing) return;
-    playing = false;
-    cancelAnimationFrame(rafId);
-    rafId = 0;
-    snapOn();
+    playing = false; cancelAnimationFrame(rafId); rafId = 0; snapOn();
   }
 
-  function step(ts) {
+  // Плавная динамика: быстрее в середине, мягче у краёв (без «полной остановки»)
+  // factor = 0.6 … 1.0
+  function speedFactor(progress01){
+    return 0.6 + 0.4 * Math.sin(Math.PI * Math.min(1, Math.max(0, progress01)));
+  }
+
+  function step(ts){
     if (!lastTs) lastTs = ts;
-    const dt = (ts - lastTs) / 1000;
-    lastTs = ts;
+    const dt = (ts - lastTs) / 1000; lastTs = ts;
 
-    const { left, right } = bounds();
-    let next = track.scrollLeft + dir * SPEED * dt;
+    const { left, right, span } = bounds();
+    const prog = (track.scrollLeft - left) / span;               // 0..1
+    const v = SPEED * speedFactor(prog);                         // px/s с модификатором
+    let next = track.scrollLeft + dir * v * dt;
 
-    if (next <= left)  { next = left;  dir = +1; }
-    if (next >= right) { next = right; dir = -1; }
+    if (next <= left){ next = left; dir = +1; }
+    if (next >= right){ next = right; dir = -1; }
 
     track.scrollLeft = next;
     rafId = requestAnimationFrame(step);
   }
 
-  // Автоматически останавливаем, если блок не виден
-  const io = new IntersectionObserver((entries) => {
-    const visible = entries[0]?.isIntersecting;
-    if (visible && !userHold) start(); else stop();
-  }, { root: null, threshold: 0.2 });
+  // 4) Экономия: только когда блок видим
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduced.matches) return;
+  const io = new IntersectionObserver((en)=>{
+    const vis = en[0]?.isIntersecting;
+    if (vis && !userHold) start(); else stop();
+  }, { threshold: 0.2 });
   io.observe(root);
 
-  // Любое взаимодействие пользователя — ставим на паузу
+  // 5) Пауза при взаимодействии пользователя, затем авто-возобновление
   const hold = () => { userHold = true; stop(); };
   const resume = () => { userHold = false; start(); };
 
   ['pointerdown','mouseenter','focusin','touchstart'].forEach(ev =>
-    root.addEventListener(ev, hold, { passive: true })
+    root.addEventListener(ev, hold, { passive:true })
   );
   ['pointerup','mouseleave','focusout','touchend','touchcancel'].forEach(ev =>
-    root.addEventListener(ev, () => setTimeout(resume, 700), { passive: true })
+    root.addEventListener(ev, () => setTimeout(resume, 800), { passive:true })
   );
 
-  // Клики по стрелкам — ставят паузу
-  const prevBtn = root.querySelector('.letters-btn.prev');
-  const nextBtn = root.querySelector('.letters-btn.next');
-  [prevBtn, nextBtn].forEach(btn =>
-    btn?.addEventListener('click', () => {
-      hold();
-      setTimeout(resume, 1500);
-    })
-  );
+  // Стрелки тоже ставят паузу на чуть дольше
+  root.querySelector('.letters-btn.prev')?.addEventListener('click', ()=>{ hold(); setTimeout(resume, 1500); });
+  root.querySelector('.letters-btn.next')?.addEventListener('click', ()=>{ hold(); setTimeout(resume, 1500); });
 
-  // Старт с левой границы
-  const { left } = bounds();
-  track.scrollLeft = left;
-  dir = +1;
-  start();
+  // 6) Инициализация: старт с левой границы → вправо
+  const { left } = bounds(); track.scrollLeft = left; dir = +1; start();
 })();
