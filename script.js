@@ -126,7 +126,7 @@ function unlockPageScroll() {
   window.scrollTo(0, __scrollY);
 }
 
-// === Инициализация слайдера писем с бесконечной прокруткой (с клонами) ===
+// === Letters slider: бесконечные кнопки в обе стороны (логические индексы) ===
 (function initLettersSliderLoop(){
   const root  = document.querySelector('.letters-slider');
   if (!root) return;
@@ -138,65 +138,77 @@ function unlockPageScroll() {
 
   const GAP = 12;
 
-  // 1) исходные карточки
-  const originals = Array.from(track.querySelectorAll('.letter-card'));
-  if (originals.length < 2) return;
+  // 1) Оригиналы
+  const originals = Array.from(track.querySelectorAll('.letter-card:not(.is-clone)'));
+  const N = originals.length;
+  if (N < 2) return;
 
-  // 2) добавляем клоны ОДИН РАЗ
+  // 2) Клоны один раз
   if (!track.__loopReady){
     const firstClone = originals[0].cloneNode(true);
-    const lastClone  = originals[originals.length - 1].cloneNode(true);
+    const lastClone  = originals[N-1].cloneNode(true);
     firstClone.classList.add('is-clone');
     lastClone.classList.add('is-clone');
-    track.insertBefore(lastClone, originals[0]);    // [CL, 0..N-1]
-    track.appendChild(firstClone);                  // [CL, 0..N-1, CF]
+    track.insertBefore(lastClone, originals[0]); // [CL, 0..N-1]
+    track.appendChild(firstClone);               // [CL, 0..N-1, CF]
     track.__loopReady = true;
   }
 
-  // 3) полный список с клонами
+  // 3) Полный список (с клонами)
   const cards = Array.from(track.querySelectorAll('.letter-card'));
   const leftCloneIndex  = 0;
-  const firstIndex      = 1;
-  const lastIndex       = cards.length - 2;   // ВАЖНО: последний ОРИГИНАЛ
   const rightCloneIndex = cards.length - 1;
 
-  const cardW = () => cards[firstIndex].getBoundingClientRect().width;
-  const step  = () => cardW() + GAP;
-
-  // старт: стоим на первом ОРИГИНАЛЕ
-  function snapTo(i, behavior='auto'){
-    track.scrollTo({ left: i * step(), behavior });
+  // 4) Измерение шага: расстояние между левыми краями двух соседних ОРИГИНАЛОВ
+  function measureSlot(){
+    const a = cards[1].getBoundingClientRect().left;  // физ. индекс 1 = логический 0
+    const b = cards[2].getBoundingClientRect().left;  // физ. индекс 2 = логический 1
+    return Math.round(b - a) || (cards[1].getBoundingClientRect().width + GAP);
   }
-  requestAnimationFrame(()=> snapTo(firstIndex, 'auto'));
+  function slot(){ return measureSlot(); }
 
-  function currentIndex(){
-    // округление к ближайшему слоту
-    return Math.round(track.scrollLeft / step());
+  // 5) Преобразования индексов
+  function physFromLogical(li){ // 0..N-1 -> физический индекс
+    return li + 1;              // +1 из-за левого клона
   }
-
-  // Кнопки: телепорт на краях, плавно внутри
-  function move(dir){
-    const from = currentIndex();
-
-    // край вправо: стоим на ПОСЛЕДНЕМ ОРИГИНАЛЕ и жмём вперёд → сразу на ПЕРВЫЙ ОРИГИНАЛ
-    if (dir > 0 && from === lastIndex){
-      snapTo(firstIndex, 'auto');
-      return;
-    }
-    // край влево: стоим на ПЕРВОМ ОРИГИНАЛЕ и жмём назад → сразу на ПОСЛЕДНИЙ ОРИГИНАЛ
-    if (dir < 0 && from === firstIndex){
-      snapTo(lastIndex, 'auto');
-      return;
-    }
-
-    // обычный шаг
-    snapTo(from + dir, 'smooth');
+  function logicalFromPhys(pi){ // физический -> логический
+    if (pi <= 0)         return N-1; // левый клон
+    if (pi >= N+1)       return 0;   // правый клон
+    return pi - 1;                    // середина — обычный оригинал
   }
 
-  prev?.addEventListener('click', ()=> move(-1));
-  next?.addEventListener('click', ()=> move(+1));
+  // 6) Текущий физический индекс по scrollLeft (устойчиво)
+  function currentPhysIndex(){
+    return Math.round(track.scrollLeft / slot());
+  }
+  function currentLogical(){
+    return logicalFromPhys(currentPhysIndex());
+  }
 
-  // Drag/swipe без pointer-capture
+  // 7) Позиционирование
+  function snapPhys(pi, behavior='auto'){
+    track.scrollTo({ left: pi * slot(), behavior });
+  }
+  function snapLogical(li, behavior='auto'){
+    snapPhys(physFromLogical((li+N)%N), behavior);
+  }
+
+  // Старт: логический 0 (физически 1)
+  requestAnimationFrame(()=> snapLogical(0, 'auto'));
+
+  // 8) Кнопки: только логические индексы (клонов не касаемся)
+  function moveLogical(dir){
+    const li = currentLogical();              // 0..N-1
+    const nextLi = (li + dir + N) % N;        // кольцо
+    // Мгновенный «телепорт» при переходе через край, внутри — плавно
+    // (в любом случае мы ставим логическую цель, физика и maxScroll не мешают)
+    snapLogical(nextLi, 'smooth');
+  }
+
+  prev?.addEventListener('click', ()=> moveLogical(-1));
+  next?.addEventListener('click', ()=> moveLogical(+1));
+
+  // 9) Drag/swipe без pointer-capture
   let isDown=false, startX=0, startScroll=0, moved=0;
   const dragThreshold=5;
   track.addEventListener('pointerdown', e=>{ isDown=true; moved=0; startX=e.clientX; startScroll=track.scrollLeft; });
@@ -208,13 +220,18 @@ function unlockPageScroll() {
   ['pointerup','pointercancel','mouseleave'].forEach(ev=>track.addEventListener(ev, ()=>{ isDown=false; }));
   track.addEventListener('click', e=>{ if (moved>dragThreshold){ e.preventDefault(); e.stopPropagation(); } });
 
-  // Нормализация при ручной прокрутке: если попали на клон — телепорт на соответствующий оригинал
+  // 10) Нормализация при ручной прокрутке (если попали на клон)
   const debounce = (fn, t=60)=>{ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t); }; };
   track.addEventListener('scroll', debounce(()=>{
-    const idx = currentIndex();
-    if (idx === leftCloneIndex)  snapTo(lastIndex,  'auto'); // с левого клона на последний оригинал
-    if (idx === rightCloneIndex) snapTo(firstIndex, 'auto'); // с правого клона на первый оригинал
-  }));
+    const pi = currentPhysIndex();
+    if (pi === leftCloneIndex)  snapLogical(N-1, 'auto'); // с левого клона → на логический N-1
+    if (pi === rightCloneIndex) snapLogical(0,   'auto'); // с правого клона → на логический 0
+  }, 40));
+
+  // 11) Ресайз: перестраиваем позицию по логике (исключает накопление ошибки ширины)
+  window.addEventListener('resize', debounce(()=>{
+    snapLogical(currentLogical(), 'auto');
+  }, 150));
 })();
 
 // === Общий лайтбокс (письма + фото) с делегированным кликом + свайп + прелоад ===
