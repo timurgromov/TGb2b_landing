@@ -335,10 +335,11 @@ function unlockPageScroll() {
     
     // Применяем адаптивный размер
     applySizingWhenReady();
+    updateNavButtons();
     
     // Прелоад соседей
-    preload((index+1)%currentList.length);
-    preload((index-1+currentList.length)%currentList.length);
+    preload(index + 1);
+    preload(index - 1);
   }
 
   // Делегированный клик по документу — сработает и при сложной вложенности
@@ -353,12 +354,14 @@ function unlockPageScroll() {
     unlockPageScroll(); // восстанавливаем прокрутку страницы
     modalImg.src = '';
     index = -1; currentList = []; groupName = '';
+    updateNavButtons();
   }
 
   function navigate(dir){
     if (!currentList.length || index < 0) return;
-    
-    const next = (index + dir + currentList.length) % currentList.length;
+    const next = index + dir;
+    if (next < 0 || next >= currentList.length) return;
+
     const outClass = dir === 1 ? 'fade-out-left'  : 'fade-out-right';
     const prepIn   = dir === 1 ? 'enter-from-right' : 'enter-from-left';
     const inClass  = dir === 1 ? 'fade-in-right'    : 'fade-in-left';
@@ -381,20 +384,22 @@ function unlockPageScroll() {
 
       index = next;
       applySizingWhenReady();
-      preload((index + dir + currentList.length) % currentList.length);
+      updateNavButtons();
+      preload(index + dir);
     }, 180); // короче .45s, чтобы ощущалось быстрее
   }
 
   // Навигационные стрелки
   const prevBtn = modal?.querySelector('.modal-prev');
   const nextBtn = modal?.querySelector('.modal-next');
-  
-  console.log('🔍 Modal arrows debug:', {
-    modal: !!modal,
-    prevBtn: !!prevBtn,
-    nextBtn: !!nextBtn,
-    modalHTML: modal?.innerHTML?.substring(0, 200)
-  });
+
+  function updateNavButtons(){
+    const total = currentList.length;
+    const hidePrev = !total || index <= 0;
+    const hideNext = !total || index >= total - 1;
+    prevBtn?.classList.toggle('is-hidden', hidePrev);
+    nextBtn?.classList.toggle('is-hidden', hideNext);
+  }
   
   closeBtn?.addEventListener('click', closeModal);
   overlay?.addEventListener('click', closeModal);
