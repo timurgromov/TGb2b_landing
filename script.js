@@ -207,17 +207,17 @@ function unlockPageScroll() {
   }
 
   // 8) Нормализация: если попали на клон — мгновенно переносим на соответствующий оригинал.
-  const deb = (fn,t=60)=>{ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t);} };
+  const deb = (fn,t=20)=>{ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t);} };
   track.addEventListener('scroll', deb(()=>{
     const pi = nearestPhysIndex();
     if (pi === leftCloneIndex)  { snapLogical(N-1, 'auto'); return; }
     if (pi === rightCloneIndex) { snapLogical(0,   'auto'); return; }
     // если обычный оригинал — обновляем логический индекс
     currentLi = logicalFromPhys(pi);
-  }, 40));
+  }, 20));
 
   // 9) Ресайз: просто переустановить текущую карточку по центру
-  window.addEventListener('resize', deb(()=> snapLogical(currentLi, 'auto'), 120));
+  window.addEventListener('resize', deb(()=> snapLogical(currentLi, 'auto'), 20));
 })();
 
 // === Общий лайтбокс (письма + фото) с делегированным кликом + свайп + прелоад ===
