@@ -489,3 +489,57 @@ function unlockPageScroll() {
   let t=null; window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(()=>{ layout(); updateArrows(); }, 120); });
   requestAnimationFrame(updateArrows);
 })();
+
+// ===== УМНОЕ ПЕРЕНАПРАВЛЕНИЕ ТЕЛЕФОННЫХ ССЫЛОК =====
+(function initSmartPhoneRedirect() {
+  // Определяем тип устройства
+  function isMobilePhone() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+    // Проверяем на мобильные телефоны (не планшеты)
+    const isMobile = /android|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+    const isTablet = /ipad|android(?=.*tablet)|kindle|silk/i.test(userAgent);
+    
+    // Возвращаем true только для телефонов, не для планшетов
+    return isMobile && !isTablet;
+  }
+
+  // Функция для обработки клика по телефонной ссылке
+  function handlePhoneClick(e) {
+    const isMobile = isMobilePhone();
+    
+    if (isMobile) {
+      // На мобильном телефоне - обычный звонок по GSM
+      // Ничего не делаем, позволяем браузеру обработать tel: ссылку
+      return;
+    } else {
+      // На планшете/компьютере - переходим в Telegram
+      e.preventDefault();
+      
+      const phoneNumber = '+79253900772';
+      const telegramUrl = `https://t.me/+${phoneNumber}`;
+      
+      // Открываем Telegram в новой вкладке
+      window.open(telegramUrl, '_blank', 'noopener,noreferrer');
+      
+      // Логируем событие для аналитики
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'phone_redirect',
+          device_type: 'tablet_desktop',
+          redirect_to: 'telegram',
+          phone_number: phoneNumber
+        });
+      }
+    }
+  }
+
+  // Добавляем обработчики для всех телефонных ссылок
+  document.addEventListener('DOMContentLoaded', function() {
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    
+    phoneLinks.forEach(link => {
+      link.addEventListener('click', handlePhoneClick);
+    });
+  });
+})();
