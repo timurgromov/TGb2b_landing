@@ -147,7 +147,19 @@ function unlockPageScroll() {
   const dotEls = dots ? Array.from(dots.children) : [];
 
   const cardWidth = () => track.querySelector('.letter-card')?.getBoundingClientRect().width || 320;
-  const scrollByCard = (dir) => track.scrollBy({ left: dir * (cardWidth() + gap), behavior: 'smooth' });
+  
+  // Бесконечная прокрутка по кругу
+  const scrollByCard = (dir) => {
+    const cw = cardWidth() + gap;
+    const currentIdx = Math.round(track.scrollLeft / cw);
+    let nextIdx = currentIdx + dir;
+    
+    // Если вышли за границы - переходим по кругу
+    if (nextIdx < 0) nextIdx = cards.length - 1;
+    if (nextIdx >= cards.length) nextIdx = 0;
+    
+    track.scrollTo({ left: nextIdx * cw, behavior: 'smooth' });
+  };
 
   prev?.addEventListener('click', () => scrollByCard(-1));
   next?.addEventListener('click', () => scrollByCard( 1));
@@ -161,7 +173,9 @@ function unlockPageScroll() {
   const updateDots = ()=>{
     if (!dotEls.length) return;
     const cw = cardWidth()+gap;
-    const idx = Math.round(track.scrollLeft / cw);
+    let idx = Math.round(track.scrollLeft / cw);
+    // Нормализуем индекс для циклической прокрутки
+    idx = ((idx % cards.length) + cards.length) % cards.length;
     dotEls.forEach((d,i)=>d.classList.toggle('is-active', i===idx));
   };
   track.addEventListener('scroll', debounce(updateDots, 50));
