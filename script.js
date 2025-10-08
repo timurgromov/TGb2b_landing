@@ -191,8 +191,14 @@ function unlockPageScroll() {
     const atFirst = currentLi === 0;
     const atLast  = currentLi === N-1;
 
-    if (dir > 0 && atLast){ jumpLogical(0); return; }
-    if (dir < 0 && atFirst){ jumpLogical(N-1); return; }
+    if (dir > 0 && atLast){ 
+      jumpLogical(0); 
+      return; 
+    }
+    if (dir < 0 && atFirst){ 
+      jumpLogical(N-1); 
+      return; 
+    }
 
     snapLogical(currentLi + dir, 'smooth');  // с анимацией для обычных переходов
   }
