@@ -136,70 +136,30 @@ function unlockPageScroll() {
   const next  = root.querySelector('.letters-btn.next');
   if (!track) return;
 
-  const originals = Array.from(track.querySelectorAll('.letter-card:not(.is-clone)'));
-  const N = originals.length;
-  if (N < 2) return;
-
-  // Клоны один раз
-  if (!track.__loopReady){
-    const firstClone = originals[0].cloneNode(true);
-    const lastClone  = originals[N-1].cloneNode(true);
-    firstClone.classList.add('is-clone');
-    lastClone.classList.add('is-clone');
-    track.insertBefore(lastClone, originals[0]);
-    track.appendChild(firstClone);
-    track.__loopReady = true;
-  }
-
-  // 3) Полный список + индексы
   const cards = Array.from(track.querySelectorAll('.letter-card'));
-  const leftCloneIndex  = 0;
-  const rightCloneIndex = cards.length - 1;
-
-  const physFromLogical = (li)=> ( (li % N + N) % N ) + 1;  // 0..N-1 -> 1..N
-  const logicalFromPhys = (pi)=> {
-    if (pi <= 0)       return N-1;   // левый клон
-    if (pi >= N+1)     return 0;     // правый клон
-    return pi - 1;                    // середина — обычный оригинал
-  };
+  const N = cards.length;
+  if (N < 2) return;
 
   // 4) Навигационное состояние
   let currentLi = 0; // 0..N-1
 
-  // 3) Геометрия: координата центра карточки i
-  function centerLeft(pi){
-    const el = cards[pi];
-    return el.offsetLeft - (track.clientWidth - el.offsetWidth)/2;
-  }
-  function scrollToPhys(pi, behavior='smooth'){
-    track.scrollTo({ left: centerLeft(pi), behavior });
+
+  // Прокрутка к индексу
+  function scrollToIndex(index, behavior='auto'){
+    if (index < 0 || index >= N) return;
+    currentLi = index;
+    const card = cards[index];
+    card.scrollIntoView({ behavior, inline: 'center', block: 'nearest' });
   }
 
-  // Прокрутка к логическому индексу через scrollIntoView — не упирается в maxScroll
-  function snapLogical(li, behavior='auto'){
-    currentLi = (li % N + N) % N;
-    const el = cards[physFromLogical(currentLi)];
-    el.scrollIntoView({ behavior, inline: 'center', block: 'nearest' });
-  }
-
-  // Мгновенный прыжок через край (без snap, чтобы не было второго клика)
-  function jumpLogical(li){
-    currentLi = (li % N + N) % N;
-    const prevSnap = track.style.scrollSnapType;
-    track.style.scrollSnapType = 'none';
-    const targetLeft = centerLeft(physFromLogical(currentLi));
-    track.scrollLeft = targetLeft;
-    void track.offsetWidth; // reflow
-    track.style.scrollSnapType = prevSnap || 'x mandatory';
-  }
 
   // Кнопки
   prev?.addEventListener('click', ()=> {
-    if (currentLi > 0) snapLogical(currentLi - 1, 'smooth');
+    if (currentLi > 0) scrollToIndex(currentLi - 1, 'smooth');
   });
   
   next?.addEventListener('click', ()=> {
-    if (currentLi < N - 1) snapLogical(currentLi + 1, 'smooth');
+    if (currentLi < N - 1) scrollToIndex(currentLi + 1, 'smooth');
   });
 
   // === Drag/swipe (без pointer-capture)
@@ -236,10 +196,10 @@ function unlockPageScroll() {
   }, 40));
 
   // === Ресайз
-  window.addEventListener('resize', deb(()=> snapLogical(currentLi, 'auto'), 120));
+  window.addEventListener('resize', deb(()=> scrollToIndex(currentLi, 'auto'), 120));
 
   // === Инициализация
-  requestAnimationFrame(()=> snapLogical(0, 'auto'));
+  requestAnimationFrame(()=> scrollToIndex(0, 'auto'));
 })();
 
 // === Общий лайтбокс (письма + фото) с делегированным кликом + свайп + прелоад ===
