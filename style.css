@@ -1591,6 +1591,12 @@ body.is-modal-open{
     max-width: 100% !important;
     gap: 8px !important;
     margin-bottom: 24px !important;
+    flex-direction: row !important; /* убираем column, чтобы все чипсы были в одном ряду */
+    flex-wrap: wrap !important;
+  }
+  
+  :root #hero-tags .tag-row {
+    display: contents !important; /* убираем разделение на ряды, чипсы переносятся автоматически */
   }
   
   :root #hero-tags .tag {
