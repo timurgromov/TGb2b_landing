@@ -167,9 +167,13 @@ const COUNTER_ID = 104468814;
   // Клики по письмам
   document.querySelectorAll('[data-letter-modal]').forEach(card => {
     card.addEventListener('click', () => {
+      console.log('Письмо кликнуто!'); // отладка
       const img = card.querySelector('img');
       if (img && img.src) {
+        console.log('Открываем модальное окно:', img.src); // отладка
         openModal(img.src, img.alt);
+      } else {
+        console.log('Изображение не найдено или нет src'); // отладка
       }
     });
   });
