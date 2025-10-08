@@ -512,6 +512,17 @@ button{font-family:inherit;cursor:pointer}
   overflow: visible !important;   /* ключ к проблеме "часть чипсов спряталась" */
 }
 
+/* ===== ОПТИЧЕСКОЕ ВЫРАВНИВАНИЕ ===== */
+/* Поднимаем левый контент для компенсации визуального веса правой колонки */
+.hero-text {
+  transform: translateY(-10px);   /* компенсация визуального веса фото */
+}
+
+/* ===== УЛУЧШЕНИЕ ЧИТАЕМОСТИ ПОДЗАГОЛОВКА ===== */
+.hero .sub {
+  line-height: 1.7;               /* увеличено с 1.6 для лучшей читаемости */
+}
+
 /* ---- блок с чипсами ---- */
 .hero-tags{
   display: flex;
@@ -602,42 +613,45 @@ button{font-family:inherit;cursor:pointer}
 }
 
 /* ===== HERO: верхний внутренний отступ блока ===== */
-/* Чуть уменьшаем «подушку» сверху, чтобы заголовок поднялся ближе к шапке. */
+/* Увеличиваем «подушку» сверху для дыхания. */
 .hero, .hero-section, .hero-content {
-  padding-top: clamp(40px, 5.2vw, 64px);  /* было ощущение 80–96px */
+  padding-top: clamp(48px, 6vw, 72px);  /* увеличен до 72px для дыхания */
 }
 
 /* ===== Подзаголовок → чипсы ===== */
-/* Небольшой, но стабильный зазор от подзаголовка к чипсам. */
+/* Уменьшаем зазор для визуальной плотности сверху. */
 .hero-tags {
-  margin-top: 18px;          /* было 22px */
+  margin-top: 15px;          /* уменьшено до 15px для плотности */
   margin-bottom: 0;          /* сбросим, чтобы контролировать отступ через .hero-actions */
 }
 
 /* ===== Чипсы → CTA-кнопки ===== */
-/* Даём «кислорода» между чипсами и блоком кнопок. */
+/* Увеличиваем зазор для дыхания снизу. */
 .hero-actions {
-  margin-top: 42px;          /* было 28px: ещё больше увеличиваем для "кислорода" */
+  margin-top: 36px;          /* уменьшено до 36px для оптимального ритма */
 }
 
 /* Если кнопки идут без .hero-actions — подстрахуемся на общих классах. */
 .hero-tags + .button-row,
 .hero-tags + .cta-row,
 .hero-tags + .hero-ctas {
-  margin-top: 42px;
+  margin-top: 36px;
 }
 
 /* ===== Мобилка: аккуратнее, но читаемо ===== */
 @media (max-width: 768px){
   .hero, .hero-section, .hero-content {
-    padding-top: clamp(28px, 6vw, 40px);  /* ещё компактнее сверху на маленьких экранах */
+    padding-top: clamp(32px, 6vw, 48px);  /* слегка увеличен для дыхания */
   }
-  .hero-tags { margin-top: 14px; }
+  .hero-text {
+    transform: none;                       /* убираем сдвиг на мобильных */
+  }
+  .hero-tags { margin-top: 12px; }
   .hero-actions,
   .hero-tags + .button-row,
   .hero-tags + .cta-row,
   .hero-tags + .hero-ctas {
-    margin-top: 32px;                      /* увеличиваем и на мобильных для "кислорода" */
+    margin-top: 28px;                      /* оптимальный ритм для мобильных */
   }
 }
 
