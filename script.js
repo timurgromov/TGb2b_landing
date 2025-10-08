@@ -316,7 +316,14 @@ function unlockPageScroll() {
 
     modalImg.src = src;
     modalImg.alt = alt || '';
-    modalImg.classList.add('fade-in-right'); // Add initial fade-in class
+    
+    // Подготовка и запуск въезда справа
+    modalImg.classList.remove('fade-in-left','fade-in-right','fade-out-left','fade-out-right','enter-from-left','enter-from-right');
+    modalImg.classList.add('enter-from-right');
+    void modalImg.offsetWidth;              // форс перерисовку
+    modalImg.classList.remove('enter-from-right');
+    modalImg.classList.add('fade-in-right');
+    
     // Переключаем белый фон в зависимости от источника (письма/фото)
     if (groupName === 'photos') modal.classList.add('modal--photo');
     else modal.classList.remove('modal--photo');
