@@ -1146,9 +1146,15 @@ body.is-modal-open{
     margin-top: 32px !important;
     gap: 16px !important;
   }
+  :root #hero-left h1 .h1-prefix {
+    font-size: clamp(24px, 5vw, 28px) !important;
+  }
+  :root #hero-left h1 .h1-name {
+    font-size: clamp(28px, 5vw, 32px) !important;
+  }
   :root #hero-left h1 {
-    font-size: 32px;
     line-height: 1.2;
+    white-space: normal;
   }
 }
 
