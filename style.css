@@ -831,11 +831,7 @@ body {
 }
 
 /* === 4. Адаптив === */
-@media (max-width: 768px) {
-  .hero-actions { margin-top: 28px; gap: 14px; }
-  .hero .sub, .hero-subtitle { margin-top: 8px; line-height: 1.65; }
-  .hero-text, .hero-left { transform: translateY(-4px); }
-}
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
 
 @media (max-width:640px){
   .benefits{grid-template-columns:1fr}
@@ -1044,11 +1040,7 @@ body.is-modal-open{
 }
 
 /* Мобилка — компактнее, но без слипаний */
-@media (max-width: 768px){
-  :root #hero-left{ transform: translateY(-4px) !important; }
-  :root #hero-subtitle{ margin-top: 8px !important; line-height: 1.65 !important; }
-  :root #hero-actions{ margin-top: 28px !important; gap: 14px !important; }
-}
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
 
 /* Запасной случай: снять скрытие переполнений */
 :root .hero-left, :root .hero-content, :root .hero-card { overflow: visible !important; }
@@ -1134,29 +1126,7 @@ body.is-modal-open{
 /* АРТЕФАКТ УДАЛЕН - конфликтовал с реальной SVG иконкой */
 
 /* Мобильная адаптация */
-@media (max-width: 768px) {
-  :root #hero-left {
-    padding-top: 20px;
-    transform: none;
-  }
-  :root #hero-tags {
-    margin-bottom: 32px !important;
-  }
-  :root #hero-actions {
-    margin-top: 32px !important;
-    gap: 16px !important;
-  }
-  :root #hero-left h1 .h1-prefix {
-    font-size: clamp(24px, 5vw, 28px) !important;
-  }
-  :root #hero-left h1 .h1-name {
-    font-size: clamp(28px, 5vw, 32px) !important;
-  }
-  :root #hero-left h1 {
-    line-height: 1.2;
-    white-space: normal;
-  }
-}
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
 
 /* ====== Верхние кнопки: одинаковые метрики и выравнивание ====== */
 :root #top-cta{
@@ -1212,12 +1182,7 @@ body.is-modal-open{
 }
 
 /* Мобилка — ещё компактнее, но без склеивания */
-@media (max-width: 768px){
-  :root #top-cta .btn{ height:42px; padding:0 16px; font-size:14px; min-width: 140px; }
-  :root #top-cta .btn .btn__icon{ width:18px; height:18px; margin-right:6px; }
-  :root #hero-tags{ max-width: 100%; gap:8px; }
-  :root #hero-tags .tag{ font-size:13.5px !important; padding:6px 10px !important; }
-}
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
 
 /* ====== СОВРЕМЕННЫЙ HERO-БЛОК (2025) - ЧИСТЫЙ И ДОРОГОЙ ====== */
 
@@ -1364,14 +1329,7 @@ body.is-modal-open{
 /* WhatsApp FAB удален */
 
 /* Мобильная адаптация */
-@media (max-width: 768px) {
-  :root .hero {
-    padding-top: 48px !important;
-    padding-bottom: 48px !important;
-  }
-  
-  /* WhatsApp FAB удален */
-}
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
 
 /* ====== 6) КОНТРАСТ И ЦВЕТ ====== */
 
@@ -1395,20 +1353,7 @@ body.is-modal-open{
   min-height: clamp(680px, 85vh, 770px) !important;
 }
 
-@media (max-width: 768px) {
-  :root .site-header {
-    padding-top: 18px !important;
-    padding-bottom: 18px !important;
-  }
-  
-  :root .hero__photo {
-    transform: translateY(-10px) !important;
-  }
-  
-  :root .hero {
-    min-height: auto !important;
-  }
-}
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
 
 /* ====== АДАПТАЦИЯ ПОД MACBOOK (ОПТИМИЗАЦИЯ ВЫСОТЫ) ====== */
 
@@ -1584,7 +1529,45 @@ body.is-modal-open{
    ======================================== */
 
 @media (max-width: 768px) {
+  /* === HEADER === */
+  :root .site-header {
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+  }
+  
+  :root #top-cta .btn {
+    height: 42px !important;
+    padding: 0 16px !important;
+    font-size: 14px !important;
+    min-width: 140px !important;
+  }
+  
+  :root #top-cta .btn .btn__icon {
+    width: 18px !important;
+    height: 18px !important;
+    margin-right: 6px !important;
+  }
+  
+  /* === HERO: Контейнер === */
+  :root .hero {
+    padding-top: 32px !important;
+    padding-bottom: 48px !important;
+    min-height: auto !important;
+  }
+  
+  /* === HERO: Левый блок === */
+  :root #hero-left {
+    padding-top: 0 !important;
+    transform: none !important;
+  }
+  
   /* === HERO: Типографика === */
+  :root #hero-left h1 {
+    line-height: 1.2 !important;
+    white-space: normal !important;
+    margin-bottom: 16px !important;
+  }
+  
   :root #hero-left h1 .h1-prefix {
     font-size: 24px !important;
     line-height: 1.2 !important;
@@ -1598,27 +1581,21 @@ body.is-modal-open{
   :root #hero-subtitle {
     font-size: 16px !important;
     line-height: 1.55 !important;
+    margin-top: 12px !important;
     margin-bottom: 20px !important;
   }
   
-  /* === HERO: Фото === */
-  :root .hero__photo {
-    order: 3 !important; /* после текста и кнопок */
-    justify-self: center !important;
-    max-width: 380px !important;
-    max-height: 380px !important;
-    margin: 32px auto 0 !important;
-    transform: none !important;
-  }
-  
-  :root .hero__photo img {
-    transform: none !important;
-  }
-  
-  /* === HERO: Чипсы (временно не трогаем размер) === */
+  /* === HERO: Чипсы === */
   :root #hero-tags {
     justify-content: center !important;
+    max-width: 100% !important;
+    gap: 8px !important;
     margin-bottom: 24px !important;
+  }
+  
+  :root #hero-tags .tag {
+    font-size: 13.5px !important;
+    padding: 6px 10px !important;
   }
   
   /* === HERO: CTA кнопки === */
@@ -1636,9 +1613,17 @@ body.is-modal-open{
     padding: 0 20px !important;
   }
   
-  /* === HERO: Левый блок === */
-  :root #hero-left {
-    padding-top: 24px !important;
+  /* === HERO: Фото === */
+  :root .hero__photo {
+    order: 3 !important;
+    justify-self: center !important;
+    max-width: 380px !important;
+    max-height: 380px !important;
+    margin: 32px auto 0 !important;
+    transform: none !important;
+  }
+  
+  :root .hero__photo img {
     transform: none !important;
   }
   
@@ -1660,6 +1645,16 @@ body.is-modal-open{
   .section__title {
     font-size: 26px !important;
     margin-bottom: 24px !important;
+  }
+  
+  /* === Footer === */
+  .footer-contacts {
+    margin: 18px auto 0 !important;
+    text-align: center !important;
+  }
+  
+  .footer-contacts .footer-social {
+    justify-content: center !important;
   }
 }
 
