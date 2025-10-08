@@ -477,3 +477,6 @@ button{font-family:inherit;cursor:pointer}
 
 /* Курсор для изображения в лайтбоксе */
 .letter-modal-img{ cursor: zoom-out; }
+
+/* Курсор для карточек */
+.letter-card, .photo-card { cursor: zoom-in; }

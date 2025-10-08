@@ -99,7 +99,7 @@ const COUNTER_ID = 104468814;
   });
 })();
 
-// === Инициализация слайдера писем (стрелки, клавиатура, drag/swipe) ===
+// === Инициализация слайдера писем (без pointer-capture; drag-порог) ===
 (function initLettersSlider(){
   const root = document.querySelector('.letters-slider');
   if (!root) return;
@@ -107,134 +107,118 @@ const COUNTER_ID = 104468814;
   const track = root.querySelector('.letters-track');
   const prev  = root.querySelector('.letters-btn.prev');
   const next  = root.querySelector('.letters-btn.next');
+  if (!track) return;
 
-  const cardWidth = () => {
-    const card = track.querySelector('.letter-card');
-    return card ? card.getBoundingClientRect().width : 320;
-  };
-
-  const scrollByCard = (dir) => {
-    track.scrollBy({ left: dir * (cardWidth() + 12), behavior: 'smooth' });
-  };
+  const cardWidth = () => track.querySelector('.letter-card')?.getBoundingClientRect().width || 320;
+  const scrollByCard = (dir) => track.scrollBy({ left: dir * (cardWidth() + 12), behavior: 'smooth' });
 
   prev?.addEventListener('click', () => scrollByCard(-1));
   next?.addEventListener('click', () => scrollByCard( 1));
 
-  // Клавиатура
   track.addEventListener('keydown', (e)=>{
     if (e.key === 'ArrowRight') scrollByCard(1);
     if (e.key === 'ArrowLeft')  scrollByCard(-1);
   });
 
-  // Drag / Swipe (pointer events)
-  let isDown = false, startX = 0, startScroll = 0;
+  // Drag / Swipe без pointer-capture
+  let isDown = false, startX = 0, startScroll = 0, moved = 0;
+  const dragThreshold = 5;
+
   track.addEventListener('pointerdown', (e)=>{
-    isDown = true;
-    track.setPointerCapture(e.pointerId);
+    isDown = true; moved = 0;
     startX = e.clientX; startScroll = track.scrollLeft;
   });
   track.addEventListener('pointermove', (e)=>{
     if(!isDown) return;
     const dx = e.clientX - startX;
+    moved = Math.max(moved, Math.abs(dx));
     track.scrollLeft = startScroll - dx;
   });
   ['pointerup','pointercancel','mouseleave'].forEach(ev=>{
     track.addEventListener(ev, ()=>{ isDown=false; });
   });
+  // Если был drag, гасим клик на дорожке, чтобы не открывался лайтбокс
+  track.addEventListener('click', (e)=>{ if (moved > dragThreshold) { e.stopPropagation(); e.preventDefault(); } });
 })();
 
-// === ЛАЙТБОКС ДЛЯ ПИСЕМ И ФОТО ===
+// === Общий лайтбокс (письма + фото) с делегированным кликом ===
 (function initImageLightbox(){
-  const modal     = document.getElementById('letter-modal');           // используем существующую модалку
-  const modalImg  = modal?.querySelector('.letter-modal-img');
-  const closeBtn  = modal?.querySelector('.modal__close');
-  const overlay   = modal?.querySelector('.modal__overlay');
+  const modal    = document.getElementById('letter-modal');
+  const modalImg = modal?.querySelector('.letter-modal-img');
+  const closeBtn = modal?.querySelector('.modal__close');
+  const overlay  = modal?.querySelector('.modal__overlay');
   if (!modal || !modalImg) return;
 
-  // Собираем источники кликов из двух секций
-  const letterNodes = Array.from(document.querySelectorAll('[data-letter-modal]'));
-  const photoNodes  = Array.from(document.querySelectorAll('[data-image-modal]'));
-
-  // Список "групп" для навигации (по секциям)
-  const groups = [
-    { name: 'letters', nodes: letterNodes, selector: 'img', src: (el)=>el.querySelector('img')?.src, alt: (el)=>el.querySelector('img')?.alt },
-    { name: 'photos',  nodes: photoNodes,  selector: 'img', src: (el)=>el.getAttribute('data-full') || el.querySelector('img')?.src, alt: (el)=>el.querySelector('img')?.alt }
-  ];
-
-  let activeGroup = null;  // { name, nodes, index }
-  let index = -1;
-
-  function openModal(src, alt, groupName, idx){
-    console.log(`openModal вызвана: src=${src}, groupName=${groupName}`); // отладка
-    modalImg.src = src;
-    modalImg.alt = alt || '';
-    modal.classList.add('active');           // <-- фикc: используем 'active' как и в других модалках
-    document.body.style.overflow = 'hidden';
-    console.log(`Модальное окно открыто, класс: ${modal.className}`); // отладка
-
-    // Метрика
-    if (typeof ym === 'function') {
-      ym(COUNTER_ID, 'reachGoal', 'lightbox_open_' + groupName);
-    }
-    activeGroup = groups.find(g => g.name === groupName) || null;
-    index = typeof idx === 'number' ? idx : -1;
+  function srcFromCard(card){
+    const img = card.querySelector('img');
+    return card.getAttribute('data-full') || img?.src || '';
+  }
+  function altFromCard(card){
+    const img = card.querySelector('img');
+    return img?.alt || '';
   }
 
+  let currentList = []; // массив элементов внутри активной секции
+  let index = -1;
+  let groupName = '';
+
+  function openFromCard(card){
+    const container = card.closest('.letters-slider, .photos-slider');
+    if (!container) return;
+
+    // Собираем список внутри текущей секции, чтобы работала навигация ← →
+    const selector = card.hasAttribute('data-letter-modal') ? '[data-letter-modal]' : '[data-image-modal]';
+    currentList = Array.from(container.querySelectorAll(selector));
+    index = currentList.indexOf(card);
+    groupName = card.hasAttribute('data-letter-modal') ? 'letters' : 'photos';
+
+    const src = srcFromCard(card);
+    const alt = altFromCard(card);
+    if (!src) return;
+
+    modalImg.src = src;
+    modalImg.alt = alt;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    if (typeof ym === 'function') ym(COUNTER_ID, 'reachGoal', 'lightbox_open_' + groupName);
+  }
+
+  // Делегированный клик по документу — сработает и при сложной вложенности
+  document.addEventListener('click', (e)=>{
+    const card = e.target.closest?.('[data-letter-modal], [data-image-modal]');
+    if (!card) return;
+    openFromCard(card);
+  });
+
   function closeModal(){
-    modal.classList.remove('active');        // <-- фикc
+    modal.classList.remove('active');
     document.body.style.overflow = '';
     modalImg.src = '';
-    activeGroup = null;
-    index = -1;
+    index = -1; currentList = []; groupName = '';
   }
 
   function navigate(dir){
-    if (!activeGroup || !activeGroup.nodes || index < 0) return;
-    const total = activeGroup.nodes.length;
-    index = (index + dir + total) % total;
-    const el  = activeGroup.nodes[index];
-    const src = activeGroup.src(el);
-    const alt = activeGroup.alt(el);
-    if (src){
-      modalImg.src = src;
-      modalImg.alt = alt || '';
-    }
+    if (!currentList.length || index < 0) return;
+    index = (index + dir + currentList.length) % currentList.length;
+    const card = currentList[index];
+    modalImg.src = srcFromCard(card);
+    modalImg.alt = altFromCard(card);
   }
 
-  // Делегируем клики для каждой группы
-  groups.forEach(group => {
-    console.log(`Найдено ${group.nodes.length} элементов для группы ${group.name}`); // отладка
-    group.nodes.forEach((card, i)=>{
-      card.addEventListener('click', ()=>{
-        console.log(`Клик по ${group.name}, элемент ${i}`); // отладка
-        const src = group.src(card);
-        const alt = group.alt(card);
-        console.log(`Src: ${src}, Alt: ${alt}`); // отладка
-        if (src) {
-          console.log(`Открываем модальное окно для ${group.name}`); // отладка
-          openModal(src, alt, group.name, i);
-        } else {
-          console.log(`Ошибка: нет src для ${group.name}`); // отладка
-        }
-      });
-    });
-  });
-
-  // Закрытие
   closeBtn?.addEventListener('click', closeModal);
   overlay?.addEventListener('click', closeModal);
-  modalImg?.addEventListener('click', closeModal); // тап по картинке тоже закрывает
+  modalImg?.addEventListener('click', closeModal);
 
-  // Клавиатура
   document.addEventListener('keydown', (e)=>{
     if (!modal.classList.contains('active')) return;
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape')     closeModal();
     if (e.key === 'ArrowRight') navigate(+1);
     if (e.key === 'ArrowLeft')  navigate(-1);
   });
 })();
 
-// === Фото-слайдер: расчёт ширины карточки по натуральному аспекту изображения ===
+// === Инициализация фото-слайдера (без pointer-capture; авто-ширина по аспекту) ===
 (function initPhotosSlider(){
   const root = document.querySelector('.photos-slider');
   if (!root) return;
@@ -243,60 +227,54 @@ const COUNTER_ID = 104468814;
   const cards = Array.from(track.querySelectorAll('.photo-card'));
   const prev  = root.querySelector('.photos-btn.prev');
   const next  = root.querySelector('.photos-btn.next');
+  if (!track) return;
 
-  // Вычисляем ширину карточки: width = height * (naturalWidth / naturalHeight)
   function fitCardWidth(card, img){
-    const h = card.getBoundingClientRect().height;          // текущая фактическая высота (учитывает медиа-правила)
-    const w = img.naturalWidth || img.width;
+    const h  = card.getBoundingClientRect().height;
+    const w  = img.naturalWidth  || img.width;
     const nh = img.naturalHeight || img.height;
     if (!w || !nh || !h) return;
-
-    const ratio = w / nh;                                   // аспект изображения
-    const target = Math.max(180, Math.min(h * ratio, 1000)); // защита от экстремумов
+    const ratio = w / nh;
+    const target = Math.max(160, Math.min(h * ratio, 1000));
     card.style.width = `${Math.round(target)}px`;
   }
-
   function layout(){
     cards.forEach(card=>{
-      const img = card.querySelector('img');
-      if (!img) return;
+      const img = card.querySelector('img'); if (!img) return;
       if (img.complete) fitCardWidth(card, img);
       else img.addEventListener('load', ()=>fitCardWidth(card, img), { once:true });
     });
   }
 
-  // Навигация (стрелки листают ~на ширину видимой области)
   const scrollStep = () => track.clientWidth * 0.9;
   const scrollByX  = dir => track.scrollBy({ left: dir * scrollStep(), behavior:'smooth' });
   prev?.addEventListener('click', ()=>scrollByX(-1));
   next?.addEventListener('click', ()=>scrollByX( 1));
 
-  // Клавиатура
   track.addEventListener('keydown', (e)=>{
     if (e.key === 'ArrowRight') scrollByX(1);
     if (e.key === 'ArrowLeft')  scrollByX(-1);
   });
 
-  // Drag / Swipe
-  let isDown = false, startX = 0, startScroll = 0;
+  // Drag / Swipe без pointer-capture
+  let isDown = false, startX = 0, startScroll = 0, moved = 0;
+  const dragThreshold = 5;
+
   track.addEventListener('pointerdown', (e)=>{
-    isDown = true; track.setPointerCapture(e.pointerId);
+    isDown = true; moved = 0;
     startX = e.clientX; startScroll = track.scrollLeft;
   });
   track.addEventListener('pointermove', (e)=>{
     if(!isDown) return;
     const dx = e.clientX - startX;
+    moved = Math.max(moved, Math.abs(dx));
     track.scrollLeft = startScroll - dx;
   });
   ['pointerup','pointercancel','mouseleave'].forEach(ev=>{
     track.addEventListener(ev, ()=>{ isDown=false; });
   });
+  track.addEventListener('click', (e)=>{ if (moved > dragThreshold) { e.stopPropagation(); e.preventDefault(); } });
 
-  // Первичная раскладка + пересчёт на ресайз (debounce)
   layout();
-  let t=null;
-  window.addEventListener('resize', ()=>{
-    clearTimeout(t);
-    t=setTimeout(layout, 120);
-  });
+  let t=null; window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(layout, 120); });
 })();
