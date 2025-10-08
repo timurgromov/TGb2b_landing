@@ -186,22 +186,35 @@ function unlockPageScroll() {
   // Навигация по кнопкам
   function move(dir){
     const from = currentIndex();
+    
+    console.log('🔄 MOVE DEBUG:', {
+      direction: dir > 0 ? '→' : '←',
+      from: from,
+      firstIndex: firstIndex,
+      lastIndex: lastIndex,
+      totalCards: allCards.length,
+      'from === lastIndex': from === lastIndex,
+      'from === firstIndex': from === firstIndex
+    });
 
     // Мы стоим на последнем ОРИГИНАЛЕ и жмём "вперёд" — упор в maxScroll.
     // Сразу прыгаем на первый ОРИГИНАЛ (без анимации), иначе браузер не дотянет до правого клона.
     if (dir > 0 && from === lastIndex){
+      console.log('✅ ПРЫГАЕМ на первую! snapTo(', firstIndex, ')');
       snapTo(firstIndex, 'auto');   // мгновенно
       return;
     }
 
     // Мы стоим на первом ОРИГИНАЛЕ и жмём "назад" — симметрично.
     if (dir < 0 && from === firstIndex){
+      console.log('✅ ПРЫГАЕМ на последнюю! snapTo(', lastIndex, ')');
       snapTo(lastIndex, 'auto');    // мгновенно
       return;
     }
 
     // Обычный шаг внутри диапазона оригиналов — плавно
     const to = from + dir;
+    console.log('➡️ Обычная прокрутка к', to);
     track.scrollTo({ left: to * step(), behavior: 'smooth' });
   }
 
