@@ -1021,7 +1021,7 @@ body.is-modal-open{
 /* Подзаголовок — комфортная читабельность */
 :root #hero-subtitle{
   margin-top: 10px !important;
-  line-height: 1.7 !important;
+  line-height: 1.6 !important;
   color: rgba(255,255,255,0.78) !important;
 }
 
@@ -1351,17 +1351,7 @@ body.is-modal-open{
 
 /* АРТЕФАКТ УДАЛЕН - конфликтовал с #hero padding-bottom: 64px */
 
-/* Фото: скругление для унификации с карточками */
-:root .hero__photo {
-  border-radius: 16px !important;
-  overflow: hidden !important;
-  box-shadow: none !important;
-}
-
-:root .hero__photo img {
-  border-radius: 16px !important;
-  box-shadow: none !important;
-}
+/* АРТЕФАКТ УДАЛЕН - дублирование border-radius, конфликтовало с sharp edges */
 
 /* WhatsApp FAB удален */
 
@@ -1387,9 +1377,9 @@ body.is-modal-open{
   padding-bottom: 26px !important;
 }
 
-/* Фото смещаем чуть вниз для баланса взгляда */
+/* Фото поднимаем вверх для выравнивания с заголовком */
 :root .hero__photo {
-  transform: translateY(16px) !important;
+  transform: translateY(-20px) !important;
 }
 
 /* Общая высота hero для золотого соотношения "одним взглядом" */
@@ -1404,7 +1394,7 @@ body.is-modal-open{
   }
   
   :root .hero__photo {
-    transform: translateY(8px) !important;
+    transform: translateY(-10px) !important;
   }
   
   :root .hero {
