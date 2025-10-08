@@ -1351,7 +1351,15 @@ body.is-modal-open{
 
 /* АРТЕФАКТ УДАЛЕН - конфликтовал с #hero padding-bottom: 64px */
 
-/* АРТЕФАКТ УДАЛЕН - дублирование border-radius, конфликтовало с sharp edges */
+/* Фото: лёгкое скругление */
+:root .hero__photo {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+:root .hero__photo img {
+  border-radius: 16px !important;
+}
 
 /* WhatsApp FAB удален */
 
