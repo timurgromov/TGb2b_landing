@@ -150,8 +150,7 @@ const COUNTER_ID = 104468814;
   if (!modal || !modalImg) return;
 
   // Безопасные отступы от краёв окна (чтобы не прилипало)
-  const PADDING_VW = 32; // px
-  const PADDING_VH = 32; // px
+  const PADDING = 64; // px (32 с каждой стороны)
 
   function fitToViewport(imgEl){
     // Натуральные размеры файла
@@ -159,8 +158,8 @@ const COUNTER_ID = 104468814;
     const natH = imgEl.naturalHeight || imgEl.height || 1400;
 
     // Доступная область экрана (минус безопасные поля)
-    const vw = Math.max(0, window.innerWidth  - PADDING_VW*2);
-    const vh = Math.max(0, window.innerHeight - PADDING_VH*2);
+    const vw = Math.max(0, window.innerWidth  - PADDING);
+    const vh = Math.max(0, window.innerHeight - PADDING);
 
     // Масштаб без обрезки
     const scale = Math.min(vw / natW, vh / natH, 1); // не увеличиваем сверх 100% качества

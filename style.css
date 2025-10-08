@@ -442,23 +442,54 @@ button{font-family:inherit;cursor:pointer}
 }
 
 /* ===== Модальное окно для писем и фото ===== */
-/* Тёмный фон во весь экран — как есть */
+/* 1) Базовая обёртка модалки: занимаем весь вьюпорт и ЦЕНТРИРУЕМ через grid */
+.modal{
+  position: fixed;
+  inset: 0;
+  display: none;                 /* по умолчанию скрыта */
+}
+.modal.active{
+  display: grid;                 /* grid для простого центрирования */
+  place-items: center;           /* вертикально и горизонтально по центру */
+  z-index: 1000;
+}
+
+/* 2) Затемнение — независимый слой с pointer-events */
 .modal__overlay{
-  position:fixed; inset:0;
-  background:rgba(0,0,0,.78); /* чуть темнее, чтобы белые письма читались лучше */
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.78);
+  pointer-events: auto;
 }
 
-/* Контент модалки — БЕЗ белого фона и без внутренних отступов */
+/* 3) Контентный слой модалки — НИКАКИХ контейнеров/паддингов/смещений */
 .modal__content{
-  position:fixed; inset:0;
-  display:flex; align-items:center; justify-content:center;
-  background:transparent;          /* было: белое/серое — убрать */
-  padding:0;                       /* убрать внутренние отступы, поля даём у картинки при необходимости */
+  position: relative;            /* в центре грида */
+  pointer-events: none;          /* клики проходят к overlay, кроме изображения/крестика */
+  background: transparent;
+  padding: 0;
+  margin: 0;
 }
 
-/* Крестик оставить как есть, но поверх изображения */
+/* 4) Само изображение — центрируем, размеры выставляет JS */
+.letter-modal-img{
+  display: block;
+  margin: 0;                     /* никакой автопридёрки */
+  max-width: calc(100vw - 64px);
+  max-height: calc(100vh - 64px);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.45);
+  cursor: zoom-out;
+  pointer-events: auto;          /* кликабельно (закрытие) */
+  background: #fff;              /* письма читаются как «лист» */
+}
+/* Для фото без белого фона */
+.modal--photo .letter-modal-img{ background: transparent; }
+
+/* 5) Крестик — фиксирован сверху справа, поверх всего */
 .modal__close{
-  position:fixed; top:18px; right:18px; z-index:10;
+  position: fixed; top: 18px; right: 18px;
+  z-index: 1001;
+  pointer-events: auto;
   background:rgba(0,0,0,.5);
   color:#fff;
   border-radius:50%;
@@ -474,18 +505,8 @@ button{font-family:inherit;cursor:pointer}
   background:rgba(0,0,0,.7);
 }
 
-/* Картинка в лайтбоксе. Размер ставим из JS, тут только базовые стили */
-.letter-modal-img{
-  display:block;
-  max-width:100%; max-height:100%; /* страховка */
-  border-radius:14px;
-  box-shadow:0 18px 50px rgba(0,0,0,.45);
-  cursor:zoom-out;
-  background:#fff;                 /* ВАЖНО: белый фон для сканов писем, чтобы края были «листом» */
-}
-
-/* Если нужна картинка без белого фона (обычные фото), добавим модификатор .modal--photo */
-.modal--photo .letter-modal-img{ background:transparent; }
+/* Предохранители от внешних контейнеров: никакого влияния .container на модалку */
+.modal .container{ all: unset; }
 
 /* Курсор для изображения в лайтбоксе */
 .letter-modal-img{ cursor: zoom-out; }
