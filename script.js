@@ -167,11 +167,19 @@ function unlockPageScroll() {
   // 4) Навигационное состояние
   let currentLi = 0; // 0..N-1
 
-  // Прокрутка к логическому индексу ЧЕРЕЗ scrollIntoView — не упирается в maxScroll
+  // Прокрутка к логическому индексу
   function snapLogical(li, behavior='auto'){
     currentLi = (li % N + N) % N;
     const el = cards[physFromLogical(currentLi)];
-    el.scrollIntoView({ behavior, inline: 'center', block: 'nearest' });
+    
+    if (behavior === 'auto') {
+      // Мгновенный телепорт через прямое изменение scrollLeft
+      const targetLeft = el.offsetLeft - (track.clientWidth - el.offsetWidth) / 2;
+      track.scrollLeft = targetLeft;
+    } else {
+      // Плавная прокрутка через scrollIntoView
+      el.scrollIntoView({ behavior, inline: 'center', block: 'nearest' });
+    }
   }
 
   // Старт — первый оригинал по центру
