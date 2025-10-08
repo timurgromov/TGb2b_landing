@@ -442,6 +442,12 @@ button{font-family:inherit;cursor:pointer}
 }
 
 /* ===== Модальное окно для писем и фото ===== */
+/* Флаг блокировки скролла для документа */
+html.is-modal-open, body.is-modal-open {
+  overflow: hidden !important;
+  height: 100%;
+}
+
 /* 1) Базовая обёртка модалки: занимаем весь вьюпорт и ЦЕНТРИРУЕМ через grid */
 .modal{
   position: fixed;
@@ -452,6 +458,7 @@ button{font-family:inherit;cursor:pointer}
   display: grid;                 /* grid для простого центрирования */
   place-items: center;           /* вертикально и горизонтально по центру */
   z-index: 1000;
+  overflow: hidden;              /* ключ: модалка сама никогда не прокручивается */
 }
 
 /* 2) Затемнение — независимый слой с pointer-events */
@@ -468,6 +475,9 @@ button{font-family:inherit;cursor:pointer}
   background: transparent;
   padding: 0;
   margin: 0;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;              /* ключ: внутри модалки тоже нет скролла */
 }
 
 /* 4) Само изображение — центрируем, размеры выставляет JS */

@@ -102,6 +102,30 @@ const COUNTER_ID = 104468814;
 // Утилита: дебаунс
 function debounce(fn, t=120){ let id=null; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), t);} }
 
+// Блокировка прокрутки body без «скачка» страницы
+let __scrollY = 0;
+function lockPageScroll() {
+  __scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+  document.documentElement.classList.add('is-modal-open');
+  document.body.classList.add('is-modal-open');
+  // фиксация позиции без сдвига макета
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${__scrollY}px`;
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
+}
+function unlockPageScroll() {
+  document.documentElement.classList.remove('is-modal-open');
+  document.body.classList.remove('is-modal-open');
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.width = '';
+  window.scrollTo(0, __scrollY);
+}
+
 // === Инициализация слайдера писем (без pointer-capture; drag-порог + индикатор) ===
 (function initLettersSlider(){
   const root = document.querySelector('.letters-slider');
@@ -247,7 +271,7 @@ function debounce(fn, t=120){ let id=null; return (...a)=>{ clearTimeout(id); id
     if (groupName === 'photos') modal.classList.add('modal--photo');
     else modal.classList.remove('modal--photo');
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    lockPageScroll(); // блокируем прокрутку страницы
 
     if (typeof ym === 'function') ym(COUNTER_ID, 'reachGoal', 'lightbox_open_' + groupName);
     
@@ -268,7 +292,7 @@ function debounce(fn, t=120){ let id=null; return (...a)=>{ clearTimeout(id); id
 
   function closeModal(){
     modal.classList.remove('active');
-    document.body.style.overflow = '';
+    unlockPageScroll(); // восстанавливаем прокрутку страницы
     modalImg.src = '';
     index = -1; currentList = []; groupName = '';
   }
