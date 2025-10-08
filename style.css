@@ -997,18 +997,66 @@ body.is-modal-open{
   :root #hero-tags .tag{ font-size:13.5px !important; padding:6px 10px !important; }
 }
 
-/* ====== УВЕЛИЧЕНИЕ КИСЛОРОДА МЕЖДУ ЧИПСАМИ И CTA ====== */
+/* ====== СОВРЕМЕННЫЙ HERO-БЛОК (2025) - ЧИСТЫЙ И ДОРОГОЙ ====== */
+
+/* 1) Иерархия и типографика */
+:root #hero-left h1 {
+  font-size: 58px !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.2px !important;
+  margin-bottom: 22px !important;
+  max-width: 740px !important;
+}
+
+:root #hero-subtitle {
+  font-size: 19px !important;
+  line-height: 1.6 !important;
+  max-width: 740px !important;
+  margin-bottom: 30px !important;
+  color: rgba(255,255,255,0.78) !important;
+}
+
+/* 2) Чипсы (бейджи) */
 :root #hero-tags {
-  margin-bottom: 52px !important; /* увеличено расстояние под чипсами */
+  margin-bottom: 56px !important; /* кислород до CTA */
+  margin-top: 22px !important; /* отступ от подзаголовка */
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  row-gap: 14px !important;
+  max-width: 740px !important;
 }
 
+:root #hero-tags .tag {
+  font-size: 15px !important;
+  padding: 10px 14px !important;
+  border-radius: 12px !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.85) !important;
+  transition: background 0.2s ease, border-color 0.2s ease !important;
+  cursor: default !important;
+}
+
+:root #hero-tags .tag:hover {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* 3) CTA кнопки */
 :root #hero-actions {
-  margin-top: 52px !important; /* добавлен воздух над кнопками */
+  margin-top: 56px !important; /* кислород над кнопками */
 }
 
-/* Для надёжности перекрываем любые вложенные селекторы с более высокой специфичностью */
+/* Для надёжности перекрываем любые вложенные селекторы */
 #hero-left #hero-tags,
 #hero-left #hero-actions {
-  margin-bottom: 52px !important;
-  margin-top: 52px !important;
+  margin-bottom: 56px !important;
+  margin-top: 56px !important;
+}
+
+#hero-left #hero-tags {
+  margin-top: 22px !important;
 }
