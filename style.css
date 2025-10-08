@@ -307,6 +307,7 @@ button{font-family:inherit;cursor:pointer}
   flex:0 0 auto;
   height:var(--photo-h);                  /* фиксируем ЕДИНУЮ высоту */
   width:auto;                             /* ширину выставит JS по аспекту */
+  min-width: 240px;                       /* минимальная ширина для гарантии отображения */
   scroll-snap-align:center;
   background:#000; border-radius:16px; overflow:hidden;
   border:1px solid var(--stroke);

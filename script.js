@@ -490,7 +490,12 @@ function unlockPageScroll() {
   track.addEventListener('click', (e)=>{ if (moved > dragThreshold) { e.stopPropagation(); e.preventDefault(); } });
 
   track.addEventListener('scroll', debounce(updateArrows, 40));
+  
+  // Инициализация с повторными попытками для медленных соединений
   layout();
+  setTimeout(layout, 500);   // повтор через 0.5с
+  setTimeout(layout, 1500);  // повтор через 1.5с
+  
   let t=null; window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(()=>{ layout(); updateArrows(); }, 120); });
   requestAnimationFrame(updateArrows);
 })();
