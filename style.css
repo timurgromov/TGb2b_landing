@@ -489,31 +489,53 @@ button{font-family:inherit;cursor:pointer}
   }
 }
 
-/* === HERO TAGS === */
-.hero-tags {
+/* ---- базовые переменные для масштаба ---- */
+:root{
+  --tag-font: 14px;            /* было крупнее ~16px */
+  --tag-py: 6px;               /* было 8–10px */
+  --tag-px: 12px;              /* было 16–18px */
+  --tag-bg: rgba(255,255,255,0.05);
+  --tag-border: rgba(255,255,255,0.10);
+  --tag-radius: 8px;
+}
+
+/* ---- левая колонка/карточка героя не должна резать потомков ---- */
+.hero-left, .hero-card, .hero-text, .hero-content{
+  overflow: visible !important;   /* ключ к проблеме "часть чипсов спряталась" */
+}
+
+/* ---- блок с чипсами ---- */
+.hero-tags{
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 24px;
+  gap: 8px;                       /* вертикальный ритм между рядами */
+  margin-top: 22px;               /* от заголовка/подзаголовка */
+  margin-bottom: 14px;            /* основной зазор до кнопок (дополнительно усилим ниже на .hero-actions) */
 }
-.hero-tags .tag-row {
+.hero-tags .tag-row{
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 10px;                      /* горизонтальный зазор между чипсами */
 }
-.tag {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px;
-  padding: 7px 14px;             /* было ~9–10px */
-  font-size: 14.5px;             /* уменьшено на 15% */
+.hero-tags .tag{
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  border-radius: var(--tag-radius);
+  padding: var(--tag-py) var(--tag-px);
+  font-size: var(--tag-font);
   font-weight: 500;
   color: #e9e9ea;
-  transition: all 0.15s ease;
+  line-height: 1.25;
+  /* убираем интерактивность по ощущениям */
+  transition: none;
+  transform: none;
+  cursor: default;
 }
-.tag:hover {
-  background: rgba(255,255,255,0.1);
-  transform: translateY(-1px);
+/* никаких визуальных изменений при наведении */
+.hero-tags .tag:hover{
+  background: var(--tag-bg);
+  border-color: var(--tag-border);
+  transform: none;
 }
 
 /* === CALL BUTTON === */
@@ -542,19 +564,33 @@ button{font-family:inherit;cursor:pointer}
   height: 18px;
 }
 
-/* === MOBILE === */
-@media (max-width: 768px) {
-  .hero-tags {
-    align-items: center;
-    gap: 6px;
+/* ---- блок с кнопками под чипсами ---- */
+.hero-actions{
+  margin-top: 22px;               /* дополнительный зазор от чипсов */
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ---- заглушки на случай если кнопки не в .hero-actions (чтобы не слипалось) ---- */
+.hero-tags + .button-row,
+.hero-tags + .cta-row,
+.hero-tags + .hero-ctas{
+  margin-top: 22px;
+}
+
+/* ---- адаптив ---- */
+@media (max-width: 992px){
+  :root{
+    --tag-font: 13.5px;
+    --tag-py: 6px;
+    --tag-px: 11px;
   }
-  .hero-tags .tag-row {
-    justify-content: center;
-  }
-  .tag {
-    font-size: 13.5px;
-    padding: 6px 12px;
-  }
+}
+@media (max-width: 768px){
+  .hero-tags{ align-items: center; gap: 6px; margin-top: 18px; margin-bottom: 12px; }
+  .hero-tags .tag-row{ justify-content: center; gap: 8px; }
+  .hero-actions{ justify-content: center; margin-top: 18px; gap: 12px; }
 }
 
 @media (max-width:640px){
