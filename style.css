@@ -1582,16 +1582,21 @@ body.is-modal-open{
   
   /* === HERO: Чипсы === */
   :root #hero-tags {
-    justify-content: flex-start !important; /* выравнивание по левому краю */
+    display: block !important; /* убираем flex, делаем block */
     max-width: 100% !important;
-    gap: 8px !important;
     margin-bottom: 24px !important;
-    flex-direction: row !important; /* убираем column, чтобы все чипсы были в одном ряду */
-    flex-wrap: wrap !important;
   }
   
   :root #hero-tags .tag-row {
-    display: contents !important; /* убираем разделение на ряды, чипсы переносятся автоматически */
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important; /* выравнивание по левому краю */
+    gap: 8px !important;
+    margin-bottom: 8px !important; /* отступ между рядами */
+  }
+  
+  :root #hero-tags .tag-row:last-child {
+    margin-bottom: 0 !important;
   }
   
   :root #hero-tags .tag {
