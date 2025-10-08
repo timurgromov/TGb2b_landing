@@ -1072,3 +1072,10 @@ body.is-modal-open{
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
+
+/* Поднимаем весь левый блок на уровень фотографии */
+:root #hero-left {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  align-self: start !important;
+}
