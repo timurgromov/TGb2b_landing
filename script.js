@@ -437,3 +437,108 @@ function unlockPageScroll() {
   layout();
   let t=null; window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(layout, 120); });
 })();
+
+// ==============================
+// Letters — медленный автодрейф «пинг-понг» (туда-сюда)
+// ==============================
+(function initLettersPingPong(){
+  const root  = document.querySelector('.letters-slider');
+  if (!root) return;
+  const track = root.querySelector('.letters-track');
+  const cards = Array.from(track.querySelectorAll('.letter-card'));
+  if (cards.length < 2) return;
+
+  // Уважение системной настройки
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Геометрия: координата центра карточки
+  const centerLeft = (el) => el.offsetLeft - (track.clientWidth - el.offsetWidth) / 2;
+
+  // Левая и правая границы движения
+  const bounds = () => {
+    const left  = Math.max(0, Math.round(centerLeft(cards[0])));
+    const right = Math.max(0, Math.round(centerLeft(cards[cards.length - 1])));
+    return { left, right };
+  };
+
+  // Скорость (px/сек)
+  const SPEED_DESKTOP = 18;
+  const SPEED_MOBILE  = 12;
+  const SPEED = window.matchMedia('(max-width: 860px)').matches ? SPEED_MOBILE : SPEED_DESKTOP;
+
+  // Управление анимацией
+  let rafId = 0;
+  let playing = false;
+  let userHold = false;
+  let lastTs = 0;
+  let dir = +1; // +1 вправо, -1 влево
+
+  // Во время автодрейфа отключаем scroll-snap, чтобы не было рывков
+  let prevSnap = '';
+  const snapOff = () => { prevSnap = track.style.scrollSnapType; track.style.scrollSnapType = 'none'; };
+  const snapOn  = () => { track.style.scrollSnapType = prevSnap || 'x mandatory'; };
+
+  function start() {
+    if (playing || userHold) return;
+    playing = true; lastTs = 0;
+    snapOff();
+    rafId = requestAnimationFrame(step);
+  }
+
+  function stop() {
+    if (!playing) return;
+    playing = false;
+    cancelAnimationFrame(rafId);
+    rafId = 0;
+    snapOn();
+  }
+
+  function step(ts) {
+    if (!lastTs) lastTs = ts;
+    const dt = (ts - lastTs) / 1000;
+    lastTs = ts;
+
+    const { left, right } = bounds();
+    let next = track.scrollLeft + dir * SPEED * dt;
+
+    if (next <= left)  { next = left;  dir = +1; }
+    if (next >= right) { next = right; dir = -1; }
+
+    track.scrollLeft = next;
+    rafId = requestAnimationFrame(step);
+  }
+
+  // Автоматически останавливаем, если блок не виден
+  const io = new IntersectionObserver((entries) => {
+    const visible = entries[0]?.isIntersecting;
+    if (visible && !userHold) start(); else stop();
+  }, { root: null, threshold: 0.2 });
+  io.observe(root);
+
+  // Любое взаимодействие пользователя — ставим на паузу
+  const hold = () => { userHold = true; stop(); };
+  const resume = () => { userHold = false; start(); };
+
+  ['pointerdown','mouseenter','focusin','touchstart'].forEach(ev =>
+    root.addEventListener(ev, hold, { passive: true })
+  );
+  ['pointerup','mouseleave','focusout','touchend','touchcancel'].forEach(ev =>
+    root.addEventListener(ev, () => setTimeout(resume, 700), { passive: true })
+  );
+
+  // Клики по стрелкам — ставят паузу
+  const prevBtn = root.querySelector('.letters-btn.prev');
+  const nextBtn = root.querySelector('.letters-btn.next');
+  [prevBtn, nextBtn].forEach(btn =>
+    btn?.addEventListener('click', () => {
+      hold();
+      setTimeout(resume, 1500);
+    })
+  );
+
+  // Старт с левой границы
+  const { left } = bounds();
+  track.scrollLeft = left;
+  dir = +1;
+  start();
+})();
