@@ -369,6 +369,13 @@ function unlockPageScroll() {
   const prevBtn = modal?.querySelector('.modal-prev');
   const nextBtn = modal?.querySelector('.modal-next');
   
+  console.log('🔍 Modal arrows debug:', {
+    modal: !!modal,
+    prevBtn: !!prevBtn,
+    nextBtn: !!nextBtn,
+    modalHTML: modal?.innerHTML?.substring(0, 200)
+  });
+  
   closeBtn?.addEventListener('click', closeModal);
   overlay?.addEventListener('click', closeModal);
   modalImg?.addEventListener('click', closeModal);
