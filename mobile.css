@@ -105,11 +105,27 @@
   .video-grid-fullscreen {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
   }
   
   .video-title {
     font-size: 24px !important;
     margin-bottom: 24px !important;
+  }
+  
+  /* Видео карточки — адаптация для мобилки */
+  .video-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 16/9 !important;
+    margin: 0 auto !important;
+  }
+  
+  .video-wrapper img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
   }
   
   /* ===== FOOTER ===== */
