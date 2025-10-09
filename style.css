@@ -1600,7 +1600,7 @@ body.is-modal-open{
   
   #hero-left h1 .h1-prefix {
     font-size: 32px !important;  /* основной заголовок на планшетах */
-    line-height: 1.2 !important;
+    line-height: 1.156 !important; /* 5px между строками: (32+5)/32 */
   }
   
   #hero-left h1 .h1-name {
@@ -1718,6 +1718,7 @@ body.is-modal-open{
 @media (max-width: 480px) {
   #hero-left h1 .h1-prefix {
     font-size: 26px !important;  /* основной заголовок на мобильных */
+    line-height: 1.192 !important; /* 5px между строками: (26+5)/26 */
   }
   
   #hero-left h1 .h1-name {
