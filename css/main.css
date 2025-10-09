@@ -1039,16 +1039,7 @@ body.is-modal-open{
 }
 
 /* Чипсы — ближе к тексту, светлее */
-#hero-tags{
-  margin-top: 14px !important;
-  margin-bottom: 0 !important;
-}
-#hero-tags .tag{
-  background: rgba(255,255,255,0.04) !important;
-  border-color: rgba(255,255,255,0.08) !important;
-  color: rgba(255,255,255,0.85) !important;
-  transition: none !important;
-}
+/* АРТЕФАКТ УДАЛЕН - дубль #hero-tags, основной блок в строке 1192 */
 
 /* Кнопки — больше воздуха */
 #hero-actions{
