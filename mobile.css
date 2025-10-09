@@ -117,6 +117,25 @@
   .footer__grid {
     grid-template-columns: 1fr !important;
   }
+
+  /* Убираем синий цвет у цифр ИНН/ОГРНИП */
+  .footer__legal {
+    color: var(--text-muted) !important;
+  }
+
+  /* ===== HEADER FIXES ===== */
+  
+  /* Убираем белый квадрат в хедере */
+  .header-cta .call-btn {
+    display: none !important; /* скрываем кнопку "Позвонить" на мобилке */
+  }
+
+  /* ===== МОДАЛКИ ===== */
+  
+  /* Убираем PopUp благодарностей на мобилке */
+  #letter-modal {
+    display: none !important;
+  }
   
   /* ===== LETTERS SECTION ===== */
   
