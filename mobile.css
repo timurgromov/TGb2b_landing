@@ -1,6 +1,6 @@
 /* ===== МОБИЛЬНАЯ ВЕРСИЯ (адаптация desktop стилей) ===== */
 
-@media (max-width: 860px) {
+@media (max-width: 768px) {
   :root {
     /* при желании можно поменять соотношение */
     --m-frame-ratio: 16/9;
@@ -185,12 +185,12 @@
 
 }
 
-/* ФИНАЛЬНЫЙ ОВЕРРАЙД ДЛЯ МОБИЛКИ */
+/* ФИНАЛЬНЫЙ ОВЕРРАЙД ДЛЯ МОБИЛКИ - УБИЙЦА ВСЕХ КОНФЛИКТОВ */
 @media (max-width: 768px) {
   html body #hero-left h1 { 
-    line-height: 1.09 !important;
+    line-height: 1.03 !important;  /* 32px + 1px = 33px, 33/32 = 1.03 */
   }
   html body #hero-left h1 .h1-prefix {
-    line-height: 1.09 !important;
+    line-height: 1.03 !important;
   }
 }
