@@ -138,4 +138,23 @@
 
   /* Модальное окно для благодарностей отключено через JS (script.js строка 368) */
   /* НЕ скрываем через CSS, т.к. то же окно используется для фотогалереи! */
+
+  /* ===== HERO: Чипсы с автоматическим переносом ===== */
+  
+  #hero-tags {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    max-width: 100% !important;
+    margin-bottom: 24px !important;
+  }
+
+  #hero-tags .tag-row {
+    display: contents !important; /* убираем обёртку, чтобы flex работал напрямую с .tag */
+  }
+
+  #hero-tags .tag {
+    font-size: 13.5px !important;
+    padding: 6px 10px !important;
+  }
 }
