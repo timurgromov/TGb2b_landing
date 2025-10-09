@@ -185,13 +185,12 @@
 
 }
 
-/* Дополнительная специфичность для перебития style.css */
-@media (max-width: 767px) {
-  #hero-left h1 {
+/* ФИНАЛЬНЫЙ ОВЕРРАЙД ДЛЯ МОБИЛКИ */
+@media (max-width: 768px) {
+  html body #hero-left h1 { 
     line-height: 1.09 !important;
   }
-  
-  #hero-left h1 .h1-prefix {
+  html body #hero-left h1 .h1-prefix {
     line-height: 1.09 !important;
   }
 }

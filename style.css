@@ -1568,14 +1568,14 @@ body.is-modal-open{
   
   /* === HERO: Типографика === */
   #hero-left h1 {
-    line-height: 1.2 !important;
+    line-height: 1.2;  /* убран !important, чтобы mobile.css мог перебить */
     white-space: normal !important;
     margin-bottom: 16px !important;
   }
   
   #hero-left h1 .h1-prefix {
     font-size: 32px !important;  /* основной заголовок на планшетах */
-    line-height: 1.2 !important;
+    line-height: 1.2;  /* убран !important, чтобы mobile.css мог перебить */
   }
   
   #hero-left h1 .h1-name {
