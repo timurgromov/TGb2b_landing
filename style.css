@@ -1580,12 +1580,12 @@ body.is-modal-open{
   
   #hero-left h1 .h1-name {
     font-size: 36px !important;
-    line-height: 1.15 !important;
+    /* line-height убран полностью - управляется только из mobile.css */
   }
   
   #hero-subtitle {
     font-size: 16px !important;
-    line-height: 1.55 !important;
+    /* line-height убран полностью - управляется только из mobile.css */
     margin-top: 12px !important;
     margin-bottom: 20px !important;
   }
