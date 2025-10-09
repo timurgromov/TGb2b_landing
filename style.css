@@ -1708,7 +1708,6 @@ body.is-modal-open{
 
 /* Убираем пустую «кнопку-бургер»/плейсхолдер в хедере */
 .burger,
-.header-cta > a:empty,
-.header-cta > button:empty {
+.call-btn {
   display: none !important;
 }
