@@ -157,4 +157,19 @@
     font-size: 13.5px !important;
     padding: 6px 10px !important;
   }
+
+  /* Сокращаем текст чипа Love Radio ТОЛЬКО на мобилке */
+  #hero-tags .tag-radio {
+    font-size: 0 !important;
+  }
+  
+  #hero-tags .tag-radio::before {
+    content: "Ведущий Love Radio";
+    font-size: 13.5px !important;
+  }
+
+  /* Убираем чип "Добрый юмор" на мобилке */
+  #hero-tags .tag-humor {
+    display: none !important;
+  }
 }
