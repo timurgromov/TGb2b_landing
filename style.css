@@ -731,7 +731,7 @@ body {
   vertical-align: middle !important; /* принудительное выравнивание */
 }
 .footer-contacts .footer-social__btn--vk svg {
-  transform: translateY(-3px) scale(1.5) !important; /* приподнимаем и увеличиваем VK логотип */
+  transform: translateY(-5px) scale(1.5) !important; /* приподнимаем и увеличиваем VK логотип */
 }
 .footer-contacts .footer-social__btn:hover{
   transform: translateY(-1px);
@@ -741,7 +741,7 @@ body {
   transform: translateY(-1px); /* hover только для Instagram */
 }
 .footer-contacts .footer-social__btn--vk:hover svg {
-  transform: translateY(-4px) scale(1.5) !important; /* hover для VK с сохранением scale */
+  transform: translateY(-6px) scale(1.5) !important; /* hover для VK с сохранением scale */
 }
 .footer-contacts .footer-social__btn:has([aria-label="YouTube"]) svg {
   transform: translateY(5px) scale(1.15) !important; /* опускаем и увеличиваем YouTube */
