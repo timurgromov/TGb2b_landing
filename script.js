@@ -585,18 +585,13 @@ function unlockPageScroll() {
       window.requestAnimationFrame(() => {
         const currentScroll = window.scrollY || window.pageYOffset;
         
-        // Скрываем header при скролле вниз ПОСЛЕ первого экрана
-        if (currentScroll > HIDE_AFTER) {
-          if (currentScroll > lastScroll) {
-            // скролл вниз → скрыть
-            header.classList.add('header-hidden');
-          } else {
-            // скролл вверх → показать
-            header.classList.remove('header-hidden');
-          }
-        } else {
-          // в пределах первого экрана — всегда показываем
+        // Показываем header ТОЛЬКО на первом экране (до HIDE_AFTER)
+        if (currentScroll <= HIDE_AFTER) {
+          // На первом экране — всегда показываем
           header.classList.remove('header-hidden');
+        } else {
+          // После первого экрана — всегда скрываем
+          header.classList.add('header-hidden');
         }
         
         lastScroll = currentScroll;
