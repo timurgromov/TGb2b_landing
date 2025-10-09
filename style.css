@@ -1593,7 +1593,6 @@ body.is-modal-open{
   
   /* === HERO: Типографика === */
   #hero-left h1 {
-    line-height: 1.2 !important;
     white-space: normal !important;
     margin-bottom: 16px !important;
   }
