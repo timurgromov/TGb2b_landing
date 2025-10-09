@@ -645,3 +645,53 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1 });
 imgs.forEach(img => observer.observe(img));
+
+// ===== МОБИЛЬНАЯ ГАЛЕРЕЯ: ОПРЕДЕЛЕНИЕ ПОРТРЕТНЫХ ФОТО =====
+(function () {
+  const BP = 860;
+
+  function markPortraits() {
+    const scope = document; // можно сузить до корня галереи
+    const imgs = scope.querySelectorAll(
+      '.photo-card img'
+    );
+
+    imgs.forEach(img => {
+      const apply = () => {
+        // Снимаем инлайны, которые ломают адаптив
+        if (window.innerWidth <= BP) {
+          img.style.width = '';
+          img.style.height = '';
+          img.parentElement && (img.parentElement.style.height = '');
+        }
+        // Проставляем класс ориентации
+        if (img.naturalHeight > img.naturalWidth) {
+          img.classList.add('is-portrait');
+        } else {
+          img.classList.remove('is-portrait');
+        }
+      };
+
+      if (img.complete && img.naturalWidth) {
+        apply();
+      } else {
+        img.addEventListener('load', apply, { once: true });
+        img.addEventListener('error', () => img.classList.remove('is-portrait'), { once: true });
+      }
+    });
+  }
+
+  // debounced resize для безопасной перекалибровки
+  let t;
+  function onResize() {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      if (window.innerWidth <= BP) markPortraits();
+    }, 120);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= BP) markPortraits();
+  });
+  window.addEventListener('resize', onResize);
+})();

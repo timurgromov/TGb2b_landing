@@ -1,106 +1,27 @@
 /* ===== МОБИЛЬНАЯ ВЕРСИЯ (адаптация desktop стилей) ===== */
-/* Загружается ТОЛЬКО при ≤860px */
-/* Основано на работающих стилях из style.css */
 
 @media (max-width: 860px) {
-  
-  /* ===== БАЗОВЫЕ ПЕРЕМЕННЫЕ ===== */
   :root {
-    --tag-font: 13.5px;
-    --tag-py: 6px;
-    --tag-px: 11px;
+    /* при желании можно поменять соотношение */
+    --m-frame-ratio: 16/9;
   }
+
+  /* ===== HERO SECTION ===== */
   
-  /* ===== HERO СЕКЦИЯ ===== */
-  
-  /* Основная сетка hero — одна колонка */
   .hero__grid {
     grid-template-columns: 1fr !important;
-    gap: 32px !important;
-    text-align: center !important;
   }
   
-  /* Текст hero */
+  .hero__photo {
+    justify-self: center !important;
+    order: 3 !important; /* order:3 чтобы фото было ПОСЛЕ текста и кнопок */
+  }
+  
   .hero__text {
     order: 1 !important;
   }
   
-  .hero__text h1 {
-    font-size: clamp(28px, 7vw, 36px) !important;
-    line-height: 1.15 !important;
-    margin-bottom: 16px !important;
-  }
-  
-  .hero__text .sub {
-    font-size: 16px !important;
-    margin-bottom: 24px !important;
-    max-width: 90% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  
-  /* Чипсы */
-  .hero-tags {
-    justify-content: center !important;
-    margin-bottom: 28px !important;
-  }
-  
-  .hero-tags .tag-row {
-    justify-content: center !important;
-    gap: 8px !important;
-  }
-  
-  .hero-tags .tag {
-    font-size: var(--tag-font) !important;
-    padding: var(--tag-py) var(--tag-px) !important;
-  }
-  
-  /* Сокращаем "3 года в эфире Love Radio" → "Ведущий Love Radio" ТОЛЬКО на мобилке */
-  .hero-tags .tag-radio {
-    font-size: 0 !important;
-  }
-  
-  .hero-tags .tag-radio::before {
-    content: "Ведущий Love Radio";
-    font-size: var(--tag-font);
-  }
-  
-  /* Скрываем "Добрый юмор" ТОЛЬКО на мобилке */
-  .hero-tags .tag-humor {
-    display: none !important;
-  }
-  
-  /* Кнопки */
-  .hero-actions {
-    flex-direction: column !important;
-    gap: 14px !important;
-    margin-top: 24px !important;
-    max-width: 320px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  
-  .hero-actions .btn {
-    width: 100% !important;
-    height: 52px !important;
-    font-size: 16px !important;
-  }
-  
-  /* Фото hero — после текста */
-  .hero__photo {
-    order: 3 !important;
-    justify-self: center !important;
-    max-width: 320px !important;
-    max-height: 320px !important;
-    margin: 24px auto 0 !important;
-  }
-  
-  .hero__photo img {
-    border-radius: 16px !important;
-    transform: none !important;
-  }
-  
-  /* ===== ВИДЕО СЕКЦИЯ ===== */
+  /* ===== VIDEO SECTION ===== */
   
   .video-grid-fullscreen {
     grid-template-columns: 1fr !important;
@@ -109,115 +30,95 @@
     margin: 0 auto !important;
   }
 
-  /* ===== PHOTO GALLERY FIX ===== */
-  
-  /* Устанавливаем переменные как в Эталоне 18 */
-  :root { 
-    --photo-h: 300px; /* как в Эталоне 18 для 860px */
-  }
-  
-  /* НЕ ПЕРЕОПРЕДЕЛЯЕМ .photo-card - используем desktop стили */
-  /* height: var(--photo-h) наследуется из desktop */
-  /* width: auto наследуется из desktop */
-  /* object-fit: contain наследуется из desktop */
-  
-  .video-title {
-    font-size: 24px !important;
-    margin-bottom: 24px !important;
-  }
-  
-  /* Видео карточки — адаптация для мобилки */
   .video-fullscreen .video-wrapper {
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 auto !important;
     aspect-ratio: 16/9 !important; /* как в desktop */
   }
-  
+
   .video-fullscreen .video-wrapper img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain !important; /* как в письмах - подстраивается под фото */
+    object-fit: cover !important; /* заполняет контейнер, обрезает по бокам */
+  }
+  
+  /* ===== PHOTO GALLERY FIX (РАЗ И НАВСЕГДА) ===== */
+  
+  /* 1) Контейнер галереи: ширина 100%, без боковых переполнений */
+  .photos-slider {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* 2) Сам слайд — это КАДР фиксированной пропорции */
+  .photo-card {
+    width: 100%;
+    aspect-ratio: var(--m-frame-ratio);
+    height: auto !important;          /* сбросить любые фикс-высоты, навешанные на десктопе/JS */
+    position: relative;
+    overflow: hidden;                  /* чтобы ничего не торчало за рамку */
+    display: block;
+  }
+
+  /* 3) Картинка заполняет кадр, по умолчанию — как горизонтальная */
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                 /* горизонтальные заполняют кадр */
+    object-position: center;
+    display: block;
+    max-width: none;                   /* чтобы либы не подсунули max-width:100% и не ломали высоту */
+  }
+
+  /* 4) Для ПОРТРЕТНЫХ (вертикальных) — держим высоту, подстраиваем ширину */
+  .photo-card img.is-portrait {
+    object-fit: contain;               /* показывает целиком, оставляя поля слева/справа */
+    background: transparent;           /* фон кадра виден по бокам */
+  }
+
+  /* 5) Стрелки/контролы — абсолютом поверх кадра, без влияния на ширину слайда */
+  .photos-btn {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* ===== BENEFITS ===== */
+  
+  .benefits {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  /* ===== SLIDER TRACKS ===== */
+  
+  .slider__track {
+    grid-auto-columns: 90vw !important;
   }
   
   /* ===== FOOTER ===== */
   
   .footer__grid {
     grid-template-columns: 1fr !important;
-    text-align: center !important;
-    gap: 20px !important;
   }
   
-  .footer-contacts {
-    text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+  /* ===== LETTERS SECTION ===== */
+  
+  .letter-card {
+    width: 100%;
+    aspect-ratio: 210/297; /* A4 портрет */
+    height: auto !important;
+    position: relative;
+    overflow: hidden;
+    display: block;
   }
-  
-  .footer-social {
-    justify-content: center !important;
-  }
-  
-  /* Скрываем все соцсети кроме Instagram */
-  .footer-social__btn--vk,
-  .footer-social__btn--yt {
-    display: none !important;
-  }
-  
-  /* ===== АДАПТИВНЫЕ МЕЛОЧИ ===== */
-  
-  /* Общие отступы */
-  .section {
-    padding: 48px 0 !important;
-  }
-  
-  .container {
-    padding: 0 20px !important;
-  }
-  
-  /* Скрываем плавающую WA-кнопку на мобиле */
-  .wa-fab {
-    display: none !important;
-  }
-  
-}
 
-/* ===== ДОПОЛНИТЕЛЬНЫЕ БРЕЙКПОИНТЫ ===== */
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 16px !important;
-  }
-  
-  .hero__text h1 {
-    font-size: 26px !important;
-  }
-  
-  .hero__text .sub {
-    font-size: 15px !important;
-  }
-  
-  .hero-actions .btn {
-    height: 50px !important;
-    font-size: 15px !important;
-  }
-  
-  .hero__photo {
-    max-width: 280px !important;
-    max-height: 280px !important;
-  }
-}
-
-@media (max-width: 360px) {
-  .container {
-    padding: 0 12px !important;
-  }
-  
-  .hero__text h1 {
-    font-size: 24px !important;
-  }
-  
-  .hero-actions {
-    max-width: 100% !important;
+  .letter-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
   }
 }
