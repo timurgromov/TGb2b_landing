@@ -22,6 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.documentElement.classList.add('js');
   const els = Array.from(document.querySelectorAll('.sr'));
   if (!els.length) return;
+  
+  // Исключаем элементы галереи из скролл-анимаций
+  const galleryElements = document.querySelectorAll('.photos-slider, .photo-card');
+  galleryElements.forEach(el => el.classList.add('show')); // сразу показываем галерею
 
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce || typeof IntersectionObserver === 'undefined'){
@@ -32,12 +36,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
       if(!entry.isIntersecting) return;
+      
+      // Пропускаем элементы галереи - они уже показаны
+      if (entry.target.classList.contains('photos-slider') || 
+          entry.target.classList.contains('photo-card')) {
+        return;
+      }
+      
       entry.target.classList.add('show');
       io.unobserve(entry.target);
     });
   },{threshold:0.12, rootMargin:'0px 0px -10% 0px'});
 
-  els.forEach(el=>io.observe(el));
+  // Наблюдаем только элементы, которые НЕ являются галереей
+  els.forEach(el => {
+    if (!el.classList.contains('photos-slider') && 
+        !el.classList.contains('photo-card')) {
+      io.observe(el);
+    }
+  });
 })();
 
 
