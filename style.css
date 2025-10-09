@@ -731,7 +731,7 @@ body {
   vertical-align: middle !important; /* принудительное выравнивание */
 }
 .footer-contacts .footer-social__btn--vk svg {
-  transform: translateY(-3px) scale(1.2) !important; /* приподнимаем и увеличиваем VK логотип */
+  transform: translateY(-3px) scale(1.25) !important; /* приподнимаем и увеличиваем VK логотип */
 }
 .footer-contacts .footer-social__btn:hover{
   transform: translateY(-1px);
@@ -741,13 +741,13 @@ body {
   transform: translateY(-1px); /* сохраняем hover для всех кроме VK и YouTube */
 }
 .footer-contacts .footer-social__btn--vk:hover svg {
-  transform: translateY(-4px) scale(1.2) !important; /* hover для VK с сохранением scale */
+  transform: translateY(-4px) scale(1.25) !important; /* hover для VK с сохранением scale */
 }
 .footer-contacts .footer-social__btn:has([aria-label="YouTube"]) svg {
-  transform: translateY(1px) scale(1.15) !important; /* опускаем и увеличиваем YouTube */
+  transform: translateY(2px) scale(1.15) !important; /* опускаем и увеличиваем YouTube */
 }
 .footer-contacts .footer-social__btn:has([aria-label="YouTube"]):hover svg {
-  transform: translateY(0px) scale(1.15) !important; /* hover для YouTube с сохранением scale */
+  transform: translateY(1px) scale(1.15) !important; /* hover для YouTube с сохранением scale */
 }
 /* Мобилка — центр */
 @media (max-width: 768px){
