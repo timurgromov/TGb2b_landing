@@ -176,10 +176,10 @@
   /* ===== HERO: Расстояние между строками заголовка ===== */
   
   #hero-left h1 {
-    line-height: 1.156 !important; /* 37px при font-size: 32px = расстояние 5px */
+    line-height: 1.09 !important; /* 34.88px при font-size: 32px = расстояние 3px */
   }
   
   #hero-left h1 .h1-prefix {
-    line-height: 1.156 !important;
+    line-height: 1.09 !important;
   }
 }
