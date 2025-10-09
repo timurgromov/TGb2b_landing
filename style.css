@@ -730,6 +730,9 @@ body {
   height: 20px !important;
   vertical-align: middle !important; /* принудительное выравнивание */
 }
+.footer-contacts .footer-social__btn--vk svg {
+  transform: translateY(-2px) !important; /* приподнимаем VK логотип */
+}
 .footer-contacts .footer-social__btn:hover{
   transform: translateY(-1px);
   color: var(--accent);
