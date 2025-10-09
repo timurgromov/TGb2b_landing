@@ -125,7 +125,7 @@
   .video-fullscreen .video-wrapper img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
+    object-fit: contain !important; /* как в письмах - подстраивается под фото */
   }
   
   /* ===== FOOTER ===== */
