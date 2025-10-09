@@ -118,8 +118,8 @@
   .video-wrapper {
     width: 100% !important;
     max-width: 100% !important;
-    aspect-ratio: 16/9 !important;
     margin: 0 auto !important;
+    /* aspect-ratio наследуется из desktop стилей */
   }
   
   .video-wrapper img {
