@@ -1092,23 +1092,7 @@ body.is-modal-open{
   max-width: 540px;
 }
 
-#hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 10px;  /* уменьшен gap */
-  margin-bottom: 34px !important;
-}
-
-#hero-tags .tag {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 12px !important;
-  padding: 7px 12px !important;  /* уменьшен padding */
-  color: rgba(255, 255, 255, 0.85) !important;
-  font-size: 13.5px !important;  /* уменьшен шрифт */
-  font-weight: 500 !important;
-  transition: none !important;
-}
+/* АРТЕФАКТ УДАЛЕН - дубль #hero-tags, конфликтует с основным блоком ниже (строка 1224) */
 
 #hero-actions {
   display: flex;
@@ -1183,23 +1167,7 @@ body.is-modal-open{
 #top-cta .btn.btn--wa:hover{ background:#FF905F; }
 
 /* ====== Чипсы: компактнее, 1–2 ряда, без лишнего расползания ====== */
-#hero-tags{
-  display:flex; flex-wrap:wrap; gap:8px 10px;
-  margin-bottom:36px !important;
-  max-width: clamp(520px, 48vw, 620px);   /* ограничение ширины — не уедут в 3 ряд */
-}
-#hero-tags .tag{
-  font-size:14px !important;
-  padding:6px 12px !important;
-  border-radius:10px !important;
-  background: rgba(255,255,255,0.06) !important;
-  border:1px solid rgba(255,255,255,0.08) !important;
-  color: rgba(255,255,255,0.85) !important;
-  transition:none !important;
-}
-
-/* Мобилка — ещё компактнее, но без склеивания */
-/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
+/* АРТЕФАКТ УДАЛЕН - дубль #hero-tags с max-width, конфликтует с основным блоком */
 
 /* ====== СОВРЕМЕННЫЙ HERO-БЛОК (2025) - ЧИСТЫЙ И ДОРОГОЙ ====== */
 
