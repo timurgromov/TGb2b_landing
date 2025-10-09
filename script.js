@@ -637,14 +637,7 @@ function unlockPageScroll() {
   toggleFab(); // проверка при загрузке
 })();
 
-// Активация анимаций при скролле
-const imgs = document.querySelectorAll('.gallery img');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.1 });
-imgs.forEach(img => observer.observe(img));
+// Анимации отключены - фото всегда видны
 
 // ===== МОБИЛЬНАЯ ГАЛЕРЕЯ: ОПРЕДЕЛЕНИЕ ПОРТРЕТНЫХ ФОТО =====
 (function () {
