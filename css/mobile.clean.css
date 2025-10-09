@@ -3,15 +3,35 @@
 /* Десктопные стили сюда НЕ попадают */
 
 /* ===== БАЗОВАЯ ТИПОГРАФИКА И СЕТКА ===== */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 body {
   font-family: Inter, system-ui, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: #e7ebf1;
   background: linear-gradient(180deg, #0c0f14 0%, #0f1216 100%);
-  margin: 0;
-  padding: 0;
   overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
 }
 
 .container {
@@ -75,6 +95,7 @@ body {
 .hero {
   padding: 24px 0 32px;
   min-height: auto;
+  padding-top: 24px; /* компенсация высоты хедера */
 }
 
 .hero__grid {
@@ -89,21 +110,21 @@ body {
 .hero__text h1 {
   font-size: 32px;
   font-weight: 800;
-  line-height: 1.25;
-  margin-bottom: 16px;
+  line-height: 1.2;
+  margin-bottom: 20px;
   max-width: 100%;
 }
 
 .hero__text .h1-prefix {
   font-size: 32px;
   font-weight: 800;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .hero__text .h1-name {
   font-size: 32px;
   font-weight: 800;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .hero-subtitle {
@@ -111,7 +132,7 @@ body {
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
   max-width: 80%;
-  margin: 0 auto 24px;
+  margin: 0 auto 28px;
 }
 
 /* ===== БЕЙДЖИ-ЧИПСЫ ===== */
@@ -154,8 +175,8 @@ body {
 .hero-actions {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-top: 20px;
+  gap: 16px;
+  margin-top: 24px;
 }
 
 .hero-actions .btn {
@@ -199,7 +220,7 @@ body {
 .hero__photo {
   width: 100%;
   max-width: 100%;
-  margin-top: 32px;
+  margin-top: 28px;
 }
 
 .hero__photo img {
@@ -212,7 +233,7 @@ body {
 
 /* ===== ГАЛЕРЕЯ / ПРИМЕРЫ РАБОТ ===== */
 .video-fullscreen {
-  padding: 32px 0;
+  padding: 40px 0;
 }
 
 .video-title {
@@ -380,6 +401,7 @@ body {
   .hero__text .h1-prefix,
   .hero__text .h1-name {
     font-size: 28px;
+    line-height: 1.2;
   }
   
   .hero-subtitle {
@@ -389,6 +411,11 @@ body {
   
   .video-grid-fullscreen {
     gap: 8px;
+  }
+  
+  .hero-actions .btn {
+    height: 52px;
+    font-size: 16px;
   }
 }
 
@@ -401,6 +428,7 @@ body {
   .hero__text .h1-prefix,
   .hero__text .h1-name {
     font-size: 26px;
+    line-height: 1.2;
   }
   
   .hero-actions .btn {
