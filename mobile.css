@@ -111,20 +111,15 @@
 
   /* ===== PHOTO GALLERY FIX ===== */
   
-  .photo-card {
-    height: 320px !important; /* фиксированная высота как на desktop */
-    width: auto !important; /* ширина подстраивается под фото */
-    min-width: 240px !important;
-    max-width: 100% !important;
-    margin: 0 auto !important; /* центрируем */
-    /* точно как на desktop */
+  /* Устанавливаем переменные как в Эталоне 18 */
+  :root { 
+    --photo-h: 300px; /* как в Эталоне 18 для 860px */
   }
-
-  .photo-card img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important; /* как на desktop - подстраивается под фото */
-  }
+  
+  /* НЕ ПЕРЕОПРЕДЕЛЯЕМ .photo-card - используем desktop стили */
+  /* height: var(--photo-h) наследуется из desktop */
+  /* width: auto наследуется из desktop */
+  /* object-fit: contain наследуется из desktop */
   
   .video-title {
     font-size: 24px !important;
