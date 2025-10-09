@@ -1080,12 +1080,12 @@ body.is-modal-open{
 }
 
 :root #hero-left h1 .h1-prefix {
-  font-size: 30.5px !important;    /* "Ведущий на корпоратив" — меньше для визуального баланса */
+  font-size: 52px !important;    /* теперь это основной заголовок, как был "Тимур Громов" */
   font-weight: 800;
 }
 
 :root #hero-left h1 .h1-name {
-  font-size: 52px !important;    /* "Тимур Громов" — как было */
+  font-size: 52px !important;    /* на случай если понадобится */
   font-weight: 800;
 }
 
@@ -1591,7 +1591,7 @@ body.is-modal-open{
   }
   
   :root #hero-left h1 .h1-prefix {
-    font-size: 24px !important;
+    font-size: 36px !important;  /* основной заголовок на планшетах */
     line-height: 1.2 !important;
   }
   
@@ -1694,7 +1694,7 @@ body.is-modal-open{
 /* === Экстра-маленькие экраны === */
 @media (max-width: 480px) {
   :root #hero-left h1 .h1-prefix {
-    font-size: 22px !important;
+    font-size: 28px !important;  /* основной заголовок на мобильных */
   }
   
   :root #hero-left h1 .h1-name {
