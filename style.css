@@ -1031,24 +1031,24 @@ body.is-modal-open{
   transition:opacity .2s ease;
 }
 /* Блок-обёртка: не режем и слегка поднимаем левую колонку */
-:root #hero-left{
+#hero-left{
   overflow: visible !important;
   transform: translateY(-6px);
 }
 
 /* Подзаголовок — комфортная читабельность */
-:root #hero-subtitle{
+#hero-subtitle{
   margin-top: 10px !important;
   line-height: 1.6 !important;
   color: rgba(255,255,255,0.78) !important;
 }
 
 /* Чипсы — ближе к тексту, светлее */
-:root #hero-tags{
+#hero-tags{
   margin-top: 14px !important;
   margin-bottom: 0 !important;
 }
-:root #hero-tags .tag{
+#hero-tags .tag{
   background: rgba(255,255,255,0.04) !important;
   border-color: rgba(255,255,255,0.08) !important;
   color: rgba(255,255,255,0.85) !important;
@@ -1056,7 +1056,7 @@ body.is-modal-open{
 }
 
 /* Кнопки — больше воздуха */
-:root #hero-actions{
+#hero-actions{
   margin-top: 36px !important;
   gap: 18px !important;
 }
@@ -1065,31 +1065,31 @@ body.is-modal-open{
 /* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
 
 /* Запасной случай: снять скрытие переполнений */
-:root .hero-left, :root .hero-content, :root .hero-card { overflow: visible !important; }
+.hero-left, .hero-content, .hero-card { overflow: visible !important; }
 
 /* ===== СОВРЕМЕННЫЙ СТИЛЬ HERO-БЛОКА (2025) ===== */
-:root #hero-left {
+#hero-left {
   padding-top: clamp(32px, 5vw, 60px);
   transform: translateY(-8px);
 }
 
-:root #hero-left h1 {
+#hero-left h1 {
   line-height: 1.15;
   letter-spacing: -0.3px;
   margin-bottom: 18px !important;
 }
 
-:root #hero-left h1 .h1-prefix {
+#hero-left h1 .h1-prefix {
   font-size: 45px !important;    /* уменьшен для лучшей читаемости длинного заголовка */
   font-weight: 800;
 }
 
-:root #hero-left h1 .h1-name {
+#hero-left h1 .h1-name {
   font-size: 52px !important;    /* на случай если понадобится */
   font-weight: 800;
 }
 
-:root #hero-left .hero-subtitle {
+#hero-left .hero-subtitle {
   font-size: 18px;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.92);  /* увеличен контраст */
@@ -1097,14 +1097,14 @@ body.is-modal-open{
   max-width: 540px;
 }
 
-:root #hero-tags {
+#hero-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 10px;  /* уменьшен gap */
   margin-bottom: 34px !important;
 }
 
-:root #hero-tags .tag {
+#hero-tags .tag {
   background: rgba(255, 255, 255, 0.06) !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 12px !important;
@@ -1115,14 +1115,14 @@ body.is-modal-open{
   transition: none !important;
 }
 
-:root #hero-actions {
+#hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   margin-top: 42px !important;
 }
 
-:root #hero-actions .cta-primary {
+#hero-actions .cta-primary {
   background: #ff7b42 !important;
   color: white !important;
   font-weight: 600;
@@ -1130,13 +1130,13 @@ body.is-modal-open{
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 3px 8px rgba(255, 123, 66, 0.35);
   transition: background 0.2s ease, transform 0.2s ease;
 }
-:root #hero-actions .cta-primary:hover {
+#hero-actions .cta-primary:hover {
   background: #ff905f !important;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(255, 123, 66, 0.4);
 }
 
-:root #hero-actions .cta-secondary {
+#hero-actions .cta-secondary {
   background: rgba(255, 255, 255, 0.06);
   color: white;
   font-weight: 500;
@@ -1151,10 +1151,10 @@ body.is-modal-open{
 /* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
 
 /* ====== Верхние кнопки: одинаковые метрики и выравнивание ====== */
-:root #top-cta{
+#top-cta{
   display:flex; align-items:center; gap:14px;
 }
-:root #top-cta .btn{
+#top-cta .btn{
   display:inline-flex; align-items:center; justify-content:center;
   height:46px;                           /* одинаковая высота */
   padding:0 20px;                         /* одинаковые паддинги */
@@ -1163,37 +1163,37 @@ body.is-modal-open{
   white-space:nowrap;
   min-width: 154px;                       /* минимальная ширина для равной массы */
 }
-:root #top-cta .btn .btn__text{ display:inline-block; }
+#top-cta .btn .btn__text{ display:inline-block; }
 
 /* Иконка телефона */
-:root #top-cta .btn .btn__icon{
+#top-cta .btn .btn__icon{
   width:19px; height:19px; margin-right:8px;
   display:inline-block; vertical-align:middle;
   background-repeat:no-repeat; background-position:center; background-size:contain;
 }
 
 /* Визуальные стили */
-:root #top-cta .btn.btn--call{
+#top-cta .btn.btn--call{
   background: transparent;
   border:1px solid rgba(255,255,255,0.2);
   color:#fff;
 }
-:root #top-cta .btn.btn--call:hover{
+#top-cta .btn.btn--call:hover{
   background: rgba(255,255,255,0.06);
 }
-:root #top-cta .btn.btn--wa{
+#top-cta .btn.btn--wa{
   background:#FF7B42; color:#fff;
   box-shadow: 0 3px 8px rgba(255,123,66,0.35);
 }
-:root #top-cta .btn.btn--wa:hover{ background:#FF905F; }
+#top-cta .btn.btn--wa:hover{ background:#FF905F; }
 
 /* ====== Чипсы: компактнее, 1–2 ряда, без лишнего расползания ====== */
-:root #hero-tags{
+#hero-tags{
   display:flex; flex-wrap:wrap; gap:8px 10px;
   margin-bottom:36px !important;
   max-width: clamp(520px, 48vw, 620px);   /* ограничение ширины — не уедут в 3 ряд */
 }
-:root #hero-tags .tag{
+#hero-tags .tag{
   font-size:14px !important;
   padding:6px 12px !important;
   border-radius:10px !important;
@@ -1209,7 +1209,7 @@ body.is-modal-open{
 /* ====== СОВРЕМЕННЫЙ HERO-БЛОК (2025) - ЧИСТЫЙ И ДОРОГОЙ ====== */
 
 /* 1) Иерархия и типографика */
-:root #hero-left h1 {
+#hero-left h1 {
   font-size: 58px !important;
   line-height: 1.08 !important;
   letter-spacing: -0.2px !important;
@@ -1217,7 +1217,7 @@ body.is-modal-open{
   max-width: 740px !important;
 }
 
-:root #hero-subtitle {
+#hero-subtitle {
   font-size: 19px !important;
   line-height: 1.6 !important;
   max-width: 740px !important;
@@ -1226,7 +1226,7 @@ body.is-modal-open{
 }
 
 /* 2) Чипсы (бейджи) */
-:root #hero-tags {
+#hero-tags {
   margin-bottom: 56px !important; /* кислород до CTA */
   margin-top: 22px !important; /* отступ от подзаголовка */
   display: flex !important;
@@ -1236,7 +1236,7 @@ body.is-modal-open{
   max-width: 740px !important;
 }
 
-:root #hero-tags .tag {
+#hero-tags .tag {
   font-size: 14px !important;
   padding: 10px 14px !important;
   border-radius: 12px !important;
@@ -1247,7 +1247,7 @@ body.is-modal-open{
   cursor: default !important;
 }
 
-:root #hero-tags .tag:hover {
+#hero-tags .tag:hover {
   background: rgba(255,255,255,0.08) !important;
   border-color: rgba(255,255,255,0.12) !important;
   transform: none !important;
@@ -1255,14 +1255,14 @@ body.is-modal-open{
 }
 
 /* 3) CTA кнопки */
-:root #hero-actions {
+#hero-actions {
   margin-top: 56px !important; /* кислород над кнопками */
   display: flex !important;
   flex-wrap: wrap !important;
   gap: 18px !important;
 }
 
-:root #hero-actions .btn {
+#hero-actions .btn {
   height: 56px !important;
   padding: 0 26px !important;
   border-radius: 14px !important;
@@ -1270,45 +1270,45 @@ body.is-modal-open{
   transition: all 0.2s ease !important;
 }
 
-:root #hero-actions .btn-primary {
+#hero-actions .btn-primary {
   background: #FF7B42 !important;
   color: white !important;
   box-shadow: 0 10px 32px rgba(255, 123, 66, 0.25) !important;
   border: none !important;
 }
 
-:root #hero-actions .btn-primary:hover {
+#hero-actions .btn-primary:hover {
   background: #e66d39 !important;
   box-shadow: 0 12px 40px rgba(255, 123, 66, 0.35) !important;
   transform: translateY(-1px) !important;
 }
 
-:root #hero-actions .btn-primary:active {
+#hero-actions .btn-primary:active {
   transform: translateY(0) !important;
   box-shadow: 0 8px 24px rgba(255, 123, 66, 0.2) !important;
 }
 
-:root #hero-actions .btn-ghost {
+#hero-actions .btn-ghost {
   background: rgba(255,255,255,0.06) !important;
   color: white !important;
   border: 1px solid rgba(255,255,255,0.1) !important;
 }
 
-:root #hero-actions .btn-ghost:hover {
+#hero-actions .btn-ghost:hover {
   background: rgba(255,255,255,0.1) !important;
   border-color: rgba(255,255,255,0.15) !important;
   transform: translateY(-1px) !important;
 }
 
-:root #hero-actions .btn-ghost:active {
+#hero-actions .btn-ghost:active {
   transform: translateY(0) !important;
 }
 
-:root #hero-actions .btn-ghost {
+#hero-actions .btn-ghost {
   opacity: 0.85 !important;    /* слегка приглушаем вторичную кнопку */
 }
 
-:root #hero-actions .btn-ghost:hover {
+#hero-actions .btn-ghost:hover {
   opacity: 1 !important;
 }
 
@@ -1324,19 +1324,19 @@ body.is-modal-open{
 }
 
 /* Выравнивание фотографии с заголовком */
-:root .hero__photo {
+.hero__photo {
   margin-top: 0 !important;
   padding-top: 0 !important;
   align-self: start !important;
 }
 
-:root .hero__photo img {
+.hero__photo img {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
 /* Поднимаем весь левый блок на уровень фотографии */
-:root #hero-left {
+#hero-left {
   padding-top: 0 !important;
   margin-top: 0 !important;
   align-self: start !important;
@@ -1347,12 +1347,12 @@ body.is-modal-open{
 /* АРТЕФАКТ УДАЛЕН - конфликтовал с #hero padding-bottom: 64px */
 
 /* Фото: лёгкое скругление */
-:root .hero__photo {
+.hero__photo {
   border-radius: 16px !important;
   overflow: hidden !important;
 }
 
-:root .hero__photo img {
+.hero__photo img {
   border-radius: 16px !important;
 }
 
@@ -1368,18 +1368,18 @@ body.is-modal-open{
 /* ====== 4) МИКРООПТИМИЗАЦИИ ====== */
 
 /* Отступ шапки от верхнего края */
-:root .site-header {
+.site-header {
   padding-top: 26px !important;
   padding-bottom: 26px !important;
 }
 
 /* Фото поднимаем вверх для выравнивания с заголовком */
-:root .hero__photo {
+.hero__photo {
   transform: translateY(-20px) !important;
 }
 
 /* Общая высота hero для золотого соотношения "одним взглядом" */
-:root .hero {
+.hero {
   min-height: clamp(680px, 85vh, 770px) !important;
 }
 
@@ -1560,55 +1560,55 @@ body.is-modal-open{
 
 @media (max-width: 768px) {
   /* === HEADER === */
-  :root .site-header {
+  .site-header {
     padding-top: 18px !important;
     padding-bottom: 18px !important;
   }
   
-  :root #top-cta .btn {
+  #top-cta .btn {
     height: 42px !important;
     padding: 0 16px !important;
     font-size: 14px !important;
     min-width: 140px !important;
   }
   
-  :root #top-cta .btn .btn__icon {
+  #top-cta .btn .btn__icon {
     width: 18px !important;
     height: 18px !important;
     margin-right: 6px !important;
   }
   
   /* === HERO: Контейнер === */
-  :root .hero {
+  .hero {
     padding-top: 32px !important;
     padding-bottom: 48px !important;
     min-height: auto !important;
   }
   
   /* === HERO: Левый блок === */
-  :root #hero-left {
+  #hero-left {
     padding-top: 0 !important;
     transform: none !important;
   }
   
   /* === HERO: Типографика === */
-  :root #hero-left h1 {
+  #hero-left h1 {
     line-height: 1.2 !important;
     white-space: normal !important;
     margin-bottom: 16px !important;
   }
   
-  :root #hero-left h1 .h1-prefix {
+  #hero-left h1 .h1-prefix {
     font-size: 32px !important;  /* основной заголовок на планшетах */
     line-height: 1.2 !important;
   }
   
-  :root #hero-left h1 .h1-name {
+  #hero-left h1 .h1-name {
     font-size: 36px !important;
     line-height: 1.15 !important;
   }
   
-  :root #hero-subtitle {
+  #hero-subtitle {
     font-size: 16px !important;
     line-height: 1.55 !important;
     margin-top: 12px !important;
@@ -1616,13 +1616,13 @@ body.is-modal-open{
   }
   
   /* === HERO: Чипсы === */
-  :root #hero-tags {
+  #hero-tags {
     display: block !important; /* убираем flex, делаем block */
     max-width: 100% !important;
     margin-bottom: 24px !important;
   }
   
-  :root #hero-tags .tag-row {
+  #hero-tags .tag-row {
     display: flex !important;
     flex-wrap: wrap !important;
     justify-content: flex-start !important; /* выравнивание по левому краю */
@@ -1630,34 +1630,34 @@ body.is-modal-open{
     margin-bottom: 8px !important; /* отступ между рядами */
   }
   
-  :root #hero-tags .tag-row:last-child {
+  #hero-tags .tag-row:last-child {
     margin-bottom: 0 !important;
   }
   
-  :root #hero-tags .tag {
+  #hero-tags .tag {
     font-size: 13.5px !important;
     padding: 6px 10px !important;
   }
   
   /* Сокращаем текст чипа Love Radio ТОЛЬКО на мобилке */
-  :root #hero-tags .tag-radio {
+  #hero-tags .tag-radio {
     font-size: 0 !important;
   }
   
-  :root #hero-tags .tag-radio::before {
+  #hero-tags .tag-radio::before {
     content: "Ведущий Love Radio";
     font-size: 13.5px !important;
   }
   
   /* === HERO: CTA кнопки === */
-  :root #hero-actions {
+  #hero-actions {
     flex-direction: column !important;
     gap: 12px !important;
     margin-top: 24px !important;
     width: 100% !important;
   }
   
-  :root #hero-actions .btn {
+  #hero-actions .btn {
     width: 100% !important;
     height: 52px !important;
     font-size: 16px !important;
@@ -1665,7 +1665,7 @@ body.is-modal-open{
   }
   
   /* === HERO: Фото === */
-  :root .hero__photo {
+  .hero__photo {
     order: 3 !important;
     justify-self: center !important;
     max-width: 380px !important;
@@ -1674,7 +1674,7 @@ body.is-modal-open{
     transform: none !important;
   }
   
-  :root .hero__photo img {
+  .hero__photo img {
     transform: none !important;
   }
   
@@ -1711,21 +1711,21 @@ body.is-modal-open{
 
 /* === Экстра-маленькие экраны === */
 @media (max-width: 480px) {
-  :root #hero-left h1 .h1-prefix {
+  #hero-left h1 .h1-prefix {
     font-size: 26px !important;  /* основной заголовок на мобильных */
   }
   
-  :root #hero-left h1 .h1-name {
+  #hero-left h1 .h1-name {
     font-size: 28px !important;
   }
   
-  :root .hero__photo {
+  .hero__photo {
     max-width: 320px !important;
     max-height: 320px !important;
     margin-top: 24px !important;
   }
   
-  :root #hero-actions .btn {
+  #hero-actions .btn {
     height: 50px !important;
     font-size: 15px !important;
   }
