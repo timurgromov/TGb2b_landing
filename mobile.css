@@ -112,6 +112,7 @@
     position: relative;
     overflow: hidden;
     display: block;
+    cursor: default !important; /* убираем курсор-руку */
   }
 
   .letter-card img {
@@ -120,5 +121,10 @@
     object-fit: contain;
     object-position: center;
     display: block;
+  }
+
+  /* Убираем модальное окно благодарностей на мобилке */
+  #letter-modal {
+    display: none !important;
   }
 }
