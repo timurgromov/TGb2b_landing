@@ -1547,19 +1547,19 @@ body.is-modal-open{
   
   /* === HERO: Типографика === */
   #hero-left h1 {
-    line-height: 1.2 !important;
+    line-height: 1.05 !important;
     white-space: normal !important;
     margin-bottom: 16px !important;
   }
   
   #hero-left h1 .h1-prefix {
     font-size: 32px !important;  /* основной заголовок на планшетах */
-    line-height: 1.2 !important;
+    line-height: 1.05 !important;
   }
   
   #hero-left h1 .h1-name {
     font-size: 36px !important;
-    line-height: 1.15 !important;
+    line-height: 1.05 !important;
   }
   
   #hero-subtitle {
