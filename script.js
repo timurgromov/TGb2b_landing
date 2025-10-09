@@ -346,6 +346,14 @@ function unlockPageScroll() {
   document.addEventListener('click', (e)=>{
     const card = e.target.closest?.('[data-letter-modal], [data-image-modal]');
     if (!card) return;
+    
+    // На мобилке отключаем модальное окно для благодарственных писем
+    if (window.innerWidth <= 860 && card.hasAttribute('data-letter-modal')) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    
     openFromCard(card);
   });
 
