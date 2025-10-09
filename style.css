@@ -1705,3 +1705,10 @@ body.is-modal-open{
     font-size: 15px !important;
   }
 }
+
+/* Убираем пустую «кнопку-бургер»/плейсхолдер в хедере */
+.burger,
+.header-cta > a:empty,
+.header-cta > button:empty {
+  display: none !important;
+}
