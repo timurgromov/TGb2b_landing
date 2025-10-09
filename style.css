@@ -744,10 +744,10 @@ body {
   transform: translateY(-6px) scale(1.5) !important; /* hover для VK с сохранением scale */
 }
 .footer-contacts .footer-social__btn--yt svg {
-  transform: translateY(4px) scale(1.25) !important; /* опускаем и увеличиваем YouTube */
+  transform: translateY(2px) scale(1.25) !important; /* опускаем и увеличиваем YouTube */
 }
 .footer-contacts .footer-social__btn--yt:hover svg {
-  transform: translateY(3px) scale(1.25) !important; /* hover для YouTube с сохранением scale */
+  transform: translateY(1px) scale(1.25) !important; /* hover для YouTube с сохранением scale */
 }
 /* Мобилка — центр */
 @media (max-width: 768px){
