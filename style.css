@@ -725,9 +725,10 @@ body {
   flex-shrink: 0; /* не сжимать иконки */
 }
 .footer-contacts .footer-social__btn svg {
-  display: block; /* убираем inline gap */
-  width: 20px;
-  height: 20px;
+  display: block !important; /* убираем inline gap */
+  width: 20px !important;
+  height: 20px !important;
+  vertical-align: middle !important; /* принудительное выравнивание */
 }
 .footer-contacts .footer-social__btn:hover{
   transform: translateY(-1px);
