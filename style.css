@@ -1435,16 +1435,7 @@ body.is-modal-open{
     linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,.2) 30%,transparent 100%) !important;
 }
 
-.video-fullscreen .video-wrapper {
-  border: 1px solid rgba(255,106,61,0.15) !important;
-}
-
-.video-fullscreen .video-wrapper:hover {
-  border-color: rgba(255,106,61,0.5) !important;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,106,61,0.3),
-    0 12px 48px rgba(255,106,61,0.25) !important;
-}
+/* АРТЕФАКТ УДАЛЕН - дубль video-wrapper */
 
 /* Benefits - градиент под заголовком */
 #benefits {
