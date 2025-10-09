@@ -1649,6 +1649,11 @@ body.is-modal-open{
     font-size: 13.5px !important;
   }
   
+  /* Скрываем "Добрый юмор" ТОЛЬКО на мобилке */
+  #hero-tags .tag-humor {
+    display: none !important;
+  }
+  
   /* === HERO: CTA кнопки === */
   #hero-actions {
     flex-direction: column !important;
