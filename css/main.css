@@ -1625,7 +1625,7 @@ body.is-modal-open{
   }
   
   #hero-tags .tag {
-    font-size: 13.5px !important;
+    font-size: 12px !important;
     padding: 6px 10px !important;
   }
   
@@ -1636,7 +1636,7 @@ body.is-modal-open{
   
   #hero-tags .tag-radio::before {
     content: "Ведущий Love Radio";
-    font-size: 13.5px !important;
+    font-size: 12px !important;
   }
   
   /* === HERO: CTA кнопки === */
