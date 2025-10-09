@@ -672,23 +672,7 @@ body {
 @media (max-width:1024px){
   :root{ --letter-h: 320px; --photo-h: 360px; }
 }
-@media (max-width:860px){
-  .hero__grid{grid-template-columns:1fr}
-  .hero__photo{justify-self:center;order:3} /* order:3 чтобы фото было ПОСЛЕ текста и кнопок */
-  .hero__text{order:1}
-  .video-grid-fullscreen{grid-template-columns:1fr}
-  .benefits{grid-template-columns:repeat(2,1fr)}
-  .slider__track{grid-auto-columns:90vw}
-  .footer__grid{grid-template-columns:1fr}
-  :root{ --letter-h: 280px; --photo-h: 300px; }
-}
-@media (max-width:640px){
-  :root{ --letter-h: 240px; --photo-h: 240px; }
-}
-
-@media (max-width:420px){
-  :root{ --letter-h: 200px; --photo-h: 200px; }
-}
+/* МОБИЛЬНЫЕ СТИЛИ ПЕРЕНЕСЕНЫ В mobile.css */
 
 /* ===== footer: прижимаем контакты вправо, нормализуем ссылки и ритм ===== */
 .footer-contacts{
