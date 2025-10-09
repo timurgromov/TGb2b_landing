@@ -75,6 +75,15 @@
     max-width: none;
     object-fit: cover;         /* горизонтальные: без полос */
     object-position: center;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  /* Анимация появления */
+  .photo-card img.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 
   /* 5) Портретные картинки — вписываем без кропа, пустот не будет, т.к. кадр портретный */

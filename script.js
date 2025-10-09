@@ -638,7 +638,7 @@ function unlockPageScroll() {
 })();
 
 // Активация анимаций при скролле
-const imgs = document.querySelectorAll('.gallery img');
+const imgs = document.querySelectorAll('.photo-card img');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
