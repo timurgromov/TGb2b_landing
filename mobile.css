@@ -112,16 +112,17 @@
   /* ===== PHOTO GALLERY FIX ===== */
   
   .photo-card {
-    height: auto !important; /* убираем фикс-высоту */
-    width: 100% !important; /* одна карточка на экран */
-    min-width: unset !important;
-    aspect-ratio: 16/9 !important; /* возвращаем 16:9 */
+    height: 280px !important; /* фиксированная высота как desktop */
+    width: auto !important; /* ширина подстраивается под фото */
+    min-width: 240px !important; /* минимальная ширина */
+    max-width: 100% !important; /* не шире экрана */
+    /* aspect-ratio убран - как на desktop */
   }
 
   .photo-card img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important; /* заполняет контейнер, обрезает по бокам */
+    object-fit: contain !important; /* как на desktop - подстраивается под фото */
   }
   
   .video-title {
