@@ -112,11 +112,11 @@
   /* ===== PHOTO GALLERY FIX ===== */
   
   .photo-card {
-    height: 280px !important; /* фиксированная высота как desktop */
-    width: auto !important; /* ширина подстраивается под фото */
-    min-width: 240px !important; /* минимальная ширина */
-    max-width: 100% !important; /* не шире экрана */
-    /* aspect-ratio убран - как на desktop */
+    height: auto !important; /* высота подстраивается под фото */
+    width: 100% !important; /* одна карточка на экран */
+    min-width: unset !important;
+    max-width: 100% !important;
+    /* как на desktop - подстраивается под пропорции */
   }
 
   .photo-card img {
