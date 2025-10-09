@@ -1209,12 +1209,14 @@ body.is-modal-open{
 /* ====== СОВРЕМЕННЫЙ HERO-БЛОК (2025) - ЧИСТЫЙ И ДОРОГОЙ ====== */
 
 /* 1) Иерархия и типографика */
-#hero-left h1 {
-  font-size: 58px !important;
-  line-height: 1.08 !important;
-  letter-spacing: -0.2px !important;
-  margin-bottom: 22px !important;
-  max-width: 740px !important;
+@media (min-width: 769px) {
+  #hero-left h1 {
+    font-size: 58px !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.2px !important;
+    margin-bottom: 22px !important;
+    max-width: 740px !important;
+  }
 }
 
 #hero-subtitle {
@@ -1393,10 +1395,12 @@ body.is-modal-open{
   padding-bottom: 64px !important; /* увеличен для дыхания кнопок */
 }
 
-#hero-left h1 {
-  font-size: 52px !important;    /* уменьшено на одно деление */
-  line-height: 1.05 !important;
-  margin-bottom: 20px !important;
+@media (min-width: 769px) {
+  #hero-left h1 {
+    font-size: 52px !important;    /* уменьшено на одно деление */
+    line-height: 1.05 !important;
+    margin-bottom: 20px !important;
+  }
 }
 
 #hero-left .hero-subtitle {
