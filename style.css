@@ -1080,7 +1080,7 @@ body.is-modal-open{
 }
 
 :root #hero-left h1 .h1-prefix {
-  font-size: 52px !important;    /* теперь это основной заголовок, как был "Тимур Громов" */
+  font-size: 45px !important;    /* уменьшен для лучшей читаемости длинного заголовка */
   font-weight: 800;
 }
 
@@ -1093,7 +1093,7 @@ body.is-modal-open{
   font-size: 18px;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.92);  /* увеличен контраст */
-  margin-bottom: 28px !important;
+  margin-bottom: 26px !important;
   max-width: 540px;
 }
 
@@ -1101,7 +1101,7 @@ body.is-modal-open{
   display: flex;
   flex-wrap: wrap;
   gap: 8px 10px;  /* уменьшен gap */
-  margin-bottom: 52px !important;
+  margin-bottom: 34px !important;
 }
 
 :root #hero-tags .tag {
@@ -1118,7 +1118,7 @@ body.is-modal-open{
 :root #hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
   margin-top: 42px !important;
 }
 
@@ -1302,6 +1302,14 @@ body.is-modal-open{
 
 :root #hero-actions .btn-ghost:active {
   transform: translateY(0) !important;
+}
+
+:root #hero-actions .btn-ghost {
+  opacity: 0.85 !important;    /* слегка приглушаем вторичную кнопку */
+}
+
+:root #hero-actions .btn-ghost:hover {
+  opacity: 1 !important;
 }
 
 /* Для надёжности перекрываем любые вложенные селекторы */
@@ -1591,7 +1599,7 @@ body.is-modal-open{
   }
   
   :root #hero-left h1 .h1-prefix {
-    font-size: 36px !important;  /* основной заголовок на планшетах */
+    font-size: 32px !important;  /* основной заголовок на планшетах */
     line-height: 1.2 !important;
   }
   
@@ -1694,7 +1702,7 @@ body.is-modal-open{
 /* === Экстра-маленькие экраны === */
 @media (max-width: 480px) {
   :root #hero-left h1 .h1-prefix {
-    font-size: 28px !important;  /* основной заголовок на мобильных */
+    font-size: 26px !important;  /* основной заголовок на мобильных */
   }
   
   :root #hero-left h1 .h1-name {
