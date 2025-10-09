@@ -115,7 +115,7 @@
     height: auto !important; /* убираем фикс-высоту */
     width: 100% !important; /* одна карточка на экран */
     min-width: unset !important;
-    aspect-ratio: 16/9 !important; /* фиксируем пропорции */
+    /* aspect-ratio убран - подстраивается под фото */
   }
 
   .photo-card img {
