@@ -115,13 +115,13 @@
     height: auto !important; /* убираем фикс-высоту */
     width: 100% !important; /* одна карточка на экран */
     min-width: unset !important;
-    /* aspect-ratio убран - подстраивается под фото */
+    aspect-ratio: 16/9 !important; /* возвращаем 16:9 */
   }
 
   .photo-card img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain !important; /* подстраивается под фото */
+    object-fit: cover !important; /* заполняет контейнер, обрезает по бокам */
   }
   
   .video-title {
