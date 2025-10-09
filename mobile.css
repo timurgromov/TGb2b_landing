@@ -115,14 +115,14 @@
   }
   
   /* Видео карточки — адаптация для мобилки */
-  .video-wrapper {
+  .video-fullscreen .video-wrapper {
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 auto !important;
     aspect-ratio: 16/9 !important; /* как в desktop */
   }
   
-  .video-wrapper img {
+  .video-fullscreen .video-wrapper img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
