@@ -43,7 +43,7 @@
     object-fit: cover !important; /* заполняет контейнер, обрезает по бокам */
   }
   
-  /* ===== PHOTO GALLERY FIX (РАЗ И НАВСЕГДА) ===== */
+  /* ===== PHOTO GALLERY: УМНЫЙ КАДР ===== */
   
   /* 1) Контейнер галереи: ширина 100%, без боковых переполнений */
   .photos-slider {
@@ -51,33 +51,39 @@
     overflow: hidden;
   }
 
-  /* 2) Сам слайд — это КАДР фиксированной пропорции */
+  /* 2) Базовый слайд — горизонтальная рамка 16:9 */
   .photo-card {
     width: 100%;
-    aspect-ratio: var(--m-frame-ratio);
-    height: auto !important;          /* сбросить любые фикс-высоты, навешанные на десктопе/JS */
+    aspect-ratio: 16/9;        /* базовая рамка */
+    height: auto !important;
     position: relative;
-    overflow: hidden;                  /* чтобы ничего не торчало за рамку */
-    display: block;
+    overflow: hidden;
+    background: transparent;   /* не подсвечивать пустоты */
+    border-radius: 16px;       /* оставить, если уже используется */
   }
 
-  /* 3) Картинка заполняет кадр, по умолчанию — как горизонтальная */
+  /* 3) Портретные слайды получают портретную рамку */
+  .photo-card.is-portrait {
+    aspect-ratio: 3/4;         /* можно поменять на 2/3 по вкусу */
+  }
+
+  /* 4) Картинка по умолчанию — заполняет кадр (горизонтальные) */
   .photo-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover;                 /* горизонтальные заполняют кадр */
-    object-position: center;
     display: block;
-    max-width: none;                   /* чтобы либы не подсунули max-width:100% и не ломали высоту */
+    max-width: none;
+    object-fit: cover;         /* горизонтальные: без полос */
+    object-position: center;
   }
 
-  /* 4) Для ПОРТРЕТНЫХ (вертикальных) — держим высоту, подстраиваем ширину */
+  /* 5) Портретные картинки — вписываем без кропа, пустот не будет, т.к. кадр портретный */
   .photo-card img.is-portrait {
-    object-fit: contain;               /* показывает целиком, оставляя поля слева/справа */
-    background: transparent;           /* фон кадра виден по бокам */
+    object-fit: contain;
+    background: transparent;
   }
 
-  /* 5) Стрелки/контролы — абсолютом поверх кадра, без влияния на ширину слайда */
+  /* 6) Стрелки/контролы — абсолютом поверх кадра, без влияния на ширину слайда */
   .photos-btn {
     position: absolute;
     z-index: 2;

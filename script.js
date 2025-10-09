@@ -646,52 +646,55 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 imgs.forEach(img => observer.observe(img));
 
-// ===== МОБИЛЬНАЯ ГАЛЕРЕЯ: ОПРЕДЕЛЕНИЕ ПОРТРЕТНЫХ ФОТО =====
+// ===== Mobile gallery: smart aspect-ratio for portraits =====
 (function () {
   const BP = 860;
 
-  function markPortraits() {
-    const scope = document; // можно сузить до корня галереи
-    const imgs = scope.querySelectorAll(
-      '.photo-card img'
+  function applyPortraitClasses() {
+    const slides = document.querySelectorAll(
+      '.photo-card'
     );
 
-    imgs.forEach(img => {
-      const apply = () => {
-        // Снимаем инлайны, которые ломают адаптив
+    slides.forEach(slide => {
+      const img = slide.querySelector('img');
+      if (!img) return;
+
+      const mark = () => {
+        // На мобиле убираем инлайны, которые ломают адаптив
         if (window.innerWidth <= BP) {
           img.style.width = '';
           img.style.height = '';
-          img.parentElement && (img.parentElement.style.height = '');
+          slide.style.height = '';
         }
-        // Проставляем класс ориентации
-        if (img.naturalHeight > img.naturalWidth) {
-          img.classList.add('is-portrait');
-        } else {
-          img.classList.remove('is-portrait');
-        }
+
+        const isPortrait = img.naturalHeight > img.naturalWidth;
+        img.classList.toggle('is-portrait', isPortrait);
+        slide.classList.toggle('is-portrait', isPortrait);
       };
 
       if (img.complete && img.naturalWidth) {
-        apply();
+        mark();
       } else {
-        img.addEventListener('load', apply, { once: true });
-        img.addEventListener('error', () => img.classList.remove('is-portrait'), { once: true });
+        img.addEventListener('load', mark, { once: true });
+        img.addEventListener('error', () => {
+          img.classList.remove('is-portrait');
+          slide.classList.remove('is-portrait');
+        }, { once: true });
       }
     });
   }
 
-  // debounced resize для безопасной перекалибровки
+  // дебаунс ресайза
   let t;
   function onResize() {
     clearTimeout(t);
     t = setTimeout(() => {
-      if (window.innerWidth <= BP) markPortraits();
+      if (window.innerWidth <= BP) applyPortraitClasses();
     }, 120);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    if (window.innerWidth <= BP) markPortraits();
+    if (window.innerWidth <= BP) applyPortraitClasses();
   });
   window.addEventListener('resize', onResize);
 })();
