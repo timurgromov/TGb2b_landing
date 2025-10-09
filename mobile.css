@@ -102,6 +102,19 @@
   .footer__grid {
     grid-template-columns: 1fr !important;
   }
+
+  /* Центрируем текст в подвале */
+  .footer__brand {
+    text-align: center !important;
+  }
+
+  .brand {
+    text-align: center !important;
+  }
+
+  .footer__tagline {
+    text-align: center !important;
+  }
   
   /* ===== LETTERS SECTION ===== */
   
