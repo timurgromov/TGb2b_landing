@@ -787,12 +787,7 @@ body {
   color: rgba(255,255,255,0.78);
 }
 
-/* ---- блок с чипсами ---- */
-.hero-tags .tag-row{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;                      /* горизонтальный зазор между чипсами */
-}
+/* АРТЕФАКТ УДАЛЕН - .tag-row на desktop теперь не нужен, flex-wrap управляется через #hero-tags */
 /* === 3. Цвет и лёгкость чипсов === */
 .hero-tags .tag{
   background: rgba(255,255,255,0.04);
@@ -1617,21 +1612,16 @@ body.is-modal-open{
   
   /* === HERO: Чипсы === */
   #hero-tags {
-    display: block !important; /* убираем flex, делаем block */
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
     max-width: 100% !important;
     margin-bottom: 24px !important;
   }
   
   #hero-tags .tag-row {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: flex-start !important; /* выравнивание по левому краю */
-    gap: 8px !important;
-    margin-bottom: 8px !important; /* отступ между рядами */
-  }
-  
-  #hero-tags .tag-row:last-child {
-    margin-bottom: 0 !important;
+    display: contents !important; /* убираем обёртку, чипсы напрямую в #hero-tags */
   }
   
   #hero-tags .tag {
