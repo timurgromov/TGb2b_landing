@@ -1639,6 +1639,16 @@ body.is-modal-open{
     padding: 6px 10px !important;
   }
   
+  /* Сокращаем текст чипа Love Radio ТОЛЬКО на мобилке */
+  :root #hero-tags .tag-radio {
+    font-size: 0 !important;
+  }
+  
+  :root #hero-tags .tag-radio::before {
+    content: "Ведущий Love Radio";
+    font-size: 13.5px !important;
+  }
+  
   /* === HERO: CTA кнопки === */
   :root #hero-actions {
     flex-direction: column !important;
