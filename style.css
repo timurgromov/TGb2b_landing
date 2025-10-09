@@ -731,7 +731,7 @@ body {
   vertical-align: middle !important; /* принудительное выравнивание */
 }
 .footer-contacts .footer-social__btn--vk svg {
-  transform: translateY(-2px) !important; /* приподнимаем VK логотип */
+  transform: translateY(-3px) scale(1.1) !important; /* приподнимаем и увеличиваем VK логотип */
 }
 .footer-contacts .footer-social__btn:hover{
   transform: translateY(-1px);
