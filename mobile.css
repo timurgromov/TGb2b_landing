@@ -22,7 +22,7 @@
   .hero__photo {
     order: 1 !important;
     width: 100% !important;
-    height: 55vh !important; /* УКОРОТИЛ с 62% до 55% */
+    height: 55vh !important; /* УМЕНЬШИЛИ с 62% до 55% */
     border-radius: 24px !important;
     overflow: hidden !important;
     position: relative !important;
@@ -57,9 +57,9 @@
     left: 20px;
     right: 20px;
     color: #fff;
-    font-size: clamp(20px, 5vw, 28px); /* УВЕЛИЧИЛ размер шрифта */
+    font-size: clamp(24px, 5.5vw, 32px); /* УВЕЛИЧИЛИ как было под фото */
     font-weight: 800;
-    line-height: 1.2;
+    line-height: 1.09; /* как было в оригинале */
     text-shadow: 0 2px 8px rgba(0,0,0,0.8);
     z-index: 2;
     pointer-events: none;
