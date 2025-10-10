@@ -17,7 +17,7 @@
     order: 1 !important; /* ФОТО ПЕРВЫМ - главный элемент! */
     width: 80% !important;
     max-width: 300px !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 2px !important; /* МАКСИМАЛЬНО БЛИЗКО К ТЕКСТУ! */
     border-radius: 20px !important;
     overflow: hidden !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
@@ -32,6 +32,8 @@
   
   .hero__text {
     order: 2 !important; /* ТЕКСТ ВТОРЫМ */
+    margin-top: 0 !important; /* УБИРАЕМ ОТСТУП СВЕРХУ */
+    padding-top: 0 !important; /* УБИРАЕМ ПАДДИНГ СВЕРХУ */
   }
   
   .hero__cta {
