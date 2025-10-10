@@ -14,11 +14,28 @@
   
   .hero__photo {
     justify-self: center !important;
-    order: 3 !important; /* order:3 чтобы фото было ПОСЛЕ текста и кнопок */
+    order: 1 !important; /* ФОТО ПЕРВЫМ - главный элемент! */
+    width: 80% !important;
+    max-width: 300px !important;
+    margin-bottom: 24px !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  }
+  
+  .hero__photo img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 20px !important;
   }
   
   .hero__text {
-    order: 1 !important;
+    order: 2 !important; /* ТЕКСТ ВТОРЫМ */
+  }
+  
+  .hero__cta {
+    order: 3 !important; /* КНОПКИ ПОСЛЕДНИМИ */
   }
   
   /* ===== VIDEO SECTION ===== */
