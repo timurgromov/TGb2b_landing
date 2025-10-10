@@ -1,0 +1,78 @@
+/* ===== БАЗОВЫЕ СТИЛИ (общие для всех устройств) ===== */
+
+/* CSS переменные */
+:root{
+  --bg:#0c0f14;
+  --bg-2:#0f1216;
+  --text:#e7ebf1;
+  --muted:#9aa3af;
+  --accent:#ff7a45;
+  --accent-2:#ed6e3a;
+  --card:#12161d;
+  --stroke:rgba(255,255,255,.06);
+  
+  /* Glass header variables */
+  --header-h: 72px;
+  --header-bg: rgba(15, 17, 20, 0.42);
+  --header-bg-scrolled: rgba(15, 17, 20, 0.66);
+  --blur: 16px;
+}
+
+/* Базовый reset */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* Базовые стили */
+html,body{
+  height:100%;
+  background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);
+  color:var(--text);
+  font-family:Inter,system-ui,Arial,sans-serif;
+  line-height:1.6;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+/* Общие компоненты */
+.container{
+  width:min(1120px,92vw);
+  margin:0 auto;
+}
+
+.section{
+  padding:72px 0;
+}
+
+.section__title{
+  font-size:28px;
+  font-weight:800;
+  margin:0 0 24px;
+  text-align:center;
+}
+
+/* Кнопки */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform .15s ease, background-color .2s ease, border-color .2s ease;
+  will-change: transform;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}

@@ -1,30 +1,4 @@
-/* ===== Modern Theme (единственная тема) ===== */
-:root{
-  --bg:#0c0f14;
-  --bg-2:#0f1216;
-  --text:#e7ebf1;
-  --muted:#9aa3af;
-  --accent:#ff7a45;
-  --accent-2:#ed6e3a;
-  --card:#12161d;
-  --stroke:rgba(255,255,255,.06);
-  
-  /* Glass header variables */
-  --header-h: 72px;
-  --header-bg: rgba(15, 17, 20, 0.42);
-  --header-bg-scrolled: rgba(15, 17, 20, 0.66);
-  --blur: 16px;
-}
-
-/* ===== БАЗА/СЕТКИ ===== */
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
-img{max-width:100%;display:block}
-button{font-family:inherit;cursor:pointer}
-
-.container{width:min(1120px,92vw);margin:0 auto}
-.section{padding:72px 0}
-.section__title{font-size:28px;font-weight:800;margin:0 0 24px;text-align:center}
+/* ===== ДЕСКТОПНЫЕ СТИЛИ (min-width: 769px) ===== */
 
 /* ===== HEADER (Glass Fixed) ===== */
 .site-header {
@@ -93,29 +67,7 @@ button{font-family:inherit;cursor:pointer}
   display: none;
 }
 
-/* ===== КНОПКИ ===== */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 44px;
-  padding: 0 16px;
-  border-radius: 12px;
-  font-weight: 600;
-  text-decoration: none;
-  border: 1px solid transparent;
-  transition: transform .15s ease, background-color .2s ease, border-color .2s ease;
-  will-change: transform;
-  cursor: pointer;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-}
-
-.btn:active {
-  transform: translateY(0);
-}
+/* ===== КНОПКИ (десктопные варианты) ===== */
 
 .btn-primary {
   background: #ff7a45;
@@ -156,27 +108,7 @@ button{font-family:inherit;cursor:pointer}
   }
 }
 
-@media (max-width: 767px) {
-  :root {
-    --header-h: 56px;
-  }
-  
-  .main-nav {
-    display: none;
-  }
-  
-  .burger {
-    display: inline-flex;
-  }
-  
-  .header-cta {
-    gap: 8px;
-  }
-  
-  .wa-btn--mobile {
-    display: inline-flex;
-  }
-}
+/* Мобильные стили перенесены в styles/mobile.css */
 
 body {
   overflow-x: hidden;
@@ -733,16 +665,7 @@ body {
 .footer-contacts .footer-social__btn--yt:hover svg {
   transform: translateY(1px) scale(1.25) !important; /* hover для YouTube с сохранением scale */
 }
-/* Мобилка — центр */
-@media (max-width: 768px){
-  .footer-contacts{
-    margin: 18px auto 0;
-    text-align: center;
-  }
-  .footer-contacts .footer-social{
-    justify-content: center;
-  }
-}
+/* Мобильные стили перенесены в styles/mobile.css */
 
 /* ---- базовые переменные для масштаба ---- */
 :root{
@@ -839,15 +762,7 @@ body {
 /* === 4. Адаптив === */
 /* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
 
-@media (max-width:640px){
-  .benefits{grid-template-columns:1fr}
-  .section{padding:48px 0}
-  .cta{padding:60px 0}
-  .video-fullscreen{padding:60px 0}
-  .video-title{font-size:24px;margin-bottom:30px}
-  .video-fullscreen .play-button{width:80px;height:80px}
-  .video-fullscreen .play-button::before{border-left:16px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent}
-}
+/* Мобильные стили перенесены в styles/mobile.css */
 
 @media (prefers-reduced-motion:reduce){
   .sr,.sr.show{opacity:1!important;transform:none!important;transition:none!important}
@@ -960,14 +875,7 @@ body.is-modal-open{
 #letter-modal .modal-prev{ left: 32px; }
 #letter-modal .modal-next{ right: 32px; }
 
-@media (max-width: 768px){
-  #letter-modal .modal-nav{
-    width: 36px;
-    height: 36px;
-  }
-  #letter-modal .modal-prev{ left: 16px; }
-  #letter-modal .modal-next{ right: 16px; }
-}
+/* Мобильные стили перенесены в styles/mobile.css */
 
 #letter-modal .letter-modal-img.enter-from-right{ opacity:0; transform: translateX(60px); }
 #letter-modal .letter-modal-img.enter-from-left { opacity:0; transform: translateX(-60px); }
