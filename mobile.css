@@ -202,14 +202,105 @@
 
 }
 
-/* ФИНАЛЬНЫЙ ОВЕРРАЙД ДЛЯ МОБИЛКИ - УБИЙЦА ВСЕХ КОНФЛИКТОВ */
+/* ============================
+   HERO: текст как overlay на фото (только мобилка)
+   ============================ */
 @media (max-width: 768px) {
-  html body #hero-left h1 { 
-    font-size: 32px !important;  /* возвращаем обратно */
-    line-height: 1.156 !important;  /* 32px + 5px = 37px, 37/32 = 1.156 */
+  /* Контейнер hero — фиксируем контекст наложения и размер */
+  .hero {
+    position: relative;
+    overflow: hidden; /* чтобы не торчало ничего за края */
   }
-  html body #hero-left h1 .h1-prefix {
-    font-size: 32px !important;  /* возвращаем обратно */
-    line-height: 1.156 !important;  /* 32px + 5px = 37px, 37/32 = 1.156 */
+
+  /* Правая часть с фото — делаем бекграунд-слоем */
+  .hero__photo {
+    position: relative;
+    width: 100%;
+    height: 62vh;          /* высота витрины на мобилке, можно 58–65vh */
+    min-height: 420px;     /* не делай слишком мало текста на маленьких экранах */
+    border-radius: 24px;   /* как у тебя по дизайну */
+    overflow: hidden;
   }
+
+  .hero__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     /* ВАЖНО: фото заполняет рамку без чёрных полей */
+    display: block;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Текстовая колонка — превращаем в абсолютный слой поверх фото */
+  #hero-left {
+    position: absolute !important;
+    inset: 0;              /* растянуть на весь контейнер hero */
+    z-index: 2;            /* поверх картинки */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;   /* текст внизу карточки */
+    padding: 24px;               /* внутренние отступы */
+    pointer-events: none;        /* клики проходят к кнопкам/слайдеру, если надо — убери */
+  }
+
+  /* Подложка-градиент для читаемости текста */
+  #hero-left::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.55) 0%,
+      rgba(0,0,0,0.35) 35%,
+      rgba(0,0,0,0.10) 65%,
+      rgba(0,0,0,0.00) 100%
+    );
+    z-index: -1;
+    border-radius: 24px;
+  }
+
+  /* Типографика заголовка и подзаголовка поверх фото */
+  #hero-left h1 {
+    color: #fff !important;
+    margin: 0 0 8px 0;
+    line-height: 1.05 !important;    /* управляемое межстрочное */
+    font-size: clamp(28px, 6.5vw, 36px); /* адаптация под разные ширины */
+    text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+    pointer-events: auto;
+  }
+
+  #hero-left .h1-prefix {
+    color: #fff !important;
+    opacity: .9;
+    line-height: 1.05 !important;
+  }
+
+  #hero-subtitle {
+    color: rgba(255,255,255,0.92) !important;
+    margin: 0 0 16px 0;
+    line-height: 1.25;
+    font-size: clamp(15px, 3.9vw, 18px);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    pointer-events: auto;
+  }
+
+  /* Чипсы и кнопки — чтобы не въезжали под края */
+  .hero-tags,
+  .hero-actions {
+    pointer-events: auto;
+  }
+
+  /* Убираем вертикальные зазоры между хедером и героем */
+  .hero {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* Если где-то на мобилке раньше был фиксированный layout у #hero-left/#hero-right — обнуляем */
+  #hero-left, .hero__photo {
+    transform: none !important;
+  }
+
+  /* На случай, если у .hero__photo стоял z-index выше текста */
+  .hero__photo { z-index: 1; }
 }
