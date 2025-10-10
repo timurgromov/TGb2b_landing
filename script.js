@@ -444,6 +444,13 @@ function unlockPageScroll() {
   if (!track) return;
 
   function fitCardWidth(card, img){
+    // На мобилке отключаем динамическую ширину - используем CSS aspect-ratio 4:3
+    if (window.innerWidth <= 768) {
+      card.style.width = ''; // сбрасываем любые inline-стили
+      card.style.height = '';
+      return;
+    }
+    
     const h  = card.getBoundingClientRect().height;
     const w  = img.naturalWidth  || img.width;
     const nh = img.naturalHeight || img.height;
@@ -455,8 +462,17 @@ function unlockPageScroll() {
   function layout(){
     cards.forEach(card=>{
       const img = card.querySelector('img'); if (!img) return;
-      if (img.complete) fitCardWidth(card, img);
-      else img.addEventListener('load', ()=>fitCardWidth(card, img), { once:true });
+      // Мгновенно применяем размеры без анимации
+      card.style.transition = 'none';
+      if (img.complete) {
+        fitCardWidth(card, img);
+      } else {
+        img.addEventListener('load', ()=> {
+          fitCardWidth(card, img);
+          // Включаем анимацию обратно после загрузки
+          setTimeout(() => card.style.transition = '', 100);
+        }, { once:true });
+      }
     });
   }
 

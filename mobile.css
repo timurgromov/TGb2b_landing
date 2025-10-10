@@ -2,8 +2,8 @@
 
 @media (max-width: 768px) {
   :root {
-    /* при желании можно поменять соотношение */
-    --m-frame-ratio: 16/9;
+    /* ПРОПОРЦИИ ДЛЯ ФОТО, НЕ ДЛЯ ВИДЕО */
+    --m-frame-ratio: 4/3;  /* классическое фото 4:3 */
   }
 
   /* ===== СОВРЕМЕННЫЙ MOBILE HERO (2025) ===== */
@@ -12,7 +12,7 @@
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    padding: 0 18px !important;
+    padding: 32px 18px 48px 18px !important; /* отступы сверху/снизу */
   }
 
   .hero__grid {
@@ -88,14 +88,16 @@
   
   /* 1) Контейнер галереи: ширина 100%, без боковых переполнений */
   .photos-slider {
+    position: relative;               /* для стрелок */
     max-width: 100%;
     overflow: hidden;
+    min-height: 220px;                /* минимальная высота для стрелок */
   }
 
-  /* 2) Сам слайд — это КАДР фиксированной пропорции */
+  /* 2) Сам слайд — это КАДР фиксированной пропорции 4:3 */
   .photo-card {
     width: 100%;
-    aspect-ratio: var(--m-frame-ratio);
+    aspect-ratio: 4/3;
     height: auto !important;          /* сбросить любые фикс-высоты, навешанные на десктопе/JS */
     position: relative;
     overflow: hidden;                  /* чтобы ничего не торчало за рамку */
@@ -118,12 +120,28 @@
     background: transparent;           /* фон кадра виден по бокам */
   }
 
-  /* 5) Стрелки/контролы — абсолютом поверх кадра, без влияния на ширину слайда */
+  /* 5) Стрелки/контролы — ПОСРЕДИНЕ ФОТО, перебиваем все конфликты */
   .photos-btn {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    transform: translateY(-50%);
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 138, 76, 0.9) !important;
+    border: none !important;
+    z-index: 10 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .photos-btn.prev {
+    left: 10px !important;
+  }
+  
+  .photos-btn.next {
+    right: 10px !important;
   }
   
   /* ===== BENEFITS ===== */
@@ -214,67 +232,37 @@
     display: none !important;
   }
 
-  /* ===== HERO: Расстояние между строками заголовка ===== */
+  /* ===== HERO: Типографика и размеры ===== */
   
   #hero-left h1 {
-    line-height: 1.09 !important; /* 34.88px при font-size: 32px = расстояние 3px */
+    font-size: clamp(24px, 5.5vw, 32px) !important; /* УМЕНЬШЕННЫЙ размер */
+    line-height: 1.09 !important; /* короткий межстрочный */
+    margin-bottom: 12px !important;
   }
   
-  #hero-left h1 .h1-prefix {
-    line-height: 1.09 !important;
-  }
-
-}
-
-/* ===== СОВРЕМЕННАЯ ТИПОГРАФИКА И ОТСТУПЫ ===== */
-@media (max-width: 768px) {
-  
-  /* Заголовок - современная типографика */
-  #hero-left h1 {
-    font-size: clamp(28px, 6vw, 36px) !important;
-    line-height: 1.08 !important; /* современный межстрочный */
-    color: #fff !important;
-    margin-bottom: 12px !important; /* золотое дыхание */
-    font-weight: 700 !important; /* bold, не black */
-    text-shadow: none !important; /* убираем тень, градиент даёт читаемость */
-  }
-
   #hero-left h1 .h1-prefix {
     font-size: inherit !important;
     line-height: inherit !important;
-    color: inherit !important;
   }
-
-  /* Подзаголовок - современный стиль */
+  
   #hero-subtitle {
-    font-size: 15px !important;
-    color: rgba(255,255,255,0.85) !important;
-    line-height: 1.4 !important;
-    margin-bottom: 20px !important; /* золотое дыхание */
-    max-width: 85% !important; /* не растягивается в край */
+    font-size: 14px !important; /* УМЕНЬШЕННЫЙ размер */
+    margin-bottom: 16px !important;
   }
-
-  /* Современные чипсы */
-  .hero-tags {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-    justify-content: left !important;
-    margin-bottom: 36px !important; /* золотое дыхание */
+  
+  /* ===== HERO: МЕГА-СИЛЬНЫЕ КНОПКИ (перебивают style.css) ===== */
+  
+  /* МЕГА-СИЛЬНЫЙ селектор для контейнера */
+  html body #hero-left .hero-actions {
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 24px !important;
+    width: 100% !important;
+    margin-bottom: 0 !important; /* перебиваем style.css */
   }
-
-  .hero-tags .tag {
-    background: rgba(255,255,255,0.07) !important;
-    color: rgba(255,255,255,0.85) !important;
-    padding: 6px 12px !important;
-    border-radius: 24px !important;
-    font-size: 13.5px !important;
-    border: none !important;
-    font-weight: 400 !important;
-  }
-
-  /* Современная CTA-кнопка */
-  .hero-actions .btn-primary {
+  
+  /* МЕГА-СИЛЬНЫЙ селектор для первой кнопки */
+  html body #hero-left .hero-actions .btn-primary {
     width: 100% !important;
     background: #FF7A33 !important;
     color: #fff !important;
@@ -285,6 +273,27 @@
     box-shadow: 0 4px 14px rgba(255,122,51,0.25) !important;
     border: none !important;
     letter-spacing: 0.3px !important;
-    margin-top: clamp(28px, 6vw, 42px) !important; /* адаптивный отступ */
+    margin: 0 !important;
+    height: auto !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
+  
+  /* МЕГА-СИЛЬНЫЙ селектор для второй кнопки */
+  html body #hero-left .hero-actions .btn-ghost {
+    width: 100% !important;
+    background: transparent !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    padding: 16px 0 !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    letter-spacing: 0.3px !important;
+    margin: 0 !important;
+    height: auto !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
 }
