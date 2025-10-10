@@ -49,6 +49,22 @@
     pointer-events: none;
   }
 
+  /* Заголовок прямо на фотографии внизу */
+  .hero__photo::before {
+    content: "Интеллигентный ведущий на корпоратив в Москве";
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: clamp(18px, 4vw, 24px);
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    z-index: 2;
+    pointer-events: none;
+  }
+
   .hero__text {
     order: 2 !important;
     text-align: left !important;
@@ -56,6 +72,11 @@
     margin-top: -70px !important; /* частично наезжает на фото */
     position: relative !important;
     z-index: 2 !important;
+  }
+
+  /* Скрываем оригинальный заголовок, так как он теперь на фото */
+  .hero__text h1 {
+    display: none !important;
   }
 
   .hero__cta {
