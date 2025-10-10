@@ -6,38 +6,60 @@
     --m-frame-ratio: 16/9;
   }
 
-  /* ===== HERO SECTION ===== */
+  /* ===== СОВРЕМЕННЫЙ MOBILE HERO (2025) ===== */
   
+  .hero {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 0 18px !important;
+  }
+
   .hero__grid {
-    grid-template-columns: 1fr !important;
+    display: contents !important; /* убираем grid, используем flex */
   }
-  
+
   .hero__photo {
-    justify-self: center !important;
-    order: 1 !important; /* ФОТО ПЕРВЫМ - главный элемент! */
-    width: 80% !important;
-    max-width: 300px !important;
-    margin-bottom: 2px !important; /* МАКСИМАЛЬНО БЛИЗКО К ТЕКСТУ! */
-    border-radius: 20px !important;
+    order: 1 !important;
+    width: 100% !important;
+    height: 62vh !important; /* 62% высоты экрана */
+    border-radius: 24px !important;
     overflow: hidden !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+    position: relative !important;
+    box-shadow: none !important; /* убираем старые тени */
   }
-  
+
   .hero__photo img {
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
+    object-fit: cover !important; /* заполняет без чёрных полей */
     display: block !important;
-    border-radius: 20px !important;
+    border-radius: 0 !important; /* убираем border-radius с img */
   }
-  
+
+  /* Градиент снизу для читаемости текста */
+  .hero__photo::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    pointer-events: none;
+  }
+
   .hero__text {
-    order: 2 !important; /* ТЕКСТ ВТОРЫМ */
-    margin-top: 0 !important; /* УБИРАЕМ ОТСТУП СВЕРХУ */
-    padding-top: 0 !important; /* УБИРАЕМ ПАДДИНГ СВЕРХУ */
+    order: 2 !important;
+    text-align: left !important;
+    width: 100% !important;
+    margin-top: -70px !important; /* частично наезжает на фото */
+    position: relative !important;
+    z-index: 2 !important;
   }
-  
+
   .hero__cta {
-    order: 3 !important; /* КНОПКИ ПОСЛЕДНИМИ */
+    order: 3 !important;
   }
   
   /* ===== VIDEO SECTION ===== */
@@ -204,14 +226,65 @@
 
 }
 
-/* ФИНАЛЬНЫЙ ОВЕРРАЙД ДЛЯ МОБИЛКИ - УБИЙЦА ВСЕХ КОНФЛИКТОВ */
+/* ===== СОВРЕМЕННАЯ ТИПОГРАФИКА И ОТСТУПЫ ===== */
 @media (max-width: 768px) {
-  html body #hero-left h1 { 
-    font-size: 32px !important;  /* возвращаем обратно */
-    line-height: 1.156 !important;  /* 32px + 5px = 37px, 37/32 = 1.156 */
+  
+  /* Заголовок - современная типографика */
+  #hero-left h1 {
+    font-size: clamp(28px, 6vw, 36px) !important;
+    line-height: 1.08 !important; /* современный межстрочный */
+    color: #fff !important;
+    margin-bottom: 12px !important; /* золотое дыхание */
+    font-weight: 700 !important; /* bold, не black */
+    text-shadow: none !important; /* убираем тень, градиент даёт читаемость */
   }
-  html body #hero-left h1 .h1-prefix {
-    font-size: 32px !important;  /* возвращаем обратно */
-    line-height: 1.156 !important;  /* 32px + 5px = 37px, 37/32 = 1.156 */
+
+  #hero-left h1 .h1-prefix {
+    font-size: inherit !important;
+    line-height: inherit !important;
+    color: inherit !important;
+  }
+
+  /* Подзаголовок - современный стиль */
+  #hero-subtitle {
+    font-size: 15px !important;
+    color: rgba(255,255,255,0.85) !important;
+    line-height: 1.4 !important;
+    margin-bottom: 20px !important; /* золотое дыхание */
+    max-width: 85% !important; /* не растягивается в край */
+  }
+
+  /* Современные чипсы */
+  .hero-tags {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    justify-content: left !important;
+    margin-bottom: 36px !important; /* золотое дыхание */
+  }
+
+  .hero-tags .tag {
+    background: rgba(255,255,255,0.07) !important;
+    color: rgba(255,255,255,0.85) !important;
+    padding: 6px 12px !important;
+    border-radius: 24px !important;
+    font-size: 13.5px !important;
+    border: none !important;
+    font-weight: 400 !important;
+  }
+
+  /* Современная CTA-кнопка */
+  .hero-actions .btn-primary {
+    width: 100% !important;
+    background: #FF7A33 !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    padding: 16px 0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 14px rgba(255,122,51,0.25) !important;
+    border: none !important;
+    letter-spacing: 0.3px !important;
+    margin-top: clamp(28px, 6vw, 42px) !important; /* адаптивный отступ */
   }
 }
