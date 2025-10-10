@@ -22,7 +22,7 @@
   .hero__photo {
     order: 1 !important;
     width: 100% !important;
-    height: 55vh !important; /* УМЕНЬШИЛИ с 62% до 55% */
+    height: 55vh !important; /* УМЕНЬШИЛИ с 62% до 55% - КАК БЫЛО */
     border-radius: 24px !important;
     overflow: hidden !important;
     position: relative !important;
