@@ -471,7 +471,36 @@ function unlockPageScroll() {
     });
   }
 
-  const scrollStep = () => track.clientWidth * 0.9;
+  // КОПИРУЕМ ЛОГИКУ ПИСЕМ: точное позиционирование вместо scrollBy
+  function centerLeft(card) {
+    const trackRect = track.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    return track.scrollLeft + (cardRect.left - trackRect.left) - (trackRect.width - cardRect.width) / 2;
+  }
+  
+  function nearestIndex() {
+    const mid = track.scrollLeft + track.clientWidth / 2;
+    let dmin = Infinity, best = 0;
+    for (let i = 0; i < cards.length; i++) {
+      const center = centerLeft(cards[i]);
+      const d = Math.abs(mid - center);
+      if (d < dmin) { dmin = d; best = i; }
+    }
+    return best;
+  }
+  
+  function scrollToIndex(i, behavior = 'smooth') {
+    i = Math.max(0, Math.min(cards.length - 1, i));
+    const target = Math.round(centerLeft(cards[i]));
+
+    // анти-липкость: если целевое ≈ текущее, толкнём на 1px, затем в цель
+    if (Math.abs(track.scrollLeft - target) < 1) {
+      track.scrollBy({ left: 1, behavior: 'auto' });
+    }
+    requestAnimationFrame(() => {
+      track.scrollTo({ left: target, behavior });
+    });
+  }
   const scrollByX  = dir => {
     const step = scrollStep();
     track.scrollBy({ left: dir * step, behavior:'smooth' });
@@ -486,8 +515,15 @@ function unlockPageScroll() {
       }
     }, 150);
   };
-  prev?.addEventListener('click', ()=>scrollByX(-1));
-  next?.addEventListener('click', ()=>scrollByX( 1));
+  let current = 0;
+  prev?.addEventListener('click', () => {
+    current = Math.max(0, current - 1);
+    scrollToIndex(current, 'smooth');
+  });
+  next?.addEventListener('click', () => {
+    current = Math.min(cards.length - 1, current + 1);
+    scrollToIndex(current, 'smooth');
+  });
 
   function updateArrows() {
     const leftEdge  = track.scrollLeft;
