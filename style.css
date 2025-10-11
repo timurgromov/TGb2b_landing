@@ -923,8 +923,8 @@ body.is-modal-open{
 #letter-modal .modal__content{
   position: relative;
   z-index: 1;
-  max-width: min(92vw, 960px);
-  max-height: calc(100vh - 64px);
+  /* max-width: min(92vw, 960px); УДАЛЕНО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ */
+  /* max-height: calc(100vh - 64px); УДАЛЕНО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ */
   display: flex;
   align-items: center;
   justify-content: center;
