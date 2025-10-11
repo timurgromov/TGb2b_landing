@@ -342,8 +342,8 @@ function unlockPageScroll() {
     const card = e.target.closest?.('[data-letter-modal], [data-image-modal]');
     if (!card) return;
     
-    // На мобилке отключаем модальное окно для благодарственных писем И ФОТОГАЛЕРЕИ
-    if (window.innerWidth <= 768 && (card.hasAttribute('data-letter-modal') || card.hasAttribute('data-image-modal'))) {
+    // На мобилке отключаем модальное окно ТОЛЬКО ДЛЯ ФОТОГАЛЕРЕИ (письма открываются!)
+    if (window.innerWidth <= 768 && card.hasAttribute('data-image-modal')) {
       e.preventDefault();
       e.stopPropagation();
       return;

@@ -216,13 +216,14 @@
   /* ===== LETTERS SECTION ===== */
   
   .letter-card {
-    width: 100%;
-    aspect-ratio: 210/297; /* A4 портрет */
+    width: 70% !important; /* УМЕНЬШАЕМ ШИРИНУ блока письма */
+    aspect-ratio: 210/297 !important; /* A4 портрет — ВЕРТИКАЛЬНАЯ форма */
     height: auto !important;
     position: relative;
     overflow: hidden;
     display: block;
-    cursor: default !important; /* убираем курсор-руку */
+    cursor: pointer !important;
+    margin: 0 auto !important; /* центрируем */
   }
 
   .letter-card img {
@@ -233,8 +234,74 @@
     display: block;
   }
 
-  /* Модальное окно для благодарностей отключено через JS (script.js строка 368) */
-  /* НЕ скрываем через CSS, т.к. то же окно используется для фотогалереи! */
+  /* ===== МОДАЛЬНОЕ ОКНО ДЛЯ ПИСЕМ С РАМКОЙ (МОБИЛКА) ===== */
+  
+  /* Модальное окно с небольшой рамкой (не на весь экран) */
+  .modal.active {
+    padding: 24px !important; /* оставляем рамку по краям */
+  }
+  
+  .modal__content {
+    max-width: calc(100% - 48px) !important; /* оставляем рамку по бокам */
+    max-height: calc(100% - 48px) !important; /* оставляем рамку сверху/снизу */
+    width: auto !important;
+    height: auto !important;
+    margin: auto !important;
+    border-radius: 12px !important; /* лёгкое скругление */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: white !important;
+  }
+  
+  .modal__img {
+    max-width: 100% !important;
+    max-height: calc(100vh - 120px) !important; /* оставляем место для кнопок */
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+  
+  /* ОРАНЖЕВЫЕ СТРЕЛКИ ДЛЯ ПИСЕМ (как в фотогалерее) */
+  .modal__arrow {
+    display: flex !important; /* показываем стрелки */
+    width: 44px !important;
+    height: 44px !important;
+    background: var(--accent, #ff6b35) !important;
+    color: white !important;
+    border-radius: 50% !important;
+    opacity: 1 !important;
+    z-index: 1001 !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+  
+  .modal__arrow--prev {
+    left: 16px !important;
+  }
+  
+  .modal__arrow--next {
+    right: 16px !important;
+  }
+  
+  /* Первая стрелка скрыта (как в фотогалерее) */
+  .modal__arrow--prev.is-first {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  
+  /* Кнопка закрытия */
+  .modal__close {
+    top: 16px !important;
+    right: 16px !important;
+    width: 44px !important;
+    height: 44px !important;
+    background: rgba(0,0,0,0.6) !important;
+    color: white !important;
+    border-radius: 50% !important;
+    z-index: 1002 !important;
+  }
 
   /* ===== HERO: Чипсы с автоматическим переносом ===== */
   
