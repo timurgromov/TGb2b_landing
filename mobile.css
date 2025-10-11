@@ -60,9 +60,9 @@
     left: 20px;
     right: 20px;
     color: #fff;
-    font-size: clamp(24px, 5.5vw, 32px); /* УВЕЛИЧИЛИ как было под фото */
+    font-size: clamp(26px, 6vw, 36px); /* УВЕЛИЧИЛИ до 36px для выразительности */
     font-weight: 800;
-    line-height: 1.09; /* как было в оригинале */
+    line-height: 1.1; /* плотнее для баланса с лицом */
     text-shadow: 0 2px 8px rgba(0,0,0,0.8);
     z-index: 2;
     pointer-events: none;
