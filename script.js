@@ -23,19 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const els = Array.from(document.querySelectorAll('.sr'));
   if (!els.length) return;
 
-  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || typeof IntersectionObserver === 'undefined'){
-    els.forEach(el => el.classList.add('show'));
-    return;
-  }
-
+  // ПРИНУДИТЕЛЬНО ВКЛЮЧАЕМ АНИМАЦИИ НА ВСЕХ УСТРОЙСТВАХ
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
       if(!entry.isIntersecting) return;
       entry.target.classList.add('show');
       io.unobserve(entry.target);
     });
-  },{threshold:0.12, rootMargin:'0px 0px -10% 0px'});
+  },{threshold:0.05, rootMargin:'0px 0px -5% 0px'});
 
   els.forEach(el => io.observe(el));
 })();

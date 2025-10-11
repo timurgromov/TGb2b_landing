@@ -690,8 +690,22 @@ body {
 }
 
 /* ===== Scroll-reveal (плавные появления) ===== */
-.sr{opacity:0;transform:translateY(18px);will-change:opacity,transform}
-.sr.show{opacity:1;transform:none;transition:opacity .55s ease, transform .55s ease}
+.sr{
+  opacity:0;
+  transform:translateY(18px);
+  will-change:opacity,transform;
+  /* iOS-фикс: принудительно включаем анимации */
+  -webkit-transform:translateY(18px);
+  -webkit-transition:opacity .55s ease, -webkit-transform .55s ease;
+}
+.sr.show{
+  opacity:1;
+  transform:none;
+  transition:opacity .55s ease, transform .55s ease;
+  /* iOS-фикс */
+  -webkit-transform:none;
+  -webkit-transition:opacity .55s ease, -webkit-transform .55s ease;
+}
 
 /* ===== Адаптив ===== */
 /* Адаптив: уменьшаем высоту карточки => ширина также уменьшится из-за aspect-ratio */
