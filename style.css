@@ -229,6 +229,19 @@ body {
 .hero__photo{justify-self:end;max-width:600px;max-height:600px;overflow:hidden;border-radius:0;aspect-ratio:1/1}
 .hero__photo img{border-radius:0;box-shadow:0 20px 60px rgba(0,0,0,0.4);width:100%;height:100%;object-fit:cover;object-position:50% 5%}
 
+/* Градиент снизу для читаемости текста (как на мобилке) */
+.hero__photo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* ===== Преимущества ===== */
 #benefits{position:relative}
 #benefits::before{
