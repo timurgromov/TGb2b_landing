@@ -238,12 +238,14 @@
 
   /* ===== HERO: Чипсы с автоматическим переносом ===== */
   
+  /* МЕГА-СИЛЬНЫЙ селектор для чипсов */
   html body #hero-left #hero-tags {
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 8px !important;
+    gap: 6px !important;
     max-width: 100% !important;
-    margin-bottom: 20px !important; /* УВЕЛИЧИЛИ до 20px для симметрии с подзаголовком */
+    margin-top: 0 !important; /* УБИРАЕМ desktop margin-top: 14px */
+    margin-bottom: 16px !important; /* Симметрия с отступом до кнопок */
   }
 
   #hero-tags .tag-row {
@@ -251,8 +253,8 @@
   }
 
   #hero-tags .tag {
-    font-size: 13.5px !important;
-    padding: 6px 10px !important;
+    font-size: 12.5px !important;
+    padding: 5px 9px !important;
   }
 
   /* Сокращаем текст чипа Love Radio ТОЛЬКО на мобилке */
@@ -262,12 +264,34 @@
   
   #hero-tags .tag-radio::before {
     content: "Ведущий Love Radio";
-    font-size: 13.5px !important;
+    font-size: 12.5px !important;
   }
 
   /* Убираем чип "Добрый юмор" на мобилке */
   #hero-tags .tag-humor {
     display: none !important;
+  }
+
+  /* Ещё компактнее для узких экранов (iPhone SE, малые Android) */
+  @media (max-width: 390px) {
+    html body #hero-left #hero-tags {
+      gap: 4px !important;
+      margin-bottom: 14px !important;
+    }
+    
+    #hero-tags .tag {
+      font-size: 12px !important;
+      padding: 4px 8px !important;
+    }
+    
+    /* Для чипа Love Radio текст остаётся скрытым, только ::before видим */
+    #hero-tags .tag-radio {
+      font-size: 0 !important;
+    }
+    
+    #hero-tags .tag-radio::before {
+      font-size: 12px !important;
+    }
   }
 
   /* ===== HERO: Типографика и размеры ===== */
@@ -283,9 +307,11 @@
     line-height: inherit !important;
   }
   
-  #hero-subtitle {
+  /* МЕГА-СИЛЬНЫЙ селектор для подзаголовка */
+  html body #hero-left #hero-subtitle {
     font-size: 14px !important; /* УМЕНЬШЕННЫЙ размер */
-    margin-bottom: 20px !important; /* УВЕЛИЧИЛИ до 20px для симметрии */
+    margin-top: 0 !important; /* УБИРАЕМ desktop margin-top: 10px */
+    margin-bottom: 16px !important; /* Симметрия с отступом до кнопок */
   }
   
   /* ===== HERO: МЕГА-СИЛЬНЫЕ КНОПКИ (перебивают style.css) ===== */
@@ -294,7 +320,8 @@
   html body #hero-left #hero-actions {
     flex-direction: column !important;
     gap: 12px !important;
-    margin-top: 18px !important; /* УВЕЛИЧИЛИ с 12px до 18px - ПЕРЕБИВАЕМ ВСЕ style.css */
+    margin-top: 0 !important; /* УБИРАЕМ desktop margin-top: 36px */
+    margin-bottom: 0 !important; /* УБИРАЕМ desktop margin-bottom */
     width: 100% !important;
     margin-bottom: 0 !important; /* перебиваем style.css */
   }
