@@ -667,6 +667,19 @@ body {
 }
 .footer__icon:hover{transform:translateY(-1px); background:rgba(255,255,255,.04)}
 .footer__legal{color:var(--muted);font-size:12px;margin-top:4px}
+
+/* Убираем стили ссылок для ИНН и ОГРН */
+.footer__legal a,
+.footer__legal a:link,
+.footer__legal a:visited,
+.footer__legal a:hover,
+.footer__legal a:active {
+  color: var(--muted) !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  background: none !important;
+  pointer-events: none !important;
+}
 .footer__copy{color:var(--muted);font-size:13px;margin-top:14px;text-align:left}
 
 /* Разделительная черта перед блоком с информацией об ИП */
