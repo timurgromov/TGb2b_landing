@@ -889,10 +889,7 @@ body {
   .video-fullscreen .play-button::before{border-left:16px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent}
 }
 
-@media (prefers-reduced-motion:reduce){
-  .sr,.sr.show{opacity:1!important;transform:none!important;transition:none!important}
-  .btn,.video-wrapper{transition:none!important}
-}
+/* АРТЕФАКТ УДАЛЕН: @media (prefers-reduced-motion) отключал все анимации на iOS */
 
 /* ===== Лайтбокс благодарственных писем ===== */
 html.is-modal-open,
