@@ -22,7 +22,7 @@
   .hero__photo {
     order: 1 !important;
     width: 100% !important;
-    height: 55vh !important; /* УМЕНЬШИЛИ с 62% до 55% - КАК БЫЛО */
+    height: 320px !important; /* ФИКСИРОВАННАЯ ВЫСОТА вместо vh для одинакового размера на всех устройствах */
     border-radius: 24px !important;
     overflow: hidden !important;
     position: relative !important;
