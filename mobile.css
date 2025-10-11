@@ -63,7 +63,7 @@
     font-size: clamp(26px, 6vw, 36px); /* УВЕЛИЧИЛИ до 36px для выразительности */
     font-weight: 800;
     line-height: 1.1; /* плотнее для баланса с лицом */
-    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45); /* ФИНАЛЬНЫЙ ОПТИМАЛЬНЫЙ ВАРИАНТ */
     z-index: 2;
     pointer-events: none;
   }
