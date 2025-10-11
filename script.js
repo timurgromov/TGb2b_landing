@@ -472,7 +472,20 @@ function unlockPageScroll() {
   }
 
   const scrollStep = () => track.clientWidth * 0.9;
-  const scrollByX  = dir => track.scrollBy({ left: dir * scrollStep(), behavior:'smooth' });
+  const scrollByX  = dir => {
+    const step = scrollStep();
+    track.scrollBy({ left: dir * step, behavior:'smooth' });
+    
+    // iOS-фикс: принудительная проверка позиции
+    setTimeout(() => {
+      const expectedPos = track.scrollLeft + (dir * step);
+      const actualPos = track.scrollLeft;
+      const diff = Math.abs(expectedPos - actualPos);
+      if (diff > 20) { // если не доехало, принудительно доезжаем
+        track.scrollBy({ left: dir * step, behavior: 'auto' });
+      }
+    }, 150);
+  };
   prev?.addEventListener('click', ()=>scrollByX(-1));
   next?.addEventListener('click', ()=>scrollByX( 1));
 
