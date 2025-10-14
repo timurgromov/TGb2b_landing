@@ -339,6 +339,34 @@
     display: block !important;
   }
 
+  /* ===== СОКРАЩЕНИЕ ТЕКСТА ПРЕИМУЩЕСТВ НА МОБИЛКЕ ===== */
+  
+  /* Сокращаем "Проверенные подрядчики" */
+  .benefit:nth-child(5) p {
+    font-size: 0 !important; /* скрываем оригинальный текст */
+  }
+  
+  .benefit:nth-child(5) p::before {
+    content: "Кавер-группы, фото, видео — только надёжные люди." !important;
+    font-size: 14px !important;
+    color: var(--muted) !important;
+    line-height: 1.5 !important;
+    display: block !important;
+  }
+  
+  /* Сокращаем "Опыт, которому доверяют" */
+  .benefit:nth-child(6) p {
+    font-size: 0 !important; /* скрываем оригинальный текст */
+  }
+  
+  .benefit:nth-child(6) p::before {
+    content: "20 лет в профессии, 800+ событий, Love Radio, КВН." !important;
+    font-size: 14px !important;
+    color: var(--muted) !important;
+    line-height: 1.5 !important;
+    display: block !important;
+  }
+
   /* ===== HERO: Чипсы с автоматическим переносом ===== */
   
   /* МЕГА-СИЛЬНЫЙ селектор для чипсов */
