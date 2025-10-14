@@ -296,11 +296,11 @@
   .modal__img {
     max-width: calc(100vw - 16px) !important ; /* УЧИТЫВАЕМ ПАДДИНГ 8px*2 */
     max-height: calc(100vh - 16px) !important ; /* УЧИТЫВАЕМ ПАДДИНГ 8px*2 */
-    width: auto !important ;
-    height: auto !important ;
-    object-fit: contain !important ; /* СОХРАНЯЕМ ПРОПОРЦИИ */
-    border-radius: 0 !important ; /* УБИРАЕМ СКРУГЛЕНИЕ */
-    box-shadow: none !important ; /* УБИРАЕМ ТЕНИ */
+    width: calc(100vw - 16px) !important ;     /* ПОДСТРАИВАЕМСЯ ПОД ШИРИНУ ЭКРАНА */
+    height: auto !important ;                   /* ВЫСОТА АВТОМАТИЧЕСКИ */
+    object-fit: contain !important ;            /* СОХРАНЯЕМ ПРОПОРЦИИ */
+    border-radius: 0 !important ;              /* УБИРАЕМ СКРУГЛЕНИЕ */
+    box-shadow: none !important ;              /* УБИРАЕМ ТЕНИ */
     margin: 0 !important ;
     padding: 0 !important ;
   }
