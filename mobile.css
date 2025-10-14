@@ -723,9 +723,16 @@
       0 0 16px rgba(255, 192, 151, 0.25),
       0 0 32px rgba(255, 122, 69, 0.15) !important;
     border-radius: 1px !important;
-    z-index: 1 !important;
-    opacity: 1 !important;
+    z-index: 0 !important;                     /* ВАЖНО: ниже карточек/цифр */
+    opacity: 0 !important;                     /* сперва скрыта */
+    transform: translateX(-50%) scaleY(0) !important;  /* для анимации */
+    transform-origin: top !important;
     pointer-events: none !important;
+  }
+
+  /* Состояние «линия проигрывается» */
+  #workflow .container.wf-line-play::before {
+    animation: wf-line-reveal 700ms ease-out forwards !important;
   }
 
   /* Анимация при наведении - как в преимуществах */
@@ -740,6 +747,11 @@
   }
 
 }
+
+  @keyframes wf-line-reveal {
+    from { transform: translateX(-50%) scaleY(0); opacity: 0; }
+    to   { transform: translateX(-50%) scaleY(1); opacity: 1; }
+  }
 
 /* Страховка для узких экранов */
 @media (max-width:360px){
