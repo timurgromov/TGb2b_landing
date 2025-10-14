@@ -586,7 +586,7 @@
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 24px !important; /* идеальное расстояние для дыхания */
+    gap: 2rem !important; /* идеальное расстояние для дыхания */
     margin-top: 32px !important; /* увеличен отступ от заголовка */
     width: 100% !important;
   }
