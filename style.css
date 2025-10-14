@@ -130,8 +130,15 @@ button{font-family:inherit;cursor:pointer}
     0 0 40px rgba(255, 122, 69, 0.10);
 }
 
-/* Явно убираем свечение с header кнопки */
-.header__cta .wa-btn {
+/* Свечение header кнопки исчезает вместе с header */
+.site-header:not(.header-hidden) .header__cta .wa-btn {
+  box-shadow: 
+    0 10px 28px color-mix(in oklab, var(--accent) 45%, transparent),
+    0 0 20px rgba(255, 106, 61, 0.20),
+    0 0 40px rgba(255, 122, 69, 0.10);
+}
+
+.site-header.header-hidden .header__cta .wa-btn {
   box-shadow: none !important;
 }
 

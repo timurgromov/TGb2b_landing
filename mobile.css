@@ -12,8 +12,15 @@
       0 0 40px rgba(255, 122, 69, 0.10) !important;
   }
 
-  /* Явно убираем свечение с header кнопки на мобилке */
-  .header__cta .wa-btn {
+  /* Свечение header кнопки исчезает вместе с header на мобилке */
+  .site-header:not(.header-hidden) .header__cta .wa-btn {
+    box-shadow: 
+      0 4px 14px rgba(255,122,51,0.25),
+      0 0 20px rgba(255, 106, 61, 0.20),
+      0 0 40px rgba(255, 122, 69, 0.10) !important;
+  }
+
+  .site-header.header-hidden .header__cta .wa-btn {
     box-shadow: none !important;
   }
   :root {
