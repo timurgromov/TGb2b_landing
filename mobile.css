@@ -2,7 +2,7 @@
 
 @media (max-width: 768px) {
   /* Общее свечение для всех оранжевых кнопок (кроме header) */
-  .btn-primary:not(.workflow__cta .btn):not(.header__cta .btn-primary),
+  .btn-primary:not(.workflow__cta .btn):not(.wa-btn),
   .benefits__cta .btn-outline,
   .workflow__cta .btn-outline,
   .hero-actions .btn-outline {
