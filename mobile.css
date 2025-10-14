@@ -175,8 +175,6 @@
     width: calc(100vw - 36px);
     margin: 0 auto;
     max-width: calc(100vw - 36px);
-    gap: 18px;
-    padding: 0 18px;
   }
   
   /* ===== SLIDER TRACKS ===== */
