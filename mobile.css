@@ -324,6 +324,21 @@
     z-index: 1002 !important;
   }
 
+  /* ===== CTA БЛОК: УБИРАЕМ ДЕФИС НА МОБИЛКЕ ===== */
+  .cta__title {
+    font-size: 0 !important; /* скрываем оригинальный текст */
+  }
+  
+  .cta__title::before {
+    content: "Праздники проходят впечатления остаются." !important;
+    font-size: clamp(24px, 5vw, 32px) !important;
+    font-family: var(--font-serif) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    color: var(--text) !important;
+    display: block !important;
+  }
+
   /* ===== HERO: Чипсы с автоматическим переносом ===== */
   
   /* МЕГА-СИЛЬНЫЙ селектор для чипсов */
