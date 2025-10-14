@@ -173,7 +173,11 @@
     right: 10px ;
   }
 
-  /* ===== LETTERS BUTTONS - такие же как у фотогалереи ===== */
+  /* ===== LETTERS - такие же отступы как у фотогалереи ===== */
+  .letters-slider {
+    padding: 0 18px;  /* такие же отступы как у фотогалереи */
+  }
+
   .letters-btn {
     width: 48px !important;
     height: 48px !important;
