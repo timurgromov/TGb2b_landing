@@ -799,3 +799,22 @@ function unlockPageScroll() {
   });
   window.addEventListener('resize', onResize);
 })();
+
+// ===== WORKFLOW: анимация линии при входе в viewport (только мобила) =====
+(function () {
+  if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+  const el = document.querySelector('#workflow .container');
+  if (!el) return;
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        el.classList.add('wf-line-play');
+        io.disconnect();
+      }
+    });
+  }, { rootMargin: '0px 0px -20% 0px', threshold: 0.2 });
+
+  io.observe(el);
+})();
