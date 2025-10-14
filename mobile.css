@@ -654,7 +654,7 @@
     margin-bottom: 12px !important; /* увеличен отступ между бейджем и текстом */
     border-radius: 50% !important;
     background: var(--accent, #ff7a45) !important;
-    color: #111 !important;
+    color: #fff !important; /* белые цифры, как было */
     font-weight: 800 !important;
   }
 
