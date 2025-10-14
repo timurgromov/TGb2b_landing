@@ -1,6 +1,13 @@
-/* ===== МОБИЛЬНАЯ ВЕРСИЯ (адаптация desktop стилей) ===== */
+  /* ===== МОБИЛЬНАЯ ВЕРСИЯ (адаптация desktop стилей) ===== */
 
 @media (max-width: 768px) {
+  /* Общее свечение для всех оранжевых кнопок */
+  .btn-primary:not(.workflow__cta .btn) {
+    box-shadow: 
+      0 4px 14px rgba(255,122,51,0.25),
+      0 0 20px rgba(255, 106, 61, 0.20),
+      0 0 40px rgba(255, 122, 69, 0.10) !important;
+  }
   :root {
     /* ПРОПОРЦИИ ДЛЯ ФОТО, НЕ ДЛЯ ВИДЕО */
     --m-frame-ratio: 4/3;  /* классическое фото 4:3 */
@@ -531,7 +538,10 @@
     font-size: 16px ;
     padding: 16px 0 ;
     border-radius: 12px ;
-    box-shadow: 0 4px 14px rgba(255,122,51,0.25) ;
+    box-shadow: 
+      0 4px 14px rgba(255,122,51,0.25),
+      0 0 20px rgba(255, 106, 61, 0.20),
+      0 0 40px rgba(255, 122, 69, 0.10) ;
     border: none ;
     letter-spacing: 0.3px ;
     margin: 0 ;
