@@ -516,14 +516,39 @@ function unlockPageScroll() {
     }, 150);
   };
   let current = 0;
+  
+  // ПРЕЗАГРУЗКА ДЛЯ МОБИЛЬНОЙ ВЕРСИИ
+  function preloadAdjacentImages() {
+    if (window.innerWidth > 768) return; // ТОЛЬКО НА МОБИЛКЕ
+    
+    // Предзагружаем предыдущее изображение
+    if (current > 0) {
+      const prevImg = new Image();
+      prevImg.src = cards[current - 1].querySelector('img').src;
+    }
+    
+    // Предзагружаем следующее изображение
+    if (current < cards.length - 1) {
+      const nextImg = new Image();
+      nextImg.src = cards[current + 1].querySelector('img').src;
+    }
+  }
+  
   prev?.addEventListener('click', () => {
     current = Math.max(0, current - 1);
     scrollToIndex(current, 'smooth');
+    preloadAdjacentImages(); // ПРЕЗАГРУЖАЕМ ПОСЛЕ ПЕРЕКЛЮЧЕНИЯ
   });
   next?.addEventListener('click', () => {
     current = Math.min(cards.length - 1, current + 1);
     scrollToIndex(current, 'smooth');
+    preloadAdjacentImages(); // ПРЕЗАГРУЖАЕМ ПОСЛЕ ПЕРЕКЛЮЧЕНИЯ
   });
+  
+  // ПРЕЗАГРУЗКА ПРИ ЗАГРУЗКЕ СТРАНИЦЫ (МОБИЛКА)
+  if (window.innerWidth <= 768) {
+    preloadAdjacentImages();
+  }
 
   function updateArrows() {
     const leftEdge  = track.scrollLeft;
