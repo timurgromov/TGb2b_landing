@@ -273,17 +273,17 @@
   html body .modal__content,
   #letter-modal .modal__content,
   .modal__content {
-    max-width: 100vw ; /* НА ВСЮ ШИРИНУ ВИДЕОПОРТА */
-    max-height: 100vh ; /* НА ВСЮ ВЫСОТУ ВИДЕОПОРТА */
-    width: 100vw ;
-    height: 100vh ;
-    margin: 0 ;
-    padding: 0 ;
-    border-radius: 0 ; /* УБИРАЕМ СКРУГЛЕНИЕ */
-    display: flex ;
-    align-items: center ;
-    justify-content: center ;
-    background: white ;
+    max-width: 100vw !important ; /* НА ВСЮ ШИРИНУ ВИДЕОПОРТА */
+    max-height: 100vh !important ; /* НА ВСЮ ВЫСОТУ ВИДЕОПОРТА */
+    width: 100vw !important ;
+    height: 100vh !important ;
+    margin: 0 !important ;
+    padding: 0 !important ;
+    border-radius: 0 !important ; /* УБИРАЕМ СКРУГЛЕНИЕ */
+    display: flex !important ;
+    align-items: stretch !important ; /* РАСТЯГИВАЕМ НА ВЕСЬ ЭКРАН */
+    justify-content: stretch !important ; /* РАСТЯГИВАЕМ НА ВЕСЬ ЭКРАН */
+    background: white !important ;
   }
   
   /* МЕГА-СИЛЬНЫЙ селектор для изображения письма */
@@ -293,13 +293,15 @@
   #letter-modal .letter-modal-img,
   #letter-modal .modal__img,
   .modal__img {
-    max-width: 100vw ;
-    max-height: 100vh ; /* НА ВСЮ ВЫСОТУ ВИДЕОПОРТА */
-    width: 100vw ;      /* НА ВСЮ ШИРИНУ ЭКРАНА */
-    height: 100vh ;     /* НА ВСЮ ВЫСОТУ ЭКРАНА */
-    object-fit: contain ;
-    border-radius: 0 ; /* УБИРАЕМ СКРУГЛЕНИЕ */
-    box-shadow: none ; /* УБИРАЕМ ТЕНИ */
+    max-width: 100vw !important ;
+    max-height: 100vh !important ; /* НА ВСЮ ВЫСОТУ ВИДЕОПОРТА */
+    width: 100vw !important ;      /* НА ВСЮ ШИРИНУ ЭКРАНА */
+    height: 100vh !important ;     /* НА ВСЮ ВЫСОТУ ЭКРАНА */
+    object-fit: cover !important ; /* ЗАПОЛНЯЕМ ВЕСЬ ЭКРАН БЕЗ ПОЛЕЙ */
+    border-radius: 0 !important ; /* УБИРАЕМ СКРУГЛЕНИЕ */
+    box-shadow: none !important ; /* УБИРАЕМ ТЕНИ */
+    margin: 0 !important ;
+    padding: 0 !important ;
   }
   
   /* ОРАНЖЕВЫЕ СТРЕЛКИ ДЛЯ ПИСЕМ (как в фотогалерее) */
