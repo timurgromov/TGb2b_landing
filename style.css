@@ -435,7 +435,7 @@ body {
 .benefits__cta{text-align:center;margin-top:32px}
 
 /* ===== Workflow CTA ===== */
-.workflow__cta{text-align:center;margin:32px 0}
+.workflow__cta{text-align:center;margin-top:32px;margin-bottom:16px}
 
 /* ===== Модалка (программы) ===== */
 #programs-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s ease}
