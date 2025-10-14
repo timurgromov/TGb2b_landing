@@ -374,7 +374,7 @@
   }
   
   .benefit:nth-child(6) p::before {
-    content: "800+ событий, Love Radio, КВН." !important;
+    content: "800+ событий, 3 года Love Radio, 10 лет КВН." !important;
     font-size: 14px !important;
     color: var(--muted) !important;
     line-height: 1.5 !important;
