@@ -432,9 +432,6 @@
     display: none;
   }
 
-
-
-
   /* ===== HERO: Чипсы с автоматическим переносом ===== */
   
   /* МЕГА-СИЛЬНЫЙ селектор для чипсов */
@@ -610,6 +607,7 @@
 
   /* Номера шагов - премиальный стиль, гармоничный с дизайном */
   .workflow__badge {
+    position: static !important;           /* сбрасываем desktop absolute */
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -623,6 +621,12 @@
     font-weight: 700 !important; /* оптимальная толщина */
     border: 1px solid rgba(255,255,255,0.15) !important; /* тонкая обводка */
     box-shadow: 0 4px 16px rgba(255,122,69,0.25) !important; /* мягкое свечение */
+    transform: none !important;            /* сбрасываем desktop transform */
+  }
+
+  /* Контент карточки - убираем desktop отступ */
+  .workflow__content {
+    margin-top: 0 !important;
   }
 
   /* Текст - улучшенная читаемость */
@@ -700,7 +704,7 @@
   }
 
   /* Анимация при наведении - как в преимуществах */
-  .workflow__step:hover {
+  #workflow .workflow__step:hover {
     transform: translateY(-2px) !important;
     background: linear-gradient(135deg, 
       rgba(255,106,61,0.08) 0%, 
@@ -710,12 +714,12 @@
       0 8px 40px rgba(255,106,61,0.15) !important;
   }
 
-}
-
   @keyframes wf-line-reveal {
     from { transform: translateX(-50%) scaleY(0); opacity: 0; }
     to   { transform: translateX(-50%) scaleY(1); opacity: 1; }
   }
+
+}
 
 /* Страховка для узких экранов */
 @media (max-width:360px){
