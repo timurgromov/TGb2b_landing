@@ -676,18 +676,18 @@
     background: linear-gradient(
       180deg,
       rgba(255, 192, 151, 0) 0%,
-      rgba(255, 122, 69, 0.50) 15%,
-      rgba(255, 122, 69, 0.80) 50%,
-      rgba(255, 192, 151, 0.50) 85%,
+      rgba(255, 122, 69, 0.35) 15%,
+      rgba(255, 122, 69, 0.55) 50%,
+      rgba(255, 192, 151, 0.35) 85%,
       rgba(255, 122, 69, 0) 100%
     ) !important;
     box-shadow:
-      0 0 6px rgba(255, 122, 69, 0.30),
-      0 0 16px rgba(255, 192, 151, 0.25),
-      0 0 32px rgba(255, 122, 69, 0.15) !important;
+      0 0 4px rgba(255, 122, 69, 0.20),
+      0 0 12px rgba(255, 192, 151, 0.15),
+      0 0 24px rgba(255, 122, 69, 0.10) !important;
     border-radius: 1px !important;
     z-index: 0 !important;                     /* ВАЖНО: ниже карточек/цифр */
-    opacity: 1 !important;                     /* видима сразу */
+    opacity: 0.65 !important;                  /* деликатнее - световой ориентир */
     transform: translateX(-50%) !important;
     pointer-events: none !important;
   }
