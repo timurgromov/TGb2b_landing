@@ -278,7 +278,7 @@
     width: 100vw !important ;
     height: 100vh !important ;
     margin: 0 !important ;
-    padding: 16px !important ; /* БОЛЬШИЕ ПОЛЯ ЧТОБЫ НЕ ЗАПОЛЗАЛО */
+    padding: 8px !important ; /* НЕБОЛЬШИЕ ПОЛЯ ЧТОБЫ НЕ ЗАПОЛЗАЛО */
     border-radius: 0 !important ; /* УБИРАЕМ СКРУГЛЕНИЕ */
     display: flex !important ;
     align-items: center !important ; /* ЦЕНТРИРУЕМ */
@@ -294,9 +294,9 @@
   #letter-modal .letter-modal-img,
   #letter-modal .modal__img,
   .modal__img {
-    max-width: calc(100vw - 32px) !important ; /* УЧИТЫВАЕМ ПАДДИНГ 16px*2 */
-    max-height: calc(100vh - 32px) !important ; /* УЧИТЫВАЕМ ПАДДИНГ 16px*2 */
-    width: calc(100vw - 32px) !important ;     /* ПОДСТРАИВАЕМСЯ ПОД ШИРИНУ ЭКРАНА */
+    max-width: calc(100vw - 16px) !important ; /* УЧИТЫВАЕМ ПАДДИНГ 8px*2 */
+    max-height: calc(100vh - 16px) !important ; /* УЧИТЫВАЕМ ПАДДИНГ 8px*2 */
+    width: calc(100vw - 16px) !important ;     /* ПОДСТРАИВАЕМСЯ ПОД ШИРИНУ ЭКРАНА */
     height: auto !important ;                   /* ВЫСОТА АВТОМАТИЧЕСКИ */
     object-fit: contain !important ;            /* СОХРАНЯЕМ ПРОПОРЦИИ */
     border-radius: 0 !important ;              /* УБИРАЕМ СКРУГЛЕНИЕ */
