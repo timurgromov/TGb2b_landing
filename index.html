@@ -27,8 +27,8 @@
   <link rel="icon" type="image/x-icon" href="favicon2.ico">
   <link rel="shortcut icon" href="favicon2.ico">
   
-  <link rel="stylesheet" href="style.css?v=workflow-timeline-style">
-<link rel="stylesheet" href="mobile.css?v=workflow-vertical-timeline" media="(max-width: 768px)">
+  <link rel="stylesheet" href="style.css?v=diagonal-timeline-final">
+<link rel="stylesheet" href="mobile.css?v=diagonal-timeline-mobile-final" media="(max-width: 768px)">
   
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
@@ -171,55 +171,61 @@
     </section>
 
     <!-- Порядок работы -->
-    <section id="workflow" class="section workflow-section">
+    <section id="workflow" class="workflow section">
       <div class="container">
-        <div class="workflow-header sr">
-          <h2 class="section__title">Порядок работы</h2>
-          <p class="workflow-subtitle">Всё чётко и без лишней бюрократии</p>
+        <h2 class="section__title sr">Порядок работы</h2>
+        <p class="section__subtitle sr">Всё чётко и без лишней бюрократии</p>
+        <div class="workflow__steps">
+          <article class="workflow__step sr" role="group" aria-label="Этап 1 из 5" data-cta="workflow_step_1">
+            <span class="workflow__badge" aria-hidden="true">1</span>
+            <div class="workflow__content">
+              <h3 class="workflow__title">Знакомство</h3>
+              <p class="workflow__text">Созвон или сообщение — обсуждаем задачу и формат.</p>
+            </div>
+          </article>
+          <article class="workflow__step sr" role="group" aria-label="Этап 2 из 5" data-cta="workflow_step_2">
+            <span class="workflow__badge" aria-hidden="true">2</span>
+            <div class="workflow__content">
+              <h3 class="workflow__title">Встреча / консультация</h3>
+              <p class="workflow__text">Лично или онлайн (Zoom, Яндекс.Мост) — 20–25 минут, только по делу.</p>
+            </div>
+          </article>
+          <article class="workflow__step sr" role="group" aria-label="Этап 3 из 5" data-cta="workflow_step_3">
+            <span class="workflow__badge" aria-hidden="true">3</span>
+            <div class="workflow__content">
+              <h3 class="workflow__title">Концепция и смета</h3>
+              <p class="workflow__text">Предлагаю форматы, подбираю подрядчиков, готовлю расчёт.</p>
+            </div>
+          </article>
+          <article class="workflow__step sr" role="group" aria-label="Этап 4 из 5" data-cta="workflow_step_4">
+            <span class="workflow__badge" aria-hidden="true">4</span>
+            <div class="workflow__content">
+              <h3 class="workflow__title">Договор и организация</h3>
+              <p class="workflow__text">Бухгалтерия, юристы, тайминг, согласование площадки.</p>
+            </div>
+          </article>
+          <article class="workflow__step sr" role="group" aria-label="Этап 5 из 5" data-cta="workflow_step_5">
+            <span class="workflow__badge" aria-hidden="true">5</span>
+            <div class="workflow__content">
+              <h3 class="workflow__title">Мероприятие</h3>
+              <p class="workflow__text">Всё по плану: комфорт, атмосфера и результат.</p>
+            </div>
+          </article>
         </div>
-        <div class="workflow-timeline">
-          <div class="workflow-line"></div>
-          <div class="workflow-step sr" data-cta="workflow_step_1">
-            <div class="workflow-badge">1</div>
-            <div class="workflow-icon">📞</div>
-            <div class="workflow-content">
-              <div class="workflow-title">Знакомство</div>
-              <p>Созвон или сообщение — обсуждаем задачу и формат.</p>
-            </div>
-          </div>
-          <div class="workflow-step sr" data-cta="workflow_step_2">
-            <div class="workflow-badge">2</div>
-            <div class="workflow-icon">💬</div>
-            <div class="workflow-content">
-              <div class="workflow-title">Встреча / консультация</div>
-              <p>Лично или онлайн (Zoom, Яндекс.Мост) — 20–25 минут, только по делу.</p>
-            </div>
-          </div>
-          <div class="workflow-step sr" data-cta="workflow_step_3">
-            <div class="workflow-badge">3</div>
-            <div class="workflow-icon">📋</div>
-            <div class="workflow-content">
-              <div class="workflow-title">Концепция и смета</div>
-              <p>Предлагаю форматы, подбираю подрядчиков, готовлю расчёт.</p>
-            </div>
-          </div>
-          <div class="workflow-step sr" data-cta="workflow_step_4">
-            <div class="workflow-badge">4</div>
-            <div class="workflow-icon">🖋</div>
-            <div class="workflow-content">
-              <div class="workflow-title">Договор и организация</div>
-              <p>Бухгалтерия, юристы, тайминг, согласование площадки.</p>
-            </div>
-          </div>
-          <div class="workflow-step sr" data-cta="workflow_step_5">
-            <div class="workflow-badge">5</div>
-            <div class="workflow-icon">🎉</div>
-            <div class="workflow-content">
-              <div class="workflow-title">Мероприятие</div>
-              <p>Всё по плану: комфорт, атмосфера и результат.</p>
-            </div>
-          </div>
-        </div>
+        <svg class="workflow__connector" aria-hidden="true" viewBox="0 0 1000 200">
+          <defs>
+            <linearGradient id="connectorGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:var(--accent);stop-opacity:0" />
+              <stop offset="100%" style="stop-color:var(--accent);stop-opacity:0.35" />
+            </linearGradient>
+          </defs>
+          <path class="workflow__path" d="M 50 100 Q 250 50 450 100 T 850 100" 
+                stroke="url(#connectorGradient)" 
+                stroke-width="2" 
+                fill="none" 
+                stroke-dasharray="1000" 
+                stroke-dashoffset="1000"/>
+        </svg>
       </div>
     </section>
 
