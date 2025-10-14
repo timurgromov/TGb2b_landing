@@ -432,42 +432,7 @@
     display: none;
   }
 
-  /* Базовые стили для контейнера и карточек */
-  .workflow__steps {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin: 2rem 0;
-    position: relative;
-  }
 
-  .workflow__step {
-    width: 100%;
-    padding: 1.25rem;
-    position: relative;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    box-shadow: 0 0 12px rgba(255, 106, 61, 0.08);
-  }
-
-  .workflow__badge {
-    display: inline-flex;
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
-    margin-bottom: 0.75rem;
-  }
-
-  .workflow__title {
-    font-size: 15px;
-    margin-bottom: 0.5rem;
-  }
-
-  .workflow__text {
-    font-size: 13px;
-    line-height: 1.4;
-  }
 
 
   /* ===== HERO: Чипсы с автоматическим переносом ===== */
