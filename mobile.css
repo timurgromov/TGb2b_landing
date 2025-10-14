@@ -113,7 +113,9 @@
   /* 1) Контейнер галереи: ширина 100%, без боковых переполнений */
   .photos-slider {
     position: relative;               /* для стрелок */
-    max-width: 100%;
+    width: calc(100% - 36px);
+    margin: 0 auto;
+    max-width: calc(100% - 36px);
     overflow: hidden;
     min-height: 220px;                /* минимальная высота для стрелок */
   }
