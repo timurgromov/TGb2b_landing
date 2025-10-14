@@ -693,9 +693,12 @@
     display: none !important;
   }
 
-  /* Контейнер под линию */
+  /* Контейнер под линию с переменными для подгона */
   #workflow .container {
     position: relative !important;
+    /* ТОНКАЯ ПОДГОНОЧКА: эти два числа правим по месту */
+    --wf-line-top: 44px !important;     /* ↑ старт линии от верхнего края .container */
+    --wf-line-bottom: 38px !important;  /* ↓ отступ линии от нижнего края .container */
   }
 
   /* Вертикальная линия по центру контейнера */
@@ -704,8 +707,8 @@
     position: absolute !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    top: 40px !important;
-    bottom: 40px !important;
+    top: var(--wf-line-top) !important;
+    bottom: var(--wf-line-bottom) !important;
     width: 2px !important;
     background: linear-gradient(
       180deg,
