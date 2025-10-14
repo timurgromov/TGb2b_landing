@@ -215,23 +215,21 @@
             </div>
           </article>
         </div>
+        <svg class="workflow__connector" aria-hidden="true" viewBox="0 0 1200 200">
+          <defs>
+            <linearGradient id="connectorGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:var(--accent);stop-opacity:0" />
+              <stop offset="100%" style="stop-color:var(--accent);stop-opacity:0.5" />
+            </linearGradient>
+          </defs>
+          <path class="workflow__path" d="M 50 60 Q 250 10 450 60 T 1200 60" 
+                stroke="url(#connectorGradient)" 
+                stroke-width="2" 
+                fill="none" 
+                stroke-dasharray="1000" 
+                stroke-dashoffset="1000"/>
+        </svg>
       </div>
-      
-      <!-- SVG линия вне контейнера steps -->
-      <svg class="workflow__connector" aria-hidden="true" viewBox="0 0 1200 200">
-        <defs>
-          <linearGradient id="connectorGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:var(--accent);stop-opacity:0" />
-            <stop offset="100%" style="stop-color:var(--accent);stop-opacity:0.5" />
-          </linearGradient>
-        </defs>
-        <path class="workflow__path" d="M 50 60 Q 250 10 450 60 T 1200 60" 
-              stroke="url(#connectorGradient)" 
-              stroke-width="2" 
-              fill="none" 
-              stroke-dasharray="1000" 
-              stroke-dashoffset="1000"/>
-      </svg>
       
       <!-- Кнопка CTA в блоке workflow -->
       <div class="workflow__cta">
