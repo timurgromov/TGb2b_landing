@@ -386,6 +386,37 @@
     display: none !important;
   }
 
+  /* ===== ПОРЯДОК РАБОТЫ НА МОБИЛКЕ ===== */
+  .workflow {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    margin-top: 1.5rem !important;
+  }
+
+  .workflow-step {
+    padding: 1.25rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .workflow-badge {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 14px !important;
+    top: -10px !important;
+    left: 1.25rem !important;
+  }
+
+  .workflow-title {
+    font-size: 16px !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .workflow-step p {
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+  }
+
   /* ===== HERO: Чипсы с автоматическим переносом ===== */
   
   /* МЕГА-СИЛЬНЫЙ селектор для чипсов */
