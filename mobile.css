@@ -607,21 +607,14 @@
 
   /* Номера шагов - премиальный стиль, гармоничный с дизайном */
   .workflow__badge {
-    position: static !important;           /* сбрасываем desktop absolute */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
     width: 28px !important;
     height: 28px !important;
     font-size: 14px !important;
-    margin-bottom: 12px !important; /* увеличен отступ между бейджем и текстом */
-    border-radius: 50% !important;
     background: #FF7A45 !important; /* идеально совпадает с кнопками */
     color: #111 !important; /* тёмный текст - премиально и мягче */
     font-weight: 700 !important; /* оптимальная толщина */
     border: 1px solid rgba(255,255,255,0.15) !important; /* тонкая обводка */
     box-shadow: 0 4px 16px rgba(255,122,69,0.25) !important; /* мягкое свечение */
-    transform: none !important;            /* сбрасываем desktop transform */
   }
 
   /* Контент карточки - убираем desktop отступ */
