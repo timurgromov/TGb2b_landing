@@ -4,7 +4,14 @@
   :root {
     /* ПРОПОРЦИИ ДЛЯ ФОТО, НЕ ДЛЯ ВИДЕО */
     --m-frame-ratio: 4/3;  /* классическое фото 4:3 */
+    --gutter: 18px;                /* отступы слева/справа как в «Видео», «Преимущества» и т.п. */
+    --shift: 28px;                 /* шаг смещения карточек вправо→влево */
+    --step-gap: 20px;              /* вертикальный шаг между карточками */
+    --section-py: 36px;            /* базовый внутренний отступ секций */
   }
+
+  .section{padding: var(--section-py) 0;}
+  .container{width: calc(100vw - var(--gutter)*2); margin:0 auto;}
 
   /* ===== СОВРЕМЕННЫЙ MOBILE HERO (2025) ===== */
   
@@ -588,4 +595,75 @@
     transform: none ;
   }
 
+  /* ===== WORKFLOW: ВЕРТИКАЛЬНЫЙ ТАЙМЛАЙН "СПРАВА→ВНИЗ→НАЛЕВО" ===== */
+  
+  /* Удалить/отключить desktop-артефакты */
+  .workflow__connector,
+  .workflow svg,
+  .workflow canvas { display:none !important; }
+
+  /* Контейнер и карточки */
+  .section.workflow{padding: var(--section-py) 0;}
+  .workflow .section__subtitle{margin: 6px 0 18px; font-size:14px; opacity:.9;}
+
+  .workflow__steps{
+    display:flex; flex-direction:column;
+    gap: var(--step-gap);
+    position: relative;
+  }
+
+  .workflow__step{
+    width: 100%;
+    padding: 14px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(255,106,61,.08);
+  }
+
+  .workflow__badge{width: 28px; height:28px; font-size:14px; margin-bottom:8px;}
+  .workflow__title{font-size:16px; margin:0 0 6px;}
+  .workflow__text{font-size:13px; line-height:1.45;}
+
+  /* Смещение "справа→вниз→налево" с фиксированным шагом */
+  .workflow__step{ margin-left: 0; margin-right: 0; }
+  .workflow__step:nth-child(1){ margin-left: auto; width: 100%; }
+  .workflow__step:nth-child(2){ transform: translateX(calc(-1 * var(--shift))); }
+  .workflow__step:nth-child(3){ transform: translateX(calc(-2 * var(--shift))); }
+  .workflow__step:nth-child(4){ transform: translateX(calc(-3 * var(--shift))); }
+  .workflow__step:nth-child(5){ transform: translateX(calc(-4 * var(--shift))); }
+  .workflow__steps{ overflow: visible; }
+
+  /* Фоновая "плавная" линия */
+  .section.workflow{ position: relative; }
+  .section.workflow::before{
+    content:"";
+    position:absolute; inset: 0 auto 0 50%;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      rgba(255,106,61,.0) 0%,
+      rgba(255,106,61,.45) 12%,
+      rgba(255,106,61,.35) 60%,
+      rgba(255,106,61,.0) 100%
+    );
+    filter: blur(0.2px);
+    transform: translateX(120px);
+    pointer-events:none;
+  }
+
+  /* Строгие границы по полям */
+  .section.workflow .container{ padding: 0; width: calc(100vw - var(--gutter)*2); }
+  .section.workflow .workflow__step{ max-width: 100%; }
+
+  /* Кнопки и "воздух": убрать лишние отступы */
+  .section.workflow{ padding-bottom: 18px !important; }
+  .workflow__cta{ margin-top: 14px !important; }
+  .workflow__cta .btn{ margin-bottom: 0 !important; }
+
+}
+
+/* Страховка для узких экранов */
+@media (max-width:360px){
+  :root{ --shift: 22px; }
 }
