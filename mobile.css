@@ -295,8 +295,8 @@
   .modal__img {
     max-width: 100vw ;
     max-height: 100vh ; /* НА ВСЮ ВЫСОТУ ВИДЕОПОРТА */
-    width: auto ;
-    height: auto ;
+    width: 100vw ;      /* НА ВСЮ ШИРИНУ ЭКРАНА */
+    height: 100vh ;     /* НА ВСЮ ВЫСОТУ ЭКРАНА */
     object-fit: contain ;
     border-radius: 0 ; /* УБИРАЕМ СКРУГЛЕНИЕ */
     box-shadow: none ; /* УБИРАЕМ ТЕНИ */
