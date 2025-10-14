@@ -130,6 +130,11 @@ button{font-family:inherit;cursor:pointer}
     0 0 40px rgba(255, 122, 69, 0.10);
 }
 
+/* Явно убираем свечение с header кнопки */
+.header__cta .wa-btn {
+  box-shadow: none !important;
+}
+
 .btn:hover {
   transform: translateY(-1px);
 }
