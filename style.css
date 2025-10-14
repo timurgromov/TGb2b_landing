@@ -1095,7 +1095,7 @@ body.is-modal-open{
   align-items: flex-start;
   position: relative;
   margin: 0;
-  margin-top: 48px;
+  margin-top: 64px;
   gap: 3rem;
 }
 
