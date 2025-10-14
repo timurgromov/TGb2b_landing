@@ -165,20 +165,6 @@ button{font-family:inherit;cursor:pointer}
     display: none;
   }
 
-  /* Порядок работы на планшетах - 3 колонки */
-  .workflow-timeline {
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-  
-  .workflow-step {
-    width: 30%;
-    flex: 0 0 30%;
-  }
-  
-  .workflow-line {
-    display: none;
-  }
 }
 
 @media (max-width: 767px) {

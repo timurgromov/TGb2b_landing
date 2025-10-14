@@ -387,116 +387,56 @@
   }
 
   /* ===== ПОРЯДОК РАБОТЫ НА МОБИЛКЕ - ВЕРТИКАЛЬНЫЙ TIMELINE ===== */
+  /* WORKFLOW - чистая база для мобильной версии */
   .workflow {
-    padding: 4rem 0 ;
+    padding: 4rem 0;
   }
 
   .workflow .section__subtitle {
-    font-size: 14px ;
-    margin-bottom: 2rem ;
+    font-size: 14px;
+    margin-bottom: 2rem;
   }
 
-  .workflow__steps {
-    display: flex ;
-    flex-direction: column ;
-    gap: 2rem ;
-    margin: 2rem 0 ;
-    position: relative ;
-    padding-left: 2rem ;
-    padding-top: 1rem ;
-    padding-bottom: 1rem ;
-    overflow: visible ;
-  }
-
+  /* Скрываем десктопную линию */
   .workflow__connector {
-    display: none ;
+    display: none;
   }
 
-  .workflow__steps::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: rgba(255, 255, 255, 0.1);
-    z-index: 1;
-  }
-
-  .workflow__steps::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 2px;
-    background: var(--accent);
-    height: 0%;
-    animation: timeline-fill-vertical 2s ease-out 0.5s forwards;
-    z-index: 2;
-  }
-
-  @keyframes timeline-fill-vertical {
-    from { height: 0%; }
-    to { height: 100%; }
+  /* Базовые стили для контейнера и карточек */
+  .workflow__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem 0;
+    position: relative;
   }
 
   .workflow__step {
-    width: 100% ;
-    padding: 1.25rem ;
-    position: relative ;
-    text-align: left ;
-    transform: none ;
-    margin-top: 0 ;
-    background: rgba(255, 255, 255, 0.03) ;
-    border: 1px solid rgba(255, 255, 255, 0.08) ;
-    border-radius: 8px ;
-    box-shadow: 0 0 12px rgba(255, 106, 61, 0.08) ;
-    overflow: visible ;
-  }
-
-  .workflow__step::before {
-    content: '';
-    position: absolute;
-    left: -2.5rem;
-    top: 20px;
-    width: 12px;
-    height: 12px;
-    background: var(--accent);
-    border-radius: 50%;
-    z-index: 3;
-  }
-
-  .workflow__step:not(:last-child)::after {
-    content: '↓';
-    position: absolute;
-    bottom: -1.5rem;
-    left: -2.2rem;
-    color: var(--accent);
-    opacity: 0.5;
-    font-size: 16px;
-    z-index: 3;
+    width: 100%;
+    padding: 1.25rem;
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(255, 106, 61, 0.08);
   }
 
   .workflow__badge {
-    position: static ;
-    display: inline-flex ;
-    width: 28px ;
-    height: 28px ;
-    font-size: 14px ;
-    margin-bottom: 0.75rem ;
-    transform: none ;
-    top: auto ;
-    left: auto ;
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    margin-bottom: 0.75rem;
   }
 
   .workflow__title {
-    font-size: 15px ;
-    margin-bottom: 0.5rem ;
+    font-size: 15px;
+    margin-bottom: 0.5rem;
   }
 
   .workflow__text {
-    font-size: 13px ;
-    line-height: 1.4 ;
+    font-size: 13px;
+    line-height: 1.4;
   }
 
 
