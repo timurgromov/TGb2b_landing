@@ -1,8 +1,8 @@
   /* ===== МОБИЛЬНАЯ ВЕРСИЯ (адаптация desktop стилей) ===== */
 
 @media (max-width: 768px) {
-  /* Общее свечение для всех оранжевых кнопок */
-  .btn-primary:not(.workflow__cta .btn),
+  /* Общее свечение для всех оранжевых кнопок (кроме header) */
+  .btn-primary:not(.workflow__cta .btn):not(.header__cta .btn-primary),
   .benefits__cta .btn-outline,
   .workflow__cta .btn-outline,
   .hero-actions .btn-outline {

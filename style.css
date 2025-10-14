@@ -119,8 +119,8 @@ button{font-family:inherit;cursor:pointer}
   cursor: pointer;
 }
 
-/* Общее свечение для всех оранжевых кнопок */
-.btn-primary,
+/* Общее свечение для всех оранжевых кнопок (кроме header) */
+.btn-primary:not(.header__cta .btn-primary),
 .benefits__cta .btn-outline,
 .workflow__cta .btn-outline,
 .hero-actions .btn-outline {
