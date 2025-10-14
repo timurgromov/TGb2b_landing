@@ -643,7 +643,7 @@
     flex: none !important; /* убираем flex: 1 из desktop */
   }
 
-  /* Номера шагов - более ювелирные, как в бренде */
+  /* Номера шагов - премиальный стиль, гармоничный с дизайном */
   .workflow__badge {
     display: flex !important;
     align-items: center !important;
@@ -653,9 +653,11 @@
     font-size: 14px !important;
     margin-bottom: 12px !important; /* увеличен отступ между бейджем и текстом */
     border-radius: 50% !important;
-    background: var(--accent, #ff7a45) !important;
-    color: #fff !important; /* белые цифры, как было */
-    font-weight: 800 !important;
+    background: #FF7A45 !important; /* идеально совпадает с кнопками */
+    color: #111 !important; /* тёмный текст - премиально и мягче */
+    font-weight: 700 !important; /* оптимальная толщина */
+    border: 1px solid rgba(255,255,255,0.15) !important; /* тонкая обводка */
+    box-shadow: 0 4px 16px rgba(255,122,69,0.25) !important; /* мягкое свечение */
   }
 
   /* Текст - улучшенная читаемость */
