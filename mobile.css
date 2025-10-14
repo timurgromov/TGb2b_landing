@@ -522,9 +522,8 @@
     flex-direction: column ;
     gap: 12px ;
     margin-top: 0 ; /* УБИРАЕМ desktop margin-top: 36px */
-    margin-bottom: 0 ; /* УБИРАЕМ desktop margin-bottom */
+    margin-bottom: 32px !important; /* уменьшаем отступ до заголовка "Примеры работ" */
     width: 100% ;
-    margin-bottom: 0 ; /* перебиваем style.css */
   }
   
   /* МЕГА-СИЛЬНЫЙ селектор для первой кнопки */
