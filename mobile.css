@@ -2,7 +2,8 @@
 
 @media (max-width: 768px) {
   /* Общее свечение для всех оранжевых кнопок */
-  .btn-primary:not(.workflow__cta .btn) {
+  .btn-primary:not(.workflow__cta .btn),
+  .benefits__cta .btn-outline {
     box-shadow: 
       0 4px 14px rgba(255,122,51,0.25),
       0 0 20px rgba(255, 106, 61, 0.20),
