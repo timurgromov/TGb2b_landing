@@ -685,13 +685,44 @@
     margin: 0 auto !important;
   }
 
-  /* Убираем все линии, смещения, фоны */
-  .section.workflow::before,
+  /* Убираем desktop линии, но добавляем мобильную линию */
   .section.workflow::after,
   .workflow__connector,
   .workflow svg,
   .workflow canvas {
     display: none !important;
+  }
+
+  /* Контейнер под линию */
+  #workflow .container {
+    position: relative !important;
+  }
+
+  /* Вертикальная линия по центру контейнера */
+  #workflow .container::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 40px !important;
+    bottom: 40px !important;
+    width: 2px !important;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 192, 151, 0) 0%,
+      rgba(255, 122, 69, 0.50) 15%,
+      rgba(255, 122, 69, 0.80) 50%,
+      rgba(255, 192, 151, 0.50) 85%,
+      rgba(255, 122, 69, 0) 100%
+    ) !important;
+    box-shadow:
+      0 0 6px rgba(255, 122, 69, 0.30),
+      0 0 16px rgba(255, 192, 151, 0.25),
+      0 0 32px rgba(255, 122, 69, 0.15) !important;
+    border-radius: 1px !important;
+    z-index: 1 !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
   }
 
   /* Анимация при наведении - как в преимуществах */
