@@ -659,11 +659,11 @@
     color: rgba(255,255,255,0.9) !important; /* мягче, ближе к UI */
   }
 
-  /* Кнопка - идеальный отступ */
+  /* Кнопка - отделение от линии с лёгким свечением */
   .workflow__cta {
     display: flex !important;
     justify-content: center !important;
-    margin-top: 32px !important; /* идеальное расстояние - 32px от последней карточки */
+    margin-top: 40px !important; /* больше отступа от линии */
     margin-bottom: 0 !important;
     position: relative;
     z-index: 1;
@@ -671,6 +671,9 @@
 
   .workflow__cta .btn {
     margin: 0 auto !important;
+    box-shadow: 
+      0 0 20px rgba(255, 106, 61, 0.20),
+      0 0 40px rgba(255, 122, 69, 0.10) !important; /* лёгкое свечение по бокам */
   }
 
   /* Убираем desktop линии, но добавляем мобильную линию */
