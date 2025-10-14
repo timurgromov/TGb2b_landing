@@ -172,6 +172,8 @@
   
   .benefits {
     grid-template-columns: repeat(2, 1fr) ;
+    padding-left: 18px;
+    padding-right: 18px;
   }
   
   /* ===== SLIDER TRACKS ===== */
