@@ -465,12 +465,14 @@
 
   /* Сокращаем текст чипа Love Radio ТОЛЬКО на мобилке */
   #hero-tags .tag-radio {
-    font-size: 0 ;
+    font-size: 0 !important;
+    line-height: 1 !important;
   }
   
   #hero-tags .tag-radio::before {
-    content: "Ведущий Love Radio";
-    font-size: 12.5px ;
+    content: "Ведущий Love Radio" !important;
+    font-size: 12.5px !important;
+    display: inline-block !important;
   }
 
   /* Убираем чип "Добрый юмор" на мобилке */
@@ -490,14 +492,7 @@
       padding: 4px 8px ;
     }
     
-    /* Для чипа Love Radio текст остаётся скрытым, только ::before видим */
-    #hero-tags .tag-radio {
-      font-size: 0 ;
-    }
-    
-    #hero-tags .tag-radio::before {
-      font-size: 12px ;
-    }
+    /* Love Radio чип уже обработан в основном блоке @media (max-width: 768px) */
   }
 
   /* ===== HERO: Типографика и размеры ===== */
