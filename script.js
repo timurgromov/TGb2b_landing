@@ -690,10 +690,29 @@ function unlockPageScroll() {
   onScroll(); // применить состояние при загрузке
 })();
 
-// ===== УМНАЯ ПЛАВАЮЩАЯ КНОПКА WHATSAPP =====
+// ===== УМНАЯ ПЛАВАЮЩАЯ КНОПКА WHATSAPP/ТЕЛЕФОН =====
 (function initSmartWhatsAppFAB() {
   const waFab = document.querySelector('.wa-fab');
   if (!waFab) return;
+
+  // На мобилке меняем поведение на телефон
+  function initMobileBehavior() {
+    if (window.innerWidth <= 768) {
+      // Меняем ссылку на телефон
+      waFab.href = 'tel:+79253900772';
+      waFab.setAttribute('aria-label', 'Позвонить');
+      waFab.setAttribute('data-cta', 'tel_fab');
+      waFab.removeAttribute('target');
+      waFab.removeAttribute('rel');
+    } else {
+      // На десктопе возвращаем WhatsApp
+      waFab.href = 'https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив';
+      waFab.setAttribute('aria-label', 'Написать в WhatsApp');
+      waFab.setAttribute('data-cta', 'whatsapp_fab');
+      waFab.setAttribute('target', '_blank');
+      waFab.setAttribute('rel', 'noopener');
+    }
+  }
 
   // Показываем FAB только когда пользователь прокрутил > 1 экрана
   // Это убирает дублирование с header на первом экране
@@ -721,6 +740,10 @@ function unlockPageScroll() {
     }
   }
 
+  // Инициализируем поведение при загрузке и изменении размера
+  initMobileBehavior();
+  window.addEventListener('resize', initMobileBehavior);
+  
   window.addEventListener('scroll', onScroll, { passive: true });
   toggleFab(); // проверка при загрузке
 })();

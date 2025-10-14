@@ -489,6 +489,39 @@ body {
   height: 24px;
 }
 
+/* Управление иконками FAB */
+.fab-icon-phone {
+  display: none;
+}
+
+.fab-icon-whatsapp {
+  display: block;
+}
+
+/* На мобилке меняем на телефон */
+@media (max-width: 768px) {
+  .wa-fab {
+    background: linear-gradient(120deg, var(--primary), #2563eb) !important;
+    box-shadow: 
+      0 8px 32px rgba(37, 99, 235, 0.4),
+      0 0 0 0 rgba(37, 99, 235, 0.4) !important;
+  }
+  
+  .wa-fab:hover {
+    box-shadow: 
+      0 12px 40px rgba(37, 99, 235, 0.5),
+      0 0 30px rgba(37, 99, 235, 0.3) !important;
+  }
+  
+  .fab-icon-whatsapp {
+    display: none;
+  }
+  
+  .fab-icon-phone {
+    display: block;
+  }
+}
+
 
 /* ===== Slider (zero-deps, scroll-snap) ===== */
 .slider{position:relative}
