@@ -1775,9 +1775,9 @@ body.is-modal-open{
 /* ===== ДЕСКТОП: ГАРАНТИРУЕМ ОТСТУП У WORKFLOW ===== */
 @media (min-width: 769px) {
   .workflow .section__subtitle {
-    margin-bottom: 60px;
+    margin-bottom: 60px !important;
   }
   .workflow__steps {
-    margin-top: 0;
+    margin-top: 0 !important;
   }
 }
