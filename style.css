@@ -1095,7 +1095,7 @@ body.is-modal-open{
   align-items: flex-start;
   position: relative;
   margin: 0;
-  margin-top: 64px;
+  margin-top: 80px;
   gap: 3rem;
 }
 
@@ -1770,4 +1770,14 @@ body.is-modal-open{
 #hero-actions .btn-ghost:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== ДЕСКТОП: ГАРАНТИРУЕМ ОТСТУП У WORKFLOW ===== */
+@media (min-width: 769px) {
+  .workflow .section__subtitle {
+    margin-bottom: 60px;
+  }
+  .workflow__steps {
+    margin-top: 0;
+  }
 }
