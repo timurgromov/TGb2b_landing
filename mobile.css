@@ -625,6 +625,7 @@
     background: rgba(255, 255, 255, 0.03) !important;
     transform: none !important; /* убираем desktop трансформации */
     flex: none !important; /* убираем flex: 1 из desktop */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important; /* мягкая тень вниз для плотности */
   }
 
   /* Номера шагов - премиальный стиль, гармоничный с дизайном */
