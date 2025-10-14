@@ -1119,7 +1119,7 @@ body.is-modal-open{
 
 .workflow__step:hover {
   transform: translateY(-8px) !important;
-  box-shadow: 0 8px 32px rgba(255, 106, 61, 0.15);
+  box-shadow: 0 8px 32px rgba(255, 120, 40, 0.1);
   border-color: rgba(255, 106, 61, 0.2);
 }
 
@@ -1163,7 +1163,7 @@ body.is-modal-open{
 
 .workflow__text {
   font-size: 0.95rem;
-  line-height: 1.7;
+  line-height: 1.65;
   color: var(--text);
   margin: 0;
 }
