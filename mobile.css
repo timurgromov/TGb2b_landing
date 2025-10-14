@@ -172,6 +172,13 @@
   .photos-btn.next {
     right: 10px ;
   }
+
+  /* ===== LETTERS BUTTONS - такие же как у фотогалереи ===== */
+  .letters-btn {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 20px !important;
+  }
   
   /* ===== BENEFITS ===== */
   
