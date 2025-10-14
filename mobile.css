@@ -567,6 +567,26 @@
     justify-content: center;
     padding-left: 20px;
     padding-right: 20px;
+    position: relative;
+  }
+
+  /* Теплое свечение над заголовком для глубины */
+  .section.workflow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 180px;
+    background: radial-gradient(
+      ellipse 90% 100% at 50% 0%, 
+      rgba(255, 106, 61, 0.12) 0%, 
+      rgba(255, 122, 69, 0.06) 40%,
+      transparent 75%
+    );
+    pointer-events: none;
+    z-index: 0;
   }
 
   /* Заголовки */
@@ -575,6 +595,8 @@
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    z-index: 1;
   }
 
   /* Контейнер шагов */
@@ -586,6 +608,8 @@
     gap: 36px !important; /* больше воздуха - линия "работает" */
     margin-top: 32px !important; /* увеличен отступ от заголовка */
     width: 100% !important;
+    position: relative;
+    z-index: 1;
   }
 
   /* Карточки шагов */
@@ -642,6 +666,8 @@
     justify-content: center !important;
     margin-top: 32px !important; /* идеальное расстояние - 32px от последней карточки */
     margin-bottom: 0 !important;
+    position: relative;
+    z-index: 1;
   }
 
   .workflow__cta .btn {
