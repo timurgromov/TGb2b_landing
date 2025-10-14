@@ -74,10 +74,20 @@ button{font-family:inherit;cursor:pointer}
   gap: 16px;
 }
 
-.header-cta {
+.header__cta {
   display: flex;
   gap: 12px;
   align-items: center;
+}
+
+.header__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header__phone svg {
+  flex-shrink: 0;
 }
 
 /* Компенсация фиксированного header */
@@ -151,7 +161,7 @@ button{font-family:inherit;cursor:pointer}
     --header-h: 64px;
   }
   
-  .header-cta .call-btn {
+  .header__cta .header__phone {
     display: none;
   }
 }
@@ -169,7 +179,7 @@ button{font-family:inherit;cursor:pointer}
     display: inline-flex;
   }
   
-  .header-cta {
+  .header__cta {
     gap: 8px;
   }
   
