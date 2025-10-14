@@ -308,8 +308,8 @@
   /* ОРАНЖЕВЫЕ СТРЕЛКИ ДЛЯ ПИСЕМ (как в фотогалерее) */
   .modal__arrow {
     display: flex ; /* показываем стрелки */
-    width: 44px ;
-    height: 44px ;
+    width: 48px ;
+    height: 48px ;
     background: var(--accent, #ff6b35) ;
     color: white ;
     border-radius: 50% ;
@@ -318,6 +318,7 @@
     position: absolute ;
     top: 50% ;
     transform: translateY(-50%) ;
+    font-size: 20px ;
   }
   
   .modal__arrow--prev {
