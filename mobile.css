@@ -617,27 +617,29 @@
 
   /* Контейнер шагов */
   .workflow__steps {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 24px; /* добавляет естественное расстояние между карточками */
-    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 24px !important; /* добавляет естественное расстояние между карточками */
+    width: 100% !important;
   }
 
   /* Карточки шагов */
   .workflow__step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    max-width: 320px; /* чтобы карточки не растягивались */
-    padding: 18px 16px; /* дополнительный воздух внутри карточки */
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.03);
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 320px !important; /* чтобы карточки не растягивались */
+    padding: 18px 16px !important; /* дополнительный воздух внутри карточки */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    transform: none !important; /* убираем desktop трансформации */
+    flex: none !important; /* убираем flex: 1 из desktop */
   }
 
   /* Номера шагов */
