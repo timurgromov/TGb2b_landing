@@ -1163,7 +1163,7 @@ body.is-modal-open{
 
 .workflow__connector {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 0;
   right: 0;
   height: 200px;
