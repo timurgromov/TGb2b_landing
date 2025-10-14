@@ -5,12 +5,6 @@
     /* ПРОПОРЦИИ ДЛЯ ФОТО, НЕ ДЛЯ ВИДЕО */
     --m-frame-ratio: 4/3;  /* классическое фото 4:3 */
   }
-  
-  /* УНИФИЦИРОВАННЫЕ ОТСТУПЫ ДЛЯ ВСЕХ КОНТЕЙНЕРОВ */
-  .container {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
 
   /* ===== СОВРЕМЕННЫЙ MOBILE HERO (2025) ===== */
   
@@ -415,7 +409,6 @@
     gap: 2rem;
     margin: 2rem 0;
     position: relative;
-    padding: 0 2rem; /* восстанавливаем боковые отступы */
   }
 
   .workflow__step {
