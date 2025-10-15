@@ -802,6 +802,25 @@
   #video-consult-modal .modal__content {
     padding-bottom: 14px !important; /* сокращаем нижний паддинг */
   }
+  
+  /* Кнопка на узких экранах - меньше шрифт */
+  #video-consult-modal .btn {
+    font-size: 13px !important; /* уменьшили с 15px */
+    padding: 0 12px !important; /* уменьшили боковые отступы */
+  }
+}
+
+/* Для очень узких экранов (менее 360px) */
+@media (max-width: 360px) {
+  #video-consult-modal .modal__content {
+    width: 95vw !important; /* увеличиваем ширину модалки */
+    max-width: 95vw !important;
+  }
+  
+  #video-consult-modal .btn {
+    font-size: 12px !important; /* еще меньше шрифт */
+    padding: 0 8px !important; /* еще меньше отступы */
+  }
 }
 
 /* ===== Модалка "Видеоконсультация" (MOBILE) ===== */
