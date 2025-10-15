@@ -78,6 +78,17 @@
     padding: 6px 10px; 
   }
   
+  /* Изменяем текст чипса Love Radio для планшета */
+  .tag-radio::after {
+    content: "Ведущий Love Radio";
+    font-size: 13.5px;
+    padding: 6px 10px;
+  }
+  
+  .tag-radio {
+    font-size: 0 !important; /* Скрываем оригинальный текст */
+  }
+  
   /* Кнопки */
   .hero-actions {
     flex-direction: row;
