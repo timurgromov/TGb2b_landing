@@ -792,3 +792,57 @@
 @media (max-width:360px){
   :root{ --shift: 22px; }
 }
+
+/* ===== Модалка "Видеоконсультация" (MOBILE) ===== */
+@media (max-width: 768px) {
+  #video-consult-modal .modal__content {
+    padding: 32px 24px !important;
+    max-width: 92vw !important;
+    border-radius: 20px !important;
+  }
+  
+  #video-consult-modal h3 {
+    font-size: 22px !important;
+    margin: 0 0 10px !important;
+  }
+  
+  #video-consult-modal .modal__subtitle {
+    font-size: 15px !important;
+    margin: 0 0 20px !important;
+  }
+  
+  #video-consult-modal .modal__text {
+    font-size: 15px !important;
+    margin: 0 0 24px !important;
+  }
+  
+  #video-consult-modal .modal__text p {
+    margin: 0 0 12px !important;
+  }
+  
+  #video-consult-modal .modal__text strong {
+    font-size: 13px !important;
+  }
+  
+  .consult-list li {
+    font-size: 15px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  #video-consult-modal .btn {
+    font-size: 15px !important;
+    padding: 14px 18px !important;
+    box-shadow: 
+      0 6px 20px color-mix(in oklab, var(--accent) 40%, transparent),
+      0 0 16px rgba(255, 106, 61, 0.18),
+      0 0 32px rgba(255, 122, 69, 0.08) !important;
+  }
+  
+  #video-consult-modal .modal__close {
+    top: 12px !important;
+    right: 12px !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 28px !important;
+  }
+}
