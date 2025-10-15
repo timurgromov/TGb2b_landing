@@ -840,18 +840,17 @@
   }
   
   #video-consult-modal .modal__close {
-    top: 12px !important;
-    right: 12px !important;
+    top: 16px !important;
+    right: 16px !important;
     width: 32px !important;
     height: 32px !important;
     font-size: 24px !important;
-    background: rgba(0, 0, 0, 0.6) !important;
-    border-radius: 50% !important;
+    background: transparent !important; /* убрал тёмный фон */
+    border-radius: 0 !important; /* убрал круглую обводку */
     color: #fff !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    backdrop-filter: blur(4px) !important;
     z-index: 10 !important; /* чтобы был выше заголовка */
   }
 }
