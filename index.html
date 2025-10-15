@@ -476,14 +476,13 @@
   <!-- Тестер адаптивности -->
   <div class="responsive-tester" id="responsive-tester">
     <div>📱 <span id="current-size">-</span></div>
-    <div style="margin: 10px 0; font-size: 11px; opacity: 0.8;">
-      Используй DevTools: <strong>F12 → Device Toolbar</strong>
+    <div style="margin: 10px 0;">
+      <button onclick="simulateDevice('mobile')">📱 Мобилка</button>
+      <button onclick="simulateDevice('tablet')">📱 Планшет</button>
+      <button onclick="simulateDevice('desktop')">💻 Десктоп</button>
     </div>
-    <div style="margin: 5px 0;">
-      <strong>Брейкпоинты:</strong><br>
-      • ≤768px = Мобилка<br>
-      • 769-1024px = Планшет<br>
-      • ≥1025px = Десктоп
+    <div style="margin: 5px 0; font-size: 11px; opacity: 0.8;">
+      Или используй DevTools: <strong>F12 → Device Toolbar</strong>
     </div>
     <button onclick="toggleTester()">❌ Скрыть</button>
   </div>
@@ -505,6 +504,46 @@
       // Подсвечиваем текущий брейкпоинт
       document.body.className = document.body.className.replace(/breakpoint-\w+/g, '');
       document.body.classList.add(`breakpoint-${breakpoint.toLowerCase()}`);
+    }
+    
+    function simulateDevice(device) {
+      // Добавляем класс к body для симуляции устройства
+      document.body.className = document.body.className.replace(/device-\w+/g, '');
+      document.body.classList.add(`device-${device}`);
+      
+      // Применяем соответствующие стили
+      const style = document.createElement('style');
+      style.id = 'device-simulator';
+      document.head.appendChild(style);
+      
+      switch(device) {
+        case 'mobile':
+          style.textContent = `
+            body.device-mobile .responsive-tester { display: none !important; }
+            body.device-mobile .hero__grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+            body.device-mobile .hero__photo { max-width: 100% !important; }
+            body.device-mobile .benefits { grid-template-columns: 1fr !important; }
+          `;
+          break;
+        case 'tablet':
+          style.textContent = `
+            body.device-tablet .hero__grid { grid-template-columns: 1fr 320px !important; gap: 48px !important; }
+            body.device-tablet .hero__photo { max-width: 320px !important; transform: none !important; }
+            body.device-tablet .benefits { grid-template-columns: repeat(2, 1fr) !important; }
+            body.device-tablet .hero-actions { flex-direction: row !important; }
+          `;
+          break;
+        case 'desktop':
+          style.textContent = `
+            body.device-desktop .hero__grid { grid-template-columns: 1.1fr .9fr !important; gap: 36px !important; }
+            body.device-desktop .hero__photo { max-width: 600px !important; transform: translateY(-20px) !important; }
+            body.device-desktop .benefits { grid-template-columns: repeat(4, 1fr) !important; }
+          `;
+          break;
+      }
+      
+      updateSize();
+      alert(`Симуляция ${device}: ${device === 'mobile' ? 'Мобилка (≤768px)' : device === 'tablet' ? 'Планшет (769-1024px)' : 'Десктоп (≥1025px)'}`);
     }
     
     function toggleTester() {
