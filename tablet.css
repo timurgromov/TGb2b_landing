@@ -59,6 +59,12 @@
     margin-bottom: 12px;
     letter-spacing: 0;
     word-break: break-word;
+    display: block !important; /* Принудительно показываем заголовок */
+  }
+  
+  /* Убираем наложение текста на фото */
+  .hero__photo::before {
+    display: none !important;
   }
   
   .hero__subtitle {
@@ -117,14 +123,12 @@
   
   /* Изменяем текст чипса Love Radio для планшета */
   .tag-radio {
-    font-size: 0 !important; /* Скрываем оригинальный текст */
     position: relative;
+    overflow: hidden;
   }
   
-  .tag-radio::after {
+  .tag-radio::before {
     content: "Ведущий Love Radio";
-    font-size: var(--chip) !important;
-    padding: 6px 10px;
     position: absolute;
     top: 0;
     left: 0;
@@ -136,6 +140,13 @@
     background: inherit;
     border-radius: inherit;
     border: inherit;
+    font-size: var(--chip);
+    color: inherit;
+    z-index: 2;
+  }
+  
+  .tag-radio {
+    color: transparent !important;
   }
   
   /* ===== БЛОК ПРЕИМУЩЕСТВ ===== */
