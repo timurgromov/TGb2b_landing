@@ -31,6 +31,33 @@
   <link rel="icon" type="image/x-icon" href="favicon2.ico">
   <link rel="shortcut icon" href="favicon2.ico">
   
+  <!-- Простой тестер адаптивности -->
+  <style>
+    .responsive-tester {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      z-index: 9999;
+      font-family: monospace;
+    }
+    .responsive-tester button {
+      background: #ff7a45;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin: 2px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .responsive-tester button:hover { background: #ff925f; }
+  </style>
+  
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="tablet.css" media="(min-width: 769px) and (max-width: 1024px)">
   <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)">
@@ -445,5 +472,49 @@
   </a>
 
   <script src="script.js?v=76.2"></script>
-  </body>
+  
+  <!-- Тестер адаптивности -->
+  <div class="responsive-tester" id="responsive-tester">
+    <div>📱 <span id="current-size">-</span></div>
+    <button onclick="setSize(375, 667)">iPhone</button>
+    <button onclick="setSize(768, 1024)">iPad</button>
+    <button onclick="setSize(1024, 768)">iPad L</button>
+    <button onclick="setSize(1366, 768)">Desktop</button>
+    <button onclick="toggleTester()">❌</button>
+  </div>
+  
+  <script>
+    function updateSize() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const dpr = window.devicePixelRatio;
+      let breakpoint = '';
+      
+      if (width <= 768) breakpoint = 'MOBILE';
+      else if (width <= 1024) breakpoint = 'TABLET';
+      else breakpoint = 'DESKTOP';
+      
+      document.getElementById('current-size').textContent = 
+        `${width}x${height} (${breakpoint}) DPR:${dpr}`;
+    }
+    
+    function setSize(width, height) {
+      window.resizeTo(width + 40, height + 200);
+      setTimeout(updateSize, 100);
+    }
+    
+    function toggleTester() {
+      const tester = document.getElementById('responsive-tester');
+      tester.style.display = tester.style.display === 'none' ? 'block' : 'none';
+    }
+    
+    // Показываем тестер только на больших экранах
+    if (window.innerWidth > 768) {
+      document.getElementById('responsive-tester').style.display = 'block';
+    }
+    
+    window.addEventListener('resize', updateSize);
+    updateSize();
+  </script>
+</body>
 </html>
