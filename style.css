@@ -286,18 +286,33 @@ body {
     radial-gradient(120% 120% at 15% 10%, color-mix(in oklab, var(--accent) 35%, transparent) 0%, transparent 44%),
     radial-gradient(120% 120% at 85% 15%, color-mix(in oklab, var(--accent-2) 40%, transparent) 0%, transparent 46%);
 }
+/* ===== CSS ПЕРЕМЕННЫЕ ДЛЯ ТИПОГРАФИКИ ===== */
+:root {
+  --h1: clamp(24px, 3.2vw, 32px);    /* заголовок */
+  --sub: 18px;                        /* подзаголовок */
+  --chip: 14px;                       /* чипсы */
+  --btn: 16px;                        /* кнопки */
+}
+
 /* ===== ДЕСКТОПНЫЕ СТИЛИ (1181px+) ===== */
 @media (min-width: 1181px) {
+  :root {
+    --h1: clamp(24px, 3.2vw, 32px);
+    --sub: 18px;
+    --chip: 14px;
+    --btn: 16px;
+  }
+  
   .hero__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
-  .hero__text h1{font-size:clamp(24px,3.2vw,32px);line-height:1.08;margin:0 0 12px;font-weight:800}
-  .hero__text .sub{color:var(--muted);font-size:18px;margin:0 0 20px;line-height:1.5}
+  .hero__text h1{font-size: var(--h1); line-height:1.08;margin:0 0 12px;font-weight:800}
+  .hero__text .sub{color:var(--muted);font-size: var(--sub); margin:0 0 20px;line-height:1.5}
   .hero__facts{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px;padding:0;list-style:none}
   .hero__facts li{
     background:rgba(255,255,255,0.04);
     border:1px solid var(--stroke);
     padding:8px 12px;
     border-radius:12px;
-    font-size:14px;
+    font-size: var(--chip);
     transition: all .18s ease;
     cursor: pointer;
   }
@@ -306,7 +321,7 @@ body {
     box-shadow: 0 4px 20px rgba(255,120,40,0.3);
   }
   .hero__cta{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
-  .hero__cta .btn{flex: none; min-width: fit-content; width: auto}
+  .hero__cta .btn{flex: none; min-width: fit-content; width: auto; font-size: var(--btn)}
   .hero__photo{justify-self:end;max-width:600px;max-height:600px;overflow:hidden;border-radius:0;aspect-ratio:1/1}
   .hero__photo img{border-radius:0;box-shadow:0 20px 60px rgba(0,0,0,0.4);width:100%;height:100%;object-fit:cover;object-position:50% 5%}
 }
