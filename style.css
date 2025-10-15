@@ -41,71 +41,7 @@ button{font-family:inherit;cursor:pointer}
   }
 }
 
-/* ===== TABLET (1024–1180) — HERO ===== */
-@media (min-width: 769px) and (max-width: 1180px) {
-  /* контейнер поуже, чтобы фото не выталкивало контент */
-  .container { max-width: 1024px; padding-left: 24px; padding-right: 24px; }
-
-  /* сетка hero: текст и фото, фото уже десктопа */
-  .hero__grid {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;  /* баланс текста/фото */
-    gap: 28px;
-    align-items: center;
-  }
-
-  /* важно, чтобы текстовая колонка могла сжиматься, а не ломать сетку */
-  #hero-left { min-width: 0; }
-
-  /* заголовок и подзаголовок — на размер меньше */
-  #hero-left h1 {
-    font-size: clamp(38px, 4.1vw, 56px);
-    line-height: 1.08;
-    letter-spacing: 0;
-    margin-bottom: 12px;
-  }
-  #hero-left #hero-subtitle {
-    font-size: clamp(16px, 1.7vw, 18px);
-    margin-top: 0;
-    margin-bottom: 18px;
-    max-width: 46ch; /* контролируем длину строки */
-  }
-
-  /* чипсы компактнее, чтобы не «засоряли» вертикальный ритм */
-  #hero-tags { gap: 8px; margin-bottom: 18px; }
-  #hero-tags .tag { font-size: 13.5px; padding: 6px 10px; }
-
-  /* кнопки — ряд, но менее «высокие» */
-  .hero-actions {
-    gap: 14px;
-    margin-top: 8px;
-  }
-  .hero-actions .btn-primary,
-  .hero-actions .btn-ghost {
-    font-size: 15.5px;
-    padding: 14px 18px;
-    border-radius: 12px;
-  }
-
-  /* фото справа: гарантируем влезание и красивый кадр */
-  .hero__photo {
-    max-width: 520px;          /* жесткий потолок ширины */
-    justify-self: end;
-    border-radius: 24px;
-    overflow: hidden;
-    aspect-ratio: 4 / 5;       /* чуть уже, чтобы не «давило» */
-  }
-  .hero__photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 40% 20%;  /* смещаем к лицу */
-    display: block;
-  }
-
-  /* чтобы ничего не вываливалось при очень длинных словах */
-  #hero-left h1, #hero-left #hero-subtitle { word-break: break-word; }
-}
+/* ПЛАНШЕТНЫЕ СТИЛИ ПЕРЕНЕСЕНЫ В tablet.css */
 
 
 .container{width:min(1120px,92vw);margin:0 auto}
