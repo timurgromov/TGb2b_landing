@@ -284,8 +284,8 @@
 
   /* Hover эффект для letter карточек на мобилке */
   .letter-card:hover {
-    box-shadow: 0 8px 32px rgba(255, 120, 40, 0.1) !important;
-    border-color: rgba(255, 106, 61, 0.2) !important;
+    box-shadow: 0 8px 32px rgba(255, 120, 40, 0.4) !important;
+    border-color: rgba(255, 106, 61, 0.5) !important;
     transform: translateY(-2px) !important;
   }
 
