@@ -22,6 +22,32 @@ html,body{height:100%;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2)
 img{max-width:100%;display:block}
 button{font-family:inherit;cursor:pointer}
 
+/* ===== ПОДДЕРЖКА PREFERS-REDUCED-MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  /* Отключаем все движения и трансформации, оставляем только fade */
+  .reveal, .fade-in, .animated, .scroll-reveal, .fade-up,
+  .workflow__step, .benefit, .photo-card, .letter-card,
+  .hero__text, .hero__photo, .section__title, .section__subtitle {
+    animation: none !important;
+    transform: none !important;
+    transition: opacity 0.4s ease !important;
+  }
+  
+  /* Убираем hover трансформации */
+  .workflow__step:hover, .benefit:hover, .photo-card:hover, .letter-card:hover,
+  .btn:hover, .workflow__badge:hover {
+    transform: none !important;
+    transition: opacity 0.4s ease !important;
+  }
+  
+  /* Отключаем scroll-triggered анимации */
+  .sr, .scroll-reveal, .fade-up {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
 .container{width:min(1120px,92vw);margin:0 auto}
 .section{padding:72px 0}
 .section__title{font-size:28px;font-weight:800;margin:0 0 24px;text-align:center}
