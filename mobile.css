@@ -801,7 +801,7 @@
   
   #video-consult-modal h3 {
     font-size: 20px !important;
-    margin: 16px 0 8px 0 !important; /* добавил margin-top: 16px для воздуха под крестик */
+    margin: 12px 0 8px 0 !important; /* уменьшил margin-top до 12px для лучшего баланса */
   }
   
   #video-consult-modal .modal__subtitle {
@@ -840,8 +840,8 @@
   }
   
   #video-consult-modal .modal__close {
-    top: 16px !important;
-    right: 16px !important;
+    top: 20px !important;
+    right: 20px !important;
     width: 32px !important;
     height: 32px !important;
     font-size: 24px !important;
