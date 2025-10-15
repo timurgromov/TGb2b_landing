@@ -125,6 +125,7 @@
   .tag-radio {
     position: relative;
     overflow: hidden;
+    font-size: 0 !important; /* Полностью скрываем оригинальный текст */
   }
   
   .tag-radio::before {
@@ -140,13 +141,9 @@
     background: inherit;
     border-radius: inherit;
     border: inherit;
-    font-size: var(--chip);
+    font-size: var(--chip) !important;
     color: inherit;
     z-index: 2;
-  }
-  
-  .tag-radio {
-    color: transparent !important;
   }
   
   /* ===== БЛОК ПРЕИМУЩЕСТВ ===== */
