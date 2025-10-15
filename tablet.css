@@ -115,16 +115,7 @@
     display: block;
   }
   
-  /* Изменяем текст чипса Love Radio для планшета */
-  .tag-radio::after {
-    content: "Ведущий Love Radio";
-    font-size: var(--chip);
-    padding: 6px 10px;
-  }
-  
-  .tag-radio {
-    font-size: 0 !important;
-  }
+  /* Чипс Love Radio теперь в HTML уже правильный текст */
   
   /* ===== БЛОК ПРЕИМУЩЕСТВ ===== */
   .benefits {
