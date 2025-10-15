@@ -476,11 +476,16 @@
   <!-- Тестер адаптивности -->
   <div class="responsive-tester" id="responsive-tester">
     <div>📱 <span id="current-size">-</span></div>
-    <button onclick="setSize(375, 667)">iPhone</button>
-    <button onclick="setSize(768, 1024)">iPad</button>
-    <button onclick="setSize(1024, 768)">iPad L</button>
-    <button onclick="setSize(1366, 768)">Desktop</button>
-    <button onclick="toggleTester()">❌</button>
+    <div style="margin: 10px 0; font-size: 11px; opacity: 0.8;">
+      Используй DevTools: <strong>F12 → Device Toolbar</strong>
+    </div>
+    <div style="margin: 5px 0;">
+      <strong>Брейкпоинты:</strong><br>
+      • ≤768px = Мобилка<br>
+      • 769-1024px = Планшет<br>
+      • ≥1025px = Десктоп
+    </div>
+    <button onclick="toggleTester()">❌ Скрыть</button>
   </div>
   
   <script>
@@ -496,11 +501,10 @@
       
       document.getElementById('current-size').textContent = 
         `${width}x${height} (${breakpoint}) DPR:${dpr}`;
-    }
-    
-    function setSize(width, height) {
-      window.resizeTo(width + 40, height + 200);
-      setTimeout(updateSize, 100);
+        
+      // Подсвечиваем текущий брейкпоинт
+      document.body.className = document.body.className.replace(/breakpoint-\w+/g, '');
+      document.body.classList.add(`breakpoint-${breakpoint.toLowerCase()}`);
     }
     
     function toggleTester() {
@@ -515,6 +519,11 @@
     
     window.addEventListener('resize', updateSize);
     updateSize();
+    
+    // Добавляем подсказку в консоль
+    console.log('🧪 Тестер адаптивности активен!');
+    console.log('📱 Для тестирования используй: F12 → Device Toolbar');
+    console.log('🎯 Текущий размер:', window.innerWidth + 'x' + window.innerHeight);
   </script>
 </body>
 </html>
