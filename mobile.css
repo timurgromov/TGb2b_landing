@@ -792,7 +792,7 @@
     width: 90vw !important;
     max-width: 480px !important;
     max-height: 85vh !important;
-    padding: 20px !important;
+    padding: 24px 20px 20px 20px !important; /* больше сверху для крестика */
     border-radius: 16px !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
@@ -824,7 +824,7 @@
   
   .consult-list li {
     font-size: 14px !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 4px !important; /* уменьшил с 8px до 4px */
   }
   
   #video-consult-modal .btn {
