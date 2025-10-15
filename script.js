@@ -67,6 +67,43 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
+// ===== Модалка "Видеоконсультация" =====
+(function(){
+  const modal = document.getElementById('video-consult-modal');
+  const openBtns = document.querySelectorAll('[data-modal="video-consult-modal"]');
+  const closeBtn = modal?.querySelector('.modal__close');
+  const overlay = modal?.querySelector('.modal__overlay');
+
+  if (!modal || !openBtns.length) return;
+
+  function openModal() {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  openBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+  
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', closeModal);
+
+  // Закрытие по Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+})();
+
 // ===== Настройки Метрики =====
 const COUNTER_ID = 104468814;
 

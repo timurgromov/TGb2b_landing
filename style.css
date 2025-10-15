@@ -492,6 +492,24 @@ body {
 .programs-list b{color:var(--accent)}
 #programs-modal .muted{color:var(--muted);font-size:14px;margin:0 0 24px;line-height:1.5}
 
+/* ===== Модалка "Видеоконсультация" (DESKTOP ONLY) ===== */
+#video-consult-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s ease}
+#video-consult-modal.active{opacity:1;visibility:visible}
+#video-consult-modal .modal__overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px)}
+#video-consult-modal .modal__content{position:relative;background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:40px;max-width:560px;width:90vw;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+#video-consult-modal .modal__close{position:absolute;top:16px;right:16px;background:transparent;border:none;color:var(--muted);font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s ease}
+#video-consult-modal .modal__close:hover{background:rgba(255,255,255,0.1)}
+#video-consult-modal h3{color:var(--text);margin:0 0 12px;font-size:26px;font-weight:700;line-height:1.2}
+#video-consult-modal .modal__subtitle{color:var(--muted);font-size:16px;margin:0 0 24px;line-height:1.5}
+#video-consult-modal .modal__text{color:var(--text);line-height:1.6;margin:0 0 28px}
+#video-consult-modal .modal__text p{margin:0 0 14px}
+#video-consult-modal .modal__text p:last-of-type{margin-bottom:8px}
+#video-consult-modal .modal__text strong{color:var(--accent);font-weight:600}
+.consult-list{list-style:none;padding:0;margin:14px 0 0 0}
+.consult-list li{margin-bottom:8px;padding-left:24px;color:var(--text);line-height:1.6;position:relative}
+.consult-list li::before{content:"•";position:absolute;left:8px;color:var(--accent);font-weight:700}
+#video-consult-modal .btn{width:100%;justify-content:center;font-size:16px;padding:14px 20px}
+
 /* ===== Плавающая кнопка WhatsApp (умная логика) ===== */
 .wa-fab {
   position: fixed;
