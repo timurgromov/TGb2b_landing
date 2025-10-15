@@ -845,12 +845,17 @@
     width: 32px !important;
     height: 32px !important;
     font-size: 24px !important;
-    background: transparent !important; /* убрал тёмный фон */
-    border-radius: 0 !important; /* убрал круглую обводку */
-    color: #fff !important;
+    background: transparent !important;
+    border-radius: 50% !important; /* как на desktop */
+    color: var(--muted) !important; /* серый цвет как на desktop */
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    z-index: 10 !important; /* чтобы был выше заголовка */
+    transition: background 0.2s ease !important;
+    z-index: 10 !important;
+  }
+  
+  #video-consult-modal .modal__close:hover {
+    background: rgba(255,255,255,0.1) !important; /* hover как на desktop */
   }
 }
