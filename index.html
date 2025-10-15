@@ -507,43 +507,41 @@
     }
     
     function simulateDevice(device) {
-      // Добавляем класс к body для симуляции устройства
-      document.body.className = document.body.className.replace(/device-\w+/g, '');
-      document.body.classList.add(`device-${device}`);
+      // Удаляем предыдущий симулятор
+      const oldStyle = document.getElementById('device-simulator');
+      if (oldStyle) oldStyle.remove();
       
-      // Применяем соответствующие стили
+      // Создаем новый
       const style = document.createElement('style');
       style.id = 'device-simulator';
       document.head.appendChild(style);
       
+      // Устанавливаем размер окна для симуляции
+      let width, height;
       switch(device) {
         case 'mobile':
-          style.textContent = `
-            body.device-mobile .responsive-tester { display: none !important; }
-            body.device-mobile .hero__grid { grid-template-columns: 1fr !important; gap: 24px !important; }
-            body.device-mobile .hero__photo { max-width: 100% !important; }
-            body.device-mobile .benefits { grid-template-columns: 1fr !important; }
-          `;
+          width = 375; height = 667;
+          style.textContent = `/* Мобильная симуляция */`;
           break;
         case 'tablet':
-          style.textContent = `
-            body.device-tablet .hero__grid { grid-template-columns: 1fr 320px !important; gap: 48px !important; }
-            body.device-tablet .hero__photo { max-width: 320px !important; transform: none !important; }
-            body.device-tablet .benefits { grid-template-columns: repeat(2, 1fr) !important; }
-            body.device-tablet .hero-actions { flex-direction: row !important; }
-          `;
+          width = 1024; height = 768;
+          style.textContent = `/* Планшетная симуляция */`;
           break;
         case 'desktop':
-          style.textContent = `
-            body.device-desktop .hero__grid { grid-template-columns: 1.1fr .9fr !important; gap: 36px !important; }
-            body.device-desktop .hero__photo { max-width: 600px !important; transform: translateY(-20px) !important; }
-            body.device-desktop .benefits { grid-template-columns: repeat(4, 1fr) !important; }
-          `;
+          width = 1366; height = 768;
+          style.textContent = `/* Десктопная симуляция */`;
           break;
       }
       
+      // Пытаемся изменить размер окна
+      try {
+        window.resizeTo(width + 40, height + 200);
+      } catch(e) {
+        console.log('Не могу изменить размер окна:', e);
+      }
+      
       updateSize();
-      alert(`Симуляция ${device}: ${device === 'mobile' ? 'Мобилка (≤768px)' : device === 'tablet' ? 'Планшет (769-1024px)' : 'Десктоп (≥1025px)'}`);
+      console.log(`Симуляция ${device}: ${width}x${height}`);
     }
     
     function toggleTester() {
