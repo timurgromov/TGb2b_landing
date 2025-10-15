@@ -323,11 +323,8 @@
     height: 100vh ;
   }
   
-  /* МЕГА-СИЛЬНЫЙ селектор для модального окна писем */
-  html body #letter-modal .modal__content,
-  html body .modal__content,
-  #letter-modal .modal__content,
-  .modal__content {
+  /* МЕГА-СИЛЬНЫЙ селектор ТОЛЬКО для модального окна писем */
+  #letter-modal .modal__content {
     max-width: 100vw !important ; /* НА ВСЮ ШИРИНУ ВИДЕОПОРТА */
     max-height: 100vh !important ; /* НА ВСЮ ВЫСОТУ ВИДЕОПОРТА */
     width: 100vw !important ;
@@ -342,13 +339,9 @@
     box-sizing: border-box !important ; /* УЧИТЫВАЕМ ПАДДИНГ В РАЗМЕРАХ */
   }
   
-  /* МЕГА-СИЛЬНЫЙ селектор для изображения письма */
-  html body #letter-modal .letter-modal-img,
-  html body #letter-modal .modal__img,
-  html body .modal__img,
+  /* МЕГА-СИЛЬНЫЙ селектор ТОЛЬКО для изображения письма */
   #letter-modal .letter-modal-img,
-  #letter-modal .modal__img,
-  .modal__img {
+  #letter-modal .modal__img {
     max-width: calc(100vw - 16px) !important ; /* УЧИТЫВАЕМ ПАДДИНГ 8px*2 */
     max-height: calc(100vh - 16px) !important ; /* УЧИТЫВАЕМ ПАДДИНГ 8px*2 */
     width: calc(100vw - 16px) !important ;     /* ПОДСТРАИВАЕМСЯ ПОД ШИРИНУ ЭКРАНА */
@@ -796,9 +789,14 @@
 /* ===== Модалка "Видеоконсультация" (MOBILE) ===== */
 @media (max-width: 768px) {
   #video-consult-modal .modal__content {
-    padding: 32px 24px !important;
-    max-width: 92vw !important;
-    border-radius: 20px !important;
+    width: 92vw !important;
+    max-width: 560px !important;
+    max-height: 90vh !important;
+    padding: 22px !important;
+    border-radius: 16px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    background: #111415 !important; /* тёмный фон как в дизайне сайта */
   }
   
   #video-consult-modal h3 {
