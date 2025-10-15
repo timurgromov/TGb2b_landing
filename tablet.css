@@ -121,6 +121,26 @@
     display: block;
   }
   
+  /* Отменяем мобильные стили для чипса Love Radio */
+  #hero-tags .tag-radio {
+    font-size: var(--chip) !important;
+    line-height: normal !important;
+  }
+  
+  #hero-tags .tag-radio::before {
+    display: none !important;
+  }
+  
+  /* Убираем чипс "Добрый юмор" только на планшете */
+  .tag-humor {
+    display: none !important;
+  }
+  
+  /* Запрещаем перенос текста в чипсах */
+  #hero-tags .tag {
+    white-space: nowrap !important;
+  }
+  
   /* Чипсы Love Radio теперь управляются только через HTML */
   
   /* ===== БЛОК ПРЕИМУЩЕСТВ ===== */
