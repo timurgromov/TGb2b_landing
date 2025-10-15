@@ -31,32 +31,6 @@
   <link rel="icon" type="image/x-icon" href="favicon2.ico">
   <link rel="shortcut icon" href="favicon2.ico">
   
-  <!-- Простой тестер адаптивности -->
-  <style>
-    .responsive-tester {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: rgba(0,0,0,0.8);
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 12px;
-      z-index: 9999;
-      font-family: monospace;
-    }
-    .responsive-tester button {
-      background: #ff7a45;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      margin: 2px;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 11px;
-    }
-    .responsive-tester button:hover { background: #ff925f; }
-  </style>
   
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="tablet.css" media="(min-width: 769px) and (max-width: 1025px)">
@@ -474,94 +448,5 @@
 
   <script src="script.js?v=76.2"></script>
   
-  <!-- Тестер адаптивности -->
-  <div class="responsive-tester" id="responsive-tester">
-    <div>📱 <span id="current-size">-</span></div>
-    <div style="margin: 10px 0;">
-      <button onclick="simulateDevice('mobile')">📱 Мобилка</button>
-      <button onclick="simulateDevice('tablet')">📱 Планшет</button>
-      <button onclick="simulateDevice('desktop')">💻 Десктоп</button>
-    </div>
-    <div style="margin: 5px 0; font-size: 11px; opacity: 0.8;">
-      Или используй DevTools: <strong>F12 → Device Toolbar</strong>
-    </div>
-    <button onclick="toggleTester()">❌ Скрыть</button>
-  </div>
-  
-  <script>
-    function updateSize() {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      const dpr = window.devicePixelRatio;
-      let breakpoint = '';
-      
-      if (width <= 768) breakpoint = 'MOBILE';
-      else if (width <= 1024) breakpoint = 'TABLET';
-      else breakpoint = 'DESKTOP';
-      
-      document.getElementById('current-size').textContent = 
-        `${width}x${height} (${breakpoint}) DPR:${dpr}`;
-        
-      // Подсвечиваем текущий брейкпоинт
-      document.body.className = document.body.className.replace(/breakpoint-\w+/g, '');
-      document.body.classList.add(`breakpoint-${breakpoint.toLowerCase()}`);
-    }
-    
-    function simulateDevice(device) {
-      // Удаляем предыдущий симулятор
-      const oldStyle = document.getElementById('device-simulator');
-      if (oldStyle) oldStyle.remove();
-      
-      // Создаем новый
-      const style = document.createElement('style');
-      style.id = 'device-simulator';
-      document.head.appendChild(style);
-      
-      // Устанавливаем размер окна для симуляции
-      let width, height;
-      switch(device) {
-        case 'mobile':
-          width = 375; height = 667;
-          style.textContent = `/* Мобильная симуляция */`;
-          break;
-        case 'tablet':
-          width = 1024; height = 768;
-          style.textContent = `/* Планшетная симуляция */`;
-          break;
-        case 'desktop':
-          width = 1366; height = 768;
-          style.textContent = `/* Десктопная симуляция */`;
-          break;
-      }
-      
-      // Пытаемся изменить размер окна
-      try {
-        window.resizeTo(width + 40, height + 200);
-      } catch(e) {
-        console.log('Не могу изменить размер окна:', e);
-      }
-      
-      updateSize();
-      console.log(`Симуляция ${device}: ${width}x${height}`);
-    }
-    
-    function toggleTester() {
-      const tester = document.getElementById('responsive-tester');
-      tester.style.display = tester.style.display === 'none' ? 'block' : 'none';
-    }
-    
-    // Показываем тестер только на больших экранах
-    if (window.innerWidth > 768) {
-      document.getElementById('responsive-tester').style.display = 'block';
-    }
-    
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    
-    // Добавляем подсказку в консоль
-    console.log('🧪 Тестер адаптивности активен!');
-    console.log('📱 Для тестирования используй: F12 → Device Toolbar');
-    console.log('🎯 Текущий размер:', window.innerWidth + 'x' + window.innerHeight);
-  </script>
 </body>
 </html>
