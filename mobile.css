@@ -789,8 +789,8 @@
 /* Дополнительная оптимизация для очень узких экранов */
 @media (max-width: 480px) {
   #video-consult-modal h3 {
-    font-size: clamp(18px, 5.1vw, 23px) !important; /* еще компактнее на узких экранах */
-    line-height: 1.15 !important;
+    font-size: clamp(14px, 4vw, 20px) !important; /* еще компактнее на узких экранах */
+    line-height: 1.2 !important; /* для переноса строк */
   }
   
   /* Если все еще не влезает - еще компактнее */
@@ -817,14 +817,14 @@
     background: #111415 !important;
   }
   
-  /* Заголовок — стремимся в одну строку */
+  /* Заголовок — адаптивный размер по ширине экрана */
   #video-consult-modal h3 {
-    font-size: clamp(19px, 5.4vw, 24px) !important;
-    line-height: 1.15 !important;
+    font-size: clamp(16px, 4.5vw, 22px) !important; /* меньше базовый размер */
+    line-height: 1.2 !important; /* чуть больше для переноса */
     margin: 0 44px 10px 0 !important; /* место для крестика 44px */
-    white-space: nowrap !important; /* держим в одну строку */
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+    white-space: normal !important; /* разрешаем перенос */
+    overflow: visible !important; /* убираем обрезку */
+    text-overflow: unset !important; /* убираем многоточие */
   }
   
   /* Крестик — больше зона тапа, симметрично */
