@@ -41,6 +41,7 @@ button{font-family:inherit;cursor:pointer}
   }
 }
 
+
 .container{width:min(1120px,92vw);margin:0 auto}
 .section{padding:72px 0}
 .section__title{font-size:28px;font-weight:800;margin:0 0 24px;text-align:center}
