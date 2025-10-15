@@ -806,6 +806,7 @@
   /* Кнопка на узких экранах - меньше шрифт */
   #video-consult-modal .btn {
     font-size: 13px !important; /* уменьшили с 15px */
+    line-height: 1.1 !important; /* компактный межстрочный интервал */
     padding: 0 12px !important; /* уменьшили боковые отступы */
   }
 }
@@ -819,6 +820,7 @@
   
   #video-consult-modal .btn {
     font-size: 12px !important; /* еще меньше шрифт */
+    line-height: 1.1 !important; /* компактный межстрочный интервал */
     padding: 0 8px !important; /* еще меньше отступы */
   }
 }
@@ -908,12 +910,14 @@
     width: 100% !important;
     height: 48px !important;
     font-size: 15px !important;
-    line-height: 48px !important;
+    line-height: 1.1 !important; /* компактный межстрочный интервал для переноса */
     padding: 0 16px !important;
     margin-top: 14px !important; /* визуальный баланс */
     border-radius: 12px !important;
     text-align: center !important;
     justify-content: center !important;
+    display: flex !important;
+    align-items: center !important; /* центрируем текст по вертикали */
     box-shadow: 0 8px 30px rgba(255, 120, 60, 0.18) !important;
   }
 }
