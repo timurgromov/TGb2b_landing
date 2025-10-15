@@ -171,12 +171,13 @@ button{font-family:inherit;cursor:pointer}
 
 .btn-primary {
   background: #ff7a45;
-  color: #111;
+  color: #fff;
   border-color: rgba(255,255,255,.08);
 }
 
 .btn-primary:hover {
   background: #ff925f;
+  color: #fff;
 }
 
 .btn-secondary {
@@ -197,7 +198,7 @@ button{font-family:inherit;cursor:pointer}
 
 .btn-outline:hover {
   background: var(--accent);
-  color: #111;
+  color: #fff;
 }
 
 .btn-ghost {
