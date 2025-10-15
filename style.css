@@ -22,6 +22,24 @@ html,body{height:100%;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2)
 img{max-width:100%;display:block}
 button{font-family:inherit;cursor:pointer}
 
+/* ===== ПОДДЕРЖКА PREFERS-REDUCED-MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  /* Заменяем сложные анимации на мягкие fade */
+  .workflow__step, .benefit, .photo-card, .letter-card {
+    transition: opacity 0.4s ease !important;
+  }
+  
+  /* Убираем hover трансформации, оставляем только fade */
+  .workflow__step:hover, .benefit:hover, .photo-card:hover, .letter-card:hover {
+    transform: none !important;
+    transition: opacity 0.4s ease !important;
+  }
+  
+  /* Мягкие fade для scroll анимаций */
+  .sr, .scroll-reveal, .fade-up {
+    transition: opacity 0.4s ease !important;
+  }
+}
 
 .container{width:min(1120px,92vw);margin:0 auto}
 .section{padding:72px 0}

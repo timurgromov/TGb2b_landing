@@ -1,5 +1,23 @@
   /* ===== МОБИЛЬНАЯ ВЕРСИЯ (адаптация desktop стилей) ===== */
 
+/* ===== ПОДДЕРЖКА PREFERS-REDUCED-MOTION НА МОБИЛКЕ ===== */
+@media (prefers-reduced-motion: reduce) {
+  /* Заменяем сложные анимации на мягкие fade */
+  .workflow__step, .benefit, .photo-card, .letter-card {
+    transition: opacity 0.4s ease !important;
+  }
+  
+  /* Убираем hover трансформации, оставляем только fade */
+  .workflow__step:hover, .benefit:hover, .photo-card:hover, .letter-card:hover {
+    transform: none !important;
+    transition: opacity 0.4s ease !important;
+  }
+  
+  /* Мягкие fade для scroll анимаций */
+  .sr, .scroll-reveal, .fade-up {
+    transition: opacity 0.4s ease !important;
+  }
+}
 
 @media (max-width: 768px) {
   /* Общее свечение для всех оранжевых кнопок (кроме header) */
