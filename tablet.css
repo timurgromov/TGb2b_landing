@@ -136,7 +136,11 @@
     display: none !important;
   }
   
-  /* Запрещаем перенос текста в чипсах */
+  /* Запрещаем перенос текста в чипсах и увеличиваем ширину контейнера */
+  #hero-tags {
+    max-width: 90vw !important; /* Больше места для чипсов */
+  }
+  
   #hero-tags .tag {
     white-space: nowrap !important;
   }
