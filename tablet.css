@@ -33,7 +33,7 @@
   }
   
   .hero__text h1 {
-    font-size: clamp(24px, 3.5vw, 32px) !important; /* меньше размер для планшета */
+    font-size: clamp(18px, 2.8vw, 24px) !important; /* еще меньше шрифт заголовка */
     line-height: 1.1;
   }
   
@@ -258,7 +258,7 @@
   }
   
   .hero__text h1 {
-    font-size: clamp(20px, 3vw, 28px) !important; /* еще меньше для низких экранов */
+    font-size: clamp(16px, 2.5vw, 22px) !important; /* еще меньше шрифт для низких экранов */
     line-height: 1.1;
   }
   
