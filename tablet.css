@@ -39,10 +39,10 @@
   }
   
   /* ===== HERO СЕКЦИЯ ===== */
-  /* Сетка с фиксированным минимумом для фото */
+  /* Сетка с уменьшенным фото для большего места под текст */
   .hero__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(360px, 44%);
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 38%);
     gap: 28px;
     align-items: center;
   }
@@ -103,10 +103,10 @@
     justify-content: center;
   }
   
-  /* Фото справа: минимум 360px, максимум 520px */
+  /* Фото справа: уменьшено для места под чипсы */
   .hero__photo {
-    min-width: 360px;
-    max-width: 520px;
+    min-width: 320px;
+    max-width: 460px;
     border-radius: 24px;
     overflow: hidden;
     aspect-ratio: 4 / 5;
