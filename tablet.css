@@ -33,7 +33,7 @@
   }
   
   .hero__text h1 {
-    font-size: clamp(16px, 2.5vw, 20px) !important; /* значительно меньше шрифт заголовка */
+    font-size: clamp(12px, 2vw, 16px) !important; /* СИЛЬНО уменьшил для 2 строк */
     line-height: 1.1;
   }
   
@@ -258,7 +258,7 @@
   }
   
   .hero__text h1 {
-    font-size: clamp(16px, 2.5vw, 22px) !important; /* еще меньше шрифт для низких экранов */
+    font-size: clamp(10px, 1.8vw, 14px) !important; /* ОЧЕНЬ мало для низких экранов */
     line-height: 1.1;
   }
   
