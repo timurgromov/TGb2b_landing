@@ -235,10 +235,12 @@
   /* ===== BENEFITS ===== */
   
   .benefits {
-    grid-template-columns: repeat(2, 1fr) ;
-    width: calc(100vw - 36px);
-    margin: 0 auto;
-    max-width: calc(100vw - 36px);
+    grid-template-columns: repeat(2, 1fr) !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    padding: 0 18px !important;
+    box-sizing: border-box !important;
   }
   
   /* ===== SLIDER TRACKS ===== */
