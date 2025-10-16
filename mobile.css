@@ -61,6 +61,24 @@
     margin: 0 !important;
   }
   
+  /* АГРЕССИВНО перекрываем все правила контейнера */
+  html body .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 18px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* АГРЕССИВНО перекрываем все правила блока преимуществ */
+  html body .benefits {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  
   /* Слайдеры используют % */
   .slider__track {
     grid-auto-columns: 90% !important;
