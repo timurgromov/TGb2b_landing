@@ -31,7 +31,7 @@
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;
-    padding: 0 18px !important;
+    padding: 0 clamp(12px, 4vw, 18px) !important;
     box-sizing: border-box !important;
   }
   
