@@ -20,6 +20,32 @@
 }
 
 @media (max-width: 768px) {
+  /* ===== УНИВЕРСАЛЬНЫЕ ПРАВИЛА ДЛЯ МОБИЛКИ ===== */
+  /* Убираем горизонтальный скролл */
+  body {
+    overflow-x: hidden !important;
+  }
+  
+  /* Все контейнеры используют % вместо vw */
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 18px !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Все grid/flex контейнеры */
+  .benefits, .workflow__steps, .photos-track, .letters-track {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Слайдеры используют % */
+  .slider__track {
+    grid-auto-columns: 90% !important;
+  }
+  
   /* Общее свечение для всех оранжевых кнопок (кроме header) */
   .btn-primary:not(.workflow__cta .btn):not(.wa-btn),
   .benefits__cta .btn-outline,
