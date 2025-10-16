@@ -30,8 +30,14 @@
   .container {
     width: 100% !important;
     max-width: 100% !important;
+    margin: 0 !important;
     padding: 0 18px !important;
     box-sizing: border-box !important;
+  }
+  
+  /* Секции без лишних отступов */
+  .section {
+    padding: 60px 0 !important;
   }
   
   /* Все grid/flex контейнеры */
@@ -39,6 +45,20 @@
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
+  }
+  
+  /* Специально для блока преимуществ - равные отступы */
+  .benefits {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Убираем все внешние отступы у секции преимуществ */
+  #benefits .container {
+    padding: 0 18px !important;
+    margin: 0 !important;
   }
   
   /* Слайдеры используют % */
