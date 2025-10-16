@@ -982,3 +982,114 @@
     box-shadow: 0 8px 30px rgba(255, 120, 60, 0.18) !important;
   }
 }
+
+/* --- узкие устройства и "зумнутые" iPhone 12/13 (320–360px) --- */
+@media (max-width: 360px) {
+
+  /* базовая страховка от переполнений */
+  *, *::before, *::after { box-sizing: border-box; }
+  img, video { max-width: 100%; height: auto; }
+  .container, .section-inner, .wrap { padding-left: 16px; padding-right: 16px; }
+
+  /* Заголовок главного экрана */
+  .hero__title,
+  .hero h1,
+  .page-hero h1 {
+    font-size: clamp(24px, 8.5vw, 32px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  /* Подзаголовок/лиды */
+  .hero__lead,
+  .lead, .subtitle {
+    font-size: clamp(14px, 4.6vw, 16px);
+    line-height: 1.45;
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+  }
+
+  /* Чипсы/бейджи — сетка по 2 в ряд, компактная высота */
+  .chips,
+  .chips-grid,
+  .badges,
+  .features-chips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 8px;
+  }
+
+  .chip,
+  .badge,
+  .feature-chip {
+    font-size: 13px;
+    line-height: 1.2;
+    padding: 10px 12px;
+    border-radius: 14px;
+    min-width: 0;           /* критично, чтобы текст не выталкивал ширину */
+    overflow-wrap: anywhere;
+  }
+
+  /* Блок "Преимущества" — карточки компактнее, без переполнений */
+  .benefits,
+  .advantages { padding-top: 24px; padding-bottom: 24px; }
+
+  .benefits__grid,
+  .advantages__grid {
+    display: grid;
+    grid-template-columns: 1fr;  /* по одному в столбик на 320px */
+    gap: 14px;
+  }
+
+  .benefit-card,
+  .adv-card,
+  .feature-card {
+    padding: 16px;
+    border-radius: 16px;
+    min-width: 0;               /* важно! */
+    overflow: hidden;
+  }
+
+  .benefit-card__title,
+  .adv-card__title,
+  .feature-card__title {
+    font-size: clamp(16px, 5.6vw, 18px);
+    line-height: 1.25;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    text-wrap: balance;
+  }
+
+  .benefit-card p,
+  .adv-card p,
+  .feature-card p {
+    font-size: clamp(13px, 4.3vw, 15px);
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  /* Кнопки — чуть ниже и компактнее */
+  .btn, .button, .cta {
+    font-size: 16px;
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+
+  /* Ещё немного воздуха между блоками */
+  section { scroll-margin-top: 64px; }
+}
+
+/* Чуть шире (361–374px): можно попробовать вернуть 3 чипса в ряд */
+@media (min-width: 361px) and (max-width: 374px) {
+  .chips,
+  .chips-grid,
+  .badges,
+  .features-chips {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px 10px;
+  }
+}
