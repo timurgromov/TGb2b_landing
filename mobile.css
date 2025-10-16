@@ -264,15 +264,48 @@
   
   /* ===== BENEFITS ===== */
   
-  .benefits {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 16px !important;
+  /* === Benefits (mobile) === */
+  .benefits, .benefits-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+    padding-left:  max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
+
+  /* Карточки не должны иметь фиксированной ширины */
+  .benefit-card {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Длинные заголовки в карточках не ломают сетку */
+  .benefit-card, .benefit-card * {
+    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* === Chips (mobile) === */
+  .chips, .chips-grid, .hero-chips, #hero-tags {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+  }
+
+  .chip, .tag { min-width: 0; }
   
   /* ===== SLIDER TRACKS ===== */
   
   .slider__track {
-    grid-auto-columns: 90vw ;
+    grid-auto-columns: 90% ;
   }
   
   /* ===== FOOTER ===== */

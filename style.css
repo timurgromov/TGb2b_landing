@@ -1826,3 +1826,23 @@ body.is-modal-open{
     margin-top: 92px !important;
   }
 }
+
+/* === Base layout safety === */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+/* Медиа не должны растягивать контейнер */
+img, video { max-width: 100%; height: auto; display: block; }
+
+/* Страховка от редких горизонтальных прокруток из-за нативных виджетов */
+body { overflow-x: hidden; }
+
+/* Общие внутренние отступы c учётом safe-area */
+.section,
+.container,
+.wrapper,
+.inner,
+.content {
+  padding-left:  max(12px, env(safe-area-inset-left));
+  padding-right: max(12px, env(safe-area-inset-right));
+}
