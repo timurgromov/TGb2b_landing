@@ -84,9 +84,6 @@
     --section-py: 36px;            /* базовый внутренний отступ секций */
   }
 
-  .section{padding: var(--section-py) 0;}
-  .container{width: calc(100vw - var(--gutter)*2); margin:0 auto;}
-
   /* ===== СОВРЕМЕННЫЙ MOBILE HERO (2025) ===== */
   
   .hero {
@@ -266,7 +263,6 @@
   }
   
   /* ===== BENEFITS ===== */
-  
   
   /* ===== SLIDER TRACKS ===== */
   
