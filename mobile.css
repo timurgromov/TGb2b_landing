@@ -1126,3 +1126,162 @@
   justify-content: center !important;
 }
 
+/* ===== АДАПТАЦИЯ ДЛЯ iPhone SE И МАЛЫХ ЭКРАНОВ (320px) ===== */
+@media (max-width: 320px) {
+  /* Hero: уменьшаем заголовок на фото */
+  .hero__photo::before {
+    font-size: clamp(22px, 5.5vw, 28px) !important;
+    bottom: 16px !important;
+    left: 16px !important;
+    right: 16px !important;
+    line-height: 1.05 !important;
+  }
+
+  /* Hero: компактнее чипсы */
+  html body #hero-left #hero-tags {
+    gap: 4px !important;
+    margin-bottom: 12px !important;
+  }
+
+  #hero-tags .tag {
+    font-size: 10.5px !important;
+    padding: 4px 7px !important;
+    border-radius: 10px !important;
+  }
+
+  /* Hero: компактнее кнопки */
+  html body #hero-left #hero-actions {
+    gap: 10px !important;
+    margin-bottom: 24px !important;
+  }
+
+  html body #hero-left .hero-actions .btn-primary,
+  html body #hero-left .hero-actions .btn-ghost {
+    font-size: 14px !important;
+    padding: 14px 0 !important;
+    border-radius: 10px !important;
+  }
+
+  /* Benefits: компактнее карточки */
+  .benefits, .benefits-grid {
+    gap: 10px !important;
+  }
+
+  .benefit, .benefit-card {
+    padding: 12px !important;
+    border-radius: 12px !important;
+  }
+
+  .benefit .title, .benefit-card__title {
+    font-size: 15px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .benefit p, .benefit-card p {
+    font-size: 12.5px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Workflow: компактнее карточки */
+  .workflow__step {
+    padding: 14px 12px !important;
+    max-width: 280px !important;
+    border-radius: 10px !important;
+  }
+
+  .workflow__badge {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 13px !important;
+    top: -13px !important;
+  }
+
+  .workflow__title {
+    font-size: 15px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .workflow__text {
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Video section: компактнее заголовок */
+  .video-title, .section__title {
+    font-size: 20px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* CTA block: компактнее */
+  .section.cta {
+    padding: 48px 16px !important;
+  }
+
+  .section.cta .cta__box {
+    padding: 32px 20px !important;
+    border-radius: 16px !important;
+  }
+
+  .cta__title::before {
+    font-size: clamp(20px, 4.5vw, 26px) !important;
+  }
+
+  .section.cta .cta__actions {
+    gap: 10px !important;
+  }
+
+  .section.cta .btn {
+    font-size: 14px !important;
+    padding: 14px 16px !important;
+    border-radius: 10px !important;
+  }
+
+  /* Letters: компактнее */
+  .letter-card {
+    width: 75% !important;
+  }
+
+  /* Footer: компактнее */
+  .footer__legal {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+
+  .footer__copy {
+    font-size: 11.5px !important;
+  }
+
+  /* Modal: компактнее */
+  #video-consult-modal .modal__content {
+    padding: 16px 14px 14px !important;
+  }
+
+  #video-consult-modal h3 {
+    font-size: clamp(15px, 4vw, 20px) !important;
+  }
+
+  #video-consult-modal .modal__text {
+    font-size: 13px !important;
+  }
+
+  #video-consult-modal .btn {
+    font-size: 13px !important;
+    padding: 0 10px !important;
+  }
+
+  /* Container: минимальные отступы */
+  .container {
+    padding: 0 clamp(10px, 3vw, 14px) !important;
+  }
+
+  /* Sections: компактнее */
+  .section {
+    padding: 48px 0 !important;
+  }
+
+  /* Hero: меньше отступы */
+  .hero {
+    padding: 24px 14px 40px 14px !important;
+  }
+}
+
