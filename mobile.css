@@ -456,20 +456,6 @@
     z-index: 1002 ;
   }
 
-  /* ===== CTA БЛОК: УБИРАЕМ ДЕФИС НА МОБИЛКЕ ===== */
-  .cta__title {
-    font-size: 0 ; /* скрываем оригинальный текст */
-  }
-  
-  .cta__title::before {
-    content: "Праздники проходят впечатления остаются." ;
-    font-size: clamp(24px, 5vw, 32px) ;
-    font-family: var(--font-serif) ;
-    font-weight: 700 ;
-    line-height: 1.2 ;
-    color: var(--text) ;
-    display: block ;
-  }
 
   /* ===== СОКРАЩЕНИЕ ТЕКСТА ПРЕИМУЩЕСТВ НА МОБИЛКЕ ===== */
   
@@ -1072,6 +1058,22 @@
     overflow-wrap: anywhere;
   }
 
+  /* ===== CTA БЛОК: УБИРАЕМ ДЕФИС НА МОБИЛКЕ ===== */
+  .cta__title {
+    font-size: 0 ; /* скрываем оригинальный текст */
+    margin-bottom: 24px !important;
+  }
+  
+  .cta__title::before {
+    content: "Праздники проходят впечатления остаются." ;
+    font-size: clamp(24px, 5vw, 32px) ;
+    font-family: var(--font-serif) ;
+    font-weight: 700 ;
+    line-height: 1.2 ;
+    color: var(--text) ;
+    display: block ;
+  }
+
   /* CTA секция - больше внутреннего пространства */
   .cta {
     padding: 60px 0 !important;
@@ -1079,10 +1081,6 @@
   
   .cta__box {
     padding: 40px 24px !important;
-  }
-  
-  .cta__title {
-    margin-bottom: 24px !important;
   }
   
   .cta__actions {
