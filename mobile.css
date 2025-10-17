@@ -1311,34 +1311,32 @@
     display: block !important;
   }
 
-  /* ИСПРАВЛЯЕМ АРТЕФАКТ: делаем блок "20 лет в профессии" точно как "Проверенные подрядчики" */
+  /* ВЕРНУТЬ ЕДИНУЮ ТИПОГРАФИКУ И ОТСТУПЫ ДЛЯ 6-Й КАРТОЧКИ */
+  .benefit:nth-child(6) { 
+    padding-top: 18px !important; /* равенство с остальными */
+  }
+  
   .benefit:nth-child(6) .title {
-    font-size: 0 !important; /* скрываем оригинальный текст */
-    line-height: 0 !important; /* убираем высоту строки */
-    margin: 0 !important; /* убираем все отступы */
-    padding: 0 !important; /* убираем все паддинги */
-  }
-  
-  .benefit:nth-child(6) .title::before {
-    content: "20 лет в профессии" !important;
-    font-size: 15px !important; /* КОПИРУЕМ из .benefit .title */
-    font-weight: 600 !important;
-    color: var(--text) !important;
+    font-size: 15px !important;
     line-height: 1.3 !important;
-    display: block !important;
-    margin-bottom: 6px !important; /* КОПИРУЕМ из .benefit .title */
-  }
-  
-  .benefit:nth-child(6) .title::after {
-    content: "800+ событий, 3 года Love Radio, 10 лет КВН." !important;
-    font-size: 12.5px !important; /* КОПИРУЕМ из .benefit p */
-    color: var(--muted) !important;
-    line-height: 1.4 !important; /* КОПИРУЕМ из .benefit p */
-    display: block !important;
+    margin: 0 0 6px !important;
+    font-weight: 600 !important;
   }
   
   .benefit:nth-child(6) p {
-    display: none !important; /* ПОЛНОСТЬЮ убираем p элемент */
+    font-size: 12.5px !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    color: var(--muted) !important;
+  }
+
+  /* Подменяем текст, но БЕЗ обнуления */
+  .benefit:nth-child(6) .title::before { 
+    content: "20 лет в профессии" !important; 
+  }
+  
+  .benefit:nth-child(6) p::before { 
+    content: "800+ событий, 3 года Love Radio, 10 лет КВН." !important; 
   }
 }
 
