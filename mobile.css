@@ -552,7 +552,7 @@
   
   /* МЕГА-СИЛЬНЫЙ селектор для подзаголовка */
   html body #hero-left #hero-subtitle {
-    font-size: 14px ; /* УМЕНЬШЕННЫЙ размер */
+    font-size: 16px ; /* ЧИТАЕМЫЙ размер для всех мобильных экранов */
     margin-top: 0 ; /* УБИРАЕМ desktop margin-top: 10px */
     margin-bottom: 16px ; /* Симметрия с отступом до кнопок */
   }
@@ -1330,7 +1330,7 @@
   /* единый целевой селектор */
   .hero__text .sub,
   #hero-subtitle {
-    font-size: 14px !important;   /* компактный размер на узких экранах */
+    font-size: 16px !important;   /* ЧИТАЕМЫЙ размер на всех мобильных экранах */
     line-height: 1.35 !important;
     margin: 0 0 14px !important;  /* убрать лишний верхний отступ и держать ритм */
     max-width: 46ch;              /* чтобы не «сыпался» в 2-3 слова в строке */
