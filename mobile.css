@@ -1081,10 +1081,26 @@
   
   .section.cta .cta__box {
     padding: 40px 24px !important;
+    border-radius: 20px !important;
+    background: 
+      radial-gradient(ellipse 140% 100% at 50% 0%, 
+        rgba(255,106,61,0.08) 0%, 
+        rgba(198,168,105,0.04) 40%,
+        transparent 70%),
+      radial-gradient(120% 120% at 30% 30%, #1a1f25 0%, #0f1216 72%, #0b0e12 100%) !important;
+    text-align: center !important;
+  }
+  
+  .section.cta .cta__title {
+    margin-bottom: 24px !important;
   }
   
   .section.cta .cta__actions {
     margin-top: 20px !important;
+    display: flex !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
   }
 
   /* Кнопки — чуть ниже и компактнее */
