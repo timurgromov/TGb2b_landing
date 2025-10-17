@@ -227,11 +227,13 @@ button{font-family:inherit;cursor:pointer}
   :root {
     --header-h: 64px;
   }
-  
+}
+
+/* Скрываем телефон только на мобилке, НЕ на планшетах */
+@media (max-width: 768px) {
   .header__cta .header__phone {
     display: none;
   }
-
 }
 
 @media (max-width: 767px) {
