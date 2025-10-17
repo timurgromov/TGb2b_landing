@@ -1311,9 +1311,7 @@
     display: block !important;
   }
 
-  /* УТИЛИТЫ ВИДИМОСТИ ДЛЯ 6-Й КАРТОЧКИ */
-  .text-regular { display: none !important; }
-  .text-small   { display: inline !important; }
+  /* УТИЛИТЫ ВИДИМОСТИ ДЛЯ 6-Й КАРТОЧКИ - убираем перебивающие правила */
 }
 
 /* --- BENEFITS: одинаковый верхний отступ у всех карточек --- */
