@@ -1319,12 +1319,12 @@
 
 /* ===== УТИЛИТЫ ВИДИМОСТИ ДЛЯ 6-Й КАРТОЧКИ ===== */
 /* По умолчанию показываем «обычный» текст, мобильный прячем */
-.text-regular { display: inline; }
-.text-small   { display: none; }
+.benefit:nth-child(6) .text-regular { display: inline; }
+.benefit:nth-child(6) .text-small   { display: none; }
 
 /* На мобильных экранах (≤768px) — показываем мобильный текст */
 @media (max-width: 768px) {
-  .text-regular { display: none; }
-  .text-small   { display: inline; }
+  .benefit:nth-child(6) .text-regular { display: none; }
+  .benefit:nth-child(6) .text-small   { display: inline; }
 }
 
