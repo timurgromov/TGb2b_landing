@@ -1903,15 +1903,99 @@ body { overflow-x: hidden; }
     border-radius:12px; 
   }
 
-  /* Workflow/Benefits: никаких переполнений */
-  #workflow .workflow__steps{
-    display:grid; 
-    grid-template-columns:repeat(3, minmax(0,1fr));
-    gap:24px; 
-    justify-items:center;
+  /* Workflow: вертикальный с оранжевой линией (как на мобилке) */
+  /* Убираем desktop линии */
+  .section.workflow::after,
+  .workflow__connector,
+  .workflow svg,
+  .workflow canvas {
+    display: none !important;
   }
-  #workflow .workflow__connector{ display:none !important; }
-  #workflow, #workflow .container{ overflow:hidden; }
+
+  /* Контейнер под линию с переменными для подгона */
+  #workflow .container {
+    position: relative !important;
+    --wf-line-top: 44px !important;
+    --wf-line-bottom: 20px !important;
+  }
+
+  /* ОРАНЖЕВАЯ ПОЛОСКА - как на мобилке */
+  #workflow .container::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: var(--wf-line-top) !important;
+    bottom: var(--wf-line-bottom) !important;
+    width: 2px !important;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      #FF7A45 20%,
+      #FF7A45 80%,
+      transparent 100%
+    ) !important;
+    z-index: 1 !important;
+  }
+
+  /* Шаги - вертикально как на мобилке */
+  #workflow .workflow__steps {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 36px !important;
+    margin-top: 32px !important;
+    width: 100% !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .workflow__step {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    padding: 18px 16px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    transform: none !important;
+    flex: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Номера шагов - оранжевые как на мобилке */
+  .workflow__badge {
+    top: -14px !important;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 14px !important;
+    background: #FF7A45 !important;
+    color: #111 !important;
+    font-weight: 700 !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    box-shadow: 0 4px 16px rgba(255,122,69,0.25) !important;
+  }
+
+  .workflow__content {
+    margin-top: 0 !important;
+  }
+
+  .workflow__title {
+    text-align: center !important;
+    margin-bottom: 4px !important;
+    color: rgba(255,255,255,0.9) !important;
+  }
+
+  .workflow__text {
+    text-align: center !important;
+    margin: 0 !important;
+    color: rgba(255,255,255,0.9) !important;
+  }
 
   .benefits{
     display:grid; 
