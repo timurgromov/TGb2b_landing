@@ -1110,7 +1110,7 @@
   /* Hero: компактнее чипсы - МЕГА-СИЛЬНЫЙ селектор против style.css */
   html body #hero-left #hero-tags {
     gap: 4px !important;
-    margin-bottom: 28px !important; /* Устанавливаем 28px для компактного баланса */
+    margin-bottom: 26px !important; /* Устанавливаем 26px для компактного баланса */
     margin-top: 0 !important; /* Убираем desktop margin-top: 22px */
   }
 
@@ -1307,7 +1307,7 @@
 @media (max-width: 480px) {
   /* 1) Чипсы: оптимальное расстояние до кнопок */
   html body #hero-left #hero-tags {
-    margin-bottom: 28px !important;  /* компактное расстояние */
+    margin-bottom: 26px !important;  /* компактное расстояние */
   }
 
   /* 2) Кнопки: убираем дополнительный верхний отступ */
