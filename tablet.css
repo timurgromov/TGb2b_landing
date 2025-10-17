@@ -149,7 +149,7 @@
   
   /* ===== БЛОК ПРЕИМУЩЕСТВ ===== */
   .benefits {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important; /* перебиваем 3 колонки из style.css */
     gap: 24px;
   }
   

@@ -1,3 +1,41 @@
+
+
+:root{
+  /* брейкпоинты */
+  --bp-sm: 768px;
+  --bp-md: 1180px;
+
+  /* контейнер и секции */
+  --container-max: 1120px;
+  --container-pad: 24px;
+
+  --section-gap-y: 72px;
+  --section-gap-y-tab: 60px;
+  --section-gap-y-mob: 56px;
+
+  /* типографика героя */
+  --h1: 45px;
+  --p: 16px;
+
+  /* кнопки */
+  --btn-h: 44px;
+  --btn-pad-x: 16px;
+}
+
+@media (min-width: calc(var(--bp-sm) + 1px)) and (max-width: var(--bp-md)){
+  :root{
+    --section-gap-y: var(--section-gap-y-tab);
+    --h1: 40px;
+  }
+}
+
+@media (max-width: var(--bp-sm)){
+  :root{
+    --section-gap-y: var(--section-gap-y-mob);
+    --h1: 32px;
+  }
+}
+
 /* ===== Modern Theme (единственная тема) ===== */
 :root{
   --bg:#0c0f14;
@@ -44,8 +82,14 @@ button{font-family:inherit;cursor:pointer}
 /* ПЛАНШЕТНЫЕ СТИЛИ ПЕРЕНЕСЕНЫ В tablet.css */
 
 
-.container{width:min(1120px,92vw);margin:0 auto}
-.section{padding:72px 0}
+.container{
+  width: 100%;
+  max-width: calc(var(--container-max) + var(--container-pad) * 2);
+  padding-inline: var(--container-pad);
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+.section{padding-block: var(--section-gap-y);}
 .section__title{font-size:28px;font-weight:800;margin:0 0 24px;text-align:center}
 
 /* ===== HEADER (Glass Fixed) ===== */
@@ -283,7 +327,7 @@ body {
 
 /* ===== Hero с «цветным» фоном (Classic ближе к исходнику) ===== */
 .hero{
-  padding:56px 0;
+  padding-block: var(--section-gap-y);
   background:
     radial-gradient(120% 120% at 15% 10%, color-mix(in oklab, var(--accent) 35%, transparent) 0%, transparent 44%),
     radial-gradient(120% 120% at 85% 15%, color-mix(in oklab, var(--accent-2) 40%, transparent) 0%, transparent 46%);
@@ -1154,100 +1198,7 @@ body.is-modal-open{
 /* ===== ПОРЯДОК РАБОТЫ - ДИАГОНАЛЬНЫЙ TIMELINE ===== */
 
 /* ФИКС ДЛЯ ПЛАНШЕТОВ: ТОЧНО как на мобилке - с оранжевой полоской */
-@media (min-width: 769px) and (max-width: 1180px) {
-  /* Убираем desktop линии */
-  .section.workflow::after,
-  .workflow__connector,
-  .workflow svg,
-  .workflow canvas {
-    display: none !important;
-  }
 
-  /* Контейнер под линию с переменными для подгона */
-  #workflow .container {
-    position: relative !important;
-    --wf-line-top: 44px !important;
-    --wf-line-bottom: 20px !important; /* УВЕЛИЧИЛ - линия продлевается ниже */
-  }
-
-  /* ОРАНЖЕВАЯ ПОЛОСКА - как на мобилке */
-  #workflow .container::before {
-    content: "" !important;
-    position: absolute !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    top: var(--wf-line-top) !important;
-    bottom: var(--wf-line-bottom) !important;
-    width: 2px !important;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      #FF7A45 20%,
-      #FF7A45 80%,
-      transparent 100%
-    ) !important;
-    z-index: 1 !important;
-  }
-
-  /* Шаги - вертикально как на мобилке */
-  #workflow .workflow__steps {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 36px !important;
-    margin-top: 32px !important;
-    width: 100% !important;
-    position: relative;
-    z-index: 1;
-  }
-
-  .workflow__step {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    width: 100% !important;
-    max-width: 480px !important; /* ШИРЕ для планшетов - текст в одну строку */
-    padding: 18px 16px !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 12px !important;
-    background: rgba(255, 255, 255, 0.03) !important;
-    transform: none !important;
-    flex: none !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-  }
-
-  /* Номера шагов - оранжевые как на мобилке */
-  .workflow__badge {
-    top: -14px !important;
-    width: 28px !important;
-    height: 28px !important;
-    font-size: 14px !important;
-    background: #FF7A45 !important;
-    color: #111 !important;
-    font-weight: 700 !important;
-    border: 1px solid rgba(255,255,255,0.15) !important;
-    box-shadow: 0 4px 16px rgba(255,122,69,0.25) !important;
-  }
-
-  .workflow__content {
-    margin-top: 0 !important;
-  }
-
-  .workflow__title {
-    text-align: center !important;
-    margin-bottom: 4px !important;
-    color: rgba(255,255,255,0.9) !important;
-  }
-
-  .workflow__text {
-    text-align: center !important;
-    margin: 0 !important;
-    color: rgba(255,255,255,0.9) !important;
-  }
-}
 .workflow {
   background: linear-gradient(180deg, #1a1a1a 0%, #121212 100%);
   position: relative;
@@ -1937,12 +1888,50 @@ img, video { max-width: 100%; height: auto; display: block; }
 /* Страховка от редких горизонтальных прокруток из-за нативных виджетов */
 body { overflow-x: hidden; }
 
-/* Общие внутренние отступы c учётом safe-area */
-.section,
-.container,
-.wrapper,
-.inner,
-.content {
-  padding-left:  max(12px, env(safe-area-inset-left));
-  padding-right: max(12px, env(safe-area-inset-right));
+/* ===== Планшеты 769–1180: снимаем переполнение и разъезд ===== */
+@media (min-width: calc(var(--bp-sm) + 1px)) and (max-width: var(--bp-md)){
+
+  /* Workflow: перевод в сетку, убираем диагональную линию */
+  #workflow .workflow__steps{
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap:24px;
+    justify-items:center;
+  }
+  #workflow .workflow__connector{ display:none !important; }
+  #workflow, #workflow .container{ overflow:hidden; }
+
+  /* Benefits: 2 колонки вместо 3-х — безопасно для iPad */
+  .benefits{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:24px;
+  }
+
+  /* ===== Планшеты 769–1180: стабильная шапка ===== */
+  .container.header-row{
+    display:grid;
+    grid-template-columns: auto 1fr auto;
+    gap:16px;
+    align-items:center;
+  }
+
+  .main-nav{ display:none; }
+  .header__phone, .call-btn{ display:none; }
+
+  .header__cta{
+    justify-self:end;
+    display:inline-flex;
+    gap:10px;
+    flex-wrap:nowrap;
+  }
+  .header__cta .wa-btn{
+    height: 40px;
+    padding: 0 16px;
+    white-space: nowrap;
+    border-radius:12px;
+  }
 }
+
+/* управление размером заголовка через токен --h1 */
+#hero-left h1 .h1-prefix{ font-size: var(--h1) !important; }
