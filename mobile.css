@@ -1137,10 +1137,11 @@
     line-height: 1.05 !important;
   }
 
-  /* Hero: компактнее чипсы */
+  /* Hero: компактнее чипсы - МЕГА-СИЛЬНЫЙ селектор против style.css */
   html body #hero-left #hero-tags {
     gap: 4px !important;
     margin-bottom: 8px !important;
+    margin-top: 0 !important; /* Убираем desktop margin-top: 22px */
   }
 
   #hero-tags .tag {
@@ -1161,10 +1162,11 @@
     display: inline-block !important;
   }
 
-  /* Hero: компактнее кнопки */
+  /* Hero: компактнее кнопки - МЕГА-СИЛЬНЫЙ селектор против style.css */
   html body #hero-left #hero-actions {
     gap: 10px !important;
     margin-bottom: 16px !important;
+    margin-top: 0 !important; /* Убираем desktop margin-top: 56px */
   }
 
   html body #hero-left .hero-actions .btn-primary,
