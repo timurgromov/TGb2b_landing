@@ -1165,7 +1165,7 @@ body.is-modal-open{
   #workflow .container {
     position: relative !important;
     --wf-line-top: 44px !important;
-    --wf-line-bottom: 38px !important;
+    --wf-line-bottom: 20px !important; /* УВЕЛИЧИЛ - линия продлевается ниже */
   }
 
   /* ОРАНЖЕВАЯ ПОЛОСКА - как на мобилке */
