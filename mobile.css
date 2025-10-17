@@ -1298,6 +1298,19 @@
     padding: 24px 14px 40px 14px !important;
   }
 
+  /* ИСПРАВЛЯЕМ АРТЕФАКТ: убираем дублирование текста в "Проверенные подрядчики" */
+  .benefit:nth-child(5) p {
+    font-size: 0 !important; /* скрываем оригинальный текст */
+  }
+  
+  .benefit:nth-child(5) p::before {
+    content: "Кавер-группы, фото, видео — только надёжные люди." !important;
+    font-size: 12.5px !important;
+    color: var(--muted) !important;
+    line-height: 1.4 !important;
+    display: block !important;
+  }
+
   /* ИСПРАВЛЯЕМ АРТЕФАКТ: убираем лишний текст "Опыт, которому доверяют" на малых экранах */
   .benefit:nth-child(6) .title {
     font-size: 0 !important; /* скрываем оригинальный заголовок */
