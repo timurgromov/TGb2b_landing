@@ -1150,6 +1150,18 @@ body.is-modal-open{
 .letter-card, .photo-card { cursor: zoom-in; }
 
 /* ===== ПОРЯДОК РАБОТЫ - ДИАГОНАЛЬНЫЙ TIMELINE ===== */
+
+/* МИНИМАЛЬНЫЙ ФИКС ДЛЯ ПЛАНШЕТОВ: только ограничиваем ширину линии */
+@media (min-width: 769px) and (max-width: 1180px) {
+  .workflow__connector {
+    left: 10% !important;
+    right: 10% !important;
+  }
+  
+  .workflow__steps {
+    gap: 2rem !important; /* уменьшаем отступ */
+  }
+}
 .workflow {
   background: linear-gradient(180deg, #1a1a1a 0%, #121212 100%);
   position: relative;
