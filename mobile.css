@@ -1313,8 +1313,7 @@
 
   /* ИСПРАВЛЯЕМ АРТЕФАКТ: убираем лишний текст "Опыт, которому доверяют" на малых экранах */
   .benefit:nth-child(6) .title {
-    /* НЕ скрываем элемент, только содержимое */
-    position: relative !important;
+    font-size: 0 !important; /* скрываем оригинальный текст */
   }
   
   .benefit:nth-child(6) .title::before {
@@ -1324,13 +1323,6 @@
     color: var(--text) !important;
     line-height: 1.3 !important;
     display: block !important;
-    /* НЕ добавляем margin-bottom - используем общие правила .benefit .title */
-  }
-  
-  /* Скрываем оригинальный текст внутри .title */
-  .benefit:nth-child(6) .title {
-    font-size: 0 !important;
-    line-height: 0 !important;
   }
   
   .benefit:nth-child(6) p {
@@ -1343,7 +1335,6 @@
     color: var(--muted) !important;
     line-height: 1.4 !important;
     display: block !important;
-    /* НЕ перебиваем margin - используем общие правила! */
   }
 }
 
