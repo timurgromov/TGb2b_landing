@@ -1349,3 +1349,15 @@
   }
 }
 
+/* === ИСПРАВЛЕНИЕ: Центровка текста "Love Radio" чипса === */
+#hero-tags .tag-radio {
+  display: inline-flex !important;
+  align-items: center !important;
+  line-height: 1.2 !important;
+}
+
+#hero-tags .tag-radio::before {
+  display: block !important;
+  line-height: 1.2 !important;
+}
+
