@@ -1151,11 +1151,10 @@ body.is-modal-open{
 
 /* ===== ПОРЯДОК РАБОТЫ - ДИАГОНАЛЬНЫЙ TIMELINE ===== */
 
-/* МИНИМАЛЬНЫЙ ФИКС ДЛЯ ПЛАНШЕТОВ: только ограничиваем ширину линии */
+/* МИНИМАЛЬНЫЙ ФИКС ДЛЯ ПЛАНШЕТОВ: убираем линию полностью */
 @media (min-width: 769px) and (max-width: 1180px) {
   .workflow__connector {
-    left: 10% !important;
-    right: 10% !important;
+    display: none !important; /* убираем линию полностью */
   }
   
   .workflow__steps {
