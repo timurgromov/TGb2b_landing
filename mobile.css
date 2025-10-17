@@ -1164,7 +1164,7 @@
   /* Hero: компактнее кнопки */
   html body #hero-left #hero-actions {
     gap: 10px !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 16px !important;
   }
 
   html body #hero-left .hero-actions .btn-primary,
