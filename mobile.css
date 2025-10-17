@@ -1302,3 +1302,25 @@
 
 /* УТИЛИТЫ ВИДИМОСТИ УБРАНЫ - теперь используется простой текст */
 
+/* === HERO: компактный зазор между чипсами и кнопками (мобайл) === */
+@media (max-width: 480px) {
+  /* 1) Чипсы: снизу поменьше воздуха */
+  html body #hero-left #hero-tags {
+    margin-bottom: 14px !important;  /* было 30px */
+  }
+
+  /* 2) Кнопки: убираем дополнительный верхний отступ */
+  html body #hero-left #hero-actions,
+  html body #hero-left .hero-actions {
+    margin-top: 0 !important;        /* было 36px из style.css */
+    gap: 12px !important;
+  }
+
+  /* 3) На всякий случай гасим «заглушки»-соседей из style.css */
+  #hero-tags + .button-row,
+  #hero-tags + .cta-row,
+  #hero-tags + .hero-ctas {
+    margin-top: 0 !important;
+  }
+}
+
