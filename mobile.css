@@ -1124,3 +1124,24 @@
     gap: 10px 10px;
   }
 }
+
+/* CTA: нормальный отступ от футера и учёт плавающей кнопки */
+:root{
+  /* если есть FAB-кнопка звонка — её примерный размер */
+  --fab-size: 64px;
+}
+
+/* усиливаем именно для CTA-секции */
+section.cta{
+  /* сверху компактнее, снизу — щедро, + запас под FAB */
+  padding: clamp(40px, 6vw, 56px) 0 calc(clamp(56px, 8vw, 84px) + var(--fab-size)) !important;
+}
+
+/* микро-экраны 320–360px: ещё чуть плотнее шрифты внутри CTA */
+@media (max-width: 360px){
+  .cta__title{ font-size: 20px; line-height: 1.25; }
+  .cta__actions .btn{ font-size: 15px; }
+}
+
+/* небольшой «воздух» у самого футера на мобилке */
+.footer{ padding-top: clamp(16px, 3vw, 24px); }
