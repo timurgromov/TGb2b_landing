@@ -1380,8 +1380,8 @@ body.is-modal-open{
 }
 
 #hero-left h1 .h1-prefix {
-  font-size: 45px !important;    /* уменьшен для лучшей читаемости длинного заголовка */
   font-weight: 800;
+  /* font-size управляется через var(--h1) в конце файла */
 }
 
 #hero-left h1 .h1-name {
@@ -1878,51 +1878,6 @@ img, video { max-width: 100%; height: auto; display: block; }
 
 /* Страховка от редких горизонтальных прокруток из-за нативных виджетов */
 body { overflow-x: hidden; }
-
-/* ===== Планшеты 769–1180: снимаем переполнение и разъезд ===== */
-@media (min-width: calc(var(--bp-sm) + 1px)) and (max-width: var(--bp-md)){
-
-  /* Workflow: перевод в сетку, убираем диагональную линию */
-  #workflow .workflow__steps{
-    display:grid;
-    grid-template-columns: repeat(3, minmax(0,1fr));
-    gap:24px;
-    justify-items:center;
-  }
-  #workflow .workflow__connector{ display:none !important; }
-  #workflow, #workflow .container{ overflow:hidden; }
-
-  /* Benefits: 2 колонки вместо 3-х — безопасно для iPad */
-  .benefits{
-    display:grid;
-    grid-template-columns: repeat(2, minmax(0,1fr));
-    gap:24px;
-  }
-
-  /* ===== Планшеты 769–1180: стабильная шапка ===== */
-  .container.header-row{
-    display:grid;
-    grid-template-columns: auto 1fr auto;
-    gap:16px;
-    align-items:center;
-  }
-
-  .main-nav{ display:none; }
-  .header__phone, .call-btn{ display:none; }
-
-  .header__cta{
-    justify-self:end;
-    display:inline-flex;
-    gap:10px;
-    flex-wrap:nowrap;
-  }
-  .header__cta .wa-btn{
-    height: 40px;
-    padding: 0 16px;
-    white-space: nowrap;
-    border-radius:12px;
-  }
-}
 
 /* ===== ПЛАНШЕТНЫЕ СТИЛИ (769px - 1180px) ===== */
 @media (min-width: 769px) and (max-width: 1180px) {
