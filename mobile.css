@@ -459,18 +459,7 @@
 
   /* ===== СОКРАЩЕНИЕ ТЕКСТА ПРЕИМУЩЕСТВ НА МОБИЛКЕ ===== */
   
-  /* Сокращаем "Проверенные подрядчики" */
-  .benefit:nth-child(5) p {
-    font-size: 0 ; /* скрываем оригинальный текст */
-  }
-  
-  .benefit:nth-child(5) p::before {
-    content: "Кавер-группы, фото, видео — только надёжные люди." ;
-    font-size: 14px ;
-    color: var(--muted) ;
-    line-height: 1.5 ;
-    display: block ;
-  }
+  /* УБРАЛИ СТАРЫЕ ПРАВИЛА ДЛЯ 5-Й КАРТОЧКИ - теперь используется простой текст */
   
   /* УБРАЛИ СТАРЫЕ ПРАВИЛА ДЛЯ 6-Й КАРТОЧКИ - теперь используются утилиты видимости */
 
@@ -1273,18 +1262,7 @@
     padding: 24px 14px 40px 14px !important;
   }
 
-  /* ИСПРАВЛЯЕМ АРТЕФАКТ: убираем дублирование текста в "Проверенные подрядчики" */
-  .benefit:nth-child(5) p {
-    font-size: 0 !important; /* скрываем оригинальный текст */
-  }
-  
-  .benefit:nth-child(5) p::before {
-    content: "Кавер-группы, фото, видео — только надёжные люди." !important;
-    font-size: 12.5px !important;
-    color: var(--muted) !important;
-    line-height: 1.4 !important;
-    display: block !important;
-  }
+  /* УБРАЛИ ДУБЛИРУЮЩИЕ ПРАВИЛА ДЛЯ 5-Й КАРТОЧКИ */
 
 }
 
@@ -1317,14 +1295,5 @@
   }
 }
 
-/* ===== УТИЛИТЫ ВИДИМОСТИ ДЛЯ 6-Й КАРТОЧКИ ===== */
-/* По умолчанию показываем «обычный» текст, мобильный прячем */
-.benefit:nth-child(6) .text-regular { display: inline; }
-.benefit:nth-child(6) .text-small   { display: none; }
-
-/* На мобильных экранах (≤768px) — показываем мобильный текст */
-@media (max-width: 768px) {
-  .benefit:nth-child(6) .text-regular { display: none; }
-  .benefit:nth-child(6) .text-small   { display: inline; }
-}
+/* УТИЛИТЫ ВИДИМОСТИ УБРАНЫ - теперь используется простой текст */
 
