@@ -1140,7 +1140,7 @@
   /* Hero: компактнее чипсы - МЕГА-СИЛЬНЫЙ селектор против style.css */
   html body #hero-left #hero-tags {
     gap: 4px !important;
-    margin-bottom: 18px !important; /* Увеличиваем с 12px до 18px для лучшего баланса */
+    margin-bottom: 36px !important; /* Увеличиваем с 18px до 36px (×2) для максимального баланса */
     margin-top: 0 !important; /* Убираем desktop margin-top: 22px */
   }
 
