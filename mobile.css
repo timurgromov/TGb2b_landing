@@ -1099,7 +1099,7 @@
 
 /* CTA секция - больше внутреннего пространства (ВНЕ медиа-запроса) */
 .section.cta {
-  padding: 60px 0 !important;
+  padding: 60px 18px !important;
 }
 
 .section.cta .cta__box {
