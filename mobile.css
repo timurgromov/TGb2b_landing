@@ -1313,10 +1313,7 @@
 
   /* ИСПРАВЛЯЕМ АРТЕФАКТ: делаем блок "20 лет в профессии" точно как "Проверенные подрядчики" */
   .benefit:nth-child(6) .title {
-    font-size: 0 !important; /* скрываем оригинальный текст */
-    line-height: 0 !important; /* убираем высоту строки */
-    margin: 0 !important; /* убираем все отступы */
-    padding: 0 !important; /* убираем все паддинги */
+    display: none !important; /* ПОЛНОСТЬЮ убираем из потока */
   }
   
   .benefit:nth-child(6) .title::before {
@@ -1342,6 +1339,35 @@
     color: var(--muted) !important;
     line-height: 1.4 !important; /* КОПИРУЕМ из .benefit p */
     display: block !important;
+  }
+}
+
+/* --- BENEFITS: одинаковый верхний отступ у всех карточек --- */
+.benefit,
+.benefit-card,
+.adv-card,
+.feature-card {
+  padding: 16px !important;          /* базовый внутренний отступ */
+  padding-top: 18px !important;      /* +чуть воздуха сверху */
+  display: block;                    /* выключаем любые странности коллапса */
+}
+
+/* Заголовки внутри карточек: убираем возможный margin-top */
+.benefit .title,
+.benefit-card__title,
+.adv-card__title,
+.feature-card__title {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+/* На самых узких (≤360px) ещё на 2px больше воздуха */
+@media (max-width: 360px) {
+  .benefit,
+  .benefit-card,
+  .adv-card,
+  .feature-card {
+    padding-top: 20px !important;
   }
 }
 
