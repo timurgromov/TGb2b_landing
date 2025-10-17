@@ -1325,3 +1325,27 @@
   }
 }
 
+/* === Мобилка: подзаголовок геро-блока и отступы под него === */
+@media (max-width: 390px) {
+  /* единый целевой селектор */
+  .hero__text .sub,
+  #hero-subtitle {
+    font-size: 14px !important;   /* компактный размер на узких экранах */
+    line-height: 1.35 !important;
+    margin: 0 0 14px !important;  /* убрать лишний верхний отступ и держать ритм */
+    max-width: 46ch;              /* чтобы не «сыпался» в 2-3 слова в строке */
+  }
+
+  /* чипсы + кнопки: поджать «воздух» между ними */
+  #hero-tags {
+    margin-top: 0 !important;     /* desktop в style.css добавляет mt — убираем */
+    margin-bottom: 14px !important;
+    gap: 6px 8px !important;
+  }
+
+  .hero-actions {
+    margin-top: 0 !important;
+    gap: 12px !important;
+  }
+}
+
