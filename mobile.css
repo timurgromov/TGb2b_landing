@@ -1079,11 +1079,11 @@
     padding: 60px 0 !important;
   }
   
-  .cta__box {
+  .cta .cta__box {
     padding: 40px 24px !important;
   }
   
-  .cta__actions {
+  .cta .cta__actions {
     margin-top: 20px !important;
   }
 
