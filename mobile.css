@@ -1313,10 +1313,11 @@
 
   /* ИСПРАВЛЯЕМ АРТЕФАКТ: делаем блок "20 лет в профессии" точно как "Проверенные подрядчики" */
   .benefit:nth-child(6) .title {
-    font-size: 0 !important; /* скрываем оригинальный текст */
-    line-height: 0 !important; /* убираем высоту строки */
-    margin: 0 !important; /* убираем все отступы */
-    padding: 0 !important; /* убираем все паддинги */
+    position: absolute !important; /* убираем из потока */
+    left: -9999px !important; /* скрываем за экраном */
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
   }
   
   .benefit:nth-child(6) .title::before {
