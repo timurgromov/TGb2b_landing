@@ -1882,11 +1882,18 @@ body { overflow-x: hidden; }
 /* ===== ПЛАНШЕТНЫЕ СТИЛИ (769px - 1180px) ===== */
 @media (min-width: 769px) and (max-width: 1180px) {
   /* Хедер: стабильная раскладка и CTA справа */
+  .site-header {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: var(--header-h) !important;
+  }
+  
   .container.header-row{
     display:grid;
     grid-template-columns:auto 1fr auto;
     gap:16px; 
     align-items:center;
+    height: 100%;
   }
   .main-nav{ display:none; }
   .header__phone, .call-btn{ display:none; }
