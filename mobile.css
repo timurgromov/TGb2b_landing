@@ -564,7 +564,7 @@
     flex-direction: column ;
     gap: 12px ;
     margin-top: 0 ; /* УБИРАЕМ desktop margin-top: 36px */
-    margin-bottom: 32px !important; /* уменьшаем отступ до заголовка "Примеры работ" */
+    margin-bottom: 20px !important; /* КОМПАКТНЫЙ отступ до заголовка "Примеры работ" */
     width: 100% ;
   }
   
@@ -1135,7 +1135,7 @@
   /* Hero: компактнее кнопки - МЕГА-СИЛЬНЫЙ селектор против style.css */
   html body #hero-left #hero-actions {
     gap: 10px !important;
-    margin-bottom: 16px !important;
+    margin-bottom: 12px !important; /* ЕЩЁ КОМПАКТНЕЕ отступ до видеоблога */
     margin-top: 0 !important; /* Убираем desktop margin-top: 56px */
   }
 
