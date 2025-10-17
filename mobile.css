@@ -1101,6 +1101,11 @@
     line-height: 1.05 !important;
   }
 
+  /* Hero: компактнее подзаголовок на маленьких экранах */
+  html body #hero-left #hero-subtitle {
+    font-size: 12px !important; /* ЕЩЁ МЕНЬШЕ для маленьких экранов */
+  }
+
   /* Hero: компактнее чипсы - МЕГА-СИЛЬНЫЙ селектор против style.css */
   html body #hero-left #hero-tags {
     gap: 4px !important;
