@@ -1323,7 +1323,7 @@
     color: var(--text) !important;
     line-height: 1.3 !important;
     display: block !important;
-    /* НЕ перебиваем margin-bottom - используем общие правила! */
+    margin-bottom: 6px !important; /* Применяем тот же отступ, что и у .benefit .title */
   }
   
   .benefit:nth-child(6) p {
