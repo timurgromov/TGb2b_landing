@@ -1151,14 +1151,24 @@ body.is-modal-open{
 
 /* ===== ПОРЯДОК РАБОТЫ - ДИАГОНАЛЬНЫЙ TIMELINE ===== */
 
-/* МИНИМАЛЬНЫЙ ФИКС ДЛЯ ПЛАНШЕТОВ: убираем линию полностью */
+/* ФИКС ДЛЯ ПЛАНШЕТОВ: делаем как на мобилке - вертикально в колонку */
 @media (min-width: 769px) and (max-width: 1180px) {
   .workflow__connector {
     display: none !important; /* убираем линию полностью */
   }
   
   .workflow__steps {
-    gap: 2rem !important; /* уменьшаем отступ */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2rem !important;
+  }
+  
+  .workflow__step {
+    flex: none !important;
+    max-width: 400px !important;
+    width: 100% !important;
+    transform: none !important; /* убираем диагональные сдвиги */
   }
 }
 .workflow {
