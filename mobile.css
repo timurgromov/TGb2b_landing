@@ -1297,5 +1297,31 @@
   .hero {
     padding: 24px 14px 40px 14px !important;
   }
+
+  /* ИСПРАВЛЯЕМ АРТЕФАКТ: убираем лишний текст "Опыт, которому доверяют" на малых экранах */
+  .benefit:nth-child(6) .title {
+    font-size: 0 !important; /* скрываем оригинальный заголовок */
+  }
+  
+  .benefit:nth-child(6) .title::before {
+    content: "20 лет в профессии" !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: var(--text) !important;
+    line-height: 1.3 !important;
+    display: block !important;
+  }
+  
+  .benefit:nth-child(6) p {
+    font-size: 0 !important; /* скрываем оригинальный текст */
+  }
+  
+  .benefit:nth-child(6) p::before {
+    content: "800+ событий, 3 года Love Radio, 10 лет КВН." !important;
+    font-size: 12.5px !important;
+    color: var(--muted) !important;
+    line-height: 1.4 !important;
+    display: block !important;
+  }
 }
 
