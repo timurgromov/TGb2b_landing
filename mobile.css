@@ -1075,15 +1075,15 @@
   }
 
   /* CTA секция - больше внутреннего пространства */
-  .cta {
+  .section.cta {
     padding: 60px 0 !important;
   }
   
-  .cta .cta__box {
+  .section.cta .cta__box {
     padding: 40px 24px !important;
   }
   
-  .cta .cta__actions {
+  .section.cta .cta__actions {
     margin-top: 20px !important;
   }
 
