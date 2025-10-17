@@ -1140,7 +1140,7 @@
   /* Hero: компактнее чипсы */
   html body #hero-left #hero-tags {
     gap: 4px !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 8px !important;
   }
 
   #hero-tags .tag {
