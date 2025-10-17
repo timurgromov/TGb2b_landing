@@ -1072,8 +1072,25 @@
     overflow-wrap: anywhere;
   }
 
+  /* CTA секция - больше внутреннего пространства */
+  .cta {
+    padding: 60px 0 !important;
+  }
+  
+  .cta__box {
+    padding: 40px 24px !important;
+  }
+  
+  .cta__title {
+    margin-bottom: 24px !important;
+  }
+  
+  .cta__actions {
+    margin-top: 20px !important;
+  }
+
   /* Кнопки — чуть ниже и компактнее */
-  .btn, .button, .cta {
+  .btn, .button {
     font-size: 16px;
     padding: 14px 16px;
     border-radius: 14px;
