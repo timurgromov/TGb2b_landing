@@ -1322,8 +1322,8 @@
 .text-regular { display: inline; }
 .text-small   { display: none; }
 
-/* На маленьких экранах (≤360px) — меняем местами */
-@media (max-width: 360px) {
+/* На мобильных экранах (≤768px) — показываем мобильный текст */
+@media (max-width: 768px) {
   .text-regular { display: none; }
   .text-small   { display: inline; }
 }
