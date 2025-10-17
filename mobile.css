@@ -1314,6 +1314,9 @@
   /* ИСПРАВЛЯЕМ АРТЕФАКТ: убираем лишний текст "Опыт, которому доверяют" на малых экранах */
   .benefit:nth-child(6) .title {
     font-size: 0 !important; /* скрываем оригинальный текст */
+    line-height: 0 !important; /* убираем высоту строки */
+    margin: 0 !important; /* убираем все отступы */
+    padding: 0 !important; /* убираем все паддинги */
   }
   
   .benefit:nth-child(6) .title::before {
