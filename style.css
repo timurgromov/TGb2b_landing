@@ -332,18 +332,9 @@ body {
     radial-gradient(120% 120% at 15% 10%, color-mix(in oklab, var(--accent) 35%, transparent) 0%, transparent 44%),
     radial-gradient(120% 120% at 85% 15%, color-mix(in oklab, var(--accent-2) 40%, transparent) 0%, transparent 46%);
 }
-/* ===== CSS ПЕРЕМЕННЫЕ ДЛЯ ТИПОГРАФИКИ ===== */
-:root {
-  --h1: clamp(24px, 3.2vw, 32px);    /* заголовок */
-  --sub: 18px;                        /* подзаголовок */
-  --chip: 14px;                       /* чипсы */
-  --btn: 16px;                        /* кнопки */
-}
-
 /* ===== ДЕСКТОПНЫЕ СТИЛИ (1181px+) ===== */
 @media (min-width: 1181px) {
   :root {
-    --h1: clamp(24px, 3.2vw, 32px);
     --sub: 18px;
     --chip: 14px;
     --btn: 16px;
@@ -1930,6 +1921,47 @@ body { overflow-x: hidden; }
     padding: 0 16px;
     white-space: nowrap;
     border-radius:12px;
+  }
+}
+
+/* ===== ПЛАНШЕТНЫЕ СТИЛИ (769px - 1180px) ===== */
+@media (min-width: 769px) and (max-width: 1180px) {
+  /* Хедер: стабильная раскладка и CTA справа */
+  .container.header-row{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    gap:16px; 
+    align-items:center;
+  }
+  .main-nav{ display:none; }
+  .header__phone, .call-btn{ display:none; }
+  .header__cta{ 
+    justify-self:end; 
+    display:inline-flex; 
+    gap:10px; 
+    flex-wrap:nowrap; 
+  }
+  .header__cta .wa-btn{ 
+    height:40px; 
+    padding:0 16px; 
+    white-space:nowrap; 
+    border-radius:12px; 
+  }
+
+  /* Workflow/Benefits: никаких переполнений */
+  #workflow .workflow__steps{
+    display:grid; 
+    grid-template-columns:repeat(3, minmax(0,1fr));
+    gap:24px; 
+    justify-items:center;
+  }
+  #workflow .workflow__connector{ display:none !important; }
+  #workflow, #workflow .container{ overflow:hidden; }
+
+  .benefits{
+    display:grid; 
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:24px;
   }
 }
 
