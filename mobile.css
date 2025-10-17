@@ -472,32 +472,7 @@
     display: block ;
   }
   
-  /* Меняем заголовок "Опыт, которому доверяют" на "20 лет в профессии" */
-  .benefit:nth-child(6) .title {
-    font-size: 0 ; /* скрываем оригинальный заголовок */
-  }
-  
-  .benefit:nth-child(6) .title::before {
-    content: "20 лет в профессии" ;
-    font-size: 18px ;
-    font-weight: 600 ;
-    color: var(--text) ;
-    line-height: 1.3 ;
-    display: block ;
-  }
-  
-  /* Сокращаем подзаголовок "Опыт, которому доверяют" */
-  .benefit:nth-child(6) p {
-    font-size: 0 ; /* скрываем оригинальный текст */
-  }
-  
-  .benefit:nth-child(6) p::before {
-    content: "800+ событий, 3 года Love Radio, 10 лет КВН." ;
-    font-size: 14px ;
-    color: var(--muted) ;
-    line-height: 1.5 ;
-    display: block ;
-  }
+  /* УБРАЛИ СТАРЫЕ ПРАВИЛА ДЛЯ 6-Й КАРТОЧКИ - теперь используются утилиты видимости */
 
   /* ===== СКРЫВАЕМ ТЕЛЕФОН В ХЕДЕРЕ НА МОБИЛКЕ ===== */
   .header__phone {
