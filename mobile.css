@@ -1313,11 +1313,10 @@
 
   /* ИСПРАВЛЯЕМ АРТЕФАКТ: делаем блок "20 лет в профессии" точно как "Проверенные подрядчики" */
   .benefit:nth-child(6) .title {
-    position: absolute !important; /* убираем из потока */
-    left: -9999px !important; /* скрываем за экраном */
-    width: 1px !important;
-    height: 1px !important;
-    overflow: hidden !important;
+    font-size: 0 !important; /* скрываем оригинальный текст */
+    line-height: 0 !important; /* убираем высоту строки */
+    margin: 0 !important; /* убираем все отступы */
+    padding: 0 !important; /* убираем все паддинги */
   }
   
   .benefit:nth-child(6) .title::before {
@@ -1330,19 +1329,16 @@
     margin-bottom: 6px !important; /* КОПИРУЕМ из .benefit .title */
   }
   
-  .benefit:nth-child(6) p {
-    font-size: 0 !important; /* скрываем оригинальный текст */
-    line-height: 0 !important; /* убираем высоту строки */
-    margin: 0 !important; /* убираем все отступы */
-    padding: 0 !important; /* убираем все паддинги */
-  }
-  
-  .benefit:nth-child(6) p::before {
+  .benefit:nth-child(6) .title::after {
     content: "800+ событий, 3 года Love Radio, 10 лет КВН." !important;
     font-size: 12.5px !important; /* КОПИРУЕМ из .benefit p */
     color: var(--muted) !important;
     line-height: 1.4 !important; /* КОПИРУЕМ из .benefit p */
     display: block !important;
+  }
+  
+  .benefit:nth-child(6) p {
+    display: none !important; /* ПОЛНОСТЬЮ убираем p элемент */
   }
 }
 
