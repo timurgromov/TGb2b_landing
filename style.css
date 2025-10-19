@@ -2159,18 +2159,18 @@ body { overflow-x: hidden; }
 /* управление размером заголовка через токен --h1 */
 #hero-left h1 .h1-prefix{ font-size: var(--h1) !important; }
 
-/* === Tablet spacing fix (769–1180): убрать "яму" под hero === */
+/* === FIX: планшеты 769–1180 — убрать «яму» между Hero и видео === */
 @media (min-width: 769px) and (max-width: 1180px) {
-  /* Планшетный шаг секций */
+  /* единый шаг секций на планшете */
   :root { --section-gap-y: 56px; }
 
-  /* Hero: убираем десктопные +20px */
+  /* Hero без лишних +20px */
   .hero { 
-    padding-block: var(--section-gap-y) !important; 
+    padding-block: var(--section-gap-y) !important;
   }
 
-  /* "Примеры работ": вместо 80px -> по токену, чтобы совпадало с секциями */
-  .video-fullscreen { 
-    padding: var(--section-gap-y) 0 !important; 
+  /* Видео-блок вместо жёстких 80px — по токену */
+  .video-fullscreen {
+    padding: var(--section-gap-y) 0 !important;
   }
 }
