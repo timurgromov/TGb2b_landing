@@ -1946,6 +1946,11 @@ body { overflow-x: hidden; }
     min-width: fit-content !important;
     /* убираем принудительный padding - используем стандартный */
   }
+  
+  /* Скрываем чипс "Договор ИП" на планшетах */
+  #hero-tags .tag:last-child {
+    display: none !important;
+  }
 
 
   /* Хедер: стабильная раскладка и CTA справа */
