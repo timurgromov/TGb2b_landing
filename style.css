@@ -1938,6 +1938,18 @@ body { overflow-x: hidden; }
     --chip: 13px;
   }
 
+  /* Чипсы: равномерный перенос для планшетов */
+  #hero-tags {
+    justify-content: flex-start !important;
+    max-width: 100% !important;
+  }
+  
+  #hero-tags .tag {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    min-width: fit-content !important;
+  }
+
 
   /* Хедер: стабильная раскладка и CTA справа */
   .site-header {
