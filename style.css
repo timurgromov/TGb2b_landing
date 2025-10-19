@@ -1488,7 +1488,7 @@ body.is-modal-open{
 
 /* 1) Иерархия и типографика */
 #hero-left h1 {
-  font-size: 58px !important;
+  /* PATCH: font-size управляется через var(--h1) в .h1-prefix (строка 2040) */
   line-height: 1.08 !important;
   letter-spacing: -0.2px !important;
   margin-bottom: 22px !important;
@@ -1656,7 +1656,7 @@ body.is-modal-open{
 }
 
 #hero-left h1 {
-  font-size: 52px !important;    /* уменьшено на одно деление */
+  /* PATCH: font-size управляется через var(--h1) в .h1-prefix (строка 2040) */
   line-height: 1.05 !important;
   margin-bottom: 20px !important;
 }
@@ -1678,9 +1678,8 @@ body.is-modal-open{
 
 /* Адаптивная версия для ноутбуков с небольшой высотой экрана */
 @media (max-height: 800px) {
-  #hero-left h1 {
-    font-size: 48px !important;
-  }
+  /* PATCH: #hero-left h1 font-size управляется через var(--h1) в .h1-prefix (строка 2055) */
+  
   #hero-left .hero-subtitle {
     font-size: 18px !important;
   }
@@ -2033,6 +2032,21 @@ body { overflow-x: hidden; }
     display:grid; 
     grid-template-columns:repeat(2, minmax(0,1fr));
     gap:24px;
+  }
+  
+  /* PATCH: Маяк для проверки планшетного блока */
+  html::before {
+    content: "tablet from style.css";
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    font: 12px/1 monospace;
+    color: #fff;
+    background: rgba(255, 122, 69, 0.8);
+    padding: 4px 8px;
+    border-radius: 4px;
+    opacity: 0.9;
+    z-index: 99999;
   }
 }
 
