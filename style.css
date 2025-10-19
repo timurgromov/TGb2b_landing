@@ -53,10 +53,18 @@
 /* PATCH END: desktop-spacing-unification */
 
 /* PATCH: Возвращаем оригинальные поля как в эталоне */
-@media (min-width: 1200px) and (max-width: 2000px) {
+@media (min-width: 1200px) and (max-width: 1599px) {
   :root {
     --container-max: 1120px; /* возвращаем как было в эталоне */
     --content-max-wide: 1120px; /* синхронизируем медиа-секции */
+  }
+}
+
+/* PATCH: Более плавное расширение на больших десктопах */
+@media (min-width: 1600px) {
+  :root {
+    --container-max: clamp(1200px, 70vw, 1380px);
+    --content-max-wide: clamp(1200px, 72vw, 1480px);
   }
 }
 
