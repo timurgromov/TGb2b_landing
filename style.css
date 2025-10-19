@@ -14,11 +14,14 @@
   --section-gap-y-tab: 60px;
   --section-gap-y-mob: 56px;
 
-  /* типографика героя - адаптивная */
+  /* типографика - адаптивная */
   --h1: clamp(45px, 4.5vw, 65px);  /* 45px на мобилке → 65px на Full HD */
   --p: clamp(14px, 1.2vw, 18px);   /* 14px на мобилке → 18px на Full HD */
   --sub: clamp(16px, 2vw, 24px);   /* 16px на мобилке → 24px на Full HD */
   --chip: clamp(12px, 1.5vw, 18px); /* 12px на мобилке → 18px на Full HD */
+  --h2: clamp(24px, 3vw, 36px);    /* заголовки секций */
+  --h3: clamp(18px, 2.2vw, 28px);  /* подзаголовки */
+  --small: clamp(12px, 1.4vw, 16px); /* мелкий текст */
 
   /* кнопки */
   --btn-h: 44px;
@@ -114,7 +117,7 @@ button{font-family:inherit;cursor:pointer}
   box-sizing: border-box;
 }
 /* PATCH: .section padding-block управляется токеном на строке 32-33 */
-.section__title{font-size:28px;font-weight:800;margin:0 0 24px;text-align:center}
+.section__title{font-size:var(--h2);font-weight:800;margin:0 0 24px;text-align:center}
 
 /* ===== HEADER (Glass Fixed) ===== */
 .site-header {
@@ -436,8 +439,8 @@ body {
     inset 0 1px 0 rgba(255,106,61,0.3),
     0 8px 40px rgba(255,106,61,0.15);
 }
-.benefit .title{font-weight:700;margin-bottom:6px;font-size:16px}
-.benefit p{color:var(--muted);font-size:14px;margin:0;line-height:1.5}
+.benefit .title{font-weight:700;margin-bottom:6px;font-size:var(--h3)}
+.benefit p{color:var(--muted);font-size:var(--small);margin:0;line-height:1.5}
 
 /* ===== CTA ===== */
 .cta{padding:80px 0}
@@ -471,7 +474,7 @@ body {
 
 .video-title{
   text-align:center;
-  font-size:32px;
+  font-size:var(--h2);
   font-weight:700;
   margin:0 0 40px;
   color:var(--text);
