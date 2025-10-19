@@ -39,9 +39,10 @@
   padding-block: var(--section-gap-y);
 }
 
-/* hero чуть крупнее, чтобы сохранить акцент */
+/* hero чуть крупнее сверху, но без лишнего отступа снизу */
 .hero {
-  padding-block: calc(var(--section-gap-y) + 20px);
+  padding-block-start: calc(var(--section-gap-y) + 20px);
+  padding-block-end: calc(var(--section-gap-y) / 2);
 }
 
 
@@ -486,7 +487,7 @@ body {
   width:100vw;
   margin-left:calc(50% - 50vw);
   margin-right:calc(50% - 50vw);
-  padding:80px 0;
+  padding:48px 0;
   background:
     radial-gradient(ellipse 100% 80% at 50% 0%, 
       rgba(255, 106, 61, 0.06) 0%, 
@@ -1597,15 +1598,7 @@ body.is-modal-open{
 }
 
 /* Для надёжности перекрываем любые вложенные селекторы */
-#hero-left #hero-tags,
-#hero-left #hero-actions {
-  margin-bottom: 56px !important;
-  margin-top: 56px !important;
-}
-
-#hero-left #hero-tags {
-  margin-top: 22px !important;
-}
+/* Переизбыток !important отступов в hero удалён — используем базовые токены секций */
 
 /* Выравнивание фотографии с заголовком */
 .hero__photo {
@@ -1664,7 +1657,7 @@ body.is-modal-open{
 
 /* Общая высота hero для золотого соотношения "одним взглядом" */
 .hero {
-  min-height: clamp(680px, 85vh, 770px) !important;
+  min-height: min(680px, calc(100vh - var(--header-h)));
 }
 
 /* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
@@ -1672,11 +1665,6 @@ body.is-modal-open{
 /* ====== АДАПТАЦИЯ ПОД MACBOOK (ОПТИМИЗАЦИЯ ВЫСОТЫ) ====== */
 
 /* Универсальная версия (desktop ≥1280px) */
-#hero {
-  padding-top: 56px !important;
-  padding-bottom: 64px !important; /* увеличен для дыхания кнопок */
-}
-
 #hero-left h1 {
   /* PATCH: font-size управляется через var(--h1) в .h1-prefix (строка 2040) */
   line-height: 1.05 !important;
@@ -1690,26 +1678,11 @@ body.is-modal-open{
   max-width: 740px !important;
 }
 
-#hero-tags {
-  margin-bottom: 48px !important; /* вместо 56px */
-}
-
-#hero-actions {
-  margin-top: 48px !important;
-}
-
 /* Адаптивная версия для ноутбуков с небольшой высотой экрана */
 @media (max-height: 800px) {
   /* PATCH: #hero-left h1 font-size управляется через var(--h1) в .h1-prefix (строка 2055) */
   
   /* PATCH: #hero-left .hero-subtitle font-size управляется через var(--sub) в каноническом правиле (строка 1827) */
-  #hero-tags {
-    margin-bottom: 44px !important;
-  }
-  #hero {
-    padding-top: 52px !important;
-    padding-bottom: 58px !important; /* увеличен для дыхания на низких экранах */
-  }
 }
 
 /* ====== ВОССТАНОВЛЕНИЕ ТЁПЛОГО ОРАНЖЕВО-БРОНЗОВОГО ГРАДИЕНТА ====== */
@@ -1961,6 +1934,22 @@ body { overflow-x: hidden; }
   /* Исправляем яму - используем разрешенный мостик */
   #hero-actions {
     margin-bottom: 24px !important;
+  }
+
+  /* ПЛАНШЕТНЫЙ FIX: убираем избыточные отступы как в десктопной версии */
+  #hero-tags {
+    margin-bottom: 0 !important; /* убираем огромный 56px отступ */
+    margin-top: 22px !important; /* оставляем только отступ от подзаголовка */
+  }
+
+  /* Адаптивная высота hero для планшетов */
+  .hero {
+    min-height: min(600px, calc(100vh - var(--header-h))) !important;
+  }
+
+  /* Уменьшаем padding видео-секции для планшетов */
+  .video-fullscreen {
+    padding: 48px 0 !important; /* вместо 80px или 60px */
   }
   
   /* /END TABLET:HERO/ */
