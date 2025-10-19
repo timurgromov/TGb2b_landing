@@ -1956,6 +1956,7 @@ body { overflow-x: hidden; }
   #hero-actions {
     display: flex !important;
     flex-direction: row !important;
+    flex-wrap: nowrap !important; /* НЕ переносим кнопки на новую строку */
     gap: 16px !important;
     justify-content: flex-start !important;
   }
