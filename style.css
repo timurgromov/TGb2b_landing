@@ -1933,16 +1933,15 @@ body { overflow-x: hidden; }
     --chip: 13px;
   }
 
-  /* Чипсы: CSS Grid для точного контроля размещения */
+  /* Чипсы: исправлена логика переноса для планшетов */
   #hero-tags {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(120px, max-content)) !important;
-    gap: 6px 8px !important;
+    justify-content: flex-start !important; /* выравнивание по левому краю */
     max-width: 100% !important;
-    justify-content: start !important;
+    gap: 6px 8px !important; /* чуть меньше gap для лучшего размещения */
   }
   
   #hero-tags .tag {
+    flex: 0 0 auto !important;
     white-space: nowrap !important;
     min-width: fit-content !important;
     /* убираем принудительный padding - используем стандартный */
