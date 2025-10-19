@@ -1942,35 +1942,21 @@ body { overflow-x: hidden; }
 
   /* Кнопки: горизонтально и одинакового размера */
   #hero-actions {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    gap: 16px !important;
-    justify-content: flex-start !important;
-    margin-top: 24px !important; /* переопределяем 56px */
-    margin-bottom: 24px !important; /* переопределяем 56px */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 16px;
+    justify-content: flex-start;
+    margin-top: 24px;
+    margin-bottom: 24px;
   }
   
   #hero-actions .btn {
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-    width: auto !important;
-    font-size: 14px !important;
-    padding: 0 12px !important;
-  }
-
-  /* Переопределяем все артефакты с огромными отступами */
-  #hero-left #hero-actions {
-    margin-top: 24px !important; /* переопределяем 56px */
-    margin-bottom: 24px !important; /* переопределяем 56px */
-  }
-
-  /* Переопределяем все возможные правила с отступами */
-  .hero #hero-actions,
-  .hero__text #hero-actions,
-  .hero .hero__text #hero-actions {
-    margin-top: 24px !important; /* переопределяем 56px */
-    margin-bottom: 24px !important; /* переопределяем 56px */
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
+    font-size: 14px;
+    padding: 0 12px;
   }
   
   /* /END TABLET:HERO/ */
