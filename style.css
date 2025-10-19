@@ -1947,7 +1947,8 @@ body { overflow-x: hidden; }
     flex-wrap: nowrap !important;
     gap: 16px !important;
     justify-content: flex-start !important;
-    margin-bottom: 24px !important; /* исправляем яму */
+    margin-top: 24px !important; /* переопределяем 56px */
+    margin-bottom: 24px !important; /* переопределяем 56px */
   }
   
   #hero-actions .btn {
@@ -1956,6 +1957,12 @@ body { overflow-x: hidden; }
     width: auto !important;
     font-size: 14px !important;
     padding: 0 12px !important;
+  }
+
+  /* Переопределяем все артефакты с огромными отступами */
+  #hero-left #hero-actions {
+    margin-top: 24px !important; /* переопределяем 56px */
+    margin-bottom: 24px !important; /* переопределяем 56px */
   }
   
   /* /END TABLET:HERO/ */
