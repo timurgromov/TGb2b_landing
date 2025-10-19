@@ -110,7 +110,7 @@ button{font-family:inherit;cursor:pointer}
   margin-inline: auto;
   box-sizing: border-box;
 }
-.section{padding-block: var(--section-gap-y);}
+/* PATCH: .section padding-block управляется токеном на строке 32-33 */
 .section__title{font-size:28px;font-weight:800;margin:0 0 24px;text-align:center}
 
 /* ===== HEADER (Glass Fixed) ===== */
@@ -348,7 +348,7 @@ body {
 
 /* ===== Hero с «цветным» фоном (Classic ближе к исходнику) ===== */
 .hero{
-  padding-block: var(--section-gap-y);
+  /* PATCH: padding-block управляется токеном на строке 37-38 */
   background:
     radial-gradient(120% 120% at 15% 10%, color-mix(in oklab, var(--accent) 35%, transparent) 0%, transparent 44%),
     radial-gradient(120% 120% at 85% 15%, color-mix(in oklab, var(--accent-2) 40%, transparent) 0%, transparent 46%);
@@ -1046,10 +1046,7 @@ body {
 }
 
 /* ===== HERO: верхний внутренний отступ блока ===== */
-/* Увеличиваем «подушку» сверху для дыхания. */
-.hero, .hero-section, .hero-content {
-  padding-top: clamp(48px, 6vw, 72px);  /* увеличен до 72px для дыхания */
-}
+/* PATCH: padding управляется токеном на строке 37-38, этот блок больше не нужен */
 
 /* Чипсы */
 /* АРТЕФАКТ УДАЛЕН - flex-direction:column ломал desktop версию (чипсы в 3 ряда) */
