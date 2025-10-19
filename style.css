@@ -1937,12 +1937,14 @@ body { overflow-x: hidden; }
   #hero-tags {
     justify-content: flex-start !important;
     max-width: 100% !important;
+    gap: 6px 8px !important; /* уменьшенный gap для лучшего размещения */
   }
   
   #hero-tags .tag {
     flex: 0 0 auto !important;
     white-space: nowrap !important;
     min-width: fit-content !important;
+    padding: 6px 10px !important; /* уменьшенный padding для компактности */
   }
 
 
