@@ -2154,13 +2154,8 @@ body { overflow-x: hidden; }
     opacity: 0.9;
     z-index: 99999;
   }
-}
 
-/* управление размером заголовка через токен --h1 */
-#hero-left h1 .h1-prefix{ font-size: var(--h1) !important; }
-
-/* === FIX: планшеты 769–1180 — убрать «яму» между Hero и видео === */
-@media (min-width: 769px) and (max-width: 1180px) {
+  /* === FIX: убрать «яму» между Hero и видео === */
   /* единый шаг секций на планшете */
   :root { --section-gap-y: 56px; }
 
@@ -2174,3 +2169,6 @@ body { overflow-x: hidden; }
     padding: var(--section-gap-y) 0 !important;
   }
 }
+
+/* управление размером заголовка через токен --h1 */
+#hero-left h1 .h1-prefix{ font-size: var(--h1) !important; }
