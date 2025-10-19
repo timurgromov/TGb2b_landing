@@ -1929,6 +1929,15 @@ body { overflow-x: hidden; }
 
 /* ===== ПЛАНШЕТНЫЕ СТИЛИ (769px - 1180px) ===== */
 @media (min-width: 769px) and (max-width: 1180px) {
+  /* PATCH: Оптимизация для планшетов */
+  :root {
+    --container-max: 900px; /* шире для планшетов */
+    --content-max-wide: 900px;
+    --h1: 36px; /* меньше чем на desktop */
+    --sub: 16px;
+    --chip: 13px;
+  }
+
   /* Хедер: стабильная раскладка и CTA справа */
   .site-header {
     padding-top: 0 !important;
@@ -2056,6 +2065,51 @@ body { overflow-x: hidden; }
     display:grid; 
     grid-template-columns:repeat(2, minmax(0,1fr));
     gap:24px;
+  }
+
+  /* PATCH: Двухколоночная раскладка Hero для планшетов */
+  .hero__grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+    align-items: center !important;
+  }
+
+  .hero__text {
+    text-align: left !important;
+  }
+
+  .hero__text h1,
+  .hero__text .sub,
+  #hero-subtitle {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  #hero-tags {
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .hero__cta,
+  #hero-actions {
+    justify-content: flex-start !important;
+    flex-direction: row !important;
+    gap: 16px !important;
+  }
+
+  .hero__photo {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .hero__photo img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 16px !important;
   }
   
   /* PATCH: Маяк для проверки планшетного блока */
