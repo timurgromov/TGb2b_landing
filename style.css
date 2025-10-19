@@ -6,7 +6,7 @@
   --bp-md: 1180px;
 
   /* контейнер и секции */
-  --container-max: 1120px;
+  --container-max: 1400px; /* унифицировано с медиа-секциями */
   --container-pad: 24px;
   --content-max-wide: 1400px; /* для медиа-секций (видео, фото, письма) */
 
