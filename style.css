@@ -2161,9 +2161,16 @@ body { overflow-x: hidden; }
 
 /* === Tablet spacing fix (769–1180): убрать "яму" под hero === */
 @media (min-width: 769px) and (max-width: 1180px) {
-  /* hero без +20px — ровно по токену */
-  .hero { padding-block: var(--section-gap-y) !important; }
+  /* Планшетный шаг секций */
+  :root { --section-gap-y: 56px; }
 
-  /* видео-секция: такой же шаг */
-  .video-fullscreen { padding: var(--section-gap-y) 0 !important; }
+  /* Hero: убираем десктопные +20px */
+  .hero { 
+    padding-block: var(--section-gap-y) !important; 
+  }
+
+  /* "Примеры работ": вместо 80px -> по токену, чтобы совпадало с секциями */
+  .video-fullscreen { 
+    padding: var(--section-gap-y) 0 !important; 
+  }
 }
