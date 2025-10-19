@@ -14,14 +14,14 @@
   --section-gap-y-tab: 60px;
   --section-gap-y-mob: 56px;
 
-  /* типографика - адаптивная */
-  --h1: clamp(45px, 4.5vw, 65px);  /* 45px на мобилке → 65px на Full HD */
-  --p: clamp(14px, 1.2vw, 18px);   /* 14px на мобилке → 18px на Full HD */
-  --sub: clamp(16px, 2vw, 24px);   /* 16px на мобилке → 24px на Full HD */
-  --chip: clamp(12px, 1.5vw, 18px); /* 12px на мобилке → 18px на Full HD */
-  --h2: clamp(24px, 3vw, 36px);    /* заголовки секций */
-  --h3: clamp(18px, 2.2vw, 28px);  /* подзаголовки */
-  --small: clamp(12px, 1.4vw, 16px); /* мелкий текст */
+  /* типографика - базовые размеры (как в эталоне) */
+  --h1: 45px;
+  --p: 16px;
+  --sub: 18px;
+  --chip: 14px;
+  --h2: 28px;
+  --h3: 16px;
+  --small: 14px;
 
   /* кнопки */
   --btn-h: 44px;
@@ -55,6 +55,19 @@
   :root {
     --container-max: 1120px; /* возвращаем как было в эталоне */
     --content-max-wide: 1120px; /* синхронизируем медиа-секции */
+  }
+}
+
+/* PATCH: Адаптивная типографика ТОЛЬКО для больших экранов (Full HD+) */
+@media (min-width: 1920px) {
+  :root {
+    --h1: clamp(45px, 4.5vw, 65px);  /* крупные шрифты только на Full HD+ */
+    --p: clamp(14px, 1.2vw, 18px);
+    --sub: clamp(16px, 2vw, 24px);
+    --chip: clamp(12px, 1.5vw, 18px);
+    --h2: clamp(24px, 3vw, 36px);
+    --h3: clamp(18px, 2.2vw, 28px);
+    --small: clamp(12px, 1.4vw, 16px);
   }
 }
 
