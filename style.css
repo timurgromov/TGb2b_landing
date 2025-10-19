@@ -1931,11 +1931,39 @@ body { overflow-x: hidden; }
 @media (min-width: 769px) and (max-width: 1180px) {
   /* PATCH: Оптимизация для планшетов */
   :root {
-    --container-max: 900px; /* шире для планшетов */
-    --content-max-wide: 900px;
-    --h1: 36px; /* меньше чем на desktop */
+    --container-max: 1000px; /* шире для планшетов */
+    --content-max-wide: 1000px;
+    --h1: 32px; /* меньше для 2-3 строк */
     --sub: 16px;
     --chip: 13px;
+  }
+
+  /* Hero: двухколоночная раскладка для планшетов */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  
+  .hero-content {
+    text-align: left;
+  }
+  
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .hero-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+  
+  .hero-tags {
+    justify-content: flex-start;
   }
 
   /* Хедер: стабильная раскладка и CTA справа */
