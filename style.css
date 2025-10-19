@@ -1952,6 +1952,20 @@ body { overflow-x: hidden; }
     display: none !important;
   }
 
+  /* Кнопки: горизонтально и одинакового размера для всех планшетов */
+  #hero-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 16px !important;
+    justify-content: flex-start !important;
+  }
+  
+  #hero-actions .btn {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+  }
+
 
   /* Хедер: стабильная раскладка и CTA справа */
   .site-header {
