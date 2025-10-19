@@ -1942,25 +1942,43 @@ body { overflow-x: hidden; }
 
   /* Кнопки: горизонтально и одинакового размера */
   #hero-actions {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 16px;
-    justify-content: flex-start;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 16px !important;
+    justify-content: flex-start !important;
   }
   
   #hero-actions .btn {
-    flex: 1 1 auto;
-    min-width: 0;
-    width: auto;
-    font-size: 14px;
-    padding: 0 12px;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    font-size: 14px !important;
+    padding: 0 12px !important;
+  }
+
+  /* Исправляем яму - используем разрешенный мостик */
+  #hero-actions {
+    margin-bottom: 24px !important;
   }
   
   /* /END TABLET:HERO/ */
 
+  /* === Tablet spacing fix: ровные отступы без "ямы" (769–1180) === */
+  /* Чуть плотнее базовый шаг секций на планшете */
+  :root { 
+    --section-gap-y: 56px; 
+  }
+
+  /* Hero: убираем "+20px" и ставим ровно по токену */
+  .hero { 
+    padding-block: var(--section-gap-y) !important; 
+  }
+
+  /* Видео-блок: такой же шаг, как у секций */
+  .video-fullscreen { 
+    padding: var(--section-gap-y) 0 !important; 
+  }
 
   /* Хедер: стабильная раскладка и CTA справа */
   .site-header {
