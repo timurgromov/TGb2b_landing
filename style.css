@@ -8,6 +8,7 @@
   /* контейнер и секции */
   --container-max: 1120px;
   --container-pad: 24px;
+  --content-max-wide: 1400px; /* для медиа-секций (видео, фото, письма) */
 
   --section-gap-y: 72px;
   --section-gap-y-tab: 60px;
@@ -478,7 +479,7 @@ body {
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:8px 12px;
-  max-width:1400px;
+  max-width:var(--content-max-wide);
   margin:0 auto;
   padding:0 12px;
 }
@@ -718,7 +719,11 @@ body {
     transparent 60%);
 }
 
-.photos-slider{ position:relative; }
+.photos-slider{ 
+  position:relative;
+  max-width:var(--content-max-wide);
+  margin:0 auto;
+}
 .photos-track{
   display:flex; gap:12px; overflow-x:auto;
   scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
@@ -788,6 +793,8 @@ body {
 
 .letters-slider{
   position:relative;
+  max-width:var(--content-max-wide);
+  margin:0 auto;
 }
 
 .letters-track{
