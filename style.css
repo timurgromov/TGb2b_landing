@@ -74,7 +74,7 @@
 
 @media (min-width: calc(var(--bp-sm) + 1px)) and (max-width: var(--bp-md)){
   :root{
-    --section-gap-y: var(--section-gap-y-tab);
+    --section-gap-y: 56px; /* переопределяем для планшетов */
     --h1: 40px;
   }
 }
@@ -2161,9 +2161,6 @@ body { overflow-x: hidden; }
 
 /* === Tablet spacing fix (769–1180): убрать "яму" под hero === */
 @media (min-width: 769px) and (max-width: 1180px) {
-  /* делаем шаг секций ровным и чуть плотнее */
-  :root { --section-gap-y: 56px; }
-
   /* hero без +20px — ровно по токену */
   .hero { padding-block: var(--section-gap-y) !important; }
 
