@@ -1970,7 +1970,7 @@ body { overflow-x: hidden; }
     --section-gap-y: 56px; 
   }
 
-  /* Hero: убираем "+20px" и ставим ровно по токену */
+  /* Hero: убираем "+20px" и ставим ровно по токену - ПЕРЕД другими правилами */
   .hero { 
     padding-block: var(--section-gap-y) !important; 
   }
