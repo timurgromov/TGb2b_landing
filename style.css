@@ -44,6 +44,13 @@
   padding-block: calc(var(--section-gap-y) + 20px);
 }
 
+/* PATCH: для планшетов убираем +20px */
+@media (min-width: 769px) and (max-width: 1180px) {
+  .hero {
+    padding-block: var(--section-gap-y) !important;
+  }
+}
+
 /* блоки, которые сейчас визуально прижаты (фото, благодарности) — делаем плотнее */
 .gallery, .certificates, .thanks, #portfolio, #letters {
   padding-block: var(--section-gap-y-tight);
@@ -1968,11 +1975,6 @@ body { overflow-x: hidden; }
   /* Чуть плотнее базовый шаг секций на планшете */
   :root { 
     --section-gap-y: 56px; 
-  }
-
-  /* Hero: убираем "+20px" и ставим ровно по токену - ПЕРЕД другими правилами */
-  .hero { 
-    padding-block: var(--section-gap-y) !important; 
   }
 
   /* Видео-блок: такой же шаг, как у секций */
