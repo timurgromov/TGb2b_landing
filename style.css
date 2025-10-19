@@ -1938,33 +1938,6 @@ body { overflow-x: hidden; }
     --chip: 13px;
   }
 
-  /* Hero: двухколоночная раскладка для планшетов */
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: center;
-  }
-  
-  .hero-content {
-    text-align: left;
-  }
-  
-  .hero-actions {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  
-  .hero-photo {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-  }
-  
-  .hero-tags {
-    justify-content: flex-start;
-  }
 
   /* Хедер: стабильная раскладка и CTA справа */
   .site-header {
