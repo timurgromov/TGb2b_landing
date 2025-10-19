@@ -1940,9 +1940,22 @@ body { overflow-x: hidden; }
     display: none !important;
   }
 
-  /* Исправляем огромную яму после кнопок */
+  /* Кнопки: горизонтально и одинакового размера */
   #hero-actions {
-    margin-bottom: 24px !important; /* уменьшенный отступ снизу */
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 16px !important;
+    justify-content: flex-start !important;
+    margin-bottom: 24px !important; /* исправляем яму */
+  }
+  
+  #hero-actions .btn {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    font-size: 14px !important;
+    padding: 0 12px !important;
   }
   
   /* /END TABLET:HERO/ */
