@@ -1477,7 +1477,7 @@ body.is-modal-open{
   max-width: clamp(520px, 48vw, 620px);   /* ограничение ширины — не уедут в 3 ряд */
 }
 #hero-tags .tag{
-  font-size:14px !important;
+  /* PATCH: font-size управляется через var(--chip) в каноническом правиле (строка 1845) */
   padding:6px 12px !important;
   border-radius:10px !important;
   background: rgba(255,255,255,0.06) !important;
@@ -1501,7 +1501,7 @@ body.is-modal-open{
 }
 
 #hero-subtitle {
-  font-size: 19px !important;
+  /* PATCH: font-size управляется через var(--sub) в каноническом правиле (строка 1827) */
   line-height: 1.6 !important;
   max-width: 740px !important;
   margin-bottom: 30px !important;
@@ -1520,7 +1520,7 @@ body.is-modal-open{
 }
 
 #hero-tags .tag {
-  font-size: 14px !important;
+  /* PATCH: font-size управляется через var(--chip) в каноническом правиле (строка 1845) */
   padding: 10px 14px !important;
   border-radius: 12px !important;
   background: rgba(255,255,255,0.06) !important;
@@ -1667,7 +1667,7 @@ body.is-modal-open{
 }
 
 #hero-left .hero-subtitle {
-  font-size: 20px !important;
+  /* PATCH: font-size управляется через var(--sub) в каноническом правиле (строка 1827) */
   line-height: 1.6 !important;
   margin-bottom: 28px !important;
   max-width: 740px !important;
@@ -1685,9 +1685,7 @@ body.is-modal-open{
 @media (max-height: 800px) {
   /* PATCH: #hero-left h1 font-size управляется через var(--h1) в .h1-prefix (строка 2055) */
   
-  #hero-left .hero-subtitle {
-    font-size: 18px !important;
-  }
+  /* PATCH: #hero-left .hero-subtitle font-size управляется через var(--sub) в каноническом правиле (строка 1827) */
   #hero-tags {
     margin-bottom: 44px !important;
   }
