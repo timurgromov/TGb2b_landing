@@ -1037,11 +1037,6 @@ body {
 }
 
 /* ---- блок с чипсами ---- */
-.hero-tags .tag-row{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;                      /* горизонтальный зазор между чипсами */
-}
 /* === 3. Цвет и лёгкость чипсов === */
 .hero-tags .tag{
   background: rgba(255,255,255,0.04);
