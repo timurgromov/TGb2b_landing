@@ -1964,6 +1964,14 @@ body { overflow-x: hidden; }
     margin-top: 24px !important; /* переопределяем 56px */
     margin-bottom: 24px !important; /* переопределяем 56px */
   }
+
+  /* Переопределяем все возможные правила с отступами */
+  .hero #hero-actions,
+  .hero__text #hero-actions,
+  .hero .hero__text #hero-actions {
+    margin-top: 24px !important; /* переопределяем 56px */
+    margin-bottom: 24px !important; /* переопределяем 56px */
+  }
   
   /* /END TABLET:HERO/ */
 
