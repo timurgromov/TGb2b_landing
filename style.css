@@ -1975,9 +1975,18 @@ body { overflow-x: hidden; }
     margin-bottom: 24px !important; /* уменьшенный отступ снизу */
   }
   
-  #hero-left #hero-actions {
+  /* Более специфичные селекторы для переопределения всех правил */
+  #hero-left #hero-actions,
+  .hero #hero-actions,
+  .hero__text #hero-actions {
     margin-top: 24px !important; /* переопределяем огромный отступ */
     margin-bottom: 24px !important; /* переопределяем огромный отступ */
+  }
+  
+  /* Переопределяем все возможные правила с отступами */
+  .hero .hero__text #hero-actions {
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
   }
 
 
