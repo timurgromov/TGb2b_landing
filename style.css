@@ -50,19 +50,11 @@
 }
 /* PATCH END: desktop-spacing-unification */
 
-/* PATCH: Адаптивные поля для средних экранов (MacBook Air, etc.) */
-@media (min-width: 1200px) and (max-width: 1800px) {
+/* PATCH: Возвращаем оригинальные поля как в эталоне */
+@media (min-width: 1200px) and (max-width: 2000px) {
   :root {
-    --container-max: 1200px; /* уменьшаем контент для средних экранов */
-    --content-max-wide: 1200px; /* синхронизируем медиа-секции */
-  }
-}
-
-/* PATCH: Специально для MacBook Retina (высокое разрешение, но узкий экран) */
-@media (min-width: 1400px) and (max-width: 1700px) and (min-height: 800px) and (max-height: 1100px) {
-  :root {
-    --container-max: 1200px; /* комфортные поля для MacBook */
-    --content-max-wide: 1200px;
+    --container-max: 1120px; /* возвращаем как было в эталоне */
+    --content-max-wide: 1120px; /* синхронизируем медиа-секции */
   }
 }
 
