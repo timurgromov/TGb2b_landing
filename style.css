@@ -1969,6 +1969,17 @@ body { overflow-x: hidden; }
     padding: 0 12px !important; /* уменьшенный padding */
   }
 
+  /* Исправляем огромные отступы после кнопок на планшетах */
+  #hero-actions {
+    margin-top: 24px !important; /* уменьшенный отступ сверху */
+    margin-bottom: 24px !important; /* уменьшенный отступ снизу */
+  }
+  
+  #hero-left #hero-actions {
+    margin-top: 24px !important; /* переопределяем огромный отступ */
+    margin-bottom: 24px !important; /* переопределяем огромный отступ */
+  }
+
 
   /* Хедер: стабильная раскладка и CTA справа */
   .site-header {
