@@ -1935,9 +1935,9 @@ body { overflow-x: hidden; }
 
   /* Чипсы: исправлена логика переноса для планшетов */
   #hero-tags {
-    justify-content: space-between !important; /* равномерное распределение */
+    justify-content: flex-start !important; /* выравнивание по левому краю */
     max-width: 100% !important;
-    gap: 8px 10px !important; /* нормальный gap */
+    gap: 6px 8px !important; /* чуть меньше gap для лучшего размещения */
   }
   
   #hero-tags .tag {
