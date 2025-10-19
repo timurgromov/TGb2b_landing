@@ -20,7 +20,29 @@
   /* кнопки */
   --btn-h: 44px;
   --btn-pad-x: 16px;
+  
+  /* PATCH BEGIN: desktop-spacing-unification */
+  --section-gap-y-tight: 60px; /* плотнее — для галерей и сертификатов */
+  /* PATCH END: desktop-spacing-unification */
 }
+
+/* PATCH BEGIN: desktop-spacing-unification */
+/* ===== Desktop baseline spacing fix ===== */
+/* общий случай — секции выравниваются по базовому отступу */
+.section {
+  padding-block: var(--section-gap-y);
+}
+
+/* hero чуть крупнее, чтобы сохранить акцент */
+.hero {
+  padding-block: calc(var(--section-gap-y) + 20px);
+}
+
+/* блоки, которые сейчас визуально прижаты (фото, благодарности) — делаем плотнее */
+.gallery, .certificates, .thanks, #portfolio, #letters {
+  padding-block: var(--section-gap-y-tight);
+}
+/* PATCH END: desktop-spacing-unification */
 
 @media (min-width: calc(var(--bp-sm) + 1px)) and (max-width: var(--bp-md)){
   :root{
