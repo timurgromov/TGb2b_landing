@@ -2125,6 +2125,13 @@ body { overflow-x: hidden; }
     gap: 16px !important;
   }
 
+  .hero__cta .btn,
+  #hero-actions .btn {
+    font-size: 15px !important;
+    padding-inline: 20px !important;
+    white-space: nowrap !important;
+  }
+
   .hero__photo {
     max-width: 100% !important;
     height: auto !important;
