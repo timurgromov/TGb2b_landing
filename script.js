@@ -943,3 +943,52 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     f.addEventListener('submit', ()=> sendGoal('form_submit'), { once:true });
   });
 })();
+
+// ======= BOOMSTREAM цели для Метрики =======
+(function(){
+  const YM_ID = 104468814; // твой ID счётчика
+
+  function sendGoal(name){
+    try {
+      if (typeof ym === 'function') ym(YM_ID, 'reachGoal', name);
+    } catch(e){}
+  }
+
+  function initBoomstreamTracking(){
+    const frames = document.querySelectorAll('iframe[src*="boomstream.com"]');
+    frames.forEach((iframe) => {
+      try {
+        const player = new window.BoomIframeSDK(iframe);
+        let started = false;
+        let halfway = false;
+
+        // Отслеживаем запуск видео
+        player.on('play', () => {
+          if (!started){
+            started = true;
+            sendGoal('video_play');
+          }
+        });
+
+        // Проверяем каждые 2 сек, сколько уже посмотрел
+        const interval = setInterval(async () => {
+          try {
+            const duration = await player.getDuration();
+            const current = await player.getCurrentTime();
+            if (!halfway && duration > 0 && current / duration >= 0.5){
+              halfway = true;
+              sendGoal('video_50');
+              clearInterval(interval);
+            }
+          } catch(e){}
+        }, 2000);
+      } catch(e){}
+    });
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initBoomstreamTracking);
+  } else {
+    initBoomstreamTracking();
+  }
+})();
