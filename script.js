@@ -855,3 +855,91 @@ function unlockPageScroll() {
 
   io.observe(el);
 })();
+
+// =======================
+//  METRIKA GOALS — bundle
+// =======================
+const METRIKA_ID = 104468814;
+
+// Безопасная отправка: не упадёт, если ym() нет
+function sendGoal(name){
+  try{ if(typeof ym==='function' && METRIKA_ID){ ym(METRIKA_ID,'reachGoal',name); } }catch(e){}
+}
+
+// 0) Вовлечённость: 30 секунд на странице
+setTimeout(()=>sendGoal('engaged_30s'), 30000);
+
+// 1) WhatsApp — ловим любые wa.me / api.whatsapp / метки .whatsapp-button / .wa-fab / [data-cta^="whatsapp"]
+(function bindWhatsApp(){
+  const sel = [
+    'a[href*="wa.me/"]',
+    'a[href*="api.whatsapp.com"]',
+    '.whatsapp-button',
+    '.wa-fab',
+    '[data-cta^="whatsapp"]'
+  ].join(',');
+  document.querySelectorAll(sel).forEach(a=>{
+    a.addEventListener('click', ()=> sendGoal('whatsapp_click'), { once:true });
+  });
+})();
+
+// 2) Соцсети (VK / YouTube / Instagram / Threads / Telegram)
+(function bindSocial(){
+  const domains = ['vk.com','youtube.com','youtu.be','instagram.com','threads.net','t.me','telegram.me'];
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const href = a.getAttribute('href') || '';
+    if (domains.some(d=>href.includes(d))){
+      a.addEventListener('click', ()=> sendGoal('click_social'), { once:true });
+    }
+  });
+})();
+
+// 3) HTML5-видео: цель video_50 при достижении 50%
+(function bindHTML5Video(){
+  function attach(v){
+    if(!v || v.__ym50) return;
+    v.__ym50 = true;
+    const fire = ()=>{
+      if (v.duration && v.currentTime / v.duration >= 0.5){
+        sendGoal('video_50');
+        v.removeEventListener('timeupdate', fire);
+      }
+    };
+    v.addEventListener('timeupdate', fire);
+  }
+  document.querySelectorAll('video').forEach(attach);
+  // если видео добавляются динамически (ленивая подгрузка)
+  const mo = new MutationObserver(ms=>{
+    ms.forEach(m=> m.addedNodes.forEach(n=>{
+      if(n.tagName==='VIDEO') attach(n);
+      if(n.querySelectorAll) n.querySelectorAll('video').forEach(attach);
+    }));
+  });
+  mo.observe(document.documentElement, { childList:true, subtree:true });
+})();
+
+// 4) Boomstream (iframe): шлём video_play при первом взаимодействии
+(function bindBoomstream(){
+  // клик по нашей оранжевой кнопке Play (если используешь её класс)
+  document.querySelectorAll('.video-play-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> sendGoal('video_play'), { once:true });
+  });
+  // если нет кастом-кнопки — считаем «play» по первому взаимодействию с iframe Boomstream
+  document.querySelectorAll('iframe').forEach(fr=>{
+    const src = fr.getAttribute('src') || '';
+    if(!/boomstream\.com/i.test(src)) return;
+    let fired = false;
+    function shoot(){ if(!fired){ fired=true; sendGoal('video_play'); } }
+    fr.addEventListener('load', ()=>{
+      fr.addEventListener('click', shoot, { once:true, capture:true });
+      fr.addEventListener('mouseenter', ()=> fr.contentWindow?.focus?.());
+    });
+  });
+})();
+
+// 5) (опционально) Формы — на будущее
+(function bindForms(){
+  document.querySelectorAll('form').forEach(f=>{
+    f.addEventListener('submit', ()=> sendGoal('form_submit'), { once:true });
+  });
+})();
