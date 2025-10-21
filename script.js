@@ -897,15 +897,18 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
 // 3) HTML5-видео: цель video_50 при достижении 50%
 (function bindHTML5Video(){
   function attach(v){
-    if(!v || v.__ym50) return;
-    v.__ym50 = true;
-    const fire = ()=>{
+    if(!v || v.__ymTracked) return;
+    v.__ymTracked = true;
+
+    v.addEventListener('play', ()=> sendGoal('video_play'), { once:true });
+
+    const fireHalf = ()=>{
       if (v.duration && v.currentTime / v.duration >= 0.5){
         sendGoal('video_50');
-        v.removeEventListener('timeupdate', fire);
+        v.removeEventListener('timeupdate', fireHalf);
       }
     };
-    v.addEventListener('timeupdate', fire);
+    v.addEventListener('timeupdate', fireHalf);
   }
   document.querySelectorAll('video').forEach(attach);
   // если видео добавляются динамически (ленивая подгрузка)
