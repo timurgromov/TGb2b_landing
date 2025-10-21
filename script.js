@@ -894,28 +894,50 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   });
 })();
 
-// 3) HTML5-видео: цель video_50 при достижении 50%
+// 3) HTML5-видео: video_play (старт) + video_50 (50%)
+// страховка: если play отработал до подписки (динамическая вставка), фиксим на первом признаке воспроизведения
 (function bindHTML5Video(){
   function attach(v){
     if(!v || v.__ymTracked) return;
     v.__ymTracked = true;
 
-    v.addEventListener('play', ()=> sendGoal('video_play'), { once:true });
+    let startedSent = false;
+    let halfSent    = false;
 
-    const fireHalf = ()=>{
-      if (v.duration && v.currentTime / v.duration >= 0.5){
+    v.addEventListener('play', () => {
+      if (!startedSent) {
+        startedSent = true;
+        sendGoal('video_play');
+      }
+    }, { once:true });
+
+    const fireProgress = ()=>{
+      const dur = v.duration || 0;
+      const cur = v.currentTime || 0;
+
+      if (!startedSent && cur > 0){
+        startedSent = true;
+        sendGoal('video_play');
+      }
+
+      if (!halfSent && dur > 0 && cur / dur >= 0.5){
+        halfSent = true;
         sendGoal('video_50');
-        v.removeEventListener('timeupdate', fireHalf);
       }
     };
-    v.addEventListener('timeupdate', fireHalf);
+
+    v.addEventListener('timeupdate', fireProgress);
+    v.addEventListener('loadedmetadata', fireProgress, { once:true });
+
+    if (!v.paused) setTimeout(fireProgress, 0);
   }
+
   document.querySelectorAll('video').forEach(attach);
-  // если видео добавляются динамически (ленивая подгрузка)
+
   const mo = new MutationObserver(ms=>{
     ms.forEach(m=> m.addedNodes.forEach(n=>{
       if(n.tagName==='VIDEO') attach(n);
-      if(n.querySelectorAll) n.querySelectorAll('video').forEach(attach);
+      else if(n.querySelectorAll) n.querySelectorAll('video').forEach(attach);
     }));
   });
   mo.observe(document.documentElement, { childList:true, subtree:true });
