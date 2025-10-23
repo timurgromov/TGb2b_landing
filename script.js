@@ -879,15 +879,33 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     '[data-cta^="whatsapp"]'
   ].join(',');
   document.querySelectorAll(sel).forEach(a=>{
-    a.addEventListener('click', ()=> {
+    let fired = false;
+    
+    function sendGoalAndNavigate() {
+      if (fired) return;
+      fired = true;
+      
       sendGoal('whatsapp_click');
+      
       // Отправляем цель для звонка если это кнопка звонка
       if (a.getAttribute('data-cta') === 'tel_fab') {
-        if (typeof ym === 'function') {
+        try {
           ym(104468814, 'reachGoal', 'tel_fab');
-        }
+        } catch(e) {}
+        // Даем время на отправку цели перед переходом
+        setTimeout(() => {
+          window.location.href = a.href;
+        }, 120);
       }
-    }, { once:true });
+    }
+    
+    // На мобильных pointerdown срабатывает быстрее
+    a.addEventListener('pointerdown', sendGoalAndNavigate, {passive: true, once: true});
+    // Запасной вариант
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      sendGoalAndNavigate();
+    }, { once: true });
   });
 })();
 
