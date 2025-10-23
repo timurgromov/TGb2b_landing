@@ -879,7 +879,15 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     '[data-cta^="whatsapp"]'
   ].join(',');
   document.querySelectorAll(sel).forEach(a=>{
-    a.addEventListener('click', ()=> sendGoal('whatsapp_click'), { once:true });
+    a.addEventListener('click', ()=> {
+      sendGoal('whatsapp_click');
+      // Отправляем цель для звонка если это кнопка звонка
+      if (a.getAttribute('data-cta') === 'tel_fab') {
+        if (typeof ym === 'function') {
+          ym(104468814, 'reachGoal', 'tel_fab');
+        }
+      }
+    }, { once:true });
   });
 })();
 
