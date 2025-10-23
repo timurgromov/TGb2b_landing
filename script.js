@@ -653,21 +653,21 @@ function unlockPageScroll() {
       // Ничего не делаем, позволяем браузеру обработать tel: ссылку
       return;
     } else {
-      // На планшете/компьютере - переходим в Telegram
+      // На планшете/компьютере - переходим в WhatsApp
       e.preventDefault();
       
       const phoneNumber = '+79253900772';
-      const telegramUrl = `https://t.me/+${phoneNumber}`;
+      const whatsappUrl = `https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив`;
       
-      // Открываем Telegram в новой вкладке
-      window.open(telegramUrl, '_blank', 'noopener,noreferrer');
+      // Открываем WhatsApp в новой вкладке
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
       
       // Логируем событие для аналитики
       if (window.dataLayer) {
         window.dataLayer.push({
           event: 'phone_redirect',
           device_type: 'tablet_desktop',
-          redirect_to: 'telegram',
+          redirect_to: 'whatsapp',
           phone_number: phoneNumber
         });
       }
