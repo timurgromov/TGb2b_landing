@@ -869,44 +869,43 @@ function sendGoal(name){
 // 0) Вовлечённость: 30 секунд на странице
 setTimeout(()=>sendGoal('engaged_30s'), 30000);
 
-// 1) WhatsApp — ловим любые wa.me / api.whatsapp / метки .whatsapp-button / .wa-fab / [data-cta^="whatsapp"]
-(function bindWhatsApp(){
-  const sel = [
-    'a[href*="wa.me/"]',
-    'a[href*="api.whatsapp.com"]',
-    '.whatsapp-button',
-    '.wa-fab',
-    '[data-cta^="whatsapp"]'
-  ].join(',');
-  document.querySelectorAll(sel).forEach(a=>{
-    let fired = false;
-    
-    function sendGoalAndNavigate() {
-      if (fired) return;
-      fired = true;
-      
-      sendGoal('whatsapp_click');
-      
-      // Отправляем цель для звонка если это кнопка звонка
-      if (a.getAttribute('data-cta') === 'tel_fab') {
-        try {
-          ym(104468814, 'reachGoal', 'tel_fab');
-        } catch(e) {}
-        // Даем время на отправку цели перед переходом
-        setTimeout(() => {
-          window.location.href = a.href;
-        }, 120);
-      }
-    }
-    
-    // На мобильных pointerdown срабатывает быстрее
-    a.addEventListener('pointerdown', sendGoalAndNavigate, {passive: true, once: true});
-    // Запасной вариант
-    a.addEventListener('click', (e) => {
-      e.preventDefault();
-      sendGoalAndNavigate();
-    }, { once: true });
+// 1) Конверсии: WhatsApp И телефон — чётко и раздельно
+(function trackContacts(){
+  const YM_ID = 104468814;
+  const send = name => { 
+    try{ 
+      if (typeof ym==='function') ym(YM_ID,'reachGoal',name); 
+    } catch(e){} 
+  };
+
+  // WhatsApp (любой wa.me / api.whatsapp / data-cta начинается с whatsapp)
+  document.querySelectorAll(
+    'a[href*="wa.me/"],a[href*="api.whatsapp.com"],.whatsapp-button,[data-cta^="whatsapp"]'
+  ).forEach(a=>{
+    a.addEventListener('click', ()=> send('whatsapp_click'), { once:true });
+    a.addEventListener('pointerdown', ()=> send('whatsapp_click'), { once:true, passive:true });
   });
+
+  // Телефон (любой tel:) — общая цель tel_click
+  document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
+    a.addEventListener('click', ()=> send('tel_click'), { once:true });
+    a.addEventListener('pointerdown', ()=> send('tel_click'), { once:true, passive:true });
+  });
+
+  // Плавающая FAB на мобиле (отдельная цель для неё)
+  const fab = document.querySelector('.wa-fab');
+  if (fab) {
+    fab.addEventListener('click', ()=> {
+      if (fab.getAttribute('data-cta') === 'tel_fab') {
+        send('tel_fab');
+      }
+    }, { once:true });
+    fab.addEventListener('pointerdown', ()=> {
+      if (fab.getAttribute('data-cta') === 'tel_fab') {
+        send('tel_fab');
+      }
+    }, { once:true, passive:true });
+  }
 })();
 
 // 2) Соцсети (VK / YouTube / Instagram / Threads / Telegram)
