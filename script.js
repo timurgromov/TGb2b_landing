@@ -630,6 +630,11 @@ function unlockPageScroll() {
   requestAnimationFrame(updateArrows);
 })();
 
+// PATCH BEGIN: WHATSAPP_DEFAULT_MESSAGE
+const DEFAULT_WA_MESSAGE = 'Здравствуйте, хочу обсудить корпоратив!';
+const DEFAULT_WA_URL = `https://wa.me/79253900772?text=${encodeURIComponent(DEFAULT_WA_MESSAGE)}`;
+// PATCH END: WHATSAPP_DEFAULT_MESSAGE
+
 // ===== УМНОЕ ПЕРЕНАПРАВЛЕНИЕ ТЕЛЕФОННЫХ ССЫЛОК =====
 (function initSmartPhoneRedirect() {
   // Определяем тип устройства
@@ -657,10 +662,8 @@ function unlockPageScroll() {
       e.preventDefault();
       
       const phoneNumber = '+79253900772';
-      const whatsappUrl = `https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив`;
-      
       // Открываем WhatsApp в новой вкладке
-      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      window.open(DEFAULT_WA_URL, '_blank', 'noopener,noreferrer');
       
       // Логируем событие для аналитики
       if (window.dataLayer) {
@@ -743,7 +746,7 @@ function unlockPageScroll() {
       waFab.removeAttribute('rel');
     } else {
       // На десктопе возвращаем WhatsApp
-      waFab.href = 'https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив';
+      waFab.href = DEFAULT_WA_URL;
       waFab.setAttribute('aria-label', 'Написать в WhatsApp');
       waFab.setAttribute('data-cta', 'whatsapp_fab');
       waFab.setAttribute('target', '_blank');
