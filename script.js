@@ -1121,10 +1121,10 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
       unlockPageScroll();
     }
 
-    // Показываем модалку через 5 секунд (для тестирования, потом вернуть на 30)
+    // Показываем модалку через 30 секунд
     let timeoutId = null;
     if (!hasShownPopup) {
-      const delay = 5000; // ВРЕМЕННО: 5 секунд для тестирования
+      const delay = 30000;
       timeoutId = setTimeout(() => {
         openModal();
       }, delay);
