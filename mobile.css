@@ -1253,24 +1253,94 @@
     padding: 0 10px !important;
   }
 
-  /* Container: минимальные отступы */
-  .container {
-    padding: 0 clamp(10px, 3vw, 14px) !important;
+  /* PATCH BEGIN: POPUP_MOBILE_MINIATURE */
+  /* Pop-up модалка "Чек-лист для HR" - мобильная адаптация */
+  #article-popup-modal .modal__content {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    padding: 20px 18px 18px !important;
+    border-radius: 20px !important;
   }
 
-  /* Sections: компактнее */
-  .section {
-    padding: 48px 0 !important;
+  .article-popup-title {
+    font-size: 24px !important;
   }
 
-  /* Hero: меньше отступы */
-  .hero {
-    padding: 24px 14px 40px 14px !important;
+  .article-popup-subtitle {
+    font-size: 15px !important;
   }
 
-  /* УБРАЛИ ДУБЛИРУЮЩИЕ ПРАВИЛА ДЛЯ 5-Й КАРТОЧКИ */
+  /* Миниатюра скрыта на мобильных чтобы не перегружать поп-ап */
+  .article-popup__media,
+  .article-popup__preview,
+  .article-popup-preview {
+    display: none !important;
+  }
 
+  .article-popup-form .btn {
+    font-size: 15px !important;
+    padding: 12px 14px !important;
+  }
+
+  #article-popup-modal .modal__close {
+    top: 6px !important;
+    right: 6px !important;
+  }
+  /* PATCH END: POPUP_MOBILE_MINIATURE */
+/* Дополнительная адаптация для очень маленьких экранов */
+@media (max-width: 480px) {
+  #article-popup-modal .modal__content {
+    padding: 16px 14px 14px !important;
+  }
+  .article-popup-title {
+    font-size: clamp(18px, 5vw, 22px) !important;
+    margin: 0 40px 10px 0 !important;
+  }
+  .article-popup-subtitle {
+    font-size: 13px !important;
+  }
+  .article-popup-form .btn {
+    font-size: 14px !important;
+    padding: 10px 14px !important;
+  }
 }
+
+@media (max-width: 360px) {
+  #article-popup-modal .modal__content {
+    padding: 14px 12px 12px !important;
+  }
+  .article-popup-title {
+    font-size: 16px !important;
+    margin: 0 36px 8px 0 !important;
+  }
+  .article-popup-form .btn {
+    font-size: 13px !important;
+    padding: 10px 12px !important;
+  }
+  #article-popup-modal .modal__close {
+    width: 40px !important;
+    height: 40px !important;
+    top: 4px !important;
+    right: 4px !important;
+  }
+}
+
+/* Container: минимальные отступы */
+.container {
+  padding: 0 clamp(10px, 3vw, 14px) !important;
+}
+
+/* Sections: компактнее */
+.section {
+  padding: 48px 0 !important;
+}
+
+/* Hero: меньше отступы */
+.hero {
+  padding: 24px 14px 40px 14px !important;
+}
+
+/* УБРАЛИ ДУБЛИРУЮЩИЕ ПРАВИЛА ДЛЯ 5-Й КАРТОЧКИ */
 
 /* --- BENEFITS: одинаковый верхний отступ у всех карточек --- */
 .benefit,
@@ -1359,5 +1429,6 @@
 #hero-tags .tag-radio::before {
   display: block !important;
   line-height: 1.2 !important;
+}
 }
 

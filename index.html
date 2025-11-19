@@ -32,9 +32,9 @@
   <link rel="shortcut icon" href="favicon2.ico">
   
   
-  <link rel="stylesheet" href="style.css?v=header_phone_whatsapp_1">
+  <link rel="stylesheet" href="style.css?v=popup_layout_fix_9">
   <!-- <link rel="stylesheet" href="tablet.css" media="(min-width: 769px) and (max-width: 1180px)"> -->
-  <link rel="stylesheet" href="mobile.css" media="(max-width: 768px)">
+  <link rel="stylesheet" href="mobile.css?v=popup_mobile_nothumb_1" media="(max-width: 768px)">
   
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
@@ -431,6 +431,82 @@
     <button class="modal-nav modal-next" aria-label="Вперёд">›</button>
   </div>
 
+  <!-- Pop-up модалка "Чек-лист для HR" -->
+  <div id="article-popup-modal" class="modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content article-popup">
+      <button class="modal__close" aria-label="Закрыть">&times;</button>
+
+      <div class="article-popup__columns">
+        <div class="article-popup__media-text">
+          <!-- Левая колонка: миниатюра -->
+          <div class="article-popup__media">
+            <div class="article-popup__preview">
+              <img
+                src="./assets/images/popubchecklist.webp"
+                alt="Превью чек-листа"
+                class="article-popup-preview"
+                width="240"
+                height="360"
+                loading="lazy"
+              >
+            </div>
+          </div>
+
+          <!-- Правая колонка: заголовок и подзаголовок -->
+          <div class="article-popup__text">
+            <header class="article-popup__head">
+              <h3 class="article-popup-title">Получите чек-лист<br>по подготовке к корпоративу</h3>
+              <p class="article-popup-subtitle">PDF, чтобы выбрать дату, площадку и избежать типичных ошибок.</p>
+            </header>
+          </div>
+        </div>
+      </div>
+
+      <!-- Форма -->
+      <form id="article-popup-form" class="article-popup-form">
+        <p class="article-popup-form-label">ОСТАВЬТЕ КОНТАКТ — ОТПРАВЛЮ ЧЕК-ЛИСТ В МЕССЕНДЖЕР.</p>
+        
+        <div class="form-group">
+          <label for="article-name" class="visually-hidden">Ваше имя</label>
+          <input 
+            type="text" 
+            id="article-name" 
+            name="name" 
+            class="form-input" 
+            placeholder="Ваше имя" 
+            required
+            autocomplete="name"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="article-phone" class="visually-hidden">WhatsApp / телефон</label>
+          <input 
+            type="tel" 
+            id="article-phone" 
+            name="phone" 
+            class="form-input" 
+            placeholder="+7 (___) ___-__-__" 
+            required
+            autocomplete="tel"
+          >
+        </div>
+        
+        <button type="submit" class="btn btn-primary" data-cta="article_popup_submit">
+          Получить чек-лист
+        </button>
+      </form>
+
+      <!-- Примечание -->
+      <p class="article-popup-footnote">Без спама и рассылок. Отправлю PDF в WhatsApp.</p>
+
+      <div id="article-popup-success" class="article-popup-success" hidden>
+        <p class="article-popup-success-text">Спасибо! В течение нескольких минут отправлю чек-лист в WhatsApp (или на указанный контакт).</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Плавающая кнопка WhatsApp (умная логика - появляется при прокрутке) -->
   <a href="https://wa.me/79253900772?text=Здравствуйте,%20хочу%20обсудить%20корпоратив"
      target="_blank" rel="noopener"
@@ -445,7 +521,7 @@
     </svg>
   </a>
 
-  <script src="script.js?v=metrika_separated_goals_1"></script>
+  <script src="script.js?v=telegram_leads_2"></script>
   
 </body>
 </html>

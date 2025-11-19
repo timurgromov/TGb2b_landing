@@ -1042,3 +1042,170 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     initBoomstreamTracking();
   }
 })();
+
+// ===== POP-UP МОДАЛКА "Чек-лист для HR" =====
+(function initArticlePopup() {
+  // PATCH BEGIN: TELEGRAM_POPUP_LEADS
+  const TELEGRAM_BOT_TOKEN = '8528874062:AAGSDDUPWQSxUgvIrgCmfYFX-LVeDU5MHZE';
+  const TELEGRAM_CHAT_ID = '443540350';
+
+  async function sendLeadToTelegram(name, phone) {
+    const text = `Новая заявка с поп-апа\nИмя: ${name}\nТелефон: ${phone}`;
+    try {
+      await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text })
+      });
+    } catch (error) {
+      console.error('Telegram lead send failed', error);
+    }
+  }
+  // PATCH END: TELEGRAM_POPUP_LEADS
+  function init() {
+    const modal = document.getElementById('article-popup-modal');
+    const form = document.getElementById('article-popup-form');
+    const successMsg = document.getElementById('article-popup-success');
+    const nameInput = document.getElementById('article-name');
+    const phoneInput = document.getElementById('article-phone');
+    const closeBtn = modal?.querySelector('.modal__close');
+    const overlay = modal?.querySelector('.modal__overlay');
+    const workflowSection = document.getElementById('workflow');
+    
+    if (!modal || !form) return;
+
+    // Проверяем, показывалась ли уже модалка (localStorage)
+    const POPUP_SHOWN_KEY = 'article_popup_shown';
+    // ВРЕМЕННО для тестирования: игнорируем localStorage
+    const hasShownPopup = false; // localStorage.getItem(POPUP_SHOWN_KEY);
+    let popupShown = false;
+
+    // Маска для телефона
+    function formatPhone(input) {
+      let value = input.value.replace(/\D/g, '');
+      if (value.startsWith('8')) value = '7' + value.slice(1);
+      if (!value.startsWith('7')) value = '7' + value;
+      value = value.slice(0, 11);
+      
+      let formatted = '+7';
+      if (value.length > 1) formatted += ' (' + value.slice(1, 4);
+      if (value.length > 4) formatted += ') ' + value.slice(4, 7);
+      if (value.length > 7) formatted += '-' + value.slice(7, 9);
+      if (value.length > 9) formatted += '-' + value.slice(9, 11);
+      
+      input.value = formatted;
+      return value;
+    }
+
+    phoneInput?.addEventListener('input', () => formatPhone(phoneInput));
+    phoneInput?.addEventListener('focus', () => {
+      if (!phoneInput.value) phoneInput.value = '+7 (';
+    });
+
+    function openModal() {
+      if (popupShown) return;
+      popupShown = true;
+      modal.classList.add('active');
+      lockPageScroll();
+      // ВРЕМЕННО для тестирования: не сохраняем в localStorage
+      // localStorage.setItem(POPUP_SHOWN_KEY, 'true');
+      
+      // Отправляем цель в Метрику
+      if (typeof ym === 'function') {
+        ym(104468814, 'reachGoal', 'article_popup_shown');
+      }
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      unlockPageScroll();
+    }
+
+    // Показываем модалку через 5 секунд (для тестирования, потом вернуть на 30)
+    let timeoutId = null;
+    if (!hasShownPopup) {
+      const delay = 5000; // ВРЕМЕННО: 5 секунд для тестирования
+      timeoutId = setTimeout(() => {
+        openModal();
+      }, delay);
+    }
+
+    // Показываем модалку при скролле до блока "Порядок работы"
+    if (!hasShownPopup && workflowSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Отменяем таймер, если он ещё не сработал
+            if (timeoutId) {
+              clearTimeout(timeoutId);
+              timeoutId = null;
+            }
+            // Небольшая задержка после появления секции в viewport
+            setTimeout(() => {
+              openModal();
+            }, 500);
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+
+      observer.observe(workflowSection);
+    }
+
+    // Обработка формы
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.replace(/\D/g, '');
+      // PATCH BEGIN: TELEGRAM_POPUP_LEADS
+      const displayPhone = phoneInput.value.trim() || `+${phone}`;
+      // PATCH END: TELEGRAM_POPUP_LEADS
+      
+      if (!name || phone.length < 11) {
+        if (!name) nameInput.focus();
+        else phoneInput.focus();
+        return;
+      }
+
+      // PATCH BEGIN: TELEGRAM_POPUP_LEADS
+      sendLeadToTelegram(name, displayPhone);
+      // PATCH END: TELEGRAM_POPUP_LEADS
+
+      // Скрываем форму, показываем сообщение об успехе
+      form.hidden = true;
+      successMsg.hidden = false;
+
+      // Формируем сообщение для WhatsApp
+      const message = 'Здравствуйте! Хочу получить чек-лист "7 шагов к безопасному корпоративу".';
+      const whatsappUrl = `https://wa.me/79253900772?text=${encodeURIComponent(message)}`;
+      
+      // Редирект в WhatsApp через 2 секунды
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      }, 2000);
+      
+      // Отправляем цель в Метрику
+      if (typeof ym === 'function') {
+        ym(104468814, 'reachGoal', 'article_popup_submit');
+      }
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+    overlay?.addEventListener('click', closeModal);
+
+    // Закрытие по Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+
+  // Инициализация после загрузки DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

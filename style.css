@@ -622,23 +622,135 @@ body {
 .programs-list b{color:var(--accent)}
 #programs-modal .muted{color:var(--muted);font-size:14px;margin:0 0 24px;line-height:1.5}
 
+/* PATCH BEGIN: VIDEO_MODAL_TINT */
 /* ===== Модалка "Видеоконсультация" (DESKTOP ONLY) ===== */
 #video-consult-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s ease}
 #video-consult-modal.active{opacity:1;visibility:visible}
 #video-consult-modal .modal__overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px)}
-#video-consult-modal .modal__content{position:relative;background:var(--card);border:1px solid var(--stroke);border-radius:22px;padding:40px;max-width:560px;width:90vw;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+#video-consult-modal .modal__content{position:relative;background:rgba(19,19,19,0.92);border:1px solid rgba(255,255,255,0.05);border-radius:22px;padding:40px;max-width:560px;width:90vw;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
 #video-consult-modal .modal__close{position:absolute;top:16px;right:16px;background:transparent;border:none;color:var(--muted);font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s ease}
 #video-consult-modal .modal__close:hover{background:rgba(255,255,255,0.1)}
-#video-consult-modal h3{color:var(--text);margin:0 0 12px;font-size:26px;font-weight:700;line-height:1.2}
-#video-consult-modal .modal__subtitle{color:#A1A8AF;font-size:16px;margin:0 0 24px;line-height:1.5}
-#video-consult-modal .modal__text{color:#A1A8AF;line-height:1.6;margin:0 0 28px}
+#video-consult-modal h3{color:#fff;margin:0 0 12px;font-size:26px;font-weight:700;line-height:1.2}
+#video-consult-modal .modal__subtitle{color:#f5f5f5;font-size:16px;margin:0 0 24px;line-height:1.5}
+#video-consult-modal .modal__text{color:#f5f5f5;line-height:1.6;margin:0 0 28px}
 #video-consult-modal .modal__text p{margin:0 0 14px}
 #video-consult-modal .modal__text p:last-of-type{margin-bottom:8px}
 #video-consult-modal .modal__text strong{color:#FF7A3D;font-weight:600;text-transform:uppercase;font-size:14px;letter-spacing:0.3px}
-.consult-list{list-style:none;padding:0;margin:14px 0 0 0}
-.consult-list li{margin-bottom:8px;padding-left:24px;color:#A1A8AF;line-height:1.6;position:relative}
-.consult-list li::before{content:"•";position:absolute;left:8px;color:var(--accent);font-weight:700}
+#video-consult-modal .consult-list{list-style:none;padding:0;margin:14px 0 0 0;color:#f5f5f5}
+#video-consult-modal .consult-list li{margin-bottom:8px;padding-left:24px;line-height:1.6;position:relative}
+#video-consult-modal .consult-list li::before{content:"•";position:absolute;left:8px;color:var(--accent);font-weight:700}
 #video-consult-modal .btn{width:100%;justify-content:center;font-size:16px;padding:14px 20px}
+/* PATCH END: VIDEO_MODAL_TINT */
+
+/* PATCH BEGIN: POPUP_LAYOUT_FIX */
+/* ===== Pop-up модалка "Чек-лист для HR" ===== */
+#article-popup-modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+#article-popup-modal.active{opacity:1;visibility:visible}
+#article-popup-modal .modal__overlay{position:absolute;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px)}
+#article-popup-modal .modal__content{
+  position:relative;
+  background:rgba(19,19,19,0.92);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:24px;
+  padding:24px;
+  width:min(560px,94vw);
+  max-height:calc(100vh - 32px);
+  overflow-y:auto;
+  box-shadow:0 20px 60px rgba(0,0,0,0.55);
+  backdrop-filter:blur(20px);
+}
+#article-popup-modal .modal__close{position:absolute;top:16px;right:16px;background:transparent;border:none;color:var(--muted);font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s ease;z-index:10}
+#article-popup-modal .modal__close:hover{background:rgba(255,255,255,0.1)}
+
+.article-popup{display:flex;flex-direction:column;gap:20px}
+.article-popup__columns{display:flex;flex-direction:column;gap:16px}
+.article-popup__media-text{display:flex;flex-direction:column;gap:16px}
+.article-popup__media{display:flex;justify-content:center;align-items:center}
+.article-popup__text{display:flex;flex-direction:column;gap:8px;flex:1;width:100%}
+.article-popup__head{display:flex;flex-direction:column;gap:6px}
+.article-popup-title{color:#fff;margin:0;font-size:24px;font-weight:700;line-height:1.2}
+.article-popup-subtitle{color:#f5f5f5;font-size:16px;line-height:1.5;margin:0}
+
+.article-popup__preview{display:flex;justify-content:center;margin-top:4px}
+.article-popup-preview{
+  width:100%;
+  max-width:95px;
+  border-radius:12px;
+  border:1px solid rgba(255,122,61,0.7);
+  box-shadow:0 10px 28px rgba(0,0,0,0.45),0 0 28px rgba(255,122,61,0.25);
+  transition:transform .2s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.article-popup__preview:hover .article-popup-preview{
+  transform:translateY(-2px);
+  border-color:#ff8a50;
+  box-shadow:0 14px 34px rgba(0,0,0,0.45),0 0 36px rgba(255,122,61,0.35);
+}
+
+.article-popup-form-label{color:var(--accent);font-size:15px;line-height:1.5;margin:0;font-weight:500}
+.article-popup-form{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.article-popup-form .form-group{margin:0}
+.article-popup-form .form-input{width:100%;padding:14px 16px;background:var(--bg);border:1px solid var(--stroke);border-radius:12px;color:var(--text);font-size:16px;transition:border-color 0.2s ease;box-sizing:border-box}
+.article-popup-form .form-input:focus{outline:none;border-color:var(--accent)}
+.article-popup-form .form-input::placeholder{color:var(--muted)}
+.article-popup-form .btn{width:100%;justify-content:center;font-size:16px;padding:14px 20px}
+.article-popup-footnote{color:#f5f5f5;font-size:12px;line-height:1.4;text-align:center;margin:8px 0 0}
+
+.article-popup-success{text-align:center;padding:20px}
+.article-popup-success-text{color:#f5f5f5;font-size:16px;line-height:1.5;margin:0}
+
+@media (min-width: 1180px) {
+  #article-popup-modal .modal__content {
+    max-width: clamp(760px, 62vw, 820px);
+    padding: 30px;
+    border-radius: 18px;
+  }
+  .article-popup__columns{gap:20px}
+  .article-popup__media-text{
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+  .article-popup__media {
+    flex: 0 0 24%;
+    justify-content: flex-start;
+  }
+  .article-popup__text{
+    gap: 8px;
+  }
+  .article-popup__preview {
+    justify-content: flex-start;
+    margin-top: 0;
+  }
+  .article-popup-preview {
+    max-width: 125px;
+  }
+  .article-popup-title {
+    font-size: 26px;
+  }
+  .article-popup-subtitle {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .article-popup__media,
+  .article-popup__preview,
+  .article-popup-preview {
+    display: none !important;
+  }
+}
+
+/* PATCH END: POPUP_LAYOUT_FIX */
+/* ===== Pop-up модалка: адаптация для планшетов ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+#article-popup-modal .modal__content {
+    max-width: 520px !important;
+    padding: 24px !important;
+  }
+  .article-popup-title {
+    font-size: 26px !important;
+  }
+}
 
 /* ===== Плавающая кнопка WhatsApp (умная логика) ===== */
 .wa-fab {
@@ -930,6 +1042,7 @@ body {
   opacity:0;
   transform:translateY(18px);
   will-change:opacity,transform;
+  transition:opacity .55s ease, transform .55s ease;
   /* iOS-фикс: принудительно включаем анимации */
   -webkit-transform:translateY(18px);
   -webkit-transition:opacity .55s ease, -webkit-transform .55s ease;
@@ -988,7 +1101,6 @@ body {
   display: block !important; /* убираем inline gap */
   width: 20px !important;
   height: 20px !important;
-  vertical-align: middle !important; /* принудительное выравнивание */
 }
 .footer-contacts .footer-social__btn--vk svg {
   transform: translateY(-5px) scale(1.5) !important; /* приподнимаем и увеличиваем VK логотип */
