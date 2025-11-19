@@ -635,6 +635,24 @@ const DEFAULT_WA_MESSAGE = 'Здравствуйте, хочу обсудить 
 const DEFAULT_WA_URL = `https://wa.me/79253900772?text=${encodeURIComponent(DEFAULT_WA_MESSAGE)}`;
 // PATCH END: WHATSAPP_DEFAULT_MESSAGE
 
+// PATCH BEGIN: TELEGRAM_LEAD_HELPER
+const TELEGRAM_BOT_TOKEN = '8528874062:AAGSDDUPWQSxUgvIrgCmfYFX-LVeDU5MHZE';
+const TELEGRAM_CHAT_ID = '443540350';
+
+async function sendLeadToTelegram(name, phone, source = 'popup') {
+  const text = `Новая заявка (${source})\nИмя: ${name}\nТелефон: ${phone}`;
+  try {
+    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text })
+    });
+  } catch (error) {
+    console.error('Telegram lead send failed', error);
+  }
+}
+// PATCH END: TELEGRAM_LEAD_HELPER
+
 // ===== УМНОЕ ПЕРЕНАПРАВЛЕНИЕ ТЕЛЕФОННЫХ ССЫЛОК =====
 (function initSmartPhoneRedirect() {
   // Определяем тип устройства
@@ -1048,23 +1066,6 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
 
 // ===== POP-UP МОДАЛКА "Чек-лист для HR" =====
 (function initArticlePopup() {
-  // PATCH BEGIN: TELEGRAM_POPUP_LEADS
-  const TELEGRAM_BOT_TOKEN = '8528874062:AAGSDDUPWQSxUgvIrgCmfYFX-LVeDU5MHZE';
-  const TELEGRAM_CHAT_ID = '443540350';
-
-  async function sendLeadToTelegram(name, phone) {
-    const text = `Новая заявка с поп-апа\nИмя: ${name}\nТелефон: ${phone}`;
-    try {
-      await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text })
-      });
-    } catch (error) {
-      console.error('Telegram lead send failed', error);
-    }
-  }
-  // PATCH END: TELEGRAM_POPUP_LEADS
   function init() {
     const modal = document.getElementById('article-popup-modal');
     const form = document.getElementById('article-popup-form');
@@ -1172,7 +1173,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
       }
 
       // PATCH BEGIN: TELEGRAM_POPUP_LEADS
-      sendLeadToTelegram(name, displayPhone);
+      sendLeadToTelegram(name, displayPhone, 'article_popup');
       // PATCH END: TELEGRAM_POPUP_LEADS
 
       // Скрываем форму, показываем сообщение об успехе
@@ -1206,6 +1207,107 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   }
 
   // Инициализация после загрузки DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+// ===== ПОП-АП "Обсудить корпоратив" =====
+(function initContactPopup() {
+  function init() {
+    const modal = document.getElementById('contact-popup-modal');
+    const form = document.getElementById('contact-popup-form');
+    const successMsg = document.getElementById('contact-popup-success');
+    const nameInput = document.getElementById('contact-name');
+    const phoneInput = document.getElementById('contact-phone');
+    const closeBtn = modal?.querySelector('.modal__close');
+    const overlay = modal?.querySelector('.modal__overlay');
+    const triggers = document.querySelectorAll('[data-modal="contact-popup"]');
+
+    if (!modal || !form || !triggers.length) return;
+
+  function formatPhone(input) {
+    let value = input.value.replace(/\D/g, '');
+    if (value.startsWith('8')) value = '7' + value.slice(1);
+    if (!value.startsWith('7')) value = '7' + value;
+    value = value.slice(0, 11);
+    
+    let formatted = '+7';
+    if (value.length > 1) formatted += ' (' + value.slice(1, 4);
+    if (value.length > 4) formatted += ') ' + value.slice(4, 7);
+    if (value.length > 7) formatted += '-' + value.slice(7, 9);
+    if (value.length > 9) formatted += '-' + value.slice(9, 11);
+    
+    input.value = formatted;
+    return value;
+  }
+
+  phoneInput?.addEventListener('input', () => formatPhone(phoneInput));
+  phoneInput?.addEventListener('focus', () => {
+    if (!phoneInput.value) phoneInput.value = '+7 (';
+  });
+
+  function openModal() {
+    form.hidden = false;
+    successMsg.hidden = true;
+    modal.classList.add('active');
+    lockPageScroll();
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    unlockPageScroll();
+    form.hidden = false;
+    successMsg.hidden = true;
+    form.reset();
+  }
+
+  triggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = nameInput.value.trim();
+      const phoneDigits = phoneInput.value.replace(/\D/g, '');
+      const displayPhone = phoneInput.value.trim() || `+${phoneDigits}`;
+
+      if (!name || phoneDigits.length < 11) {
+        if (!name) nameInput.focus();
+        else phoneInput.focus();
+        return;
+      }
+
+      sendLeadToTelegram(name, displayPhone, 'contact_popup');
+
+      form.hidden = true;
+      successMsg.hidden = false;
+
+      setTimeout(() => {
+        window.open(DEFAULT_WA_URL, '_blank', 'noopener,noreferrer');
+      }, 2000);
+
+      if (typeof ym === 'function') {
+        ym(104468814, 'reachGoal', 'contact_popup_submit');
+      }
+    });
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

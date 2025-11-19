@@ -111,10 +111,10 @@
             <span class="tag">Договор ИП</span>
           </div>
           <div class="hero__cta hero-actions" id="hero-actions">
-            <a class="btn btn-primary" 
-               href="https://wa.me/79253900772?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BA%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%21"
-               target="_blank" rel="noopener"
-               data-cta="whatsapp_hero">Обсудить корпоратив</a>
+            <button type="button"
+               class="btn btn-primary"
+               data-modal="contact-popup"
+               data-cta="contact_popup_hero">Обсудить корпоратив</button>
             <button class="btn btn-outline"
                data-modal="video-consult-modal"
                data-cta="video_call_hero">Видеоконсультация</button>
@@ -170,8 +170,8 @@
         </div>
         <div class="benefits__cta">
           <button class="btn btn-outline"
-             data-modal="video-consult-modal"
-             data-cta="whatsapp_benefits">Обсудить корпоратив</button>
+             data-modal="contact-popup"
+             data-cta="contact_popup_benefits">Обсудить корпоратив</button>
         </div>
       </div>
     </section>
@@ -507,6 +507,61 @@
     </div>
   </div>
 
+  <!-- Pop-up модалка "Обсудить корпоратив" -->
+  <div id="contact-popup-modal" class="modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content article-popup">
+      <button class="modal__close" aria-label="Закрыть">&times;</button>
+
+      <div class="article-popup__columns">
+        <div class="article-popup__text">
+          <header class="article-popup__head">
+            <h3 class="article-popup-title">Обсудим ваш корпоратив?</h3>
+            <p class="article-popup-subtitle">Напишу вам в WhatsApp, уточним детали и предложу идеи.</p>
+          </header>
+        </div>
+      </div>
+
+      <form id="contact-popup-form" class="article-popup-form">
+        <div class="form-group">
+          <label for="contact-name" class="visually-hidden">Ваше имя</label>
+          <input 
+            type="text" 
+            id="contact-name" 
+            name="name" 
+            class="form-input" 
+            placeholder="Ваше имя" 
+            required
+            autocomplete="name"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="contact-phone" class="visually-hidden">WhatsApp / телефон</label>
+          <input 
+            type="tel" 
+            id="contact-phone" 
+            name="phone" 
+            class="form-input" 
+            placeholder="+7 (___) ___-__-__" 
+            required
+            autocomplete="tel"
+          >
+        </div>
+        
+        <button type="submit" class="btn btn-primary" data-cta="contact_popup_submit">
+          Отправить
+        </button>
+      </form>
+
+      <p class="article-popup-footnote">Без спама. Пишу лично.</p>
+
+      <div id="contact-popup-success" class="article-popup-success" hidden>
+        <p class="article-popup-success-text">Спасибо! Вскоре свяжусь в WhatsApp и помогу подобрать формат.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Плавающая кнопка WhatsApp (умная логика - появляется при прокрутке) -->
   <a href="https://wa.me/79253900772?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BA%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%21"
      target="_blank" rel="noopener"
@@ -521,7 +576,7 @@
     </svg>
   </a>
 
-  <script src="script.js?v=telegram_leads_5"></script>
+  <script src="script.js?v=telegram_leads_7"></script>
   
 </body>
 </html>
