@@ -67,43 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
-// ===== Модалка "Видеоконсультация" =====
-(function(){
-  const modal = document.getElementById('video-consult-modal');
-  const openBtns = document.querySelectorAll('[data-modal="video-consult-modal"]');
-  const closeBtn = modal?.querySelector('.modal__close');
-  const overlay = modal?.querySelector('.modal__overlay');
-
-  if (!modal || !openBtns.length) return;
-
-  function openModal() {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  openBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
-    });
-  });
-  
-  closeBtn?.addEventListener('click', closeModal);
-  overlay?.addEventListener('click', closeModal);
-
-  // Закрытие по Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-      closeModal();
-    }
-  });
-})();
-
 // ===== Настройки Метрики =====
 const COUNTER_ID = 104468814;
 
@@ -1312,5 +1275,105 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
+  }
+})();
+
+// ===== Модалка "Видеоконсультация" =====
+(function(){
+  const modal = document.getElementById('video-consult-modal');
+  const form = document.getElementById('video-consult-form');
+  const successMsg = document.getElementById('video-consult-success');
+  const nameInput = document.getElementById('video-consult-name');
+  const phoneInput = document.getElementById('video-consult-phone');
+  const openBtns = document.querySelectorAll('[data-modal="video-consult-modal"]');
+  const closeBtn = modal?.querySelector('.modal__close');
+  const overlay = modal?.querySelector('.modal__overlay');
+
+  if (!modal || !openBtns.length) return;
+
+  // Маска для телефона
+  function formatPhone(input) {
+    let value = input.value.replace(/\D/g, '');
+    if (value.startsWith('8')) value = '7' + value.slice(1);
+    if (!value.startsWith('7')) value = '7' + value;
+    value = value.slice(0, 11);
+    
+    let formatted = '+7';
+    if (value.length > 1) formatted += ' (' + value.slice(1, 4);
+    if (value.length > 4) formatted += ') ' + value.slice(4, 7);
+    if (value.length > 7) formatted += '-' + value.slice(7, 9);
+    if (value.length > 9) formatted += '-' + value.slice(9, 11);
+    
+    input.value = formatted;
+    return value;
+  }
+
+  phoneInput?.addEventListener('input', () => formatPhone(phoneInput));
+  phoneInput?.addEventListener('focus', () => {
+    if (!phoneInput.value) phoneInput.value = '+7 (';
+  });
+
+  function openModal() {
+    if (form) form.hidden = false;
+    if (successMsg) successMsg.hidden = true;
+    modal.classList.add('active');
+    lockPageScroll();
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    unlockPageScroll();
+    if (form) {
+      form.hidden = false;
+      form.reset();
+    }
+    if (successMsg) successMsg.hidden = true;
+  }
+
+  openBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+  
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', closeModal);
+
+  // Закрытие по Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  // Обработка формы
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = nameInput.value.trim();
+      const phoneDigits = phoneInput.value.replace(/\D/g, '');
+      const displayPhone = phoneInput.value.trim() || `+${phoneDigits}`;
+
+      if (!name || phoneDigits.length < 11) {
+        if (!name) nameInput.focus();
+        else phoneInput.focus();
+        return;
+      }
+
+      sendLeadToTelegram(name, displayPhone, 'video_consult');
+
+      form.hidden = true;
+      if (successMsg) successMsg.hidden = false;
+
+      setTimeout(() => {
+        window.open(DEFAULT_WA_URL, '_blank', 'noopener,noreferrer');
+      }, 2000);
+
+      if (typeof ym === 'function') {
+        ym(104468814, 'reachGoal', 'video_consult_submit');
+      }
+    });
   }
 })();

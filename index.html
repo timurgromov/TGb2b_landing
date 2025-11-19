@@ -397,26 +397,55 @@
   <!-- Модалка "Видеоконсультация" -->
   <div id="video-consult-modal" class="modal">
     <div class="modal__overlay"></div>
-    <div class="modal__content">
+    <div class="modal__content article-popup">
       <button class="modal__close" aria-label="Закрыть">&times;</button>
-      <h3>Быстрая видеоконсультация</h3>
-      <p class="modal__subtitle">Удобный формат онлайн-встречи — 15-20 минут, в любое время, без обязательств.</p>
-      <div class="modal__text">
-        <p>Мы обсудим ваши идеи и формат будущего корпоратива.</p>
-        <p>Я покажу варианты программ, расскажу о стоимости и помогу выбрать оптимальное решение.</p>
-        <p><strong>Консультацию можно провести:</strong></p>
-        <ul class="consult-list">
-          <li>по Zoom или Яндекс.Мост</li>
-          <li>лично приеду к вам в офис</li>
-          <li>или просто созвонимся по телефону</li>
-        </ul>
+
+      <div class="article-popup__columns">
+        <div class="article-popup__text">
+          <header class="article-popup__head">
+            <h3 class="article-popup-title">Обсудим ваш корпоратив в удобном формате</h3>
+            <p class="article-popup-subtitle">15–20 минут. Созвонимся в Zoom, по телефону или я приеду к вам в офис. Обсудим задачу, формат, покажу варианты программы.</p>
+          </header>
+        </div>
       </div>
-      <a class="btn btn-primary"
-         href="https://wa.me/79253900772?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BA%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%21"
-         target="_blank" rel="noopener" 
-         data-cta="whatsapp_video_consult">
-        Записаться на видеоконсультацию
-      </a>
+
+      <form id="video-consult-form" class="article-popup-form">
+        <div class="form-group">
+          <label for="video-consult-name" class="visually-hidden">Ваше имя</label>
+          <input 
+            type="text" 
+            id="video-consult-name" 
+            name="name" 
+            class="form-input" 
+            placeholder="Ваше имя" 
+            required
+            autocomplete="name"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="video-consult-phone" class="visually-hidden">WhatsApp / телефон</label>
+          <input 
+            type="tel" 
+            id="video-consult-phone" 
+            name="phone" 
+            class="form-input" 
+            placeholder="+7 (___) ___-__-__" 
+            required
+            autocomplete="tel"
+          >
+        </div>
+        
+        <button type="submit" class="btn btn-primary" data-cta="video_consult_submit">
+          Назначить встречу
+        </button>
+      </form>
+
+      <p class="article-popup-footnote">Без спама. Пишу лично.</p>
+
+      <div id="video-consult-success" class="article-popup-success" hidden>
+        <p class="article-popup-success-text">Спасибо! Вскоре свяжусь в WhatsApp и помогу подобрать формат.</p>
+      </div>
     </div>
   </div>
 
@@ -576,7 +605,7 @@
     </svg>
   </a>
 
-  <script src="script.js?v=telegram_leads_7"></script>
+  <script src="script.js?v=video_consult_form_1"></script>
   
 </body>
 </html>
