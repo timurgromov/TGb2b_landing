@@ -115,9 +115,12 @@
                class="btn btn-primary"
                data-modal="contact-popup"
                data-cta="contact_popup_hero">Обсудить корпоратив</button>
+            <!-- PATCH BEGIN: MODAL_BUTTON_SOURCES -->
             <button class="btn btn-outline"
                data-modal="video-consult-modal"
+               data-form-source="hero_video"
                data-cta="video_call_hero">Назначить встречу</button>
+            <!-- PATCH END: MODAL_BUTTON_SOURCES -->
           </div>
         </div>
         <figure class="hero__photo sr" aria-label="Тимур Громов">
@@ -236,9 +239,12 @@
       
       <!-- Кнопка CTA в блоке workflow -->
       <div class="workflow__cta">
+        <!-- PATCH BEGIN: WORKFLOW_BUTTON_SOURCE -->
         <button class="btn btn-outline" 
                 data-modal="video-consult-modal"
+                data-form-source="workflow_popup"
                 data-cta="whatsapp_workflow">Назначить встречу</button>
+        <!-- PATCH END: WORKFLOW_BUTTON_SOURCE -->
       </div>
     </section>
 
@@ -332,10 +338,12 @@
         <h2 class="cta__title">Праздники проходят — впечатления остаются.</h2>
         <p class="cta__subtitle">Остались вопросы? Напишите — отвечу лично.</p>
         <div class="cta__actions">
-          <a class="btn btn-primary" 
-             href="https://wa.me/79253900772?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%BA%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%21"
-             target="_blank" rel="noopener"
-             data-cta="whatsapp_cta">Связаться в WhatsApp</a>
+        <!-- PATCH BEGIN: CTA_BUTTON_SOURCE -->
+        <button class="btn btn-primary" 
+                data-modal="video-consult-modal"
+                data-form-source="cta_popup"
+                data-cta="whatsapp_cta">Узнать условия</button>
+        <!-- PATCH END: CTA_BUTTON_SOURCE -->
         </div>
       </div>
     </section>
@@ -604,7 +612,7 @@
     </svg>
   </a>
 
-  <script src="script.js?v=video_consult_form_1"></script>
+  <script src="script.js?v=video_modal_sources_1"></script>
   
 </body>
 </html>

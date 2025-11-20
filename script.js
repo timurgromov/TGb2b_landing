@@ -1280,6 +1280,10 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
 
 // ===== Модалка "Видеоконсультация" =====
 (function(){
+  // PATCH BEGIN: VIDEO_MODAL_SOURCES
+  const SOURCE_DEFAULT = 'hero_video';
+  let currentVideoSource = SOURCE_DEFAULT;
+  // PATCH END: VIDEO_MODAL_SOURCES
   const modal = document.getElementById('video-consult-modal');
   const form = document.getElementById('video-consult-form');
   const successMsg = document.getElementById('video-consult-success');
@@ -1313,7 +1317,9 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     if (!phoneInput.value) phoneInput.value = '+7 (';
   });
 
-  function openModal() {
+  // PATCH BEGIN: VIDEO_MODAL_SOURCES
+  function openModal(source = SOURCE_DEFAULT) {
+    currentVideoSource = source;
     if (form) form.hidden = false;
     if (successMsg) successMsg.hidden = true;
     modal.classList.add('active');
@@ -1323,6 +1329,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   function closeModal() {
     modal.classList.remove('active');
     unlockPageScroll();
+    currentVideoSource = SOURCE_DEFAULT;
     if (form) {
       form.hidden = false;
       form.reset();
@@ -1333,9 +1340,11 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   openBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      openModal();
+      const source = btn.dataset.formSource || SOURCE_DEFAULT;
+      openModal(source);
     });
   });
+  // PATCH END: VIDEO_MODAL_SOURCES
   
   closeBtn?.addEventListener('click', closeModal);
   overlay?.addEventListener('click', closeModal);
@@ -1371,9 +1380,17 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
         window.open(DEFAULT_WA_URL, '_blank', 'noopener,noreferrer');
       }, 2000);
 
+      // PATCH BEGIN: VIDEO_MODAL_SOURCES
       if (typeof ym === 'function') {
         ym(104468814, 'reachGoal', 'video_consult_submit');
+        if (currentVideoSource === 'workflow_popup') {
+          ym(104468814, 'reachGoal', 'workflow_popup_submit');
+        }
+        if (currentVideoSource === 'cta_popup') {
+          ym(104468814, 'reachGoal', 'cta_popup_submit');
+        }
       }
+      // PATCH END: VIDEO_MODAL_SOURCES
     });
   }
 })();
