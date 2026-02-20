@@ -1,0 +1,40 @@
+name: Deploy Contact Page
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'contact/**'
+      - '.github/workflows/deploy-contact.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Copy contact files
+        run: |
+          mkdir -p _site
+          cp -r contact/* _site/
+          echo "contact.timurgromov.ru" > _site/CNAME
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

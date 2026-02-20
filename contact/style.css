@@ -1,0 +1,288 @@
+/* ===== ТЕМНАЯ ТЕМА (как на основном сайте) ===== */
+:root {
+  --bg: #0c0f14;
+  --bg-2: #0f1216;
+  --text: #e7ebf1;
+  --muted: #9aa3af;
+  --accent: #ff7a45;
+  --accent-2: #ed6e3a;
+  --card: #12161d;
+  --stroke: rgba(255, 255, 255, 0.06);
+  
+  /* Telegram цвет */
+  --telegram-bg: #0088cc;
+  --telegram-bg-hover: #0077b5;
+  
+  /* MAX градиент */
+  --max-gradient-start: #4680c2;
+  --max-gradient-end: #7c4dff;
+  
+  /* Телефон */
+  --phone-bg: rgba(255, 255, 255, 0.05);
+  --phone-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== БАЗОВЫЕ СТИЛИ ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  color: var(--text);
+  font-family: Inter, system-ui, Arial, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
+.contact-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  padding-top: max(24px, env(safe-area-inset-top));
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+}
+
+.contact-content {
+  background: var(--card);
+  border: 1px solid var(--stroke);
+  border-radius: 24px;
+  padding: 48px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== ДЕКОРАТИВНЫЕ ВОЛНЫ ===== */
+.wave-decoration {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wave-top {
+  top: 0;
+}
+
+.wave-bottom {
+  bottom: 0;
+}
+
+.wave-decoration svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ===== ТИПОГРАФИКА ===== */
+.contact-title {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 16px;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-subtitle {
+  font-size: 16px;
+  color: var(--muted);
+  margin: 0 0 40px;
+  line-height: 1.5;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-footer {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 32px 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== КНОПКИ ===== */
+.contact-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.contact-btn__text {
+  flex: 1;
+  text-align: center;
+}
+
+/* Telegram кнопка */
+.contact-btn--telegram {
+  background: var(--telegram-bg);
+  color: white;
+}
+
+.contact-btn--telegram:hover {
+  background: var(--telegram-bg-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 136, 204, 0.3);
+}
+
+/* MAX кнопка */
+.contact-btn--max {
+  background: linear-gradient(135deg, var(--max-gradient-start) 0%, var(--max-gradient-end) 100%);
+  color: white;
+  position: relative;
+}
+
+.contact-btn--max::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--max-gradient-end) 0%, var(--max-gradient-start) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-btn--max:hover::before {
+  opacity: 1;
+}
+
+.contact-btn--max:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 77, 255, 0.3);
+}
+
+.contact-btn--max .contact-btn__icon,
+.contact-btn--max .contact-btn__text {
+  position: relative;
+  z-index: 1;
+}
+
+/* Телефон кнопка */
+.contact-btn--phone {
+  background: var(--phone-bg);
+  color: var(--text);
+  border: 1px solid var(--phone-border);
+}
+
+.contact-btn--phone:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 16px;
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .contact-content {
+    padding: 40px 24px;
+    border-radius: 20px;
+  }
+
+  .contact-title {
+    font-size: 28px;
+  }
+
+  .contact-subtitle {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+
+  .contact-buttons {
+    gap: 12px;
+  }
+
+  .contact-btn {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .contact-footer {
+    font-size: 13px;
+    margin-top: 24px;
+  }
+
+  .wave-decoration {
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-title {
+    font-size: 24px;
+  }
+
+  .contact-subtitle {
+    font-size: 14px;
+  }
+
+  .contact-content {
+    padding: 32px 20px;
+  }
+
+  .contact-btn {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+}
+
+/* ===== ПОДДЕРЖКА PREFERS-REDUCED-MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .contact-btn {
+    transition: opacity 0.2s ease;
+  }
+
+  .contact-btn:hover {
+    transform: none;
+  }
+}
