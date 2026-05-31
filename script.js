@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const videoSrc = wrapper.dataset.video;
     const coverSrc = wrapper.dataset.cover;
     wrapper.innerHTML = `
-      <div class="video-poster"><img src="${coverSrc}" alt=""></div>
+      <div class="video-poster"><img src="${coverSrc}" alt="" width="1280" height="720" loading="lazy" decoding="async"></div>
       <div class="play-button"></div>`;
     const playBtn = wrapper.querySelector(".play-button");
     playBtn.addEventListener("click", () => {
@@ -599,19 +599,24 @@ const DEFAULT_WA_URL = `https://wa.me/79253900772?text=${encodeURIComponent(DEFA
 // PATCH END: WHATSAPP_DEFAULT_MESSAGE
 
 // PATCH BEGIN: TELEGRAM_LEAD_HELPER
-const TELEGRAM_BOT_TOKEN = '8528874062:AAGSDDUPWQSxUgvIrgCmfYFX-LVeDU5MHZE';
-const TELEGRAM_CHAT_ID = '443540350';
-
 async function sendLeadToTelegram(name, phone, source = 'popup') {
+  const endpoint = window.TELEGRAM_LEAD_ENDPOINT;
+  if (!endpoint) {
+    console.warn('Lead endpoint is not configured; using WhatsApp fallback only.');
+    return false;
+  }
+
   const text = `Новая заявка (${source})\nИмя: ${name}\nТелефон: ${phone}`;
   try {
-    await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text })
+      body: JSON.stringify({ name, phone, source, text })
     });
+    return response.ok;
   } catch (error) {
-    console.error('Telegram lead send failed', error);
+    console.error('Lead send failed', error);
+    return false;
   }
 }
 // PATCH END: TELEGRAM_LEAD_HELPER
@@ -1043,8 +1048,13 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
 
     // Проверяем, показывалась ли уже модалка (localStorage)
     const POPUP_SHOWN_KEY = 'article_popup_shown';
-    // ВРЕМЕННО для тестирования: игнорируем localStorage
-    const hasShownPopup = false; // localStorage.getItem(POPUP_SHOWN_KEY);
+    const hasShownPopup = (() => {
+      try {
+        return localStorage.getItem(POPUP_SHOWN_KEY);
+      } catch (error) {
+        return null;
+      }
+    })();
     let popupShown = false;
 
     // Маска для телефона
@@ -1074,8 +1084,11 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
       popupShown = true;
       modal.classList.add('active');
       lockPageScroll();
-      // ВРЕМЕННО для тестирования: не сохраняем в localStorage
-      // localStorage.setItem(POPUP_SHOWN_KEY, 'true');
+      try {
+        localStorage.setItem(POPUP_SHOWN_KEY, 'true');
+      } catch (error) {
+        // Ignore storage failures; the popup should not break page behavior.
+      }
       
       // Отправляем цель в Метрику
       if (typeof ym === 'function') {

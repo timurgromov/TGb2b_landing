@@ -119,6 +119,11 @@ html, body {
   z-index: 1;
 }
 
+.contact-btn__max-logo {
+  display: block;
+  border-radius: 6px;
+}
+
 /* ===== КНОПКИ ===== */
 .contact-buttons {
   display: flex;

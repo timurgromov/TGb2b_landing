@@ -6,6 +6,7 @@
   <title>Ведущий на корпоратив в Москве — Тимур Громов</title>
   <meta name="description" content="Ведущий на корпоратив в Москве — Тимур Громов. 15+ лет опыта. Спокойный, интеллигентный формат без пошлости. Ведущий + DJ + звук — под ключ.">
   <meta name="theme-color" content="#0c0f14">
+  <link rel="canonical" href="https://corp.timurgromov.ru/">
   
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -30,11 +31,12 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon2.ico">
   <link rel="shortcut icon" href="favicon2.ico">
+  <link rel="preload" as="image" href="./assets/hero/portrait.webp" fetchpriority="high">
   
   
-  <link rel="stylesheet" href="style.css?v=popup_layout_fix_9">
+  <link rel="stylesheet" href="style.css?v=stabilization_3">
   <!-- <link rel="stylesheet" href="tablet.css" media="(min-width: 769px) and (max-width: 1180px)"> -->
-  <link rel="stylesheet" href="mobile.css?v=popup_mobile_nothumb_1" media="(max-width: 768px)">
+  <link rel="stylesheet" href="mobile.css?v=stabilization_3" media="(max-width: 768px)">
   
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
@@ -65,6 +67,23 @@
   
   <!-- Boomstream SDK для отслеживания видео -->
   <script src="https://play.boomstream.com/assets/javascripts/biframesdk.js" async></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Тимур Громов",
+    "description": "Ведущий на корпоратив в Москве. Интеллигентный формат, DJ и звук под ключ.",
+    "url": "https://corp.timurgromov.ru/",
+    "image": "https://corp.timurgromov.ru/assets/og_og.jpg?v=4",
+    "telephone": "+7-925-390-07-72",
+    "email": "timurgromov.showman@gmail.com",
+    "areaServed": {
+      "@type": "City",
+      "name": "Москва"
+    }
+  }
+  </script>
 </head>
 <body>
   <header class="site-header glass fixed" role="banner">
@@ -126,7 +145,8 @@
         <figure class="hero__photo sr" aria-label="Тимур Громов">
           <img src="./assets/hero/portrait.webp"
                alt="Тимур Громов — ведущий на корпоратив"
-               loading="lazy" decoding="async">
+               width="518" height="518"
+               loading="eager" decoding="async" fetchpriority="high">
         </figure>
       </div>
     </section>
@@ -257,19 +277,19 @@
           <div class="photos-track" tabindex="0">
             <!-- ПОДСТАВЬ СВОИ ПУТИ. Можно смешивать вертикальные/горизонтальные -->
             <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P1.webp" alt="Момент 1" loading="eager" decoding="async" fetchpriority="high"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P2.webp" alt="Момент 2" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P3.webp" alt="Момент 3" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P4.webp" alt="Момент 4" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P5.webp" alt="Момент 5" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P6.webp" alt="Момент 6" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P7.webp" alt="Момент 7" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P8.webp" alt="Момент 8" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P9.webp" alt="Момент 9" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P10.webp" alt="Момент 10" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P11.webp" alt="Момент 11" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P12.webp" alt="Момент 12" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P13.webp" alt="Момент 13" loading="eager" decoding="async"></figure>
-            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P14.webp" alt="Момент 14" loading="eager" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P2.webp" alt="Момент 2" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P3.webp" alt="Момент 3" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P4.webp" alt="Момент 4" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P5.webp" alt="Момент 5" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P6.webp" alt="Момент 6" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P7.webp" alt="Момент 7" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P8.webp" alt="Момент 8" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P9.webp" alt="Момент 9" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P10.webp" alt="Момент 10" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P11.webp" alt="Момент 11" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P12.webp" alt="Момент 12" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P13.webp" alt="Момент 13" loading="lazy" decoding="async"></figure>
+            <figure class="photo-card" data-image-modal><img src="./assets/photos/gal/P14.webp" alt="Момент 14" loading="lazy" decoding="async"></figure>
           </div>
 
           <button class="photos-btn next" aria-label="Вперёд" data-dir="1">›</button>
@@ -612,7 +632,7 @@
     </svg>
   </a>
 
-  <script src="script.js?v=video_modal_sources_1"></script>
+  <script src="script.js?v=stabilization_3"></script>
   
 </body>
 </html>
