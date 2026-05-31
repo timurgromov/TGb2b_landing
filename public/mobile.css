@@ -1,0 +1,1496 @@
+  /* ===== МОБИЛЬНАЯ ВЕРСИЯ (адаптация desktop стилей) ===== */
+
+/* ===== ПОДДЕРЖКА PREFERS-REDUCED-MOTION НА МОБИЛКЕ ===== */
+@media (prefers-reduced-motion: reduce) {
+  /* Заменяем сложные анимации на мягкие fade */
+  .workflow__step, .benefit, .photo-card, .letter-card {
+    transition: opacity 0.4s ease !important;
+  }
+  
+  /* Убираем hover трансформации, оставляем только fade */
+  .workflow__step:hover, .benefit:hover, .photo-card:hover, .letter-card:hover {
+    transform: none !important;
+    transition: opacity 0.4s ease !important;
+  }
+  
+  /* Мягкие fade для scroll анимаций */
+  .sr, .scroll-reveal, .fade-up {
+    transition: opacity 0.4s ease !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* ===== УНИВЕРСАЛЬНЫЕ ПРАВИЛА ДЛЯ МОБИЛКИ ===== */
+  /* Убираем горизонтальный скролл */
+  body {
+    overflow-x: hidden !important;
+  }
+  
+  /* Все контейнеры используют % вместо vw */
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 clamp(12px, 4vw, 18px) !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Секции без лишних отступов */
+  .section {
+    padding: 60px 0 !important;
+  }
+  
+  /* Все grid/flex контейнеры */
+  .benefits, .workflow__steps, .photos-track, .letters-track {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  
+  /* Слайдеры используют % */
+  .slider__track {
+    grid-auto-columns: 90% !important;
+  }
+  
+  /* Общее свечение для всех оранжевых кнопок (кроме header) */
+  .btn-primary:not(.workflow__cta .btn):not(.wa-btn),
+  .benefits__cta .btn-outline,
+  .workflow__cta .btn-outline,
+  .hero-actions .btn-outline {
+    box-shadow: 
+      0 4px 14px rgba(255,122,51,0.25),
+      0 0 20px rgba(255, 106, 61, 0.20),
+      0 0 40px rgba(255, 122, 69, 0.10) !important;
+  }
+
+  /* Свечение header кнопки исчезает вместе с header на мобилке */
+  .site-header:not(.header-hidden) .header__cta .wa-btn {
+    box-shadow: 
+      0 4px 14px rgba(255,122,51,0.25),
+      0 0 20px rgba(255, 106, 61, 0.20),
+      0 0 40px rgba(255, 122, 69, 0.10) !important;
+  }
+
+  .site-header.header-hidden .header__cta .wa-btn {
+    box-shadow: none !important;
+  }
+  :root {
+    /* ПРОПОРЦИИ ДЛЯ ФОТО, НЕ ДЛЯ ВИДЕО */
+    --m-frame-ratio: 4/3;  /* классическое фото 4:3 */
+    --gutter: 18px;                /* отступы слева/справа как в «Видео», «Преимущества» и т.п. */
+    --shift: 28px;                 /* шаг смещения карточек вправо→влево */
+    --step-gap: 20px;              /* вертикальный шаг между карточками */
+    --section-py: 36px;            /* базовый внутренний отступ секций */
+  }
+
+  /* ===== СОВРЕМЕННЫЙ MOBILE HERO (2025) ===== */
+  
+  .hero {
+    display: flex ;
+    flex-direction: column ;
+    align-items: center ;
+    padding: 32px 18px 48px 18px ; /* отступы сверху/снизу */
+  }
+
+  .hero__grid {
+    display: contents ; /* убираем grid, используем flex */
+  }
+
+  /* === Hero фото (фиксируем квадрат даже на мобильных) === */
+  .hero__photo {
+    aspect-ratio: 1 / 1 ;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 0;
+    order: 1 ;
+    position: relative ;
+    box-shadow: none ; /* убираем старые тени */
+  }
+
+  .hero__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%; /* поднимает кадр ближе к лицу */
+    display: block ;
+    border-radius: 0 ; /* убираем border-radius с img */
+  }
+
+  /* Градиент снизу для читаемости текста */
+  .hero__photo::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    pointer-events: none;
+  }
+
+  /* Заголовок прямо на фотографии внизу */
+  .hero__photo::before {
+    content: none;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: clamp(26px, 6vw, 36px); /* УВЕЛИЧИЛИ до 36px для выразительности */
+    font-weight: 800;
+    line-height: 1.1; /* плотнее для баланса с лицом */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45); /* ФИНАЛЬНЫЙ ОПТИМАЛЬНЫЙ ВАРИАНТ */
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .hero__text {
+    order: 2 ;
+    text-align: left ;
+    width: 100% ;
+    /* АРТЕФАКТ УДАЛЕН: margin-top: -70px - больше не нужно, заголовок теперь на фото */
+    position: relative ;
+    z-index: 2 ;
+  }
+
+  /* Реальный h1 остается видимым и визуально лежит на фото. */
+  .hero__text h1 {
+    display: block !important;
+    position: relative;
+    z-index: 3;
+    margin: -116px 20px 36px !important;
+    color: #fff;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 800;
+    line-height: 1.1;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+  }
+
+  .hero__text h1 .h1-prefix {
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .hero__cta {
+    order: 3 ;
+  }
+  
+  /* ===== VIDEO SECTION ===== */
+  
+  .video-grid-fullscreen {
+    grid-template-columns: 1fr ;
+    gap: 16px ;
+    max-width: 100% ;
+    margin: 0 auto ;
+  }
+
+  .video-fullscreen .video-wrapper {
+    width: 100% ;
+    max-width: 100% ;
+    margin: 0 auto ;
+    aspect-ratio: 16/9 ; /* как в desktop */
+  }
+
+  .video-fullscreen .video-wrapper img {
+    width: 100% ;
+    height: 100% ;
+    object-fit: cover ; /* заполняет контейнер, обрезает по бокам */
+  }
+  
+  /* ===== PHOTO GALLERY FIX (РАЗ И НАВСЕГДА) ===== */
+  
+  /* 1) Контейнер галереи: как у видеоблока - на весь экран */
+  .photos-slider {
+    position: relative;               /* для стрелок */
+    width: 100%;
+    overflow: hidden;
+    min-height: 220px;                /* минимальная высота для стрелок */
+    padding: 0 18px;                  /* такие же отступы как у видеоблока */
+  }
+
+  /* 2) Сам слайд — это КАДР фиксированной пропорции 4:3 */
+  .photo-card {
+    width: 100%;
+    aspect-ratio: 4/3;
+    height: auto ;          /* сбросить любые фикс-высоты, навешанные на десктопе/JS */
+    position: relative;
+    overflow: hidden;                  /* чтобы ничего не торчало за рамку */
+    display: block;
+  }
+
+  /* 3) Картинка заполняет кадр, по умолчанию — как горизонтальная */
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                 /* горизонтальные заполняют кадр */
+    object-position: center;
+    display: block;
+    max-width: none;                   /* чтобы либы не подсунули max-width:100% и не ломали высоту */
+  }
+
+  /* 4) Для ПОРТРЕТНЫХ (вертикальных) — держим высоту, подстраиваем ширину */
+  .photo-card img.is-portrait {
+    object-fit: contain;               /* показывает целиком, оставляя поля слева/справа */
+    background: transparent;           /* фон кадра виден по бокам */
+  }
+
+  /* 5) Стрелки/контролы — ПОСРЕДИНЕ ФОТО, перебиваем все конфликты */
+  .photos-btn {
+    position: absolute ;
+    top: 50% ;
+    transform: translateY(-50%) ;
+    width: 48px ;
+    height: 48px ;
+    border-radius: 50% ;
+    background: rgba(255, 138, 76, 0.9) ;
+    border: none ;
+    z-index: 10 ;
+    display: flex ;
+    align-items: center ;
+    justify-content: center ;
+    font-size: 20px ;
+    color: #fff ;
+    cursor: pointer ;
+    transition: all 0.2s ease ;
+  }
+  
+  .photos-btn.prev {
+    left: 10px ;
+  }
+  
+  .photos-btn.next {
+    right: 10px ;
+  }
+
+  /* ===== LETTERS - такие же отступы как у фотогалереи ===== */
+  .letters-slider {
+    padding: 0 18px;  /* такие же отступы как у фотогалереи */
+  }
+
+  .letters-btn {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 20px !important;
+  }
+  
+  /* ===== BENEFITS ===== */
+  
+  /* === Benefits (mobile) === */
+  .benefits, .benefits-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+    padding-left:  max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  /* Карточки не должны иметь фиксированной ширины */
+  .benefit-card {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Длинные заголовки в карточках не ломают сетку */
+  .benefit-card, .benefit-card * {
+    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* === Chips (mobile) === */
+  .chips, .chips-grid, .hero-chips, #hero-tags {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+  }
+
+  .chip, .tag { min-width: 0; }
+  
+  /* ===== SLIDER TRACKS ===== */
+  
+  .slider__track {
+    grid-auto-columns: 90% ;
+  }
+  
+  /* ===== FOOTER ===== */
+  
+  .footer__grid {
+    grid-template-columns: 1fr ;
+  }
+
+  /* Центрируем текст в подвале */
+  .footer__brand {
+    text-align: center ;
+  }
+
+  .brand {
+    text-align: center ;
+  }
+
+  .footer__tagline {
+    text-align: center ;
+  }
+  
+  /* ===== FOOTER: Убираем стили ссылок для ИНН и ОГРН ===== */
+  
+  .footer__legal a,
+  .footer__legal a:link,
+  .footer__legal a:visited,
+  .footer__legal a:hover,
+  .footer__legal a:active {
+    color: var(--muted) ;
+    text-decoration: none ;
+    border-bottom: none ;
+    background: none ;
+    pointer-events: none ;
+  }
+
+  /* ===== LETTERS SECTION ===== */
+  
+  .letter-card {
+    width: 70% ; /* УМЕНЬШАЕМ ШИРИНУ блока письма */
+    aspect-ratio: 210/297 ; /* A4 портрет — ВЕРТИКАЛЬНАЯ форма */
+    height: auto ;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    cursor: pointer ;
+    margin: 0 auto ; /* центрируем */
+  }
+
+  .letter-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
+  /* Hover эффект для letter карточек на мобилке */
+  .letter-card:hover {
+    box-shadow: 0 8px 32px rgba(255, 120, 40, 0.4) !important;
+    border-color: rgba(255, 106, 61, 0.5) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* ===== МОДАЛЬНОЕ ОКНО ДЛЯ ПИСЕМ С РАМКОЙ (МОБИЛКА) ===== */
+  
+  /* МОДАЛЬНОЕ ОКНО НА ПОЛНЫЙ ЭКРАН БЕЗ РАМОК */
+  html body .modal.active,
+  .modal.active {
+    padding: 0 ; /* УБИРАЕМ ВСЕ ПАДДИНГИ */
+    position: fixed ;
+    top: 0 ;
+    left: 0 ;
+    right: 0 ;
+    bottom: 0 ;
+    width: 100vw ;
+    height: 100vh ;
+  }
+  
+  /* МЕГА-СИЛЬНЫЙ селектор ТОЛЬКО для модального окна писем */
+  #letter-modal .modal__content {
+    max-width: 100vw !important ; /* НА ВСЮ ШИРИНУ ВИДЕОПОРТА */
+    max-height: 100vh !important ; /* НА ВСЮ ВЫСОТУ ВИДЕОПОРТА */
+    width: 100vw !important ;
+    height: 100vh !important ;
+    margin: 0 !important ;
+    padding: 8px !important ; /* НЕБОЛЬШИЕ ПОЛЯ ЧТОБЫ НЕ ЗАПОЛЗАЛО */
+    border-radius: 0 !important ; /* УБИРАЕМ СКРУГЛЕНИЕ */
+    display: flex !important ;
+    align-items: center !important ; /* ЦЕНТРИРУЕМ */
+    justify-content: center !important ; /* ЦЕНТРИРУЕМ */
+    background: white !important ;
+    box-sizing: border-box !important ; /* УЧИТЫВАЕМ ПАДДИНГ В РАЗМЕРАХ */
+  }
+  
+  /* МЕГА-СИЛЬНЫЙ селектор ТОЛЬКО для изображения письма */
+  #letter-modal .letter-modal-img,
+  #letter-modal .modal__img {
+    max-width: calc(100vw - 16px) !important ; /* УЧИТЫВАЕМ ПАДДИНГ 8px*2 */
+    max-height: calc(100vh - 16px) !important ; /* УЧИТЫВАЕМ ПАДДИНГ 8px*2 */
+    width: calc(100vw - 16px) !important ;     /* ПОДСТРАИВАЕМСЯ ПОД ШИРИНУ ЭКРАНА */
+    height: auto !important ;                   /* ВЫСОТА АВТОМАТИЧЕСКИ */
+    object-fit: contain !important ;            /* СОХРАНЯЕМ ПРОПОРЦИИ */
+    border-radius: 0 !important ;              /* УБИРАЕМ СКРУГЛЕНИЕ */
+    box-shadow: none !important ;              /* УБИРАЕМ ТЕНИ */
+    margin: 0 !important ;
+    padding: 0 !important ;
+  }
+  
+  /* ОРАНЖЕВЫЕ СТРЕЛКИ ДЛЯ ПИСЕМ (как в фотогалерее) */
+  .modal__arrow {
+    display: flex ; /* показываем стрелки */
+    width: 48px ;
+    height: 48px ;
+    background: var(--accent, #ff6b35) ;
+    color: white ;
+    border-radius: 50% ;
+    opacity: 1 ;
+    z-index: 1001 ;
+    position: absolute ;
+    top: 50% ;
+    transform: translateY(-50%) ;
+    font-size: 20px ;
+  }
+  
+  .modal__arrow--prev {
+    left: 16px ;
+  }
+  
+  .modal__arrow--next {
+    right: 16px ;
+  }
+  
+  /* Первая стрелка скрыта (как в фотогалерее) */
+  .modal__arrow--prev.is-first {
+    opacity: 0 ;
+    pointer-events: none ;
+  }
+  
+  /* Кнопка закрытия */
+  .modal__close {
+    top: 16px ;
+    right: 16px ;
+    width: 44px ;
+    height: 44px ;
+    background: rgba(0,0,0,0.6) ;
+    color: white ;
+    border-radius: 50% ;
+    z-index: 1002 ;
+  }
+
+
+  /* ===== СОКРАЩЕНИЕ ТЕКСТА ПРЕИМУЩЕСТВ НА МОБИЛКЕ ===== */
+  
+  /* УБРАЛИ СТАРЫЕ ПРАВИЛА ДЛЯ 5-Й КАРТОЧКИ - теперь используется простой текст */
+  
+  /* УБРАЛИ СТАРЫЕ ПРАВИЛА ДЛЯ 6-Й КАРТОЧКИ - теперь используются утилиты видимости */
+
+  /* ===== СКРЫВАЕМ ТЕЛЕФОН В ХЕДЕРЕ НА МОБИЛКЕ ===== */
+  .header__phone {
+    display: none ;
+  }
+
+  /* ===== ПОРЯДОК РАБОТЫ НА МОБИЛКЕ - ВЕРТИКАЛЬНЫЙ TIMELINE ===== */
+  /* WORKFLOW - чистая база для мобильной версии */
+  .workflow {
+    padding: 4rem 0;
+  }
+
+  .workflow .section__subtitle {
+    font-size: 14px;
+    margin-bottom: 2rem;
+  }
+
+  /* Скрываем десктопную линию */
+  .workflow__connector {
+    display: none;
+  }
+
+  /* ===== HERO: Чипсы с автоматическим переносом ===== */
+  
+  /* МЕГА-СИЛЬНЫЙ селектор для чипсов */
+  html body #hero-left #hero-tags {
+    display: flex ;
+    flex-wrap: wrap ;
+    gap: 6px ;
+    max-width: 100% ;
+    margin-top: 0 ; /* УБИРАЕМ desktop margin-top: 14px */
+    margin-bottom: 16px ; /* Симметрия с отступом до кнопок */
+  }
+
+  #hero-tags .tag-row {
+    display: contents ; /* убираем обёртку, чтобы flex работал напрямую с .tag */
+  }
+
+  #hero-tags .tag {
+    font-size: 11.25px ;
+    padding: 4.5px 8px ;
+  }
+
+  /* Сокращаем текст чипа Love Radio ТОЛЬКО на мобилке */
+  #hero-tags .tag-radio {
+    font-size: 0 !important;
+    line-height: 1 !important;
+  }
+  
+  #hero-tags .tag-radio::before {
+    content: "Ведущий Love Radio" !important;
+    font-size: 12.5px !important;
+    display: inline-block !important;
+  }
+
+  /* Убираем чип "Добрый юмор" на мобилке */
+  #hero-tags .tag-humor {
+    display: none ;
+  }
+
+  /* Ещё компактнее для узких экранов (iPhone SE, малые Android) */
+  @media (max-width: 390px) {
+    html body #hero-left #hero-tags {
+      gap: 4px ;
+      margin-bottom: 14px ;
+    }
+    
+    #hero-tags .tag {
+      font-size: 10.8px ;
+      padding: 3.6px 7.2px ;
+    }
+    
+    /* Love Radio чип уже обработан в основном блоке @media (max-width: 768px) */
+  }
+
+  /* ===== HERO: Типографика и размеры ===== */
+  
+  #hero-left h1 {
+    font-size: clamp(24px, 5.5vw, 32px) ; /* УМЕНЬШЕННЫЙ размер */
+    line-height: 1.09 ; /* короткий межстрочный */
+    margin-bottom: 12px ;
+  }
+  
+  #hero-left h1 .h1-prefix {
+    font-size: inherit ;
+    line-height: inherit ;
+  }
+  
+  /* МЕГА-СИЛЬНЫЙ селектор для подзаголовка */
+  html body #hero-left #hero-subtitle {
+    font-size: 16px ; /* ЧИТАЕМЫЙ размер для всех мобильных экранов */
+    margin-top: 0 ; /* УБИРАЕМ desktop margin-top: 10px */
+    margin-bottom: 16px ; /* Симметрия с отступом до кнопок */
+  }
+  
+  /* ===== HERO: МЕГА-СИЛЬНЫЕ КНОПКИ (перебивают style.css) ===== */
+  
+  /* МЕГА-СИЛЬНЫЙ селектор для контейнера */
+  html body #hero-left #hero-actions {
+    flex-direction: column ;
+    gap: 12px ;
+    margin-top: 0 ; /* УБИРАЕМ desktop margin-top: 36px */
+    margin-bottom: 20px !important; /* КОМПАКТНЫЙ отступ до заголовка "Примеры работ" */
+    width: 100% ;
+  }
+  
+  /* МЕГА-СИЛЬНЫЙ селектор для первой кнопки */
+  html body #hero-left .hero-actions .btn-primary {
+    width: 100% ;
+    background: #FF7A33 ;
+    color: #fff ;
+    font-weight: 600 ;
+    font-size: 16px ;
+    padding: 16px 0 ;
+    border-radius: 12px ;
+    box-shadow: 
+      0 4px 14px rgba(255,122,51,0.25),
+      0 0 20px rgba(255, 106, 61, 0.20),
+      0 0 40px rgba(255, 122, 69, 0.10) ;
+    border: none ;
+    letter-spacing: 0.3px ;
+    margin: 0 ;
+    height: auto ;
+    opacity: 1 ;
+    transform: none ;
+  }
+  
+  /* МЕГА-СИЛЬНЫЙ селектор для второй кнопки */
+  html body #hero-left .hero-actions .btn-ghost {
+    width: 100% ;
+    background: transparent ;
+    color: #fff ;
+    font-weight: 600 ;
+    font-size: 16px ;
+    padding: 16px 0 ;
+    border-radius: 12px ;
+    border: 1px solid rgba(255,255,255,0.3) ;
+    letter-spacing: 0.3px ;
+    margin: 0 ;
+    height: auto ;
+    opacity: 1 ;
+    transform: none ;
+  }
+
+  /* ===== WORKFLOW: ИДЕАЛЬНО РОВНО И ПО ЦЕНТРУ ===== */
+  
+  /* Контейнер секции */
+  .section.workflow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+  }
+
+  /* Теплое свечение над заголовком для глубины */
+  .section.workflow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: radial-gradient(
+      ellipse 100% 80% at 50% 0%, 
+      rgba(255, 106, 61, 0.08) 0%, 
+      transparent 65%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Заголовки */
+  .section.workflow h2,
+  .section.workflow .section__subtitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Контейнер шагов */
+  #workflow .workflow__steps {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 36px !important; /* больше воздуха - линия "работает" */
+    margin-top: 32px !important; /* увеличен отступ от заголовка */
+    width: 100% !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Карточки шагов */
+  .workflow__step {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 320px !important; /* чтобы карточки не растягивались */
+    padding: 18px 16px !important; /* дополнительный воздух внутри карточки */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    transform: none !important; /* убираем desktop трансформации */
+    flex: none !important; /* убираем flex: 1 из desktop */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important; /* мягкая тень вниз для плотности */
+  }
+
+  /* Номера шагов - премиальный стиль, гармоничный с дизайном */
+  .workflow__badge {
+    top: -14px !important;                 /* ровно 50/50: половина из 28px */
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 14px !important;
+    background: #FF7A45 !important; /* идеально совпадает с кнопками */
+    color: #111 !important; /* тёмный текст - премиально и мягче */
+    font-weight: 700 !important; /* оптимальная толщина */
+    border: 1px solid rgba(255,255,255,0.15) !important; /* тонкая обводка */
+    box-shadow: 0 4px 16px rgba(255,122,69,0.25) !important; /* мягкое свечение */
+  }
+
+  /* Контент карточки - убираем desktop отступ */
+  .workflow__content {
+    margin-top: 0 !important;
+  }
+
+  /* Текст - улучшенная читаемость */
+  .workflow__title {
+    text-align: center !important;
+    margin-bottom: 4px !important;
+    color: rgba(255,255,255,0.9) !important; /* мягче, ближе к UI */
+  }
+
+  .workflow__text {
+    text-align: center !important;
+    margin: 0 !important;
+    color: rgba(255,255,255,0.9) !important; /* мягче, ближе к UI */
+  }
+
+  /* Кнопка - отделение от линии с лёгким свечением */
+  .workflow__cta {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 40px !important; /* больше отступа от линии */
+    margin-bottom: 0 !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .workflow__cta .btn {
+    margin: 0 auto !important;
+    box-shadow: 
+      0 0 20px rgba(255, 106, 61, 0.20),
+      0 0 40px rgba(255, 122, 69, 0.10) !important; /* лёгкое свечение по бокам */
+  }
+
+  /* Убираем desktop линии, но добавляем мобильную линию */
+  .section.workflow::after,
+  .workflow__connector,
+  .workflow svg,
+  .workflow canvas {
+    display: none !important;
+  }
+
+  /* Контейнер под линию с переменными для подгона */
+  #workflow .container {
+    position: relative !important;
+    /* ТОНКАЯ ПОДГОНОЧКА: эти два числа правим по месту */
+    --wf-line-top: 44px !important;     /* ↑ старт линии от верхнего края .container */
+    --wf-line-bottom: 38px !important;  /* ↓ отступ линии от нижнего края .container */
+  }
+
+  /* Вертикальная линия по центру контейнера */
+  #workflow .container::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: var(--wf-line-top) !important;
+    bottom: var(--wf-line-bottom) !important;
+    width: 2px !important;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 192, 151, 0) 0%,
+      rgba(255, 122, 69, 0.35) 15%,
+      rgba(255, 122, 69, 0.55) 50%,
+      rgba(255, 192, 151, 0.35) 85%,
+      rgba(255, 122, 69, 0) 100%
+    ) !important;
+    box-shadow:
+      0 0 4px rgba(255, 122, 69, 0.20),
+      0 0 12px rgba(255, 192, 151, 0.15),
+      0 0 24px rgba(255, 122, 69, 0.10) !important;
+    border-radius: 1px !important;
+    z-index: 0 !important;                     /* ВАЖНО: ниже карточек/цифр */
+    opacity: 0.65 !important;                  /* деликатнее - световой ориентир */
+    transform: translateX(-50%) !important;
+    pointer-events: none !important;
+  }
+
+  /* Состояние «линия проигрывается» */
+  #workflow .container.wf-line-play::before {
+    animation: wf-line-reveal 700ms ease-out forwards !important;
+  }
+
+  /* Анимация при наведении - как в преимуществах */
+  #workflow .workflow__step:hover {
+    transform: translateY(-2px) !important;
+    background: linear-gradient(135deg, 
+      rgba(255,106,61,0.08) 0%, 
+      rgba(198,168,105,0.06) 100%) !important;
+    box-shadow: 
+      inset 0 1px 0 rgba(255,106,61,0.3),
+      0 8px 40px rgba(255,106,61,0.15) !important;
+  }
+
+  @keyframes wf-line-reveal {
+    from { transform: translateX(-50%) scaleY(0); opacity: 0; }
+    to   { transform: translateX(-50%) scaleY(1); opacity: 1; }
+  }
+
+}
+
+/* Страховка для узких экранов */
+@media (max-width:360px){
+  :root{ --shift: 22px; }
+}
+
+/* Дополнительная оптимизация для очень узких экранов */
+@media (max-width: 480px) {
+  #video-consult-modal h3 {
+    font-size: clamp(14px, 4vw, 20px) !important; /* еще компактнее на узких экранах */
+    line-height: 1.2 !important; /* для переноса строк */
+  }
+  
+  /* Если все еще не влезает - еще компактнее */
+  #video-consult-modal .modal__text {
+    font-size: 13.5px !important;
+    line-height: 1.35 !important;
+  }
+  
+  #video-consult-modal .modal__content {
+    padding-bottom: 14px !important; /* сокращаем нижний паддинг */
+  }
+  
+  /* Кнопка на узких экранах - меньше шрифт */
+  #video-consult-modal .btn {
+    font-size: 13px !important; /* уменьшили с 15px */
+    line-height: 1.1 !important; /* компактный межстрочный интервал */
+    padding: 0 12px !important; /* уменьшили боковые отступы */
+  }
+}
+
+/* Для очень узких экранов (менее 360px) */
+@media (max-width: 360px) {
+  #video-consult-modal .modal__content {
+    width: 95vw !important; /* увеличиваем ширину модалки */
+    max-width: 95vw !important;
+  }
+  
+  #video-consult-modal .btn {
+    font-size: 12px !important; /* еще меньше шрифт */
+    line-height: 1.1 !important; /* компактный межстрочный интервал */
+    padding: 0 8px !important; /* еще меньше отступы */
+  }
+}
+
+/* ===== Модалка "Видеоконсультация" (MOBILE) ===== */
+@media (max-width: 768px) {
+  #video-consult-modal .modal__content {
+    width: min(92vw, 420px) !important;
+    max-width: 92vw !important;
+    max-height: 88dvh !important;
+    padding: 18px 16px 16px !important; /* уменьшили верх/бока/низ */
+    border-radius: 16px !important;
+    overflow-y: visible !important; /* убираем скролл */
+    -webkit-overflow-scrolling: touch;
+    background: #111415 !important;
+  }
+  
+  /* Заголовок — адаптивный размер по ширине экрана */
+  #video-consult-modal h3 {
+    font-size: clamp(16px, 4.5vw, 22px) !important; /* меньше базовый размер */
+    line-height: 1.2 !important; /* чуть больше для переноса */
+    margin: 0 44px 10px 0 !important; /* место для крестика 44px */
+    white-space: normal !important; /* разрешаем перенос */
+    overflow: visible !important; /* убираем обрезку */
+    text-overflow: unset !important; /* убираем многоточие */
+  }
+  
+  /* Крестик — больше зона тапа, симметрично */
+  #video-consult-modal .modal__close {
+    top: 6px !important;
+    right: 6px !important;
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 18px !important;
+    background: transparent !important;
+    border-radius: 50% !important;
+    color: var(--muted) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background 0.2s ease !important;
+    z-index: 10 !important;
+    margin: -6px -6px 0 0 !important; /* визуально отцентрировать */
+    opacity: 0.9 !important;
+  }
+  
+  #video-consult-modal .modal__close:hover {
+    background: rgba(255,255,255,0.1) !important;
+  }
+  
+  /* Подзаголовок — компактнее */
+  #video-consult-modal .modal__subtitle {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    margin: 6px 0 6px !important;
+  }
+  
+  /* Тело: уменьшаем типографику и интервалы */
+  #video-consult-modal .modal__text {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    margin: 0 0 10px !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  
+  #video-consult-modal .modal__text p {
+    margin: 0 0 10px !important;
+  }
+  
+  #video-consult-modal .modal__text strong {
+    font-size: 12px !important;
+  }
+  
+  .consult-list {
+    margin: 8px 0 0 !important;
+    padding-left: 18px !important;
+  }
+  
+  .consult-list li {
+    font-size: 14px !important;
+    margin: 6px 0 !important;
+  }
+  
+  /* Кнопка: компактная, без выхода за края */
+  #video-consult-modal .btn {
+    width: 100% !important;
+    height: 48px !important;
+    font-size: 15px !important;
+    line-height: 1.1 !important; /* компактный межстрочный интервал для переноса */
+    padding: 0 16px !important;
+    margin-top: 14px !important; /* визуальный баланс */
+    border-radius: 12px !important;
+    text-align: center !important;
+    justify-content: center !important;
+    display: flex !important;
+    align-items: center !important; /* центрируем текст по вертикали */
+    box-shadow: 0 8px 30px rgba(255, 120, 60, 0.18) !important;
+  }
+}
+
+/* --- узкие устройства и "зумнутые" iPhone 12/13 (320–360px) --- */
+@media (max-width: 360px) {
+
+  /* базовая страховка от переполнений */
+  *, *::before, *::after { box-sizing: border-box; }
+  img, video { max-width: 100%; height: auto; }
+  .container, .section-inner, .wrap { padding-left: 16px; padding-right: 16px; }
+
+  /* Заголовок главного экрана */
+  .hero__title,
+  .hero h1,
+  .page-hero h1 {
+    font-size: clamp(24px, 8.5vw, 32px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  /* Подзаголовок/лиды */
+  .hero__lead,
+  .lead, .subtitle {
+    font-size: clamp(14px, 4.6vw, 16px);
+    line-height: 1.45;
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+  }
+
+  /* Чипсы/бейджи — сетка по 2 в ряд, компактная высота */
+  .chips,
+  .chips-grid,
+  .badges,
+  .features-chips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 8px;
+  }
+
+  .chip,
+  .badge,
+  .feature-chip {
+    font-size: 11.7px;
+    line-height: 1.2;
+    padding: 9px 11px;
+    border-radius: 14px;
+    min-width: 0;           /* критично, чтобы текст не выталкивал ширину */
+    overflow-wrap: anywhere;
+  }
+
+  /* Блок "Преимущества" — карточки компактнее, без переполнений */
+  .benefits,
+  .advantages { padding-top: 24px; padding-bottom: 24px; }
+
+  .benefits__grid,
+  .advantages__grid {
+    display: grid;
+    grid-template-columns: 1fr;  /* по одному в столбик на 320px */
+    gap: 14px;
+  }
+
+  .benefit-card,
+  .adv-card,
+  .feature-card {
+    padding: 16px;
+    border-radius: 16px;
+    min-width: 0;               /* важно! */
+    overflow: hidden;
+  }
+
+  .benefit-card__title,
+  .adv-card__title,
+  .feature-card__title {
+    font-size: clamp(16px, 5.6vw, 18px);
+    line-height: 1.25;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    text-wrap: balance;
+  }
+
+  .benefit-card p,
+  .adv-card p,
+  .feature-card p {
+    font-size: clamp(13px, 4.3vw, 15px);
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  /* ===== CTA БЛОК: УБИРАЕМ ДЕФИС НА МОБИЛКЕ ===== */
+  .cta__title {
+    font-size: 0 ; /* скрываем оригинальный текст */
+    margin-bottom: 24px !important;
+  }
+  
+  .cta__title::before {
+    content: "Праздники проходят впечатления остаются." ;
+    font-size: clamp(24px, 5vw, 32px) ;
+    font-family: var(--font-serif) ;
+    font-weight: 700 ;
+    line-height: 1.2 ;
+    color: var(--text) ;
+    display: block ;
+  }
+
+
+  /* Кнопки — чуть ниже и компактнее */
+  .btn, .button {
+    font-size: 16px;
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+
+  /* Ещё немного воздуха между блоками */
+  section { scroll-margin-top: 64px; }
+}
+
+/* Чуть шире (361–374px): можно попробовать вернуть 3 чипса в ряд */
+@media (min-width: 361px) and (max-width: 374px) {
+  .chips,
+  .chips-grid,
+  .badges,
+  .features-chips {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px 10px;
+  }
+}
+
+/* CTA секция - больше внутреннего пространства (ВНЕ медиа-запроса) */
+.section.cta {
+  padding: 60px 18px !important;
+}
+
+.section.cta .cta__box {
+  padding: 40px 24px !important;
+  border-radius: 20px !important;
+  background: 
+    radial-gradient(ellipse 140% 100% at 50% 0%, 
+      rgba(255,106,61,0.08) 0%, 
+      rgba(198,168,105,0.04) 40%,
+      transparent 70%),
+    radial-gradient(120% 120% at 30% 30%, #1a1f25 0%, #0f1216 72%, #0b0e12 100%) !important;
+  text-align: center !important;
+}
+
+.section.cta .cta__title {
+  margin-bottom: 24px !important;
+}
+
+.section.cta .cta__actions {
+  margin-top: 20px !important;
+  display: flex !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
+
+/* === Mobile hero: настоящий h1 вместо CSS-псевдотекста === */
+@media (max-width: 768px) {
+  html body #hero-left h1 {
+    display: block !important;
+    max-width: calc(100% - 40px) !important;
+    margin: -116px 20px 36px !important;
+    color: #fff !important;
+    font-size: clamp(26px, 6vw, 32px) !important;
+    line-height: 1.1 !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
+    pointer-events: none !important;
+  }
+
+  html body #hero-left h1 .h1-prefix {
+    display: block !important;
+    max-width: 100% !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .hero__photo::before {
+    content: none !important;
+  }
+}
+
+/* ===== АДАПТАЦИЯ ДЛЯ iPhone SE И МАЛЫХ ЭКРАНОВ (320px) ===== */
+@media (max-width: 320px) {
+  /* Hero: уменьшаем реальный заголовок на фото */
+  .hero__text h1 {
+    font-size: clamp(22px, 5.5vw, 28px) !important;
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+    line-height: 1.05 !important;
+  }
+
+  /* Hero: компактнее подзаголовок на маленьких экранах */
+  html body #hero-left #hero-subtitle {
+    font-size: 13px !important; /* ОПТИМАЛЬНЫЙ размер для маленьких экранов */
+    margin-bottom: 14px !important; /* ОПТИМАЛЬНОЕ расстояние до чипсов */
+  }
+
+  /* Hero: компактнее чипсы - МЕГА-СИЛЬНЫЙ селектор против style.css */
+  html body #hero-left #hero-tags {
+    gap: 4px !important;
+    margin-bottom: 26px !important; /* Устанавливаем 26px для компактного баланса */
+    margin-top: 0 !important; /* Убираем desktop margin-top: 22px */
+  }
+
+  #hero-tags .tag {
+    font-size: 10.5px !important;
+    padding: 4px 7px !important;
+    border-radius: 10px !important;
+  }
+
+  /* ИСПРАВЛЯЕМ ДУБЛИРОВАНИЕ Love Radio на малых экранах */
+  #hero-tags .tag-radio {
+    font-size: 0 !important;
+    line-height: 1 !important;
+  }
+  
+  #hero-tags .tag-radio::before {
+    content: "Ведущий Love Radio" !important;
+    font-size: 10.5px !important;
+    display: inline-block !important;
+  }
+
+  /* Hero: компактнее кнопки - МЕГА-СИЛЬНЫЙ селектор против style.css */
+  html body #hero-left #hero-actions {
+    gap: 10px !important;
+    margin-bottom: 12px !important; /* ЕЩЁ КОМПАКТНЕЕ отступ до видеоблога */
+    margin-top: 0 !important; /* Убираем desktop margin-top: 56px */
+  }
+
+  html body #hero-left .hero-actions .btn-primary,
+  html body #hero-left .hero-actions .btn-ghost {
+    font-size: 14px !important;
+    padding: 14px 0 !important;
+    border-radius: 10px !important;
+  }
+
+  /* Benefits: компактнее карточки */
+  .benefits, .benefits-grid {
+    gap: 10px !important;
+  }
+
+  .benefit, .benefit-card {
+    padding: 12px !important;
+    border-radius: 12px !important;
+  }
+
+  .benefit .title, .benefit-card__title {
+    font-size: 15px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .benefit p, .benefit-card p {
+    font-size: 12.5px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Workflow: компактнее карточки */
+  .workflow__step {
+    padding: 14px 12px !important;
+    max-width: 280px !important;
+    border-radius: 10px !important;
+  }
+
+  .workflow__badge {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 13px !important;
+    top: -13px !important;
+  }
+
+  .workflow__title {
+    font-size: 15px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .workflow__text {
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Video section: компактнее заголовок */
+  .video-title, .section__title {
+    font-size: 20px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* CTA block: компактнее */
+  .section.cta {
+    padding: 48px 16px !important;
+  }
+
+  .section.cta .cta__box {
+    padding: 32px 20px !important;
+    border-radius: 16px !important;
+  }
+
+  .cta__title::before {
+    font-size: clamp(20px, 4.5vw, 26px) !important;
+  }
+
+  .section.cta .cta__actions {
+    gap: 10px !important;
+  }
+
+  .section.cta .btn {
+    font-size: 14px !important;
+    padding: 14px 16px !important;
+    border-radius: 10px !important;
+  }
+
+  /* Letters: компактнее */
+  .letter-card {
+    width: 75% !important;
+  }
+
+  /* Footer: компактнее */
+  .footer__legal {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+
+  .footer__copy {
+    font-size: 11.5px !important;
+  }
+
+  /* Modal: компактнее */
+  #video-consult-modal .modal__content {
+    padding: 16px 14px 14px !important;
+  }
+
+  #video-consult-modal h3 {
+    font-size: clamp(15px, 4vw, 20px) !important;
+  }
+
+  #video-consult-modal .modal__text {
+    font-size: 13px !important;
+  }
+
+  #video-consult-modal .btn {
+    font-size: 13px !important;
+    padding: 0 10px !important;
+  }
+
+  /* PATCH BEGIN: POPUP_MOBILE_MINIATURE */
+  /* Pop-up модалка "Чек-лист для HR" - мобильная адаптация */
+  #article-popup-modal .modal__content {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    padding: 20px 18px 18px !important;
+    border-radius: 20px !important;
+  }
+
+  .article-popup-title {
+    font-size: 24px !important;
+  }
+
+  .article-popup-subtitle {
+    font-size: 15px !important;
+  }
+
+  /* Миниатюра скрыта на мобильных чтобы не перегружать поп-ап */
+  .article-popup__media,
+  .article-popup__preview,
+  .article-popup-preview {
+    display: none !important;
+  }
+
+  .article-popup-form .btn {
+    font-size: 15px !important;
+    padding: 12px 14px !important;
+  }
+
+  #article-popup-modal .modal__close {
+    top: 6px !important;
+    right: 6px !important;
+  }
+  /* PATCH END: POPUP_MOBILE_MINIATURE */
+/* Дополнительная адаптация для очень маленьких экранов */
+@media (max-width: 480px) {
+  #article-popup-modal .modal__content {
+    padding: 16px 14px 14px !important;
+  }
+  .article-popup-title {
+    font-size: clamp(18px, 5vw, 22px) !important;
+    margin: 0 40px 10px 0 !important;
+  }
+  .article-popup-subtitle {
+    font-size: 13px !important;
+  }
+  .article-popup-form .btn {
+    font-size: 14px !important;
+    padding: 10px 14px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  #article-popup-modal .modal__content {
+    padding: 14px 12px 12px !important;
+  }
+  .article-popup-title {
+    font-size: 16px !important;
+    margin: 0 36px 8px 0 !important;
+  }
+  .article-popup-form .btn {
+    font-size: 13px !important;
+    padding: 10px 12px !important;
+  }
+  #article-popup-modal .modal__close {
+    width: 40px !important;
+    height: 40px !important;
+    top: 4px !important;
+    right: 4px !important;
+  }
+}
+
+/* Container: минимальные отступы */
+.container {
+  padding: 0 clamp(10px, 3vw, 14px) !important;
+}
+
+/* Sections: компактнее */
+.section {
+  padding: 48px 0 !important;
+}
+
+/* Hero: меньше отступы */
+.hero {
+  padding: 24px 14px 40px 14px !important;
+}
+
+/* УБРАЛИ ДУБЛИРУЮЩИЕ ПРАВИЛА ДЛЯ 5-Й КАРТОЧКИ */
+
+/* --- BENEFITS: одинаковый верхний отступ у всех карточек --- */
+.benefit,
+.benefit-card,
+.adv-card,
+.feature-card {
+  padding: 16px !important;          /* базовый внутренний отступ */
+  padding-top: 18px !important;      /* +чуть воздуха сверху */
+  display: block;                    /* выключаем любые странности коллапса */
+}
+
+/* Заголовки внутри карточек: убираем возможный margin-top */
+.benefit .title,
+.benefit-card__title,
+.adv-card__title,
+.feature-card__title {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+/* На самых узких (≤360px) ещё на 2px больше воздуха */
+@media (max-width: 360px) {
+  .benefit,
+  .benefit-card,
+  .adv-card,
+  .feature-card {
+    padding-top: 20px !important;
+  }
+}
+
+/* УТИЛИТЫ ВИДИМОСТИ УБРАНЫ - теперь используется простой текст */
+
+/* === HERO: компактный зазор между чипсами и кнопками (мобайл) === */
+@media (max-width: 480px) {
+  /* 1) Чипсы: оптимальное расстояние до кнопок */
+  html body #hero-left #hero-tags {
+    margin-bottom: 26px !important;  /* компактное расстояние */
+  }
+
+  /* 2) Кнопки: убираем дополнительный верхний отступ */
+  html body #hero-left #hero-actions,
+  html body #hero-left .hero-actions {
+    margin-top: 0 !important;        /* было 36px из style.css */
+    gap: 12px !important;
+  }
+
+  /* 3) На всякий случай гасим «заглушки»-соседей из style.css */
+  #hero-tags + .button-row,
+  #hero-tags + .cta-row,
+  #hero-tags + .hero-ctas {
+    margin-top: 0 !important;
+  }
+}
+
+/* === Мобилка: подзаголовок геро-блока и отступы под него === */
+@media (max-width: 390px) {
+  /* единый целевой селектор */
+  .hero__text .sub,
+  #hero-subtitle {
+    font-size: 16px !important;   /* ЧИТАЕМЫЙ размер на всех мобильных экранах */
+    line-height: 1.35 !important;
+    margin: 0 0 14px !important;  /* убрать лишний верхний отступ и держать ритм */
+    max-width: 46ch;              /* чтобы не «сыпался» в 2-3 слова в строке */
+  }
+
+  /* чипсы + кнопки: поджать «воздух» между ними */
+  #hero-tags {
+    margin-top: 0 !important;     /* desktop в style.css добавляет mt — убираем */
+    margin-bottom: 14px !important;
+    gap: 6px 8px !important;
+  }
+
+  .hero-actions {
+    margin-top: 0 !important;
+    gap: 12px !important;
+  }
+}
+
+/* === Mobile hero: настоящий h1 вместо CSS-псевдотекста === */
+@media (max-width: 768px) {
+  html body #hero-left h1 {
+    display: block !important;
+    max-width: calc(100% - 40px) !important;
+    margin: -116px 20px 36px !important;
+    color: #fff !important;
+    font-size: clamp(26px, 6vw, 32px) !important;
+    line-height: 1.1 !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
+    pointer-events: none !important;
+  }
+
+  html body #hero-left h1 .h1-prefix {
+    display: block !important;
+    max-width: 100% !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .hero__photo::before {
+    content: none !important;
+  }
+}
+
+/* === ИСПРАВЛЕНИЕ: Центровка текста "Love Radio" чипса === */
+#hero-tags .tag-radio {
+  display: inline-flex !important;
+  align-items: center !important;
+  line-height: 1.2 !important;
+}
+
+#hero-tags .tag-radio::before {
+  display: block !important;
+  line-height: 1.2 !important;
+}
+}

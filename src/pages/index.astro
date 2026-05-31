@@ -1,0 +1,37 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Benefits from '@components/Benefits.astro';
+import CTA from '@components/CTA.astro';
+import Footer from '@components/Footer.astro';
+import Gallery from '@components/Gallery.astro';
+import Header from '@components/Header.astro';
+import Hero from '@components/Hero.astro';
+import Letters from '@components/Letters.astro';
+import Modals from '@components/Modals.astro';
+import VideoCases from '@components/VideoCases.astro';
+import WhatsAppFab from '@components/WhatsAppFab.astro';
+import Workflow from '@components/Workflow.astro';
+import { siteMeta, structuredData } from '@data/corporate';
+---
+<BaseLayout
+  title={siteMeta.title}
+  description={siteMeta.description}
+  canonical={siteMeta.url}
+  ogImage={siteMeta.ogImage}
+  includeMainAssets
+  structuredData={structuredData}
+>
+  <Header />
+  <main class="page">
+    <Hero />
+    <VideoCases />
+    <Benefits />
+    <Workflow />
+    <Gallery />
+    <Letters />
+    <CTA />
+  </main>
+  <Footer />
+  <Modals />
+  <WhatsAppFab />
+</BaseLayout>

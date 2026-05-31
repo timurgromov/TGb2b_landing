@@ -1,0 +1,22 @@
+---
+import { letters } from '@data/corporate';
+---
+<section id="letters" class="section">
+  <h2 class="section__title sr">Благодарности компаний</h2>
+
+  <div class="letters-slider sr" aria-label="Благодарственные письма">
+    <button class="letters-btn prev" aria-label="Назад" data-dir="-1">‹</button>
+
+    <div class="letters-track">
+      {letters.map((letter) => (
+        <figure class="letter-card" data-letter-modal>
+          <img src={letter.src} alt={letter.alt} loading="lazy" decoding="async" />
+        </figure>
+      ))}
+    </div>
+
+    <button class="letters-btn next" aria-label="Вперёд" data-dir="1">›</button>
+  </div>
+
+  <div class="slider-dots" id="letters-dots" aria-hidden="true"></div>
+</section>

@@ -1,0 +1,23 @@
+---
+import { hero } from '@data/corporate';
+---
+<section class="hero">
+  <div class="container hero__grid">
+    <div class="hero__text sr" id="hero-left">
+      <h1><span class="h1-prefix">{hero.title}</span></h1>
+      <p class="sub" id="hero-subtitle">{hero.subtitle}</p>
+      <div class="hero-tags" id="hero-tags">
+        {hero.tags.map((tag) => (
+          <span class:list={['tag', tag.className]}>{tag.label}</span>
+        ))}
+      </div>
+      <div class="hero__cta hero-actions" id="hero-actions">
+        <button type="button" class="btn btn-primary" data-modal="contact-popup" data-cta="contact_popup_hero">Обсудить корпоратив</button>
+        <button class="btn btn-outline" data-modal="video-consult-modal" data-form-source="hero_video" data-cta="video_call_hero">Назначить встречу</button>
+      </div>
+    </div>
+    <figure class="hero__photo sr" aria-label="Тимур Громов">
+      <img src={hero.image} alt={hero.imageAlt} width="518" height="518" loading="eager" decoding="async" fetchpriority="high" />
+    </figure>
+  </div>
+</section>

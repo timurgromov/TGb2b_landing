@@ -1,0 +1,11 @@
+---
+import { videos } from '@data/corporate';
+---
+<section class="video-fullscreen" id="cases">
+  <h2 class="video-title sr">Примеры работ</h2>
+  <div class="video-grid-fullscreen">
+    {videos.map((item) => (
+      <div class="video-wrapper sr" data-video={item.video} data-cover={item.cover}></div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,19 @@
+---
+import { benefits } from '@data/corporate';
+---
+<section id="benefits" class="section">
+  <div class="container">
+    <h2 class="section__title sr">Ваши преимущества — мои гарантии</h2>
+    <div class="benefits">
+      {benefits.map(([title, text]) => (
+        <div class="benefit sr">
+          <div class="title">{title}</div>
+          <p>{text}</p>
+        </div>
+      ))}
+    </div>
+    <div class="benefits__cta">
+      <button class="btn btn-outline" data-modal="contact-popup" data-cta="contact_popup_benefits">Обсудить корпоратив</button>
+    </div>
+  </div>
+</section>

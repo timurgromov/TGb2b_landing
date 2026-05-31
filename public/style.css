@@ -1,0 +1,2299 @@
+
+
+:root{
+  /* брейкпоинты */
+  --bp-sm: 768px;
+  --bp-md: 1180px;
+
+  /* контейнер и секции */
+  --container-max: 1400px; /* унифицировано с медиа-секциями */
+  --container-pad: 24px;
+  --content-max-wide: 1400px; /* для медиа-секций (видео, фото, письма) */
+
+  --section-gap-y: 72px;
+  --section-gap-y-tab: 60px;
+  --section-gap-y-mob: 56px;
+
+  /* типографика - базовые размеры (как в эталоне) */
+  --h1: 45px;
+  --p: 16px;
+  --sub: 18px;
+  --chip: 14px;
+  --h2: 28px;
+  --h3: 16px;
+  --small: 14px;
+
+  /* кнопки */
+  --btn-h: 44px;
+  --btn-pad-x: 16px;
+  
+  /* PATCH BEGIN: desktop-spacing-unification */
+  --section-gap-y-tight: 60px; /* плотнее — для галерей и сертификатов */
+  /* PATCH END: desktop-spacing-unification */
+}
+
+/* PATCH BEGIN: desktop-spacing-unification */
+/* ===== Desktop baseline spacing fix ===== */
+/* общий случай — секции выравниваются по базовому отступу */
+.section {
+  padding-block: var(--section-gap-y);
+}
+
+/* hero чуть крупнее сверху, но без лишнего отступа снизу */
+.hero {
+  padding-block-start: calc(var(--section-gap-y) + 20px);
+  padding-block-end: calc(var(--section-gap-y) / 2);
+}
+
+
+/* блоки, которые сейчас визуально прижаты (фото, благодарности) — делаем плотнее */
+.gallery, .certificates, .thanks, #portfolio, #letters {
+  padding-block: var(--section-gap-y-tight);
+}
+/* PATCH END: desktop-spacing-unification */
+
+/* PATCH: Возвращаем оригинальные поля как в эталоне */
+@media (min-width: 1200px) and (max-width: 1599px) {
+  :root {
+    --container-max: 1120px; /* возвращаем как было в эталоне */
+    --content-max-wide: 1120px; /* синхронизируем медиа-секции */
+  }
+}
+
+/* PATCH: Более плавное расширение на больших десктопах */
+@media (min-width: 1600px) {
+  :root {
+    --container-max: clamp(1200px, 70vw, 1380px);
+    --content-max-wide: clamp(1200px, 72vw, 1480px);
+  }
+}
+
+/* PATCH: Адаптивная типографика ТОЛЬКО для больших экранов (Full HD+) */
+@media (min-width: 1920px) {
+  :root {
+    --h1: clamp(45px, 4.5vw, 65px);  /* крупные шрифты только на Full HD+ */
+    --p: clamp(14px, 1.2vw, 18px);
+    --sub: clamp(16px, 2vw, 24px);
+    --chip: clamp(12px, 1.5vw, 18px);
+    --h2: clamp(24px, 3vw, 36px);
+    --h3: clamp(18px, 2.2vw, 28px);
+    --small: clamp(12px, 1.4vw, 16px);
+  }
+}
+
+@media (min-width: calc(var(--bp-sm) + 1px)) and (max-width: var(--bp-md)){
+  :root{
+    --section-gap-y: 56px; /* переопределяем для планшетов */
+    --h1: 40px;
+  }
+}
+
+@media (max-width: var(--bp-sm)){
+  :root{
+    --section-gap-y: var(--section-gap-y-mob);
+    --h1: 32px;
+  }
+}
+
+/* ===== Modern Theme (единственная тема) ===== */
+:root{
+  --bg:#0c0f14;
+  --bg-2:#0f1216;
+  --text:#e7ebf1;
+  --muted:#9aa3af;
+  --accent:#ff7a45;
+  --accent-2:#ed6e3a;
+  --card:#12161d;
+  --stroke:rgba(255,255,255,.06);
+  
+  /* Glass header variables */
+  --header-h: 72px;
+  --header-bg: rgba(15, 17, 20, 0.42);
+  --header-bg-scrolled: rgba(15, 17, 20, 0.66);
+  --blur: 16px;
+}
+
+/* ===== БАЗА/СЕТКИ ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+
+/* ===== ПОДДЕРЖКА PREFERS-REDUCED-MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  /* Заменяем сложные анимации на мягкие fade */
+  .workflow__step, .benefit, .photo-card, .letter-card {
+    transition: opacity 0.4s ease !important;
+  }
+  
+  /* Убираем hover трансформации, оставляем только fade */
+  .workflow__step:hover, .benefit:hover, .photo-card:hover, .letter-card:hover {
+    transform: none !important;
+    transition: opacity 0.4s ease !important;
+  }
+  
+  /* Мягкие fade для scroll анимаций */
+  .sr, .scroll-reveal, .fade-up {
+    transition: opacity 0.4s ease !important;
+  }
+}
+
+
+
+.container{
+  width: 100%;
+  max-width: calc(var(--container-max) + var(--container-pad) * 2);
+  padding-inline: var(--container-pad);
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+/* PATCH: .section padding-block управляется токеном на строке 32-33 */
+.section__title{font-size:var(--h2);font-weight:800;margin:0 0 24px;text-align:center}
+
+/* ===== HEADER (Glass Fixed) ===== */
+.site-header {
+  padding-top: env(safe-area-inset-top);
+}
+
+.site-header.glass.fixed {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--header-h);
+  z-index: 1000;
+  background: var(--header-bg);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background-color .25s ease, height .25s ease, box-shadow .25s ease, transform .3s ease;
+  transform: translateY(0);
+}
+
+.site-header.glass.fixed.scrolled {
+  background: var(--header-bg-scrolled);
+  box-shadow: 0 6px 24px rgba(0,0,0,.18);
+}
+
+.site-header.glass.fixed.header-hidden {
+  transform: translateY(-100%);
+}
+
+.header-row {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 800;
+  letter-spacing: 0.5px; /* увеличен для премиальности */
+  font-size: 18px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.main-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.header__cta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.header__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header__phone svg {
+  flex-shrink: 0;
+}
+
+/* Компенсация фиксированного header */
+.page {
+  padding-top: calc(var(--header-h) + env(safe-area-inset-top));
+}
+
+.burger {
+  display: none;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+/* ===== КНОПКИ ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform .15s ease, background-color .2s ease, border-color .2s ease;
+  will-change: transform;
+  cursor: pointer;
+}
+
+/* Общее свечение для всех оранжевых кнопок (кроме header) */
+.btn-primary:not(.wa-btn),
+.benefits__cta .btn-outline,
+.workflow__cta .btn-outline,
+.hero-actions .btn-outline {
+  box-shadow: 
+    0 10px 28px color-mix(in oklab, var(--accent) 45%, transparent),
+    0 0 20px rgba(255, 106, 61, 0.20),
+    0 0 40px rgba(255, 122, 69, 0.10);
+}
+
+/* Свечение header кнопки исчезает вместе с header */
+.site-header:not(.header-hidden) .header__cta .wa-btn {
+  box-shadow: 
+    0 10px 28px color-mix(in oklab, var(--accent) 45%, transparent),
+    0 0 20px rgba(255, 106, 61, 0.20),
+    0 0 40px rgba(255, 122, 69, 0.10);
+}
+
+.site-header.header-hidden .header__cta .wa-btn {
+  box-shadow: none !important;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: #ff7a45;
+  color: #fff;
+  border-color: rgba(255,255,255,.08);
+}
+
+.btn-primary:hover {
+  background: #ff925f;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  border-color: rgba(255,255,255,.12);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,.12);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--accent);
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--stroke);
+}
+
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.04);
+}
+
+/* Иконка внутри кнопки */
+.btn svg {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 1024px) {
+  :root {
+    --header-h: 64px;
+  }
+}
+
+/* Скрываем телефон только на мобилке, НЕ на планшетах */
+@media (max-width: 768px) {
+  .header__cta .header__phone {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 56px;
+  }
+  
+  .main-nav {
+    display: none;
+  }
+  
+  .burger {
+    display: inline-flex;
+  }
+  
+  .header__cta {
+    gap: 8px;
+  }
+  
+  .wa-btn--mobile {
+    display: inline-flex;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Переключатель тем */
+.theme-switch{display:flex;gap:.5rem;align-items:center}
+.theme-btn{
+  padding:.45rem .9rem;border-radius:.9rem;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--stroke);
+  color:var(--text);
+  backdrop-filter:blur(6px);
+  transition:transform .15s ease,box-shadow .2s ease,background .2s ease,border-color .2s;
+  font-size:12px;
+}
+.theme-btn:hover{transform:translateY(-1px)}
+.theme-btn.active{
+  background:linear-gradient(180deg,var(--accent-2),var(--accent));
+  color:#1a1a1a;
+  box-shadow:0 6px 18px rgba(255,138,76,.18);
+  border-color:transparent;
+}
+
+/* ===== Hero с «цветным» фоном (Classic ближе к исходнику) ===== */
+.hero{
+  /* PATCH: padding-block управляется токеном на строке 37-38 */
+  background:
+    radial-gradient(120% 120% at 15% 10%, color-mix(in oklab, var(--accent) 35%, transparent) 0%, transparent 44%),
+    radial-gradient(120% 120% at 85% 15%, color-mix(in oklab, var(--accent-2) 40%, transparent) 0%, transparent 46%);
+}
+/* ===== ДЕСКТОПНЫЕ СТИЛИ (1181px+) ===== */
+@media (min-width: 1181px) {
+  :root {
+    --sub: 18px;
+    --chip: 14px;
+    --btn: 16px;
+  }
+  
+  .hero__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+  .hero__text h1{font-size: var(--h1); line-height:1.08;margin:0 0 12px;font-weight:800}
+  .hero__text .sub{color:var(--muted);font-size: var(--sub); margin:0 0 20px;line-height:1.5}
+  .hero__facts{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px;padding:0;list-style:none}
+  .hero__facts li{
+    background:rgba(255,255,255,0.04);
+    border:1px solid var(--stroke);
+    padding:8px 12px;
+    border-radius:12px;
+    font-size: var(--chip);
+    transition: all .18s ease;
+    cursor: pointer;
+  }
+  .hero__facts li:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(255,120,40,0.3);
+  }
+  .hero__cta{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
+  .hero__cta .btn{flex: none; min-width: fit-content; width: auto; font-size: var(--btn)}
+  .hero__photo{justify-self:end;max-width:600px;max-height:600px;overflow:hidden;border-radius:0;aspect-ratio:1/1}
+  .hero__photo img{border-radius:0;box-shadow:0 20px 60px rgba(0,0,0,0.4);width:100%;height:100%;object-fit:cover;object-position:50% 5%}
+}
+
+/* Градиент снизу для читаемости текста (как на мобилке) */
+.hero__photo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ===== Преимущества ===== */
+#benefits{position:relative}
+#benefits::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:60%;
+  height:200px;
+  background:radial-gradient(ellipse 80% 100% at 50% 0%, 
+    rgba(255, 106, 61, 0.04) 0%, 
+    transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;position:relative;z-index:1}
+.benefit{
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  padding:18px;
+  background:linear-gradient(135deg, 
+    rgba(255,255,255,0.04) 0%, 
+    rgba(255,106,61,0.02) 50%,
+    rgba(198,168,105,0.02) 100%);
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.benefit:hover{
+  transform:translateY(-2px);
+  background:linear-gradient(135deg, 
+    rgba(255,106,61,0.08) 0%, 
+    rgba(198,168,105,0.06) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,106,61,0.3),
+    0 8px 40px rgba(255,106,61,0.15);
+}
+.benefit .title{font-weight:700;margin-bottom:6px;font-size:var(--h3)}
+.benefit p{color:var(--muted);font-size:var(--small);margin:0;line-height:1.5}
+
+/* ===== CTA ===== */
+.cta{padding:80px 0}
+.cta__box{
+  border:1px solid rgba(255,106,61,0.12);
+  border-radius:20px;
+  padding:28px;
+  background:
+    radial-gradient(ellipse 140% 100% at 50% 0%, 
+      rgba(255,106,61,0.08) 0%, 
+      rgba(198,168,105,0.04) 40%,
+      transparent 70%),
+    radial-gradient(120% 120% at 30% 30%, #1a1f25 0%, #0f1216 72%, #0b0e12 100%);
+  text-align:center;
+}
+.cta__title{font-size:clamp(24px,3vw,28px);margin:0 0 18px;font-weight:800;line-height:1.2}
+.cta__subtitle{font-size:clamp(16px,1.5vw,18px);margin:0 0 24px;font-weight:400;line-height:1.4;color:rgba(255,255,255,0.8);text-align:center}
+.cta__actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+/* ===== Видео-обёртка на весь экран (ВЕРСТКУ ВНУТРИ НЕ МЕНЯЕМ) ===== */
+.video-fullscreen{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+  padding:48px 0;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 0%, 
+      rgba(255, 106, 61, 0.06) 0%, 
+      transparent 50%),
+    linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,.2) 30%,transparent 100%);
+}
+
+.video-title{
+  text-align:center;
+  font-size:var(--h2);
+  font-weight:700;
+  margin:0 0 40px;
+  color:var(--text);
+}
+
+.video-grid-fullscreen{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px 12px;
+  max-width:var(--content-max-wide);
+  margin:0 auto;
+  padding:0 12px;
+}
+
+.video-fullscreen .video-wrapper{
+  position:relative;
+  aspect-ratio:16/9;
+  background:#000;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.06);
+  transition:all 0.3s ease;
+  cursor:pointer;
+}
+
+.video-fullscreen .video-wrapper:hover{
+  transform:scale(1.015);
+  z-index:2;
+  border-color:rgba(255,106,61,0.3);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,106,61,0.2),
+    0 12px 48px rgba(255,106,61,0.15);
+}
+
+.video-fullscreen .video-poster{width:100%;height:100%;position:absolute;top:0;left:0}
+.video-fullscreen .video-poster img{width:100%;height:100%;object-fit:cover;display:block}
+.video-fullscreen video{width:100%;height:100%;object-fit:cover;display:block}
+
+.video-fullscreen .play-button, .video-wrapper .play-button{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:100px;
+  height:100px;
+  background:radial-gradient(circle at center,#ff8040 0%,#ff5722 70%);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  transition:transform 0.25s ease;
+  cursor:pointer;
+  z-index:2;
+  animation:pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { 
+    box-shadow: 0 0 0 0 rgba(255,120,40,0.6); 
+  }
+  70% { 
+    box-shadow: 0 0 0 16px rgba(255,120,40,0); 
+  }
+  100% { 
+    box-shadow: 0 0 0 0 rgba(255,120,40,0); 
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 
+      0 8px 32px rgba(255,106,61,0.4),
+      0 0 0 0 rgba(255,106,61,0.4);
+  }
+  50% { 
+    box-shadow: 
+      0 8px 32px rgba(255,106,61,0.6),
+      0 0 20px 10px rgba(255,106,61,0);
+  }
+}
+
+.video-fullscreen .play-button::before, .video-wrapper .play-button::before{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:55%;
+  transform:translate(-50%,-50%);
+  width:0;
+  height:0;
+  border-left:20px solid #fff;
+  border-top:14px solid transparent;
+  border-bottom:14px solid transparent;
+}
+
+.video-fullscreen .play-button:hover, .video-wrapper .play-button:hover{
+  transform:translate(-50%,-50%) scale(1.1);
+  box-shadow:0 0 40px rgba(255,100,20,0.9);
+}
+
+/* ===== Benefits CTA ===== */
+.benefits__cta{text-align:center;margin-top:32px}
+
+/* ===== Workflow CTA ===== */
+.workflow__cta{text-align:center;margin-top:32px;margin-bottom:16px}
+
+/* ===== Модалка (программы) ===== */
+#programs-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s ease}
+#programs-modal.active{opacity:1;visibility:visible}
+#programs-modal .modal__overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px)}
+#programs-modal .modal__content{position:relative;background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:32px;max-width:500px;width:90vw;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+#programs-modal .modal__close{position:absolute;top:16px;right:16px;background:transparent;border:none;color:var(--muted);font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s ease}
+#programs-modal .modal__close:hover{background:rgba(255,255,255,0.1)}
+#programs-modal h3{color:var(--text);margin:0 0 20px;font-size:24px;font-weight:700}
+.programs-list{list-style:none;padding:0;margin:0 0 20px}
+.programs-list li{margin-bottom:16px;padding-left:0;color:var(--text);line-height:1.6}
+.programs-list b{color:var(--accent)}
+#programs-modal .muted{color:var(--muted);font-size:14px;margin:0 0 24px;line-height:1.5}
+
+/* PATCH BEGIN: VIDEO_MODAL_TINT */
+/* ===== Модалка "Видеоконсультация" (DESKTOP ONLY) ===== */
+#video-consult-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s ease}
+#video-consult-modal.active{opacity:1;visibility:visible}
+#video-consult-modal .modal__overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px)}
+#video-consult-modal .modal__content{position:relative;background:rgba(19,19,19,0.92);border:1px solid rgba(255,255,255,0.05);border-radius:22px;padding:40px;max-width:560px;width:90vw;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+#video-consult-modal .modal__close{position:absolute;top:16px;right:16px;background:transparent;border:none;color:var(--muted);font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s ease}
+#video-consult-modal .modal__close:hover{background:rgba(255,255,255,0.1)}
+#video-consult-modal h3{color:#fff;margin:0 0 12px;font-size:26px;font-weight:700;line-height:1.2}
+#video-consult-modal .modal__subtitle{color:#f5f5f5;font-size:16px;margin:0 0 24px;line-height:1.5}
+#video-consult-modal .modal__text{color:#f5f5f5;line-height:1.6;margin:0 0 28px}
+#video-consult-modal .modal__text p{margin:0 0 14px}
+#video-consult-modal .modal__text p:last-of-type{margin-bottom:8px}
+#video-consult-modal .modal__text strong{color:#FF7A3D;font-weight:600;text-transform:uppercase;font-size:14px;letter-spacing:0.3px}
+#video-consult-modal .consult-list{list-style:none;padding:0;margin:14px 0 0 0;color:#f5f5f5}
+#video-consult-modal .consult-list li{margin-bottom:8px;padding-left:24px;line-height:1.6;position:relative}
+#video-consult-modal .consult-list li::before{content:"•";position:absolute;left:8px;color:var(--accent);font-weight:700}
+#video-consult-modal .btn{width:100%;justify-content:center;font-size:16px;padding:14px 20px}
+/* PATCH END: VIDEO_MODAL_TINT */
+
+/* PATCH BEGIN: POPUP_LAYOUT_FIX */
+/* ===== Pop-up модалка "Чек-лист для HR" ===== */
+#article-popup-modal,
+#contact-popup-modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+#article-popup-modal.active,
+#contact-popup-modal.active{opacity:1;visibility:visible}
+#article-popup-modal .modal__overlay,
+#contact-popup-modal .modal__overlay{position:absolute;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px)}
+#article-popup-modal .modal__content,
+#contact-popup-modal .modal__content{
+  position:relative;
+  background:rgba(19,19,19,0.92);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:24px;
+  padding:24px;
+  width:min(560px,94vw);
+  max-height:calc(100vh - 32px);
+  overflow-y:auto;
+  box-shadow:0 20px 60px rgba(0,0,0,0.55);
+  backdrop-filter:blur(20px);
+}
+#article-popup-modal .modal__close,
+#contact-popup-modal .modal__close{position:absolute;top:16px;right:16px;background:transparent;border:none;color:var(--muted);font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s ease;z-index:10}
+#article-popup-modal .modal__close:hover,
+#contact-popup-modal .modal__close:hover{background:rgba(255,255,255,0.1)}
+
+.article-popup{display:flex;flex-direction:column;gap:20px}
+.article-popup__columns{display:flex;flex-direction:column;gap:16px}
+.article-popup__media-text{display:flex;flex-direction:column;gap:16px}
+.article-popup__media{display:flex;justify-content:center;align-items:center}
+.article-popup__text{display:flex;flex-direction:column;gap:8px;flex:1;width:100%}
+.article-popup__head{display:flex;flex-direction:column;gap:6px}
+.article-popup-title{color:#fff;margin:0;font-size:24px;font-weight:700;line-height:1.2}
+.article-popup-subtitle{color:#f5f5f5;font-size:16px;line-height:1.5;margin:0}
+
+.article-popup__preview{display:flex;justify-content:center;margin-top:4px}
+.article-popup-preview{
+  width:100%;
+  max-width:95px;
+  border-radius:12px;
+  border:1px solid rgba(255,122,61,0.7);
+  box-shadow:0 10px 28px rgba(0,0,0,0.45),0 0 28px rgba(255,122,61,0.25);
+  transition:transform .2s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.article-popup__preview:hover .article-popup-preview{
+  transform:translateY(-2px);
+  border-color:#ff8a50;
+  box-shadow:0 14px 34px rgba(0,0,0,0.45),0 0 36px rgba(255,122,61,0.35);
+}
+
+.article-popup-form-label{color:var(--accent);font-size:15px;line-height:1.5;margin:0;font-weight:500}
+.article-popup-form{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.article-popup-form .form-group{margin:0}
+.article-popup-form .form-input{width:100%;padding:14px 16px;background:var(--bg);border:1px solid var(--stroke);border-radius:12px;color:var(--text);font-size:16px;transition:border-color 0.2s ease;box-sizing:border-box}
+.article-popup-form .form-input:focus{outline:none;border-color:var(--accent)}
+.article-popup-form .form-input::placeholder{color:var(--muted)}
+.article-popup-form .btn{width:100%;justify-content:center;font-size:16px;padding:14px 20px}
+.article-popup-footnote{color:#f5f5f5;font-size:12px;line-height:1.4;text-align:center;margin:8px 0 0}
+
+.article-popup-success{text-align:center;padding:20px}
+.article-popup-success-text{color:#f5f5f5;font-size:16px;line-height:1.5;margin:0}
+
+@media (min-width: 1180px) {
+  #article-popup-modal .modal__content,
+  #contact-popup-modal .modal__content {
+    max-width: clamp(760px, 62vw, 820px);
+    padding: 30px;
+    border-radius: 18px;
+  }
+  .article-popup__columns{gap:20px}
+  .article-popup__media-text{
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+  .article-popup__media {
+    flex: 0 0 24%;
+    justify-content: flex-start;
+  }
+  .article-popup__text{
+    gap: 8px;
+  }
+  .article-popup__preview {
+    justify-content: flex-start;
+    margin-top: 0;
+  }
+  .article-popup-preview {
+    max-width: 125px;
+  }
+  .article-popup-title {
+    font-size: 26px;
+  }
+  .article-popup-subtitle {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .article-popup__media,
+  .article-popup__preview,
+  .article-popup-preview {
+    display: none !important;
+  }
+}
+
+/* PATCH END: POPUP_LAYOUT_FIX */
+/* ===== Pop-up модалка: адаптация для планшетов ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  #article-popup-modal .modal__content,
+  #contact-popup-modal .modal__content {
+    max-width: 520px !important;
+    padding: 24px !important;
+  }
+  .article-popup-title {
+    font-size: 26px !important;
+  }
+}
+
+/* ===== Плавающая кнопка WhatsApp (умная логика) ===== */
+.wa-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 
+    0 8px 32px rgba(255,106,61,0.4),
+    0 0 0 0 rgba(255,106,61,0.4);
+  transition: all 0.3s ease;
+  z-index: 999;
+  animation: pulse-glow 2s ease-in-out infinite;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.9);
+}
+
+.wa-fab.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.wa-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 
+    0 12px 40px rgba(255,106,61,0.5),
+    0 0 30px rgba(255,106,61,0.3);
+}
+
+.wa-fab svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Управление иконками FAB */
+.fab-icon-phone {
+  display: none;
+}
+
+.fab-icon-whatsapp {
+  display: block;
+}
+
+/* На мобилке меняем только иконку, цвет остается оранжевый */
+@media (max-width: 768px) {
+  .fab-icon-whatsapp {
+    display: none;
+  }
+  
+  .fab-icon-phone {
+    display: block;
+  }
+}
+
+
+/* ===== Slider (zero-deps, scroll-snap) ===== */
+.slider{position:relative}
+.slider__track{
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:minmax(60%, 1fr);
+  gap:12px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  padding:4px;
+  border-radius:16px;
+}
+.slider__track:focus{outline:1px solid var(--stroke)}
+.slider__slide{
+  scroll-snap-align:center;
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  background: #000;
+  border:1px solid var(--stroke);
+}
+.slider__slide img{
+  width:100%; height:100%;
+  object-fit:cover; display:block;
+  aspect-ratio: 16/9;
+}
+.slider__btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:40px; height:40px; border-radius:999px;
+  background:linear-gradient(120deg, var(--accent), var(--accent-2));
+  border:none;
+  color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; z-index:5;
+  transition:transform .15s ease, box-shadow .2s ease;
+  box-shadow:0 4px 20px rgba(255,106,61,0.4);
+  animation:pulse 2s ease-in-out infinite;
+}
+.slider__btn:hover{transform:translateY(-50%) scale(1.06)}
+.slider__btn.prev{left:-4px}
+.slider__btn.next{right:-4px}
+
+/* === Фото-слайдер: фикс. высота, авто-ширина по аспекту === */
+:root{ --photo-h: 420px; }                /* база на десктопе */
+
+#photos{
+  background:radial-gradient(ellipse 120% 60% at 50% 50%, 
+    rgba(198,168,105,0.05) 0%, 
+    transparent 60%);
+}
+
+.photos-slider{ 
+  position:relative;
+  max-width:var(--content-max-wide);
+  margin:0 auto;
+}
+.photos-track{
+  display:flex; gap:12px; overflow-x:auto;
+  scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+  padding:4px;
+}
+.photos-track:focus{ outline:1px solid var(--stroke); }
+
+.photo-card{
+  flex:0 0 auto;
+  height:var(--photo-h);                  /* фиксируем ЕДИНУЮ высоту */
+  width:auto;                             /* ширину выставит JS по аспекту */
+  min-width: 240px;                       /* минимальная ширина для гарантии отображения */
+  scroll-snap-align:center;
+  background:#000; border-radius:16px; overflow:hidden;
+  border:1px solid rgba(255,106,61,0.12);
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.3s ease;
+}
+.photo-card:hover{
+  box-shadow:0 8px 32px rgba(255,106,61,0.2);
+  transform:translateY(-2px);
+}
+.photo-card img{
+  width:100%; height:100%;
+  object-fit:contain;                     /* без обрезки */
+  background:transparent;                 /* УБИРАЕМ ЧЁРНЫЙ ФОН */
+  display:block;
+  transition: opacity 0.2s ease;         /* ПЛАВНАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ */
+}
+
+.photos-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:40px; height:40px; border-radius:999px;
+  background:linear-gradient(120deg, var(--accent), var(--accent-2));
+  border:none;
+  color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; z-index:5;
+  transition:transform .15s ease, box-shadow .2s ease;
+  box-shadow:0 4px 20px rgba(255,106,61,0.4);
+  animation:pulse 2s ease-in-out infinite;
+}
+.photos-btn:hover{ transform:translateY(-50%) scale(1.06); }
+.photos-btn.prev{ left:-4px; }
+.photos-btn.next{ right:-4px; }
+/* === Слайдер писем (А4, одинаковая высота) ===
+   Принцип:
+   – фиксируем высоту карточки переменной --letter-h;
+   – задаём aspect-ratio: 210/297 (портрет А4) => ширина рассчитывается автоматически;
+   – img рендерим через object-fit: contain на белом фоне (без обрезки);
+   – горизонтальный скролл + scroll-snap, стрелки, тени.
+*/
+:root{
+  --letter-h: 360px;   /* базовая высота карточки на десктопе */
+}
+
+#letters{
+  background:radial-gradient(ellipse 100% 70% at 50% 50%, 
+    rgba(255,106,61,0.04) 0%, 
+    transparent 65%);
+}
+
+/* Уменьшаем отступы блока писем на десктопе */
+#letters.section {
+  padding: 48px 0 !important;  /* перебиваем общее правило .section */
+}
+
+.letters-slider{
+  position:relative;
+  max-width:var(--content-max-wide);
+  margin:0 auto;
+}
+
+.letters-track{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  padding:4px;
+  scroll-behavior: smooth; /* возвращаем плавную прокрутку */
+}
+.letters-track:focus{outline:1px solid var(--stroke)}
+
+.letter-card{
+  flex:0 0 auto;
+  height:var(--letter-h);
+  aspect-ratio:210/297;          /* портретный А4 */
+  scroll-snap-align:center;
+  background:#fff;               /* белое «поле листа» */
+  border:1px solid rgba(198,168,105,0.15);
+  border-radius:16px;
+  box-shadow:0 12px 36px rgba(0,0,0,.35);
+  overflow:hidden;               /* убираем белые поля */
+  transition:all 0.3s ease;
+}
+.letter-card:hover{
+  box-shadow:0 12px 48px rgba(255,106,61,0.18);
+  transform:translateY(-2px);
+}
+
+.letter-card img{
+  width:100%;
+  height:100%;
+  object-fit:contain;            /* без обрезки, целиком на белом фоне */
+  background:#fff;
+}
+
+.letters-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:40px; height:40px; border-radius:999px;
+  background:linear-gradient(120deg, var(--accent), var(--accent-2));
+  border:none;
+  color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; z-index:5;
+  transition:transform .15s ease, box-shadow .2s ease;
+  box-shadow:0 4px 20px rgba(255,106,61,0.4);
+  animation:pulse 2s ease-in-out infinite;
+}
+.letters-btn:hover{transform:translateY(-50%) scale(1.06)}
+.letters-btn.prev{left:-4px}
+.letters-btn.next{right:-4px}
+
+/* ===== FOOTER ===== */
+.footer{background:#0a0d12;border-top:1px solid var(--stroke);padding:32px 0 18px}
+.footer__grid{
+  display:grid; grid-template-columns:.7fr 1.3fr;
+  gap:24px; align-items:start;
+}
+.footer__tagline{color:var(--muted);margin-top:6px}
+.footer__contacts{display:flex;flex-direction:column;gap:8px}
+.footer__link{color:var(--text);text-decoration:none}
+.footer__link:hover{color:var(--accent)}
+.footer__socials{display:flex;gap:10px;margin:6px 0}
+.footer__icon{
+  width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+  border:1px solid var(--stroke); border-radius:10px; text-decoration:none; color:var(--text);
+  transition:.18s;
+}
+.footer__icon:hover{transform:translateY(-1px); background:rgba(255,255,255,.04)}
+.footer__legal{color:var(--muted);font-size:12px;margin-top:4px}
+
+/* Убираем стили ссылок для ИНН и ОГРН */
+.footer__legal a,
+.footer__legal a:link,
+.footer__legal a:visited,
+.footer__legal a:hover,
+.footer__legal a:active {
+  color: var(--muted) !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  background: none !important;
+  pointer-events: none !important;
+}
+.footer__copy{color:var(--muted);font-size:13px;margin-top:14px;text-align:left}
+
+/* Разделительная черта перед блоком с информацией об ИП */
+.footer > .container:last-child {
+  border-top: 1px solid var(--stroke);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+/* ===== Scroll-reveal (плавные появления) ===== */
+.sr{
+  opacity:0;
+  transform:translateY(18px);
+  will-change:opacity,transform;
+  transition:opacity .55s ease, transform .55s ease;
+  /* iOS-фикс: принудительно включаем анимации */
+  -webkit-transform:translateY(18px);
+  -webkit-transition:opacity .55s ease, -webkit-transform .55s ease;
+}
+.sr.show{
+  opacity:1;
+  transform:none;
+  transition:opacity .55s ease, transform .55s ease;
+  /* iOS-фикс */
+  -webkit-transform:none;
+  -webkit-transition:opacity .55s ease, -webkit-transform .55s ease;
+}
+
+/* ===== Адаптив ===== */
+/* Адаптив: уменьшаем высоту карточки => ширина также уменьшится из-за aspect-ratio */
+@media (max-width:1024px){
+  :root{ --letter-h: 320px; --photo-h: 360px; }
+}
+/* МОБИЛЬНЫЕ СТИЛИ ПЕРЕНЕСЕНЫ В mobile.css */
+
+/* ===== footer: прижимаем контакты вправо, нормализуем ссылки и ритм ===== */
+.footer-contacts{
+  margin-left: auto;          /* прижать вправо в родительском флексе/гриде */
+  max-width: 520px;
+  text-align: right;
+  line-height: 1.6;           /* читаемость */
+  font-size: 15.5px;          /* чуть меньше, чтобы не спорило с заголовками */
+}
+.footer-contacts .footer-link{
+  color: #e9e9ea;             /* убираем синий дефолт */
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: border-color .15s ease, opacity .15s ease;
+}
+.footer-contacts .footer-link:hover{
+  border-bottom-color: rgba(233,233,234,.75);
+  opacity: .92;
+}
+.footer-contacts .footer-social{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;  /* иконки тоже вправо */
+  align-items: center;
+  margin-top: 10px;
+}
+.footer-contacts .footer-social__btn{
+  width: 36px; height: 36px; border-radius: 50%;
+  display: inline-flex; justify-content: center; align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  transition: transform .12s ease, color .12s ease;
+  flex-shrink: 0; /* не сжимать иконки */
+}
+.footer-contacts .footer-social__btn svg {
+  display: block !important; /* убираем inline gap */
+  width: 20px !important;
+  height: 20px !important;
+}
+.footer-contacts .footer-social__btn--vk svg {
+  transform: translateY(-5px) scale(1.5) !important; /* приподнимаем и увеличиваем VK логотип */
+}
+.footer-contacts .footer-social__btn:hover{
+  transform: translateY(-1px);
+  color: var(--accent);
+}
+.footer-contacts .footer-social__btn:not(.footer-social__btn--vk):not([aria-label*="YouTube"]) svg:hover {
+  transform: translateY(-1px); /* hover только для Instagram */
+}
+.footer-contacts .footer-social__btn--vk:hover svg {
+  transform: translateY(-6px) scale(1.5) !important; /* hover для VK с сохранением scale */
+}
+.footer-contacts .footer-social__btn--yt svg {
+  transform: translateY(2px) scale(1.25) !important; /* опускаем и увеличиваем YouTube */
+}
+.footer-contacts .footer-social__btn--yt:hover svg {
+  transform: translateY(1px) scale(1.25) !important; /* hover для YouTube с сохранением scale */
+}
+/* Мобилка — центр */
+@media (max-width: 768px){
+  .footer-contacts{
+    margin: 18px auto 0;
+    text-align: center;
+  }
+  .footer-contacts .footer-social{
+    justify-content: center;
+  }
+}
+
+/* ---- базовые переменные для масштаба ---- */
+:root{
+  --tag-font: 14px;            /* было крупнее ~16px */
+  --tag-py: 6px;               /* было 8–10px */
+  --tag-px: 12px;              /* было 16–18px */
+  --tag-bg: rgba(255,255,255,0.05);
+  --tag-border: rgba(255,255,255,0.10);
+  --tag-radius: 8px;
+}
+
+/* ---- левая колонка/карточка героя не должна резать потомков ---- */
+.hero-left, .hero-card, .hero-text, .hero-content{
+  overflow: visible !important;   /* ключ к проблеме "часть чипсов спряталась" */
+}
+
+/* === 2. Визуальная коррекция блока === */
+.hero-text, .hero-left {
+  transform: translateY(-6px);    /* лёгкий подъём всей колонки для выравнивания с фото */
+}
+
+/* === 1. Вертикальный ритм === */
+.hero .sub, .hero-subtitle {
+  margin-top: 10px;               /* немного больше воздуха под H1 */
+  line-height: 1.7;               /* комфортное чтение */
+  color: rgba(255,255,255,0.78);
+}
+
+/* ---- блок с чипсами ---- */
+/* === 3. Цвет и лёгкость чипсов === */
+.hero-tags .tag{
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--tag-radius);
+  padding: var(--tag-py) var(--tag-px);
+  font-size: var(--tag-font);
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.25;
+  transition: all 0.25s ease;
+}
+.hero-tags .tag:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* АРТЕФАКТ УДАЛЕН - старые стили .call-btn конфликтовали */
+
+/* ---- блок с кнопками под чипсами ---- */
+.hero-actions{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ---- заглушки на случай если кнопки не в .hero-actions (чтобы не слипалось) ---- */
+
+/* ---- адаптив ---- */
+@media (max-width: 992px){
+  :root{
+    --tag-font: 13.5px;
+    --tag-py: 6px;
+    --tag-px: 11px;
+  }
+}
+
+/* ===== HERO: верхний внутренний отступ блока ===== */
+/* PATCH: padding управляется токеном на строке 37-38, этот блок больше не нужен */
+
+/* Чипсы */
+/* АРТЕФАКТ УДАЛЕН - flex-direction:column ломал desktop версию (чипсы в 3 ряда) */
+/* Стили для #hero-tags теперь только в :root блоках ниже */
+
+/* Кнопки CTA */
+.hero-actions {
+  margin-top: 36px;             /* добавляем воздуха снизу — визуально легче */
+  gap: 18px;                    /* увеличиваем расстояние между кнопками */
+}
+
+/* Если кнопки идут без .hero-actions — подстрахуемся на общих классах. */
+.hero-tags + .button-row,
+.hero-tags + .cta-row,
+.hero-tags + .hero-ctas {
+  margin-top: 36px;
+}
+
+/* === 4. Адаптив === */
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
+
+@media (max-width:640px){
+  .benefits{grid-template-columns:1fr}
+  .section{padding:48px 0}
+  .cta{padding:60px 0}
+  .video-fullscreen{padding:60px 0}
+  .video-title{font-size:24px;margin-bottom:30px}
+  .video-fullscreen .play-button{width:80px;height:80px}
+  .video-fullscreen .play-button::before{border-left:16px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent}
+}
+
+/* АРТЕФАКТ УДАЛЕН: @media (prefers-reduced-motion) отключал все анимации на iOS */
+
+/* ===== Лайтбокс благодарственных писем ===== */
+html.is-modal-open,
+body.is-modal-open{
+  overflow: hidden !important;
+  height: 100%;
+}
+
+#letter-modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2100;
+}
+#letter-modal.active{
+  display: flex;
+}
+
+#letter-modal .modal__overlay{
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 50%, 
+      rgba(255,106,61,0.08) 0%, 
+      transparent 50%),
+    rgba(0,0,0,.82);
+}
+
+#letter-modal .modal__content{
+  position: relative;
+  z-index: 1;
+  /* max-width: min(92vw, 960px); УДАЛЕНО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ */
+  /* max-height: calc(100vh - 64px); УДАЛЕНО ДЛЯ МОБИЛЬНОЙ ВЕРСИИ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+#letter-modal .letter-modal-img{
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.45);
+  background: #fff;
+  transition: transform .45s ease, opacity .45s ease;
+  cursor: zoom-out;
+}
+#letter-modal.modal--photo .letter-modal-img{ background: transparent; }
+
+#letter-modal .modal__close{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,.7);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s ease;
+  z-index: 10;
+}
+#letter-modal .modal__close:hover{ 
+  background: rgba(0,0,0,.9); 
+  transform: scale(1.1);
+}
+
+#letter-modal .modal-nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease;
+  box-shadow: 0 4px 20px rgba(255,106,61,0.4);
+  z-index: 2;
+  animation: pulse 2s ease-in-out infinite;
+}
+#letter-modal .modal-nav.is-hidden{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+#letter-modal .modal-nav:hover{
+  transform: translateY(-50%) scale(1.06);
+}
+#letter-modal .modal-prev{ left: 32px; }
+#letter-modal .modal-next{ right: 32px; }
+
+@media (max-width: 768px){
+  #letter-modal .modal-nav{
+    width: 36px;
+    height: 36px;
+  }
+  #letter-modal .modal-prev{ left: 16px; }
+  #letter-modal .modal-next{ right: 16px; }
+}
+
+#letter-modal .letter-modal-img.enter-from-right{ opacity:0; transform: translateX(60px); }
+#letter-modal .letter-modal-img.enter-from-left { opacity:0; transform: translateX(-60px); }
+#letter-modal .letter-modal-img.fade-out-left  { opacity:0; transform: translateX(-60px); }
+#letter-modal .letter-modal-img.fade-out-right { opacity:0; transform: translateX(60px); }
+#letter-modal .letter-modal-img.fade-in-right,
+#letter-modal .letter-modal-img.fade-in-left  { opacity:1; transform: translateX(0); }
+
+.letter-card, .photo-card { cursor: zoom-in; }
+
+/* ===== ПОРЯДОК РАБОТЫ - ДИАГОНАЛЬНЫЙ TIMELINE ===== */
+
+/* ФИКС ДЛЯ ПЛАНШЕТОВ: ТОЧНО как на мобилке - с оранжевой полоской */
+
+.workflow {
+  background: linear-gradient(180deg, #1a1a1a 0%, #121212 100%);
+  position: relative;
+  padding: 6rem 0;
+}
+
+.workflow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 106, 61, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 106, 61, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.workflow .section__subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: var(--muted);
+  margin-top: 0.75rem;
+}
+
+.workflow__steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin: 0;
+  gap: 3rem;
+}
+
+.workflow__step {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255, 106, 61, 0.08);
+  flex: 1;
+  max-width: 200px;
+}
+
+.workflow__step:nth-child(1) { transform: translateY(0px); }
+.workflow__step:nth-child(2) { transform: translateY(-20px); }
+.workflow__step:nth-child(3) { transform: translateY(-40px); }
+.workflow__step:nth-child(4) { transform: translateY(-60px); }
+.workflow__step:nth-child(5) { transform: translateY(-80px); }
+
+.workflow__step:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 8px 32px rgba(255, 120, 40, 0.1);
+  border-color: rgba(255, 106, 61, 0.2);
+}
+
+.workflow__badge {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  box-shadow: 0 0 10px rgba(255, 106, 61, 0.25);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.workflow__step:hover .workflow__badge {
+  box-shadow: 0 0 20px rgba(255, 106, 61, 0.4);
+  transform: translateX(-50%) scale(1.1);
+}
+
+.workflow__content {
+  margin-top: 1rem;
+}
+
+.workflow__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.workflow__text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 0;
+}
+
+.workflow__connector {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  height: 200px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.workflow__path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawPath 1.2s ease-out 0.5s forwards;
+}
+
+@keyframes drawPath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ===== Скрываем системные скроллбары у горизонтальных треков ===== */
+.letters-track, .photos-track{
+  scrollbar-width: none;          /* Firefox */
+}
+.letters-track::-webkit-scrollbar,
+.photos-track::-webkit-scrollbar{ display:none; } /* WebKit */
+
+/* Делаем "подглядывание" следующей карточки: внешний паддинг, кнопки у края */
+.letters-slider, .photos-slider{ overflow: hidden; padding-inline: 6px; }
+.letters-btn.prev, .photos-btn.prev{ left: 2px; }
+.letters-btn.next, .photos-btn.next{ right: 2px; }
+
+/* ===== Индикатор (точки) ===== */
+.slider-dots{
+  display:flex; gap:6px; justify-content:center; align-items:center;
+  margin-top: 10px;
+}
+.slider-dot{
+  width:6px; height:6px; border-radius:50%;
+  background:rgba(255,255,255,.25);
+  transition:transform .18s ease, background .18s ease;
+  cursor: pointer;
+}
+.slider-dot.is-active{ 
+  background:linear-gradient(120deg, var(--accent), var(--accent-2)); 
+  transform:scale(1.2); 
+}
+
+/* ===== Скрытие стрелок без сдвига вёрстки ===== */
+.letters-btn.is-hidden,
+.photos-btn.is-hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .2s ease;
+}
+/* Блок-обёртка: не режем и слегка поднимаем левую колонку */
+#hero-left{
+  overflow: visible !important;
+  transform: translateY(-6px);
+}
+
+/* АРТЕФАКТ УДАЛЕН - дубли перенесены в консолидированный блок */
+
+/* Мобилка — компактнее, но без слипаний */
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
+
+/* Запасной случай: снять скрытие переполнений */
+.hero-left, .hero-content, .hero-card { overflow: visible !important; }
+
+/* ===== СОВРЕМЕННЫЙ СТИЛЬ HERO-БЛОКА (2025) ===== */
+#hero-left {
+  padding-top: clamp(32px, 5vw, 60px);
+  transform: translateY(-8px);
+}
+
+#hero-left h1 {
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  margin-bottom: 18px !important;
+}
+
+#hero-left h1 .h1-prefix {
+  font-weight: 800;
+  /* font-size управляется через var(--h1) в конце файла */
+}
+
+#hero-left h1 .h1-name {
+  font-size: 52px !important;    /* на случай если понадобится */
+  font-weight: 800;
+}
+
+/* АРТЕФАКТ УДАЛЕН - дубли перенесены в консолидированный блок */
+
+/* Удалено переопределение .cta-primary - используется .btn-primary */
+
+#hero-actions .cta-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px 22px;
+}
+
+/* АРТЕФАКТ УДАЛЕН - конфликтовал с реальной SVG иконкой */
+
+/* Мобильная адаптация */
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
+
+/* ====== Верхние кнопки: одинаковые метрики и выравнивание ====== */
+#top-cta{
+  display:flex; align-items:center; gap:14px;
+}
+#top-cta .btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:46px;                           /* одинаковая высота */
+  padding:0 20px;                         /* одинаковые паддинги */
+  border-radius:12px;
+  font-size:15px; line-height:1; font-weight:600;
+  white-space:nowrap;
+  min-width: 154px;                       /* минимальная ширина для равной массы */
+}
+#top-cta .btn .btn__text{ display:inline-block; }
+
+/* Иконка телефона */
+#top-cta .btn .btn__icon{
+  width:19px; height:19px; margin-right:8px;
+  display:inline-block; vertical-align:middle;
+  background-repeat:no-repeat; background-position:center; background-size:contain;
+}
+
+/* Визуальные стили */
+#top-cta .btn.btn--call{
+  background: transparent;
+  border:1px solid rgba(255,255,255,0.2);
+  color:#fff;
+}
+#top-cta .btn.btn--call:hover{
+  background: rgba(255,255,255,0.06);
+}
+/* Удалено переопределение - используется .btn-primary */
+
+/* ====== Чипсы: компактнее, 1–2 ряда, без лишнего расползания ====== */
+#hero-tags{
+  display:flex; flex-wrap:wrap; gap:8px 10px;
+  margin-bottom:36px !important;
+  max-width: clamp(520px, 48vw, 620px);   /* ограничение ширины — не уедут в 3 ряд */
+}
+#hero-tags .tag{
+  /* PATCH: font-size управляется через var(--chip) в каноническом правиле (строка 1845) */
+  padding:6px 12px !important;
+  border-radius:10px !important;
+  background: rgba(255,255,255,0.06) !important;
+  border:1px solid rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.85) !important;
+  transition:none !important;
+}
+
+/* Мобилка — ещё компактнее, но без склеивания */
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
+
+/* ====== СОВРЕМЕННЫЙ HERO-БЛОК (2025) - ЧИСТЫЙ И ДОРОГОЙ ====== */
+
+/* 1) Иерархия и типографика */
+#hero-left h1 {
+  /* PATCH: font-size управляется через var(--h1) в .h1-prefix (строка 2040) */
+  line-height: 1.08 !important;
+  letter-spacing: -0.2px !important;
+  margin-bottom: 22px !important;
+  max-width: 740px !important;
+}
+
+#hero-subtitle {
+  /* PATCH: font-size управляется через var(--sub) в каноническом правиле (строка 1827) */
+  line-height: 1.6 !important;
+  max-width: 740px !important;
+  margin-bottom: 30px !important;
+  color: rgba(255,255,255,0.85) !important;
+}
+
+/* 2) Чипсы (бейджи) */
+#hero-tags {
+  margin-bottom: 56px !important; /* кислород до CTA */
+  margin-top: 22px !important; /* отступ от подзаголовка */
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  row-gap: 14px !important;
+  max-width: 740px !important;
+}
+
+#hero-tags .tag {
+  /* PATCH: font-size управляется через var(--chip) в каноническом правиле (строка 1845) */
+  padding: 10px 14px !important;
+  border-radius: 12px !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.85) !important;
+  transition: background 0.2s ease, border-color 0.2s ease !important;
+  cursor: default !important;
+}
+
+#hero-tags .tag:hover {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* 3) CTA кнопки */
+#hero-actions {
+  margin-top: 56px !important; /* кислород над кнопками */
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 18px !important;
+}
+
+#hero-actions .btn {
+  height: 56px !important;
+  padding: 0 26px !important;
+  border-radius: 14px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Удалено переопределение - используется .btn-primary */
+
+#hero-actions .btn-ghost {
+  background: rgba(255,255,255,0.06) !important;
+  color: white !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+#hero-actions .btn-ghost:hover {
+  background: rgba(255,255,255,0.1) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+#hero-actions .btn-ghost:active {
+  transform: translateY(0) !important;
+}
+
+#hero-actions .btn-ghost {
+  opacity: 0.85 !important;    /* слегка приглушаем вторичную кнопку */
+}
+
+#hero-actions .btn-ghost:hover {
+  opacity: 1 !important;
+}
+
+/* Для надёжности перекрываем любые вложенные селекторы */
+/* Переизбыток !important отступов в hero удалён — используем базовые токены секций */
+
+/* Выравнивание фотографии с заголовком */
+.hero__photo {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  align-self: start !important;
+}
+
+.hero__photo img {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Поднимаем весь левый блок на уровень фотографии */
+#hero-left {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  align-self: start !important;
+}
+
+/* ====== 5) РАСКЛАДКА И РИТМ ====== */
+
+/* АРТЕФАКТ УДАЛЕН - конфликтовал с #hero padding-bottom: 64px */
+
+/* Фото: лёгкое скругление */
+.hero__photo {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+.hero__photo img {
+  border-radius: 16px !important;
+}
+
+/* WhatsApp FAB удален */
+
+/* Мобильная адаптация */
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
+
+/* ====== 6) КОНТРАСТ И ЦВЕТ ====== */
+
+/* Старые градиенты удалены */
+
+/* ====== 4) МИКРООПТИМИЗАЦИИ ====== */
+
+/* Отступ шапки от верхнего края */
+.site-header {
+  padding-top: 26px !important;
+  padding-bottom: 26px !important;
+}
+
+/* Фото поднимаем вверх для выравнивания с заголовком */
+.hero__photo {
+  transform: translateY(-20px) !important;
+}
+
+/* Общая высота hero для золотого соотношения "одним взглядом" */
+.hero {
+  min-height: min(680px, calc(100vh - var(--header-h)));
+}
+
+/* АРТЕФАКТ УДАЛЕН - перенесено в консолидированный блок (конец файла) */
+
+/* ====== АДАПТАЦИЯ ПОД MACBOOK (ОПТИМИЗАЦИЯ ВЫСОТЫ) ====== */
+
+/* Универсальная версия (desktop ≥1280px) */
+#hero-left h1 {
+  /* PATCH: font-size управляется через var(--h1) в .h1-prefix (строка 2040) */
+  line-height: 1.05 !important;
+  margin-bottom: 20px !important;
+}
+
+#hero-left .hero-subtitle {
+  /* PATCH: font-size управляется через var(--sub) в каноническом правиле (строка 1827) */
+  line-height: 1.6 !important;
+  margin-bottom: 28px !important;
+  max-width: 740px !important;
+}
+
+/* Адаптивная версия для ноутбуков с небольшой высотой экрана */
+@media (max-height: 800px) {
+  /* PATCH: #hero-left h1 font-size управляется через var(--h1) в .h1-prefix (строка 2055) */
+  
+  /* PATCH: #hero-left .hero-subtitle font-size управляется через var(--sub) в каноническом правиле (строка 1827) */
+}
+
+/* ====== ВОССТАНОВЛЕНИЕ ТЁПЛОГО ОРАНЖЕВО-БРОНЗОВОГО ГРАДИЕНТА ====== */
+
+/* ====== ПРЕМИАЛЬНЫЙ ДИЗАЙН С ГРАДИЕНТАМИ (ФИНАЛЬНЫЙ) ====== */
+
+/* Hero - оригинальный градиент из Эталон 3 */
+.hero {
+  background:
+    radial-gradient(120% 120% at 15% 10%, color-mix(in oklab, var(--accent) 35%, transparent) 0%, transparent 44%),
+    radial-gradient(120% 120% at 85% 15%, color-mix(in oklab, var(--accent-2) 40%, transparent) 0%, transparent 46%) !important;
+}
+
+/* Видео-секция */
+.video-fullscreen {
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 0%, 
+      rgba(255, 106, 61, 0.10) 0%, 
+      transparent 50%),
+    linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,.2) 30%,transparent 100%) !important;
+}
+
+/* АРТЕФАКТ УДАЛЕН - дубль video-wrapper */
+
+/* Benefits - градиент под заголовком */
+#benefits {
+  position: relative !important;
+}
+
+#benefits::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 250px;
+  background: radial-gradient(ellipse 90% 100% at 50% 0%, 
+    rgba(255, 106, 61, 0.08) 0%, 
+    transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.benefits {
+  position: relative;
+  z-index: 1;
+}
+
+.benefit {
+  background: linear-gradient(135deg, 
+    rgba(255,106,61,0.06) 0%, 
+    rgba(198,168,105,0.04) 100%) !important;
+}
+
+.benefit:hover {
+  background: linear-gradient(135deg, 
+    rgba(255,106,61,0.12) 0%, 
+    rgba(198,168,105,0.08) 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,106,61,0.4),
+    0 8px 40px rgba(255,106,61,0.25) !important;
+}
+
+/* Фотогалерея */
+#photos {
+  background: radial-gradient(ellipse 120% 70% at 50% 50%, 
+    rgba(198,168,105,0.08) 0%, 
+    transparent 70%) !important;
+}
+
+.photo-card {
+  border: 1px solid rgba(255,106,61,0.20) !important;
+}
+
+.photo-card:hover {
+  box-shadow: 0 8px 32px rgba(255,106,61,0.35) !important;
+  border-color: rgba(255,106,61,0.40) !important;
+}
+
+/* Letters */
+#letters {
+  background: radial-gradient(ellipse 100% 80% at 50% 50%, 
+    rgba(255,106,61,0.08) 0%, 
+    transparent 70%) !important;
+}
+
+.letter-card {
+  border: 1px solid rgba(198,168,105,0.25) !important;
+}
+
+.letter-card:hover {
+  box-shadow: 0 8px 32px rgba(255, 120, 40, 0.4) !important;
+  border-color: rgba(255, 106, 61, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* CTA (DESKTOP ONLY) */
+@media (min-width: 1181px) {
+  .cta__box {
+    background:
+      radial-gradient(ellipse 150% 120% at 50% 0%, 
+        rgba(255,106,61,0.12) 0%, 
+        rgba(198,168,105,0.06) 40%,
+        transparent 75%),
+      radial-gradient(120% 120% at 30% 30%, #1a1f25 0%, #0f1216 72%, #0b0e12 100%) !important;
+    border: 1px solid rgba(255,106,61,0.20) !important;
+  }
+}
+
+/* Modal overlay */
+#letter-modal .modal__overlay {
+  background:
+    radial-gradient(ellipse 70% 70% at 50% 50%, 
+      rgba(255,106,61,0.12) 0%, 
+      transparent 60%),
+    rgba(0,0,0,.82) !important;
+}
+
+/* Убираем пустую «кнопку-бургер»/плейсхолдер в хедере */
+.burger,
+.call-btn {
+  display: none !important;
+}
+
+/* ===== КАНОНИЧЕСКИЕ ПРАВИЛА ДЛЯ DESKTOP (без дублей) ===== */
+
+/* Hero подзаголовок - ЕДИНСТВЕННОЕ ПРАВИЛО */
+#hero-subtitle {
+  font-size: var(--sub);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* Hero чипсы - ЕДИНСТВЕННОЕ ПРАВИЛО */
+#hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  max-width: 620px;
+}
+
+#hero-tags .tag {
+  font-size: var(--chip);
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+#hero-tags .tag:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Hero кнопки - ЕДИНСТВЕННОЕ ПРАВИЛО */
+#hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+  margin-bottom: 0;
+}
+
+#hero-actions .btn {
+  height: 56px;
+  padding: 0 26px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+/* Удалено переопределение - используется .btn-primary */
+
+#hero-actions .btn-ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#hero-actions .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== ДЕСКТОП: ГАРАНТИРУЕМ ОТСТУП У WORKFLOW ===== */
+@media (min-width: 769px) {
+  .workflow .section__subtitle {
+    margin-bottom: 0 !important;
+  }
+  .workflow__steps {
+    margin-top: 92px !important;
+  }
+}
+
+/* === Base layout safety === */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+/* Медиа не должны растягивать контейнер */
+img, video { max-width: 100%; height: auto; display: block; }
+
+/* Страховка от редких горизонтальных прокруток из-за нативных виджетов */
+body { overflow-x: hidden; }
+
+/* ===== ПЛАНШЕТНЫЕ СТИЛИ (769px - 1180px) ===== */
+@media (min-width: 769px) and (max-width: 1180px) {
+  /* PATCH: Оптимизация для планшетов */
+  :root {
+    --container-max: 1000px; /* шире для планшетов */
+    --content-max-wide: 1000px;
+    --h1: 32px; /* меньше для 2-3 строк */
+    --sub: 16px;
+    --chip: 13px;
+  }
+
+  /* /BEGIN TABLET:HERO/ */
+  
+  /* Скрываем чипс "Договор ИП" на планшетах */
+  #hero-tags .tag:last-child {
+    display: none !important;
+  }
+
+  /* Кнопки: горизонтально и одинакового размера */
+  #hero-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 16px !important;
+    justify-content: flex-start !important;
+  }
+  
+  #hero-actions .btn {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    font-size: 14px !important;
+    padding: 0 12px !important;
+  }
+
+  /* Исправляем яму - используем разрешенный мостик */
+  #hero-actions {
+    margin-bottom: 24px !important;
+  }
+
+  /* ПЛАНШЕТНЫЙ FIX: убираем избыточные отступы как в десктопной версии */
+  #hero-tags {
+    margin-bottom: 0 !important; /* убираем огромный 56px отступ */
+    margin-top: 22px !important; /* оставляем только отступ от подзаголовка */
+  }
+
+  /* Адаптивная высота hero для планшетов */
+  .hero {
+    min-height: min(600px, calc(100vh - var(--header-h))) !important;
+  }
+
+  /* Уменьшаем padding видео-секции для планшетов */
+  .video-fullscreen {
+    padding: 48px 0 !important; /* вместо 80px или 60px */
+  }
+  
+  /* /END TABLET:HERO/ */
+
+
+  /* Хедер: стабильная раскладка и CTA справа */
+  .site-header {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: var(--header-h) !important;
+  }
+  
+  .container.header-row{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    gap:16px; 
+    align-items:center;
+    height: 100%;
+  }
+  .main-nav{ display:none; }
+  .header__phone, .call-btn{ display:none; }
+  .header__cta{ 
+    justify-self:end; 
+    display:inline-flex; 
+    gap:10px; 
+    flex-wrap:nowrap; 
+  }
+  .header__cta .wa-btn{ 
+    height:40px; 
+    padding:0 16px; 
+    white-space:nowrap; 
+    border-radius:12px; 
+  }
+
+  /* Workflow: вертикальный с оранжевой линией (как на мобилке) */
+  /* Убираем desktop линии */
+  .section.workflow::after,
+  .workflow__connector,
+  .workflow svg,
+  .workflow canvas {
+    display: none !important;
+  }
+
+  /* Контейнер под линию с переменными для подгона */
+  #workflow .container {
+    position: relative !important;
+    --wf-line-top: 44px !important;
+    --wf-line-bottom: 20px !important;
+  }
+
+  /* ОРАНЖЕВАЯ ПОЛОСКА - как на мобилке */
+  #workflow .container::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: var(--wf-line-top) !important;
+    bottom: var(--wf-line-bottom) !important;
+    width: 2px !important;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      #FF7A45 20%,
+      #FF7A45 80%,
+      transparent 100%
+    ) !important;
+    z-index: 1 !important;
+  }
+
+  /* Шаги - вертикально как на мобилке */
+  #workflow .workflow__steps {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 36px !important;
+    margin-top: 32px !important;
+    width: 100% !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .workflow__step {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    padding: 18px 16px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    transform: none !important;
+    flex: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Номера шагов - оранжевые как на мобилке */
+  .workflow__badge {
+    top: -14px !important;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 14px !important;
+    background: #FF7A45 !important;
+    color: #111 !important;
+    font-weight: 700 !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    box-shadow: 0 4px 16px rgba(255,122,69,0.25) !important;
+  }
+
+  .workflow__content {
+    margin-top: 0 !important;
+  }
+
+  .workflow__title {
+    text-align: center !important;
+    margin-bottom: 4px !important;
+    color: rgba(255,255,255,0.9) !important;
+  }
+
+  .workflow__text {
+    text-align: center !important;
+    margin: 0 !important;
+    color: rgba(255,255,255,0.9) !important;
+  }
+
+  .benefits{
+    display:grid; 
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:24px;
+  }
+
+  /* PATCH: Двухколоночная раскладка Hero для планшетов */
+  .hero__grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+    align-items: center !important;
+  }
+
+  .hero__text {
+    text-align: left !important;
+  }
+
+  .hero__text h1,
+  .hero__text .sub,
+  #hero-subtitle {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  #hero-tags {
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .hero__cta,
+  #hero-actions {
+    justify-content: flex-start !important;
+    flex-direction: row !important;
+    gap: 16px !important;
+  }
+
+  .hero__cta .btn,
+  #hero-actions .btn {
+    font-size: 15px !important;
+    padding-inline: 20px !important;
+    white-space: nowrap !important;
+  }
+
+  .hero__photo {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .hero__photo img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 16px !important;
+  }
+  
+  /* PATCH: Маяк для проверки планшетного блока */
+  html::before {
+    content: "tablet from style.css";
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    font: 12px/1 monospace;
+    color: #fff;
+    background: rgba(255, 122, 69, 0.8);
+    padding: 4px 8px;
+    border-radius: 4px;
+    opacity: 0.9;
+    z-index: 99999;
+  }
+
+  /* === FIX: убрать «яму» между Hero и видео === */
+  /* единый шаг секций на планшете */
+  :root { --section-gap-y: 56px; }
+
+  /* Hero без лишних +20px */
+  .hero { 
+    padding-block: var(--section-gap-y) !important;
+  }
+
+  /* Видео-блок вместо жёстких 80px — по токену */
+  .video-fullscreen {
+    padding: var(--section-gap-y) 0 !important;
+  }
+}
+
+/* управление размером заголовка через токен --h1 */
+#hero-left h1 .h1-prefix{ font-size: var(--h1) !important; }

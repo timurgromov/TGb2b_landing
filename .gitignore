@@ -25,6 +25,7 @@ node_modules/
 # Build outputs
 dist/
 build/
+.astro/
 
 # Environment variables
 .env

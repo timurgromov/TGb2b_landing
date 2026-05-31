@@ -1,0 +1,15 @@
+---
+import ContactCard from '@components/ContactCard.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { contactPage, siteMeta } from '@data/corporate';
+---
+<BaseLayout
+  title={contactPage.title}
+  description={contactPage.description}
+  canonical={contactPage.url}
+  ogImage={siteMeta.ogImage}
+  pageCss="/contact/style.css?v=astro_1"
+  pageScript="/contact/script.js?v=astro_1"
+>
+  <ContactCard />
+</BaseLayout>

@@ -1,0 +1,20 @@
+---
+import { photos } from '@data/corporate';
+---
+<section id="photos" class="section">
+  <h2 class="section__title sr">Моменты с событий</h2>
+
+  <div class="photos-slider sr" aria-label="Фотогалерея">
+    <button class="photos-btn prev" aria-label="Назад" data-dir="-1">‹</button>
+
+    <div class="photos-track" tabindex="0">
+      {photos.map((photo) => (
+        <figure class="photo-card" data-image-modal>
+          <img src={photo.src} alt={photo.alt} loading={photo.loading as 'eager' | 'lazy'} decoding="async" fetchpriority={photo.fetchpriority as 'high' | undefined} />
+        </figure>
+      ))}
+    </div>
+
+    <button class="photos-btn next" aria-label="Вперёд" data-dir="1">›</button>
+  </div>
+</section>
