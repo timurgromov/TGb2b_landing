@@ -17,7 +17,8 @@ production/deploy/database не основание; при экономии вы
 Root `AGENTS.md` хранит global policy/router; scoped `AGENTS.md` наследуют его и
 содержат только domain rules. Используй только релевантные
 `ruslan-project-workflows:<skill-name>`; без plugin — `skills/<skill-name>/SKILL.md`.
-UI: `web-ui-verify`; responsive: `frontend-responsive-layout-audit`; изменение
+UI: `web-ui-verify`; responsive: `frontend-responsive-layout-audit` (actual CSS
+viewport + Playwright breakpoint sweep); изменение
 видимого Hero/slider/crop/layout: `ui-change-proof` (exact target, rendered
 before/after, exact-diff evidence); redesign/audit: `frontend-design` /
 `web-interface-guidelines`; parallel writers: `parallel-project-lanes`.
