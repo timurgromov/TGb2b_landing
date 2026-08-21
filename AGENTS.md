@@ -22,6 +22,12 @@ viewport + Playwright breakpoint sweep); изменение
 видимого Hero/slider/crop/layout: `ui-change-proof` (exact target, rendered
 before/after, exact-diff evidence); redesign/audit: `frontend-design` /
 `web-interface-guidelines`; parallel writers: `parallel-project-lanes`.
+React/Next performance issue с воспроизводимым baseline: `react-next-performance`,
+не speculative refactor. Предоставленная YouTube-ссылка:
+`youtube-research-intake`, только доступные captions, URL и таймкоды, без
+загрузки media/обхода доступа. `sentry-incident-triage` — только если проект
+уже отправляет ошибки в Sentry: scoped read-only triage, без OAuth setup и без
+изменения Sentry.
 
 Перед добавлением site photo/video используй `media-asset-optimization`: original
 не клади в public, публикуй AVIF/WebP derivative и responsive sizes. Warn: image
