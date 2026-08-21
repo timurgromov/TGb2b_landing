@@ -34,6 +34,10 @@ React/Next performance issue с воспроизводимым baseline: `react-
 загрузки media/обхода доступа. `sentry-incident-triage` — только если проект
 уже отправляет ошибки в Sentry: scoped read-only triage, без OAuth setup и без
 изменения Sentry.
+`context-engineering` — для длинной, неоднозначной или многошаговой задачи,
+большого repo либо handoff: компактная карта цели, подтверждённых фактов,
+ограничений и следующего проверяемого шага; не раздувай `AGENTS.md` и не меняй
+platform context settings.
 
 Перед добавлением site photo/video используй `media-asset-optimization`: original
 не клади в public, публикуй AVIF/WebP derivative и responsive sizes. Warn: image
