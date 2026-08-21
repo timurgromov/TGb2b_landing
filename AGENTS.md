@@ -22,6 +22,12 @@ viewport + Playwright breakpoint sweep); изменение
 видимого Hero/slider/crop/layout: `ui-change-proof` (exact target, rendered
 before/after, exact-diff evidence); redesign/audit: `frontend-design` /
 `web-interface-guidelines`; parallel writers: `parallel-project-lanes`.
+Если проект имеет пользовательский интерфейс (site, landing, app, dashboard,
+TMA или funnel), до первого значимого user flow используй `product-design-ux` и
+зафиксируй в `PROJECT_SPEC.md`/`UX.md`: P0-пользователя и задачу, primary flow,
+CTA, success metric, loading/error/success states и mobile/desktop constraints.
+Это не блокирует docs-only, backend-only или срочный узкий incident repair; UX
+contract для них обновляется вместе с последующей user-flow работой.
 React/Next performance issue с воспроизводимым baseline: `react-next-performance`,
 не speculative refactor. Предоставленная YouTube-ссылка:
 `youtube-research-intake`, только доступные captions, URL и таймкоды, без
