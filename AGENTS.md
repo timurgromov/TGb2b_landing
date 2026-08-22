@@ -17,27 +17,13 @@ production/deploy/database не основание; при экономии вы
 Root `AGENTS.md` хранит global policy/router; scoped `AGENTS.md` наследуют его и
 содержат только domain rules. Используй только релевантные
 `ruslan-project-workflows:<skill-name>`; без plugin — `skills/<skill-name>/SKILL.md`.
-UI: `web-ui-verify`; responsive: `frontend-responsive-layout-audit` (actual CSS
-viewport + Playwright breakpoint sweep); изменение
-видимого Hero/slider/crop/layout: `ui-change-proof` (exact target, rendered
-before/after, exact-diff evidence); redesign/audit: `frontend-design` /
-`web-interface-guidelines`; parallel writers: `parallel-project-lanes`.
-Если проект имеет пользовательский интерфейс (site, landing, app, dashboard,
-TMA или funnel), до первого значимого user flow используй `product-design-ux` и
-зафиксируй в `PROJECT_SPEC.md`/`UX.md`: P0-пользователя и задачу, primary flow,
-CTA, success metric, loading/error/success states и mobile/desktop constraints.
-Это не блокирует docs-only, backend-only или срочный узкий incident repair; UX
-contract для них обновляется вместе с последующей user-flow работой.
-React/Next performance issue с воспроизводимым baseline: `react-next-performance`,
-не speculative refactor. Предоставленная YouTube-ссылка:
-`youtube-research-intake`, только доступные captions, URL и таймкоды, без
-загрузки media/обхода доступа. `sentry-incident-triage` — только если проект
-уже отправляет ошибки в Sentry: scoped read-only triage, без OAuth setup и без
-изменения Sentry.
-`context-engineering` — для длинной, неоднозначной или многошаговой задачи,
-большого repo либо handoff: компактная карта цели, подтверждённых фактов,
-ограничений и следующего проверяемого шага; не раздувай `AGENTS.md` и не меняй
-platform context settings.
+Новые optional skills остаются в plugin-каталоге, не копируются в каждый root.
+UI: `product-design-ux` до первого flow (P0 user/job, flow, CTA, states и
+viewport constraints в `PROJECT_SPEC.md`/`UX.md`), затем по риску
+`frontend-design`/`web-interface-guidelines`; visible delta — `ui-change-proof`
+with rendered exact-diff evidence; responsive — `frontend-responsive-layout-audit`;
+acceptance — `web-ui-verify`.
+Это не блокирует docs-only, backend-only или узкий incident repair.
 
 Перед добавлением site photo/video используй `media-asset-optimization`: original
 не клади в public, публикуй AVIF/WebP derivative и responsive sizes. Warn: image
