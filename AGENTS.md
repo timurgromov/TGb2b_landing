@@ -21,8 +21,8 @@ Root `AGENTS.md` хранит global policy/router; scoped `AGENTS.md` насл�
 UI: `product-design-ux` до первого flow (P0 user/job, flow, CTA, states и
 viewport constraints в `PROJECT_SPEC.md`/`UX.md`), затем по риску
 `frontend-design`/`web-interface-guidelines`; visible delta — `ui-change-proof`
-with rendered exact-diff evidence; responsive — `frontend-responsive-layout-audit`;
-acceptance — `web-ui-verify`.
+with rendered exact-diff evidence; responsive — `frontend-responsive-layout-audit`
++ `responsive-qa-gate` (matrix/overflow); acceptance — `web-ui-verify`.
 Это не блокирует docs-only, backend-only или узкий incident repair.
 
 Перед добавлением site photo/video используй `media-asset-optimization`: original
