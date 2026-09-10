@@ -19,11 +19,21 @@ Root `AGENTS.md` хранит global policy/router; scoped `AGENTS.md` насл�
 `ruslan-project-workflows:<skill-name>`; без plugin — `skills/<skill-name>/SKILL.md`.
 Новые optional skills остаются в plugin-каталоге, не копируются в каждый root.
 UI: `product-design-ux` до первого flow (P0 user/job, flow, CTA, states и
-viewport constraints в `PROJECT_SPEC.md`/`UX.md`), затем по риску
-`frontend-design`/`web-interface-guidelines`; visible delta — `ui-change-proof`
-with rendered exact-diff evidence; responsive — `frontend-responsive-layout-audit`
-+ `responsive-qa-gate` (matrix/overflow); acceptance — `web-ui-verify`.
+viewport constraints в `PROJECT_SPEC.md`/`UX.md`); для обычного UI и UX-аудита
+по риску `frontend-design`/`web-interface-guidelines`; visible delta —
+`ui-change-proof` with rendered exact-diff evidence; responsive —
+`frontend-responsive-layout-audit` + `responsive-qa-gate`; acceptance —
+`web-ui-verify`.
+Новый admin/CRM/dashboard без утверждённой design system или visual direction:
+после этого UX-этапа и до кода обязательно `ui-ux-pro-max`, затем весь
+указанный design/audit/acceptance route обязателен, а не «по риску».
 Это не блокирует docs-only, backend-only или узкий incident repair.
+
+Browser QA: сначала используй уже открытый встроенный browser Codex. Отдельный
+Chrome, Chromium или Playwright browser — только при реальной необходимости, с
+названной причиной и одним bounded-сеансом. Сразу после QA закрой созданные
+агентом browser/Playwright, временный dev-server и QA-container; перед финалом
+проверь отсутствие этих процессов. Обычный Chrome пользователя не закрывай.
 
 Перед добавлением site photo/video используй `media-asset-optimization`: original
 не клади в public, публикуй AVIF/WebP derivative и responsive sizes. Warn: image
