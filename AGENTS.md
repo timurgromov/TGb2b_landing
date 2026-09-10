@@ -27,13 +27,21 @@ viewport constraints в `PROJECT_SPEC.md`/`UX.md`); для обычного UI �
 Новый admin/CRM/dashboard без утверждённой design system или visual direction:
 после этого UX-этапа и до кода обязательно `ui-ux-pro-max`, затем весь
 указанный design/audit/acceptance route обязателен, а не «по риску».
+Если direction открыт, сначала `design-atlas`: public reference → 3–5 решений,
+не копия. Только в React+Tailwind/shadcn можно через global `21st-ui-explore`
+показать варианты; сначала owner choice и dependency/diff review, без framework
+migration для static/vanilla surface.
 Это не блокирует docs-only, backend-only или узкий incident repair.
 
-Browser QA: сначала используй уже открытый встроенный browser Codex. Отдельный
-Chrome, Chromium или Playwright browser — только при реальной необходимости, с
-названной причиной и одним bounded-сеансом. Сразу после QA закрой созданные
-агентом browser/Playwright, временный dev-server и QA-container; перед финалом
-проверь отсутствие этих процессов. Обычный Chrome пользователя не закрывай.
+Browser lifecycle v1.1: для desk-research, поиска по файлам/чатам и чтения
+сайтов не запускай локальный Chrome, Chromium или Playwright: используй
+filesystem, Codex task tools и web-search. Для UI QA сначала используй уже
+открытый встроенный browser Codex. Отдельный browser допустим только для
+конкретной непокрываемой UI-проверки: заранее назови причину, не используй
+пользовательский Chrome profile и запусти один bounded-сеанс. Закрой созданные
+агентом browser/Playwright, dev-server и QA-container сразу после проверки, в
+том числе при ошибке; перед финалом проверь отсутствие этих процессов. Обычный
+Chrome пользователя не закрывай.
 
 Перед добавлением site photo/video используй `media-asset-optimization`: original
 не клади в public, публикуй AVIF/WebP derivative и responsive sizes. Warn: image
