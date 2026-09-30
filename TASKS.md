@@ -1,7 +1,7 @@
 # TASKS — корпоративный сайт и новогодний сезон 2026
 
 Дата плана: 30 сентября 2026 года
-Статус: `LOCAL_CANDIDATE_VERIFIED — release pending`
+Статус: `LIVE — дизайн сезонной страницы выровнен с основным сайтом`
 Основной продукт: `TGb2b_landing` / `https://corp.timurgromov.ru/`
 Следующий продукт после готовности сайта: `../YandexDirectGrowth/`
 
@@ -265,10 +265,10 @@ UX-требования:
 - [x] Проверить production URL после deploy на свежей загрузке.
 - [ ] Пройти реальный тестовый лид на production и подтвердить его появление в рабочем контуре.
 - [ ] Зафиксировать отдельно:
-  - [x] local runtime-source commit `c3ff86d`;
-  - [x] origin runtime-source commit `c3ff86d`;
-  - [x] live GitHub Pages commit `e0abc6c`;
-  - [x] production verification: seasonal mobile/desktop and root regression passed.
+  - [x] local runtime-source commit `f53e1b0`;
+  - [x] origin runtime-source commit `f53e1b0`;
+  - [x] live GitHub Pages commit `e2fe981`;
+  - [x] production verification: seasonal mobile/desktop, exact main-site design metrics and root regression passed.
 
 ## Этап 9. Release
 

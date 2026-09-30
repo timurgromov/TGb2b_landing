@@ -32,9 +32,9 @@ An actual production submission is intentionally not part of automated verificat
 - local build: passed (`npm run build`);
 - contract regression check: passed (`npm run verify:seasonal`);
 - local visual verification: passed for the recorded responsive matrix, form states and root regression;
-- runtime source commit: `c3ff86d` on local and `origin/astro-migration`;
-- production commit: `e0abc6c` on `origin/gh-pages`;
+- runtime source commit: `f53e1b0` on local and `origin/astro-migration`;
+- production commit: `e2fe981` on `origin/gh-pages`;
 - GitHub Pages build: `built`;
-- live seasonal route: passed at `390x844` and `1280x720`, with no horizontal overflow or browser console errors;
+- live seasonal route: passed at `390x844` and `1280x720`, with direct H1, main-site Header/hero design, no horizontal overflow and no browser console errors;
 - live root regression: original H1 and both hero actions preserved at `1280x720`;
 - production CRM lead: not verified without owner approval.
