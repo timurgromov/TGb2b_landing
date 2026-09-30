@@ -1,0 +1,312 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { contact, letters, videos } from '@data/corporate';
+
+const canonical = 'https://corp.timurgromov.ru/novogodniy-korporativ/';
+const title = 'Ведущий на новогодний корпоратив 2026 в Москве — Тимур Громов';
+const description =
+  'Новогодний корпоратив 2026 в Москве: современный ведущий, DJ, звук и спокойная подготовка по договору. Проверьте свободную дату.';
+
+const formats = [
+  {
+    eyebrow: 'Фокус на программе',
+    title: 'Ведущий',
+    text: 'Если DJ и техника уже есть у площадки или агентства. Я отвечаю за сценарий вечера, гостей и тайминг.'
+  },
+  {
+    eyebrow: 'Одна сработанная команда',
+    title: 'Ведущий + DJ',
+    text: 'Музыка и программа собираются вместе: без пауз, конфликтов по таймингу и передачи ответственности.'
+  },
+  {
+    eyebrow: 'Комплект под площадку',
+    title: 'Ведущий + DJ + звук',
+    text: 'Состав аппаратуры определяется после площадки, числа гостей и технических условий.'
+  }
+];
+
+const process = [
+  ['Проверяем дату', 'Вы оставляете дату и число гостей. Я отвечаю лично и уточняю задачу.'],
+  ['Собираем концепцию', 'Определяем стиль, аудиторию, важные имена, награждения и ограничения компании.'],
+  ['Фиксируем состав', 'Согласуем ведущего, DJ, аппаратуру, подрядчиков, смету и договор.'],
+  ['Готовим вечер', 'Собираю тайминг с площадкой, кейтерингом, артистами и ответственным от компании.'],
+  ['Проводим корпоратив', 'Удерживаю темп вечера и атмосферу, в которой комфортно разным поколениям гостей.']
+];
+
+const faqs = [
+  ['Можно узнать, свободна ли конкретная дата?', 'Да. Укажите дату в форме — я проверю календарь и отвечу лично. Форма не обещает бронь автоматически.'],
+  ['Можно работать с DJ и техникой площадки?', 'Да. Возможны все три конфигурации: только ведущий, ведущий с DJ или комплект с аппаратурой.'],
+  ['Вы работаете с агентствами?', 'Да. Могу встроиться в готовую концепцию, работать по режиссёрскому плану и держать связь с продюсером проекта.'],
+  ['Как проходит оплата?', 'После согласования задачи фиксируем состав, стоимость и условия в договоре ИП.'],
+  ['Будут конкурсы, в которых неловко участвовать?', 'Нет. Моя задача — вовлекать бережно, без пошлости и давления. Активность всегда учитывает аудиторию компании.'],
+  ['Можно провести награждение или официальную часть?', 'Да. Заранее собираем имена, должности, формулировки и выстраиваем переход от официальной части к празднику.']
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Ведущий на новогодний корпоратив 2026',
+  description,
+  url: canonical,
+  areaServed: { '@type': 'City', name: 'Москва' },
+  provider: {
+    '@type': 'Person',
+    name: contact.name,
+    telephone: contact.phoneSchema,
+    email: contact.email,
+    image: 'https://corp.timurgromov.ru/assets/hero/portrait.webp'
+  }
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage="https://corp.timurgromov.ru/assets/og_og.jpg?v=4"
+  pageCss="/seasonal.css?v=20261001"
+  pageScript="/seasonal.js?v=20261001"
+  structuredData={serviceSchema}
+>
+  <header class="ny-header">
+    <div class="ny-shell ny-header__row">
+      <a class="ny-logo" href="/" aria-label="Тимур Громов — корпоративные мероприятия">Тимур Громов</a>
+      <div class="ny-header__actions">
+        <a class="ny-header__phone" href={contact.phoneHref} data-seasonal-goal="corporate_phone_click">{contact.phoneHuman}</a>
+        <a class="ny-button ny-button--compact" href="#proverit-datu">Проверить дату</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="ny-hero" aria-labelledby="ny-hero-title">
+      <div class="ny-shell ny-hero__grid">
+        <div class="ny-hero__content">
+          <p class="ny-eyebrow">Москва · декабрь 2026</p>
+          <h1 id="ny-hero-title">Новогодний корпоратив — живо, умно и без неловкости</h1>
+          <p class="ny-hero__lead">Тимур Громов — ведущий, который держит темп вечера, бережно вовлекает гостей и собирает программу под характер вашей компании.</p>
+          <div class="ny-proofline" aria-label="Ключевые факты">
+            <span>15+ лет опыта</span>
+            <span>800+ мероприятий</span>
+            <span>Договор ИП</span>
+          </div>
+          <div class="ny-hero__actions">
+            <a class="ny-button" href="#proverit-datu" data-testid="seasonal-primary-cta">Проверить дату</a>
+            <a class="ny-text-link" href="#video">Посмотреть живые фрагменты <span aria-hidden="true">↓</span></a>
+          </div>
+
+          <aside class="ny-date-rail" aria-label="Как проверить дату">
+            <span class="ny-date-rail__mark" aria-hidden="true"></span>
+            <div>
+              <strong>Проверка занимает одну короткую заявку</strong>
+              <p>Дата, число гостей и нужный комплект. Отвечу лично — без автоматической «брони» и рассылок.</p>
+            </div>
+          </aside>
+        </div>
+
+        <div class="ny-hero__visual">
+          <div class="ny-portrait-frame">
+            <img src="/assets/hero/portrait.webp" alt="Тимур Громов — ведущий новогоднего корпоратива" width="518" height="518" loading="eager" decoding="async" fetchpriority="high" />
+          </div>
+          <div class="ny-hero-note">
+            <span>Love Radio · КВН · импровизация</span>
+            <strong>Комфортно гостям — спокойно организатору</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ny-decision" aria-label="Что получает заказчик">
+      <div class="ny-shell ny-decision__grid">
+        <article><span>01</span><strong>Понятный процесс</strong><p>Один контакт по программе, таймингу и команде.</p></article>
+        <article><span>02</span><strong>Уважение к гостям</strong><p>Юмор и вовлечение без давления и пошлости.</p></article>
+        <article><span>03</span><strong>Работа по договору</strong><p>Состав, стоимость и ответственность фиксируются заранее.</p></article>
+      </div>
+    </section>
+
+    <section id="video" class="ny-section ny-video-section">
+      <div class="ny-shell">
+        <div class="ny-section-head">
+          <p class="ny-eyebrow">Не обещания, а живые события</p>
+          <h2>Посмотрите, как звучит и движется вечер</h2>
+          <p>Короткие фрагменты показывают подачу, контакт с залом и темп — именно это нельзя понять по фотографии.</p>
+        </div>
+        <div class="ny-video-grid">
+          {videos.slice(0, 3).map((item, index) => (
+            <article class="ny-video-card">
+              <video controls preload="none" poster={item.cover} data-seasonal-video>
+                <source src={item.video} type="video/mp4" />
+              </video>
+              <div class="ny-video-card__copy">
+                <span>Фрагмент {index + 1}</span>
+                <p>{index === 0 ? 'Открытие вечера и контакт с залом' : index === 1 ? 'Динамика программы и гости' : 'Атмосфера без навязчивости'}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="ny-section ny-formats">
+      <div class="ny-shell">
+        <div class="ny-section-head ny-section-head--wide">
+          <p class="ny-eyebrow">Конфигурация под задачу</p>
+          <h2>Не заставляем платить за то, что уже есть у площадки</h2>
+        </div>
+        <div class="ny-format-grid">
+          {formats.map((item) => (
+            <article class="ny-format-card">
+              <p class="ny-format-card__eyebrow">{item.eyebrow}</p>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <p class="ny-format-note">Финальный состав и стоимость определяются после даты, площадки, количества гостей и технического брифа.</p>
+      </div>
+    </section>
+
+    <section class="ny-section ny-b2b">
+      <div class="ny-shell ny-b2b__grid">
+        <div class="ny-b2b__copy">
+          <p class="ny-eyebrow">Для HR, организатора и агентства</p>
+          <h2>Ведущий — часть производственного процесса, а не отдельный номер</h2>
+          <ul class="ny-check-list">
+            <li>связываю официальную часть, награждения, артистов и банкет;</li>
+            <li>учитываю возраст, роли и культуру общения внутри компании;</li>
+            <li>держу контакт с площадкой, DJ, кейтерингом и продюсером;</li>
+            <li>готовлю имена, должности и произношение до мероприятия;</li>
+            <li>не вытаскиваю гостей в активности против их желания.</li>
+          </ul>
+          <a class="ny-text-link" href="#proverit-datu">Обсудить задачу компании <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="ny-letter-grid" aria-label="Благодарственные письма компаний">
+          {letters.slice(0, 4).map((letter, index) => (
+            <a href={letter.src} target="_blank" rel="noopener" aria-label={`Открыть благодарственное письмо ${index + 1}`}>
+              <img src={letter.src} alt={letter.alt} width="500" height="700" loading="lazy" decoding="async" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="ny-section ny-process">
+      <div class="ny-shell">
+        <div class="ny-section-head">
+          <p class="ny-eyebrow">От первого сообщения до финала</p>
+          <h2>Подготовка без хаоса</h2>
+        </div>
+        <ol class="ny-process-list">
+          {process.map(([heading, text], index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <div><h3>{heading}</h3><p>{text}</p></div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="ny-section ny-faq">
+      <div class="ny-shell ny-faq__grid">
+        <div class="ny-faq__intro">
+          <p class="ny-eyebrow">До заявки</p>
+          <h2>Частые вопросы</h2>
+          <p>Если вашего вопроса нет в списке, оставьте дату и добавьте детали в поле компании или площадки.</p>
+        </div>
+        <div class="ny-faq__items">
+          {faqs.map(([question, answer], index) => (
+            <details open={index === 0}>
+              <summary>{question}</summary>
+              <p>{answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="proverit-datu" class="ny-section ny-lead-section">
+      <div class="ny-shell ny-lead-section__grid">
+        <div class="ny-lead-copy">
+          <p class="ny-eyebrow">Декабрь 2026</p>
+          <h2>Проверьте дату и получите расчёт под ваш формат</h2>
+          <p>Это не автоматическое бронирование. Я сверю календарь, задам несколько вопросов и отвечу лично.</p>
+          <div class="ny-contact-note">
+            <span>Удобнее позвонить?</span>
+            <a href={contact.phoneHref} data-seasonal-goal="corporate_phone_click">{contact.phoneHuman}</a>
+          </div>
+        </div>
+
+        <div class="ny-form-card">
+          <form class="ny-form" data-testid="seasonal-lead-form" data-seasonal-form novalidate>
+            <div class="ny-form__row">
+              <label>
+                <span>Дата мероприятия</span>
+                <input type="date" name="event_date" min="2026-12-01" max="2026-12-31" required />
+              </label>
+              <label>
+                <span>Количество гостей</span>
+                <input type="number" name="guests_count" min="10" max="1000" inputmode="numeric" placeholder="Например, 80" required />
+              </label>
+            </div>
+
+            <label>
+              <span>Какой состав нужен?</span>
+              <select name="equipment_needed" required>
+                <option value="">Выберите вариант</option>
+                <option value="host">Только ведущий</option>
+                <option value="host_dj">Ведущий + DJ</option>
+                <option value="host_dj_sound">Ведущий + DJ + аппаратура</option>
+                <option value="unknown">Пока не знаю — нужна консультация</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Компания или площадка <small>необязательно</small></span>
+              <input type="text" name="company" maxlength="160" autocomplete="organization" placeholder="Название компании или площадки" />
+            </label>
+
+            <div class="ny-form__row">
+              <label>
+                <span>Как к вам обращаться</span>
+                <input type="text" name="name" maxlength="120" autocomplete="name" placeholder="Имя" required />
+              </label>
+              <label>
+                <span>Телефон</span>
+                <input type="tel" name="phone" maxlength="30" autocomplete="tel" inputmode="tel" placeholder="+7 999 000-00-00" required />
+              </label>
+            </div>
+
+            <button class="ny-button ny-form__submit" type="submit">Проверить дату</button>
+            <p class="ny-form__status" data-form-status role="status" aria-live="polite"></p>
+            <p class="ny-form__consent">Нажимая «Проверить дату», вы соглашаетесь с <a href="/privacy/" target="_blank" rel="nofollow">политикой конфиденциальности</a> и <a href="/privacy/#consent" target="_blank" rel="nofollow">обработкой персональных данных</a>.</p>
+          </form>
+
+          <div class="ny-form-success" data-form-success hidden>
+            <p class="ny-eyebrow">Заявка принята</p>
+            <h3>Спасибо — данные уже в рабочем контуре</h3>
+            <p>Я проверю дату и свяжусь с вами лично по указанному телефону.</p>
+            <a href={contact.phoneHref} data-seasonal-goal="corporate_phone_click">Позвонить, если вопрос срочный</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ny-footer">
+    <div class="ny-shell ny-footer__grid">
+      <div>
+        <strong>Тимур Громов</strong>
+        <p>Ведущий корпоративных мероприятий · Москва</p>
+      </div>
+      <div class="ny-footer__contacts">
+        <a href={contact.phoneHref} data-seasonal-goal="corporate_phone_click">{contact.phoneHuman}</a>
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        <a href="/privacy/">Политика конфиденциальности</a>
+      </div>
+      <p class="ny-footer__legal">ИП Мамедов Руслан Идрисович<br />ИНН 615491029963 · ОГРНИП 312615430300096</p>
+    </div>
+  </footer>
+
+  <a class="ny-mobile-bar" href="#proverit-datu" aria-label="Проверить дату новогоднего корпоратива">Проверить дату</a>
+</BaseLayout>

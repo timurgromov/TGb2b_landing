@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-09-30-new-year-landing",
+  "change_kind": "new-seasonal-landing",
+  "requested_visible_change": "Создать отдельную конверсионную посадочную страницу для новогодних корпоративов 2026 без изменения существующей главной страницы.",
+  "expected_visible_delta": "На сезонном URL видны специальный оффер, CTA Проверить дату, корпоративные доказательства и квалифицированная форма; существующая главная сохраняет прежний hero.",
+  "checked_after_last_edit": true,
+  "attempt_number": 2,
+  "candidate_diff_sha256": "91380203807aaf5ee6b293dc5d01f51b8f7c0cc5d860ec526515cdec71b880e6",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?verify=final",
+    "source_ref": "staged Astro candidate built locally from astro-migration",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/ hero and qualified lead form",
+    "state": "initial page at scrollY 0; form present and idle",
+    "selector_or_slide_id": "[data-testid=seasonal-primary-cta] and [data-testid=seasonal-lead-form]",
+    "action": "Open the seasonal route from a fresh load and inspect the first screen and form presence"
+  },
+  "required_viewports": [
+    "390x844",
+    "1180x820",
+    "1280x720",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "Production baseline had only the generic corporate homepage and no seasonal date-check route.",
+      "after_signature": "Seasonal H1 is visible; CTA Проверить дату spans y=625..679; form exists; scrollWidth equals 390.",
+      "observed_visible_result": "Mobile first screen presents the 2026 offer and a fully visible primary CTA without horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x820",
+      "before_signature": "Production baseline had a generic hero with no seasonal promise or date-check form.",
+      "after_signature": "Seasonal H1 is visible; CTA Проверить дату spans y=618..672; form exists; scrollWidth equals 1180.",
+      "observed_visible_result": "Windowed laptop layout keeps the hero readable, CTA fully visible and page width bounded.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "before_signature": "Generic root hero used H1 Интеллигентный ведущий на корпоратив в Москве and two existing CTAs.",
+      "after_signature": "Seasonal H1 is visible; CTA Проверить дату spans y=636..690; form exists; scrollWidth equals 1280.",
+      "observed_visible_result": "The primary seasonal CTA remains fully above the fold at the shortest required desktop viewport.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "before_signature": "Production baseline exposed no dedicated 2026 seasonal route.",
+      "after_signature": "Seasonal H1 is visible; CTA Проверить дату spans y=637..691; form exists; scrollWidth equals 1440.",
+      "observed_visible_result": "Desktop hero preserves the intended two-column composition and visible primary action.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "before_signature": "Production baseline exposed no dedicated 2026 seasonal route.",
+      "after_signature": "Seasonal H1 is visible; CTA Проверить дату spans y=637..691; form exists; scrollWidth equals 1984.",
+      "observed_visible_result": "Wide layout keeps the content in its bounded container without stretching or horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "preserved_surface_check": {
+    "url": "http://127.0.0.1:4321/",
+    "viewport": "1280x720",
+    "h1": "Интеллигентный ведущий на корпоратив в Москве",
+    "hero_actions": ["Обсудить корпоратив", "Назначить встречу"],
+    "horizontal_overflow": false
+  }
+}

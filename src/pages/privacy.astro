@@ -1,0 +1,74 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { contact } from '@data/corporate';
+---
+
+<BaseLayout
+  title="Политика конфиденциальности | Тимур Громов"
+  description="Политика конфиденциальности и согласие на обработку персональных данных корпоративного сайта Тимура Громова."
+  canonical="https://corp.timurgromov.ru/privacy/"
+>
+  <main class="privacy-page">
+    <section class="privacy-page__shell">
+      <p class="privacy-page__eyebrow">Документы сайта</p>
+      <h1>Политика конфиденциальности</h1>
+      <p class="privacy-page__lead">Эта страница описывает обработку данных, которые пользователь добровольно передаёт через формы сайта corp.timurgromov.ru.</p>
+
+      <section class="privacy-page__section" id="policy">
+        <h2>1. Какие данные собираются</h2>
+        <p>Имя, телефон, дата мероприятия, количество гостей, выбранный состав команды, компания или площадка, а также технические параметры источника перехода: страница входа, UTM-метки и `yclid`.</p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>2. Для чего используются данные</h2>
+        <p>Только для ответа на обращение, проверки даты, подготовки предложения, согласования встречи и дальнейшей коммуникации по запросу пользователя.</p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>3. Как обрабатываются данные</h2>
+        <p>Данные не публикуются, не используются для массовых рассылок без отдельного согласия и передаются только в сервисы, необходимые для связи и ведения заявки.</p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>4. Срок обработки</h2>
+        <p>Данные хранятся столько, сколько необходимо для ответа, согласования деталей и ведения коммуникации по обращению, либо до отзыва согласия пользователем.</p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>5. Запрос на удаление</h2>
+        <p>Пользователь может запросить прекращение обработки и удаление своих данных по телефону <a href={contact.phoneHref}>{contact.phoneHuman}</a> или по адресу <a href={`mailto:${contact.email}`}>{contact.email}</a>.</p>
+      </section>
+
+      <section class="privacy-page__section" id="consent">
+        <h2>Согласие на обработку персональных данных</h2>
+        <p>Отправляя форму, пользователь добровольно соглашается на обработку переданных данных для обратной связи, проверки даты, обсуждения мероприятия, подготовки предложения и дальнейшей коммуникации по своему обращению.</p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>6. Оператор</h2>
+        <p>Индивидуальный предприниматель Мамедов Руслан Идрисович, ИНН 615491029963, ОГРНИП 312615430300096.</p>
+      </section>
+
+      <p class="privacy-page__back"><a href="/novogodniy-korporativ/">Вернуться к новогодним корпоративам</a></p>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  :global(*){box-sizing:border-box}
+  :global(html){background:#0c0f14;color:#eef1f5;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  :global(body){margin:0}
+  .privacy-page{min-height:100vh;padding:64px 20px 80px;background:#0c0f14;color:#eef1f5}
+  .privacy-page__shell{width:min(880px,100%);margin:0 auto}
+  .privacy-page__eyebrow{margin:0 0 18px;color:#ff8b57;font-size:15px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+  h1,h2{margin:0;line-height:1.08;letter-spacing:-.03em}
+  h1{max-width:760px;margin-bottom:22px;font-size:clamp(38px,7vw,72px)}
+  .privacy-page__lead,.privacy-page p{margin:0;font-size:18px;line-height:1.65}
+  .privacy-page__lead{max-width:760px;color:#abb4c0}
+  .privacy-page__section{margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12)}
+  .privacy-page__section h2{margin-bottom:12px;font-size:clamp(22px,3vw,30px)}
+  .privacy-page__section p{color:#c9d0d9}
+  .privacy-page__back{margin-top:42px!important}
+  a{color:#ff8b57;text-underline-offset:4px}
+  @media(max-width:640px){.privacy-page{padding:40px 18px 56px}.privacy-page__lead,.privacy-page p{font-size:16px;line-height:1.55}}
+</style>
