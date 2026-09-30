@@ -3,9 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".video-wrapper").forEach(wrapper => {
     const videoSrc = wrapper.dataset.video;
     const coverSrc = wrapper.dataset.cover;
+    const videoTitle = wrapper.dataset.videoTitle || 'Видео с мероприятия';
     wrapper.innerHTML = `
-      <div class="video-poster"><img src="${coverSrc}" alt="" width="1280" height="720" loading="lazy" decoding="async"></div>
-      <div class="play-button"></div>`;
+      <div class="video-poster"><img src="${coverSrc}" alt="${videoTitle}" width="1280" height="720" loading="lazy" decoding="async"></div>
+      <button class="play-button" type="button" aria-label="Воспроизвести: ${videoTitle}"></button>`;
     const playBtn = wrapper.querySelector(".play-button");
     playBtn.addEventListener("click", () => {
       wrapper.innerHTML = `<video controls autoplay><source src="${videoSrc}" type="video/mp4"></video>`;
@@ -297,7 +298,7 @@ function unlockPageScroll() {
   let groupName = '';
 
   function openFromCard(card){
-    const container = card.closest('.letters-slider, .photos-slider');
+    const container = card.closest('.letters-slider, .photos-slider, .proof-cases__grid');
     if (!container) return;
 
     // Собираем список внутри текущей секции, чтобы работала навигация ← →
@@ -598,28 +599,113 @@ const DEFAULT_WA_MESSAGE = 'Здравствуйте, хочу обсудить 
 const DEFAULT_WA_URL = `https://wa.me/79253900772?text=${encodeURIComponent(DEFAULT_WA_MESSAGE)}`;
 // PATCH END: WHATSAPP_DEFAULT_MESSAGE
 
-// PATCH BEGIN: TELEGRAM_LEAD_HELPER
-async function sendLeadToTelegram(name, phone, source = 'popup') {
-  const endpoint = window.TELEGRAM_LEAD_ENDPOINT;
-  if (!endpoint) {
-    console.warn('Lead endpoint is not configured; using WhatsApp fallback only.');
-    return false;
-  }
+// PATCH BEGIN: CONFIRMED_CORPORATE_LEAD_HELPER
+const CORPORATE_LEAD_ENDPOINT = 'https://calcul.timurgromov.ru/api/v1/site/consultation-request';
+const CORPORATE_TRACKING_KEYS = [
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_content',
+  'utm_term',
+  'yclid',
+  'direct_campaign_id',
+  'direct_source_type',
+  'direct_region_id',
+  'creative_id'
+];
 
-  const text = `Новая заявка (${source})\nИмя: ${name}\nТелефон: ${phone}`;
+function collectCorporateTracking() {
+  const params = new URLSearchParams(window.location.search);
+  const campaignParams = {};
+  CORPORATE_TRACKING_KEYS.forEach((key) => {
+    const value = params.get(key);
+    if (value) campaignParams[key] = value.slice(0, 500);
+  });
+
+  let referrerHost = '';
   try {
-    const response = await fetch(endpoint, {
+    referrerHost = document.referrer ? new URL(document.referrer).hostname.toLowerCase() : '';
+  } catch (_) {}
+
+  const medium = (params.get('utm_medium') || '').toLowerCase();
+  const source = (params.get('utm_source') || '').toLowerCase();
+  const channel = params.get('yclid') || params.get('direct_campaign_id') || /cpc|paid|ppc/.test(medium)
+    ? 'paid'
+    : /yandex\.|google\./.test(referrerHost)
+      ? 'organic'
+      : referrerHost && referrerHost !== window.location.hostname
+        ? 'referral'
+        : 'direct';
+  const engine = source.includes('yandex') || referrerHost.includes('yandex.')
+    ? 'yandex'
+    : source.includes('google') || referrerHost.includes('google.')
+      ? 'google'
+      : '';
+
+  const current = {
+    campaignParams,
+    yclid: (params.get('yclid') || '').slice(0, 255),
+    attributionContext: {
+      channel,
+      engine,
+      referrer_host: referrerHost,
+      landing_path: window.location.pathname
+    }
+  };
+
+  try {
+    const storageKey = 'corp_seasonal_tracking_v1';
+    const saved = JSON.parse(window.sessionStorage.getItem(storageKey) || 'null');
+    if (saved && typeof saved === 'object') return saved;
+    window.sessionStorage.setItem(storageKey, JSON.stringify(current));
+  } catch (_) {}
+
+  return current;
+}
+
+function normalizeCorporatePhone(value) {
+  const digits = String(value || '').replace(/\D/g, '');
+  if (digits.length === 11 && digits.startsWith('8')) return `+7${digits.slice(1)}`;
+  if (digits.length === 10) return `+7${digits}`;
+  return digits ? `+${digits}` : '';
+}
+
+async function sendCorporateLead(name, phone, source = 'popup') {
+  const previewState = new URLSearchParams(window.location.search).get('preview_lead_state');
+  const isLocalPreview = ['127.0.0.1', 'localhost'].includes(window.location.hostname);
+  if (isLocalPreview && previewState === 'success') return true;
+  if (isLocalPreview && previewState === 'error') return false;
+
+  const tracking = collectCorporateTracking();
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), 12000);
+  const payload = {
+    name: String(name || '').trim(),
+    phone: normalizeCorporatePhone(phone),
+    comment: `Запрос с корпоративного сайта\nФорма: ${String(source).slice(0, 120)}`,
+    form_source: 'site_meeting_corporate',
+    page_url: `${window.location.origin}${window.location.pathname}`.slice(0, 500),
+    yclid: tracking.yclid || null,
+    campaign_params: Object.keys(tracking.campaignParams).length ? tracking.campaignParams : null,
+    attribution_context: tracking.attributionContext
+  };
+
+  try {
+    const response = await fetch(CORPORATE_LEAD_ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone, source, text })
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      credentials: 'omit',
+      signal: controller.signal,
+      body: JSON.stringify(payload)
     });
-    return response.ok;
-  } catch (error) {
-    console.error('Lead send failed', error);
+    return response.status === 201;
+  } catch (_) {
     return false;
+  } finally {
+    window.clearTimeout(timeoutId);
   }
 }
-// PATCH END: TELEGRAM_LEAD_HELPER
+// PATCH END: CONFIRMED_CORPORATE_LEAD_HELPER
 
 // ===== УМНОЕ ПЕРЕНАПРАВЛЕНИЕ ТЕЛЕФОННЫХ ССЫЛОК =====
 (function initSmartPhoneRedirect() {
@@ -1040,22 +1126,13 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     const successMsg = document.getElementById('article-popup-success');
     const nameInput = document.getElementById('article-name');
     const phoneInput = document.getElementById('article-phone');
+    const status = form?.querySelector('[data-lead-status]');
+    const submit = form?.querySelector('button[type="submit"]');
     const closeBtn = modal?.querySelector('.modal__close');
     const overlay = modal?.querySelector('.modal__overlay');
-    const workflowSection = document.getElementById('workflow');
+    const triggers = document.querySelectorAll('[data-modal="article-popup"]');
     
     if (!modal || !form) return;
-
-    // Проверяем, показывалась ли уже модалка (localStorage)
-    const POPUP_SHOWN_KEY = 'article_popup_shown';
-    const hasShownPopup = (() => {
-      try {
-        return localStorage.getItem(POPUP_SHOWN_KEY);
-      } catch (error) {
-        return null;
-      }
-    })();
-    let popupShown = false;
 
     // Маска для телефона
     function formatPhone(input) {
@@ -1080,93 +1157,88 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     });
 
     function openModal() {
-      if (popupShown) return;
-      popupShown = true;
+      form.hidden = false;
+      successMsg.hidden = true;
+      if (submit) {
+        submit.disabled = false;
+        submit.textContent = 'Получить чек-лист';
+      }
+      if (status) {
+        status.textContent = '';
+        delete status.dataset.state;
+      }
       modal.classList.add('active');
       lockPageScroll();
-      try {
-        localStorage.setItem(POPUP_SHOWN_KEY, 'true');
-      } catch (error) {
-        // Ignore storage failures; the popup should not break page behavior.
-      }
-      
-      // Отправляем цель в Метрику
-      if (typeof ym === 'function') {
-        ym(104468814, 'reachGoal', 'article_popup_shown');
-      }
     }
 
     function closeModal() {
       modal.classList.remove('active');
       unlockPageScroll();
+      form.hidden = false;
+      successMsg.hidden = true;
+      form.reset();
+      if (submit) {
+        submit.disabled = false;
+        submit.textContent = 'Получить чек-лист';
+      }
+      if (status) {
+        status.textContent = '';
+        delete status.dataset.state;
+      }
     }
 
-    // Показываем модалку через 30 секунд
-    let timeoutId = null;
-    if (!hasShownPopup) {
-      const delay = 30000;
-      timeoutId = setTimeout(() => {
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', (event) => {
+        event.preventDefault();
         openModal();
-      }, delay);
-    }
+      });
+    });
 
-    // Показываем модалку при скролле до блока "Порядок работы"
-    if (!hasShownPopup && workflowSection) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Отменяем таймер, если он ещё не сработал
-            if (timeoutId) {
-              clearTimeout(timeoutId);
-              timeoutId = null;
-            }
-            // Небольшая задержка после появления секции в viewport
-            setTimeout(() => {
-              openModal();
-            }, 500);
-            observer.disconnect();
-          }
-        });
-      }, { threshold: 0.3 });
-
-      observer.observe(workflowSection);
-    }
-
-    // Обработка формы
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const name = nameInput.value.trim();
       const phone = phoneInput.value.replace(/\D/g, '');
-      // PATCH BEGIN: TELEGRAM_POPUP_LEADS
       const displayPhone = phoneInput.value.trim() || `+${phone}`;
-      // PATCH END: TELEGRAM_POPUP_LEADS
       
       if (!name || phone.length < 11) {
+        if (status) {
+          status.textContent = 'Проверьте имя и номер телефона.';
+          status.dataset.state = 'error';
+        }
         if (!name) nameInput.focus();
         else phoneInput.focus();
         return;
       }
 
-      // PATCH BEGIN: TELEGRAM_POPUP_LEADS
-      sendLeadToTelegram(name, displayPhone, 'article_popup');
-      // PATCH END: TELEGRAM_POPUP_LEADS
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'Отправляем…';
+      }
+      if (status) {
+        status.textContent = 'Передаём заявку в рабочий контур.';
+        status.dataset.state = 'sending';
+      }
 
-      // Скрываем форму, показываем сообщение об успехе
+      const created = await sendCorporateLead(name, displayPhone, 'article_popup');
+      if (!created) {
+        if (status) {
+          status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите в WhatsApp.';
+          status.dataset.state = 'error';
+        }
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = 'Повторить отправку';
+        }
+        if (typeof ym === 'function') ym(104468814, 'reachGoal', 'corporate_form_error');
+        return;
+      }
+
       form.hidden = true;
       successMsg.hidden = false;
-
-      // Формируем сообщение для WhatsApp
-      const message = 'Здравствуйте! Хочу получить чек-лист "7 шагов к безопасному корпоративу".';
-      const whatsappUrl = `https://wa.me/79253900772?text=${encodeURIComponent(message)}`;
-      
-      // Редирект в WhatsApp через 2 секунды
-      setTimeout(() => {
-        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-      }, 2000);
-      
-      // Отправляем цель в Метрику
+      if (status) status.textContent = '';
       if (typeof ym === 'function') {
+        ym(104468814, 'reachGoal', 'corporate_lead_submit_success');
         ym(104468814, 'reachGoal', 'article_popup_submit');
       }
     });
@@ -1198,6 +1270,8 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     const successMsg = document.getElementById('contact-popup-success');
     const nameInput = document.getElementById('contact-name');
     const phoneInput = document.getElementById('contact-phone');
+    const status = form?.querySelector('[data-lead-status]');
+    const submit = form?.querySelector('button[type="submit"]');
     const closeBtn = modal?.querySelector('.modal__close');
     const overlay = modal?.querySelector('.modal__overlay');
     const triggers = document.querySelectorAll('[data-modal="contact-popup"]');
@@ -1228,6 +1302,14 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   function openModal() {
     form.hidden = false;
     successMsg.hidden = true;
+    if (submit) {
+      submit.disabled = false;
+      submit.textContent = 'Отправить';
+    }
+    if (status) {
+      status.textContent = '';
+      delete status.dataset.state;
+    }
     modal.classList.add('active');
     lockPageScroll();
   }
@@ -1238,6 +1320,14 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     form.hidden = false;
     successMsg.hidden = true;
     form.reset();
+    if (submit) {
+      submit.disabled = false;
+      submit.textContent = 'Отправить';
+    }
+    if (status) {
+      status.textContent = '';
+      delete status.dataset.state;
+    }
   }
 
   triggers.forEach(btn => {
@@ -1256,7 +1346,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
       }
     });
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = nameInput.value.trim();
@@ -1264,21 +1354,44 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
       const displayPhone = phoneInput.value.trim() || `+${phoneDigits}`;
 
       if (!name || phoneDigits.length < 11) {
+        if (status) {
+          status.textContent = 'Проверьте имя и номер телефона.';
+          status.dataset.state = 'error';
+        }
         if (!name) nameInput.focus();
         else phoneInput.focus();
         return;
       }
 
-      sendLeadToTelegram(name, displayPhone, 'contact_popup');
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'Отправляем…';
+      }
+      if (status) {
+        status.textContent = 'Передаём заявку в рабочий контур.';
+        status.dataset.state = 'sending';
+      }
+
+      const created = await sendCorporateLead(name, displayPhone, 'contact_popup');
+      if (!created) {
+        if (status) {
+          status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите в WhatsApp.';
+          status.dataset.state = 'error';
+        }
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = 'Повторить отправку';
+        }
+        if (typeof ym === 'function') ym(104468814, 'reachGoal', 'corporate_form_error');
+        return;
+      }
 
       form.hidden = true;
       successMsg.hidden = false;
-
-      setTimeout(() => {
-        window.open(DEFAULT_WA_URL, '_blank', 'noopener,noreferrer');
-      }, 2000);
+      if (status) status.textContent = '';
 
       if (typeof ym === 'function') {
+        ym(104468814, 'reachGoal', 'corporate_lead_submit_success');
         ym(104468814, 'reachGoal', 'contact_popup_submit');
       }
     });
@@ -1302,6 +1415,8 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   const successMsg = document.getElementById('video-consult-success');
   const nameInput = document.getElementById('video-consult-name');
   const phoneInput = document.getElementById('video-consult-phone');
+  const status = form?.querySelector('[data-lead-status]');
+  const submit = form?.querySelector('button[type="submit"]');
   const openBtns = document.querySelectorAll('[data-modal="video-consult-modal"]');
   const closeBtn = modal?.querySelector('.modal__close');
   const overlay = modal?.querySelector('.modal__overlay');
@@ -1335,6 +1450,14 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     currentVideoSource = source;
     if (form) form.hidden = false;
     if (successMsg) successMsg.hidden = true;
+    if (submit) {
+      submit.disabled = false;
+      submit.textContent = 'Назначить встречу';
+    }
+    if (status) {
+      status.textContent = '';
+      delete status.dataset.state;
+    }
     modal.classList.add('active');
     lockPageScroll();
   }
@@ -1348,6 +1471,14 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
       form.reset();
     }
     if (successMsg) successMsg.hidden = true;
+    if (submit) {
+      submit.disabled = false;
+      submit.textContent = 'Назначить встречу';
+    }
+    if (status) {
+      status.textContent = '';
+      delete status.dataset.state;
+    }
   }
 
   openBtns.forEach(btn => {
@@ -1371,7 +1502,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
 
   // Обработка формы
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = nameInput.value.trim();
@@ -1379,22 +1510,45 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
       const displayPhone = phoneInput.value.trim() || `+${phoneDigits}`;
 
       if (!name || phoneDigits.length < 11) {
+        if (status) {
+          status.textContent = 'Проверьте имя и номер телефона.';
+          status.dataset.state = 'error';
+        }
         if (!name) nameInput.focus();
         else phoneInput.focus();
         return;
       }
 
-      sendLeadToTelegram(name, displayPhone, 'video_consult');
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'Отправляем…';
+      }
+      if (status) {
+        status.textContent = 'Передаём заявку в рабочий контур.';
+        status.dataset.state = 'sending';
+      }
+
+      const created = await sendCorporateLead(name, displayPhone, `video_consult:${currentVideoSource}`);
+      if (!created) {
+        if (status) {
+          status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите в WhatsApp.';
+          status.dataset.state = 'error';
+        }
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = 'Повторить отправку';
+        }
+        if (typeof ym === 'function') ym(104468814, 'reachGoal', 'corporate_form_error');
+        return;
+      }
 
       form.hidden = true;
       if (successMsg) successMsg.hidden = false;
-
-      setTimeout(() => {
-        window.open(DEFAULT_WA_URL, '_blank', 'noopener,noreferrer');
-      }, 2000);
+      if (status) status.textContent = '';
 
       // PATCH BEGIN: VIDEO_MODAL_SOURCES
       if (typeof ym === 'function') {
+        ym(104468814, 'reachGoal', 'corporate_lead_submit_success');
         ym(104468814, 'reachGoal', 'video_consult_submit');
         if (currentVideoSource === 'workflow_popup') {
           ym(104468814, 'reachGoal', 'workflow_popup_submit');
