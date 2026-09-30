@@ -46,7 +46,7 @@ expectText(seasonalHtml, 'Больше благодарственных писе
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + кавер-группа', 'seasonal premium package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_3', 'main site stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_4', 'main site stylesheet');
 expectText(seasonalHtml, '/mobile.css?v=astro_2', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
 expectText(seasonalHtml, '/seasonal.js?v=20260930d', 'seasonal script');

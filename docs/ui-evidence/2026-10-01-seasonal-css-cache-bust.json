@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-01-seasonal-css-cache-bust",
+  "change_kind": "asset-delivery-regression-fix",
+  "requested_visible_change": "Гарантировать доставку восстановленной сетки пакетов браузерам с прежним CSS в кэше.",
+  "expected_visible_delta": "Страница запрашивает style.css?v=astro_4 и использует уже проверенную восстановленную сетку пакетов.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "acf8ef657e3b4ddaaef9534a7a5a84e895645a924c939c63e8a7d6df6a40cdee",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?candidate=css-cache-bust#formats",
+    "source_ref": "staged astro-migration candidate after fresh Astro build",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/",
+    "state": "public page without form submission",
+    "selector_or_slide_id": "link[href='/style.css?v=astro_4'], .service-formats__grid",
+    "action": "Open the page after a prior astro_3 browser session and navigate to #formats"
+  },
+  "must_remain_unchanged": [
+    "main stylesheet content",
+    "page copy and package content",
+    "proof section",
+    "forms and scripts"
+  ],
+  "required_viewports": ["390x844", "1280x720"],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=390; innerHeight=844",
+      "before_signature": "An existing production session could reuse style.css?v=astro_3.",
+      "after_signature": "Generated HTML requests style.css?v=astro_4; restored mobile package stack remains 359px wide; scrollWidth=390.",
+      "observed_visible_result": "The corrected stylesheet is independently cacheable and the mobile layout remains stable.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Reported live viewport reproduced in Codex in-app browser; innerWidth=1280; innerHeight=720; DPR=2",
+      "before_signature": "Production HTML was current while the browser reused astro_3 and rendered the package container as display:block.",
+      "after_signature": "Generated HTML requests style.css?v=astro_4; restored package grid has three 363px columns and 16px gaps; scrollWidth=1280.",
+      "observed_visible_result": "The cache key changes and the verified desktop package row is delivered.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "interaction_states": {
+    "stylesheet_contract": "Fresh build contains /style.css?v=astro_4 on the seasonal route.",
+    "seasonal_verifier": "npm run verify:seasonal passed against the new cache key.",
+    "production_submission": "not performed"
+  },
+  "responsive_matrix": {
+    "checked_viewports": 2,
+    "breakpoints": [768, 1180],
+    "boundary_policy": "Targeted cache-delivery regression check at mobile and reported desktop anchors; the underlying layout already passed the full 13-viewport matrix.",
+    "horizontal_overflow_failures": 0,
+    "mechanical_runner_note": "DOM measurements were completed in the Codex in-app browser."
+  },
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "Increment the existing main stylesheet cache key",
+    "owner_approval_reference": "This is a delivery repair required to make the owner's explicit restoration visible."
+  }
+}
