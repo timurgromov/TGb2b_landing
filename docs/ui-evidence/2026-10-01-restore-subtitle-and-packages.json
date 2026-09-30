@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-01-restore-subtitle-and-packages",
+  "change_kind": "regression-restoration",
+  "requested_visible_change": "Вернуть ранее согласованный подзаголовок и исходную адаптивную сетку пакетов.",
+  "expected_visible_delta": "Подзаголовок восстановлен дословно; пакеты снова идут в три колонки на desktop, в две плюс одну на tablet и в одну колонку на mobile.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "88c5c9ecd54e17300e2710b8d06c8835717551006851cb76e9c5fea285e5e921",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?candidate=restore-packages#formats",
+    "source_ref": "staged astro-migration candidate after fresh Astro build",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/",
+    "state": "public page without form submission",
+    "selector_or_slide_id": "#hero-subtitle, .service-formats__grid, .service-format",
+    "action": "Open the first screen, then navigate to #formats"
+  },
+  "must_remain_unchanged": [
+    "the content and order of all three packages",
+    "the current proof and gratitude section",
+    "CTA and lead form behavior",
+    "existing palette and typography",
+    "all adjacent sections"
+  ],
+  "required_viewports": [
+    "390x844",
+    "767x844",
+    "768x1024",
+    "769x1024",
+    "974x1024",
+    "1024x768",
+    "1179x900",
+    "1180x900",
+    "1181x900",
+    "1280x720",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=390; innerHeight=844",
+      "before_signature": "The accidental grouped selector removed the package grid declaration.",
+      "after_signature": "One column; all cards are 359px wide; scrollWidth=390.",
+      "observed_visible_result": "Packages retain the intended mobile stack and exact restored subtitle is present.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "767x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=767; innerHeight=844",
+      "before_signature": "The package container had no grid declaration.",
+      "after_signature": "One column; cards are 731px wide; scrollWidth=767.",
+      "observed_visible_result": "The last mobile width is stable with no clipping.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=768; innerHeight=1024",
+      "before_signature": "The package container had no grid declaration.",
+      "after_signature": "One column; cards are 732px wide; scrollWidth=768.",
+      "observed_visible_result": "The exact mobile boundary preserves the intended single-column layout.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x1024",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=769; innerHeight=1024",
+      "before_signature": "The accidental block layout kept all packages full width.",
+      "after_signature": "Two 353px cards followed by one 721px card; 16px gap; scrollWidth=769.",
+      "observed_visible_result": "The B+1 tablet layout returns to the original 2+1 composition.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "974x1024",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=974; innerHeight=1024",
+      "before_signature": "The accidental block layout kept all packages full width.",
+      "after_signature": "Two 455px cards followed by one 926px card; 16px gap; scrollWidth=974.",
+      "observed_visible_result": "The tablet composition is balanced and keeps the original package content.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1024; innerHeight=768",
+      "before_signature": "The accidental block layout kept all packages full width.",
+      "after_signature": "Two 480px cards followed by one 976px card; 16px gap; scrollWidth=1024.",
+      "observed_visible_result": "Landscape tablet restores the original 2+1 package grid.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1179x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1179; innerHeight=900",
+      "before_signature": "The accidental block layout kept all packages full width.",
+      "after_signature": "Two 492px cards followed by one 1000px card; 16px gap; scrollWidth=1179.",
+      "observed_visible_result": "The final pre-desktop width retains the intended 2+1 layout.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1180; innerHeight=900",
+      "before_signature": "The accidental block layout kept all packages full width.",
+      "after_signature": "Two 492px cards followed by one 1000px card; 16px gap; scrollWidth=1180.",
+      "observed_visible_result": "The declared tablet boundary remains stable.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1181x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1181; innerHeight=900",
+      "before_signature": "The accidental block layout kept all packages full width.",
+      "after_signature": "Three 367px columns with 16px gaps; scrollWidth=1181.",
+      "observed_visible_result": "The B+1 desktop transition restores all packages to one row.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Reported live viewport reproduced in Codex in-app browser; innerWidth=1280; innerHeight=720; DPR=2",
+      "before_signature": "Live package container was display:block; three cards were stacked at 1118px wide.",
+      "after_signature": "Three 363px columns with 16px gaps; scrollWidth=1280.",
+      "observed_visible_result": "The exact reported desktop returns to the original compact three-card row.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1366; innerHeight=768",
+      "before_signature": "The accidental block layout stacked all packages.",
+      "after_signature": "Three 363px columns with 16px gaps; scrollWidth=1366.",
+      "observed_visible_result": "The common desktop width is compact, aligned and free of overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1440; innerHeight=900",
+      "before_signature": "The accidental block layout stacked all packages.",
+      "after_signature": "Three 363px columns with 16px gaps; scrollWidth=1440.",
+      "observed_visible_result": "The original desktop card proportions are restored.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1984; innerHeight=1046",
+      "before_signature": "The accidental block layout stacked all packages.",
+      "after_signature": "Three 449px columns with 16px gaps; scrollWidth=1984.",
+      "observed_visible_result": "Wide desktop uses the existing container and preserves the three-column rhythm.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "interaction_states": {
+    "hero_copy": "The exact previously approved subtitle is present.",
+    "package_content": "All three package names, features and CTAs remain unchanged.",
+    "proof_section": "No proof-section markup or styling was changed by this restoration.",
+    "production_submission": "not performed"
+  },
+  "responsive_matrix": {
+    "checked_viewports": 13,
+    "breakpoints": [768, 1180],
+    "boundary_policy": "B-1, B and B+1 plus mobile, tablet, desktop and wide anchors",
+    "horizontal_overflow_failures": 0,
+    "mechanical_runner_note": "The matrix was completed through the Codex in-app browser viewport API and live DOM measurements."
+  },
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "Exact restoration of the previously approved subtitle and package layout",
+    "owner_approval_reference": "Owner explicitly requested that both regressions be restored before any new proof-section proposal."
+  }
+}

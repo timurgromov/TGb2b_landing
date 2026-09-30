@@ -2376,7 +2376,12 @@ body { overflow-x: hidden; }
   margin: -12px auto 30px;
 }
 
-.service-formats__grid,
+.service-formats__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
 .service-format {
   min-width: 0;
   border: 1px solid var(--stroke);

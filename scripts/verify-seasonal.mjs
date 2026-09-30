@@ -36,7 +36,7 @@ expectText(rootHtml, 'data-testid="proof-cases"', 'root proof cases');
 expectText(rootHtml, 'data-testid="faq-section"', 'root FAQ');
 
 expectText(seasonalHtml, 'Ведущий на новогодний корпоратив 2026 в Москве', 'seasonal route');
-expectText(seasonalHtml, 'Ведущий, DJ и программа под вашу компанию', 'seasonal offer');
+expectText(seasonalHtml, 'Тимур Громов — ведущий, который держит темп вечера, бережно вовлекает гостей и собирает программу под характер вашей компании.', 'seasonal offer');
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta"', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="seasonal-lead-form"', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="service-formats"', 'seasonal formats');
