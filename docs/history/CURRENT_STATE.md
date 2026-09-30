@@ -39,9 +39,14 @@ An actual production submission is intentionally not part of automated verificat
 - local visual verification: passed for 19 viewports from `390x844` through `1984x1046`, including `B-1/B/B+1` around `768`, `1024`, `1180` and `1280`;
 - interaction verification: video playback, proof-letter lightbox, FAQ disclosure, confirmed-success preview and retryable-error preview passed without a real submission;
 - responsive defect found and fixed: the workflow connector no longer creates `1200px` document width at the `1181px` boundary;
-- runtime source commit: `f53e1b0` on local and `origin/astro-migration`;
-- production commit: `e2fe981` on `origin/gh-pages`;
+- runtime source commit: `8c468bf` on local and `origin/astro-migration`;
+- production commit: `c6b01e5` on `origin/gh-pages`;
 - GitHub Pages build: `built`;
-- live seasonal route: passed at `390x844` and `1280x720`, with direct H1, main-site Header/hero design, no horizontal overflow and no browser console errors;
-- live root regression: original H1 and both hero actions preserved at `1280x720`;
+- live seasonal route: passed at `390x844` and `1280x720`, with the new subtitle, 3 formats, 3 proof cases, 6 FAQ items, 4 video captions, no overflow and no browser console errors;
+- live root regression: original H1 and both hero actions preserved at `1280x720`; seasonal CTA, proof cases and FAQ are published; delayed popup remains closed;
+- release assets and routes: root, seasonal, privacy, CSS, JS, hero, proof letter and sitemap all returned HTTP `200`;
 - production CRM lead: not verified without owner approval.
+
+## YandexDirectGrowth handoff
+
+The separate local campaign package is prepared in `../YandexDirectGrowth/` as `EXP-20260930-002` / `CMP-CORP-NY-2026-001`, state `LOCAL_DRAFT/OFF`. It contains five groups, 15 seed phrases, safe/conditional negatives, five creative sets, UTM and stop rules. No provider campaign, forecast, budget, funding, moderation or launch action occurred.
