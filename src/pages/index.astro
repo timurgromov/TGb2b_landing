@@ -1,13 +1,16 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Benefits from '@components/Benefits.astro';
+import CaseProofs from '@components/CaseProofs.astro';
 import CTA from '@components/CTA.astro';
+import FAQ from '@components/FAQ.astro';
 import Footer from '@components/Footer.astro';
 import Gallery from '@components/Gallery.astro';
 import Header from '@components/Header.astro';
 import Hero from '@components/Hero.astro';
 import Letters from '@components/Letters.astro';
 import Modals from '@components/Modals.astro';
+import SeasonalPromo from '@components/SeasonalPromo.astro';
 import VideoCases from '@components/VideoCases.astro';
 import WhatsAppFab from '@components/WhatsAppFab.astro';
 import Workflow from '@components/Workflow.astro';
@@ -24,11 +27,14 @@ import { siteMeta, structuredData } from '@data/corporate';
   <Header />
   <main class="page">
     <Hero />
+    <SeasonalPromo />
     <VideoCases />
     <Benefits />
+    <CaseProofs />
     <Workflow />
     <Gallery />
     <Letters />
+    <FAQ />
     <CTA />
   </main>
   <Footer />

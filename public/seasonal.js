@@ -102,8 +102,10 @@
     element.addEventListener('click', () => reachGoal(element.dataset.seasonalGoal));
   });
 
-  document.querySelectorAll('[data-seasonal-video]').forEach((video) => {
-    video.addEventListener('play', () => reachGoal('corporate_video_play'), { once: true });
+  document.querySelectorAll('[data-seasonal-video]').forEach((videoWrapper) => {
+    videoWrapper.addEventListener('click', (event) => {
+      if (event.target.closest('.play-button')) reachGoal('corporate_video_play');
+    }, { once: true });
   });
 
   const form = document.querySelector('[data-seasonal-form]');

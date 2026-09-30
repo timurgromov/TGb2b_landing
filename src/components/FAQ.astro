@@ -1,0 +1,18 @@
+---
+import { faqItems } from '@data/corporate';
+---
+
+<section id="faq" class="section faq-section" data-testid="faq-section">
+  <div class="container faq-section__container">
+    <p class="section__eyebrow sr">До первого разговора</p>
+    <h2 class="section__title sr">Коротко о главном</h2>
+    <div class="faq-list sr">
+      {faqItems.map((item, index) => (
+        <details class="faq-item" open={index === 0}>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

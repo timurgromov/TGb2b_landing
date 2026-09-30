@@ -34,6 +34,14 @@ Public pricing: decision pending. До утверждения используе
 - благодарственные письма компаний;
 - понятный процесс подготовки.
 
+Published proof cases are limited to facts visible in the source letters:
+
+- Raymed Group — новогодний корпоратив 21 декабря 2024 года, ведущий + DJ;
+- Банк «Открытие» — новогодний корпоратив 17 декабря 2015 года, ведущий + DJ;
+- группа компаний «Траскон» — корпоратив 28 декабря 2015 года с концепцией «Новый год нашего детства».
+
+Guest counts, revenue uplift and other outcomes absent from the letters are not invented.
+
 ## Tracking plan
 
 Landing source: `site_meeting_corporate`.
@@ -65,3 +73,5 @@ Clicks, form starts and messenger clicks are diagnostics. Only confirmed backend
 ## Channel boundary
 
 First campaign: narrow Search-only corporate intent. РСЯ and broad autotargeting are excluded from the first test. Campaign creation belongs to `../YandexDirectGrowth/` after the site release gate.
+
+Campaign preparation may produce only a local `DRAFT/OFF` package until the owner separately approves provider creation, bids, budget, funding and launch. Official Direct forecast remains `not_checked` until read from the current cabinet.

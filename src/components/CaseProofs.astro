@@ -1,0 +1,44 @@
+---
+import { proofCases } from '@data/corporate';
+
+interface Props {
+  seasonal?: boolean;
+}
+
+const { seasonal = false } = Astro.props;
+---
+
+<section id="proof-cases" class="section proof-cases" data-testid="proof-cases">
+  <div class="container">
+    <p class="section__eyebrow sr">Подтверждено заказчиками</p>
+    <h2 class="section__title sr">Корпоративы, за которыми стоят реальные письма</h2>
+    <p class="section__subtitle proof-cases__intro sr">
+      {seasonal
+        ? 'Три новогодних проекта с подтверждёнными датами, форматами и обратной связью компаний.'
+        : 'Не обезличенные отзывы, а письма компаний с датами, подписями и описанием работы.'}
+    </p>
+
+    <div class="proof-cases__grid">
+      {proofCases.map((item) => (
+        <article class="proof-case sr">
+          <div class="proof-case__body">
+            <p class="proof-case__company">{item.company}</p>
+            <p class="proof-case__meta">{item.meta}</p>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+          <button
+            class="proof-case__letter"
+            type="button"
+            data-letter-modal
+            data-full={item.letter}
+            aria-label={`Открыть письмо: ${item.company}`}
+          >
+            <img src={item.letter} alt={item.letterAlt} loading="lazy" decoding="async" />
+            <span>Открыть письмо</span>
+          </button>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

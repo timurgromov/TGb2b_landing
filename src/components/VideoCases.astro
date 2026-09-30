@@ -2,10 +2,24 @@
 import { videos } from '@data/corporate';
 ---
 <section class="video-fullscreen" id="cases">
-  <h2 class="video-title sr">Примеры работ</h2>
+  <p class="section__eyebrow sr">Посмотрите до разговора</p>
+  <h2 class="video-title sr">Тимур в работе</h2>
   <div class="video-grid-fullscreen">
-    {videos.map((item) => (
-      <div class="video-wrapper sr" data-video={item.video} data-cover={item.cover}></div>
+    {videos.map((item, index) => (
+      <article class="video-case sr">
+        <div
+          class="video-wrapper"
+          data-video={item.video}
+          data-cover={item.cover}
+          data-video-title={item.title}
+          data-seasonal-video
+          data-video-index={index + 1}
+        ></div>
+        <div class="video-case__copy">
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </div>
+      </article>
     ))}
   </div>
 </section>

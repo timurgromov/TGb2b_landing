@@ -19,10 +19,11 @@ function rejectText(source, unexpected, label) {
   }
 }
 
-const [rootHtml, seasonalHtml, privacyHtml, seasonalScript, sitemap] = await Promise.all([
+const [rootHtml, seasonalHtml, privacyHtml, sharedScript, seasonalScript, sitemap] = await Promise.all([
   read('dist/index.html'),
   read('dist/novogodniy-korporativ/index.html'),
   read('dist/privacy/index.html'),
+  read('public/script.js'),
   read('public/seasonal.js'),
   read('public/sitemap.xml')
 ]);
@@ -30,15 +31,22 @@ const [rootHtml, seasonalHtml, privacyHtml, seasonalScript, sitemap] = await Pro
 expectText(rootHtml, 'Интеллигентный ведущий на корпоратив в Москве', 'root regression');
 expectText(rootHtml, 'Обсудить корпоратив', 'root regression');
 expectText(rootHtml, 'Назначить встречу', 'root regression');
+expectText(rootHtml, 'Перейти к новогодним корпоративам', 'root seasonal promo');
+expectText(rootHtml, 'data-testid="proof-cases"', 'root proof cases');
+expectText(rootHtml, 'data-testid="faq-section"', 'root FAQ');
 
 expectText(seasonalHtml, 'Ведущий на новогодний корпоратив 2026 в Москве', 'seasonal route');
+expectText(seasonalHtml, 'Ведущий, DJ и программа под вашу компанию', 'seasonal offer');
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta"', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="seasonal-lead-form"', 'seasonal route');
+expectText(seasonalHtml, 'data-testid="service-formats"', 'seasonal formats');
+expectText(seasonalHtml, 'data-testid="proof-cases"', 'seasonal proof cases');
+expectText(seasonalHtml, 'data-testid="faq-section"', 'seasonal FAQ');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_1', 'main site stylesheet');
-expectText(seasonalHtml, '/mobile.css?v=astro_1', 'main site mobile stylesheet');
-expectText(seasonalHtml, '/seasonal.css?v=20260930b', 'seasonal form stylesheet');
-expectText(seasonalHtml, '/seasonal.js?v=20260930b', 'seasonal script');
+expectText(seasonalHtml, '/style.css?v=astro_2', 'main site stylesheet');
+expectText(seasonalHtml, '/mobile.css?v=astro_2', 'main site mobile stylesheet');
+expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
+expectText(seasonalHtml, '/seasonal.js?v=20260930c', 'seasonal script');
 expectText(seasonalHtml, '/privacy/', 'seasonal privacy link');
 rejectText(seasonalHtml, 'TELEGRAM_LEAD_ENDPOINT', 'seasonal route');
 
@@ -50,6 +58,12 @@ expectText(seasonalScript, "form_source: 'site_meeting_corporate'", 'lead contra
 expectText(seasonalScript, 'response.status !== 201', 'confirmed lead gate');
 expectText(seasonalScript, "reachGoal('corporate_lead_submit_success')", 'confirmed lead goal');
 expectText(seasonalScript, 'window.location.origin}${window.location.pathname}', 'sanitized page URL');
+
+expectText(sharedScript, 'https://calcul.timurgromov.ru/api/v1/site/consultation-request', 'shared lead contract');
+expectText(sharedScript, "form_source: 'site_meeting_corporate'", 'shared lead contract');
+expectText(sharedScript, 'response.status === 201', 'shared confirmed lead gate');
+expectText(sharedScript, "reachGoal', 'corporate_lead_submit_success'", 'shared confirmed lead goal');
+rejectText(sharedScript, 'TELEGRAM_LEAD_ENDPOINT', 'shared lead contract');
 
 expectText(sitemap, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'sitemap');
 expectText(sitemap, 'https://corp.timurgromov.ru/privacy/', 'sitemap');

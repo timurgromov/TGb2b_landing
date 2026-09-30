@@ -1,0 +1,42 @@
+---
+const formats = [
+  {
+    title: 'Только ведущий',
+    fit: 'Когда DJ и техника уже есть у площадки или агентства.',
+    items: ['Подготовка программы', 'Ведение вечера', 'Координация тайминга']
+  },
+  {
+    title: 'Ведущий + DJ',
+    fit: 'Когда нужна сработанная команда и единый музыкальный сценарий.',
+    items: ['Всё из формата с ведущим', 'DJ и музыкальная драматургия', 'Общая подготовка команды']
+  },
+  {
+    title: 'Ведущий + DJ + звук',
+    fit: 'Когда площадке нужен комплект под число гостей и программу.',
+    items: ['Ведущий и DJ', 'Подбор необходимого звука', 'Согласование с площадкой']
+  }
+];
+---
+
+<section id="formats" class="section service-formats" data-testid="service-formats">
+  <div class="container">
+    <p class="section__eyebrow sr">Без лишнего в смете</p>
+    <h2 class="section__title sr">Выберите подходящий состав</h2>
+    <p class="section__subtitle service-formats__intro sr">Точный комплект и стоимость определяются после даты, площадки и числа гостей.</p>
+    <div class="service-formats__grid">
+      {formats.map((format, index) => (
+        <article class:list={['service-format', 'sr', { 'service-format--featured': index === 1 }]}>
+          <p class="service-format__number">0{index + 1}</p>
+          <h3>{format.title}</h3>
+          <p class="service-format__fit">{format.fit}</p>
+          <ul>
+            {format.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+    <div class="service-formats__cta">
+      <a class="btn btn-outline" href="#proverit-datu">Проверить дату и состав</a>
+    </div>
+  </div>
+</section>

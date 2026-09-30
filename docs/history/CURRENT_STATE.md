@@ -20,6 +20,11 @@ Implemented locally:
 - UTM, `yclid` and bounded Direct parameters are transmitted separately from the sanitized page URL;
 - local validation/error/success states and responsive matrix have been checked;
 - `/` keeps its existing design and primary hero actions.
+- `/` now has a seasonal promo, verified-letter cases and FAQ while keeping the approved shared design;
+- seasonal route now has three service formats, three source-backed company cases, video captions and FAQ;
+- all root modal forms use the same confirmed endpoint and no longer show success before HTTP `201`;
+- automatic delayed popup has been disabled;
+- messenger and phone clicks have explicit corporate goals.
 
 ## External boundary
 
@@ -31,7 +36,9 @@ An actual production submission is intentionally not part of automated verificat
 
 - local build: passed (`npm run build`);
 - contract regression check: passed (`npm run verify:seasonal`);
-- local visual verification: passed for the recorded responsive matrix, form states and root regression;
+- local visual verification: passed for 19 viewports from `390x844` through `1984x1046`, including `B-1/B/B+1` around `768`, `1024`, `1180` and `1280`;
+- interaction verification: video playback, proof-letter lightbox, FAQ disclosure, confirmed-success preview and retryable-error preview passed without a real submission;
+- responsive defect found and fixed: the workflow connector no longer creates `1200px` document width at the `1181px` boundary;
 - runtime source commit: `f53e1b0` on local and `origin/astro-migration`;
 - production commit: `e2fe981` on `origin/gh-pages`;
 - GitHub Pages build: `built`;

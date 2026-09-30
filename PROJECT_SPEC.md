@@ -22,6 +22,10 @@
 
 1. Первый экран сообщает услугу, сезон, географию, формат команды и следующий шаг.
 2. Страница объясняет результат для компании, показывает реальные видео и B2B-доказательства.
+   - три формата работы: ведущий; ведущий + DJ; ведущий + DJ + аппаратура;
+   - три кейса, основанные на опубликованных благодарственных письмах;
+   - подписи к видео, объясняющие наблюдаемую пользу;
+   - FAQ без неподтверждённых обещаний и искусственного дефицита.
 3. Форма собирает:
    - дату;
    - количество гостей;
@@ -39,6 +43,8 @@
 7. Публичная цена не показывается до отдельного решения владельца.
 8. Персональные данные не передаются в Метрику, URL или console logs.
 9. Страница содержит согласие и ссылку на собственную corporate privacy page.
+10. Главная страница сохраняет универсальный оффер, но ведёт на сезонную посадочную через отдельный промоблок.
+11. Все три модальные формы главной страницы используют тот же подтверждённый backend-контракт; автоматический popup отключён.
 
 ## Analytics contract
 
@@ -50,6 +56,10 @@ Diagnostic goals:
 - `corporate_phone_click`;
 - `corporate_messenger_click`;
 - `corporate_video_play`.
+
+Shared-site goal:
+
+- `corporate_messenger_click` — клик по доступному мессенджеру на главной или сезонной странице.
 
 Commercial goal:
 
@@ -75,5 +85,6 @@ Campaign parameters preserved when present:
 - seasonal route has no console errors or horizontal overflow;
 - form validation, loading, error and success states are verified without claiming a production lead unless an authorized live submission is performed;
 - desktop, mobile, tablet and breakpoint boundaries are checked;
+- `390`, `767/768/769`, `1023/1024/1025`, `1179/1180/1181`, `1279/1280/1281`, `1366`, `1440` and `1984` widths have no document overflow;
 - commit, push, deploy and fresh production verification are separate recorded states;
 - Yandex Direct campaign work starts only after the live route and tracking contract pass this gate.

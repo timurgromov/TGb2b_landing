@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-09-30-corporate-conversion-content",
+  "change_kind": "conversion-content-and-proof-upgrade",
+  "requested_visible_change": "Продолжить обновление корпоративного сайта по ранее составленному плану, сохранив одобренный дизайн основной страницы.",
+  "expected_visible_delta": "В общей визуальной системе сайта появились форматы работы, подтвержденные корпоративные кейсы, подписи к видео, FAQ, сезонный переход с главной и честные состояния форм.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "ae6e4a9f09fbd9169cfa57fbfc694d7dcc22c7508436c44c75b093166ab27707",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "fresh local Astro build from the staged astro-migration candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "root and /novogodniy-korporativ/ shared corporate site",
+    "state": "initial hero, video playback, formats, proof letter lightbox, FAQ and lead form states",
+    "selector_or_slide_id": "[data-testid=seasonal-primary-cta], [data-testid=service-formats], [data-testid=proof-cases], [data-testid=faq-section], [data-testid=seasonal-lead-form]",
+    "action": "Render the exact candidate, inspect responsive geometry, open proof and FAQ interactions, play a video and exercise local success/error previews without a production submission"
+  },
+  "required_viewports": [
+    "390x844",
+    "768x1024",
+    "1181x900",
+    "1280x720",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "The seasonal page had the shared hero but no source-backed case cards, format comparison, FAQ or video explanations.",
+      "after_signature": "Direct H1, natural subtitle, six trust chips and a full-width date CTA remain readable; formats, proof cases, FAQ and form stack to one column; scrollWidth equals 390.",
+      "observed_visible_result": "Mobile keeps the approved visual language while adding the planned decision-support content without horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "before_signature": "The tablet route reused the main design but lacked structured service formats and verified-case narratives.",
+      "after_signature": "All new sections render in the mobile/tablet composition, primary CTA stays on one line and document scrollWidth equals 768.",
+      "observed_visible_result": "The 768 boundary preserves usable controls and complete content with no clipped cards or page overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1181x900",
+      "before_signature": "After the content update, the intrinsic 1200px workflow SVG created a 19px document overflow immediately above the tablet breakpoint.",
+      "after_signature": "The workflow connector is constrained to 100% of its container; document scrollWidth equals 1181 and the hero CTA remains one line.",
+      "observed_visible_result": "The exact B+1 boundary now transitions cleanly from tablet to desktop without a horizontal scrollbar.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "before_signature": "The live baseline used the old subtitle and had no proof-case cards, FAQ or explanatory video copy.",
+      "after_signature": "The shared hero geometry is preserved with the revised Russian subtitle; three formats, three letter-backed cases, six FAQ items and four video captions are present.",
+      "observed_visible_result": "Desktop remains recognizably the existing corporate design while the content now answers composition, proof and preparation questions.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "before_signature": "Wide layout contained the earlier shared blocks only and did not provide the planned formats, cases or FAQ.",
+      "after_signature": "New sections stay bounded by the wide-screen container, proof previews remain legible and document scrollWidth equals 1984.",
+      "observed_visible_result": "The additional conversion content scales without stretched controls, clipped text or layout drift on a wide viewport.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "responsive_matrix": {
+    "checked_viewports": 19,
+    "breakpoints": [768, 1024, 1180, 1280],
+    "boundary_policy": "B-1, B and B+1 plus representative mobile, tablet, desktop and wide anchors",
+    "horizontal_overflow_failures_after_fix": 0,
+    "primary_cta_line_failures_after_fix": 0
+  },
+  "interaction_states": {
+    "video": "real local video element created and playing; caption visible",
+    "proof": "Raymed Group letter opens in the shared lightbox with descriptive alt text",
+    "faq": "first disclosure opens and displays the answer",
+    "root_success_preview": "local-only preview hides the form and shows confirmed success",
+    "root_error_preview": "local-only preview keeps the form visible, explains the failure and enables retry",
+    "production_submission": "not performed"
+  }
+}
