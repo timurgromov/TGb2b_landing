@@ -14,7 +14,7 @@
 
 Implemented locally:
 
-- `/novogodniy-korporativ/` with a corporate seasonal offer, proof, formats, process, FAQ and qualified date-check form;
+- `/novogodniy-korporativ/` built from the main site's existing Header, hero, video, benefits, workflow, gallery, letters, footer and modal components, with only seasonal copy and a qualified date-check form changed;
 - `/privacy/` with policy and consent text;
 - confirmed-lead goal fires only after backend HTTP `201`;
 - UTM, `yclid` and bounded Direct parameters are transmitted separately from the sanitized page URL;

@@ -14,16 +14,14 @@ Job: за несколько минут убедиться, что ведущи�
 
 ## Screen structure
 
-1. Compact header: бренд, телефон, CTA.
-2. Hero: сезон, H1, ясное обещание, trust facts, CTA, портрет ведущего.
-3. Decision strip: что получает компания и кто держит процесс.
-4. Video proof: реальные фрагменты с пояснениями.
-5. Formats: ведущий; ведущий + DJ; команда со звуком.
-6. B2B proof: договор ИП, тайминг, работа с площадкой и подрядчиками, письма компаний.
-7. Process: короткая последовательность подготовки.
-8. FAQ.
-9. Date-check form.
-10. Legal footer.
+1. Штатный header основного корпоративного сайта.
+2. Штатный hero основного сайта с сезонным H1, подзаголовком, тегами, CTA и тем же портретом.
+3. Штатный блок видео `VideoCases`.
+4. Штатная сетка преимуществ с сезонными форматами: ведущий; ведущий + DJ; команда со звуком.
+5. Штатный workflow с этапами подготовки новогоднего корпоратива.
+6. Штатные галерея и благодарственные письма.
+7. Квалифицированная форма проверки даты внутри штатного CTA-блока.
+8. Штатный footer и существующие modal/lightbox-компоненты.
 
 ## Form states
 
@@ -44,19 +42,14 @@ Job: за несколько минут убедиться, что ведущи�
 
 ## Visual direction
 
-Сохраняется существующая система корпоративного сайта:
+Единственный визуальный эталон — главная страница `corp.timurgromov.ru`.
 
-- тёмный графитовый фон;
-- белая типографика;
-- оранжевый CTA;
-- реальный портрет и реальные материалы;
-- спокойная B2B-плотность без декоративного шума.
-
-Сезонный слой:
-
-- тёплое янтарное освещение и тонкие световые точки;
-- никаких шаблонных ёлок, снежинок, стеклянных карточек и неоновых градиентов;
-- памятный элемент — `date rail`: короткая полоса проверки декабрьской даты рядом с hero/form narrative.
+- используются те же `Header`, hero-сетка, портрет, типографика, теги и кнопки;
+- используются готовые `VideoCases`, gallery, letters, workflow и `Footer`;
+- цвета, градиенты, радиусы, ширины контейнеров и responsive-поведение приходят из существующих `style.css` и `mobile.css`;
+- сезон меняет только H1, подзаголовок, содержание тегов, карточек, этапов и CTA;
+- отдельная новогодняя дизайн-система, декоративный seasonal layer и новые типы карточек запрещены;
+- `seasonal.css` отвечает только за квалифицированную форму, которой нет на основной странице.
 
 ## Responsive layout contract
 
@@ -108,7 +101,7 @@ Exact target:
 - state: initial page and form states;
 - primary selector: `[data-testid="seasonal-primary-cta"]`;
 - form selector: `[data-testid="seasonal-lead-form"]`;
-- expected visible delta: seasonal 2026 promise, single primary CTA, date rail, corporate proof and qualification form;
+- expected visible delta: та же композиция и визуальные метрики основного hero, но с сезонным H1 `Ведущий на новогодний корпоратив 2026 в Москве`, сезонным контентом и квалифицированной формой;
 - preserved: root route, existing media assets, contact details and brand language.
 
 Acceptance evidence must record route, served candidate, viewport, H1, CTA label, form state, horizontal overflow, console errors and root regression result after the final edit.

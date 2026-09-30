@@ -1,23 +1,23 @@
 {
   "schema_version": 1,
   "status": "passed",
-  "change_id": "2026-09-30-new-year-landing",
-  "change_kind": "new-seasonal-landing",
-  "requested_visible_change": "Создать отдельную конверсионную посадочную страницу для новогодних корпоративов 2026 без изменения существующей главной страницы.",
-  "expected_visible_delta": "На сезонном URL видны специальный оффер, CTA Проверить дату, корпоративные доказательства и квалифицированная форма; существующая главная сохраняет прежний hero.",
+  "change_id": "2026-09-30-new-year-landing-main-design",
+  "change_kind": "seasonal-landing-design-alignment",
+  "requested_visible_change": "Заменить отдельный придуманный сезонный дизайн буквальным переиспользованием готовых блоков и визуальной системы основного корпоративного сайта.",
+  "expected_visible_delta": "Сезонная страница использует штатные Header, hero, кнопки, видео, карточки, workflow, галерею, письма и Footer; H1 прямо называет услугу без рекламного слогана.",
   "checked_after_last_edit": true,
   "attempt_number": 2,
-  "candidate_diff_sha256": "91380203807aaf5ee6b293dc5d01f51b8f7c0cc5d860ec526515cdec71b880e6",
+  "candidate_diff_sha256": "293e73968059a233e3e80e8fc129a80535fc8c7b039e0a95818cad6bea349569",
   "served_candidate": {
-    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?verify=final",
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?candidate=main-design",
     "source_ref": "staged Astro candidate built locally from astro-migration",
     "fresh_reload": true
   },
   "target": {
-    "surface": "/novogodniy-korporativ/ hero and qualified lead form",
-    "state": "initial page at scrollY 0; form present and idle",
-    "selector_or_slide_id": "[data-testid=seasonal-primary-cta] and [data-testid=seasonal-lead-form]",
-    "action": "Open the seasonal route from a fresh load and inspect the first screen and form presence"
+    "surface": "/novogodniy-korporativ/ entire page with focus on hero",
+    "state": "initial page at scrollY 0 plus local validation and success preview states",
+    "selector_or_slide_id": ".site-header, .hero, #hero-left, #hero-actions, [data-testid=seasonal-lead-form]",
+    "action": "Open seasonal route and compare rendered design metrics against the local root page at the same viewport"
   },
   "required_viewports": [
     "390x844",
@@ -29,9 +29,9 @@
   "observations": [
     {
       "viewport": "390x844",
-      "before_signature": "Production baseline had only the generic corporate homepage and no seasonal date-check route.",
-      "after_signature": "Seasonal H1 is visible; CTA Проверить дату spans y=625..679; form exists; scrollWidth equals 390.",
-      "observed_visible_result": "Mobile first screen presents the 2026 offer and a fully visible primary CTA without horizontal overflow.",
+      "before_signature": "Separate ny-* header, hero, cards and seasonal visual language with slogan Новогодний корпоратив — живо, умно и без неловкости.",
+      "after_signature": "Main-site hero classes and portrait are reused; direct H1 is three lines; Проверить дату is fully visible at y=763..819; scrollWidth equals 390.",
+      "observed_visible_result": "Mobile now uses the established main-site composition and controls, with no separate seasonal design system.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
@@ -39,9 +39,9 @@
     },
     {
       "viewport": "1180x820",
-      "before_signature": "Production baseline had a generic hero with no seasonal promise or date-check form.",
-      "after_signature": "Seasonal H1 is visible; CTA Проверить дату spans y=618..672; form exists; scrollWidth equals 1180.",
-      "observed_visible_result": "Windowed laptop layout keeps the hero readable, CTA fully visible and page width bounded.",
+      "before_signature": "Seasonal page used its own sticky header, oversized custom typography, date rail and unique card system.",
+      "after_signature": "Seasonal page uses site-header glass fixed, standard hero, root buttons and root card components; CTA bottom is 516; no overflow.",
+      "observed_visible_result": "Windowed laptop layout follows the same component geometry and density as the main site.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
@@ -49,9 +49,9 @@
     },
     {
       "viewport": "1280x720",
-      "before_signature": "Generic root hero used H1 Интеллигентный ведущий на корпоратив в Москве and two existing CTAs.",
-      "after_signature": "Seasonal H1 is visible; CTA Проверить дату spans y=636..690; form exists; scrollWidth equals 1280.",
-      "observed_visible_result": "The primary seasonal CTA remains fully above the fold at the shortest required desktop viewport.",
+      "before_signature": "Custom seasonal hero used a different header, asymmetric decorative frame and the rejected slogan.",
+      "after_signature": "Root and seasonal hero both render H1 at 45px/800/47.25px, button at 56px with 14px radius and rgb(255,122,69), portrait radius 16px and identical hero gradient.",
+      "observed_visible_result": "The first screen visibly matches the main site's approved design; only the service copy and CTA destination differ.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
@@ -59,9 +59,9 @@
     },
     {
       "viewport": "1440x900",
-      "before_signature": "Production baseline exposed no dedicated 2026 seasonal route.",
-      "after_signature": "Seasonal H1 is visible; CTA Проверить дату spans y=637..691; form exists; scrollWidth equals 1440.",
-      "observed_visible_result": "Desktop hero preserves the intended two-column composition and visible primary action.",
+      "before_signature": "Custom ny-* system visually separated the seasonal route from the corporate website.",
+      "after_signature": "Main-site header, hero grid, tags, buttons and portrait are rendered; CTA bottom is 639; form remains present; no overflow.",
+      "observed_visible_result": "Desktop page reads as a content variant of the existing site rather than a newly invented landing design.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
@@ -69,20 +69,26 @@
     },
     {
       "viewport": "1984x1046",
-      "before_signature": "Production baseline exposed no dedicated 2026 seasonal route.",
-      "after_signature": "Seasonal H1 is visible; CTA Проверить дату spans y=637..691; form exists; scrollWidth equals 1984.",
-      "observed_visible_result": "Wide layout keeps the content in its bounded container without stretching or horizontal overflow.",
+      "before_signature": "Custom seasonal components did not share the root site's responsive token system.",
+      "after_signature": "The route inherits the root site's wide-screen container and typography tokens; CTA bottom is 742; scrollWidth equals 1984.",
+      "observed_visible_result": "Wide layout remains bounded and visually identical in language to the main corporate site.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
       "console_errors": []
     }
   ],
-  "preserved_surface_check": {
-    "url": "http://127.0.0.1:4321/",
-    "viewport": "1280x720",
-    "h1": "Интеллигентный ведущий на корпоратив в Москве",
-    "hero_actions": ["Обсудить корпоратив", "Назначить встречу"],
-    "horizontal_overflow": false
+  "design_parity": {
+    "compared_at": "1280x720",
+    "root_h1": "Интеллигентный ведущий на корпоратив в Москве",
+    "seasonal_h1": "Ведущий на новогодний корпоратив 2026 в Москве",
+    "shared_h1_metrics": "45px font size, 800 weight, 47.25px line height",
+    "shared_button_metrics": "56px height, 14px radius, rgb(255, 122, 69) background",
+    "shared_photo_radius": "16px",
+    "shared_hero_background": true
+  },
+  "form_states": {
+    "empty_submit": "Проверьте обязательные поля; form remains visible; no network submission",
+    "local_success_preview": "form hidden; success message visible; no real lead created"
   }
 }

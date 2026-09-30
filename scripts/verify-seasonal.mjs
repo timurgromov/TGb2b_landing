@@ -31,12 +31,14 @@ expectText(rootHtml, 'Интеллигентный ведущий на корп�
 expectText(rootHtml, 'Обсудить корпоратив', 'root regression');
 expectText(rootHtml, 'Назначить встречу', 'root regression');
 
-expectText(seasonalHtml, 'Новогодний корпоратив — живо, умно и без неловкости', 'seasonal route');
+expectText(seasonalHtml, 'Ведущий на новогодний корпоратив 2026 в Москве', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta"', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="seasonal-lead-form"', 'seasonal route');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/seasonal.css?v=20261001', 'seasonal stylesheet');
-expectText(seasonalHtml, '/seasonal.js?v=20261001', 'seasonal script');
+expectText(seasonalHtml, '/style.css?v=astro_1', 'main site stylesheet');
+expectText(seasonalHtml, '/mobile.css?v=astro_1', 'main site mobile stylesheet');
+expectText(seasonalHtml, '/seasonal.css?v=20260930b', 'seasonal form stylesheet');
+expectText(seasonalHtml, '/seasonal.js?v=20260930b', 'seasonal script');
 expectText(seasonalHtml, '/privacy/', 'seasonal privacy link');
 rejectText(seasonalHtml, 'TELEGRAM_LEAD_ENDPOINT', 'seasonal route');
 
