@@ -26,6 +26,9 @@ Implemented locally:
 - the three offered compositions are `Ведущий + DJ`, `Ведущий + DJ + звук` and `Ведущий + DJ + звук + кавер-группа` with two vocalists;
 - the proof section now shows the three freshest available letters (`L1`, `L2`, `L11`) with consistent letter dates, larger document previews and a direct link to the full 13-letter archive;
 - the proof section now gives `L1` a full-width featured story and presents `L2`/`L11` as compact editorial rows instead of three equal catalogue-like cards;
+- the original hero subtitle has been restored verbatim after an unapproved copy change;
+- the original responsive package grid has been restored after the proof-section CSS edit accidentally removed its grid declaration;
+- the current proof-section composition remains live but is not an approved final direction; the next iteration requires an owner-approved concept before implementation;
 - the full archive remains intact and starts with the same three freshest letters;
 - all root modal forms use the same confirmed endpoint and no longer show success before HTTP `201`;
 - automatic delayed popup has been disabled;
@@ -44,13 +47,15 @@ An actual production submission is intentionally not part of automated verificat
 - local visual verification: passed for 19 viewports from `390x844` through `1984x1046`, including `B-1/B/B+1` around `768`, `1024`, `1180` and `1280`;
 - latest proof/package responsive check: passed for 13 viewports from `390x844` through `1984x1046`, including `767/768/769` and `1179/1180/1181`; horizontal overflow failures: `0`;
 - latest editorial proof check: passed for the same 13-view matrix; `L1` is the featured story, `L2`/`L11` are compact supporting rows, and no horizontal overflow was observed;
+- restoration check: passed for the same 13-view matrix; the exact approved subtitle is present, packages render as `3` columns on desktop, `2+1` on tablet and `1` on mobile, with no horizontal overflow;
+- production cache delivery check: the main stylesheet key was advanced from `astro_3` to `astro_4` after a live browser proved that the old key could preserve the broken package layout;
 - latest interaction check: fresh proof opens `L1` in the shared lightbox; `Больше благодарственных писем` lands on `#letters`; no browser console warnings or errors;
 - interaction verification: video playback, proof-letter lightbox, FAQ disclosure, confirmed-success preview and retryable-error preview passed without a real submission;
 - responsive defect found and fixed: the workflow connector no longer creates `1200px` document width at the `1181px` boundary;
-- runtime source commit: `5c5c6e5` on local and `origin/astro-migration`;
-- production commit: `2615b70` on `origin/gh-pages`;
+- runtime source commit: `6c77cbc` on local and `origin/astro-migration`;
+- production commit: `1d72ab2` on `origin/gh-pages`;
 - GitHub Pages build: `built`;
-- live seasonal route: passed at `390x844` and `1280x720`; the editorial proof hierarchy is visible, all 13 archive letters remain, the archive link and L1 lightbox work, no overflow or browser console errors;
+- live seasonal route: restored subtitle and three-column package grid passed at `1280x720` with `style.css?v=astro_4`; mobile and breakpoint behavior is covered by the fresh 13-viewport local matrix; all 13 archive letters remain and no proof-section implementation changed in the restoration release;
 - live root regression: original H1 and both hero actions preserved; the refreshed shared proof section is published;
 - release assets and routes: root, seasonal, privacy, versioned CSS/JS, L1/L2/L11 and sitemap all returned HTTP `200`;
 - production CRM lead: not verified without owner approval.
