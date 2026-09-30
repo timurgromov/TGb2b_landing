@@ -45,12 +45,12 @@ An actual production submission is intentionally not part of automated verificat
 - latest interaction check: fresh proof opens `L1` in the shared lightbox; `Больше благодарственных писем` lands on `#letters`; no browser console warnings or errors;
 - interaction verification: video playback, proof-letter lightbox, FAQ disclosure, confirmed-success preview and retryable-error preview passed without a real submission;
 - responsive defect found and fixed: the workflow connector no longer creates `1200px` document width at the `1181px` boundary;
-- runtime source commit: `8c468bf` on local and `origin/astro-migration`;
-- production commit: `c6b01e5` on `origin/gh-pages`;
+- runtime source commit: `6b3d77a` on local and `origin/astro-migration`;
+- production commit: `1fd5c76` on `origin/gh-pages`;
 - GitHub Pages build: `built`;
-- live seasonal route: passed at `390x844` and `1280x720`, with the new subtitle, 3 formats, 3 proof cases, 6 FAQ items, 4 video captions, no overflow and no browser console errors;
-- live root regression: original H1 and both hero actions preserved at `1280x720`; seasonal CTA, proof cases and FAQ are published; delayed popup remains closed;
-- release assets and routes: root, seasonal, privacy, CSS, JS, hero, proof letter and sitemap all returned HTTP `200`;
+- live seasonal route: passed at `390x844` and `1280x720`; fresh proof dates and L1/L2/L11 order are visible, all 13 archive letters remain, the archive link and proof lightbox work, valid package cards/form options are published, no overflow or browser console errors;
+- live root regression: original H1 and both hero actions preserved; the refreshed shared proof section is published;
+- release assets and routes: root, seasonal, privacy, versioned CSS/JS, L1/L2/L11 and sitemap all returned HTTP `200`;
 - production CRM lead: not verified without owner approval.
 
 ## YandexDirectGrowth handoff
