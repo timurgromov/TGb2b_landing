@@ -1,6 +1,6 @@
 # Current state
 
-Дата: 30 сентября 2026 года.
+Дата: 1 октября 2026 года.
 
 ## Source
 
@@ -25,6 +25,7 @@ Implemented locally:
 - package contract now starts with `Ведущий + DJ`; there is no `Только ведущий` option in the cards, FAQ, form or lead comment mapping;
 - the three offered compositions are `Ведущий + DJ`, `Ведущий + DJ + звук` and `Ведущий + DJ + звук + кавер-группа` with two vocalists;
 - the proof section now shows the three freshest available letters (`L1`, `L2`, `L11`) with consistent letter dates, larger document previews and a direct link to the full 13-letter archive;
+- the proof section now gives `L1` a full-width featured story and presents `L2`/`L11` as compact editorial rows instead of three equal catalogue-like cards;
 - the full archive remains intact and starts with the same three freshest letters;
 - all root modal forms use the same confirmed endpoint and no longer show success before HTTP `201`;
 - automatic delayed popup has been disabled;

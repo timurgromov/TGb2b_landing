@@ -298,7 +298,7 @@ function unlockPageScroll() {
   let groupName = '';
 
   function openFromCard(card){
-    const container = card.closest('.letters-slider, .photos-slider, .proof-cases__grid');
+    const container = card.closest('.letters-slider, .photos-slider, .proof-cases__layout');
     if (!container) return;
 
     // Собираем список внутри текущей секции, чтобы работала навигация ← →

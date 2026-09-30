@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-01-proof-cases-editorial",
+  "change_kind": "editorial-proof-hierarchy",
+  "requested_visible_change": "Заменить топорную сетку из трёх одинаковых кейсов на более лёгкую иерархическую композицию.",
+  "expected_visible_delta": "L1 становится одним крупным горизонтальным доказательством, а L2 и L11 располагаются ниже как две компактные редакционные строки без трёх одинаковых карточных оболочек.",
+  "checked_after_last_edit": true,
+  "attempt_number": 2,
+  "candidate_diff_sha256": "3495f4ed2cd09f297901420e89a9e39a916e5df88c65df5d590c04d7c87fc2fe",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?candidate=proof-editorial#proof-cases",
+    "source_ref": "staged astro-migration candidate after fresh Astro build",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/ and shared proof section on /",
+    "state": "public page without form submission",
+    "selector_or_slide_id": "#proof-cases, [data-proof-priority=featured], [data-proof-priority=secondary]",
+    "action": "Open the featured L1 letter in the shared lightbox, close it, then follow the archive link to #letters"
+  },
+  "must_remain_unchanged": [
+    "existing black and orange design language",
+    "L1, L2 and L11 source order and text",
+    "all 13 archive letters",
+    "shared letter lightbox",
+    "all adjacent landing sections and the unsubmitted lead form"
+  ],
+  "required_viewports": [
+    "390x844",
+    "767x844",
+    "768x1024",
+    "769x1024",
+    "974x1024",
+    "1024x768",
+    "1179x900",
+    "1180x900",
+    "1181x900",
+    "1280x720",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=390; innerHeight=844",
+      "before_signature": "Three equal card shells with 190px media stages and full copy stacked vertically.",
+      "after_signature": "Featured proof is 359x459; secondary rows are 359x180 and 359x181; compact descriptions are intentionally hidden; scrollWidth=390.",
+      "observed_visible_result": "The fresh letter reads as the main story and the two remaining proofs become concise document rows without horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "767x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=767; innerHeight=844",
+      "before_signature": "Three equal document-first cards retained the same visual weight.",
+      "after_signature": "Featured proof is 731x409; compact rows are 731x180 and 731x181; scrollWidth=767.",
+      "observed_visible_result": "The final mobile-width probe keeps one clear featured story followed by two concise rows.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=768; innerHeight=1024",
+      "before_signature": "The breakpoint still used three equivalent bordered cards.",
+      "after_signature": "Featured proof is 732x409; compact rows are 732x180 and 732x181; scrollWidth=768.",
+      "observed_visible_result": "The exact mobile boundary preserves the deliberate stacked hierarchy and complete primary-case copy.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x1024",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=769; innerHeight=1024",
+      "before_signature": "At B+1 the old section switched to a 2+1 card catalogue.",
+      "after_signature": "Featured proof is a 721x338 two-column module; secondary proofs are full-width 721x218 and 721x219 editorial rows; scrollWidth=769.",
+      "observed_visible_result": "The tablet boundary switches cleanly to a horizontal featured story and readable full-width supporting rows.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "974x1024",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=974; innerHeight=1024",
+      "before_signature": "The middle interval retained a 2+1 card grid with equal proof weight.",
+      "after_signature": "Featured proof is 926x338 and secondary rows are 926x218 and 926x219; scrollWidth=974.",
+      "observed_visible_result": "The editorial hierarchy remains spacious through the middle tablet interval.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1024; innerHeight=768",
+      "before_signature": "Landscape tablet showed three repeated card treatments.",
+      "after_signature": "Featured proof is 976x338 and secondary rows are 976x218 and 976x219; scrollWidth=1024.",
+      "observed_visible_result": "The lead letter dominates without crowding, and supporting proofs stay scan-friendly.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1179x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1179; innerHeight=900",
+      "before_signature": "The old B-1 layout used two cards and one full-width card with the same heavy shells.",
+      "after_signature": "Featured proof is 1000x338 and secondary rows are 1000x218 and 1000x219; scrollWidth=1179.",
+      "observed_visible_result": "The last stacked-support width remains balanced and free of clipping.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1180; innerHeight=900",
+      "before_signature": "The exact breakpoint retained the catalogue-like 2+1 card arrangement.",
+      "after_signature": "Featured proof is 1000x338 and secondary rows are 1000x218 and 1000x219; scrollWidth=1180.",
+      "observed_visible_result": "The declared breakpoint is stable and preserves the intended hierarchy.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1181x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1181; innerHeight=900",
+      "before_signature": "At B+1 the old layout became three equal 367px cards.",
+      "after_signature": "Featured proof is 1133x338; secondary rows share one editorial line at 567x222 each; scrollWidth=1181.",
+      "observed_visible_result": "The desktop transition introduces two balanced supporting columns without restoring equal card shells.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Reported live viewport reproduced in Codex in-app browser; innerWidth=1280; innerHeight=720; DPR=2",
+      "before_signature": "Three equal 363x432 cards with separate 190px media stages and identical text hierarchy.",
+      "after_signature": "One 1120x338 featured module above two 560x222 supporting rows; scrollWidth=1280.",
+      "observed_visible_result": "The exact reported desktop visibly changes from a card catalogue into one lead customer story with two supporting proofs.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1366; innerHeight=768",
+      "before_signature": "The common desktop width displayed three equal proof cards.",
+      "after_signature": "Featured proof is 1120x338 and secondary rows are 560x222 each; scrollWidth=1366.",
+      "observed_visible_result": "The composition stays centered, bounded and editorial at a common desktop width.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1440; innerHeight=900",
+      "before_signature": "The former layout repeated the same document stage and copy block three times.",
+      "after_signature": "Featured proof is 1120x338 and secondary rows are 560x222 each; scrollWidth=1440.",
+      "observed_visible_result": "Desktop spacing and text measure remain controlled inside the existing container.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1984; innerHeight=1046",
+      "before_signature": "Wide desktop stretched the same three-card pattern without stronger proof hierarchy.",
+      "after_signature": "Featured proof is 1380x338 and secondary rows are 690x222 each; scrollWidth=1984.",
+      "observed_visible_result": "Wide desktop uses the available container while keeping one dominant proof and two subordinate rows.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "interaction_states": {
+    "proof_lightbox": "Featured Раймед button opens #letter-modal with /assets/letters/L1.webp, the correct alt text and locked body scroll; close restores the page.",
+    "archive_link": "Больше благодарственных писем changes the hash to #letters and places the archive top at 90px below the fixed header.",
+    "archive_count_and_order": "13 letters remain; first three are L1, L2 and L11.",
+    "shared_root_regression": "The root route renders one featured and two secondary proofs at 1280x720 with scrollWidth equal to innerWidth.",
+    "production_submission": "not performed"
+  },
+  "responsive_matrix": {
+    "checked_viewports": 13,
+    "breakpoints": [768, 1180],
+    "boundary_policy": "B-1, B and B+1 plus mobile, tablet, desktop and wide anchors",
+    "horizontal_overflow_failures": 0,
+    "mechanical_runner_note": "The standalone Playwright runner was blocked by the local macOS cache permissions; the same matrix was completed through the Codex in-app browser viewport API and live DOM measurements."
+  },
+  "comparison_review": {
+    "variants_shown": 1,
+    "selected_variant": "One featured recent proof followed by two compact supporting proofs",
+    "owner_approval_reference": "Owner replied давай попробуем after this exact direction was proposed in chat."
+  }
+}
