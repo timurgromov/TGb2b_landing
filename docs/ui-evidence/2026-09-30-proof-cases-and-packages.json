@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-09-30-proof-cases-and-packages",
+  "change_kind": "proof-layout-and-package-contract",
+  "requested_visible_change": "Пересобрать блок благодарственных писем, показать три самых свежих письма, связать его с полным архивом и убрать несуществующий пакет Только ведущий.",
+  "expected_visible_delta": "Документы получили отдельную широкую визуальную зону, видимую кнопку к 13 письмам и порядок L1, L2, L11; пакеты, FAQ и форма начинаются с Ведущий + DJ и включают расширенный состав с кавер-группой.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "f9fab0c1551fabd868eeea575fee3dfe4068a5b9afada2200fbe571714d1f927",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "staged astro-migration candidate after fresh Astro build",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/ and shared proof section on /",
+    "state": "public page without form submission",
+    "selector_or_slide_id": "#proof-cases, #formats, #letters, [data-seasonal-form]",
+    "action": "Open a fresh proof in the shared lightbox, close it, then follow the Больше благодарственных писем link to #letters"
+  },
+  "must_remain_unchanged": [
+    "existing black and orange design language",
+    "all 13 source letters",
+    "shared letter lightbox",
+    "hero, videos, gallery, FAQ and non-submitted lead form"
+  ],
+  "required_viewports": [
+    "390x844",
+    "767x844",
+    "768x1024",
+    "769x1024",
+    "974x1024",
+    "1024x768",
+    "1179x900",
+    "1180x900",
+    "1181x900",
+    "1280x720",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "Three cramped copy-plus-96px-thumbnail cards and no archive link; package list included Только ведущий.",
+      "after_signature": "One 359px proof card per row, 405px high; full-width 359x44 archive link; no host-only option; scrollWidth=390.",
+      "observed_visible_result": "Mobile stacks readable proof cards, the archive action and all three valid packages without horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "767x844",
+      "before_signature": "Old cards retained the narrow document thumbnail and mixed 2024/2015/2015 dates.",
+      "after_signature": "Three 731px proof rows show letter dates 2025/2025/2017 and a 680x44 archive link; scrollWidth=767.",
+      "observed_visible_result": "The last mobile-width probe keeps a single-column hierarchy and complete text.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "before_signature": "No direct route from the featured proofs to the full 13-letter slider.",
+      "after_signature": "The 768 boundary keeps 732px cards, the archive link and L1/L2/L11 ordering; scrollWidth=768.",
+      "observed_visible_result": "Tablet portrait preserves the mobile composition at the declared breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x1024",
+      "before_signature": "The old three-card grid compressed copy beside 96px letter thumbnails.",
+      "after_signature": "Two 353px cards plus one 721px horizontal card render without overflow; valid packages use the same 2+1 rhythm.",
+      "observed_visible_result": "The B+1 tablet layout changes deliberately and keeps the third proof readable.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "974x1024",
+      "before_signature": "Featured evidence and the complete archive appeared as unrelated sections.",
+      "after_signature": "The visible archive CTA connects a 2+1 proof grid to #letters; cards measure 455/455/926px and scrollWidth=974.",
+      "observed_visible_result": "Mid-tablet width keeps comfortable proof copy and a clear next action.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "before_signature": "The section used three equal cards with small white mini-card controls.",
+      "after_signature": "Proof cards use 480/480/976px layout and the archive link remains 334x44; scrollWidth=1024.",
+      "observed_visible_result": "Landscape tablet keeps hierarchy and the third proof becomes a balanced wide row.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1179x900",
+      "before_signature": "The proof copy was visually dense and documents looked like narrow secondary buttons.",
+      "after_signature": "Two 492px cards and one 1000px wide card show large document previews; scrollWidth=1179.",
+      "observed_visible_result": "The B-1 desktop boundary has no clipping or accidental horizontal page scroll.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x900",
+      "before_signature": "The old block gave equal weight to stale 2015 letters and the 2025 letter.",
+      "after_signature": "The exact breakpoint displays L1/L2/L11 with 2025/2025/2017 letter dates in a 2+1 layout; scrollWidth=1180.",
+      "observed_visible_result": "The breakpoint itself remains stable and makes freshness explicit.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1181x900",
+      "before_signature": "Three old proof cards used an internal two-column squeeze with 96px thumbnails.",
+      "after_signature": "Three 367x432 cards use a 190px document stage above concise copy; package cards are equal-height 367x338.",
+      "observed_visible_result": "The B+1 desktop grid is balanced and keeps all three valid package cards aligned.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "before_signature": "Baseline measured three 363x355 cards with dates 2024/2015/2015, a 96px letter control and no archive CTA.",
+      "after_signature": "Three 363x432 cards show large L1/L2/L11 previews, dates 23.01.2025/09.01.2025/08.02.2017 and a visible 334x44 archive CTA.",
+      "observed_visible_result": "The reported desktop target visibly changes from dense admin-like cards to evidence-led editorial cards while preserving the brand.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "before_signature": "The proof hierarchy did not distinguish fresh evidence or expose the complete archive.",
+      "after_signature": "Three 363x432 cards, the fresh-date order and archive CTA remain visible; scrollWidth=1366.",
+      "observed_visible_result": "Common desktop width remains centered and free of overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "before_signature": "Documents occupied a narrow right strip inside copy-heavy cards.",
+      "after_signature": "The 1120px content container holds three equal document-first cards and a right-aligned archive CTA; scrollWidth=1440.",
+      "observed_visible_result": "Desktop composition has clear heading, action and card hierarchy without stretching.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "before_signature": "The old layout scaled the same dense card pattern to wide desktop.",
+      "after_signature": "Three 449x432 cards remain bounded by the wide container; the archive link, L1/L2/L11 order and valid packages remain present; scrollWidth=1984.",
+      "observed_visible_result": "Wide desktop preserves readable proportions instead of over-stretching the proof content.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "interaction_states": {
+    "proof_lightbox": "Открыть письмо: Раймед Групп activates #letter-modal with /assets/letters/L1.webp, then closes cleanly.",
+    "archive_link": "Больше благодарственных писем changes the hash to #letters and places the section top below the fixed header.",
+    "archive_count_and_order": "13 letters remain; first three are L1, L2 and L11.",
+    "package_contract": "No option[value=host]; cards and select expose host_dj, host_dj_sound and host_dj_sound_band.",
+    "production_submission": "not performed"
+  },
+  "responsive_matrix": {
+    "checked_viewports": 13,
+    "breakpoints": [768, 1180],
+    "boundary_policy": "B-1, B and B+1 plus mobile, tablet, desktop and wide anchors",
+    "horizontal_overflow_failures": 0
+  },
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": ""
+  }
+}

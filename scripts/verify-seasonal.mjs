@@ -42,11 +42,14 @@ expectText(seasonalHtml, 'data-testid="seasonal-lead-form"', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="service-formats"', 'seasonal formats');
 expectText(seasonalHtml, 'data-testid="proof-cases"', 'seasonal proof cases');
 expectText(seasonalHtml, 'data-testid="faq-section"', 'seasonal FAQ');
+expectText(seasonalHtml, 'Больше благодарственных писем', 'seasonal proof archive link');
+expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + кавер-группа', 'seasonal premium package');
+rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_2', 'main site stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_3', 'main site stylesheet');
 expectText(seasonalHtml, '/mobile.css?v=astro_2', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
-expectText(seasonalHtml, '/seasonal.js?v=20260930c', 'seasonal script');
+expectText(seasonalHtml, '/seasonal.js?v=20260930d', 'seasonal script');
 expectText(seasonalHtml, '/privacy/', 'seasonal privacy link');
 rejectText(seasonalHtml, 'TELEGRAM_LEAD_ENDPOINT', 'seasonal route');
 
@@ -55,6 +58,7 @@ expectText(privacyHtml, 'Согласие на обработку персона
 
 expectText(seasonalScript, 'https://calcul.timurgromov.ru/api/v1/site/consultation-request', 'lead contract');
 expectText(seasonalScript, "form_source: 'site_meeting_corporate'", 'lead contract');
+expectText(seasonalScript, "host_dj_sound_band: 'Ведущий + DJ + аппаратура + кавер-группа'", 'lead package contract');
 expectText(seasonalScript, 'response.status !== 201', 'confirmed lead gate');
 expectText(seasonalScript, "reachGoal('corporate_lead_submit_success')", 'confirmed lead goal');
 expectText(seasonalScript, 'window.location.origin}${window.location.pathname}', 'sanitized page URL');

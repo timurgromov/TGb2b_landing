@@ -22,6 +22,10 @@ Implemented locally:
 - `/` keeps its existing design and primary hero actions.
 - `/` now has a seasonal promo, verified-letter cases and FAQ while keeping the approved shared design;
 - seasonal route now has three service formats, three source-backed company cases, video captions and FAQ;
+- package contract now starts with `Ведущий + DJ`; there is no `Только ведущий` option in the cards, FAQ, form or lead comment mapping;
+- the three offered compositions are `Ведущий + DJ`, `Ведущий + DJ + звук` and `Ведущий + DJ + звук + кавер-группа` with two vocalists;
+- the proof section now shows the three freshest available letters (`L1`, `L2`, `L11`) with consistent letter dates, larger document previews and a direct link to the full 13-letter archive;
+- the full archive remains intact and starts with the same three freshest letters;
 - all root modal forms use the same confirmed endpoint and no longer show success before HTTP `201`;
 - automatic delayed popup has been disabled;
 - messenger and phone clicks have explicit corporate goals.
@@ -37,6 +41,8 @@ An actual production submission is intentionally not part of automated verificat
 - local build: passed (`npm run build`);
 - contract regression check: passed (`npm run verify:seasonal`);
 - local visual verification: passed for 19 viewports from `390x844` through `1984x1046`, including `B-1/B/B+1` around `768`, `1024`, `1180` and `1280`;
+- latest proof/package responsive check: passed for 13 viewports from `390x844` through `1984x1046`, including `767/768/769` and `1179/1180/1181`; horizontal overflow failures: `0`;
+- latest interaction check: fresh proof opens `L1` in the shared lightbox; `Больше благодарственных писем` lands on `#letters`; no browser console warnings or errors;
 - interaction verification: video playback, proof-letter lightbox, FAQ disclosure, confirmed-success preview and retryable-error preview passed without a real submission;
 - responsive defect found and fixed: the workflow connector no longer creates `1200px` document width at the `1181px` boundary;
 - runtime source commit: `8c468bf` on local and `origin/astro-migration`;
