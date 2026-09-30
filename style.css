@@ -2377,14 +2377,7 @@ body { overflow-x: hidden; }
 }
 
 .service-formats__grid,
-.proof-cases__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.service-format,
-.proof-case {
+.service-format {
   min-width: 0;
   border: 1px solid var(--stroke);
   border-radius: 16px;
@@ -2492,51 +2485,117 @@ body { overflow-x: hidden; }
   color: var(--accent);
 }
 
-.proof-case {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+.proof-cases__layout {
+  display: grid;
+  gap: 24px;
 }
 
-.proof-case:hover {
+.proof-case {
+  min-width: 0;
+}
+
+.proof-case--featured {
+  display: grid;
+  grid-template-columns: minmax(360px, .88fr) minmax(0, 1.12fr);
+  min-height: 336px;
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .025);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.proof-case--featured:hover {
   border-color: rgba(255, 122, 69, .28);
   box-shadow: 0 18px 50px rgba(0, 0, 0, .22);
-  transform: translateY(-2px);
+}
+
+.proof-cases__secondary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--stroke);
+  border-bottom: 1px solid var(--stroke);
+}
+
+.proof-case--compact {
+  display: grid;
+  grid-template-columns: 156px minmax(0, 1fr);
+  gap: 20px;
+  padding: 24px 24px 24px 0;
+}
+
+.proof-case--compact + .proof-case--compact {
+  padding-right: 0;
+  padding-left: 24px;
+  border-left: 1px solid var(--stroke);
 }
 
 .proof-case__body {
-  padding: 22px;
+  min-width: 0;
+}
+
+.proof-case--featured .proof-case__body {
+  align-self: center;
+  padding: 38px 42px;
+}
+
+.proof-case--compact .proof-case__body {
+  align-self: center;
+  padding: 4px 0;
+}
+
+.proof-case__flag {
+  margin: 0 0 18px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.proof-case__identity {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.proof-case__identity > span {
+  color: rgba(255, 255, 255, .28);
+  font-size: 12px;
 }
 
 .proof-case__company {
-  margin: 0 0 10px;
+  margin: 0;
   color: var(--text);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
-  letter-spacing: .04em;
+  letter-spacing: .06em;
   text-transform: uppercase;
 }
 
 .proof-case__meta {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  margin: 0 0 12px;
-  padding: 5px 10px;
-  border: 1px solid rgba(255, 122, 69, .22);
-  border-radius: 999px;
-  background: rgba(255, 122, 69, .07);
-  color: var(--accent);
-  font-size: 11px;
-  font-weight: 700;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
   line-height: 1.2;
 }
 
 .proof-case h3 {
   margin: 0 0 8px;
-  font-size: 20px;
-  line-height: 1.3;
+  line-height: 1.24;
+}
+
+.proof-case--featured h3 {
+  max-width: 520px;
+  margin-bottom: 12px;
+  font-size: clamp(25px, 2.3vw, 32px);
+}
+
+.proof-case--compact h3 {
+  font-size: 18px;
 }
 
 .proof-case__body > p:last-child {
@@ -2552,26 +2611,42 @@ body { overflow-x: hidden; }
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 190px;
   padding: 0;
   overflow: hidden;
   border: 0;
-  border-bottom: 1px solid var(--stroke);
-  border-radius: 0;
   background:
     radial-gradient(circle at 50% 12%, rgba(255, 122, 69, .12), transparent 45%),
     #0f1319;
   color: var(--text);
 }
 
+.proof-case--featured .proof-case__letter {
+  min-height: 336px;
+  border-right: 1px solid var(--stroke);
+  border-radius: 0;
+}
+
+.proof-case--compact .proof-case__letter {
+  height: 174px;
+  border: 1px solid var(--stroke);
+  border-radius: 14px;
+}
+
 .proof-case__letter img {
   width: auto;
-  max-width: 82%;
-  height: 158px;
+  max-width: 84%;
   object-fit: contain;
   background: #fff;
   box-shadow: 0 14px 34px rgba(0, 0, 0, .32);
   transition: transform .2s ease;
+}
+
+.proof-case--featured .proof-case__letter img {
+  height: 286px;
+}
+
+.proof-case--compact .proof-case__letter img {
+  height: 146px;
 }
 
 .proof-case__letter span {
@@ -2682,26 +2757,35 @@ body { overflow-x: hidden; }
 }
 
 @media (min-width: 769px) and (max-width: 1180px) {
-  .service-formats__grid,
-  .proof-cases__grid {
+  .service-formats__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .service-format:last-child,
-  .proof-case:last-child {
+  .service-format:last-child {
     grid-column: 1 / -1;
   }
 
-  .proof-case:last-child {
-    display: grid;
-    grid-template-columns: minmax(280px, .8fr) 1.2fr;
+  .proof-case--featured {
+    grid-template-columns: minmax(300px, .8fr) minmax(0, 1.2fr);
   }
 
-  .proof-case:last-child .proof-case__letter {
-    height: 100%;
-    min-height: 230px;
-    border-right: 1px solid var(--stroke);
-    border-bottom: 0;
+  .proof-case--featured .proof-case__body {
+    padding: 32px;
+  }
+
+  .proof-cases__secondary {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-case--compact {
+    grid-template-columns: 180px minmax(0, 1fr);
+    padding: 22px 0;
+  }
+
+  .proof-case--compact + .proof-case--compact {
+    padding: 22px 0;
+    border-top: 1px solid var(--stroke);
+    border-left: 0;
   }
 }
 
@@ -2722,8 +2806,7 @@ body { overflow-x: hidden; }
   }
 
   .video-grid-fullscreen,
-  .service-formats__grid,
-  .proof-cases__grid {
+  .service-formats__grid {
     grid-template-columns: 1fr;
   }
 
@@ -2767,24 +2850,83 @@ body { overflow-x: hidden; }
     min-height: 0;
   }
 
-  .proof-case {
+  .proof-cases__layout {
+    gap: 20px;
+  }
+
+  .proof-case--featured {
     display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border-radius: 16px;
   }
 
-  .proof-case__letter {
-    height: 176px;
+  .proof-case--featured .proof-case__letter {
+    min-height: 210px;
+    border-right: 0;
+    border-bottom: 1px solid var(--stroke);
   }
 
-  .proof-case__letter img {
-    height: 146px;
+  .proof-case--featured .proof-case__letter img {
+    height: 180px;
   }
 
-  .proof-case__body {
-    padding: 18px;
+  .proof-case--featured .proof-case__body {
+    align-self: stretch;
+    padding: 24px 20px 26px;
   }
 
-  .proof-case h3 {
-    font-size: 18px;
+  .proof-case--featured h3 {
+    font-size: 23px;
+  }
+
+  .proof-case__flag {
+    margin-bottom: 14px;
+  }
+
+  .proof-cases__secondary {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-case--compact {
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 16px;
+    padding: 18px 0;
+  }
+
+  .proof-case--compact + .proof-case--compact {
+    padding: 18px 0;
+    border-top: 1px solid var(--stroke);
+    border-left: 0;
+  }
+
+  .proof-case--compact .proof-case__letter {
+    height: 144px;
+  }
+
+  .proof-case--compact .proof-case__letter img {
+    height: 120px;
+  }
+
+  .proof-case--compact .proof-case__letter span {
+    right: 8px;
+    bottom: 8px;
+    padding: 6px 8px;
+    font-size: 0;
+  }
+
+  .proof-case--compact .proof-case__letter span::after {
+    content: "↗";
+    font-size: 11px;
+  }
+
+  .proof-case--compact .proof-case__body > p:last-child {
+    display: none;
+  }
+
+  .proof-case--compact h3 {
+    margin-bottom: 0;
+    font-size: 17px;
   }
 
   .faq-list {
