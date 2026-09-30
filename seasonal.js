@@ -88,9 +88,9 @@
 
   function equipmentLabel(value) {
     return {
-      host: 'Только ведущий',
       host_dj: 'Ведущий + DJ',
       host_dj_sound: 'Ведущий + DJ + аппаратура',
+      host_dj_sound_band: 'Ведущий + DJ + аппаратура + кавер-группа',
       unknown: 'Нужна консультация по составу'
     }[value] || 'Не указано';
   }

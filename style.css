@@ -944,6 +944,7 @@ body {
   background:radial-gradient(ellipse 100% 70% at 50% 50%, 
     rgba(255,106,61,0.04) 0%, 
     transparent 65%);
+  scroll-margin-top: calc(var(--header-h) + 18px);
 }
 
 /* Уменьшаем отступы блока писем на десктопе */
@@ -955,6 +956,11 @@ body {
   position:relative;
   max-width:var(--content-max-wide);
   margin:0 auto;
+}
+
+.letters__intro {
+  margin: -14px auto 26px;
+  padding-inline: var(--container-pad);
 }
 
 .letters-track{
@@ -2365,8 +2371,7 @@ body { overflow-x: hidden; }
   line-height: 1.5;
 }
 
-.service-formats__intro,
-.proof-cases__intro {
+.service-formats__intro {
   max-width: 720px;
   margin: -12px auto 30px;
 }
@@ -2447,17 +2452,65 @@ body { overflow-x: hidden; }
 
 .proof-cases {
   background: radial-gradient(ellipse 90% 70% at 50% 50%, rgba(255, 122, 69, .035), transparent 68%);
+  scroll-margin-top: calc(var(--header-h) + 18px);
+}
+
+.proof-cases__heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.proof-cases__heading-copy {
+  max-width: 760px;
+}
+
+.proof-cases__heading .section__eyebrow,
+.proof-cases__heading .section__title,
+.proof-cases__heading .section__subtitle {
+  text-align: left;
+}
+
+.proof-cases__heading .section__title {
+  margin-bottom: 12px;
+}
+
+.proof-cases__intro {
+  max-width: 680px;
+  margin: 0;
+}
+
+.proof-cases__more {
+  flex: 0 0 auto;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.proof-cases__more span {
+  color: var(--accent);
 }
 
 .proof-case {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 96px;
-  gap: 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.proof-case:hover {
+  border-color: rgba(255, 122, 69, .28);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .22);
+  transform: translateY(-2px);
+}
+
+.proof-case__body {
   padding: 22px;
 }
 
 .proof-case__company {
-  margin: 0 0 4px;
+  margin: 0 0 10px;
   color: var(--text);
   font-size: 13px;
   font-weight: 800;
@@ -2466,16 +2519,24 @@ body { overflow-x: hidden; }
 }
 
 .proof-case__meta {
-  margin: 0 0 16px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin: 0 0 12px;
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 122, 69, .22);
+  border-radius: 999px;
+  background: rgba(255, 122, 69, .07);
   color: var(--accent);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .proof-case h3 {
-  margin: 0 0 10px;
-  font-size: 18px;
-  line-height: 1.25;
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.3;
 }
 
 .proof-case__body > p:last-child {
@@ -2486,27 +2547,42 @@ body { overflow-x: hidden; }
 }
 
 .proof-case__letter {
-  align-self: start;
-  width: 96px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 190px;
   padding: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, .12);
-  border-radius: 10px;
-  background: #fff;
-  color: #16191e;
-  text-align: center;
+  border: 0;
+  border-bottom: 1px solid var(--stroke);
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255, 122, 69, .12), transparent 45%),
+    #0f1319;
+  color: var(--text);
 }
 
 .proof-case__letter img {
-  width: 100%;
-  height: 124px;
-  object-fit: cover;
-  object-position: top center;
+  width: auto;
+  max-width: 82%;
+  height: 158px;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .32);
+  transition: transform .2s ease;
 }
 
 .proof-case__letter span {
-  display: block;
-  padding: 8px 5px;
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  background: rgba(12, 15, 20, .88);
+  color: var(--text);
   font-size: 11px;
   font-weight: 800;
   line-height: 1.2;
@@ -2514,8 +2590,13 @@ body { overflow-x: hidden; }
 
 .proof-case__letter:hover,
 .proof-case__letter:focus-visible {
-  border-color: var(--accent);
-  outline: none;
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.proof-case__letter:hover img,
+.proof-case__letter:focus-visible img {
+  transform: translateY(-3px) scale(1.02);
 }
 
 .faq-section__container {
@@ -2610,6 +2691,18 @@ body { overflow-x: hidden; }
   .proof-case:last-child {
     grid-column: 1 / -1;
   }
+
+  .proof-case:last-child {
+    display: grid;
+    grid-template-columns: minmax(280px, .8fr) 1.2fr;
+  }
+
+  .proof-case:last-child .proof-case__letter {
+    height: 100%;
+    min-height: 230px;
+    border-right: 1px solid var(--stroke);
+    border-bottom: 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -2645,6 +2738,27 @@ body { overflow-x: hidden; }
     padding-inline: 8px;
   }
 
+  .proof-cases__heading {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .proof-cases__heading .section__eyebrow,
+  .proof-cases__heading .section__title,
+  .proof-cases__heading .section__subtitle {
+    text-align: center;
+  }
+
+  .proof-cases__heading .proof-cases__intro {
+    margin: 0 auto;
+  }
+
+  .proof-cases__more {
+    width: 100%;
+    white-space: normal;
+  }
+
   .service-format {
     padding: 20px;
   }
@@ -2654,17 +2768,23 @@ body { overflow-x: hidden; }
   }
 
   .proof-case {
-    grid-template-columns: minmax(0, 1fr) 82px;
-    gap: 14px;
-    padding: 18px;
+    display: flex;
   }
 
   .proof-case__letter {
-    width: 82px;
+    height: 176px;
   }
 
   .proof-case__letter img {
-    height: 106px;
+    height: 146px;
+  }
+
+  .proof-case__body {
+    padding: 18px;
+  }
+
+  .proof-case h3 {
+    font-size: 18px;
   }
 
   .faq-list {
