@@ -43,13 +43,14 @@ An actual production submission is intentionally not part of automated verificat
 - contract regression check: passed (`npm run verify:seasonal`);
 - local visual verification: passed for 19 viewports from `390x844` through `1984x1046`, including `B-1/B/B+1` around `768`, `1024`, `1180` and `1280`;
 - latest proof/package responsive check: passed for 13 viewports from `390x844` through `1984x1046`, including `767/768/769` and `1179/1180/1181`; horizontal overflow failures: `0`;
+- latest editorial proof check: passed for the same 13-view matrix; `L1` is the featured story, `L2`/`L11` are compact supporting rows, and no horizontal overflow was observed;
 - latest interaction check: fresh proof opens `L1` in the shared lightbox; `Больше благодарственных писем` lands on `#letters`; no browser console warnings or errors;
 - interaction verification: video playback, proof-letter lightbox, FAQ disclosure, confirmed-success preview and retryable-error preview passed without a real submission;
 - responsive defect found and fixed: the workflow connector no longer creates `1200px` document width at the `1181px` boundary;
-- runtime source commit: `6b3d77a` on local and `origin/astro-migration`;
-- production commit: `1fd5c76` on `origin/gh-pages`;
+- runtime source commit: `5c5c6e5` on local and `origin/astro-migration`;
+- production commit: `2615b70` on `origin/gh-pages`;
 - GitHub Pages build: `built`;
-- live seasonal route: passed at `390x844` and `1280x720`; fresh proof dates and L1/L2/L11 order are visible, all 13 archive letters remain, the archive link and proof lightbox work, valid package cards/form options are published, no overflow or browser console errors;
+- live seasonal route: passed at `390x844` and `1280x720`; the editorial proof hierarchy is visible, all 13 archive letters remain, the archive link and L1 lightbox work, no overflow or browser console errors;
 - live root regression: original H1 and both hero actions preserved; the refreshed shared proof section is published;
 - release assets and routes: root, seasonal, privacy, versioned CSS/JS, L1/L2/L11 and sitemap all returned HTTP `200`;
 - production CRM lead: not verified without owner approval.
