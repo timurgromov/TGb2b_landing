@@ -282,7 +282,7 @@ function unlockPageScroll() {
   }
   function altFromCard(card){
     const img = card.querySelector('img');
-    return img?.alt || '';
+    return card.getAttribute('data-alt') || img?.alt || '';
   }
 
   // Прелоад изображения для соседней карточки
@@ -298,7 +298,7 @@ function unlockPageScroll() {
   let groupName = '';
 
   function openFromCard(card){
-    const container = card.closest('.letters-slider, .photos-slider, .proof-cases__layout');
+    const container = card.closest('.letters-slider, .photos-slider, [data-proof-cases-grid]');
     if (!container) return;
 
     // Собираем список внутри текущей секции, чтобы работала навигация ← →
