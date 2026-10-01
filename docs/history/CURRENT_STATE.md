@@ -27,6 +27,7 @@ Implemented locally:
 - the proof section now shows four available letters (`L1`, `L2`, `L11`, `L3`) as self-contained event cases with a clickable document preview, company/date, event title and short source-backed extract;
 - desktop uses the owner-requested `2 x 2` case grid; mobile shows the first three cases and keeps the `Все 13 писем` archive action visible;
 - the technical proof subtitle has been removed from both `/` and `/novogodniy-korporativ/`; the shared heading remains `Корпоративы глазами заказчиков` without a year;
+- `2026` has been removed from the public seasonal offer: seasonal H1/title/description/schema name, the `Декабрь` hero tag and the root seasonal promo are year-free; December 2026 form bounds and the internal CRM marker remain operationally unchanged;
 - shared non-seasonal corporate improvements now have an explicit parity rule: design, cases, letters, video, FAQ and packages without prices must reach both routes through shared components; seasonal copy/dates/CTA and future pricing remain route-specific;
 - pricing remains unimplemented until the owner separately approves the New Year price matrix and the price-block layout;
 - the original hero subtitle has been restored verbatim after an unapproved copy change;
@@ -51,13 +52,14 @@ An actual production submission is intentionally not part of automated verificat
 - latest proof/package responsive check: passed in one Codex in-app browser for 16 viewports from `390x844` through `1984x1046`, including `767/768/769`, `1023/1024/1025` and `1179/1180/1181`; horizontal overflow failures: `0`;
 - current proof check: desktop renders four cases in two columns; mobile renders three cases in one column with a full-width archive action;
 - shared-route subtitle-removal check: passed on both live routes at `1280x900`, `768x844` and `390x844`; the technical sentence and `.proof-cases__intro` are absent, archive action remains visible, horizontal overflow failures: `0`;
+- year-free offer check: passed live at `1280x900` and `390x844`; seasonal H1/title are `Ведущий на новогодний корпоратив в Москве`, first hero tag is `Декабрь`, root promo exposes no year, both CTAs remain usable and horizontal overflow failures: `0`;
 - restoration check: passed for the same 13-view matrix; the exact approved hero subtitle is present, packages render as `3` columns on desktop, `2+1` on tablet and `1` on mobile, with no horizontal overflow;
 - production cache delivery check: the main stylesheet key is `astro_6` and the shared script key is `astro_4`;
 - latest interaction check: the first case opens `L1`, lightbox next opens `L2`, and `Все 13 писем` lands on the 13-item `#letters` archive; no browser console warnings or errors;
 - interaction verification: video playback, proof-letter lightbox, FAQ disclosure, confirmed-success preview and retryable-error preview passed without a real submission;
 - responsive defect found and fixed: the workflow connector no longer creates `1200px` document width at the `1181px` boundary;
-- runtime source commit: `f08dc3e` on local and `origin/astro-migration`;
-- production commit: `df2849d` on `origin/gh-pages`;
+- runtime source commit: `98c2e3a` on local and `origin/astro-migration`;
+- production commit: `d836146` on `origin/gh-pages`;
 - GitHub Pages build: `built`;
 - live seasonal route: the case grid passed at `1280x900` with `style.css?v=astro_6` and `script.js?v=astro_4`; mobile passed at `390x844` with three visible cases, one package column, no overflow and all 13 archive letters intact;
 - live root regression: original H1 and both hero actions are preserved; the same subtitle-free shared proof section is published and passed at desktop/mobile widths;
