@@ -21,7 +21,8 @@ Implemented locally:
 - local validation/error/success states and responsive matrix have been checked;
 - `/` keeps its existing design and primary hero actions.
 - `/` now has a seasonal promo while keeping the approved universal hero and CTA;
-- both `/` and `/novogodniy-korporativ/` now render the same shared non-seasonal sequence: video, benefits, three service formats, letter-backed cases, workflow, gallery, letters and FAQ;
+- both `/` and `/novogodniy-korporativ/` now render the same shared non-seasonal sequence: video, the five-stage `Как проходит корпоратив` guest flow, benefits, three service formats, letter-backed cases, workflow, gallery, letters and FAQ;
+- `Как проходит корпоратив` is a shared component placed between video and benefits; it describes the guest experience and remains distinct from the customer-facing `Порядок работы` process;
 - package contract now starts with `Ведущий + DJ`; there is no `Только ведущий` option in the cards, FAQ, form or lead comment mapping;
 - the three offered compositions are `Ведущий + DJ`, `Ведущий + DJ + звук` and `Ведущий + DJ + звук + музыкальное шоу` with two vocalists and a saxophonist;
 - the proof section now shows four available letters (`L1`, `L2`, `L11`, `L3`) as self-contained event cases with a clickable document preview, company/date, event title and short source-backed extract;
@@ -30,7 +31,7 @@ Implemented locally:
 - `2026` has been removed from the public seasonal offer: seasonal H1/title/description/schema name, the `Декабрь` hero tag and the root seasonal promo are year-free; December 2026 form bounds and the internal CRM marker remain operationally unchanged;
 - shared non-seasonal corporate improvements now have an implemented parity rule: benefits, packages, cases, letters, video and FAQ reach both routes through shared components and in the same order; seasonal hero/promo-context, copy, dates, CTA, form and future pricing remain route-specific;
 - pricing remains unimplemented until the owner separately approves the New Year price matrix and the price-block layout;
-- next implementation sequence is fixed in `TASKS.md`: distinguish and build `Как проходит корпоратив`, then the musical-show offer, pricing, the shared lead form, one authorized end-to-end production lead test, final QA and only then the Direct handoff;
+- next implementation sequence is fixed in `TASKS.md`: the evening-flow block is complete; next comes the musical-show offer, pricing, the shared lead form, one authorized end-to-end production lead test, final QA and only then the Direct handoff;
 - the original hero subtitle has been restored verbatim after an unapproved copy change;
 - the original responsive package grid has been restored after the proof-section CSS edit accidentally removed its grid declaration;
 - the proof-section direction follows the owner-supplied wedding case-card reference rather than repeating the archive as a list;

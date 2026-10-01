@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-01-evening-flow-shared",
+  "change_kind": "shared-content-block",
+  "requested_visible_change": "Добавить на обе корпоративные страницы отдельный блок Как проходит корпоратив и не смешивать его с Порядком работы.",
+  "expected_visible_delta": "Между видео и преимуществами обе страницы показывают одинаковый блок из пяти моментов вечера; на desktop карточки собраны 3+2, на tablet 2+2+1, на mobile в одну колонку.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "cac32d265ae255d1fb8bb370d7297cdf6b3db4169ce7a69a2e42b00ea5e25195",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/ and http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "working tree candidate after fresh Astro build",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public pages without form submission",
+    "selector_or_slide_id": "#evening-flow",
+    "action": "Open each route, review the five cards, then activate the route-specific CTA."
+  },
+  "must_remain_unchanged": [
+    "approved dark corporate visual system",
+    "hero and video sections on both routes",
+    "benefits, packages, proof cases and separate order-of-work section",
+    "forms and all public pricing remain unchanged"
+  ],
+  "required_viewports": [
+    "390x844",
+    "436x504",
+    "767x844",
+    "768x1024",
+    "769x1024",
+    "974x1024",
+    "1024x768",
+    "1179x900",
+    "1180x900",
+    "1181x900",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "bounded headless Playwright geometry sweep on both routes",
+      "before_signature": "The mobile routes had no evening-flow block between video and benefits.",
+      "after_signature": "Five 359px cards render in one column on both routes; scrollWidth equals 390px.",
+      "observed_visible_result": "The full mobile sequence is readable without horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "436x504",
+      "viewport_source": "Codex in-app browser live observation and headless geometry sweep",
+      "before_signature": "The mobile route had no evening-flow block between video and benefits.",
+      "after_signature": "Five cards render in one readable column; the final card and full-width CTA are visible; scrollWidth equals 436px.",
+      "observed_visible_result": "The mobile composition preserves the current visual language and does not create horizontal scrolling.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "767x844",
+      "viewport_source": "bounded headless Playwright geometry sweep on both routes",
+      "before_signature": "No shared evening-flow grid existed at the mobile breakpoint boundary.",
+      "after_signature": "Five cards remain in one 731px-wide column and both routes have no overflow.",
+      "observed_visible_result": "The B-1 mobile layout remains stable.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "viewport_source": "bounded headless Playwright geometry sweep on both routes",
+      "before_signature": "No shared evening-flow grid existed at the mobile breakpoint.",
+      "after_signature": "Five cards remain in one 732px-wide column and both routes have no overflow.",
+      "observed_visible_result": "The 768px mobile contract is preserved exactly at the breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x1024",
+      "viewport_source": "bounded headless Playwright geometry sweep on both routes",
+      "before_signature": "No shared evening-flow grid existed above the mobile breakpoint.",
+      "after_signature": "The block changes to two columns and the fifth card spans the full row; no overflow is present.",
+      "observed_visible_result": "The B+1 tablet composition is 2+2+1 on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "974x1024",
+      "viewport_source": "bounded headless Playwright geometry sweep on both routes",
+      "before_signature": "The tablet interval had no guest-journey block.",
+      "after_signature": "Two 455px columns render with a full-width fifth card; no overflow is present.",
+      "observed_visible_result": "The representative tablet interval preserves the 2+2+1 composition.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "bounded headless Playwright geometry sweep on both routes",
+      "before_signature": "The tablet anchor had no guest-journey block.",
+      "after_signature": "Two 480px columns render with a full-width fifth card; no overflow is present.",
+      "observed_visible_result": "The landscape-tablet anchor is usable on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1179x900",
+      "viewport_source": "bounded headless Playwright geometry sweep on both routes",
+      "before_signature": "The B-1 desktop boundary had no evening-flow block.",
+      "after_signature": "Two 492px columns render with the fifth card spanning 1000px; no overflow is present.",
+      "observed_visible_result": "The final tablet-width probe remains balanced on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x900",
+      "viewport_source": "bounded headless Playwright geometry sweep on both routes",
+      "before_signature": "The desktop breakpoint had no evening-flow block.",
+      "after_signature": "Two 492px columns render with the fifth card spanning 1000px; no overflow is present.",
+      "observed_visible_result": "The 1180px breakpoint keeps the 2+2+1 composition on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1181x900",
+      "viewport_source": "bounded headless Playwright geometry sweep on both routes",
+      "before_signature": "The B+1 desktop interval had no evening-flow block.",
+      "after_signature": "The block changes to three equal cards followed by two equal wide cards; no overflow is present.",
+      "observed_visible_result": "The desktop 3+2 composition starts cleanly at B+1.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "viewport_source": "bounded headless Playwright geometry sweep on both routes",
+      "before_signature": "The desktop anchor had no guest-journey block.",
+      "after_signature": "Three 363px cards and two 552px cards render in 3+2 rows with no overflow.",
+      "observed_visible_result": "The compact desktop layout is balanced and keeps all copy inside its cards.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "bounded headless Playwright plus rendered section screenshot",
+      "before_signature": "After the video section the page moved directly to benefits; #evening-flow was absent.",
+      "after_signature": "Five visible cards render as three equal 363px cards followed by two equal 552px cards; the heading and CTA are visible.",
+      "observed_visible_result": "The new section reads as the guest journey through the evening and is visually distinct from the later workflow timeline.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "viewport_source": "bounded headless Playwright geometry sweep on both routes",
+      "before_signature": "The wide desktop route had no guest-journey block.",
+      "after_signature": "Three 449px cards and two 682px cards render in 3+2 rows with no overflow.",
+      "observed_visible_result": "The wide layout remains contained and visually balanced on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "interaction_states": {
+    "root_evening_flow_cta": "Обсудить программу корпоратива opens the existing #contact-popup-modal; visibility becomes visible.",
+    "seasonal_evening_flow_cta": "Обсудить программу корпоратива changes the hash to #proverit-datu and positions the form 80px below the mobile viewport top.",
+    "console": "No error-level browser console messages were observed on either route.",
+    "production_submission": "not performed"
+  },
+  "responsive_matrix": {
+    "checked_viewports": 26,
+    "breakpoints": [768, 1180],
+    "boundary_policy": "Both routes checked at 768 and 1180 with B-1/B/B+1, interval representatives and core mobile, desktop and wide anchors.",
+    "horizontal_overflow_failures": 0,
+    "mechanical_runner_note": "One bounded headless Playwright process checked both routes and closed after the sweep; the Codex in-app browser provided the live mobile observation."
+  },
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "Reuse the approved corporate card language with a distinct 3+2 guest-journey grid rather than another timeline.",
+    "owner_approval_reference": "The owner approved the five-stage content direction and instructed implementation on both corporate routes."
+  }
+}

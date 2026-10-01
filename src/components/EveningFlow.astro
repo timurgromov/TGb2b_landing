@@ -1,0 +1,37 @@
+---
+import { eveningFlowStages } from '@data/corporate';
+
+interface Props {
+  seasonal?: boolean;
+}
+
+const { seasonal = false } = Astro.props;
+---
+
+<section id="evening-flow" class="section evening-flow" data-testid="evening-flow">
+  <div class="container">
+    <p class="section__eyebrow sr">От сбора гостей до финала</p>
+    <h2 class="section__title sr">Как проходит корпоратив</h2>
+    <p class="section__subtitle evening-flow__intro sr">У вечера есть понятный ритм, но программа собирается под вашу компанию, гостей и задачи.</p>
+
+    <div class="evening-flow__grid">
+      {eveningFlowStages.map(([title, text], index) => (
+        <article class="evening-flow__card sr">
+          <div class="evening-flow__heading">
+            <span class="evening-flow__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{title}</h3>
+          </div>
+          <p>{text}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="evening-flow__cta">
+      {seasonal ? (
+        <a class="btn btn-outline" href="#proverit-datu">Обсудить программу корпоратива</a>
+      ) : (
+        <button class="btn btn-outline" type="button" data-modal="contact-popup" data-cta="contact_popup_evening_flow">Обсудить программу корпоратива</button>
+      )}
+    </div>
+  </div>
+</section>

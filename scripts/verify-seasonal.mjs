@@ -40,6 +40,8 @@ expectText(rootHtml, 'Обсудить корпоратив', 'root regression')
 expectText(rootHtml, 'Назначить встречу', 'root regression');
 expectText(rootHtml, 'Перейти к новогодним корпоративам', 'root seasonal promo');
 expectText(rootHtml, 'data-testid="proof-cases"', 'root proof cases');
+expectText(rootHtml, 'data-testid="evening-flow"', 'root evening flow');
+expectText(rootHtml, 'Как проходит корпоратив', 'root evening flow');
 expectText(rootHtml, 'data-proof-cases-grid', 'root proof case grid');
 expectText(rootHtml, 'Корпоративы глазами заказчиков', 'root proof heading');
 expectCount(rootHtml, 'data-proof-case>', 4, 'root proof case count');
@@ -55,6 +57,8 @@ expectText(seasonalHtml, 'Тимур Громов — ведущий, котор
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta"', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="seasonal-lead-form"', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="service-formats"', 'seasonal formats');
+expectText(seasonalHtml, 'data-testid="evening-flow"', 'seasonal evening flow');
+expectText(seasonalHtml, 'Как проходит корпоратив', 'seasonal evening flow');
 expectText(seasonalHtml, 'data-testid="proof-cases"', 'seasonal proof cases');
 expectText(seasonalHtml, 'data-proof-cases-grid', 'seasonal proof case grid');
 expectText(seasonalHtml, 'data-proof-case', 'seasonal proof case card');
@@ -67,10 +71,10 @@ expectText(seasonalHtml, 'Все 13 писем', 'seasonal proof archive link');
 rejectText(seasonalHtml, 'Четыре мероприятия — коротко о формате и обратной связи.', 'seasonal technical proof subtitle');
 rejectText(seasonalHtml, 'data-proof-priority="featured"', 'seasonal proof hierarchy');
 expectText(seasonalHtml, 'data-testid="faq-section"', 'seasonal FAQ');
-expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + кавер-группа', 'seasonal premium package');
+expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + два вокалиста и саксофонист', 'seasonal premium package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_6', 'main site stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_7', 'main site stylesheet');
 expectText(seasonalHtml, '/mobile.css?v=astro_2', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/script.js?v=astro_4', 'main site script');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
@@ -88,7 +92,7 @@ expectText(privacyHtml, 'Согласие на обработку персона
 
 expectText(seasonalScript, 'https://calcul.timurgromov.ru/api/v1/site/consultation-request', 'lead contract');
 expectText(seasonalScript, "form_source: 'site_meeting_corporate'", 'lead contract');
-expectText(seasonalScript, "host_dj_sound_band: 'Ведущий + DJ + аппаратура + кавер-группа'", 'lead package contract');
+expectText(seasonalScript, "host_dj_sound_band: 'Ведущий + DJ + аппаратура + два вокалиста и саксофонист'", 'lead package contract');
 expectText(seasonalScript, 'response.status !== 201', 'confirmed lead gate');
 expectText(seasonalScript, "reachGoal('corporate_lead_submit_success')", 'confirmed lead goal');
 expectText(seasonalScript, 'window.location.origin}${window.location.pathname}', 'sanitized page URL');
