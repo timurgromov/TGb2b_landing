@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-01-proof-case-grid",
+  "change_kind": "owner-referenced-case-grid",
+  "requested_visible_change": "Заменить повторяющий галерею список писем на самостоятельные прямоугольные мини-кейсы по референсу свадебного сайта.",
+  "expected_visible_delta": "На desktop четыре кейса располагаются 2 x 2; каждый объединяет кликабельную миниатюру письма, название мероприятия и короткую выжимку. На mobile видны три кейса. Кнопка Все 13 писем остаётся видимой на всех ширинах.",
+  "checked_after_last_edit": true,
+  "attempt_number": 2,
+  "candidate_diff_sha256": "27588d12e35bbd344c93c9ca3a32c1ce7b4f0128e881321b9d3634cd08060c98",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?verify=case-grid-final#proof-cases",
+    "source_ref": "staged astro-migration candidate after fresh Astro build",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/ and shared proof section on /",
+    "state": "public page without form submission",
+    "selector_or_slide_id": "#proof-cases, [data-proof-cases-grid], [data-proof-case]",
+    "action": "Open L1, move to L2 in the lightbox, close, then follow Все 13 писем to #letters"
+  },
+  "must_remain_unchanged": [
+    "approved hero subtitle and hero layout",
+    "three approved service-package cards and their responsive 3 / 2+1 / 1 layout",
+    "all thirteen letters in the archive",
+    "shared letter lightbox",
+    "lead form and adjacent sections"
+  ],
+  "required_viewports": [
+    "390x844",
+    "767x844",
+    "768x1024",
+    "769x1024",
+    "896x1024",
+    "1023x900",
+    "1024x768",
+    "1025x900",
+    "1102x900",
+    "1179x900",
+    "1180x900",
+    "1181x900",
+    "1280x900",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate was a vertical register duplicating the full letter gallery.",
+      "after_signature": "Three visible 359x189 mini-cases in one column; archive button 359px; scrollWidth=390.",
+      "observed_visible_result": "Each mobile item combines the document, event title and extract; the fourth case is intentionally hidden.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "767x844",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate remained a plain list.",
+      "after_signature": "Three visible 731x188 mini-cases; archive button 731px; scrollWidth=767.",
+      "observed_visible_result": "The last pre-breakpoint width keeps the complete mobile case treatment without overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate remained a plain list.",
+      "after_signature": "Three visible 732x188 mini-cases; archive button 732px; scrollWidth=768.",
+      "observed_visible_result": "The mobile boundary is stable and the all-letters action spans the section width.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x1024",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate had no self-contained event cards.",
+      "after_signature": "Four visible 721x270 cases in one column; scrollWidth=769.",
+      "observed_visible_result": "B+1 reveals the fourth proof and retains the approved 2+1 package grid.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "896x1024",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate had no self-contained event cards.",
+      "after_signature": "Four visible 848x270 cases in one column; scrollWidth=896.",
+      "observed_visible_result": "The middle tablet width remains readable with document thumbnails and full extracts.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1023x900",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate was still a register at this width.",
+      "after_signature": "Four visible 975x270 cases in one column; scrollWidth=1023.",
+      "observed_visible_result": "The final pre-grid width is stable with no clipped copy or document controls.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate was still a register at this width.",
+      "after_signature": "Four visible 976x270 cases in one column; scrollWidth=1024.",
+      "observed_visible_result": "The exact case-grid boundary stays single-column and readable.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1025x900",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate used full-width list rows.",
+      "after_signature": "Four visible 480x270 cases arranged in two columns; scrollWidth=1025.",
+      "observed_visible_result": "B+1 switches cleanly to the requested desktop 2 x 2 case grid.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1102x900",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate used full-width list rows.",
+      "after_signature": "Four visible 491x270 cases in two columns; scrollWidth=1102.",
+      "observed_visible_result": "The intermediate grid keeps balanced cards and readable extracts.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1179x900",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate used full-width list rows.",
+      "after_signature": "Four visible 491x270 cases in two columns; scrollWidth=1179.",
+      "observed_visible_result": "The proof grid remains 2 x 2 while packages preserve their 2+1 layout.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x900",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate used full-width list rows.",
+      "after_signature": "Four visible 491x270 cases in two columns; scrollWidth=1180.",
+      "observed_visible_result": "The existing package breakpoint does not disturb the new proof composition.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1181x900",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate used full-width list rows.",
+      "after_signature": "Four visible 558x270 cases in two columns; scrollWidth=1181.",
+      "observed_visible_result": "The case grid stays 2 x 2 while packages return to three columns.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x900",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate duplicated the archive as three horizontal list rows.",
+      "after_signature": "Four visible 551x270 cases arranged 2 x 2; archive button remains visible; scrollWidth=1280.",
+      "observed_visible_result": "The owner-selected desktop composition is present: document at left, event identity and extract at right.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate duplicated the archive as list rows.",
+      "after_signature": "Four visible 551x270 cases arranged 2 x 2; scrollWidth=1366.",
+      "observed_visible_result": "The common desktop width keeps the intended two-row composition.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate duplicated the archive as list rows.",
+      "after_signature": "Four visible 551x270 cases arranged 2 x 2; scrollWidth=1440.",
+      "observed_visible_result": "The grid remains centered and bounded inside the established site container.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Rejected candidate stretched full-width list rows across the section.",
+      "after_signature": "Four visible 681x270 cases arranged 2 x 2; scrollWidth=1984.",
+      "observed_visible_result": "Wide desktop preserves the case-card proportions and two-column reading rhythm.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "interaction_states": {
+    "proof_lightbox": "The Раймед Групп thumbnail opens #letter-modal with /assets/letters/L1.webp and the company-specific alt text.",
+    "proof_lightbox_navigation": "The next control changes the case lightbox to /assets/letters/L2.webp with the Экоразвитие-МО alt text.",
+    "archive_link": "Все 13 писем changes the hash to #letters.",
+    "archive_count_and_order": "Thirteen archive letters remain; the first four are L1, L2, L11 and L3.",
+    "mobile_visibility": "Exactly three mini-cases are visible at 768px and below; the archive button remains visible.",
+    "package_regression": "Package grid remains 1 column through 768px, 2+1 through 1180px and 3 columns from 1181px.",
+    "console": "No browser errors or warnings were observed.",
+    "production_submission": "not performed"
+  },
+  "responsive_matrix": {
+    "checked_viewports": 16,
+    "breakpoints": [768, 1024, 1180],
+    "boundary_policy": "B-1, B and B+1 for every affected or preserved breakpoint plus mobile, desktop and wide anchors",
+    "horizontal_overflow_failures": 0,
+    "mechanical_runner_note": "The standalone runner was stopped during browser-lifecycle cleanup. The full matrix was completed in one existing Codex in-app browser with live DOM geometry and console checks; no separate QA Chrome remained running."
+  },
+  "comparison_review": {
+    "variants_shown": 1,
+    "selected_variant": "Four bounded letter-and-copy event cases in a desktop 2 x 2 grid, with three cases on mobile",
+    "owner_approval_reference": "Owner supplied the wedding-site case screenshot and explicitly described the required thumbnail, event name, extract, desktop 2 x 2 grid, mobile reduction and full archive action."
+  }
+}

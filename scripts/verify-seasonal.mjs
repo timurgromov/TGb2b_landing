@@ -19,6 +19,13 @@ function rejectText(source, unexpected, label) {
   }
 }
 
+function expectCount(source, expected, count, label) {
+  const actual = source.split(expected).length - 1;
+  if (actual !== count) {
+    throw new Error(`${label}: expected ${count}, got ${actual}`);
+  }
+}
+
 const [rootHtml, seasonalHtml, privacyHtml, sharedScript, seasonalScript, sitemap] = await Promise.all([
   read('dist/index.html'),
   read('dist/novogodniy-korporativ/index.html'),
@@ -33,6 +40,8 @@ expectText(rootHtml, 'Обсудить корпоратив', 'root regression')
 expectText(rootHtml, 'Назначить встречу', 'root regression');
 expectText(rootHtml, 'Перейти к новогодним корпоративам', 'root seasonal promo');
 expectText(rootHtml, 'data-testid="proof-cases"', 'root proof cases');
+expectText(rootHtml, 'data-proof-cases-grid', 'root proof case grid');
+expectText(rootHtml, 'Корпоративы глазами заказчиков', 'root proof heading');
 expectText(rootHtml, 'data-testid="faq-section"', 'root FAQ');
 
 expectText(seasonalHtml, 'Ведущий на новогодний корпоратив 2026 в Москве', 'seasonal route');
@@ -41,13 +50,22 @@ expectText(seasonalHtml, 'data-testid="seasonal-primary-cta"', 'seasonal route')
 expectText(seasonalHtml, 'data-testid="seasonal-lead-form"', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="service-formats"', 'seasonal formats');
 expectText(seasonalHtml, 'data-testid="proof-cases"', 'seasonal proof cases');
+expectText(seasonalHtml, 'data-proof-cases-grid', 'seasonal proof case grid');
+expectText(seasonalHtml, 'data-proof-case', 'seasonal proof case card');
+expectText(seasonalHtml, 'Корпоративы глазами заказчиков', 'seasonal proof heading');
+expectText(seasonalHtml, 'НПФ «Экопром»', 'fourth proof case');
+expectText(seasonalHtml, '/assets/letters/L3.webp', 'fourth proof letter');
+expectCount(seasonalHtml, 'data-proof-case>', 4, 'seasonal proof case count');
+expectText(seasonalHtml, 'class="letters-slider', 'seasonal full letter archive');
+expectText(seasonalHtml, 'Все 13 писем', 'seasonal proof archive link');
+rejectText(seasonalHtml, 'data-proof-priority="featured"', 'seasonal proof hierarchy');
 expectText(seasonalHtml, 'data-testid="faq-section"', 'seasonal FAQ');
-expectText(seasonalHtml, 'Больше благодарственных писем', 'seasonal proof archive link');
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + кавер-группа', 'seasonal premium package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_4', 'main site stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_5', 'main site stylesheet');
 expectText(seasonalHtml, '/mobile.css?v=astro_2', 'main site mobile stylesheet');
+expectText(seasonalHtml, '/script.js?v=astro_4', 'main site script');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
 expectText(seasonalHtml, '/seasonal.js?v=20260930d', 'seasonal script');
 expectText(seasonalHtml, '/privacy/', 'seasonal privacy link');
@@ -67,6 +85,7 @@ expectText(sharedScript, 'https://calcul.timurgromov.ru/api/v1/site/consultation
 expectText(sharedScript, "form_source: 'site_meeting_corporate'", 'shared lead contract');
 expectText(sharedScript, 'response.status === 201', 'shared confirmed lead gate');
 expectText(sharedScript, "reachGoal', 'corporate_lead_submit_success'", 'shared confirmed lead goal');
+expectText(sharedScript, '[data-proof-cases-grid]', 'shared proof lightbox contract');
 rejectText(sharedScript, 'TELEGRAM_LEAD_ENDPOINT', 'shared lead contract');
 
 expectText(sitemap, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'sitemap');

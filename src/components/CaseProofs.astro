@@ -1,81 +1,45 @@
 ---
 import { proofCases } from '@data/corporate';
-
-interface Props {
-  seasonal?: boolean;
-}
-
-const { seasonal = false } = Astro.props;
-const [featuredCase, ...secondaryCases] = proofCases;
 ---
 
 <section id="proof-cases" class="section proof-cases" data-testid="proof-cases">
   <div class="container">
     <div class="proof-cases__heading">
       <div class="proof-cases__heading-copy">
-        <p class="section__eyebrow sr">Подтверждено заказчиками</p>
-        <h2 class="section__title sr">Свежие благодарности от компаний</h2>
-        <p class="section__subtitle proof-cases__intro sr">
-          {seasonal
-            ? 'Три самых свежих письма — с датами, подписями и деталями проведённых мероприятий.'
-            : 'Три самых свежих письма — с датами, подписями и конкретной обратной связью.'}
-        </p>
+        <p class="section__eyebrow sr">Подтверждено письмами</p>
+        <h2 class="section__title sr">Корпоративы глазами заказчиков</h2>
+        <p class="section__subtitle proof-cases__intro sr">Четыре мероприятия — коротко о формате и обратной связи. Оригиналы писем можно открыть.</p>
       </div>
       <a class="btn btn-outline proof-cases__more sr" href="#letters">
-        Больше благодарственных писем
-        <span aria-hidden="true">↓</span>
+        Все 13 писем
+        <span aria-hidden="true">→</span>
       </a>
     </div>
 
-    <div class="proof-cases__layout">
-      <article class="proof-case proof-case--featured sr" data-proof-priority="featured">
-        <button
-          class="proof-case__letter"
-          type="button"
-          data-letter-modal
-          data-full={featuredCase.letter}
-          aria-label={`Открыть письмо: ${featuredCase.company}`}
-        >
-          <img src={featuredCase.letter} alt={featuredCase.letterAlt} loading="lazy" decoding="async" />
-          <span>Открыть письмо ↗</span>
-        </button>
-        <div class="proof-case__body">
-          <p class="proof-case__flag">Самое свежее письмо</p>
-          <div class="proof-case__identity">
-            <p class="proof-case__company">{featuredCase.company}</p>
-            <span aria-hidden="true">•</span>
-            <p class="proof-case__meta">{featuredCase.meta}</p>
-          </div>
-          <h3>{featuredCase.title}</h3>
-          <p>{featuredCase.description}</p>
-        </div>
-      </article>
-
-      <div class="proof-cases__secondary">
-        {secondaryCases.map((item) => (
-          <article class="proof-case proof-case--compact sr" data-proof-priority="secondary">
-            <button
-              class="proof-case__letter"
-              type="button"
-              data-letter-modal
-              data-full={item.letter}
-              aria-label={`Открыть письмо: ${item.company}`}
-            >
-              <img src={item.letter} alt={item.letterAlt} loading="lazy" decoding="async" />
-              <span>Открыть письмо ↗</span>
-            </button>
-            <div class="proof-case__body">
-              <div class="proof-case__identity">
-                <p class="proof-case__company">{item.company}</p>
-                <span aria-hidden="true">•</span>
-                <p class="proof-case__meta">{item.meta}</p>
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
+    <div class="proof-cases__grid sr" data-proof-cases-grid>
+      {proofCases.map((item) => (
+        <article class="proof-case-card" data-proof-case>
+          <button
+            class="proof-case-card__letter"
+            type="button"
+            data-letter-modal
+            data-full={item.letter}
+            data-alt={item.letterAlt}
+            aria-label={`Открыть письмо: ${item.company}`}
+          >
+            <img src={item.letter} alt="" loading="lazy" decoding="async" />
+            <span>Открыть письмо <span aria-hidden="true">↗</span></span>
+          </button>
+          <div class="proof-case-card__body">
+            <div class="proof-case-card__identity">
+              <p class="proof-case-card__company">{item.company}</p>
+              <p class="proof-case-card__meta">{item.meta}</p>
             </div>
-          </article>
-        ))}
-      </div>
+            <h3>{item.title}</h3>
+            <p class="proof-case-card__excerpt">{item.description}</p>
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>
