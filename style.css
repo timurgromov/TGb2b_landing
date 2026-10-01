@@ -2472,7 +2472,7 @@ body { overflow-x: hidden; }
 }
 
 .proof-cases__heading .section__title {
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 
 .proof-cases__intro {
