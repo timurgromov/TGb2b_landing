@@ -2487,15 +2487,10 @@ body { overflow-x: hidden; }
 }
 
 .service-format h3 {
-  margin: 0 0 8px;
-  font-size: 20px;
-}
-
-.service-format__fit {
-  min-height: 48px;
+  min-height: 54px;
   margin: 0 0 18px;
-  color: var(--muted);
-  line-height: 1.5;
+  font-size: 20px;
+  line-height: 1.35;
 }
 
 .service-format ul {
@@ -3027,7 +3022,7 @@ body { overflow-x: hidden; }
     padding: 20px;
   }
 
-  .service-format__fit {
+  .service-format h3 {
     min-height: 0;
   }
 
