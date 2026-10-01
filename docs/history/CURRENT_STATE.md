@@ -63,8 +63,8 @@ An actual production submission is intentionally not part of automated verificat
 - latest interaction check: the first case opens `L1`, lightbox next opens `L2`, and `Все 13 писем` lands on the 13-item `#letters` archive; no browser console warnings or errors;
 - interaction verification: video playback, proof-letter lightbox, FAQ disclosure, confirmed-success preview and retryable-error preview passed without a real submission;
 - responsive defect found and fixed: the workflow connector no longer creates `1200px` document width at the `1181px` boundary;
-- runtime source commit: `292ff1e` on local and `origin/astro-migration`;
-- production commit: `be38f4c` on `origin/gh-pages`;
+- runtime source commit: `e3be303` on local and `origin/astro-migration`;
+- production commit: `b6cb28e` on `origin/gh-pages`;
 - GitHub Pages build: `built`;
 - live seasonal route: the case grid and shared evening-flow block passed with `style.css?v=astro_7` and `script.js?v=astro_4`; mobile passed at `390x844` with three visible cases, one package column, five evening stages, no overflow and all 13 archive letters intact;
 - live music-package check: both routes publish `Ведущий + DJ + звук + 3 музыкальных блока по 30 минут`; the third package means three complete 30-minute music blocks, with two vocalists as the base and optional saxophonist and guitarist. Root passed at `1280x720`, seasonal at `390x844`; no horizontal overflow or console errors. The seasonal form lists all three line-up variants. No real lead was submitted;
