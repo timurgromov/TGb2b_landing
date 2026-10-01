@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-01-three-music-blocks",
+  "change_kind": "shared-package-copy-and-lead-option",
+  "status": "passed",
+  "requested_visible_change": "Replace the vague musical-show package with a concrete description of three sets of three songs and the available line-ups.",
+  "expected_visible_delta": "Both routes visibly show the third package as three musical blocks with two vocalists as the base; the seasonal form offers all three exact configurations.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "d9ca40f41572ab2e27452bbe6875c9f6c6350b23ee33e1638654cc3a2a7388cb",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?verify=music-blocks",
+    "source_ref": "working tree after 2026-10-01-three-music-blocks",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public landing, third package card; seasonal package select",
+    "selector_or_slide_id": "#formats .service-format:nth-child(3), select[name=equipment_needed]",
+    "action": "scroll to the package cards; open the seasonal native select without submitting"
+  },
+  "must_remain_unchanged": [
+    "existing dark design and three-card package grid",
+    "first two package cards",
+    "root contact-modal CTA and seasonal date-form CTA",
+    "no public price"
+  ],
+  "required_viewports": [
+    "390x844 seasonal",
+    "390x844 root",
+    "1280x720 seasonal",
+    "1366x768 root"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844 seasonal",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=390; innerHeight=844",
+      "before_signature": "third card width=359; title=Ведущий + DJ + звук + музыкальное шоу; select has one premium option: два вокалиста и саксофонист",
+      "after_signature": "third card width=359; title=Ведущий + DJ + звук + 3 музыкальных блока; text names three exits of three songs and two vocalists as the base; select has three exact music configurations",
+      "observed_visible_result": "The third card is readable in the one-column mobile stack and the seasonal form exposes vocalists-only, vocalists plus saxophone, and vocalists plus saxophone and guitar.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844 root",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=390; innerHeight=844",
+      "before_signature": "third card width=359; title=Ведущий + DJ + звук + музыкальное шоу; card assumes a fixed vocalist-and-saxophone line-up",
+      "after_signature": "third card width=359; title=Ведущий + DJ + звук + 3 музыкальных блока; card names the two-vocalist base and optional saxophone and guitar",
+      "observed_visible_result": "The same concrete package appears on the universal route without horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720 seasonal",
+      "viewport_source": "Codex in-app browser default viewport; innerWidth=1280; innerHeight=720",
+      "before_signature": "third desktop card title=Ведущий + DJ + звук + музыкальное шоу; description names only vocalists and saxophone",
+      "after_signature": "third desktop card title=Ведущий + DJ + звук + 3 музыкальных блока; description says three sets of three songs and names both optional instruments",
+      "observed_visible_result": "The seasonal desktop grid preserves three cards while the third card communicates the actual composition and program volume.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768 root",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1366; innerHeight=768",
+      "before_signature": "third desktop card width=363; title=Ведущий + DJ + звук + музыкальное шоу; fixed saxophone formulation",
+      "after_signature": "third desktop card width=363; title=Ведущий + DJ + звук + 3 музыкальных блока; two-vocalist base plus saxophone and guitar alternatives",
+      "observed_visible_result": "The universal desktop grid remains three columns and makes the new package concrete without changing the other two cards.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": ""
+  }
+}
