@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-02-cumulative-service-format-grid",
+  "change_kind": "service-package-layout-and-copy",
+  "status": "passed",
+  "requested_visible_change": "Package cards must remove the redundant descriptive paragraph, reserve the same desktop title space, and show each succeeding package as an explicit cumulative list instead of saying that it includes a previous package.",
+  "expected_visible_delta": "On desktop, each package list starts on the same horizontal baseline. The second card repeats the three base services and adds technical equipment; the third repeats all four, adds three 30-minute music blocks and the optional saxophone/guitar line.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "0e9b449d1e077d06662f52b674d4cfe367b66a7561740f77c88149ab19d3e397",
+  "served_candidate": {
+    "url": "https://corp.timurgromov.ru/novogodniy-korporativ/?verify=cumulative-packages#formats",
+    "source_ref": "c9c0d07 source / f3c7fcf production",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public service package grid",
+    "selector_or_slide_id": ".service-format",
+    "action": "open the two public routes after deployment and compare list baseline, package contents and responsive layout"
+  },
+  "must_remain_unchanged": [
+    "three package cards",
+    "root hero heading",
+    "seasonal date-check CTA",
+    "one-column mobile card layout"
+  ],
+  "required_viewports": [
+    "1280x720",
+    "390x844"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Codex in-app browser; window.innerWidth=1280; window.innerHeight=720",
+      "before_signature": "Cards contained unequal descriptive paragraphs below headings, and the second card used the vague 'Всё из базового состава'.",
+      "after_signature": "The heading zone computes to min-height 54px; all seasonal lists start at y=375. Root lists start at y=392. The lists explicitly repeat the included services.",
+      "observed_visible_result": "Seasonal and root publish the same shared three-card grid. No horizontal overflow occurred and console errors were empty.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser; seasonal route",
+      "before_signature": "Mobile cards used the earlier descriptive-copy package content.",
+      "after_signature": "All three cards remain one column with x=16 and width=359; their item counts are 3, 4 and 6 respectively.",
+      "observed_visible_result": "The complete cumulative list remains readable without horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": "User specified the cumulative package logic in the chat on 2026-10-02."
+  }
+}
