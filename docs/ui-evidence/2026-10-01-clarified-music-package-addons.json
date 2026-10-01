@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-01-clarified-music-package-addons",
+  "change_kind": "service-package-copy",
+  "status": "passed",
+  "requested_visible_change": "The third package must explicitly state that the music part can be supplemented with saxophone or guitar, instead of presenting a vague list of variants.",
+  "expected_visible_delta": "After the one duration sentence, the card reads: 'Музыкальную часть можно дополнить саксофоном или гитарой'.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "8c4f3d4b72fe1e2d5edf8769d32e7c7ff2407df3c97161599a4f8dea66e2c77a",
+  "served_candidate": {
+    "url": "https://corp.timurgromov.ru/novogodniy-korporativ/?verify=package-addons-live#formats",
+    "source_ref": "976a951 source / b35c916 production",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public package grid, third card",
+    "selector_or_slide_id": ".service-format:nth-child(3)",
+    "action": "open each public route with #formats after the production deployment"
+  },
+  "must_remain_unchanged": [
+    "three package cards",
+    "root hero heading",
+    "seasonal date-check CTA",
+    "one-column mobile card layout"
+  ],
+  "required_viewports": [
+    "1280x720"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Codex in-app browser; window.innerWidth=1280; window.innerHeight=720",
+      "before_signature": "production card 03 used the opaque list item 'Варианты: с саксофонистом или с саксофонистом и гитаристом'; rect=362.664x326.789",
+      "after_signature": "production card 03 states 'Три полноценных музыкальных блока по 30 минут с профессиональными аранжировками' and then 'Музыкальную часть можно дополнить саксофоном или гитарой'; rect=362.664x306.391",
+      "observed_visible_result": "The card now distinguishes the included three music blocks from the optional instruments in direct language. Root and seasonal routes each render three cards without horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": ""
+  }
+}
