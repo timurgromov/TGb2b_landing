@@ -56,7 +56,7 @@ rejectText(rootHtml, 'Четыре мероприятия — коротко о 
 expectText(rootHtml, 'data-testid="faq-section"', 'root FAQ');
 expectText(rootHtml, 'Ведущий + DJ + звук + два вокалиста', 'root vocalists package title');
 expectCount(rootHtml, 'Три полноценных музыкальных блока по 30 минут', 1, 'root vocalists package duration copy');
-expectText(rootHtml, 'Варианты: с саксофонистом или с саксофонистом и гитаристом', 'root vocalists package variants');
+expectText(rootHtml, 'Музыкальную часть можно дополнить саксофоном или гитарой', 'root vocalists package expansion');
 rejectText(rootHtml, 'Ведущий + DJ + звук + 3 музыкальных блока по 30 минут', 'root obsolete vocalists package title');
 rejectText(rootHtml, 'Всё из среднего состава', 'root technical vocalists package copy');
 expectText(rootHtml, 'data-testid="music-program"', 'root music program');
@@ -77,7 +77,7 @@ expectText(seasonalHtml, 'data-testid="seasonal-lead-form"', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="service-formats"', 'seasonal formats');
 expectText(seasonalHtml, 'Ведущий + DJ + звук + два вокалиста', 'seasonal vocalists package title');
 expectCount(seasonalHtml, 'Три полноценных музыкальных блока по 30 минут', 1, 'seasonal vocalists package duration copy');
-expectText(seasonalHtml, 'Варианты: с саксофонистом или с саксофонистом и гитаристом', 'seasonal vocalists package variants');
+expectText(seasonalHtml, 'Музыкальную часть можно дополнить саксофоном или гитарой', 'seasonal vocalists package expansion');
 rejectText(seasonalHtml, 'Ведущий + DJ + звук + 3 музыкальных блока по 30 минут', 'seasonal obsolete vocalists package title');
 rejectText(seasonalHtml, 'Всё из среднего состава', 'seasonal technical vocalists package copy');
 expectText(seasonalHtml, 'data-testid="evening-flow"', 'seasonal evening flow');
