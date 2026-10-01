@@ -103,7 +103,7 @@ Baseline observed on live `https://corp.timurgromov.ru/` at CSS viewport `1280x7
 
 Additional baseline observed on live seasonal route at CSS viewport `1280x720`, DPR `2`:
 
-- H1: `Ведущий на новогодний корпоратив 2026 в Москве`;
+- H1: `Ведущий на новогодний корпоратив в Москве`;
 - subtitle: `Тимур Громов — ведущий, который держит темп вечера, бережно вовлекает гостей и собирает программу под характер вашей компании.`;
 - selectors `[data-testid="proof-cases"]`, `[data-testid="faq-section"]` and `.video-case__copy` are absent;
 - `document.documentElement.scrollWidth === window.innerWidth === 1280`.
@@ -114,7 +114,7 @@ Exact target:
 - state: initial page and form states;
 - primary selector: `[data-testid="seasonal-primary-cta"]`;
 - form selector: `[data-testid="seasonal-lead-form"]`;
-- expected visible delta: та же композиция и визуальные метрики основного hero, но с сезонным H1 `Ведущий на новогодний корпоратив 2026 в Москве`, сезонным контентом и квалифицированной формой;
+- expected visible delta: та же композиция и визуальные метрики основного hero, но с сезонным H1 `Ведущий на новогодний корпоратив в Москве`, без года в публичном оффере, с сезонным контентом и квалифицированной формой;
 - expected content delta: естественный подзаголовок, пояснения к видео, три состава команды, подтверждённые примеры, FAQ и ссылка с главной на сезонную страницу;
 - preserved: root and seasonal hero geometry, current black/warm-brown/orange visual language, existing media assets, contact details, form contract and primary CTA.
 

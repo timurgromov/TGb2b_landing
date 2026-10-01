@@ -47,7 +47,10 @@ expectText(rootHtml, 'Все 13 писем', 'root proof archive link');
 rejectText(rootHtml, 'Четыре мероприятия — коротко о формате и обратной связи.', 'root technical proof subtitle');
 expectText(rootHtml, 'data-testid="faq-section"', 'root FAQ');
 
-expectText(seasonalHtml, 'Ведущий на новогодний корпоратив 2026 в Москве', 'seasonal route');
+expectText(seasonalHtml, 'Ведущий на новогодний корпоратив в Москве', 'seasonal route');
+rejectText(seasonalHtml, 'Ведущий на новогодний корпоратив 2026', 'seasonal public offer');
+rejectText(seasonalHtml, 'Декабрь 2026', 'seasonal public offer');
+expectText(seasonalHtml, '<span class="tag">Декабрь</span>', 'seasonal month tag');
 expectText(seasonalHtml, 'Тимур Громов — ведущий, который держит темп вечера, бережно вовлекает гостей и собирает программу под характер вашей компании.', 'seasonal offer');
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta"', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="seasonal-lead-form"', 'seasonal route');
@@ -74,6 +77,11 @@ expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet'
 expectText(seasonalHtml, '/seasonal.js?v=20260930d', 'seasonal script');
 expectText(seasonalHtml, '/privacy/', 'seasonal privacy link');
 rejectText(seasonalHtml, 'TELEGRAM_LEAD_ENDPOINT', 'seasonal route');
+
+expectText(rootHtml, 'aria-label="Новогодние корпоративы"', 'root seasonal promo');
+expectText(rootHtml, '>Новогодний сезон</p>', 'root seasonal promo');
+rejectText(rootHtml, 'Новогодние корпоративы 2026', 'root seasonal promo');
+rejectText(rootHtml, 'Новогодний сезон 2026', 'root seasonal promo');
 
 expectText(privacyHtml, 'Политика конфиденциальности', 'privacy route');
 expectText(privacyHtml, 'Согласие на обработку персональных данных', 'privacy route');

@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-01-remove-public-2026",
+  "change_kind": "owner-requested-copy-correction",
+  "requested_visible_change": "Убрать 2026 из публичного новогоднего оффера.",
+  "expected_visible_delta": "Сезонный H1 и title показывают Ведущий на новогодний корпоратив в Москве, первый тег показывает Декабрь, а промоблок главной не содержит года.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "e04aeb43c5cc604914b2f00865e364bbde680dddbb18cc5e8e6b0645b6c353e8",
+  "served_candidate": {
+    "url": "http://localhost:4321/novogodniy-korporativ/?verify=remove-year and http://localhost:4321/?verify=remove-year",
+    "source_ref": "staged astro-migration candidate after fresh Astro build",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "seasonal hero and metadata plus root seasonal promo",
+    "state": "initial page, then seasonal primary CTA",
+    "selector_or_slide_id": ".seasonal-page .hero and .seasonal-promo",
+    "action": "Open both routes and follow Проверить дату to #proverit-datu"
+  },
+  "must_remain_unchanged": [
+    "seasonal hero subtitle and portrait",
+    "all hero tags except the first month tag",
+    "Проверить дату and Посмотреть видео CTA labels",
+    "three seasonal service packages",
+    "proof cases, letters, FAQ and lead form",
+    "December 2026 date-field bounds and internal CRM marker",
+    "pricing remains absent"
+  ],
+  "required_viewports": [
+    "390x844",
+    "1280x900"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x900",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Live seasonal title/H1 was Ведущий на новогодний корпоратив 2026 в Москве and the first tag was Декабрь 2026; root promo exposed the year twice.",
+      "after_signature": "Local title/H1 is Ведущий на новогодний корпоратив в Москве, first tag is Декабрь, metadata and Service JSON-LD contain no year, and root promo reads Новогодние корпоративы / Новогодний сезон.",
+      "observed_visible_result": "The desktop hero keeps the approved composition while removing the year from the public offer; three packages remain present and there is no horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Live mobile hero showed 2026 in the H1 and Декабрь 2026 in the tag row.",
+      "after_signature": "Local mobile hero shows Ведущий на новогодний корпоратив в Москве and Декабрь; both CTA controls remain 354 x 56px and the page has no horizontal overflow.",
+      "observed_visible_result": "The shorter year-free H1 fits the existing portrait composition and the primary CTA still reaches the visible date form.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "interaction_states": {
+    "primary_cta": "Проверить дату changes the hash to #proverit-datu and reveals Проверьте дату и получите расчёт.",
+    "secondary_cta": "Посмотреть видео remains present.",
+    "seasonal_packages": "The service-formats grid still contains three cards.",
+    "root_regression": "The generic root H1, four shared proof cases and no-overflow layout remain intact.",
+    "console": "No browser errors or warnings were observed.",
+    "production_submission": "not performed"
+  },
+  "responsive_matrix": {
+    "checked_viewports": 2,
+    "breakpoints": [],
+    "boundary_policy": "Desktop and mobile anchors are sufficient for a bounded copy-only hero change; no CSS or breakpoint behavior changed.",
+    "horizontal_overflow_failures": 0,
+    "mechanical_runner_note": "The candidate was verified in one temporary Codex in-app browser tab; no standalone Chrome or Playwright browser was launched."
+  },
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "Remove the year from every public seasonal marketing string while preserving operational 2026 date bounds.",
+    "owner_approval_reference": "The owner explicitly corrected the prior interpretation and requested removing 2026."
+  }
+}
