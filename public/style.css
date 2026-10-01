@@ -2528,6 +2528,106 @@ body { overflow-x: hidden; }
   text-align: center;
 }
 
+.music-program {
+  background: radial-gradient(ellipse 78% 68% at 50% 50%, rgba(255, 122, 69, .045), transparent 72%);
+  scroll-margin-top: calc(var(--header-h) + 18px);
+}
+
+.music-program__intro {
+  max-width: 760px;
+  margin: -12px auto 30px;
+}
+
+.music-program__layout {
+  display: grid;
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.music-program__summary,
+.music-program__option,
+.music-program__backline {
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .025);
+}
+
+.music-program__summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px;
+  background: linear-gradient(155deg, rgba(255, 122, 69, .09), rgba(255, 255, 255, .025) 64%);
+}
+
+.music-program__label,
+.music-program__option-label {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.music-program__lead {
+  margin: 0 0 18px;
+  color: var(--text);
+  font-size: clamp(20px, 2.1vw, 28px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.music-program__copy,
+.music-program__option p,
+.music-program__backline span {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.music-program__options {
+  display: grid;
+  gap: 12px;
+}
+
+.music-program__option {
+  padding: 20px 22px;
+}
+
+.music-program__option-label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 10px;
+}
+
+.music-program__option h3 {
+  margin: 0 0 6px;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.music-program__backline {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 18px;
+  margin-top: 18px;
+  padding: 18px 22px;
+}
+
+.music-program__backline strong {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.music-program__cta {
+  margin-top: 28px;
+  text-align: center;
+}
+
 .proof-cases {
   background: radial-gradient(ellipse 90% 70% at 50% 50%, rgba(255, 122, 69, .035), transparent 68%);
   scroll-margin-top: calc(var(--header-h) + 18px);
@@ -2800,6 +2900,10 @@ body { overflow-x: hidden; }
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .music-program__layout {
+    grid-template-columns: 1fr;
+  }
+
   .service-format:last-child {
     grid-column: 1 / -1;
   }
@@ -2870,7 +2974,8 @@ body { overflow-x: hidden; }
   }
 
   .service-formats__intro,
-  .proof-cases__intro {
+  .proof-cases__intro,
+  .music-program__intro {
     margin-top: -8px;
     margin-bottom: 22px;
     padding-inline: 8px;
@@ -2906,6 +3011,27 @@ body { overflow-x: hidden; }
 
   .service-format__fit {
     min-height: 0;
+  }
+
+  .music-program__summary,
+  .music-program__option {
+    padding: 20px;
+  }
+
+  .music-program__lead {
+    font-size: 22px;
+  }
+
+  .music-program__backline {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 18px 20px;
+  }
+
+  .music-program__cta .btn {
+    width: 100%;
+    white-space: normal;
   }
 
   .proof-case-card {

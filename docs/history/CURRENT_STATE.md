@@ -21,7 +21,7 @@ Implemented locally:
 - local validation/error/success states and responsive matrix have been checked;
 - `/` keeps its existing design and primary hero actions.
 - `/` now has a seasonal promo while keeping the approved universal hero and CTA;
-- both `/` and `/novogodniy-korporativ/` now render the same shared non-seasonal sequence: video, the five-stage `Как проходит корпоратив` guest flow, benefits, three service formats, letter-backed cases, workflow, gallery, letters and FAQ;
+- both `/` and `/novogodniy-korporativ/` now render the same shared non-seasonal sequence: video, the five-stage `Как проходит корпоратив` guest flow, benefits, three service formats, the music-program offer, letter-backed cases, workflow, gallery, letters and FAQ;
 - `Как проходит корпоратив` is a shared component placed between video and benefits; it describes the guest experience and remains distinct from the customer-facing `Порядок работы` process;
 - package contract now starts with `Ведущий + DJ`; there is no `Только ведущий` option in the cards, FAQ, form or lead comment mapping;
 - the three offered compositions are `Ведущий + DJ`, `Ведущий + DJ + звук` and `Ведущий + DJ + звук + 3 музыкальных блока по 30 минут`; the third package means three complete 30-minute music blocks, with two vocalists as the base and optional saxophonist and guitarist;
@@ -31,7 +31,7 @@ Implemented locally:
 - `2026` has been removed from the public seasonal offer: seasonal H1/title/description/schema name, the `Декабрь` hero tag and the root seasonal promo are year-free; December 2026 form bounds and the internal CRM marker remain operationally unchanged;
 - shared non-seasonal corporate improvements now have an implemented parity rule: benefits, packages, cases, letters, video and FAQ reach both routes through shared components and in the same order; seasonal hero/promo-context, copy, dates, CTA, form and future pricing remain route-specific;
 - pricing remains unimplemented until the owner separately approves the New Year price matrix and the price-block layout;
-- next implementation sequence is fixed in `TASKS.md`: the evening-flow block is complete; next comes the musical-show offer, pricing, the shared lead form, one authorized end-to-end production lead test, final QA and only then the Direct handoff;
+- next implementation sequence is fixed in `TASKS.md`: the evening-flow and music-program blocks are complete; next comes pricing, the shared lead form, one authorized end-to-end production lead test, final QA and only then the Direct handoff;
 - the original hero subtitle has been restored verbatim after an unapproved copy change;
 - the original responsive package grid has been restored after the proof-section CSS edit accidentally removed its grid declaration;
 - the proof-section direction follows the owner-supplied wedding case-card reference rather than repeating the archive as a list;
@@ -59,14 +59,15 @@ An actual production submission is intentionally not part of automated verificat
 - shared-route parity check: passed live on `/` and `/novogodniy-korporativ/` at `1280x720` and `390x844`; each route has six benefits and the same three package cards, mobile cards are `359px`, horizontal overflow failures: `0`;
 - package CTA check: root `Обсудить дату и состав` opens the existing contact modal; seasonal `Проверить дату и состав` lands on `#proverit-datu`; no form was submitted;
 - shared evening-flow production check: passed on both routes at `390x844` and `1440x900`; each route renders five stages, horizontal overflow failures: `0`, browser console errors: `0`; the root CTA opens the contact modal and the seasonal CTA lands on `#proverit-datu`; no form was submitted;
-- production cache delivery check: the main stylesheet key is `astro_7` and the shared script key is `astro_4`;
+- production cache delivery check: the main stylesheet key is `astro_8`, the mobile stylesheet key is `astro_3`, and the shared script key is `astro_4`;
 - latest interaction check: the first case opens `L1`, lightbox next opens `L2`, and `Все 13 писем` lands on the 13-item `#letters` archive; no browser console warnings or errors;
 - interaction verification: video playback, proof-letter lightbox, FAQ disclosure, confirmed-success preview and retryable-error preview passed without a real submission;
 - responsive defect found and fixed: the workflow connector no longer creates `1200px` document width at the `1181px` boundary;
-- runtime source commit: `e3be303` on local and `origin/astro-migration`;
-- production commit: `b6cb28e` on `origin/gh-pages`;
+- runtime source commit: pending commit after the visible-delta evidence record;
+- production commit: `c5f5328` on `origin/gh-pages`;
 - GitHub Pages build: `built`;
-- live seasonal route: the case grid and shared evening-flow block passed with `style.css?v=astro_7` and `script.js?v=astro_4`; mobile passed at `390x844` with three visible cases, one package column, five evening stages, no overflow and all 13 archive letters intact;
+- live music-program block: published immediately after the shared package grid on both routes; it states three 30-minute blocks, lists the three real compositions, explains the backline boundary and keeps route-specific CTA behavior. Seasonal passed at `390x844`; root passed at `1280x720`; no horizontal overflow or console errors. Responsive boundary sweep passed at `768`, `769`, `1024`, `1025`, `1180` and `1366` CSS widths;
+- live seasonal route: the case grid and shared evening-flow block passed with `style.css?v=astro_8`, `mobile.css?v=astro_3` and `script.js?v=astro_4`; mobile passed at `390x844` with three visible cases, one package column, five evening stages, no overflow and all 13 archive letters intact;
 - live music-package check: both routes publish `Ведущий + DJ + звук + 3 музыкальных блока по 30 минут`; the third package means three complete 30-minute music blocks, with two vocalists as the base and optional saxophonist and guitarist. Root passed at `1280x720`, seasonal at `390x844`; no horizontal overflow or console errors. The seasonal form lists all three line-up variants. No real lead was submitted;
 - live root regression: original H1 and both hero actions are preserved; the same subtitle-free shared proof section is published and passed at desktop/mobile widths;
 - release assets and routes: root, seasonal, privacy, versioned CSS/JS, L1/L2/L11/L3 and sitemap all returned HTTP `200`;

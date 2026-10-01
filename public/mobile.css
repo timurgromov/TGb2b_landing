@@ -1494,3 +1494,30 @@
   line-height: 1.2 !important;
 }
 }
+
+/* Shared music-program block: the stylesheet itself is loaded only through
+   the mobile media query in BaseLayout. */
+.music-program__layout {
+  grid-template-columns: 1fr;
+}
+
+.music-program__summary,
+.music-program__option {
+  padding: 20px;
+}
+
+.music-program__lead {
+  font-size: 22px;
+}
+
+.music-program__backline {
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 18px 20px;
+}
+
+.music-program__cta .btn {
+  width: 100%;
+  white-space: normal;
+}

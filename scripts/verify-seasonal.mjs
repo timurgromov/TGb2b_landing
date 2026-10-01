@@ -26,6 +26,12 @@ function expectCount(source, expected, count, label) {
   }
 }
 
+function expectBefore(source, first, second, label) {
+  if (source.indexOf(first) === -1 || source.indexOf(second) === -1 || source.indexOf(first) >= source.indexOf(second)) {
+    throw new Error(`${label}: expected ${JSON.stringify(first)} before ${JSON.stringify(second)}`);
+  }
+}
+
 const [rootHtml, seasonalHtml, privacyHtml, sharedScript, seasonalScript, sitemap] = await Promise.all([
   read('dist/index.html'),
   read('dist/novogodniy-korporativ/index.html'),
@@ -48,6 +54,11 @@ expectCount(rootHtml, 'data-proof-case>', 4, 'root proof case count');
 expectText(rootHtml, 'Все 13 писем', 'root proof archive link');
 rejectText(rootHtml, 'Четыре мероприятия — коротко о формате и обратной связи.', 'root technical proof subtitle');
 expectText(rootHtml, 'data-testid="faq-section"', 'root FAQ');
+expectText(rootHtml, 'data-testid="music-program"', 'root music program');
+expectText(rootHtml, 'Три музыкальных блока по 30 минут', 'root music program');
+expectText(rootHtml, 'Два вокалиста + саксофонист + гитарист', 'root music program');
+expectText(rootHtml, 'Что такое бэклайн?', 'root music program');
+expectBefore(rootHtml, 'data-testid="music-program"', 'data-testid="proof-cases"', 'root music program placement');
 
 expectText(seasonalHtml, 'Ведущий на новогодний корпоратив в Москве', 'seasonal route');
 rejectText(seasonalHtml, 'Ведущий на новогодний корпоратив 2026', 'seasonal public offer');
@@ -71,13 +82,18 @@ expectText(seasonalHtml, 'Все 13 писем', 'seasonal proof archive link');
 rejectText(seasonalHtml, 'Четыре мероприятия — коротко о формате и обратной связи.', 'seasonal technical proof subtitle');
 rejectText(seasonalHtml, 'data-proof-priority="featured"', 'seasonal proof hierarchy');
 expectText(seasonalHtml, 'data-testid="faq-section"', 'seasonal FAQ');
+expectText(seasonalHtml, 'data-testid="music-program"', 'seasonal music program');
+expectText(seasonalHtml, 'Три музыкальных блока по 30 минут', 'seasonal music program');
+expectText(seasonalHtml, 'Два вокалиста + саксофонист + гитарист', 'seasonal music program');
+expectText(seasonalHtml, 'href="#proverit-datu">Обсудить музыкальный состав', 'seasonal music CTA');
+expectBefore(seasonalHtml, 'data-testid="music-program"', 'data-testid="proof-cases"', 'seasonal music program placement');
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста', 'seasonal vocalists package');
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста и саксофонист', 'seasonal saxophone package');
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист', 'seasonal guitar package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_7', 'main site stylesheet');
-expectText(seasonalHtml, '/mobile.css?v=astro_2', 'main site mobile stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_8', 'main site stylesheet');
+expectText(seasonalHtml, '/mobile.css?v=astro_3', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/script.js?v=astro_4', 'main site script');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
 expectText(seasonalHtml, '/seasonal.js?v=20261001b', 'seasonal script');

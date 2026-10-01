@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-01-music-program-block",
+  "change_kind": "shared-landing-section-and-responsive-layout",
+  "status": "passed",
+  "requested_visible_change": "Add a shared, explicit music-program offer after the packages on both corporate routes: three complete 30-minute blocks, two vocalists as the base, two named expanded line-ups, backline explanation and route-specific CTA.",
+  "expected_visible_delta": "The section appears between the package grid and proof cases. It is two columns on desktop and one column on mobile, with no horizontal overflow.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "dfe3281b1bb37e8c5e72a773f18d779fd685ff453d8b9028be92daa7911ddd0c",
+  "served_candidate": {
+    "url": "https://corp.timurgromov.ru/novogodniy-korporativ/?verify=c5f5328-live-mobile",
+    "source_ref": "staged candidate deployed to production commit c5f5328 before source commit",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public landing after the shared package grid",
+    "selector_or_slide_id": "#music-program",
+    "action": "open each production route, inspect #music-program after #formats, and follow the CTA target without submitting a lead"
+  },
+  "must_remain_unchanged": [
+    "the three existing package cards and their order",
+    "proof-case section immediately after the new offer",
+    "current dark design language, orange accent and existing CTA behavior",
+    "no public price and no real lead submission"
+  ],
+  "required_viewports": [
+    "390x844 seasonal",
+    "1280x720 root",
+    "768x900 root",
+    "1366x768 root"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844 seasonal",
+      "viewport_source": "Codex in-app browser override; innerWidth=390; innerHeight=844",
+      "before_signature": "pre-deploy live structure had #formats followed directly by #proof-cases and no #music-program",
+      "after_signature": "#formats -> #music-program -> #proof-cases; one layout column 358.812px; three option cards 359px; CTA 359px; scrollWidth=390",
+      "observed_visible_result": "The seasonal route shows the full 30-minute offer, all three compositions, backline explanation and an anchor CTA to the date form in a one-column mobile composition.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720 root",
+      "viewport_source": "Codex in-app browser default viewport; innerWidth=1280; innerHeight=720",
+      "before_signature": "pre-deploy live structure had #formats followed directly by #proof-cases and no #music-program",
+      "after_signature": "#formats -> #music-program -> #proof-cases; two layout columns 506.914px and 595.086px; scrollWidth=1280; root CTA opens contact-popup",
+      "observed_visible_result": "The universal route renders the shared offer in the established two-column desktop layout and keeps the contact-modal CTA behavior.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x900 root",
+      "viewport_source": "Codex in-app browser viewport sweep; innerWidth=768; innerHeight=900",
+      "before_signature": "pre-deploy live structure had #formats followed directly by #proof-cases and no #music-program",
+      "after_signature": "one layout column 732px; three option cards 732px; scrollWidth=768",
+      "observed_visible_result": "The mobile stylesheet makes the block a single readable column at the 768px boundary without overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768 root",
+      "viewport_source": "Codex in-app browser viewport sweep; innerWidth=1366; innerHeight=768",
+      "before_signature": "pre-deploy live structure had #formats followed directly by #proof-cases and no #music-program",
+      "after_signature": "two layout columns 506.914px and 595.086px; three option cards 595px; scrollWidth=1366",
+      "observed_visible_result": "The desktop composition restores two columns above the intermediate layout range and retains all three composition cards.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": ""
+  }
+}

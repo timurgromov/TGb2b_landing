@@ -1,0 +1,54 @@
+---
+interface Props {
+  seasonal?: boolean;
+}
+
+const { seasonal = false } = Astro.props;
+---
+
+<section id="music-program" class="section music-program" data-testid="music-program">
+  <div class="container">
+    <p class="section__eyebrow sr">Живая музыкальная часть</p>
+    <h2 class="section__title sr">Три музыкальных блока по 30 минут</h2>
+    <p class="section__subtitle music-program__intro sr">Два вокалиста исполняют знакомые песни под профессиональные аранжировки. Состав можно расширить под программу и настроение вашей компании.</p>
+
+    <div class="music-program__layout sr">
+      <div class="music-program__summary">
+        <p class="music-program__label">В составе вечера</p>
+        <p class="music-program__lead">Три полноценных выхода по 30 минут — не отдельный концерт в стороне, а музыкальная часть общей программы вечера.</p>
+        <p class="music-program__copy">Артисты работают с нашей командой и подключаются к согласованному комплекту звука. Поэтому не требуется отдельно собирать полный состав музыкантов и большой технический комплект.</p>
+      </div>
+
+      <div class="music-program__options" aria-label="Варианты музыкального состава">
+        <article class="music-program__option">
+          <span class="music-program__option-label">Базовый состав</span>
+          <h3>Два вокалиста</h3>
+          <p>Три блока по 30 минут.</p>
+        </article>
+        <article class="music-program__option">
+          <span class="music-program__option-label">Расширенный состав</span>
+          <h3>Два вокалиста + саксофонист</h3>
+          <p>Саксофонист может встретить гостей на welcome и участвовать в музыкальных блоках.</p>
+        </article>
+        <article class="music-program__option">
+          <span class="music-program__option-label">Максимальный состав</span>
+          <h3>Два вокалиста + саксофонист + гитарист</h3>
+          <p>Более насыщенный состав для музыкальной части вечера.</p>
+        </article>
+      </div>
+    </div>
+
+    <aside class="music-program__backline sr">
+      <strong>Что такое бэклайн?</strong>
+      <span>Это отдельное сценическое оборудование музыкантов: барабаны, усилители, клавиши и коммутация. В этом формате не требуется заказывать полный бэклайн.</span>
+    </aside>
+
+    <div class="music-program__cta sr">
+      {seasonal ? (
+        <a class="btn btn-outline" href="#proverit-datu">Обсудить музыкальный состав</a>
+      ) : (
+        <button class="btn btn-outline" type="button" data-modal="contact-popup" data-cta="contact_popup_music_program">Обсудить музыкальный состав</button>
+      )}
+    </div>
+  </div>
+</section>
