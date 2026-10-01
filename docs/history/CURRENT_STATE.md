@@ -24,7 +24,7 @@ Implemented locally:
 - both `/` and `/novogodniy-korporativ/` now render the same shared non-seasonal sequence: video, the five-stage `Как проходит корпоратив` guest flow, benefits, three service formats, letter-backed cases, workflow, gallery, letters and FAQ;
 - `Как проходит корпоратив` is a shared component placed between video and benefits; it describes the guest experience and remains distinct from the customer-facing `Порядок работы` process;
 - package contract now starts with `Ведущий + DJ`; there is no `Только ведущий` option in the cards, FAQ, form or lead comment mapping;
-- the three offered compositions are `Ведущий + DJ`, `Ведущий + DJ + звук` and `Ведущий + DJ + звук + 3 музыкальных блока`; the third package means three sets of three songs, with two vocalists as the base and optional saxophonist and guitarist;
+- the three offered compositions are `Ведущий + DJ`, `Ведущий + DJ + звук` and `Ведущий + DJ + звук + 3 музыкальных блока по 30 минут`; the third package means three complete 30-minute music blocks, with two vocalists as the base and optional saxophonist and guitarist;
 - the proof section now shows four available letters (`L1`, `L2`, `L11`, `L3`) as self-contained event cases with a clickable document preview, company/date, event title and short source-backed extract;
 - desktop uses the owner-requested `2 x 2` case grid; mobile shows the first three cases and keeps the `Все 13 писем` archive action visible;
 - the technical proof subtitle has been removed from both `/` and `/novogodniy-korporativ/`; the shared heading remains `Корпоративы глазами заказчиков` without a year;
@@ -67,7 +67,7 @@ An actual production submission is intentionally not part of automated verificat
 - production commit: `be38f4c` on `origin/gh-pages`;
 - GitHub Pages build: `built`;
 - live seasonal route: the case grid and shared evening-flow block passed with `style.css?v=astro_7` and `script.js?v=astro_4`; mobile passed at `390x844` with three visible cases, one package column, five evening stages, no overflow and all 13 archive letters intact;
-- live music-package check: both routes publish `Ведущий + DJ + звук + 3 музыкальных блока`; the third package means three sets of three songs, with two vocalists as the base and optional saxophonist and guitarist. Root passed at `1280x720`, seasonal at `390x844`; no horizontal overflow or console errors. The seasonal form lists all three line-up variants. No real lead was submitted;
+- live music-package check: both routes publish `Ведущий + DJ + звук + 3 музыкальных блока по 30 минут`; the third package means three complete 30-minute music blocks, with two vocalists as the base and optional saxophonist and guitarist. Root passed at `1280x720`, seasonal at `390x844`; no horizontal overflow or console errors. The seasonal form lists all three line-up variants. No real lead was submitted;
 - live root regression: original H1 and both hero actions are preserved; the same subtitle-free shared proof section is published and passed at desktop/mobile widths;
 - release assets and routes: root, seasonal, privacy, versioned CSS/JS, L1/L2/L11/L3 and sitemap all returned HTTP `200`;
 - browser/process cleanup: all standalone Playwright QA sessions and the local dev server were stopped after verification;

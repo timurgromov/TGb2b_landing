@@ -71,16 +71,16 @@ expectText(seasonalHtml, 'Все 13 писем', 'seasonal proof archive link');
 rejectText(seasonalHtml, 'Четыре мероприятия — коротко о формате и обратной связи.', 'seasonal technical proof subtitle');
 rejectText(seasonalHtml, 'data-proof-priority="featured"', 'seasonal proof hierarchy');
 expectText(seasonalHtml, 'data-testid="faq-section"', 'seasonal FAQ');
-expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 музыкальных блока: два вокалиста', 'seasonal vocalists package');
-expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 музыкальных блока: два вокалиста и саксофонист', 'seasonal saxophone package');
-expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 музыкальных блока: два вокалиста, саксофонист и гитарист', 'seasonal guitar package');
+expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста', 'seasonal vocalists package');
+expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста и саксофонист', 'seasonal saxophone package');
+expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист', 'seasonal guitar package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
 expectText(seasonalHtml, '/style.css?v=astro_7', 'main site stylesheet');
 expectText(seasonalHtml, '/mobile.css?v=astro_2', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/script.js?v=astro_4', 'main site script');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
-expectText(seasonalHtml, '/seasonal.js?v=20261001a', 'seasonal script');
+expectText(seasonalHtml, '/seasonal.js?v=20261001b', 'seasonal script');
 expectText(seasonalHtml, '/privacy/', 'seasonal privacy link');
 rejectText(seasonalHtml, 'TELEGRAM_LEAD_ENDPOINT', 'seasonal route');
 
@@ -94,9 +94,9 @@ expectText(privacyHtml, 'Согласие на обработку персона
 
 expectText(seasonalScript, 'https://calcul.timurgromov.ru/api/v1/site/consultation-request', 'lead contract');
 expectText(seasonalScript, "form_source: 'site_meeting_corporate'", 'lead contract');
-expectText(seasonalScript, "host_dj_sound_vocalists: 'Ведущий + DJ + аппаратура + 3 музыкальных блока: два вокалиста'", 'lead vocalists package contract');
-expectText(seasonalScript, "host_dj_sound_vocalists_sax: 'Ведущий + DJ + аппаратура + 3 музыкальных блока: два вокалиста и саксофонист'", 'lead saxophone package contract');
-expectText(seasonalScript, "host_dj_sound_vocalists_sax_guitar: 'Ведущий + DJ + аппаратура + 3 музыкальных блока: два вокалиста, саксофонист и гитарист'", 'lead guitar package contract');
+expectText(seasonalScript, "host_dj_sound_vocalists: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста'", 'lead vocalists package contract');
+expectText(seasonalScript, "host_dj_sound_vocalists_sax: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста и саксофонист'", 'lead saxophone package contract');
+expectText(seasonalScript, "host_dj_sound_vocalists_sax_guitar: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист'", 'lead guitar package contract');
 expectText(seasonalScript, 'response.status !== 201', 'confirmed lead gate');
 expectText(seasonalScript, "reachGoal('corporate_lead_submit_success')", 'confirmed lead goal');
 expectText(seasonalScript, 'window.location.origin}${window.location.pathname}', 'sanitized page URL');
