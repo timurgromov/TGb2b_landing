@@ -1506,6 +1506,14 @@
   padding: 20px;
 }
 
+.music-program__summary {
+  padding: 0;
+}
+
+.music-program__summary-copy {
+  padding: 20px 20px 16px;
+}
+
 .music-program__lead {
   font-size: 22px;
 }

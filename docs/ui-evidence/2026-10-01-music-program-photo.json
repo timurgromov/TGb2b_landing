@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-01-music-program-photo",
+  "change_kind": "shared-media-layout",
+  "status": "passed",
+  "requested_visible_change": "Добавить в общий блок музыкальной программы на обеих корпоративных страницах реальное фото состава из переданной презентации, не показывая название, ник или контакты группы.",
+  "expected_visible_delta": "Внутри левой информационной карточки появляется кадр с вокалистами, гитарой и саксофоном; фото загружается как AVIF с WebP fallback, а в текстовом содержимом страницы нет названия или ника исходной группы.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "d9453c23f1485424488f8c816cedd56bac8c956ce401d8969b67e9cff6ad555b",
+  "served_candidate": {
+    "url": "http://localhost:4321/novogodniy-korporativ/#music-program",
+    "source_ref": "staged working tree",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/ public corporate landing",
+    "state": "public landing at #music-program",
+    "selector_or_slide_id": "#music-program .music-program__photo img",
+    "action": "direct navigation to #music-program after the final stylesheet cache-key change"
+  },
+  "must_remain_unchanged": [
+    "shared block order remains formats, music program, proof cases",
+    "root CTA keeps contact_popup_music_program and seasonal CTA keeps #proverit-datu",
+    "no horizontal document overflow",
+    "group name, account and contacts remain absent"
+  ],
+  "required_viewports": [
+    "390x844",
+    "768x1024",
+    "769x900",
+    "1180x820",
+    "1181x820",
+    "1280x720",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=390; innerHeight=844",
+      "before_signature": "published shared baseline: imageCount=0; imageSrc=null",
+      "after_signature": "imageCount=1; AVIF complete; natural=1200x843; rendered=357x250; scrollWidth=390; groupNamePresent=false",
+      "observed_visible_result": "Фото полностью занимает нижнюю часть левой карточки без выхода за мобильный контейнер.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=768; innerHeight=1024",
+      "before_signature": "published shared baseline: imageCount=0; imageSrc=null",
+      "after_signature": "imageCount=1; AVIF complete; rendered=730x250; one-column layout; scrollWidth=768; groupNamePresent=false",
+      "observed_visible_result": "На границе мобильного CSS фото ограничено высотой 250px и не растягивает блок.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=769; innerHeight=900",
+      "before_signature": "published shared baseline: imageCount=0; imageSrc=null",
+      "after_signature": "imageCount=1; AVIF complete; rendered=719x250; one-column layout; scrollWidth=769; groupNamePresent=false",
+      "observed_visible_result": "Сразу после границы мобильного CSS композиция остаётся одноколоночной и компактной.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x820",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1180; innerHeight=820",
+      "before_signature": "published shared baseline: imageCount=0; imageSrc=null",
+      "after_signature": "imageCount=1; AVIF complete; rendered=998x330; one-column layout; scrollWidth=1180; groupNamePresent=false",
+      "observed_visible_result": "На последней планшетной ширине фото сохраняет ограниченную высоту и не создаёт горизонтальную прокрутку.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1181x820",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1181; innerHeight=820",
+      "before_signature": "published shared baseline: imageCount=0; imageSrc=null",
+      "after_signature": "imageCount=1; AVIF complete; rendered=511x331; two-column layout; scrollWidth=1181; groupNamePresent=false",
+      "observed_visible_result": "На переходе к двум колонкам фотография выравнивается с левой информационной карточкой.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1280; innerHeight=720",
+      "before_signature": "published production baseline: imageCount=0; imageSrc=null; music-program=1280x885",
+      "after_signature": "imageCount=1; AVIF complete; natural=1200x843; rendered=505x358; scrollWidth=1280; groupNamePresent=false",
+      "observed_visible_result": "На десктопе фото находится внутри левой карточки рядом с тремя составами; ниже сохранены бэклайн и CTA.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1366; innerHeight=768",
+      "before_signature": "published shared baseline: imageCount=0; imageSrc=null",
+      "after_signature": "imageCount=1; AVIF complete; rendered=505x360; two-column layout; scrollWidth=1366; groupNamePresent=false",
+      "observed_visible_result": "Десктопная карточка держит заданный максимум высоты 360px без обрезания смысловых объектов кадра.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1440; innerHeight=900",
+      "before_signature": "published shared baseline: imageCount=0; imageSrc=null",
+      "after_signature": "imageCount=1; AVIF complete; rendered=505x360; two-column layout; scrollWidth=1440; groupNamePresent=false",
+      "observed_visible_result": "Фото, три состава, бэклайн и CTA остаются в одном визуальном языке существующего сайта.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1984; innerHeight=1046",
+      "before_signature": "published shared baseline: imageCount=0; imageSrc=null",
+      "after_signature": "imageCount=1; AVIF complete; rendered=625x360; two-column layout; scrollWidth=1984; groupNamePresent=false",
+      "observed_visible_result": "На широком экране фото не растягивается выше 360px и сохраняет баланс с правой колонкой.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": ""
+  }
+}

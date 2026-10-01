@@ -14,9 +14,15 @@ const { seasonal = false } = Astro.props;
 
     <div class="music-program__layout sr">
       <div class="music-program__summary">
-        <p class="music-program__label">В составе вечера</p>
-        <p class="music-program__lead">Три полноценных выхода по 30 минут — не отдельный концерт в стороне, а музыкальная часть общей программы вечера.</p>
-        <p class="music-program__copy">Артисты работают с нашей командой и подключаются к согласованному комплекту звука. Поэтому не требуется отдельно собирать полный состав музыкантов и большой технический комплект.</p>
+        <div class="music-program__summary-copy">
+          <p class="music-program__label">В составе вечера</p>
+          <p class="music-program__lead">Три полноценных выхода по 30 минут — не отдельный концерт в стороне, а музыкальная часть общей программы вечера.</p>
+          <p class="music-program__copy">Артисты работают с нашей командой и подключаются к согласованному комплекту звука. Поэтому не требуется отдельно собирать полный состав музыкантов и большой технический комплект.</p>
+        </div>
+        <picture class="music-program__photo">
+          <source srcset="/assets/music/music-program-max.avif" type="image/avif" />
+          <img src="/assets/music/music-program-max.webp" width="1200" height="843" loading="lazy" decoding="async" alt="Музыканты с гитарой и саксофоном в расширенном составе" />
+        </picture>
       </div>
 
       <div class="music-program__options" aria-label="Варианты музыкального состава">

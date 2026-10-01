@@ -58,6 +58,8 @@ expectText(rootHtml, 'data-testid="music-program"', 'root music program');
 expectText(rootHtml, 'Три музыкальных блока по 30 минут', 'root music program');
 expectText(rootHtml, 'Два вокалиста + саксофонист + гитарист', 'root music program');
 expectText(rootHtml, 'Что такое бэклайн?', 'root music program');
+expectText(rootHtml, '/assets/music/music-program-max.avif', 'root music program image');
+expectText(rootHtml, '/assets/music/music-program-max.webp', 'root music program image fallback');
 expectBefore(rootHtml, 'data-testid="music-program"', 'data-testid="proof-cases"', 'root music program placement');
 
 expectText(seasonalHtml, 'Ведущий на новогодний корпоратив в Москве', 'seasonal route');
@@ -85,6 +87,8 @@ expectText(seasonalHtml, 'data-testid="faq-section"', 'seasonal FAQ');
 expectText(seasonalHtml, 'data-testid="music-program"', 'seasonal music program');
 expectText(seasonalHtml, 'Три музыкальных блока по 30 минут', 'seasonal music program');
 expectText(seasonalHtml, 'Два вокалиста + саксофонист + гитарист', 'seasonal music program');
+expectText(seasonalHtml, '/assets/music/music-program-max.avif', 'seasonal music program image');
+expectText(seasonalHtml, '/assets/music/music-program-max.webp', 'seasonal music program image fallback');
 expectText(seasonalHtml, 'href="#proverit-datu">Обсудить музыкальный состав', 'seasonal music CTA');
 expectBefore(seasonalHtml, 'data-testid="music-program"', 'data-testid="proof-cases"', 'seasonal music program placement');
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста', 'seasonal vocalists package');
@@ -92,8 +96,8 @@ expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 бло�
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист', 'seasonal guitar package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_8', 'main site stylesheet');
-expectText(seasonalHtml, '/mobile.css?v=astro_3', 'main site mobile stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_10', 'main site stylesheet');
+expectText(seasonalHtml, '/mobile.css?v=astro_5', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/script.js?v=astro_4', 'main site script');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
 expectText(seasonalHtml, '/seasonal.js?v=20261001b', 'seasonal script');
