@@ -42,6 +42,9 @@ expectText(rootHtml, 'Перейти к новогодним корпорати�
 expectText(rootHtml, 'data-testid="proof-cases"', 'root proof cases');
 expectText(rootHtml, 'data-proof-cases-grid', 'root proof case grid');
 expectText(rootHtml, 'Корпоративы глазами заказчиков', 'root proof heading');
+expectCount(rootHtml, 'data-proof-case>', 4, 'root proof case count');
+expectText(rootHtml, 'Все 13 писем', 'root proof archive link');
+rejectText(rootHtml, 'Четыре мероприятия — коротко о формате и обратной связи.', 'root technical proof subtitle');
 expectText(rootHtml, 'data-testid="faq-section"', 'root FAQ');
 
 expectText(seasonalHtml, 'Ведущий на новогодний корпоратив 2026 в Москве', 'seasonal route');
@@ -58,12 +61,13 @@ expectText(seasonalHtml, '/assets/letters/L3.webp', 'fourth proof letter');
 expectCount(seasonalHtml, 'data-proof-case>', 4, 'seasonal proof case count');
 expectText(seasonalHtml, 'class="letters-slider', 'seasonal full letter archive');
 expectText(seasonalHtml, 'Все 13 писем', 'seasonal proof archive link');
+rejectText(seasonalHtml, 'Четыре мероприятия — коротко о формате и обратной связи.', 'seasonal technical proof subtitle');
 rejectText(seasonalHtml, 'data-proof-priority="featured"', 'seasonal proof hierarchy');
 expectText(seasonalHtml, 'data-testid="faq-section"', 'seasonal FAQ');
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + кавер-группа', 'seasonal premium package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_5', 'main site stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_6', 'main site stylesheet');
 expectText(seasonalHtml, '/mobile.css?v=astro_2', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/script.js?v=astro_4', 'main site script');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');

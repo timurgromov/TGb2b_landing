@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-01-proof-subtitle-removal-shared-parity",
+  "change_kind": "shared-copy-removal",
+  "requested_visible_change": "Убрать техническую подпись блока благодарственных кейсов и применить изменение на основной и новогодней корпоративных страницах.",
+  "expected_visible_delta": "На обеих страницах после заголовка сразу идут кнопка Все 13 писем и сетка кейсов; технической фразы и пустого отступа под неё нет.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "8d8e34ba5e1b7ca7eb03b876a75488119b32655a818af9fbbfbcad03949ba438",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/ and http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "staged astro-migration candidate after fresh Astro build",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public pages without form submission",
+    "selector_or_slide_id": "[data-testid=proof-cases]",
+    "action": "Open the first letter, close it, then follow Все 13 писем to #letters"
+  },
+  "must_remain_unchanged": [
+    "eyebrow Подтверждено письмами and heading Корпоративы глазами заказчиков",
+    "four shared proof cases and all thirteen archive letters",
+    "shared letter lightbox and archive action",
+    "three approved service packages on the seasonal route",
+    "seasonal hero copy and forms",
+    "all pricing remains absent pending separate approval"
+  ],
+  "required_viewports": [
+    "390x844",
+    "768x844",
+    "1280x900"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Both routes displayed a technical explanatory sentence below the proof heading.",
+      "after_signature": "Both routes omit the sentence and .proof-cases__intro; three cases are visible, the archive button spans the 359px section width and scrollWidth equals 390px.",
+      "observed_visible_result": "The shared mobile heading is compact and flows directly into the archive action and case cards.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x844",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Both routes displayed a technical explanatory sentence below the proof heading.",
+      "after_signature": "Both routes omit the sentence; three cases remain visible, the archive button spans the 732px section width and no horizontal overflow occurs.",
+      "observed_visible_result": "The exact mobile breakpoint preserves the approved case behavior on both corporate routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x900",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "Both routes displayed a technical explanatory sentence and a 12px title margin reserved for it.",
+      "after_signature": "Both routes show the same compact heading, all four cases in the existing 2 x 2 grid and the desktop archive action without overflow.",
+      "observed_visible_result": "The main and New Year pages now share the same non-seasonal proof heading; the seasonal page retains all three package cards.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "interaction_states": {
+    "proof_lightbox": "The Раймед Групп thumbnail opens the letter lightbox and body modal lock is applied.",
+    "proof_lightbox_close": "The close action removes the modal lock.",
+    "archive_link": "Все 13 писем changes the hash to #letters and reaches Все благодарственные письма.",
+    "mobile_visibility": "Exactly three proof cases remain visible at 390px and 768px on both routes.",
+    "seasonal_package_regression": "The seasonal service-formats grid still contains the three approved package cards.",
+    "console": "Only Vite connection debug messages were observed; no errors or warnings.",
+    "production_submission": "not performed"
+  },
+  "responsive_matrix": {
+    "checked_viewports": 6,
+    "breakpoints": [768],
+    "boundary_policy": "Both routes checked at mobile, exact mobile breakpoint and desktop anchors; the change only removes shared heading copy and its margin.",
+    "horizontal_overflow_failures": 0,
+    "mechanical_runner_note": "All checks used one existing Codex in-app browser tab; no standalone Chrome or Playwright browser was launched."
+  },
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "Remove the technical sentence and its reserved spacing on both shared routes.",
+    "owner_approval_reference": "The owner explicitly requested removal and shared parity; no design choice remained open."
+  }
+}

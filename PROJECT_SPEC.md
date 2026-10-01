@@ -22,8 +22,8 @@
 
 1. Первый экран сообщает услугу, сезон, географию, формат команды и следующий шаг.
 2. Страница объясняет результат для компании, показывает реальные видео и B2B-доказательства.
-   - три формата работы: ведущий; ведущий + DJ; ведущий + DJ + аппаратура;
-   - три кейса, основанные на опубликованных благодарственных письмах;
+   - три формата работы: ведущий + DJ; ведущий + DJ + звук; ведущий + DJ + звук + кавер-группа;
+   - четыре кейса, основанные на опубликованных благодарственных письмах;
    - подписи к видео, объясняющие наблюдаемую пользу;
    - FAQ без неподтверждённых обещаний и искусственного дефицита.
 3. Форма собирает:
@@ -45,6 +45,7 @@
 9. Страница содержит согласие и ссылку на собственную corporate privacy page.
 10. Главная страница сохраняет универсальный оффер, но ведёт на сезонную посадочную через отдельный промоблок.
 11. Все три модальные формы главной страницы используют тот же подтверждённый backend-контракт; автоматический popup отключён.
+12. Общие несезонные улучшения дизайна, кейсов, писем, видео, FAQ и пакетов публикуются одновременно на `/` и `/novogodniy-korporativ/` через shared-компоненты. Исключения: новогодние формулировки/даты/CTA и ценовые блоки. Цена появится только после отдельного утверждения матрицы и вёрстки.
 
 ## Analytics contract
 
@@ -82,6 +83,7 @@ Campaign parameters preserved when present:
 
 - `npm run build` passes;
 - root route remains intact;
+- shared corporate sections remain identical on root and seasonal routes except for documented seasonal copy/CTA and future approved pricing;
 - seasonal route has no console errors or horizontal overflow;
 - form validation, loading, error and success states are verified without claiming a production lead unless an authorized live submission is performed;
 - desktop, mobile, tablet and breakpoint boundaries are checked;

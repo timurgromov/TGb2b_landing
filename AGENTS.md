@@ -55,6 +55,14 @@ backend passport не доказывает frontend; docs/tests могут бы�
 файлы; secrets, конфликты и unknown runtime-files блокируют release.
 <!-- ruslan-project-workflows:end -->
 
+## Corporate route parity
+
+- Общие изменения корпоративного сайта по умолчанию должны одновременно попадать на `/` и `/novogodniy-korporativ/` через shared-компоненты, данные и общие стили.
+- К общим изменениям относятся дизайн, кейсы, благодарственные письма, видео, FAQ, пакеты без цены и другие несезонные блоки.
+- Раздельными остаются только явно новогодние формулировки, даты/CTA сезонной страницы и будущие ценовые блоки.
+- Цены не добавлять ни на один route до отдельного утверждения владельцем ценовой матрицы и вёрстки ценового блока.
+- После каждого общего UI-изменения проверять обе production-страницы; успешная проверка только сезонного route не доказывает parity.
+
 ## Telegram/MAX Live Verification
 
 Для любой задачи, которая создаёт, изменяет, тестирует или ревьюит Telegram/MAX bot, channel, group, deep link, Mini App, WebApp, messenger CTA или support/admin flow, обязательно используй global skill `ruslan-project-workflows:telegram-surface-verify`; если personal plugin недоступен, используй локальный fallback `skills/telegram-surface-verify/SKILL.md`.
