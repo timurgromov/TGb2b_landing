@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-01-shared-route-parity",
+  "change_kind": "shared-route-parity",
+  "requested_visible_change": "Сделать основную и новогоднюю корпоративные страницы одинаковыми по несезонным блокам, оставив раздельными только новогодний контекст, даты, CTA, форму и будущие цены.",
+  "expected_visible_delta": "Обе страницы последовательно показывают общие блоки преимуществ и трёх пакетов; третий пакет называется музыкальным шоу из двух вокалистов и саксофониста.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "ca923e744a6a0c3becac1d79d24a37ee8b2e2dceacf06f810efa263157ef962d",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/ and http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "working tree candidate after fresh Astro build",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public pages without form submission",
+    "selector_or_slide_id": "#benefits, #formats",
+    "action": "Open the root package CTA and follow the seasonal package CTA to the seasonal form."
+  },
+  "must_remain_unchanged": [
+    "approved dark visual system and existing package-card layout",
+    "root hero and seasonal promo",
+    "seasonal hero, dates and lead form",
+    "case proofs, workflow, gallery, letters and FAQ",
+    "all pricing remains absent pending separate approval"
+  ],
+  "required_viewports": [
+    "390x844",
+    "1280x720"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "The root route contained #benefits but did not contain #formats.",
+      "after_signature": "The root route contains six benefits followed by three package cards; titles end with Ведущий + DJ + звук + музыкальное шоу and scrollWidth equals 1280px.",
+      "observed_visible_result": "The universal corporate page now exposes the same non-seasonal benefits and package choice as the seasonal page.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "The root route did not render package cards.",
+      "after_signature": "The root route renders three 359px-wide package cards in one column, keeps the package CTA visible and has no horizontal overflow.",
+      "observed_visible_result": "The shared package block is usable on mobile without changing the existing one-column card behavior.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "The seasonal route contained #formats but did not contain #benefits; the third package was called a cover band.",
+      "after_signature": "The seasonal route contains six benefits followed by the same three package cards; the third card is музыкальное шоу and the form option names two vocalists and a saxophonist.",
+      "observed_visible_result": "The seasonal route now matches the shared non-seasonal section order and uses the corrected team composition.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override",
+      "before_signature": "The seasonal route did not render the shared benefits block.",
+      "after_signature": "The seasonal route renders six benefits and three 359px-wide package cards in one column; scrollWidth equals clientWidth at 390px.",
+      "observed_visible_result": "The seasonal mobile page preserves its form while matching the universal page's shared content.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "interaction_states": {
+    "root_package_cta": "Обсудить дату и состав opens the existing #contact-popup-modal.",
+    "seasonal_package_cta": "Проверить дату и состав changes the hash to #proverit-datu and positions the seasonal form 96px below the viewport top.",
+    "seasonal_form_option": "The third select option reads Ведущий + DJ + аппаратура + два вокалиста и саксофонист.",
+    "console": "No error-level browser console messages were observed.",
+    "production_submission": "not performed"
+  },
+  "responsive_matrix": {
+    "checked_viewports": 4,
+    "breakpoints": [390, 1280],
+    "boundary_policy": "Both routes checked at the required mobile and desktop anchors because the change reuses the already approved responsive components.",
+    "horizontal_overflow_failures": 0,
+    "mechanical_runner_note": "All visual checks used one Codex in-app browser tab; no standalone Chrome or Playwright browser was launched."
+  },
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "Reuse the existing shared Benefits and ServiceFormats components on both routes without redesigning them.",
+    "owner_approval_reference": "The owner explicitly required identical non-seasonal blocks on both corporate pages."
+  }
+}

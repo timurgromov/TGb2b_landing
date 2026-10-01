@@ -1,4 +1,10 @@
 ---
+interface Props {
+  seasonal?: boolean;
+}
+
+const { seasonal = false } = Astro.props;
+
 const formats = [
   {
     title: 'Ведущий + DJ',
@@ -11,9 +17,9 @@ const formats = [
     items: ['Всё из базового состава', 'Подбор необходимого звука', 'Техническое согласование с площадкой']
   },
   {
-    title: 'Ведущий + DJ + звук + кавер-группа',
-    fit: 'Когда нужен живой концертный блок и более насыщенная музыкальная программа.',
-    items: ['Всё из среднего состава', 'Кавер-группа', 'Два вокалиста']
+    title: 'Ведущий + DJ + звук + музыкальное шоу',
+    fit: 'Когда нужен живой концертный блок с вокалистами и саксофоном.',
+    items: ['Всё из среднего состава', 'Два вокалиста', 'Саксофонист на welcome и в концертном блоке']
   }
 ];
 ---
@@ -36,7 +42,11 @@ const formats = [
       ))}
     </div>
     <div class="service-formats__cta">
-      <a class="btn btn-outline" href="#proverit-datu">Проверить дату и состав</a>
+      {seasonal ? (
+        <a class="btn btn-outline" href="#proverit-datu">Проверить дату и состав</a>
+      ) : (
+        <button class="btn btn-outline" type="button" data-modal="contact-popup" data-cta="contact_popup_formats">Обсудить дату и состав</button>
+      )}
     </div>
   </div>
 </section>
