@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-01-simplified-music-package-copy",
+  "change_kind": "service-package-copy",
+  "status": "passed",
+  "requested_visible_change": "The third package must identify the actual composition first and must not repeat the three 30-minute music blocks across its title, description and list.",
+  "expected_visible_delta": "The heading reads 'Ведущий + DJ + звук + два вокалиста'; the duration appears once; the only second item is the saxophonist expansion choice; the technical 'Всё из среднего состава' item is absent.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "ef79d5d2af55a644561a94a0a915d84079cc51a7a27abf744d196b7a10f89452",
+  "served_candidate": {
+    "url": "https://corp.timurgromov.ru/novogodniy-korporativ/?verify=package-copy-live-2#formats",
+    "source_ref": "c4f1918 source / 1be7485 production",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public package grid, third card",
+    "selector_or_slide_id": ".service-format:nth-child(3)",
+    "action": "open each public route with #formats after the production deployment"
+  },
+  "must_remain_unchanged": [
+    "three package cards",
+    "root hero heading and both hero CTAs",
+    "seasonal route and date-check CTA",
+    "one-column mobile card layout"
+  ],
+  "required_viewports": [
+    "1280x720"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Codex in-app browser; window.innerWidth=1280; window.innerHeight=720",
+      "before_signature": "seasonal production card 03: title 'Ведущий + DJ + звук + 3 музыкальных блока по 30 минут'; description, four list items and technical phrase repeat the same duration/composition; rect=362.664x449.188",
+      "after_signature": "seasonal and root production card 03: title 'Ведущий + DJ + звук + два вокалиста'; duration is one list item; expansion is one list item; rect=362.664x326.789",
+      "observed_visible_result": "The third card is visibly shorter and scanable: composition in the heading, musical purpose in the description, then one duration line and one expansion line. Both routes contain exactly three cards without horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": ""
+  }
+}
