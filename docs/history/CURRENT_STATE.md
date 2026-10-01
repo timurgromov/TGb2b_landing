@@ -30,6 +30,7 @@ Implemented locally:
 - `2026` has been removed from the public seasonal offer: seasonal H1/title/description/schema name, the `Декабрь` hero tag and the root seasonal promo are year-free; December 2026 form bounds and the internal CRM marker remain operationally unchanged;
 - shared non-seasonal corporate improvements now have an implemented parity rule: benefits, packages, cases, letters, video and FAQ reach both routes through shared components and in the same order; seasonal hero/promo-context, copy, dates, CTA, form and future pricing remain route-specific;
 - pricing remains unimplemented until the owner separately approves the New Year price matrix and the price-block layout;
+- next implementation sequence is fixed in `TASKS.md`: distinguish and build `Как проходит корпоратив`, then the musical-show offer, pricing, the shared lead form, one authorized end-to-end production lead test, final QA and only then the Direct handoff;
 - the original hero subtitle has been restored verbatim after an unapproved copy change;
 - the original responsive package grid has been restored after the proof-section CSS edit accidentally removed its grid declaration;
 - the proof-section direction follows the owner-supplied wedding case-card reference rather than repeating the archive as a list;
