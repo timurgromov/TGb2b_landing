@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-02-showreel-overlay-control",
+  "change_kind": "showreel-overlay-placement",
+  "requested_visible_change": "Place the labelled showreel action on the photograph to restore the card's even bottom edge, without covering faces.",
+  "expected_visible_delta": "The compact glass Play pill is centered inside the lower image area; it keeps a single readable line on mobile and no separate action row remains below the photo.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "8e07450e73a3f1360035c44fb8be159ada3e9689597a1fa8a661b4f4880e6b2e",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?showreel-overlay=mobile-final#music-program",
+    "source_ref": "fresh local Astro preview from the staged shared-component candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "shared MusicProgram component used by / and /novogodniy-korporativ/",
+    "state": "before playback and after explicit showreel action",
+    "selector_or_slide_id": ".music-program__showreel > .music-program__play",
+    "action": "Scroll to the showreel image, inspect the centered lower overlay, then press it."
+  },
+  "required_viewports": [
+    "1280x720",
+    "390x844"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "before_signature": "The Play action was a separate row beneath the image, extending the left card below the photo.",
+      "after_signature": "The labelled Play pill is centered inside the lower image area with its entire bounding box within the media frame; the summary card is 713px high and there is no horizontal overflow.",
+      "observed_visible_result": "The image reaches the card's lower edge again and the translucent overlay covers only a small portion of instruments, not a face.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "before_signature": "The Play action was a separate row beneath the image, extending the card below the photo.",
+      "after_signature": "The centred lower overlay is contained within the media frame, remains a 46px single-line control and produces no horizontal overflow; explicit click hides it and starts one native video with readyState 4 and paused false.",
+      "observed_visible_result": "The mobile action stays legible over the lower instrument area without covering a face, and playback continues to work in the original media frame.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ]
+}
