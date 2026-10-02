@@ -26,3 +26,7 @@ Do not treat the absence of an SSH key or a macOS Keychain record as lack of acc
 - `guest-interaction.mp4`.
 
 These files are delivery copies downloaded from the previous Boomstream URLs. They are not committed into the landing repository. Any new file must be uploaded outside the repository, checked with a public HTTPS range request, then referenced from the shared `videos` data so `/` and `/novogodniy-korporativ/` remain identical.
+
+## Delivery-size exception
+
+The current case videos are large delivery files (approximately `274M`, `94M`, `20M` and `17M`; `404M` together on disk). They begin only after an explicit user click and are served with byte ranges, so the page does not preload them. Keep them as the approved migration copies for now; before replacing or adding a new video, produce a 1080p/30fps delivery derivative and review its visual quality rather than uploading a camera master unchanged.

@@ -22,6 +22,7 @@ Implemented locally:
 - `/` keeps its existing design and primary hero actions.
 - `/` now has a seasonal promo while keeping the approved universal hero and CTA;
 - both `/` and `/novogodniy-korporativ/` now render the same shared non-seasonal sequence: video, the five-stage `Как проходит корпоратив` guest flow, benefits, three service formats, the music-program offer, letter-backed cases, workflow, gallery, letters and FAQ;
+- the four shared corporate case videos are delivered directly from `corporate-ground` on Aeza `open-blue` (`213.176.94.245`) rather than Boomstream; the owner-safe access path and upload protocol are in `docs/corporate-media-host.md`;
 - `Как проходит корпоратив` is a shared component placed between video and benefits; it describes the guest experience and remains distinct from the customer-facing `Порядок работы` process;
 - package contract now starts with `Ведущий + DJ`; there is no `Только ведущий` option in the cards, FAQ, form or lead comment mapping;
 - the three offered compositions are `Ведущий + DJ`, `Ведущий + DJ + звук` and `Ведущий + DJ + звук + два вокалиста`; every next card explicitly repeats the included services rather than using an abstract `всё из базового состава`. The third card includes three 30-minute blocks with professional arrangements and explicitly states that the music part can be supplemented with saxophone or guitar;
@@ -63,8 +64,8 @@ An actual production submission is intentionally not part of automated verificat
 - latest interaction check: the first case opens `L1`, lightbox next opens `L2`, and `Все 13 писем` lands on the 13-item `#letters` archive; no browser console warnings or errors;
 - interaction verification: video playback, proof-letter lightbox, FAQ disclosure, confirmed-success preview and retryable-error preview passed without a real submission;
 - responsive defect found and fixed: the workflow connector no longer creates `1200px` document width at the `1181px` boundary;
-- runtime source commit: `64828ba` on `origin/astro-migration`;
-- production commit: `6cc9951` on `origin/gh-pages`;
+- runtime source commit: `54e8631` on `origin/astro-migration`;
+- production commit: `4a718cf` on `origin/gh-pages`;
 - GitHub Pages build: `built`;
 - live music-program block: published immediately after the shared package grid on both routes; it states three 30-minute blocks, lists the three real compositions, explains the backline boundary and keeps route-specific CTA behavior. It now includes the owner-provided, cropped maximum-line-up photo as an AVIF/WebP derivative; the source presentation's group name, account and contacts are not published. Seasonal passed live at `390x844` with the AVIF decoded at `1200x843` and rendered `357x250`; root passed live at `1280x720` with the AVIF decoded at `1200x843` and rendered `505x358`; no horizontal overflow or console errors. Local responsive sweep passed at `390`, `768`, `769`, `1180`, `1181`, `1366`, `1440` and `1984` CSS widths;
 - live seasonal route: the case grid and shared evening-flow block passed with `style.css?v=astro_8`, `mobile.css?v=astro_3` and `script.js?v=astro_4`; mobile passed at `390x844` with three visible cases, one package column, five evening stages, no overflow and all 13 archive letters intact;
@@ -72,6 +73,7 @@ An actual production submission is intentionally not part of automated verificat
 - live music-package linkage check: both routes now name the third card `С живой музыкой` and publish `Подробнее о живой музыке` as an anchor to `#music-program`. The target begins `Третий пакет — с живой музыкой`, clearly describes the third package and lists its configurations under `Состав третьего пакета`. The obsolete “not a separate concert” sentence and separate “бэклайн” explainer are not published. On seasonal, clicking the card link changed the URL to `#music-program`; root exposes the same shared markup. No real lead was submitted;
 - live music-package value check: the third-card item explicitly says that two vocalists perform three 30-minute vocal blocks over professional arrangements. The detail copy explains the concrete cost boundary: vocals use the base sound set, so a full musician line-up, concert sound and backline are not separately paid for. Seasonal production returned the exact new copy; no real lead was submitted;
 - refined live-music heading check: both public routes now serve `Эффект живой группы — без затрат на полный состав`; the retired headline is absent.
+- self-hosted corporate-video check: both routes now contain the same four `https://media.213-176-94-245.sslip.io/corporate-ground/*.mp4` URLs and contain no Boomstream URL or SDK. The first video loaded and played on both routes with `readyState=4`, `paused=false` and no console errors; public range requests return `206 video/mp4`. The `corporate-ground` directory occupies `404M` on the VPS, which has `23G` free.
 - live root regression: original H1 and both hero actions are preserved; the same subtitle-free shared proof section is published and passed at desktop/mobile widths;
 - release assets and routes: root, seasonal, privacy, versioned CSS/JS, L1/L2/L11/L3 and sitemap all returned HTTP `200`;
 - browser/process cleanup: all standalone Playwright QA sessions and the local dev server were stopped after verification;
