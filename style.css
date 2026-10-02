@@ -2355,22 +2355,6 @@ body { overflow-x: hidden; }
   min-width: 0;
 }
 
-.video-case__copy {
-  padding: 14px 4px 10px;
-}
-
-.video-case__copy h3 {
-  margin: 0 0 4px;
-  font-size: 17px;
-}
-
-.video-case__copy p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
 .evening-flow {
   position: relative;
   background: radial-gradient(ellipse 80% 62% at 50% 46%, rgba(255, 122, 69, .035), transparent 72%);
@@ -3024,10 +3008,6 @@ body { overflow-x: hidden; }
   .evening-flow__cta .btn {
     width: 100%;
     white-space: normal;
-  }
-
-  .video-case__copy {
-    padding: 12px 2px 18px;
   }
 
   .service-formats__intro,
