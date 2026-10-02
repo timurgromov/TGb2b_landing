@@ -2518,6 +2518,24 @@ body { overflow-x: hidden; }
   background: var(--accent);
 }
 
+.service-format__details {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.service-format__details:hover,
+.service-format__details:focus-visible {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .service-formats__cta {
   margin-top: 28px;
   text-align: center;
@@ -2604,6 +2622,13 @@ body { overflow-x: hidden; }
 .music-program__options {
   display: grid;
   gap: 12px;
+}
+
+.music-program__options-title {
+  margin: 0 0 2px;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 750;
 }
 
 .music-program__option {
