@@ -21,15 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const videoSrc = wrapper.dataset.musicShowreel;
     const videoTitle = wrapper.dataset.musicShowreelTitle || 'Шоу-рил музыкального состава';
     const playButton = wrapper.querySelector(".music-program__play");
+    const showreelOverlay = wrapper.querySelector(".music-program__showreel-overlay");
     const media = wrapper.querySelector(".music-program__media");
 
-    if (!videoSrc || !playButton || !media) return;
+    if (!videoSrc || !playButton || !showreelOverlay || !media) return;
 
     const posterMarkup = media.innerHTML;
 
     playButton.addEventListener("click", () => {
       media.innerHTML = `<video controls autoplay playsinline preload="metadata" aria-label="${videoTitle}"><source src="${videoSrc}" type="video/mp4"></video>`;
-      playButton.hidden = true;
+      showreelOverlay.hidden = true;
       const video = media.querySelector("video");
       video.muted = false;
       video.volume = 1.0;
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       video.addEventListener("ended", () => {
         media.innerHTML = posterMarkup;
-        playButton.hidden = false;
+        showreelOverlay.hidden = false;
       }, { once: true });
     });
   });

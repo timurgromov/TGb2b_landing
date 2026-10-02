@@ -52,7 +52,7 @@ const {
     <link rel="shortcut icon" href="/favicon2.ico" />
     {includeMainAssets && <link rel="preload" as="image" href="/assets/hero/portrait.webp" fetchpriority="high" />}
 
-    {includeMainAssets && <link rel="stylesheet" href="/style.css?v=astro_13" />}
+    {includeMainAssets && <link rel="stylesheet" href="/style.css?v=astro_14" />}
     {includeMainAssets && <link rel="stylesheet" href="/mobile.css?v=astro_5" media="(max-width: 768px)" />}
     {pageCss && <link rel="stylesheet" href={pageCss} />}
 
@@ -86,7 +86,7 @@ const {
   </head>
   <body>
     <slot />
-    {includeMainAssets && <script src="/script.js?v=astro_4" is:inline></script>}
+    {includeMainAssets && <script src="/script.js?v=astro_5" is:inline></script>}
     {pageScript && <script src={pageScript} is:inline></script>}
   </body>
 </html>

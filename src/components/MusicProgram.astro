@@ -30,16 +30,16 @@ const { seasonal = false } = Astro.props;
               <img src="/assets/music/music-program-max.webp" width="1200" height="843" loading="lazy" decoding="async" alt="Музыканты с гитарой и саксофоном в расширенном составе" />
             </picture>
           </div>
-          <button class="music-program__play" type="button" aria-label="Воспроизвести шоу-рил музыкального состава">
-            <span class="music-program__play-icon" aria-hidden="true"></span>
-            <span>Смотреть шоу-рил</span>
-            <span class="music-program__play-duration">3:45</span>
-          </button>
+          <div class="music-program__showreel-overlay">
+            <button class="music-program__play" type="button" aria-label="Воспроизвести шоу-рил музыкального состава">
+              <span class="music-program__play-icon" aria-hidden="true"></span>
+            </button>
+            <span class="music-program__showreel-caption">Смотреть шоу-рил <span>· 3:45</span></span>
+          </div>
         </div>
       </div>
 
       <div class="music-program__options" aria-label="Состав третьего пакета">
-        <p class="music-program__options-title">Состав третьего пакета</p>
         <article class="music-program__option">
           <span class="music-program__option-label">Базовый состав</span>
           <h3>Два вокалиста</h3>

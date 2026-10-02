@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-02-showreel-final-overlay",
+  "change_kind": "showreel-overlay-composition",
+  "requested_visible_change": "Restore a circular orange Play button in the centre of the showreel photo, put the viewing caption in the lower-left corner, and remove the visible package heading.",
+  "expected_visible_delta": "The former wide central pill is replaced by a centred circular orange Play control plus a small lower-left caption reading Смотреть шоу-рил · 3:45; on playback both custom elements disappear.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "f8bbbb3133548f0d506c8f855baec3be44257ff374332e23bcdeeaa731adfae9",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?showreel-final=local-2#music-program",
+    "source_ref": "fresh local Astro preview from the staged shared-component candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "shared MusicProgram component used by / and /novogodniy-korporativ/",
+    "state": "poster before playback and active native video after explicit Play",
+    "selector_or_slide_id": ".music-program__showreel-overlay, .music-program__play, .music-program__showreel-caption",
+    "action": "Open the music program, inspect the poster, then press the centred circular Play control."
+  },
+  "required_viewports": [
+    "1280x720",
+    "390x844"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "before_signature": "The prior control was a wide labelled dark pill placed in the centre of the artist photo.",
+      "after_signature": "The artist poster contains a 62px orange circular Play button exactly centred in the media frame and a compact caption 14px from the lower-left edge; no obsolete options heading is rendered.",
+      "observed_visible_result": "The desktop shared component has zero button-centre offset, no horizontal overflow and no page console errors.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "before_signature": "The prior control was a wide labelled dark pill placed in the centre of the artist photo.",
+      "after_signature": "The poster shows a centred orange circular Play button and the lower-left caption Смотреть шоу-рил · 3:45; after a click the overlay is display none and the media frame contains one unpaused native video.",
+      "observed_visible_result": "The seasonal route has zero button-centre offset, the caption is inset 14px on both lower and left edges, has no obsolete heading, no horizontal overflow and no page console errors.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ]
+}
