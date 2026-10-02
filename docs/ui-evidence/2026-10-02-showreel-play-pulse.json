@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-02-showreel-play-pulse",
+  "change_kind": "showreel-play-attention-animation",
+  "requested_visible_change": "Make the showreel's circular orange Play button pulse like the existing video play buttons.",
+  "expected_visible_delta": "The existing centred circular control keeps its size and placement while gaining the site's 2-second pulse animation; the caption remains static.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "f1ebef56d03ee35a14114d7b4ed6d11bef528f7fdb48bb150c685129b3422d65",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?showreel-pulse=local#music-program",
+    "source_ref": "fresh local Astro preview from the staged shared-component candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "shared MusicProgram component used by / and /novogodniy-korporativ/",
+    "state": "showreel poster before playback",
+    "selector_or_slide_id": ".music-program__play",
+    "action": "Open the music-program poster and inspect the circular Play control."
+  },
+  "required_viewports": [
+    "1280x720",
+    "390x844"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "before_signature": "The final circular orange Play button was static over the poster.",
+      "after_signature": "The same centred 62px orange Play button computes animation-name pulse and animation-duration 2s; the caption remains 14px from the lower-left edge.",
+      "observed_visible_result": "The root route has a zero button-centre offset, no horizontal overflow and no page console errors.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "before_signature": "The final circular orange Play button was static over the poster.",
+      "after_signature": "The same centred 62px orange Play button computes animation-name pulse and animation-duration 2s; the caption remains 14px from the lower-left edge.",
+      "observed_visible_result": "The seasonal route has a zero button-centre offset, no horizontal overflow and no page console errors.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ]
+}

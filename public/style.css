@@ -2614,6 +2614,7 @@ body { overflow-x: hidden; }
   background: var(--accent);
   cursor: pointer;
   box-shadow: 0 10px 28px rgba(0, 0, 0, .34);
+  animation: pulse 2s ease-in-out infinite;
   transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
