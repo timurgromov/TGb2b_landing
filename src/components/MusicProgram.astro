@@ -8,16 +8,16 @@ const { seasonal = false } = Astro.props;
 
 <section id="music-program" class="section music-program" data-testid="music-program">
   <div class="container">
-    <p class="section__eyebrow sr">Живая музыкальная часть</p>
-    <h2 class="section__title sr">Три музыкальных блока по 30 минут</h2>
-    <p class="section__subtitle music-program__intro sr">Два вокалиста исполняют знакомые песни под профессиональные аранжировки. Состав можно расширить под программу и настроение вашей компании.</p>
+    <p class="section__eyebrow sr">Третий пакет — с живой музыкой</p>
+    <h2 class="section__title sr">Два вокалиста: три музыкальных блока по 30 минут</h2>
+    <p class="section__subtitle music-program__intro sr">Расширение пакета «Ведущий + DJ + звук»: два вокалиста исполняют знакомые песни под профессиональные аранжировки. Состав можно дополнить саксофонистом или гитаристом.</p>
 
     <div class="music-program__layout sr">
       <div class="music-program__summary">
         <div class="music-program__summary-copy">
-          <p class="music-program__label">В составе вечера</p>
-          <p class="music-program__lead">Три полноценных выхода по 30 минут — не отдельный концерт в стороне, а музыкальная часть общей программы вечера.</p>
-          <p class="music-program__copy">Артисты работают с нашей командой и подключаются к согласованному комплекту звука. Поэтому не требуется отдельно собирать полный состав музыкантов и большой технический комплект.</p>
+          <p class="music-program__label">Живой вокал в программе вечера</p>
+          <p class="music-program__lead">Живой музыкальный блок без сметы полной кавер-группы</p>
+          <p class="music-program__copy">Артисты работают с нашей командой и подключаются к согласованному комплекту звука. Поэтому не нужно отдельно оплачивать полный состав музыкантов, большой концертный комплект и сценическое оборудование. Музыкальная часть остаётся полноценной, а смета — заметно компактнее, чем у полной кавер-группы.</p>
         </div>
         <picture class="music-program__photo">
           <source srcset="/assets/music/music-program-max.avif" type="image/avif" />
@@ -25,7 +25,8 @@ const { seasonal = false } = Astro.props;
         </picture>
       </div>
 
-      <div class="music-program__options" aria-label="Варианты музыкального состава">
+      <div class="music-program__options" aria-label="Состав третьего пакета">
+        <p class="music-program__options-title">Состав третьего пакета</p>
         <article class="music-program__option">
           <span class="music-program__option-label">Базовый состав</span>
           <h3>Два вокалиста</h3>
@@ -43,11 +44,6 @@ const { seasonal = false } = Astro.props;
         </article>
       </div>
     </div>
-
-    <aside class="music-program__backline sr">
-      <strong>Что такое бэклайн?</strong>
-      <span>Это отдельное сценическое оборудование музыкантов: барабаны, усилители, клавиши и коммутация. В этом формате не требуется заказывать полный бэклайн.</span>
-    </aside>
 
     <div class="music-program__cta sr">
       {seasonal ? (

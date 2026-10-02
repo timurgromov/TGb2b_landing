@@ -7,10 +7,12 @@ const { seasonal = false } = Astro.props;
 
 const formats = [
   {
+    name: 'Базовый',
     title: 'Ведущий + DJ',
     items: ['Подготовка программы', 'Ведение вечера', 'DJ и музыкальное сопровождение']
   },
   {
+    name: 'С техникой',
     title: 'Ведущий + DJ + звук',
     items: [
       'Подготовка программы',
@@ -20,7 +22,9 @@ const formats = [
     ]
   },
   {
+    name: 'С живой музыкой',
     title: 'Ведущий + DJ + звук + два вокалиста',
+    detailsHref: '#music-program',
     items: [
       'Подготовка программы',
       'Ведение вечера',
@@ -41,11 +45,12 @@ const formats = [
     <div class="service-formats__grid">
       {formats.map((format, index) => (
         <article class:list={['service-format', 'sr', { 'service-format--featured': index === 1 }]}>
-          <p class="service-format__number">0{index + 1}</p>
+          <p class="service-format__number">0{index + 1} · {format.name}</p>
           <h3>{format.title}</h3>
           <ul>
             {format.items.map((item) => <li>{item}</li>)}
           </ul>
+          {format.detailsHref && <a class="service-format__details" href={format.detailsHref}>Подробнее о живой музыке <span aria-hidden="true">→</span></a>}
         </article>
       ))}
     </div>
