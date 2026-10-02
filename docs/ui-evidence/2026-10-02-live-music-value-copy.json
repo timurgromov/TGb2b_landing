@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-02-live-music-value-copy",
+  "change_kind": "service-package-copy",
+  "status": "passed",
+  "requested_visible_change": "Make it explicit that two vocalists perform the three music blocks, and explain the economic benefit without redundant technical wording.",
+  "expected_visible_delta": "The third card names two vocalists as performers. The detail block explains use of the base sound set and the absence of separate full line-up, concert sound and backline costs.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "b49742bae5b9bfc6429a8f1608b0b6fe4e02be1cfc8f3e8f633119f546d7cc5d",
+  "served_candidate": {
+    "url": "https://corp.timurgromov.ru/novogodniy-korporativ/?verify=live-music-copy#formats",
+    "source_ref": "089f8a6 source / 9c1c7cc production",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "third package and live-music detail",
+    "selector_or_slide_id": ".service-format:nth-child(3) and #music-program",
+    "action": "open public seasonal route and inspect published card and detail text"
+  },
+  "must_remain_unchanged": ["third package link", "shared route parity", "no public prices"],
+  "required_viewports": ["1280x720"],
+  "observations": [{
+    "viewport": "1280x720",
+    "viewport_source": "Codex in-app browser; public production verification",
+    "before_signature": "The third-card item did not say who performed the blocks; the detail heading and copy included an irrelevant separate-concert comparison and redundant equipment wording.",
+    "after_signature": "The card reads 'Три вокальных блока по 30 минут в исполнении двух вокалистов — под профессиональные аранжировки'. The detail heading and copy use the exact approved economy explanation.",
+    "observed_visible_result": "The public seasonal page contains the new card and detail copy; the shared component supplies the same text to root.",
+    "delta_visible": true,
+    "target_visible": true,
+    "preserved_invariants_passed": true,
+    "console_errors": []
+  }],
+  "comparison_review": {"variants_shown": 0, "selected_variant": "", "owner_approval_reference": "User specified the copy direction in the chat on 2026-10-02."}
+}
