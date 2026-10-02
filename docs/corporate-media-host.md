@@ -14,9 +14,9 @@ The directory is a subdirectory of the existing `tg26-media-backup` static media
 
 ## Access rule
 
-The root password is available in the locally authenticated Aeza Personal Account, service page `https://my.aeza.net/services/1847209`: copy it with the password control there when a one-off SSH/SCP upload is required.
+The canonical local access handoff for this exact VPS is `../PastLife AI/.local/AEZA_DEPLOY_SECRETS.md` relative to workspace `1. Проекты WibeCoding`. It holds the active root password for `213.176.94.245`; consume it programmatically only for the required SSH/SCP command and never print, commit, paste or copy its value into repository files, shell history or chat.
 
-Do not treat the absence of an SSH key or a macOS Keychain record as lack of access. Do not store or print the password in this repository, documentation, shell history, environment files, or chat.
+Do not start from the Aeza browser account or declare an access blocker merely because no matching SSH key is visible. `~/.ssh/tg26_media_vps_ed25519` belongs to another historical host and is not valid for `open-blue`.
 
 ## Current corporate files
 
@@ -26,6 +26,8 @@ Do not treat the absence of an SSH key or a macOS Keychain record as lack of acc
 - `guest-interaction.mp4`.
 
 These files are delivery copies downloaded from the previous Boomstream URLs. They are not committed into the landing repository. Any new file must be uploaded outside the repository, checked with a public HTTPS range request, then referenced from the shared `videos` data so `/` and `/novogodniy-korporativ/` remain identical.
+
+The live-music package also uses `live-music-showreel.mp4` from this directory. It is a 720p/25fps H.264/AAC delivery derivative of the owner-supplied source; the source itself is not published or committed. The 3:45 click-to-play showreel is a documented delivery-size exception at about 38 MiB: it has `faststart`, byte-range support and no transfer until the visitor presses Play over the existing poster.
 
 ## Delivery-size exception
 

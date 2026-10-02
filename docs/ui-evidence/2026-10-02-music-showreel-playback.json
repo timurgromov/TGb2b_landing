@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-02-music-showreel-playback",
+  "change_kind": "click-to-play-showreel",
+  "requested_visible_change": "Keep the existing musical-composition image as a poster and add a visible Play control that starts the supplied showreel in the same area.",
+  "expected_visible_delta": "The shared music-program media area shows an orange Play control before interaction; an explicit click replaces the poster with an unmuted self-hosted video with native controls.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "4c8fdcbb645a9c73f82ec0879a63f599e941ab4327f735117e59bcd8656d50db",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/#music-program",
+    "source_ref": "fresh local Astro preview from the staged shared-component candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "shared MusicProgram component used by / and /novogodniy-korporativ/",
+    "state": "before playback and after explicit Play click",
+    "selector_or_slide_id": ".music-program__media and .music-program__play",
+    "action": "Fresh-load the route, scroll to the music-program media, then press the labelled Play control."
+  },
+  "required_viewports": [
+    "1280x720",
+    "390x844"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "before_signature": "Root route has one poster media area with the supplied photo, one labelled Play button and no video element.",
+      "after_signature": "After the labelled click, the root media area has no Play button and one video element using live-music-showreel.mp4; readyState is 4, paused is false and document overflow is false.",
+      "observed_visible_result": "The same media frame switches from the poster with orange Play control to a playing native video without changing package copy or layout.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "before_signature": "Seasonal route has one poster media area with the supplied photo, one labelled Play button and no video element.",
+      "after_signature": "After the labelled click, the seasonal media area has no Play button and one video element using live-music-showreel.mp4; readyState is 4, paused is false and document overflow is false.",
+      "observed_visible_result": "The mobile poster retains its crop and control before interaction, then shows a playing native video in the same card after the explicit click.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ]
+}

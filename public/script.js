@@ -16,6 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
       video.play();
     });
   });
+
+  document.querySelectorAll("[data-music-showreel]").forEach(wrapper => {
+    const videoSrc = wrapper.dataset.musicShowreel;
+    const videoTitle = wrapper.dataset.musicShowreelTitle || 'Шоу-рил музыкального состава';
+    const playButton = wrapper.querySelector(".music-program__play");
+
+    if (!videoSrc || !playButton) return;
+
+    playButton.addEventListener("click", () => {
+      wrapper.innerHTML = `<video controls autoplay playsinline preload="metadata" aria-label="${videoTitle}"><source src="${videoSrc}" type="video/mp4"></video>`;
+      const video = wrapper.querySelector("video");
+      video.muted = false;
+      video.volume = 1.0;
+      video.play().catch(() => {});
+    }, { once: true });
+  });
 });
 
 // ===== Scroll-Reveal для .sr =====

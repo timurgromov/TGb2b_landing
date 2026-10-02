@@ -66,6 +66,13 @@ backend passport не доказывает frontend; docs/tests могут бы�
 - Не создавать отдельную дизайн-систему, уникальную структуру или самостоятельный набор общих блоков для одной версии без прямого указания владельца.
 - После каждого общего UI-изменения проверять обе production-страницы; успешная проверка только одного route не доказывает parity.
 
+## Corporate media host access
+
+- Для `open-blue` (`213.176.94.245`) не искать ключ в браузере и не объявлять доступ отсутствующим: канонический локальный handoff — `../PastLife AI/.local/AEZA_DEPLOY_SECRETS.md` относительно workspace `1. Проекты WibeCoding`.
+- Этот файл содержит действующий root-пароль данного VPS, не относится к Git и не должен читаться, печататься, копироваться в документы или коммиты. Использовать его только программно для конкретного SSH/SCP действия; передавать на экран лишь статус проверки.
+- Ключ `~/.ssh/tg26_media_vps_ed25519` относится к другому старому host и не является способом доступа к `open-blue`.
+- Все корпоративные медиа загружаются в `/srv/tg26-media-backup/public/corporate-ground/`; после загрузки обязательны SHA-256 и публичная HTTPS range-проверка.
+
 ## Telegram/MAX Live Verification
 
 Для любой задачи, которая создаёт, изменяет, тестирует или ревьюит Telegram/MAX bot, channel, group, deep link, Mini App, WebApp, messenger CTA или support/admin flow, обязательно используй global skill `ruslan-project-workflows:telegram-surface-verify`; если personal plugin недоступен, используй локальный fallback `skills/telegram-surface-verify/SKILL.md`.
