@@ -69,6 +69,8 @@ expectText(rootHtml, 'data-testid="music-program"', 'root music program');
 expectText(rootHtml, 'Два вокалиста: три музыкальных блока по 30 минут', 'root music program');
 expectText(rootHtml, 'Третий пакет — с живой музыкой', 'root music program package context');
 expectText(rootHtml, 'Состав третьего пакета', 'root music program package options');
+expectText(rootHtml, 'Хиты разных десятилетий', 'root music program repertoire tag');
+expectText(rootHtml, 'Welcome с саксофоном', 'root music program saxophone tag');
 expectText(rootHtml, 'Два вокалиста + саксофонист + гитарист', 'root music program');
 rejectText(rootHtml, 'Что такое бэклайн?', 'root obsolete music jargon');
 expectText(rootHtml, '/assets/music/music-program-max.avif', 'root music program image');
@@ -112,6 +114,8 @@ expectText(seasonalHtml, 'data-testid="music-program"', 'seasonal music program'
 expectText(seasonalHtml, 'Два вокалиста: три музыкальных блока по 30 минут', 'seasonal music program');
 expectText(seasonalHtml, 'Третий пакет — с живой музыкой', 'seasonal music program package context');
 expectText(seasonalHtml, 'Состав третьего пакета', 'seasonal music program package options');
+expectText(seasonalHtml, 'Хиты разных десятилетий', 'seasonal music program repertoire tag');
+expectText(seasonalHtml, 'Welcome с саксофоном', 'seasonal music program saxophone tag');
 expectText(seasonalHtml, 'Два вокалиста + саксофонист + гитарист', 'seasonal music program');
 rejectText(seasonalHtml, 'Что такое бэклайн?', 'seasonal obsolete music jargon');
 expectText(seasonalHtml, '/assets/music/music-program-max.avif', 'seasonal music program image');
@@ -123,7 +127,7 @@ expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 бло�
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист', 'seasonal guitar package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_12', 'main site stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_13', 'main site stylesheet');
 expectText(seasonalHtml, '/mobile.css?v=astro_5', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/script.js?v=astro_4', 'main site script');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
