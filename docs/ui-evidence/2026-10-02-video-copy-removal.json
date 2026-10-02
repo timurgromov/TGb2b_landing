@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-02-video-copy-removal",
+  "change_kind": "remove-unverified-editorial-copy",
+  "requested_visible_change": "Remove all invented per-video headings and descriptions; retain only the shared heading ‘Тимур в работе’ and four videos.",
+  "expected_visible_delta": "The shared video block shows four posters with play controls and no editorial copy beneath them on both corporate routes.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "a645c7727b35e24a96e8185bea2da8a73935fe631665f2416af472f1aefd763b",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/#cases",
+    "source_ref": "fresh local Astro preview from the staged astro-migration candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/ shared video block",
+    "state": "initial video block before playback",
+    "selector_or_slide_id": "#cases .video-case__copy",
+    "action": "Fresh-load each route at #cases and inspect the rendered cards; start the first local video on mobile."
+  },
+  "must_remain_unchanged": [
+    "shared heading Тимур в работе",
+    "four corporate-ground MP4 URLs",
+    "four posters, order and playback controls",
+    "the existing visual system"
+  ],
+  "required_viewports": [
+    "390x844",
+    "1280x720"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "Four video cards displayed an invented heading and description below every poster.",
+      "after_signature": "The mobile block contains heading Тимур в работе, four posters and four play controls; .video-case__copy count is 0 and scrollWidth does not exceed 390.",
+      "observed_visible_result": "The cards stack cleanly without empty caption space; the first self-hosted video starts and reaches readyState 4.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "before_signature": "The root baseline rendered four distinct invented headings and descriptions after the four posters.",
+      "after_signature": "The shared seasonal route renders four poster-only cards under Тимур в работе; .video-case__copy count is 0, all four existing corporate-ground URLs remain and there is no horizontal overflow.",
+      "observed_visible_result": "Desktop retains the two-by-two video grid and play controls while removing all unsupported editorial labels.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "interaction_states": {
+    "mobile_playback": "The first video was started in the local candidate; paused=false and readyState=4.",
+    "production_submission": "not performed"
+  }
+}

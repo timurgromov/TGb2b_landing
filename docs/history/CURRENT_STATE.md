@@ -23,6 +23,7 @@ Implemented locally:
 - `/` now has a seasonal promo while keeping the approved universal hero and CTA;
 - both `/` and `/novogodniy-korporativ/` now render the same shared non-seasonal sequence: video, the five-stage `Как проходит корпоратив` guest flow, benefits, three service formats, the music-program offer, letter-backed cases, workflow, gallery, letters and FAQ;
 - the four shared corporate case videos are delivered directly from `corporate-ground` on Aeza `open-blue` (`213.176.94.245`) rather than Boomstream; the owner-safe access path and upload protocol are in `docs/corporate-media-host.md`;
+- the shared video block keeps only the heading `Тимур в работе`; unverified per-video headings and descriptions have been removed from both routes;
 - `Как проходит корпоратив` is a shared component placed between video and benefits; it describes the guest experience and remains distinct from the customer-facing `Порядок работы` process;
 - package contract now starts with `Ведущий + DJ`; there is no `Только ведущий` option in the cards, FAQ, form or lead comment mapping;
 - the three offered compositions are `Ведущий + DJ`, `Ведущий + DJ + звук` and `Ведущий + DJ + звук + два вокалиста`; every next card explicitly repeats the included services rather than using an abstract `всё из базового состава`. The third card includes three 30-minute blocks with professional arrangements and explicitly states that the music part can be supplemented with saxophone or guitar;

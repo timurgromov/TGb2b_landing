@@ -42,27 +42,19 @@ export const hero = {
 export const videos = [
   {
     video: 'https://media.213-176-94-245.sslip.io/corporate-ground/timur-on-stage.mp4',
-    cover: '/assets/photos/cover1.webp',
-    title: 'Ведущий на сцене',
-    description: 'Подача, работа с микрофоном и внимание к программе вечера.'
+    cover: '/assets/photos/cover1.webp'
   },
   {
     video: 'https://media.213-176-94-245.sslip.io/corporate-ground/manner-of-communication.mp4',
-    cover: '/assets/photos/cover2.webp',
-    title: 'Манера общения',
-    description: 'Темп речи, юмор и стиль ведущего — без пересказа в рекламном тексте.'
+    cover: '/assets/photos/cover2.webp'
   },
   {
     video: 'https://media.213-176-94-245.sslip.io/corporate-ground/improvisation.mp4',
-    cover: '/assets/photos/cover3.webp',
-    title: 'Импровизация в кадре',
-    description: 'Живая реакция и способность уверенно поддерживать разговор.'
+    cover: '/assets/photos/cover3.webp'
   },
   {
     video: 'https://media.213-176-94-245.sslip.io/corporate-ground/guest-interaction.mp4',
-    cover: '/assets/photos/cover4.webp',
-    title: 'Работа с гостями',
-    description: 'Фрагмент взаимодействия с залом во время мероприятия.'
+    cover: '/assets/photos/cover4.webp'
   }
 ];
 
