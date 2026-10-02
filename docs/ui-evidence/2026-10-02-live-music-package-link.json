@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-02-live-music-package-link",
+  "change_kind": "package-to-detail-link-and-copy",
+  "status": "passed",
+  "requested_visible_change": "The third package must be named 'С живой музыкой', link to a clearly identified explanation below, and replace the irrelevant separate-concert/backline copy with an economic explanation.",
+  "expected_visible_delta": "Card 03 exposes 'Подробнее о живой музыке'; its target identifies itself as the third package, describes the included musical blocks, and shows the available line-ups.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "0f7792d3264b61241d3602c25459b4a6e228276ac668e1dcb46ea2bd04de99e7",
+  "served_candidate": {
+    "url": "https://corp.timurgromov.ru/novogodniy-korporativ/?verify=live-music-package#formats",
+    "source_ref": "722a462 source / 03cf17a production",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "third package and music-program detail block",
+    "selector_or_slide_id": ".service-format:nth-child(3) and #music-program",
+    "action": "activate the third package link and inspect the target block"
+  },
+  "must_remain_unchanged": [
+    "three package cards",
+    "seasonal date-check CTA",
+    "root and seasonal shared package parity"
+  ],
+  "required_viewports": [
+    "1280x720"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Codex in-app browser; public production verification",
+      "before_signature": "The detail block used a long negating sentence about a separate concert and a separate backline explainer; the third card had no details link or package name.",
+      "after_signature": "Both routes publish 03 · С живой музыкой and the link 'Подробнее о живой музыке'. On seasonal, activating it changes the URL from #formats to #music-program.",
+      "observed_visible_result": "The target is labelled 'Третий пакет — с живой музыкой', titled 'Два вокалиста: три музыкальных блока по 30 минут', and includes 'Состав третьего пакета'.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": "User requested the exact package linkage and 'С живой музыкой' wording in the chat on 2026-10-02."
+  }
+}
