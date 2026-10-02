@@ -21,12 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const videoSrc = wrapper.dataset.musicShowreel;
     const videoTitle = wrapper.dataset.musicShowreelTitle || 'Шоу-рил музыкального состава';
     const playButton = wrapper.querySelector(".music-program__play");
+    const media = wrapper.querySelector(".music-program__media");
 
-    if (!videoSrc || !playButton) return;
+    if (!videoSrc || !playButton || !media) return;
 
     playButton.addEventListener("click", () => {
-      wrapper.innerHTML = `<video controls autoplay playsinline preload="metadata" aria-label="${videoTitle}"><source src="${videoSrc}" type="video/mp4"></video>`;
-      const video = wrapper.querySelector("video");
+      media.innerHTML = `<video controls autoplay playsinline preload="metadata" aria-label="${videoTitle}"><source src="${videoSrc}" type="video/mp4"></video>`;
+      playButton.hidden = true;
+      const video = media.querySelector("video");
       video.muted = false;
       video.volume = 1.0;
       video.play().catch(() => {});
