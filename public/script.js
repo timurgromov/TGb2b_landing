@@ -1043,79 +1043,11 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   mo.observe(document.documentElement, { childList:true, subtree:true });
 })();
 
-// 4) Boomstream (iframe): шлём video_play при первом взаимодействии
-(function bindBoomstream(){
-  // клик по нашей оранжевой кнопке Play (если используешь её класс)
-  document.querySelectorAll('.video-play-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=> sendGoal('video_play'), { once:true });
-  });
-  // если нет кастом-кнопки — считаем «play» по первому взаимодействию с iframe Boomstream
-  document.querySelectorAll('iframe').forEach(fr=>{
-    const src = fr.getAttribute('src') || '';
-    if(!/boomstream\.com/i.test(src)) return;
-    let fired = false;
-    function shoot(){ if(!fired){ fired=true; sendGoal('video_play'); } }
-    fr.addEventListener('load', ()=>{
-      fr.addEventListener('click', shoot, { once:true, capture:true });
-      fr.addEventListener('mouseenter', ()=> fr.contentWindow?.focus?.());
-    });
-  });
-})();
-
-// 5) (опционально) Формы — на будущее
+// 4) (опционально) Формы — на будущее
 (function bindForms(){
   document.querySelectorAll('form').forEach(f=>{
     f.addEventListener('submit', ()=> sendGoal('form_submit'), { once:true });
   });
-})();
-
-// ======= BOOMSTREAM цели для Метрики =======
-(function(){
-  const YM_ID = 104468814; // твой ID счётчика
-
-  function sendGoal(name){
-    try {
-      if (typeof ym === 'function') ym(YM_ID, 'reachGoal', name);
-    } catch(e){}
-  }
-
-  function initBoomstreamTracking(){
-    const frames = document.querySelectorAll('iframe[src*="boomstream.com"]');
-    frames.forEach((iframe) => {
-      try {
-        const player = new window.BoomIframeSDK(iframe);
-        let started = false;
-        let halfway = false;
-
-        // Отслеживаем запуск видео
-        player.on('play', () => {
-          if (!started){
-            started = true;
-            sendGoal('video_play');
-          }
-        });
-
-        // Проверяем каждые 2 сек, сколько уже посмотрел
-        const interval = setInterval(async () => {
-          try {
-            const duration = await player.getDuration();
-            const current = await player.getCurrentTime();
-            if (!halfway && duration > 0 && current / duration >= 0.5){
-              halfway = true;
-              sendGoal('video_50');
-              clearInterval(interval);
-            }
-          } catch(e){}
-        }, 2000);
-      } catch(e){}
-    });
-  }
-
-  if (document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', initBoomstreamTracking);
-  } else {
-    initBoomstreamTracking();
-  }
 })();
 
 // ===== POP-UP МОДАЛКА "Чек-лист для HR" =====

@@ -23,4 +23,6 @@ npm run preview -- --port 4321
 
 Production публикуется из отдельной orphan-ветки `gh-pages`. Точная последовательность и проверки описаны в [`docs/DEPLOY_HANDOFF.md`](docs/DEPLOY_HANDOFF.md).
 
+Корпоративные MP4 обслуживаются отдельным каталогом на общем media-host; доступ и безопасный порядок загрузки описаны в [`docs/corporate-media-host.md`](docs/corporate-media-host.md).
+
 Секреты и runtime env для сборки не требуются. Реальная отправка формы создаёт заявку в рабочем контуре и не должна использоваться как автоматический smoke-тест.
