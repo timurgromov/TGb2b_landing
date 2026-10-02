@@ -58,7 +58,8 @@ expectText(rootHtml, 'Ведущий + DJ + звук + два вокалиста
 expectText(rootHtml, 'С живой музыкой', 'root live music package name');
 expectText(rootHtml, 'Подробнее о живой музыке', 'root live music package link');
 expectText(rootHtml, 'Техническое оснащение площадки', 'root technical package inclusion');
-expectText(rootHtml, 'Три блока по 30 минут с профессиональными аранжировками', 'root vocalists package duration copy');
+expectText(rootHtml, 'Три вокальных блока по 30 минут в исполнении двух вокалистов — под профессиональные аранжировки', 'root vocalists package duration copy');
+expectText(rootHtml, 'Живой вокал — заметно бюджетнее полной кавер-группы', 'root music program economy heading');
 expectText(rootHtml, 'Музыкальную часть можно дополнить саксофоном или гитарой', 'root vocalists package expansion');
 rejectText(rootHtml, 'Три полноценных музыкальных блока по 30 минут с профессиональными аранжировками.', 'root obsolete vocalists package subtitle');
 rejectText(rootHtml, 'Всё из состава «Ведущий + DJ»', 'root abstract package inclusion copy');
@@ -86,7 +87,8 @@ expectText(seasonalHtml, 'Ведущий + DJ + звук + два вокалис
 expectText(seasonalHtml, 'С живой музыкой', 'seasonal live music package name');
 expectText(seasonalHtml, 'Подробнее о живой музыке', 'seasonal live music package link');
 expectText(seasonalHtml, 'Техническое оснащение площадки', 'seasonal technical package inclusion');
-expectText(seasonalHtml, 'Три блока по 30 минут с профессиональными аранжировками', 'seasonal vocalists package duration copy');
+expectText(seasonalHtml, 'Три вокальных блока по 30 минут в исполнении двух вокалистов — под профессиональные аранжировки', 'seasonal vocalists package duration copy');
+expectText(seasonalHtml, 'Живой вокал — заметно бюджетнее полной кавер-группы', 'seasonal music program economy heading');
 expectText(seasonalHtml, 'Музыкальную часть можно дополнить саксофоном или гитарой', 'seasonal vocalists package expansion');
 rejectText(seasonalHtml, 'Три полноценных музыкальных блока по 30 минут с профессиональными аранжировками.', 'seasonal obsolete vocalists package subtitle');
 rejectText(seasonalHtml, 'Всё из состава «Ведущий + DJ»', 'seasonal abstract package inclusion copy');
