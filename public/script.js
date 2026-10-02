@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!videoSrc || !playButton || !media) return;
 
+    const posterMarkup = media.innerHTML;
+
     playButton.addEventListener("click", () => {
       media.innerHTML = `<video controls autoplay playsinline preload="metadata" aria-label="${videoTitle}"><source src="${videoSrc}" type="video/mp4"></video>`;
       playButton.hidden = true;
@@ -32,7 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
       video.muted = false;
       video.volume = 1.0;
       video.play().catch(() => {});
-    }, { once: true });
+
+      video.addEventListener("ended", () => {
+        media.innerHTML = posterMarkup;
+        playButton.hidden = false;
+      }, { once: true });
+    });
   });
 });
 

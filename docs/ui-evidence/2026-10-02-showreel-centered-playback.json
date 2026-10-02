@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-02-showreel-centered-playback",
+  "change_kind": "showreel-playback-state",
+  "requested_visible_change": "Centre the showreel action in the poster and remove it while native video controls are active.",
+  "expected_visible_delta": "The labelled pill is centred on the poster before playback and has computed display none immediately after the explicit start action.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "1ab296d825de296b275615b3c3232fb5fdc25975803fa3513d14728088cd860c",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?showreel-centered=local#music-program",
+    "source_ref": "fresh local Astro preview from the staged shared-component candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "shared MusicProgram component used by / and /novogodniy-korporativ/",
+    "state": "poster before playback and video after explicit play",
+    "selector_or_slide_id": ".music-program__play and .music-program__media video",
+    "action": "Scroll to the poster, press the labelled showreel action, and inspect the playback state."
+  },
+  "required_viewports": [
+    "1280x720",
+    "390x844"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "before_signature": "The labelled action was positioned at the lower image edge and remained visible after playback began.",
+      "after_signature": "The labelled action is centred in the poster before interaction; after explicit play it is hidden by the hidden state rather than rendered above native controls.",
+      "observed_visible_result": "The poster makes the video action prominent without covering a face, and playback begins without the custom action over it.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "before_signature": "The labelled action was positioned at the lower image edge and remained visible after playback began.",
+      "after_signature": "The action is geometrically centred in the poster before interaction; after explicit play its hidden property is true, computed display is none and one native video is playing with readyState 4 and paused false.",
+      "observed_visible_result": "The mobile custom action is a centred overlay before play and does not obstruct the native video controls after play.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ]
+}
