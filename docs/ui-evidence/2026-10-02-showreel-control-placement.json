@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-02-showreel-control-placement",
+  "change_kind": "showreel-action-placement",
+  "requested_visible_change": "Make the showreel action obvious without covering the artists in the photograph.",
+  "expected_visible_delta": "The circular overlay is replaced by a compact labelled play pill below the full photograph, with the showreel duration visible before interaction.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "9ede021332a77f1a54ac1305bc8c17a15607a1635d4b34e2b1701959fb3a389a",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?showreel-control=mobile#music-program",
+    "source_ref": "fresh local Astro preview from the staged shared-component candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "shared MusicProgram component used by / and /novogodniy-korporativ/",
+    "state": "before playback and after explicit showreel action",
+    "selector_or_slide_id": ".music-program__showreel and .music-program__play",
+    "action": "Scroll to the showreel image, inspect the labelled button below it, then press the button."
+  },
+  "required_viewports": [
+    "1280x720",
+    "390x844"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "before_signature": "The existing poster had a circular orange play icon centered over the photograph.",
+      "after_signature": "The full poster is unobstructed and a 246px outlined pill below it visibly reads Смотреть шоу-рил with duration 3:45; no horizontal overflow is present.",
+      "observed_visible_result": "The button is distinct from the photo and does not cover faces, instruments or the image crop.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "before_signature": "The existing poster had a circular orange play icon centered over the photograph.",
+      "after_signature": "The full poster is unobstructed and a centred pill below it visibly reads Смотреть шоу-рил with duration 3:45; explicit click hides the button and plays one native video with readyState 4 and paused false.",
+      "observed_visible_result": "The mobile action is readable without hover, does not cover the performers and starts the video in the original media frame.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ]
+}

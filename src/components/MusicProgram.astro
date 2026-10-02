@@ -20,15 +20,21 @@ const { seasonal = false } = Astro.props;
           <p class="music-program__copy">Вокалисты выступают под профессиональные аранжировки и используют наш базовый комплект звука. Поэтому не нужно отдельно оплачивать полный состав музыкантов, концертный звук и бэклайн. За счёт этого музыкальная часть вечера остаётся полноценной, а смета — заметно бюджетнее, чем у полной кавер-группы.</p>
         </div>
         <div
-          class="music-program__media"
+          class="music-program__showreel"
           data-music-showreel="https://media.213-176-94-245.sslip.io/corporate-ground/live-music-showreel.mp4"
           data-music-showreel-title="Шоу-рил музыкального состава"
         >
-          <picture class="music-program__photo">
-            <source srcset="/assets/music/music-program-max.avif" type="image/avif" />
-            <img src="/assets/music/music-program-max.webp" width="1200" height="843" loading="lazy" decoding="async" alt="Музыканты с гитарой и саксофоном в расширенном составе" />
-          </picture>
-          <button class="music-program__play" type="button" aria-label="Воспроизвести шоу-рил музыкального состава"></button>
+          <div class="music-program__media">
+            <picture class="music-program__photo">
+              <source srcset="/assets/music/music-program-max.avif" type="image/avif" />
+              <img src="/assets/music/music-program-max.webp" width="1200" height="843" loading="lazy" decoding="async" alt="Музыканты с гитарой и саксофоном в расширенном составе" />
+            </picture>
+          </div>
+          <button class="music-program__play" type="button" aria-label="Воспроизвести шоу-рил музыкального состава">
+            <span class="music-program__play-icon" aria-hidden="true"></span>
+            <span>Смотреть шоу-рил</span>
+            <span class="music-program__play-duration">3:45</span>
+          </button>
         </div>
       </div>
 
