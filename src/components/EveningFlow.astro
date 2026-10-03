@@ -26,6 +26,31 @@ const { seasonal = false } = Astro.props;
       ))}
     </div>
 
+    <figure class="evening-flow__media sr">
+      <picture>
+        <source
+          type="image/avif"
+          srcset="/assets/photos/evening-flow/corporate-evening-flow-768.avif 768w, /assets/photos/evening-flow/corporate-evening-flow-1536.avif 1536w"
+          sizes="(max-width: 768px) calc(100vw - 36px), 1180px"
+        />
+        <source
+          type="image/webp"
+          srcset="/assets/photos/evening-flow/corporate-evening-flow-768.webp 768w, /assets/photos/evening-flow/corporate-evening-flow-1536.webp 1536w"
+          sizes="(max-width: 768px) calc(100vw - 36px), 1180px"
+        />
+        <img
+          src="/assets/photos/evening-flow/corporate-evening-flow-1536.webp"
+          srcset="/assets/photos/evening-flow/corporate-evening-flow-768.webp 768w, /assets/photos/evening-flow/corporate-evening-flow-1536.webp 1536w"
+          sizes="(max-width: 768px) calc(100vw - 36px), 1180px"
+          width="1536"
+          height="1024"
+          loading="lazy"
+          decoding="async"
+          alt="Тимур Громов ведёт интерактив с гостями"
+        />
+      </picture>
+    </figure>
+
     <div class="evening-flow__cta">
       {seasonal ? (
         <a class="btn btn-outline" href="#proverit-datu">Обсудить программу корпоратива</a>

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-03-evening-flow-photo",
+  "change_kind": "shared-responsive-photo",
+  "requested_visible_change": "Add one current photo of Timur to the shared corporate evening-flow block on both corporate routes.",
+  "expected_visible_delta": "A responsive wide photo appears after the five evening stages and before the unchanged CTA on both routes.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "candidate_diff_sha256": "7eec27ce15e81c8ce3e37b58d05952acf3d1bedc1bde45a7429f3c74134a9ced",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/ and http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "staged Astro candidate in the shared EveningFlow component",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public page without form submission",
+    "selector_or_slide_id": "#evening-flow .evening-flow__media",
+    "action": "Open each route at #evening-flow and scroll from the five cards to the photo and CTA."
+  },
+  "must_remain_unchanged": [
+    "five evening-stage cards and their copy",
+    "route-specific CTA behavior",
+    "all adjacent sections, forms and analytics"
+  ],
+  "required_viewports": [
+    "390x844", "767x900", "768x900", "769x900", "1179x900",
+    "1180x900", "1181x900", "1366x768", "1440x900", "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "The fifth stage was followed directly by the CTA.",
+      "after_signature": "A full 3:2 photo renders between the fifth stage and CTA on both routes.",
+      "observed_visible_result": "All people remain inside the mobile frame; the 768px AVIF candidate is selected and document width equals viewport width.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "767x900",
+      "before_signature": "No photo existed below the stage cards.",
+      "after_signature": "The 3:2 responsive photo fills the content lane without crop loss.",
+      "observed_visible_result": "Media width is 731px and document width equals 767px on both routes.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "768x900",
+      "before_signature": "No photo existed at the mobile breakpoint.",
+      "after_signature": "The complete mobile frame remains visible at the breakpoint.",
+      "observed_visible_result": "Media width is 732px and document width equals 768px on both routes.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "before_signature": "No photo existed above the mobile breakpoint.",
+      "after_signature": "The layout switches to a restrained 302px-high wide crop.",
+      "observed_visible_result": "The full head stays visible and the 721px media remains inside the container.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1179x900",
+      "before_signature": "The stage grid transitioned directly to CTA.",
+      "after_signature": "A centred 1000px-wide photo separates the stages from CTA.",
+      "observed_visible_result": "The wide crop is balanced and document width equals viewport width.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1180x900",
+      "before_signature": "No media existed at the desktop breakpoint.",
+      "after_signature": "The photo remains centred at 1000px with the CTA below it.",
+      "observed_visible_result": "No clipping, overflow or CTA regression is visible.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1181x900",
+      "before_signature": "No media existed immediately above the desktop breakpoint.",
+      "after_signature": "The photo expands to the desktop content lane without exceeding it.",
+      "observed_visible_result": "Media width is 1133px and document width equals 1181px on both routes.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "before_signature": "No current photo appeared in the evening-flow block.",
+      "after_signature": "A 1120px by 432px crop appears with visible headroom.",
+      "observed_visible_result": "Composition and CTA remain balanced with no horizontal overflow.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "before_signature": "The desktop block contained cards and CTA only.",
+      "after_signature": "The approved current image is visible as a wide banner before CTA.",
+      "observed_visible_result": "In-app visual review confirms all heads remain visible and the photo follows the existing visual language.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "before_signature": "The wide route had no evening-flow illustration.",
+      "after_signature": "The photo is contained at the page max width and capped at 430px plus border.",
+      "observed_visible_result": "The wide layout stays centred, readable and free of horizontal overflow.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "One wide photo inside the existing EveningFlow component.",
+    "owner_approval_reference": "The owner approved implementing the first photo placements before any gallery changes."
+  }
+}
