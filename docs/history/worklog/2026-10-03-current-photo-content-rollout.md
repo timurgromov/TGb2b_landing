@@ -28,3 +28,13 @@ evening-flow image. Keep `/` and `/novogodniy-korporativ/` in parity.
 - Fresh in-app-browser visual review passed at `390x844` and `1440x900` for
   both wide photos and the responsive gallery. Browser console errors: `0`.
 - No form was submitted.
+
+## Release
+
+- Source commit `0458a07` is pushed to `origin/astro-migration`.
+- Static production commit `676c717` is pushed to `origin/gh-pages`; GitHub
+  Pages deployment completed successfully.
+- Fresh live checks passed on both corporate routes at `390x844` and
+  `1440x900`: the new AVIF assets decoded, both context photographs and six
+  gallery sources are present, route-specific H1 values are preserved,
+  horizontal overflow and console errors are `0`.

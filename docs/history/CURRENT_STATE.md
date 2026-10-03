@@ -10,7 +10,7 @@
 - framework: Astro, static output;
 - production domain: `https://corp.timurgromov.ru/`.
 
-## Current-photo content rollout pending release
+## Current-photo content rollout live
 
 - Both corporate routes now share two additional current-photo context blocks:
   one between benefits and packages, and one between workflow and the gallery.
@@ -18,9 +18,11 @@
   the remaining existing archive frames stay in place.
 - Originals remain outside `public/`; responsive AVIF/WebP delivery files pass
   the strict media budget.
+- Source commit `0458a07` is live as production commit `676c717`.
 - Local build, seasonal contract, two-route 11-view responsive matrix and
-  rendered mobile/desktop crop review passed. Release and fresh production
-  verification are still pending.
+  rendered mobile/desktop crop review passed. Fresh live checks on both routes
+  at `390x844` and `1440x900` confirmed decoded AVIF assets, preserved H1,
+  horizontal overflow `0` and browser console errors `0`; no form was submitted.
 
 ## Shared current-photo hero slider
 
