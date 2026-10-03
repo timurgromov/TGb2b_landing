@@ -15,14 +15,15 @@
 - On both `/` and `/novogodniy-korporativ/`, the owner-supplied expanded
   photograph is placed after the benefits CTA and immediately before the three
   package cards.
-- The photo keeps the existing outer container. Desktop shows the wider sharp
-  frame over a subdued backdrop from the same image; mobile uses the full `3:2`
-  frame, so more of the subject is visible without changing the section width.
+- The photo keeps the existing outer container. It is now one seamless
+  AI-outpainted full-bleed banquet photograph: the subject is framed farther
+  away, more torso is visible, and there are no blurred side strips or separate
+  backdrop. Mobile keeps the subject in a `3:2` crop.
 - The former standalone photograph between `Порядок работы` and `Моменты с
   событий` is removed completely; the gallery now follows the workflow section
   directly.
-- The original remains outside `public/`. Responsive `768/1536` AVIF/WebP
-  derivatives are between `25 KiB` and `71 KiB`.
+- The generated PNG source remains outside `public/`. Responsive `768/1536`
+  AVIF/WebP derivatives are between `32 KiB` and `73 KiB`.
 - Local build, seasonal contract, diff check and UI-evidence validation passed.
   The complete local two-route matrix passed at `390`, `768`, `769`, `1024`,
   `1180`, `1440` and `1984` CSS widths with horizontal overflow `0`.
@@ -30,7 +31,7 @@
   the expanded AVIF renders before `#formats`, the retired workflow photo is
   absent, `#photos` follows the workflow section directly, horizontal overflow
   and console errors are `0`; no form was submitted.
-- Runtime source commit `eccdbda` is live as production commit `b96f6c7`.
+- Runtime source commit `230a1f0` is live as production commit `e4f8bf4`.
 
 ## Curated corporate gallery live
 
