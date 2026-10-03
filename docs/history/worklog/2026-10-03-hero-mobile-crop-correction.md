@@ -28,4 +28,11 @@ the five-photo order, Hero geometry, copy, CTA or slider behavior.
   console errors: `0`.
 - No form was submitted.
 
-Release details are recorded after the production deployment.
+## Release
+
+- Source commit `b19f6e9` is pushed to `origin/astro-migration`.
+- Static production commit `ddc1392` is pushed to `origin/gh-pages`.
+- Fresh live checks passed on `/` and `/novogodniy-korporativ/` at `390x844`,
+  plus the seasonal route at `1440x900`; the four corrected versioned AVIF
+  frames rendered, autoplay advanced from `01-smile` to `02-microphone`, and
+  console errors and horizontal overflow were `0`.

@@ -22,6 +22,8 @@
 - the earlier reduced-motion release remains unchanged; the corrected second-frame identifier is now `02-microphone`;
 - the numbered-order correction is released from source commit `92d72a4` to production commit `e5dab84`;
 - fresh production checks passed on both routes at `1440x900` and `390x844`: all five deterministic frames rendered their matching distinct AVIF, square geometry was non-zero, route-specific H1 was preserved, horizontal overflow was `0` and browser console errors were `0`; live autoplay advanced from `01-smile` to `02-microphone` after `5.4s`.
+- Owner-reviewed mobile crop corrections for frames `02`–`05` are released from source commit `b19f6e9` to production commit `ddc1392`: frame `02` is raised, frames `03` and `05` have more upper breathing space, and frame `04` shows the complete hair/head silhouette.
+- Fresh production verification passed on both corporate routes at `390x844` and on the seasonal route at `1440x900`; versioned AVIF assets `crop-20261003a` rendered, autoplay still advanced `01` → `02`, horizontal overflow and console errors were `0`.
 
 ## New Year 2026 landing
 
