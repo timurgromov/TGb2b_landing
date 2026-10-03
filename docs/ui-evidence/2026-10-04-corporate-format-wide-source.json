@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-04-corporate-format-wide-source",
+  "change_kind": "shared-responsive-photo-crop-correction",
+  "status": "passed",
+  "requested_visible_change": "Use the owner-supplied wide 4444.png composition across the full banner width without cropping its left or right edge.",
+  "expected_visible_delta": "Both corporate routes show the wide real photograph with no side crop, generated fill or blurred side strips; desktop may crop only vertically and mobile preserves the full 2:1 frame.",
+  "attempt_number": 5,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "315bd6f8046baf158b004f086d0f23be7bb64557035b69ebda2f4cd33daf83b3",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/ and http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "staged Astro candidate using responsive derivatives of owner-supplied 4444.png",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public pages without form submission",
+    "selector_or_slide_id": "[data-testid=corporate-format-photo]",
+    "action": "Inspect the shared photograph before package cards for source, visible crop axis, adjacent block order and overflow."
+  },
+  "must_remain_unchanged": [
+    "outer banner container, package order, copy and CTA",
+    "gallery sequence and other photographs",
+    "absence of the redundant pre-gallery photograph",
+    "route parity for shared corporate content"
+  ],
+  "required_viewports": [
+    "390x844",
+    "768x900",
+    "769x900",
+    "1024x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "3:2 mobile crop or a different tightly framed photograph",
+      "after_signature": "wide-v4 AVIF; 352x176; object-fit contain; 2:1; horizontal crop 0; vertical crop 0",
+      "observed_visible_result": "Both routes preserve the complete wide source frame and show more of Timur's body; horizontal overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x900",
+      "before_signature": "3:2 mobile/tablet crop",
+      "after_signature": "wide-v4 AVIF; 730x365; object-fit contain; horizontal crop 0; vertical crop 0",
+      "observed_visible_result": "The full 2:1 source is visible on both routes at the last mobile breakpoint; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "before_signature": "old 3:2 source enlarged inside the banner",
+      "after_signature": "wide-v4 AVIF; 731x300; object-fit cover; horizontal crop 0; vertical crop only",
+      "observed_visible_result": "The desktop breakpoint uses the full source width on both routes; only top and bottom are cropped; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "before_signature": "old 3:2 source enlarged inside the banner",
+      "after_signature": "wide-v4 AVIF; 986x328; object-fit cover; horizontal crop 0; vertical crop only",
+      "observed_visible_result": "Both routes fill the existing frame with the entire source width and no artificial side treatment; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "before_signature": "old tighter 3:2 framing",
+      "after_signature": "wide-v4 AVIF; 1118x430; object-fit cover; horizontal crop 0; vertical crop only",
+      "observed_visible_result": "Visual review confirms the wide photograph spans the container, keeps more torso visible and has no side crop or blurred edges; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "before_signature": "old tighter 3:2 framing",
+      "after_signature": "wide-v4 AVIF; 1426x430; object-fit cover; horizontal crop 0; vertical crop only",
+      "observed_visible_result": "The widest checked desktop retains the full left and right source edges on both routes; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 4,
+    "selected_variant": "Owner-supplied wide 4444.png composition, rendered without horizontal crop and without generated or blurred side fill.",
+    "owner_approval_reference": "Owner instruction in chat on 2026-10-04: preserve the widened source, use its full width and crop only the top and bottom when required."
+  },
+  "media_audit": "Original PNG remains outside public. New 768px and 1536px AVIF/WebP derivatives are all below 60 KiB and ready. Only two unrelated legacy-format warnings remain.",
+  "production_submission": "not performed"
+}
