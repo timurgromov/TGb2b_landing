@@ -14,13 +14,13 @@
 
 - `/` and `/novogodniy-korporativ/` use one shared five-frame portrait slider in the existing hero photo area;
 - the copy, CTA, tags, hero geometry and route-specific context are unchanged;
-- frame order is fixed: smiling portrait, stage portrait, full-length guest photo, hosting photo and gesture portrait;
+- frame order now follows the owner-selected numbered originals exactly: `01-smile`, `02-microphone`, `03-full-length`, `04-grey-suit`, `05-gesture`; the former duplicate-background portrait is removed and photo 4 is present;
 - public assets are optimized `AVIF` files with responsive `WebP` fallback at `640px` and `1024px`; source PNG files remain outside `public/`;
 - autoplay advances after `4.5s` for the first frame and every `4s` afterwards with a `650ms` crossfade; it pauses in a hidden tab; when reduced motion is requested, photographs still change on schedule but without the fade;
 - `?hero-slide=<slide-id>` is a deterministic visual-QA override and is not exposed in the public interface;
 - local build, seasonal contract checks, media-budget audit and the shared desktop/mobile responsive matrix passed;
-- the mobile reduced-motion regression is released from source commit `218ecb1` to production commit `3d5e209`; fresh `390x844` checks passed on both routes in normal and reduced-motion modes: `01-smile` changed to `02-stage` after `5.2s`, reduced-motion transition duration was `0s`, horizontal overflow and console errors were `0`;
-- fresh production checks passed on both routes at `1440x900` and `390x844`: five slides, square non-zero hero geometry, AVIF delivery, preserved route-specific H1 and zero horizontal overflow; live autoplay advanced from `01-smile` to `02-stage`, asset requests returned `200` with correct AVIF/WebP MIME types and browser console errors were `0`.
+- the earlier reduced-motion release remains unchanged; the corrected second-frame identifier is now `02-microphone`;
+- local numbered-order checks passed on both routes at `1440x900` and `390x844`: every deterministic frame rendered its matching distinct AVIF, square geometry was non-zero, route-specific H1 was preserved, horizontal overflow was `0` and browser console errors were `0`.
 
 ## New Year 2026 landing
 

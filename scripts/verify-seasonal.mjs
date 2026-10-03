@@ -1,7 +1,9 @@
 import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
+const heroSlideIds = ['01-smile', '02-microphone', '03-full-length', '04-grey-suit', '05-gesture'];
 
 async function read(relativePath) {
   return readFile(resolve(root, relativePath), 'utf8');
@@ -32,6 +34,18 @@ function expectBefore(source, first, second, label) {
   }
 }
 
+async function verifyDistinctHeroAssets() {
+  const hashes = await Promise.all(heroSlideIds.map(async (slideId) => {
+    const asset = await readFile(resolve(root, `public/assets/hero/slider/hero-${slideId}-1024.avif`));
+    return createHash('sha256').update(asset).digest('hex');
+  }));
+  if (new Set(hashes).size !== heroSlideIds.length) {
+    throw new Error('hero slider: duplicate 1024px AVIF assets detected');
+  }
+}
+
+await verifyDistinctHeroAssets();
+
 const [rootHtml, seasonalHtml, privacyHtml, sharedScript, seasonalScript, sitemap] = await Promise.all([
   read('dist/index.html'),
   read('dist/novogodniy-korporativ/index.html'),
@@ -48,6 +62,9 @@ expectText(rootHtml, 'data-hero-slider', 'root hero slider');
 expectCount(rootHtml, 'data-hero-slide ', 5, 'root hero slide count');
 expectText(rootHtml, '/assets/hero/slider/hero-01-smile-1024.avif', 'root hero AVIF');
 expectText(rootHtml, '/assets/hero/slider/hero-01-smile-1024.webp', 'root hero WebP fallback');
+for (const slideId of heroSlideIds) {
+  expectText(rootHtml, `data-slide-id=\"${slideId}\"`, `root hero slide ${slideId}`);
+}
 expectText(rootHtml, 'Перейти к новогодним корпоративам', 'root seasonal promo');
 expectText(rootHtml, 'data-testid="proof-cases"', 'root proof cases');
 expectText(rootHtml, 'data-testid="evening-flow"', 'root evening flow');
@@ -93,6 +110,9 @@ expectText(seasonalHtml, 'data-hero-slider', 'seasonal hero slider');
 expectCount(seasonalHtml, 'data-hero-slide ', 5, 'seasonal hero slide count');
 expectText(seasonalHtml, '/assets/hero/slider/hero-01-smile-1024.avif', 'seasonal hero AVIF');
 expectText(seasonalHtml, '/assets/hero/slider/hero-01-smile-1024.webp', 'seasonal hero WebP fallback');
+for (const slideId of heroSlideIds) {
+  expectText(seasonalHtml, `data-slide-id=\"${slideId}\"`, `seasonal hero slide ${slideId}`);
+}
 expectText(seasonalHtml, 'data-testid="service-formats"', 'seasonal formats');
 expectText(seasonalHtml, 'Ведущий + DJ + звук + два вокалиста', 'seasonal vocalists package title');
 expectText(seasonalHtml, 'С живой музыкой', 'seasonal live music package name');
