@@ -2493,7 +2493,7 @@ body { overflow-x: hidden; }
 .evening-flow__media img {
   height: clamp(300px, 32vw, 430px);
   object-fit: cover;
-  object-position: 50% 43%;
+  object-position: 50% 5%;
 }
 
 .evening-flow__cta {
