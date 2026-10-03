@@ -27,3 +27,13 @@ Date: 2026-10-04
   `Порядок работы` directly.
 - Browser console warnings/errors: `0`.
 - No form was submitted.
+
+## Release
+
+- Runtime source commit: `948d026` on `origin/astro-migration`.
+- Static production commit: `fa5b3ad` on `origin/gh-pages`.
+- Fresh live checks passed on both routes at `390x844` and `1440x900`: the
+  original AVIF decoded, the pseudo-element backdrop was absent, horizontal
+  overflow was `0`, and browser console warnings/errors were `0`.
+- Rejected AI and expanded delivery URLs return `404`; the restored responsive
+  photograph returns `200`.
