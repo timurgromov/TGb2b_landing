@@ -62,6 +62,7 @@ expectText(rootHtml, 'data-hero-slider', 'root hero slider');
 expectCount(rootHtml, 'data-hero-slide ', 5, 'root hero slide count');
 expectText(rootHtml, '/assets/hero/slider/hero-01-smile-1024.avif', 'root hero AVIF');
 expectText(rootHtml, '/assets/hero/slider/hero-01-smile-1024.webp', 'root hero WebP fallback');
+expectText(rootHtml, 'hero-01-smile-1024.avif?v=crop-20261003b', 'root hero cache-busted smile crop');
 for (const slideId of heroSlideIds) {
   expectText(rootHtml, `data-slide-id=\"${slideId}\"`, `root hero slide ${slideId}`);
 }
@@ -113,6 +114,7 @@ expectText(seasonalHtml, 'data-hero-slider', 'seasonal hero slider');
 expectCount(seasonalHtml, 'data-hero-slide ', 5, 'seasonal hero slide count');
 expectText(seasonalHtml, '/assets/hero/slider/hero-01-smile-1024.avif', 'seasonal hero AVIF');
 expectText(seasonalHtml, '/assets/hero/slider/hero-01-smile-1024.webp', 'seasonal hero WebP fallback');
+expectText(seasonalHtml, 'hero-01-smile-1024.avif?v=crop-20261003b', 'seasonal hero cache-busted smile crop');
 for (const slideId of heroSlideIds) {
   expectText(seasonalHtml, `data-slide-id=\"${slideId}\"`, `seasonal hero slide ${slideId}`);
 }

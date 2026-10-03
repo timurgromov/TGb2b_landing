@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-03-hero-smile-headroom",
+  "change_kind": "shared-hero-slider-photo-crop",
+  "status": "passed",
+  "requested_visible_change": "Add natural headroom above Timur in the first Hero photograph on both corporate routes without changing the slider layout or copy.",
+  "expected_visible_delta": "Slide 01 moves the portrait down inside the same square crop so the hair no longer appears attached to the upper edge.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "3feb3d0565b9181aeda4863fefcdc63bd8b59bcaf4d57e6d015d743344c479e9",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?hero-slide=01-smile&smile-candidate=mobile#top",
+    "source_ref": "fresh local Astro candidate from the working tree",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/ shared corporate Hero",
+    "state": "public first screen with deterministic slide 01-smile",
+    "selector_or_slide_id": "[data-slide-id=01-smile]",
+    "action": "open slide 01 through ?hero-slide=01-smile and inspect the settled square"
+  },
+  "must_remain_unchanged": [
+    "five-frame order and autoplay timing",
+    "H1, subtitle, tags and CTA",
+    "square Hero geometry",
+    "slides 02 through 05"
+  ],
+  "required_viewports": [
+    "390x844", "767x900", "768x900", "769x900",
+    "1180x820", "1366x768", "1440x900", "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "slide 01 used source top=150 and left about 8 rendered pixels above the hair",
+      "after_signature": "slide 01 uses source top=95 and renders the versioned 640 AVIF in a 354x354 square",
+      "observed_visible_result": "The portrait has a deliberate top margin and the face, hand, H1 overlay and jacket stay balanced.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "767x900",
+      "before_signature": "old source crop began at y=150",
+      "after_signature": "versioned 1024 AVIF renders in a 731x731 square; scrollWidth=767",
+      "observed_visible_result": "The final mobile pixel keeps clear headroom without clipping or overflow.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "768x900",
+      "before_signature": "old source crop began at y=150",
+      "after_signature": "versioned 1024 AVIF renders in a 732x732 square; scrollWidth=768",
+      "observed_visible_result": "The exact breakpoint preserves the balanced square crop.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "before_signature": "old desktop crop left the hair close to the upper edge",
+      "after_signature": "versioned 1024 AVIF renders in a 322x322 square; scrollWidth=769",
+      "observed_visible_result": "The first desktop pixel keeps the new headroom and the two-column Hero remains aligned.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1180x820",
+      "before_signature": "old crop was visually top-heavy",
+      "after_signature": "new top=95 crop renders at 484x484; scrollWidth=1180",
+      "observed_visible_result": "Windowed desktop portrait is centered naturally without changing the text column.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "before_signature": "old crop was visually top-heavy",
+      "after_signature": "new versioned AVIF renders at 488x488; scrollWidth=1366",
+      "observed_visible_result": "Headroom remains visible and the Hero stays inside the viewport.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "before_signature": "hair sat too close to the image ceiling",
+      "after_signature": "top=95 crop renders at 488x488 with a visibly balanced upper margin",
+      "observed_visible_result": "Fresh visual review passed; copy, tags and both CTA remain unchanged.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "before_signature": "old crop was visually top-heavy",
+      "after_signature": "new versioned 1024 AVIF renders at 600x600; scrollWidth=1984",
+      "observed_visible_result": "Wide desktop keeps natural headroom and no horizontal overflow.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 1,
+    "selected_variant": "source crop top=95",
+    "owner_approval_reference": "The owner identified the first photograph and explicitly asked to lower the head from the upper edge."
+  }
+}
