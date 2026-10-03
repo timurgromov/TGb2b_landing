@@ -18,7 +18,9 @@
 - public assets are optimized `AVIF` files with responsive `WebP` fallback at `640px` and `1024px`; source PNG files remain outside `public/`;
 - autoplay advances after `4.5s` for the first frame and every `4s` afterwards with a `650ms` crossfade; it pauses in a hidden tab and remains static when reduced motion is requested;
 - `?hero-slide=<slide-id>` is a deterministic visual-QA override and is not exposed in the public interface;
-- local build, seasonal contract checks, media-budget audit and the shared desktop/mobile responsive matrix passed; production release is pending.
+- local build, seasonal contract checks, media-budget audit and the shared desktop/mobile responsive matrix passed;
+- source commit `2a18171` is pushed to `origin/astro-migration`; production commit `22eac70` is built on `origin/gh-pages`;
+- fresh production checks passed on both routes at `1440x900` and `390x844`: five slides, square non-zero hero geometry, AVIF delivery, preserved route-specific H1 and zero horizontal overflow; live autoplay advanced from `01-smile` to `02-stage`, asset requests returned `200` with correct AVIF/WebP MIME types and browser console errors were `0`.
 
 ## New Year 2026 landing
 
@@ -89,7 +91,7 @@ An actual production submission is intentionally not part of automated verificat
 - live showreel overlay refinement: the labelled `Смотреть шоу-рил · 3:45` action is centred 16px above the lower image edge on a dark translucent glass surface, restoring the music-summary card's even lower edge. Root passed at `1280x720`; seasonal passed at `390x844` with a 46px single-line control, no face covered, no overflow, no console errors and working native playback after click.
 - final showreel control: both routes now use a 62px circular orange Play control centred in the artist photo and a compact `Смотреть шоу-рил · 3:45` caption 14px from the lower-left edge. The redundant visible `Состав третьего пакета` heading is removed. On click the whole custom overlay disappears and native video controls remain; root passed live at `1280x720`, seasonal at `390x844`, with no horizontal overflow or console errors.
 - showreel Play pulse: the same circular control now uses the existing two-second `pulse` animation from the corporate video controls. Both live routes served `style.css?v=astro_15`; root passed at `1280x720` and seasonal at `390x844`, with a centred control, preserved caption placement, no horizontal overflow and no console errors.
-- current source commit: `5b50840` on `origin/astro-migration`; current production commit: `be6cf66` on `origin/gh-pages`.
+- current source commit: `2a18171` on `origin/astro-migration`; current production commit: `22eac70` on `origin/gh-pages`.
 - self-hosted corporate-video check: both routes now contain the same four `https://media.213-176-94-245.sslip.io/corporate-ground/*.mp4` URLs and contain no Boomstream URL or SDK. The first video loaded and played on both routes with `readyState=4`, `paused=false` and no console errors; public range requests return `206 video/mp4`. The `corporate-ground` directory occupies `404M` on the VPS, which has `23G` free.
 - unverified video-copy removal: live `/` at `1280x720` and live `/novogodniy-korporativ/` at `390x844` each render `Тимур в работе`, four playable video cards and zero `.video-case__copy` blocks; no horizontal overflow or console errors. The first root video played with `readyState=4` and `paused=false`.
 - live root regression: original H1 and both hero actions are preserved; the same subtitle-free shared proof section is published and passed at desktop/mobile widths;

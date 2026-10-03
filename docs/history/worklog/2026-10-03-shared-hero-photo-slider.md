@@ -19,4 +19,9 @@ Updated only the hero portrait area on `/` and `/novogodniy-korporativ/`. Copy, 
 - rendered checks — passed on both routes at 11 widths from `390px` through `1984px`; horizontal overflow and collapsed hero geometry: `0`.
 - autoplay and reduced-motion behavior — passed.
 
-Production release and fresh live verification are pending.
+## Release
+
+- Source commit: `2a18171` on `origin/astro-migration`.
+- Production commit: `22eac70` on `origin/gh-pages`; GitHub Pages build status: `built`.
+- Fresh live checks passed on `/` and `/novogodniy-korporativ/` at `1440x900` and `390x844`: five slides, square non-zero media frame, AVIF current source, preserved H1 and zero horizontal overflow.
+- Live autoplay advanced from `01-smile` to `02-stage`; AVIF/WebP assets returned HTTP `200` with correct MIME types; browser console errors: `0`.
