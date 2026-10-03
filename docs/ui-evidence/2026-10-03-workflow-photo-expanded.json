@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "change_id": "2026-10-03-prepackages-photo-outpaint-v3",
+  "change_id": "2026-10-03-prepackages-photo-expanded",
   "change_kind": "shared-responsive-photo-replacement",
   "status": "passed",
-  "requested_visible_change": "Replace the blurred-side treatment above the package cards with one seamless AI-outpainted full-bleed photograph while keeping the existing container, and keep the pre-gallery banner removed.",
-  "expected_visible_delta": "The pre-packages banner remains the same outer size, shows more of Timur's torso and fills its width with one continuous banquet photograph; there are no blurred side strips or separate backdrop.",
-  "attempt_number": 4,
+  "requested_visible_change": "Replace the banner above the package cards with the owner-supplied expanded photograph and remove the redundant banner above the event gallery.",
+  "expected_visible_delta": "The pre-packages banner keeps its outer size but shows more of Timur's torso; after Порядок работы the page now proceeds directly to Моменты с событий without another full-width photograph.",
+  "attempt_number": 3,
   "checked_after_last_edit": true,
-  "candidate_diff_sha256": "8cfd578cc72004067dd047fc3b562e8c3be88ba4f2e3784b0fae80f7303de1d5",
+  "candidate_diff_sha256": "ce79ba5a2ae1b7a8e4ac848d6aa7e68dc92bdc4d8efe7c703946a9285b380318",
   "served_candidate": {
     "url": "http://127.0.0.1:4321/ and http://127.0.0.1:4321/novogodniy-korporativ/",
     "source_ref": "staged Astro candidate",
@@ -17,20 +17,20 @@
     "surface": "/ and /novogodniy-korporativ/",
     "state": "public pages without form submission",
     "selector_or_slide_id": "[data-testid=corporate-format-photo] and #workflow + #photos",
-    "action": "Open the photograph after the benefits CTA; confirm the single full-bleed image, then confirm the gallery follows Порядок работы directly."
+    "action": "Open the photograph after the benefits CTA, then confirm the gallery follows Порядок работы directly."
   },
   "must_remain_unchanged": [
     "package order, copy and CTA",
-    "banner outer geometry and border",
+    "banner container geometry and border",
     "gallery sequence and other photographs",
     "route parity for shared corporate content"
   ],
   "required_viewports": [
     "390x844",
-    "768x844",
+    "768x900",
     "769x900",
-    "1024x900",
-    "1180x900",
+    "1024x820",
+    "1180x820",
     "1440x900",
     "1984x1046"
   ],
@@ -38,20 +38,20 @@
     {
       "viewport": "390x844",
       "viewport_source": "Codex in-app browser; innerWidth=390; innerHeight=844",
-      "before_signature": "expanded-v2 sharp image with a separate blurred backdrop on desktop",
-      "after_signature": "outpaint-v3 AVIF rendered 352x235; one image layer; pseudo-element content none",
-      "observed_visible_result": "Both routes show a continuous banquet scene with complete head and torso; workflowPhotoCount=0; horizontal overflow 0.",
+      "before_signature": "old corporate-format 3:2 asset above packages plus a separate corporate-workflow banner above the gallery",
+      "after_signature": "new expanded-v2 AVIF; rendered 352x235 without desktop backdrop; object-position 50% 50%",
+      "observed_visible_result": "Both routes show the expanded image above packages; workflowPhotoCount=0 and #photos follows #workflow; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
       "console_errors": []
     },
     {
-      "viewport": "768x844",
-      "viewport_source": "Codex in-app browser; innerWidth=768; innerHeight=844",
-      "before_signature": "expanded-v2 asset",
-      "after_signature": "outpaint-v3 AVIF rendered 730x487; one image layer; no backdrop",
-      "observed_visible_result": "Both routes keep the subject and seamless interior in the mobile crop; horizontal overflow 0.",
+      "viewport": "768x900",
+      "viewport_source": "Codex in-app browser; innerWidth=768; innerHeight=900",
+      "before_signature": "old corporate-format image above packages plus a separate pre-gallery banner",
+      "after_signature": "new expanded-v2 AVIF; rendered 730x487 without desktop backdrop",
+      "observed_visible_result": "Both routes retain the full mobile pre-packages composition and have no pre-gallery banner; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
@@ -60,31 +60,31 @@
     {
       "viewport": "769x900",
       "viewport_source": "Codex in-app browser; innerWidth=769; innerHeight=900",
-      "before_signature": "sharp image narrowed over a blurred same-image backdrop",
-      "after_signature": "outpaint-v3 AVIF rendered 731x300 edge to edge; pseudo-element content none",
-      "observed_visible_result": "The desktop breakpoint begins with a single seamless photograph; horizontal overflow 0.",
+      "before_signature": "old corporate-format image above packages plus a separate pre-gallery banner",
+      "after_signature": "same outer container; sharp image rendered 673x300 over a subdued same-image backdrop",
+      "observed_visible_result": "The desktop pre-packages crop begins cleanly; workflowPhotoCount=0 on both routes; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
       "console_errors": []
     },
     {
-      "viewport": "1024x900",
-      "viewport_source": "Codex in-app browser; innerWidth=1024; innerHeight=900",
-      "before_signature": "sharp image narrowed over a blurred same-image backdrop",
-      "after_signature": "outpaint-v3 AVIF rendered 986x328 edge to edge; pseudo-element content none",
-      "observed_visible_result": "Both routes show the full-width generated venue continuation and more torso; horizontal overflow 0.",
+      "viewport": "1024x820",
+      "viewport_source": "Codex in-app browser; innerWidth=1024; innerHeight=820",
+      "before_signature": "old corporate-format image above packages plus a separate pre-gallery banner",
+      "after_signature": "same outer container; sharp image rendered 828x328 over a subdued same-image backdrop",
+      "observed_visible_result": "Both routes show expanded pre-packages context and the gallery follows workflow directly; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
       "console_errors": []
     },
     {
-      "viewport": "1180x900",
-      "viewport_source": "Codex in-app browser; innerWidth=1180; innerHeight=900",
-      "before_signature": "sharp image narrowed over a blurred same-image backdrop",
-      "after_signature": "outpaint-v3 AVIF rendered 998x378 edge to edge; pseudo-element content none",
-      "observed_visible_result": "Complete head, more torso and continuous side environment are visible; horizontal overflow 0.",
+      "viewport": "1180x820",
+      "viewport_source": "Codex in-app browser; innerWidth=1180; innerHeight=820",
+      "before_signature": "old corporate-format image above packages plus a separate pre-gallery banner",
+      "after_signature": "same outer container; sharp image rendered 918x378 over a subdued same-image backdrop",
+      "observed_visible_result": "The complete head and more torso remain visible above packages; the extra pre-gallery banner is absent; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
@@ -93,9 +93,9 @@
     {
       "viewport": "1440x900",
       "viewport_source": "Codex in-app browser; innerWidth=1440; innerHeight=900",
-      "before_signature": "expanded-v2 image rendered 1029x430 over a blurred same-image backdrop",
-      "after_signature": "outpaint-v3 AVIF rendered 1118x430 edge to edge; figure class section-photo sr show; pseudo-element content none",
-      "observed_visible_result": "The banner is one continuous full-bleed photograph, shows more torso and retains the same outer height; horizontal overflow 0.",
+      "before_signature": "old corporate-format banner above packages plus a separate corporate-workflow banner above the gallery",
+      "after_signature": "same outer container; sharp expanded-v2 image rendered 1029x430 over a subdued same-image backdrop",
+      "observed_visible_result": "The pre-packages banner visibly includes more torso; the gallery has #workflow as its immediate previous section; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
@@ -104,9 +104,9 @@
     {
       "viewport": "1984x1046",
       "viewport_source": "Codex in-app browser; innerWidth=1984; innerHeight=1046",
-      "before_signature": "expanded-v2 sharp image narrowed over a blurred same-image backdrop",
-      "after_signature": "outpaint-v3 AVIF rendered 1426x430 edge to edge; pseudo-element content none",
-      "observed_visible_result": "The widest view remains seamless with no blurred side fields and no horizontal overflow.",
+      "before_signature": "old corporate-format banner above packages plus a separate corporate-workflow banner above the gallery",
+      "after_signature": "same outer container; sharp expanded-v2 image rendered 1198x430 over a subdued same-image backdrop",
+      "observed_visible_result": "The widest pre-packages crop keeps the complete head and expanded body framing; no pre-gallery banner remains; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,
@@ -117,13 +117,13 @@
     "checked_viewports": 14,
     "routes": 2,
     "horizontal_overflow_failures": 0,
-    "mechanical_runner_note": "One reused Codex in-app browser tab checked seven exact viewports on each shared route; browser console errors were 0."
+    "mechanical_runner_note": "One reused Codex in-app browser tab checked seven exact viewports on each shared route."
   },
   "comparison_review": {
     "variants_shown": 2,
-    "selected_variant": "AI-outpainted single full-bleed banquet photograph with no blurred or solid side treatment.",
-    "owner_approval_reference": "Owner correction in chat on 2026-10-03: generate real image extension rather than a blurred fill."
+    "selected_variant": "Expanded photograph above packages; no full-width photograph above Моменты с событий.",
+    "owner_approval_reference": "Owner correction in chat on 2026-10-03: insert 4444.png in the pre-packages position and remove the photograph immediately above the gallery."
   },
-  "media_audit": "New AVIF/WebP derivatives are below the image budget; the generated PNG source is stored outside public. Existing unrelated legacy-format warnings remain public/contact/Логотип_MAX.svg.png and public/assets/og_og.jpg.",
+  "media_audit": "New AVIF/WebP derivatives are 25–71 KiB; the original stays outside public. The same AVIF is reused for the backdrop without a second asset. Existing unrelated legacy-format warnings remain unchanged.",
   "production_submission": "not performed"
 }
