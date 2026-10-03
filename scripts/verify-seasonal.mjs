@@ -180,7 +180,9 @@ rejectText(rootHtml, 'Новогодний сезон 2026', 'root seasonal prom
 
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   expectText(html, 'data-testid="corporate-format-photo"', `${label} current format photograph`);
-  expectText(html, '/assets/photos/feature/corporate-workflow-expanded-v2-768.avif', `${label} responsive format photograph`);
+  expectText(html, '/assets/photos/feature/corporate-format-768.avif', `${label} responsive format photograph`);
+  rejectText(html, 'corporate-workflow-expanded-v2', `${label} rejected expanded format photograph`);
+  rejectText(html, 'section-photo--zoomed-out', `${label} rejected blurred format-photo backdrop`);
   rejectText(html, 'data-testid="corporate-workflow-photo"', `${label} removed pre-gallery photograph`);
   expectText(html, '/assets/photos/gal/current/current-07-stage-floor-640.avif', `${label} first gallery photograph`);
   expectText(html, '/assets/photos/gal/P2.webp', `${label} documentary gallery photograph`);

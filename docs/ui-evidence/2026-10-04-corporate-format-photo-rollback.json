@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-04-corporate-format-photo-rollback",
+  "change_kind": "shared-responsive-photo-rollback",
+  "status": "passed",
+  "requested_visible_change": "Remove the rejected AI-generated and blurred-edge banner variants and restore the original real photograph before the package cards.",
+  "expected_visible_delta": "Both corporate routes render the original corporate-format photograph across the existing container with no generated person, blurred side strips or pseudo-element backdrop.",
+  "attempt_number": 4,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "5ff2891401ed9da214e10a75632f74aa215d090b31812980ffd136b0665036a3",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/ and http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "staged Astro candidate after owner-requested rollback",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public pages without form submission",
+    "selector_or_slide_id": "[data-testid=corporate-format-photo]",
+    "action": "Open the shared photograph before package cards and inspect its source, crop, backdrop and adjacent block order."
+  },
+  "must_remain_unchanged": [
+    "package order, copy and CTA",
+    "outer banner container geometry and border",
+    "gallery sequence and other photographs",
+    "absence of the redundant pre-gallery photograph",
+    "route parity for shared corporate content"
+  ],
+  "required_viewports": [
+    "390x844",
+    "768x1024",
+    "769x900",
+    "1024x768",
+    "1180x820",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "rejected expanded or AI-generated banner variant",
+      "after_signature": "corporate-format-1536.avif; figure class section-photo sr show; pseudo-element content none; object-position 50% 50%",
+      "observed_visible_result": "Both routes show the original real photo without side strips; horizontal overflow 0 and the pre-gallery photo remains absent.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "before_signature": "rejected expanded banner with alternate presentation",
+      "after_signature": "corporate-format-1536.avif; no zoomed-out class or pseudo-element backdrop; object-position 50% 50%",
+      "observed_visible_result": "Both routes render the original photograph across the mobile/tablet container with no horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "before_signature": "sharp inset image over a blurred desktop backdrop",
+      "after_signature": "corporate-format-1536.avif fills 731x300 inside the container; pseudo-element content none; object-position 50% 18%",
+      "observed_visible_result": "The desktop breakpoint starts with one continuous real image and no blurred side edges on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "before_signature": "sharp inset image over a blurred desktop backdrop",
+      "after_signature": "corporate-format-1536.avif fills 986x328; no pseudo-element backdrop; object-position 50% 18%",
+      "observed_visible_result": "Both routes show one edge-to-edge image inside the existing frame; horizontal overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x820",
+      "before_signature": "expanded-v2 image inset over blurred side strips",
+      "after_signature": "corporate-format-1536.avif fills 998x378; figure has no zoomed-out class and pseudo-element content is none",
+      "observed_visible_result": "Original real image restored before package cards on both routes; gallery still follows workflow directly; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "before_signature": "AI/outpaint or inset expanded image with artificial edges",
+      "after_signature": "corporate-format-1536.avif fills 1118x430 in the unchanged 1156x432 outer container; pseudo-element content none",
+      "observed_visible_result": "Desktop visibly shows the original continuous photograph with no generated or blurred side regions; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "before_signature": "AI/outpaint or inset expanded image with artificial edges",
+      "after_signature": "corporate-format-1536.avif fills 1426x430 in the unchanged outer container; no pseudo-element backdrop",
+      "observed_visible_result": "Wide desktop keeps a single original photo, package placement and route parity; horizontal overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 3,
+    "selected_variant": "Original corporate-format photograph without AI generation or blurred side strips.",
+    "owner_approval_reference": "Owner instruction in chat on 2026-10-04: return everything to the earlier photo and remove the blurred side edges."
+  },
+  "media_audit": "Restored existing responsive AVIF/WebP asset; rejected generated and expanded delivery files removed. Existing unrelated legacy-format warnings remain unchanged.",
+  "production_submission": "not performed"
+}

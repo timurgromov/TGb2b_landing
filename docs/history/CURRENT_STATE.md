@@ -147,6 +147,13 @@ An actual production submission is intentionally not part of automated verificat
 - release assets and routes: root, seasonal, privacy, versioned CSS/JS, L1/L2/L11/L3 and sitemap all returned HTTP `200`;
 - browser/process cleanup: all standalone Playwright QA sessions and the local dev server were stopped after verification;
 - production CRM lead: not verified without owner approval.
+- corporate format photo rollback candidate: both corporate routes again use
+  the original real `corporate-format` AVIF/WebP before the package cards. The
+  rejected AI/outpaint and blurred-edge variants are absent; the redundant
+  photograph before `Моменты с событий` remains removed. Local build,
+  seasonal contract and a 14-case two-route viewport matrix passed with zero
+  horizontal overflow and zero browser console errors. Production verification
+  is pending this release.
 
 ## YandexDirectGrowth handoff
 
