@@ -24,6 +24,7 @@
 - fresh production checks passed on both routes at `1440x900` and `390x844`: all five deterministic frames rendered their matching distinct AVIF, square geometry was non-zero, route-specific H1 was preserved, horizontal overflow was `0` and browser console errors were `0`; live autoplay advanced from `01-smile` to `02-microphone` after `5.4s`.
 - Owner-reviewed mobile crop corrections for frames `02`–`05` are released from source commit `b19f6e9` to production commit `ddc1392`: frame `02` is raised, frames `03` and `05` have more upper breathing space, and frame `04` shows the complete hair/head silhouette.
 - Fresh production verification passed on both corporate routes at `390x844` and on the seasonal route at `1440x900`; versioned AVIF assets `crop-20261003a` rendered, autoplay still advanced `01` → `02`, horizontal overflow and console errors were `0`.
+- The first `01-smile` frame now uses source crop `top=95` instead of `top=150`, adding natural space above the hair without changing the square Hero or copy. Source commit `67bd9a2` is released as production commit `6034030`; both routes passed fresh live checks at `390x844` and `1440x900`, and the live versioned AVIF matches the local derivative byte-for-byte.
 
 ## New Year 2026 landing
 
