@@ -8,11 +8,15 @@ const { variant } = Astro.props;
 const photos = {
   formats: {
     base: '/assets/photos/feature/corporate-format',
+    width: 1536,
+    height: 1024,
     alt: 'Тимур Громов ведёт корпоративную программу',
     testId: 'corporate-format-photo'
   },
   workflow: {
-    base: '/assets/photos/feature/corporate-workflow',
+    base: '/assets/photos/feature/corporate-workflow-expanded-v2',
+    width: 1536,
+    height: 768,
     alt: 'Тимур Громов с микрофоном на мероприятии',
     testId: 'corporate-workflow-photo'
   }
@@ -38,8 +42,8 @@ const photo = photos[variant];
         src={`${photo.base}-1536.webp`}
         srcset={`${photo.base}-768.webp 768w, ${photo.base}-1536.webp 1536w`}
         sizes="(max-width: 768px) calc(100vw - 36px), 1180px"
-        width="1536"
-        height="1024"
+        width={photo.width}
+        height={photo.height}
         loading="lazy"
         decoding="async"
         alt={photo.alt}
