@@ -1,9 +1,10 @@
-# UI change contract — expanded workflow photograph
+# UI change contract — expanded pre-packages photograph
 
 ## Scope
 
 - Routes: `/` and `/novogodniy-korporativ/`.
-- Target: shared `corporate-workflow-photo` after `Порядок работы`.
+- Target: shared `corporate-format-photo` after the benefits CTA and before the
+  package cards.
 - Requested change: replace the current tight portrait with the owner-supplied
   expanded version `4444.png`.
 
@@ -20,6 +21,7 @@
 ## Preserved invariants
 
 - Block order, outer dimensions, border, copy and CTA remain unchanged.
-- The photo gallery and the first context photograph remain unchanged.
+- The redundant workflow photograph before the gallery is removed, so the
+  gallery follows `Порядок работы` without another full-width image.
 - Both corporate routes render the same shared photograph.
 - Mobile keeps the complete vertical frame without horizontal overflow.

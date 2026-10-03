@@ -1,24 +1,17 @@
 ---
 interface Props {
-  variant: 'formats' | 'workflow';
+  variant: 'formats';
 }
 
 const { variant } = Astro.props;
 
 const photos = {
   formats: {
-    base: '/assets/photos/feature/corporate-format',
-    width: 1536,
-    height: 1024,
-    alt: 'Тимур Громов ведёт корпоративную программу',
-    testId: 'corporate-format-photo'
-  },
-  workflow: {
     base: '/assets/photos/feature/corporate-workflow-expanded-v2',
     width: 1536,
     height: 768,
-    alt: 'Тимур Громов с микрофоном на мероприятии',
-    testId: 'corporate-workflow-photo'
+    alt: 'Тимур Громов ведёт корпоративную программу',
+    testId: 'corporate-format-photo'
   }
 } as const;
 
@@ -26,9 +19,7 @@ const photo = photos[variant];
 ---
 
 <div id={photo.testId} class={`section-photo-wrap section-photo-wrap--${variant}`} data-testid={photo.testId}>
-  <figure
-    class={`section-photo sr ${variant === 'workflow' ? 'section-photo--zoomed-out' : ''}`}
-  >
+  <figure class="section-photo sr section-photo--zoomed-out">
     <picture>
       <source
         type="image/avif"
