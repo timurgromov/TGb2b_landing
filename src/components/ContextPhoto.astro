@@ -7,9 +7,9 @@ const { variant } = Astro.props;
 
 const photos = {
   formats: {
-    base: '/assets/photos/feature/corporate-workflow-expanded-v2',
+    base: '/assets/photos/feature/corporate-format-outpaint-v3',
     width: 1536,
-    height: 768,
+    height: 560,
     alt: 'Тимур Громов ведёт корпоративную программу',
     testId: 'corporate-format-photo'
   }
@@ -19,7 +19,7 @@ const photo = photos[variant];
 ---
 
 <div id={photo.testId} class={`section-photo-wrap section-photo-wrap--${variant}`} data-testid={photo.testId}>
-  <figure class="section-photo sr section-photo--zoomed-out">
+  <figure class="section-photo sr">
     <picture>
       <source
         type="image/avif"
@@ -44,52 +44,3 @@ const photo = photos[variant];
     </picture>
   </figure>
 </div>
-
-<style>
-  .section-photo--zoomed-out {
-    position: relative;
-    isolation: isolate;
-  }
-
-  .section-photo--zoomed-out::before {
-    content: '';
-    position: absolute;
-    inset: -18px;
-    z-index: -1;
-    background: url('/assets/photos/feature/corporate-workflow-expanded-v2-1536.avif') center 18% / cover no-repeat;
-    filter: blur(14px) brightness(0.58) saturate(0.82);
-    transform: scale(1.06);
-  }
-
-  .section-photo--zoomed-out > picture {
-    position: relative;
-    z-index: 1;
-    width: min(92%, max(84%, calc(clamp(300px, 32vw, 430px) * 2.45)));
-    height: clamp(300px, 32vw, 430px);
-    margin: 0 auto;
-  }
-
-  .section-photo--zoomed-out > picture img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% 18%;
-  }
-
-  @media (max-width: 768px) {
-    .section-photo--zoomed-out::before {
-      display: none;
-    }
-
-    .section-photo--zoomed-out > picture {
-      width: 100%;
-      height: auto;
-    }
-
-    .section-photo--zoomed-out > picture img {
-      height: auto;
-      aspect-ratio: 3 / 2;
-      object-position: center;
-    }
-  }
-</style>
