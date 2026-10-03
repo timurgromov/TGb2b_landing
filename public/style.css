@@ -434,6 +434,52 @@ body {
   z-index: 1;
 }
 
+/* Shared five-frame hero portrait slider. The frame geometry stays identical
+   to the approved single-photo hero on both corporate routes. */
+.hero__photo.hero-slider {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.hero-slider__slide {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 650ms ease, visibility 0s linear 650ms;
+  z-index: 0;
+}
+
+.hero-slider__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+  z-index: 1;
+}
+
+.hero__photo.hero-slider .hero-slider__slide img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+.hero__photo.hero-slider::after {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slider__slide {
+    transition: none;
+  }
+}
+
 /* ===== Преимущества ===== */
 #benefits{position:relative}
 #benefits::before{

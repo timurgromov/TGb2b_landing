@@ -1,6 +1,6 @@
 # Current state
 
-Дата: 2 октября 2026 года.
+Дата: 3 октября 2026 года.
 
 ## Source
 
@@ -9,6 +9,16 @@
 - production branch: `gh-pages`;
 - framework: Astro, static output;
 - production domain: `https://corp.timurgromov.ru/`.
+
+## Shared current-photo hero slider
+
+- `/` and `/novogodniy-korporativ/` use one shared five-frame portrait slider in the existing hero photo area;
+- the copy, CTA, tags, hero geometry and route-specific context are unchanged;
+- frame order is fixed: smiling portrait, stage portrait, full-length guest photo, hosting photo and gesture portrait;
+- public assets are optimized `AVIF` files with responsive `WebP` fallback at `640px` and `1024px`; source PNG files remain outside `public/`;
+- autoplay advances after `4.5s` for the first frame and every `4s` afterwards with a `650ms` crossfade; it pauses in a hidden tab and remains static when reduced motion is requested;
+- `?hero-slide=<slide-id>` is a deterministic visual-QA override and is not exposed in the public interface;
+- local build, seasonal contract checks, media-budget audit and the shared desktop/mobile responsive matrix passed; production release is pending.
 
 ## New Year 2026 landing
 

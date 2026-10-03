@@ -7,13 +7,14 @@ import FAQ from '@components/FAQ.astro';
 import Footer from '@components/Footer.astro';
 import Gallery from '@components/Gallery.astro';
 import Header from '@components/Header.astro';
+import HeroPortraitSlider from '@components/HeroPortraitSlider.astro';
 import Letters from '@components/Letters.astro';
 import Modals from '@components/Modals.astro';
 import MusicProgram from '@components/MusicProgram.astro';
 import ServiceFormats from '@components/ServiceFormats.astro';
 import VideoCases from '@components/VideoCases.astro';
 import WhatsAppFab from '@components/WhatsAppFab.astro';
-import { contact, hero as baseHero } from '@data/corporate';
+import { contact } from '@data/corporate';
 
 const canonical = 'https://corp.timurgromov.ru/novogodniy-korporativ/';
 const title = 'Ведущий на новогодний корпоратив в Москве — Тимур Громов';
@@ -78,9 +79,7 @@ const serviceSchema = {
           </div>
         </div>
 
-        <figure class="hero__photo sr" aria-label="Тимур Громов">
-          <img src={baseHero.image} alt="Тимур Громов — ведущий на новогодний корпоратив" width="518" height="518" loading="eager" decoding="async" fetchpriority="high" />
-        </figure>
+        <HeroPortraitSlider alt="Тимур Громов — ведущий на новогодний корпоратив" />
       </div>
     </section>
 

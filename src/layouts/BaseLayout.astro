@@ -50,10 +50,20 @@ const {
 
     <link rel="icon" type="image/x-icon" href="/favicon2.ico" />
     <link rel="shortcut icon" href="/favicon2.ico" />
-    {includeMainAssets && <link rel="preload" as="image" href="/assets/hero/portrait.webp" fetchpriority="high" />}
+    {includeMainAssets && (
+      <link
+        rel="preload"
+        as="image"
+        type="image/avif"
+        href="/assets/hero/slider/hero-01-smile-1024.avif"
+        imagesrcset="/assets/hero/slider/hero-01-smile-640.avif 640w, /assets/hero/slider/hero-01-smile-1024.avif 1024w"
+        imagesizes="(max-width: 768px) calc(100vw - 36px), (max-width: 1180px) 50vw, min(45vw, 600px)"
+        fetchpriority="high"
+      />
+    )}
 
-    {includeMainAssets && <link rel="stylesheet" href="/style.css?v=astro_15" />}
-    {includeMainAssets && <link rel="stylesheet" href="/mobile.css?v=astro_5" media="(max-width: 768px)" />}
+    {includeMainAssets && <link rel="stylesheet" href="/style.css?v=astro_16" />}
+    {includeMainAssets && <link rel="stylesheet" href="/mobile.css?v=astro_6" media="(max-width: 768px)" />}
     {pageCss && <link rel="stylesheet" href={pageCss} />}
 
     <script type="text/javascript" is:inline>

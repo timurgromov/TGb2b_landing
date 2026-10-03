@@ -44,6 +44,10 @@ const [rootHtml, seasonalHtml, privacyHtml, sharedScript, seasonalScript, sitema
 expectText(rootHtml, 'Интеллигентный ведущий на корпоратив в Москве', 'root regression');
 expectText(rootHtml, 'Обсудить корпоратив', 'root regression');
 expectText(rootHtml, 'Назначить встречу', 'root regression');
+expectText(rootHtml, 'data-hero-slider', 'root hero slider');
+expectCount(rootHtml, 'data-hero-slide ', 5, 'root hero slide count');
+expectText(rootHtml, '/assets/hero/slider/hero-01-smile-1024.avif', 'root hero AVIF');
+expectText(rootHtml, '/assets/hero/slider/hero-01-smile-1024.webp', 'root hero WebP fallback');
 expectText(rootHtml, 'Перейти к новогодним корпоративам', 'root seasonal promo');
 expectText(rootHtml, 'data-testid="proof-cases"', 'root proof cases');
 expectText(rootHtml, 'data-testid="evening-flow"', 'root evening flow');
@@ -85,6 +89,10 @@ expectText(seasonalHtml, '<span class="tag">Декабрь</span>', 'seasonal mo
 expectText(seasonalHtml, 'Тимур Громов — ведущий, который держит темп вечера, бережно вовлекает гостей и собирает программу под характер вашей компании.', 'seasonal offer');
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta"', 'seasonal route');
 expectText(seasonalHtml, 'data-testid="seasonal-lead-form"', 'seasonal route');
+expectText(seasonalHtml, 'data-hero-slider', 'seasonal hero slider');
+expectCount(seasonalHtml, 'data-hero-slide ', 5, 'seasonal hero slide count');
+expectText(seasonalHtml, '/assets/hero/slider/hero-01-smile-1024.avif', 'seasonal hero AVIF');
+expectText(seasonalHtml, '/assets/hero/slider/hero-01-smile-1024.webp', 'seasonal hero WebP fallback');
 expectText(seasonalHtml, 'data-testid="service-formats"', 'seasonal formats');
 expectText(seasonalHtml, 'Ведущий + DJ + звук + два вокалиста', 'seasonal vocalists package title');
 expectText(seasonalHtml, 'С живой музыкой', 'seasonal live music package name');
@@ -129,8 +137,8 @@ expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 бло�
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист', 'seasonal guitar package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_15', 'main site stylesheet');
-expectText(seasonalHtml, '/mobile.css?v=astro_5', 'main site mobile stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_16', 'main site stylesheet');
+expectText(seasonalHtml, '/mobile.css?v=astro_6', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/script.js?v=astro_5', 'main site script');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
 expectText(seasonalHtml, '/seasonal.js?v=20261001b', 'seasonal script');

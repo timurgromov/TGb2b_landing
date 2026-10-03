@@ -158,3 +158,25 @@ Exact target:
 - preserved: root and seasonal hero geometry, current black/warm-brown/orange visual language, existing media assets, contact details, form contract and primary CTA.
 
 Acceptance evidence must record route, served candidate, viewport, H1, CTA label, form state, horizontal overflow, console errors and root regression result after the final edit.
+
+## Shared current-photo hero slider
+
+The hero media surface is shared by `/` and `/novogodniy-korporativ/`. It keeps
+the approved square frame, text, tags and CTA layout, but replaces the old
+single portrait with five current photographs in one fixed order.
+
+- first frame: smiling portrait; it remains visible for `4.5s`;
+- frames 2–5: event photographs; each remains visible for `4s`;
+- transition: `650ms` opacity dissolve with no arrows, dots or moving text;
+- first frame is eager/high priority; later frames are lazy/low priority;
+- images are delivered as responsive AVIF with WebP fallback; original PNG
+  files never enter `public/`;
+- autoplay pauses while the document is hidden and does not run when
+  `prefers-reduced-motion: reduce` is active;
+- stable `data-slide-id` values and the `hero-slide` query parameter provide a
+  deterministic visual-QA state without changing the normal anonymous flow.
+
+Required regression viewports: `390x844`, `767/768/769x900`,
+`1023/1024/1025x820`, `1180x820`, `1366x768`, `1440x900`, `1984x1046`.
+Both routes must show five slides, preserve their exact H1/CTA context and have
+no horizontal overflow or console errors.

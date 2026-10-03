@@ -1,0 +1,109 @@
+---
+interface Props {
+  alt: string;
+}
+
+const { alt } = Astro.props;
+
+const slides = [
+  { id: '01-smile', label: 'Портрет Тимура Громова' },
+  { id: '02-stage', label: 'Тимур Громов ведёт мероприятие' },
+  { id: '03-guests', label: 'Тимур Громов работает с гостями' },
+  { id: '04-hosting', label: 'Тимур Громов с микрофоном' },
+  { id: '05-gesture', label: 'Тимур Громов во время программы' }
+];
+
+const imageSizes = '(max-width: 768px) calc(100vw - 36px), (max-width: 1180px) 50vw, min(45vw, 600px)';
+---
+
+<figure
+  class="hero__photo hero-slider sr"
+  aria-label={alt}
+  data-hero-slider
+  data-first-duration="4500"
+  data-slide-duration="4000"
+>
+  {slides.map((slide, index) => (
+    <picture
+      class:list={['hero-slider__slide', { 'is-active': index === 0 }]}
+      data-hero-slide
+      data-slide-id={slide.id}
+      aria-hidden="true"
+    >
+      <source
+        type="image/avif"
+        srcset={`/assets/hero/slider/hero-${slide.id}-640.avif 640w, /assets/hero/slider/hero-${slide.id}-1024.avif 1024w`}
+        sizes={imageSizes}
+      />
+      <source
+        type="image/webp"
+        srcset={`/assets/hero/slider/hero-${slide.id}-640.webp 640w, /assets/hero/slider/hero-${slide.id}-1024.webp 1024w`}
+        sizes={imageSizes}
+      />
+      <img
+        src={`/assets/hero/slider/hero-${slide.id}-1024.webp`}
+        alt=""
+        width="1024"
+        height="1024"
+        loading={index === 0 ? 'eager' : 'lazy'}
+        decoding="async"
+        fetchpriority={index === 0 ? 'high' : 'low'}
+        data-slide-label={slide.label}
+      />
+    </picture>
+  ))}
+</figure>
+
+<script>
+  const initializeHeroSlider = (slider) => {
+    if (!(slider instanceof HTMLElement) || slider.dataset.heroSliderReady === 'true') return;
+
+    const slides = Array.from(slider.querySelectorAll('[data-hero-slide]'));
+    if (slides.length < 2) return;
+
+    slider.dataset.heroSliderReady = 'true';
+    const firstDuration = Number(slider.dataset.firstDuration) || 4500;
+    const slideDuration = Number(slider.dataset.slideDuration) || 4000;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let currentIndex = 0;
+    let timer;
+
+    const show = (index) => {
+      currentIndex = index;
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle('is-active', slideIndex === index);
+      });
+      slider.dataset.activeSlide = slides[index]?.dataset.slideId || '';
+    };
+
+    const stop = () => {
+      if (timer) window.clearTimeout(timer);
+      timer = undefined;
+    };
+
+    const schedule = () => {
+      stop();
+      if (reducedMotion.matches || document.hidden) return;
+      const delay = currentIndex === 0 ? firstDuration : slideDuration;
+      timer = window.setTimeout(() => {
+        show((currentIndex + 1) % slides.length);
+        schedule();
+      }, delay);
+    };
+
+    const requestedSlide = new URLSearchParams(window.location.search).get('hero-slide');
+    const requestedIndex = requestedSlide
+      ? slides.findIndex((slide) => slide.dataset.slideId === requestedSlide)
+      : -1;
+
+    show(requestedIndex >= 0 ? requestedIndex : 0);
+
+    if (requestedIndex < 0) {
+      schedule();
+      document.addEventListener('visibilitychange', schedule);
+      reducedMotion.addEventListener('change', schedule);
+    }
+  };
+
+  document.querySelectorAll('[data-hero-slider]').forEach(initializeHeroSlider);
+</script>

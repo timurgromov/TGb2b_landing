@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-03-shared-hero-photo-slider",
+  "change_kind": "shared-hero-photo-slider",
+  "requested_visible_change": "Replace the single old hero portrait on both corporate routes with the same five selected current photographs.",
+  "expected_visible_delta": "The first smiling portrait is followed by four event photographs through a quiet dissolve while all hero copy and controls remain fixed.",
+  "checked_after_last_edit": true,
+  "attempt_number": 1,
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?hero-slide=01-smile",
+    "source_ref": "fresh local Astro candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "initial hero plus deterministic frame query",
+    "selector_or_slide_id": "[data-hero-slider], 01-smile through 05-gesture",
+    "action": "load the hero, observe the first frame, then allow autoplay or freeze a named frame with hero-slide"
+  },
+  "required_viewports": [
+    "390x844",
+    "767x900",
+    "768x900",
+    "769x900",
+    "1023x820",
+    "1024x820",
+    "1025x820",
+    "1180x820",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "one old portrait",
+      "after_signature": "five current frames; full-body event frame keeps the host and stage context inside the square mobile surface",
+      "observed_visible_result": "Autoplay advanced 01-smile to 02-stage after the configured first-frame interval; page width remained 390px.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "before_signature": "one old portrait",
+      "after_signature": "smiling current portrait fills the unchanged square hero frame",
+      "observed_visible_result": "Both routes render five stable slide IDs with non-zero media geometry.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "matrix_result": "22 route-viewport cases passed with zero horizontal-overflow or collapsed-slider failures.",
+  "motion_result": "With prefers-reduced-motion: reduce, both corporate and Jubilee sliders remained on 01-smile after 5.2 seconds.",
+  "media_result": "All published derivatives are AVIF/WebP at 640px and 1024px; strict media budget audit returned no warnings."
+}
