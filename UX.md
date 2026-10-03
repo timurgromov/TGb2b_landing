@@ -171,8 +171,9 @@ single portrait with five current photographs in one fixed order.
 - first frame is eager/high priority; later frames are lazy/low priority;
 - images are delivered as responsive AVIF with WebP fallback; original PNG
   files never enter `public/`;
-- autoplay pauses while the document is hidden and does not run when
-  `prefers-reduced-motion: reduce` is active;
+- autoplay pauses while the document is hidden; with
+  `prefers-reduced-motion: reduce`, photographs still change on schedule but
+  the opacity animation is removed;
 - stable `data-slide-id` values and the `hero-slide` query parameter provide a
   deterministic visual-QA state without changing the normal anonymous flow.
 

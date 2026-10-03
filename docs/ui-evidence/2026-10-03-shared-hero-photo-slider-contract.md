@@ -17,7 +17,8 @@
   either public tree.
 - Preserved invariants: existing square frame, gradients, H1, subtitle, tags,
   CTA destinations, route-specific wording, form and analytics.
-- Accessibility: no autoplay under reduced motion; autoplay pauses in a hidden
-  tab; the figure retains one descriptive accessible label.
+- Accessibility: reduced-motion mode keeps the photo sequence but switches
+  frames without the opacity animation; autoplay pauses in a hidden tab; the
+  figure retains one descriptive accessible label.
 - Required viewports: `390x844`, `767/768/769x900`, `1023/1024/1025x820`,
   `1180x820`, `1366x768`, `1440x900`, `1984x1046`.

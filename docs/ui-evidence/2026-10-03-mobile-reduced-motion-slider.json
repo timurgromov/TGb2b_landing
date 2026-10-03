@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-03-mobile-reduced-motion-slider",
+  "change_kind": "mobile-slider-behavior",
+  "requested_visible_change": "Keep the five-photo corporate hero slider changing on phones that request reduced motion.",
+  "expected_visible_delta": "At 390x844 with reduced motion enabled, the active frame changes from 01-smile to 02-stage after the configured first-frame interval without an opacity animation.",
+  "checked_after_last_edit": true,
+  "attempt_number": 2,
+  "candidate_diff_sha256": "a7a727d789d1137419833ecaa77740b71e2baf490a464100b53b9ec87cc870d2",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "fresh local Astro candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/ hero",
+    "state": "390x844 with prefers-reduced-motion: reduce",
+    "selector_or_slide_id": "[data-hero-slider], 01-smile to 02-stage",
+    "action": "load the route and wait 5.2 seconds"
+  },
+  "required_viewports": ["390x844"],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "01-smile remained active indefinitely when reduced motion was enabled",
+      "after_signature": "02-stage is active after 5.2 seconds and its computed transition duration is 0s",
+      "observed_visible_result": "Both corporate routes changed from 01-smile to 02-stage with five slides, non-zero 354x354 geometry, AVIF current sources and zero horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "motion_result": "Normal mode keeps the 650ms fade; reduced-motion mode changes the frame on schedule with transition-duration 0s."
+}
