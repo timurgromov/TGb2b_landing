@@ -28,4 +28,11 @@ heads as visible was incorrect.
 
 ## Release
 
-Pending commit, push, static publication and fresh production verification.
+- Runtime commit `039e1f2` is pushed to `origin/astro-migration`.
+- Static production commit `1072964` is pushed to `origin/gh-pages`; GitHub
+  Pages reports the build as `built`.
+- Fresh production visual checks passed on both routes at `390x844`, on the
+  seasonal route at `1440x900`, and on the root route at `1984x1046`.
+  Production serves `object-position: 50% 5%` on desktop and `50% 50%` on
+  mobile; complete heads and upper breathing space are visible. Console errors:
+  `0`.
