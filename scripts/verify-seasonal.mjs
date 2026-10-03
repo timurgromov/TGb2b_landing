@@ -65,6 +65,9 @@ expectText(rootHtml, '/assets/hero/slider/hero-01-smile-1024.webp', 'root hero W
 for (const slideId of heroSlideIds) {
   expectText(rootHtml, `data-slide-id=\"${slideId}\"`, `root hero slide ${slideId}`);
 }
+for (const slideId of heroSlideIds.slice(1)) {
+  expectText(rootHtml, `hero-${slideId}-1024.avif?v=crop-20261003a`, `root hero cache-busted crop ${slideId}`);
+}
 expectText(rootHtml, 'Перейти к новогодним корпоративам', 'root seasonal promo');
 expectText(rootHtml, 'data-testid="proof-cases"', 'root proof cases');
 expectText(rootHtml, 'data-testid="evening-flow"', 'root evening flow');
@@ -112,6 +115,9 @@ expectText(seasonalHtml, '/assets/hero/slider/hero-01-smile-1024.avif', 'seasona
 expectText(seasonalHtml, '/assets/hero/slider/hero-01-smile-1024.webp', 'seasonal hero WebP fallback');
 for (const slideId of heroSlideIds) {
   expectText(seasonalHtml, `data-slide-id=\"${slideId}\"`, `seasonal hero slide ${slideId}`);
+}
+for (const slideId of heroSlideIds.slice(1)) {
+  expectText(seasonalHtml, `hero-${slideId}-1024.avif?v=crop-20261003a`, `seasonal hero cache-busted crop ${slideId}`);
 }
 expectText(seasonalHtml, 'data-testid="service-formats"', 'seasonal formats');
 expectText(seasonalHtml, 'Ведущий + DJ + звук + два вокалиста', 'seasonal vocalists package title');

@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-03-hero-mobile-crop-correction",
+  "change_kind": "shared-hero-slider-photo-crops",
+  "status": "passed",
+  "requested_visible_change": "Correct the four owner-reported mobile Hero crops: raise slide 02 slightly, lower slides 03 and 05, and restore the complete head on slide 04.",
+  "expected_visible_delta": "The four deterministic slides keep balanced space above the hair while preserving the square Hero, copy overlay, order and slider behavior on both corporate routes.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "cb9b2616a97d346cba5c8afc0382cc288245501a470adccd6df7886268b91c17",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/novogodniy-korporativ/?hero-slide=04-grey-suit&crop-proof=20261003a",
+    "source_ref": "fresh local Astro candidate from the working tree",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/ shared corporate Hero",
+    "state": "public first screen with an exact requested Hero frame",
+    "selector_or_slide_id": "[data-hero-slider] and 02-microphone/03-full-length/04-grey-suit/05-gesture",
+    "action": "open each slide through ?hero-slide=<id>, wait for the 650ms dissolve, and inspect the rendered square"
+  },
+  "must_remain_unchanged": [
+    "01-smile slide and five-frame order",
+    "H1, subtitle, tags and CTA",
+    "square Hero geometry and autoplay timing",
+    "desktop two-column composition"
+  ],
+  "required_viewports": [
+    "375x812",
+    "390x844",
+    "430x932",
+    "767x900",
+    "768x900",
+    "769x900",
+    "1180x820",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "375x812",
+      "before_signature": "crop windows 02/03/04/05: 245/205/256/175px; slide 04 cut the hair",
+      "after_signature": "crop windows 02/03/04/05: 295/165/100/135px; active 04 square 339x339 and AVIF crop-20261003a",
+      "observed_visible_result": "The mobile Hero remains square and full-width within its container; the complete slide-04 hair silhouette is present.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "before_signature": "owner screenshots showed slide 02 too low, slides 03/05 too close to the top, and slide 04 clipped",
+      "after_signature": "all four exact IDs rendered settled opacity 1 from versioned 640 AVIF assets in a 354x354 square",
+      "observed_visible_result": "Slide 02 is raised moderately; slides 03 and 05 have clear top breathing space; slide 04 keeps the full head. Root parity also passed at 354x354.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "430x932",
+      "before_signature": "old slide-04 source crop began at y=256 and removed the top of the hair",
+      "after_signature": "new slide-04 source crop begins at y=100; rendered square 394x394; scrollWidth=430",
+      "observed_visible_result": "The larger mobile composition retains balanced space over the complete head and keeps the H1 readable.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "767x900",
+      "before_signature": "old intrinsic slide-04 asset used the clipped y=256 crop",
+      "after_signature": "new intrinsic slide-04 asset uses y=100 and renders in the 731x731 mobile square; scrollWidth=767",
+      "observed_visible_result": "The last pixel below the breakpoint keeps the complete head and no horizontal overflow.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "768x900",
+      "before_signature": "old intrinsic slide-04 asset used the clipped y=256 crop",
+      "after_signature": "new versioned 1024 AVIF uses y=100 and renders in the 732x732 square; scrollWidth=768",
+      "observed_visible_result": "The exact breakpoint remains a coherent square Hero with the full head visible.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "before_signature": "old slide-04 desktop asset clipped the hair at the upper image edge",
+      "after_signature": "new versioned 1024 AVIF renders in the 285x285 desktop square with y=100 source crop",
+      "observed_visible_result": "The first desktop pixel preserves the complete head and the two-column composition without overflow.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1180x820",
+      "before_signature": "old slide-04 asset clipped the top hair contour",
+      "after_signature": "new slide-04 1024 AVIF crop-20261003a renders at 484x484 with complete upper contour",
+      "observed_visible_result": "Windowed desktop keeps balanced portrait framing and the original text module geometry.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "before_signature": "old slide-04 asset clipped the top hair contour",
+      "after_signature": "new slide-04 versioned AVIF renders at 488x488; scrollWidth=1366",
+      "observed_visible_result": "The corrected portrait remains complete and aligned with the unchanged left Hero column.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "before_signature": "old slide-04 asset visibly ended inside the hair",
+      "after_signature": "new y=100 crop shows the complete hair with deliberate upper space in a 488x488 square",
+      "observed_visible_result": "Live-browser desktop inspection passed; copy, tags and both actions remain unchanged.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "before_signature": "old slide-04 asset visibly ended inside the hair",
+      "after_signature": "new versioned 1024 AVIF renders at 600x600 with complete head; scrollWidth=1984",
+      "observed_visible_result": "Wide desktop keeps the intended portrait composition and has no horizontal overflow.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 4,
+    "selected_variant": "02 top=295; 03 top=165; 04 top=100; 05 top=135",
+    "owner_approval_reference": "The owner supplied four mobile screenshots and specified the direction of every crop correction."
+  }
+}

@@ -7,13 +7,15 @@ const { alt } = Astro.props;
 
 const slides = [
   { id: '01-smile', label: 'Портрет Тимура Громова' },
-  { id: '02-microphone', label: 'Тимур Громов ведёт мероприятие' },
-  { id: '03-full-length', label: 'Тимур Громов на площадке мероприятия' },
-  { id: '04-grey-suit', label: 'Тимур Громов с микрофоном' },
-  { id: '05-gesture', label: 'Тимур Громов во время программы' }
+  { id: '02-microphone', label: 'Тимур Громов ведёт мероприятие', version: 'crop-20261003a' },
+  { id: '03-full-length', label: 'Тимур Громов на площадке мероприятия', version: 'crop-20261003a' },
+  { id: '04-grey-suit', label: 'Тимур Громов с микрофоном', version: 'crop-20261003a' },
+  { id: '05-gesture', label: 'Тимур Громов во время программы', version: 'crop-20261003a' }
 ];
 
 const imageSizes = '(max-width: 768px) calc(100vw - 36px), (max-width: 1180px) 50vw, min(45vw, 600px)';
+const assetUrl = (slide, width, format) =>
+  `/assets/hero/slider/hero-${slide.id}-${width}.${format}${slide.version ? `?v=${slide.version}` : ''}`;
 ---
 
 <figure
@@ -32,16 +34,16 @@ const imageSizes = '(max-width: 768px) calc(100vw - 36px), (max-width: 1180px) 5
     >
       <source
         type="image/avif"
-        srcset={`/assets/hero/slider/hero-${slide.id}-640.avif 640w, /assets/hero/slider/hero-${slide.id}-1024.avif 1024w`}
+        srcset={`${assetUrl(slide, 640, 'avif')} 640w, ${assetUrl(slide, 1024, 'avif')} 1024w`}
         sizes={imageSizes}
       />
       <source
         type="image/webp"
-        srcset={`/assets/hero/slider/hero-${slide.id}-640.webp 640w, /assets/hero/slider/hero-${slide.id}-1024.webp 1024w`}
+        srcset={`${assetUrl(slide, 640, 'webp')} 640w, ${assetUrl(slide, 1024, 'webp')} 1024w`}
         sizes={imageSizes}
       />
       <img
-        src={`/assets/hero/slider/hero-${slide.id}-1024.webp`}
+        src={assetUrl(slide, 1024, 'webp')}
         alt=""
         width="1024"
         height="1024"
