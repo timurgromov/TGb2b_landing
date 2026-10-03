@@ -179,6 +179,7 @@ rejectText(rootHtml, 'Новогодние корпоративы 2026', 'root s
 rejectText(rootHtml, 'Новогодний сезон 2026', 'root seasonal promo');
 
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
+  expectText(html, '/assets/photos/evening-flow/corporate-evening-flow-wide-v2-768.avif', `${label} responsive evening-flow photograph`);
   expectText(html, 'data-testid="corporate-format-photo"', `${label} current format photograph`);
   expectText(html, '/assets/photos/feature/corporate-format-wide-v4-768.avif', `${label} responsive format photograph`);
   rejectText(html, 'corporate-workflow-expanded-v2', `${label} rejected expanded format photograph`);

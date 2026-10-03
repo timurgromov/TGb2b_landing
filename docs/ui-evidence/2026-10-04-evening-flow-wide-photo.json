@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-04-evening-flow-wide-photo",
+  "change_kind": "shared-responsive-photo-replacement",
+  "status": "passed",
+  "requested_visible_change": "Replace the photograph before the benefits section with the owner-supplied wide 57565.png composition without cropping its left or right edge.",
+  "expected_visible_delta": "Both corporate routes show the new five-person wide photograph; all foreground people and heads remain visible, desktop crops only vertically, and mobile preserves the complete 2:1 frame.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "f1103f14000f9ada1a65c82bcf4a36b940a4c1a96a8d2ed2440c8e32be12cd6d",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/ and http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "staged Astro candidate using responsive derivatives of owner-supplied 57565.png",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public pages without form submission",
+    "selector_or_slide_id": "#evening-flow .evening-flow__media img",
+    "action": "Inspect the photograph immediately before the evening-flow CTA and benefits section for source, edge retention, vertical crop, focal-point visibility and overflow."
+  },
+  "must_remain_unchanged": [
+    "evening-flow cards, copy and CTA",
+    "following benefits section",
+    "outer banner width, border and radius",
+    "package photograph and gallery",
+    "route parity"
+  ],
+  "required_viewports": [
+    "390x844",
+    "767x900",
+    "768x900",
+    "769x900",
+    "1024x768",
+    "1180x820",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "corporate-evening-flow 3:2 photograph",
+      "after_signature": "corporate-evening-flow-wide-v2 AVIF; 357x178; object-fit contain; complete 2:1 source frame",
+      "observed_visible_result": "Both routes show all five foreground people, both source edges and every head; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "767x900",
+      "before_signature": "corporate-evening-flow 3:2 mobile/tablet frame",
+      "after_signature": "wide-v2 AVIF; 729x365; object-fit contain; complete source frame",
+      "observed_visible_result": "The last width below the breakpoint retains the complete source and has overflow 0 on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x900",
+      "before_signature": "corporate-evening-flow 3:2 mobile/tablet frame",
+      "after_signature": "wide-v2 AVIF; 730x365; object-fit contain; complete source frame",
+      "observed_visible_result": "The breakpoint width retains all people and both horizontal source edges on both routes; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "before_signature": "old 3:2 photograph at the desktop rule",
+      "after_signature": "wide-v2 AVIF; 719x300; object-fit cover; object-position 50% 30%; horizontal crop 0",
+      "observed_visible_result": "Desktop begins with only a vertical crop; all five people and both side edges remain visible; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "before_signature": "old 3:2 interaction photograph",
+      "after_signature": "wide-v2 AVIF; 974x328; object-position 50% 30%; horizontal crop 0",
+      "observed_visible_result": "Both routes preserve the complete source width and safe headroom; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x820",
+      "before_signature": "old 3:2 interaction photograph",
+      "after_signature": "wide-v2 AVIF; 998x378; object-position 50% 30%; horizontal crop 0",
+      "observed_visible_result": "The new source fills the unchanged frame using a vertical-only crop; overflow 0 on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "before_signature": "old 3:2 interaction photograph",
+      "after_signature": "wide-v2 AVIF; 1118x430; object-position 50% 30%; horizontal crop 0",
+      "observed_visible_result": "All five foreground people remain visible with balanced headroom and no side crop; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "before_signature": "corporate-evening-flow-1536 AVIF, 1118x430, 3:2 source",
+      "after_signature": "wide-v2 AVIF; 1118x430; object-position 50% 30%; horizontal crop 0",
+      "observed_visible_result": "Live-browser visual review shows the five-person composition, complete left and right edges, comfortable headroom and unchanged CTA/benefits placement.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "before_signature": "old 3:2 interaction photograph in the wide banner",
+      "after_signature": "wide-v2 AVIF; 1378x430; object-position 50% 30%; horizontal crop 0",
+      "observed_visible_result": "Wide-desktop visual review confirms all five people and both horizontal source edges remain visible; only top/bottom are cropped; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 1,
+    "selected_variant": "Owner-supplied wide 57565.png composition at 50% 30% desktop positioning and complete 2:1 mobile presentation.",
+    "owner_approval_reference": "Owner instruction in chat on 2026-10-04: use 57565.png across its full width, never crop the sides, and crop only top/bottom as needed for a visually balanced result."
+  },
+  "media_audit": "Original 2 MiB PNG remains outside public. New 768px and 1536px AVIF/WebP derivatives are ready and each file is below 105 KiB. Two unrelated legacy-format warnings remain.",
+  "production_submission": "not performed"
+}
