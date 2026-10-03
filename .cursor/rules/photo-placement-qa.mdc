@@ -1,0 +1,21 @@
+---
+description: Mandatory visual crop and centering QA for every photo placement
+alwaysApply: true
+---
+
+# Photo placement QA
+
+Whenever a photo is added, replaced, recropped or moved to another UI container:
+
+1. List every changed photo and every real container or route variant where it is rendered. A shared source image does not reduce this to one check.
+2. Publish only optimized responsive AVIF/WebP derivatives; keep the original outside `public/`.
+3. Inspect the rendered result in every affected container at mobile `390x844`, desktop `1440x900`, and at `B-1/B/B+1` around every relevant layout breakpoint. Add route-specific short or tall viewports when the component changes shape there.
+4. Review every photo, not only the first or currently active slide:
+   - the full head, hair, face, hands, microphone, instrument and other meaningful objects are not accidentally cut;
+   - the subject is neither pressed against an edge nor lost in excessive empty space;
+   - centering, focal point and top/side breathing space look intentional;
+   - text, CTA and controls do not cover a face or another key object;
+   - `object-fit`, `object-position`, aspect ratio and masks remain correct in every container.
+5. For sliders and galleries, select each frame deterministically and inspect it after the transition settles.
+6. Record before/after visual evidence with the exact route, container and viewport. CSS values, DOM presence, build success, lack of overflow and one viewport are not visual acceptance.
+7. Before reporting completion: local build -> complete visual matrix -> commit/push/deploy when runtime changed -> fresh production review of every affected route and container. The owner must not be the first person to discover a bad crop.
