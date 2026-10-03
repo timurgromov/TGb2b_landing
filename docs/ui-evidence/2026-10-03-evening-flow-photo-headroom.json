@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-03-evening-flow-photo-headroom",
+  "change_kind": "responsive-photo-crop-correction",
+  "requested_visible_change": "Restore the complete central head and visible upper breathing space in the shared corporate evening-flow photo.",
+  "expected_visible_delta": "Desktop focal position moves from 50% 25% to 50% 5%; all standing heads remain complete while mobile keeps the full 3:2 frame.",
+  "checked_after_last_edit": true,
+  "attempt_number": 2,
+  "candidate_diff_sha256": "659ba6cd8fa7b42edede4983766e892f1e9522633c022722d2fb6b03a3fcaf73",
+  "served_candidate": {
+    "url": "http://localhost:4321/ and http://localhost:4321/novogodniy-korporativ/",
+    "source_ref": "staged CSS candidate in the shared corporate site",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public page at the evening-flow photo without form submission",
+    "selector_or_slide_id": "#evening-flow .evening-flow__media img",
+    "action": "Open each route at #evening-flow and visually inspect the complete photo crop."
+  },
+  "must_remain_unchanged": [
+    "photo asset and responsive derivatives",
+    "photo container geometry and mobile full-frame rule",
+    "five evening stages and route-specific CTA behavior"
+  ],
+  "required_viewports": [
+    "390x844", "767x900", "768x900", "769x900", "1179x900",
+    "1180x900", "1181x900", "1366x768", "1440x900", "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "Mobile full-frame crop was 50% 50%, while the shared desktop crop still clipped the central head.",
+      "after_signature": "Mobile remains 50% 50% and the staged shared desktop rule is corrected to 50% 5%.",
+      "observed_visible_result": "Both routes preserve the complete 3:2 mobile composition; all standing heads and the CTA are visible.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "767x900",
+      "before_signature": "The mobile interval was correct but belonged to a candidate with a broken desktop crop.",
+      "after_signature": "The mobile interval remains full-frame while the desktop rule is independently corrected.",
+      "observed_visible_result": "Both routes show the full 3:2 image at 729x486 with no horizontal overflow.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "768x900",
+      "before_signature": "At the breakpoint the image used 50% 50%, but the adjacent desktop interval used the rejected 50% 25% crop.",
+      "after_signature": "At the breakpoint the full image remains 50% 50%; immediately above it the corrected 50% 5% rule applies.",
+      "observed_visible_result": "The complete 730x487 image remains visible on both routes without overflow.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "before_signature": "Desktop object-position was 50% 25% and removed the upper safe area.",
+      "after_signature": "Desktop object-position is 50% 5% in the 719x300 container.",
+      "observed_visible_result": "Visual inspection confirms the complete central hairline and clear space above every standing head on both routes.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1179x900",
+      "before_signature": "The 50% 25% crop pulled the photo down and risked clipping the central head.",
+      "after_signature": "The 50% 5% crop keeps the original upper safe area in the 998x377 container.",
+      "observed_visible_result": "All standing heads remain complete and the document width equals 1179px on both routes.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1180x900",
+      "before_signature": "The desktop crop used 50% 25% at the layout boundary.",
+      "after_signature": "The boundary crop uses 50% 5% with unchanged 998x378 geometry.",
+      "observed_visible_result": "Both routes retain full head silhouettes, CTA placement and zero horizontal overflow.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1181x900",
+      "before_signature": "Immediately above the boundary, 50% 25% removed too much of the image top.",
+      "after_signature": "Immediately above the boundary, 50% 5% restores upper breathing space in the 1131x378 image.",
+      "observed_visible_result": "All heads and the photo boundary are visually clean on both routes; document width equals viewport width.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "before_signature": "The released 50% 25% crop could make the central hair touch or cross the upper edge.",
+      "after_signature": "The staged 50% 5% crop retains a visible band above the central hair in the 1118x430 frame.",
+      "observed_visible_result": "Visual inspection confirms complete heads, unchanged card/CTA layout and no overflow on both routes.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "before_signature": "User screenshot and live baseline showed the central head clipped with object-position 50% 25%.",
+      "after_signature": "Fresh candidate shows the complete central head and upper background with object-position 50% 5%.",
+      "observed_visible_result": "In-app visual review confirms every standing head is complete, the 1118x430 banner remains balanced and the CTA is unchanged.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "before_signature": "The widest layout amplified the 50% 25% top crop and visibly cut the central head.",
+      "after_signature": "The same 1378x430 frame uses 50% 5% and keeps the full hairline plus breathing space.",
+      "observed_visible_result": "Wide-desktop visual inspection confirms complete heads, centred media, unchanged CTA and zero overflow on both routes.",
+      "delta_visible": true, "target_visible": true, "preserved_invariants_passed": true, "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "Move the desktop focal position upward without changing container height.",
+    "owner_approval_reference": "Owner required that photo crops never cut heads in any container."
+  }
+}
