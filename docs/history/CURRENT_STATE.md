@@ -19,7 +19,7 @@
 - autoplay advances after `4.5s` for the first frame and every `4s` afterwards with a `650ms` crossfade; it pauses in a hidden tab; when reduced motion is requested, photographs still change on schedule but without the fade;
 - `?hero-slide=<slide-id>` is a deterministic visual-QA override and is not exposed in the public interface;
 - local build, seasonal contract checks, media-budget audit and the shared desktop/mobile responsive matrix passed;
-- the mobile reduced-motion regression has been corrected locally and verified at `390x844` on both routes: `01-smile` changed to `02-stage` after `5.2s`, transition duration was `0s`, horizontal overflow and console errors were `0`; release commit and fresh production verification are pending;
+- the mobile reduced-motion regression is released from source commit `218ecb1` to production commit `3d5e209`; fresh `390x844` checks passed on both routes in normal and reduced-motion modes: `01-smile` changed to `02-stage` after `5.2s`, reduced-motion transition duration was `0s`, horizontal overflow and console errors were `0`;
 - fresh production checks passed on both routes at `1440x900` and `390x844`: five slides, square non-zero hero geometry, AVIF delivery, preserved route-specific H1 and zero horizontal overflow; live autoplay advanced from `01-smile` to `02-stage`, asset requests returned `200` with correct AVIF/WebP MIME types and browser console errors were `0`.
 
 ## New Year 2026 landing

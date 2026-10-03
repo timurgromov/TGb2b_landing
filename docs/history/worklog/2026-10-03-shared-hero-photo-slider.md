@@ -30,6 +30,12 @@ Updated only the hero portrait area on `/` and `/novogodniy-korporativ/`. Copy, 
   `/novogodniy-korporativ/`: active slide changed from `01-smile` to
   `02-stage` after `5.2s`, computed transition duration was `0s`, horizontal
   overflow and console errors were `0`.
+- Source commit `218ecb1` is pushed to `origin/astro-migration`; static output
+  commit `3d5e209` is deployed from `origin/gh-pages`, and the Pages build
+  completed successfully.
+- Fresh production checks at `390x844` passed on both routes in normal and
+  reduced-motion modes: HTTP `200`, five slides, AVIF delivery, `01-smile` to
+  `02-stage` after `5.2s`, zero horizontal overflow and zero console errors.
 
 ## Release
 
