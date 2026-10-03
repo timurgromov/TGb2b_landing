@@ -26,3 +26,15 @@
   frames visible in the expected order on both routes; non-zero square geometry,
   AVIF selected, horizontal overflow `0`, console warnings/errors `0`.
 - No form was submitted.
+
+## Release
+
+- Source commit: `92d72a4` on `origin/astro-migration`.
+- Production commit: `e5dab84` on `origin/gh-pages`.
+- Fresh production verification passed on `/` and
+  `/novogodniy-korporativ/` at `1440x900` and `390x844`: five matching visible
+  frames, AVIF delivery, preserved H1, non-zero square geometry, horizontal
+  overflow `0` and console warnings/errors `0`.
+- Live autoplay advanced from `01-smile` to `02-microphone` after `5.4s` on
+  both routes. The removed `hero-03-guests` asset returns HTTP `404`; the new
+  `hero-04-grey-suit` asset returns HTTP `200 image/avif`.

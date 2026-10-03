@@ -20,7 +20,8 @@
 - `?hero-slide=<slide-id>` is a deterministic visual-QA override and is not exposed in the public interface;
 - local build, seasonal contract checks, media-budget audit and the shared desktop/mobile responsive matrix passed;
 - the earlier reduced-motion release remains unchanged; the corrected second-frame identifier is now `02-microphone`;
-- local numbered-order checks passed on both routes at `1440x900` and `390x844`: every deterministic frame rendered its matching distinct AVIF, square geometry was non-zero, route-specific H1 was preserved, horizontal overflow was `0` and browser console errors were `0`.
+- the numbered-order correction is released from source commit `92d72a4` to production commit `e5dab84`;
+- fresh production checks passed on both routes at `1440x900` and `390x844`: all five deterministic frames rendered their matching distinct AVIF, square geometry was non-zero, route-specific H1 was preserved, horizontal overflow was `0` and browser console errors were `0`; live autoplay advanced from `01-smile` to `02-microphone` after `5.4s`.
 
 ## New Year 2026 landing
 
