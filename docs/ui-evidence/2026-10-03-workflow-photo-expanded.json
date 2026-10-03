@@ -4,10 +4,10 @@
   "change_kind": "shared-responsive-photo-replacement",
   "status": "passed",
   "requested_visible_change": "Replace the tight workflow banner with the owner-supplied expanded photograph on the corporate site.",
-  "expected_visible_delta": "The shared banner shows more of Timur's torso and surrounding venue while preserving complete headroom on desktop and mobile.",
-  "attempt_number": 1,
+  "expected_visible_delta": "The shared banner keeps its outer size but shows more of Timur's torso and surrounding venue by slightly zooming out the sharp photograph inside a subdued same-image backdrop.",
+  "attempt_number": 2,
   "checked_after_last_edit": true,
-  "candidate_diff_sha256": "8178c78734cc83aa47fa5539358826a439c90f4c99389c6649a84a9549019e83",
+  "candidate_diff_sha256": "a5fd0ab32423e492bc4686f0f7e23b5f7100cbc7fad7c3d71f871c0492d45c9a",
   "served_candidate": {
     "url": "http://127.0.0.1:4321/ and http://127.0.0.1:4321/novogodniy-korporativ/",
     "source_ref": "staged Astro candidate",
@@ -39,7 +39,7 @@
       "viewport": "390x844",
       "viewport_source": "Codex in-app browser; innerWidth=390; innerHeight=844",
       "before_signature": "old corporate-workflow 3:2 asset; tight subject crop",
-      "after_signature": "new expanded-v2 AVIF; rendered 352x235; object-position 50% 50%",
+      "after_signature": "new expanded-v2 AVIF; rendered 352x235 without desktop backdrop; object-position 50% 50%",
       "observed_visible_result": "Both routes show the complete head and more of the torso; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
@@ -49,8 +49,8 @@
     {
       "viewport": "768x900",
       "viewport_source": "Codex in-app browser; innerWidth=768; innerHeight=900",
-      "before_signature": "old corporate-workflow 3:2 asset",
-      "after_signature": "new expanded-v2 AVIF; rendered 730x487",
+      "before_signature": "first candidate used the expanded photo as a full-bleed cover image",
+      "after_signature": "new expanded-v2 AVIF; rendered 730x487 without desktop backdrop",
       "observed_visible_result": "Both routes retain the full mobile composition at the breakpoint; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
@@ -60,8 +60,8 @@
     {
       "viewport": "769x900",
       "viewport_source": "Codex in-app browser; innerWidth=769; innerHeight=900",
-      "before_signature": "old corporate-workflow 3:2 asset with wide crop",
-      "after_signature": "new expanded-v2 AVIF; rendered 731x300",
+      "before_signature": "first candidate filled the 731x300 image area and still cropped too much vertically",
+      "after_signature": "same outer container; sharp image rendered 673x300 over a subdued same-image backdrop",
       "observed_visible_result": "The desktop crop begins cleanly and keeps the complete head on both routes; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
@@ -71,8 +71,8 @@
     {
       "viewport": "1024x820",
       "viewport_source": "Codex in-app browser; innerWidth=1024; innerHeight=820",
-      "before_signature": "old corporate-workflow 3:2 asset",
-      "after_signature": "new expanded-v2 AVIF; rendered 986x328",
+      "before_signature": "first candidate filled the 986x328 image area",
+      "after_signature": "same outer container; sharp image rendered 828x328 over a subdued same-image backdrop",
       "observed_visible_result": "Both routes show expanded lateral context and stable banner geometry; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
@@ -82,8 +82,8 @@
     {
       "viewport": "1180x820",
       "viewport_source": "Codex in-app browser; innerWidth=1180; innerHeight=820",
-      "before_signature": "old corporate-workflow 3:2 asset",
-      "after_signature": "new expanded-v2 AVIF; rendered 998x378",
+      "before_signature": "first candidate filled the 998x378 image area",
+      "after_signature": "same outer container; sharp image rendered 918x378 over a subdued same-image backdrop",
       "observed_visible_result": "The complete head and more torso remain visible on both routes; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
@@ -93,8 +93,8 @@
     {
       "viewport": "1440x900",
       "viewport_source": "Codex in-app browser; innerWidth=1440; innerHeight=900",
-      "before_signature": "corporate-workflow-1536.avif; natural 1179x786; rendered 1118x430; object-position 50% 18%",
-      "after_signature": "corporate-workflow-expanded-v2-1536.avif; natural 1180x590; rendered 1118x430; object-position 50% 18%",
+      "before_signature": "first candidate filled the 1118x430 image area; the owner reported insufficient visible scale change",
+      "after_signature": "same outer container; sharp expanded-v2 image rendered 1029x430 over a subdued same-image backdrop",
       "observed_visible_result": "The banner visibly includes more torso and venue while retaining natural headroom on both routes; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
@@ -104,8 +104,8 @@
     {
       "viewport": "1984x1046",
       "viewport_source": "Codex in-app browser; innerWidth=1984; innerHeight=1046",
-      "before_signature": "old corporate-workflow 3:2 asset",
-      "after_signature": "new expanded-v2 AVIF; rendered 1426x430",
+      "before_signature": "first candidate filled the 1426x430 image area and cropped the 2:1 source vertically",
+      "after_signature": "same outer container; sharp expanded-v2 image rendered 1198x430 over a subdued same-image backdrop",
       "observed_visible_result": "The widest crop keeps the complete head, shoulders and expanded body framing on both routes; horizontal overflow 0.",
       "delta_visible": true,
       "target_visible": true,
@@ -119,6 +119,6 @@
     "horizontal_overflow_failures": 0,
     "mechanical_runner_note": "One reused Codex in-app browser tab checked seven exact viewports on each shared route."
   },
-  "media_audit": "New AVIF/WebP derivatives are 25–71 KiB; the original stays outside public. Existing unrelated legacy-format warnings remain unchanged.",
+  "media_audit": "New AVIF/WebP derivatives are 25–71 KiB; the original stays outside public. The same AVIF is reused for the backdrop without a second asset. Existing unrelated legacy-format warnings remain unchanged.",
   "production_submission": "not performed"
 }
