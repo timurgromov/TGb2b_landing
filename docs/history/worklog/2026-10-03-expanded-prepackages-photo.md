@@ -11,16 +11,15 @@ Date: 2026-10-03
 
 ## Change
 
-- Replaced the photograph immediately before the package cards with one
-  seamless AI-outpainted version based on the owner-supplied `4444.png`, while
-  keeping the existing outer container.
-- The subject is framed farther away and more torso is visible. The banquet
-  interior is continued across the image itself, so the former blurred side
-  strips and separate CSS backdrop are gone. Mobile uses a `3:2` crop.
+- Replaced the photograph immediately before the package cards with the
+  owner-supplied expanded version, keeping the existing outer container.
+- Desktop uses the wider sharp frame over a subdued backdrop from the same
+  photograph; mobile uses the full `3:2` crop. This shows more of the subject
+  without enlarging the block.
 - Removed the separate wide photograph that previously appeared after
   `Порядок работы` and immediately before `Моменты с событий`.
-- Added `768/1536` AVIF/WebP derivatives. The generated PNG source remains
-  outside `public/`; every delivery file is between `32 KiB` and `73 KiB`.
+- Added `768/1536` AVIF/WebP derivatives. The original remains outside
+  `public/`; every delivery file is between `25 KiB` and `71 KiB`.
 
 ## Verification
 
@@ -39,5 +38,5 @@ Date: 2026-10-03
 
 ## Release
 
-- Runtime source commit: `230a1f0` on `origin/astro-migration`.
-- Static production commit: `e4f8bf4` on `origin/gh-pages`.
+- Runtime source commit: `eccdbda` on `origin/astro-migration`.
+- Static production commit: `b96f6c7` on `origin/gh-pages`.
