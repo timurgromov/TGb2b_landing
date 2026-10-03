@@ -237,6 +237,30 @@
     background: transparent;           /* фон кадра виден по бокам */
   }
 
+  .photo-card picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .section-photo-wrap {
+    margin: -4px auto 20px;
+    padding: 0 18px;
+  }
+
+  .section-photo {
+    border-radius: 16px;
+  }
+
+  .section-photo img,
+  .section-photo-wrap--formats .section-photo img,
+  .section-photo-wrap--workflow .section-photo img {
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center;
+  }
+
   /* 5) Стрелки/контролы — ПОСРЕДИНЕ ФОТО, перебиваем все конфликты */
   .photos-btn {
     position: absolute ;
