@@ -164,6 +164,15 @@ An actual production submission is intentionally not part of automated verificat
   horizontal crop `0`, horizontal overflow `0`, no console errors, the removed
   pre-gallery photograph stayed absent, and no form was submitted. Runtime
   source commit: `481aff1`; production commit: `a13ebe9`.
+- wide evening-flow photo correction: the shared photograph after the five
+  `Как проходит корпоратив` stages and immediately before `Ваши преимущества —
+  мои гарантии` now uses responsive derivatives of the owner-supplied
+  `57565.png`. Desktop preserves both horizontal source edges and crops only
+  vertically at `50% 30%`; mobile renders the complete 2:1 composition. Fresh
+  production checks at `390x844` and `1440x900` on both routes confirmed the
+  new AVIF, horizontal crop `0`, horizontal overflow `0`, no browser console
+  warnings or errors and no form submission. Runtime source commit: `8643a86`;
+  production commit: `391287c`.
 
 ## YandexDirectGrowth handoff
 
