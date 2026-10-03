@@ -28,5 +28,10 @@ on both corporate routes without changing its five stages, CTA or page order.
 
 ## Release
 
-Pending source commit, static `gh-pages` publication and fresh production
-verification.
+- Source commit `84c093f` is pushed to `origin/astro-migration`.
+- Static production commit `fae6c12` is pushed to `origin/gh-pages`; GitHub
+  Pages reports the build as `built`.
+- Fresh live checks passed on both `/` and `/novogodniy-korporativ/` at
+  `1440x900` and `390x844`: the AVIF decoded, the complete image and CTA were
+  visible, document width matched viewport width, and console errors were `0`.
+- No real form was submitted.
