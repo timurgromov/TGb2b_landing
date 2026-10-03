@@ -2476,6 +2476,26 @@ body { overflow-x: hidden; }
   line-height: 1.65;
 }
 
+.evening-flow__media {
+  margin: 16px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+  border-radius: 20px;
+  background: #15161a;
+}
+
+.evening-flow__media picture,
+.evening-flow__media img {
+  display: block;
+  width: 100%;
+}
+
+.evening-flow__media img {
+  height: clamp(300px, 32vw, 430px);
+  object-fit: cover;
+  object-position: 50% 43%;
+}
+
 .evening-flow__cta {
   margin-top: 28px;
   text-align: center;
@@ -3128,6 +3148,16 @@ body { overflow-x: hidden; }
 
   .evening-flow__card:hover {
     transform: none;
+  }
+
+  .evening-flow__media {
+    border-radius: 16px;
+  }
+
+  .evening-flow__media img {
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-position: center;
   }
 
   .evening-flow__cta .btn {
