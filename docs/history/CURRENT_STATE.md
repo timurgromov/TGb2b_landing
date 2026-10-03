@@ -10,19 +10,25 @@
 - framework: Astro, static output;
 - production domain: `https://corp.timurgromov.ru/`.
 
-## Current-photo content rollout live
+## Curated corporate gallery live
 
 - Both corporate routes now share two additional current-photo context blocks:
   one between benefits and packages, and one between workflow and the gallery.
-- The first six gallery positions use the approved current-photo selection;
-  the remaining existing archive frames stay in place.
-- Originals remain outside `public/`; responsive AVIF/WebP delivery files pass
-  the strict media budget.
-- Source commit `0458a07` is live as production commit `676c717`.
-- Local build, seasonal contract, two-route 11-view responsive matrix and
-  rendered mobile/desktop crop review passed. Fresh live checks on both routes
-  at `390x844` and `1440x900` confirmed decoded AVIF assets, preserved H1,
-  horizontal overflow `0` and browser console errors `0`; no form was submitted.
+- The 14-frame gallery no longer starts with six similar photoshoot images.
+  Current portraits are mixed with documentary event frames; the first four
+  are the new full-height stage photograph, a guest-interaction frame, the
+  black-and-white portrait with two guests and a dance-floor frame.
+- The former first stage portrait, the redundant smiling portrait and the
+  repeated close-up are not rendered in the curated sequence.
+- Originals remain outside `public/`; the three newly supplied photographs are
+  delivered as `640/1024` AVIF/WebP derivatives. Every file is below `117 KiB`.
+- Runtime source commit `3b9f9bf` is live as production commit `f061497`.
+- Local build and seasonal contract passed. The complete two-route 11-viewport
+  matrix passed with 22/22 results, 14 photos and horizontal overflow `0`.
+  Fresh production review passed on `/` at `1440x900` and on
+  `/novogodniy-korporativ/` at `390x844`: the expected first four frames render,
+  new AVIF files decode, removed duplicates are absent and console errors are
+  `0`; no form was submitted.
 
 ## Shared current-photo hero slider
 
@@ -109,7 +115,7 @@ An actual production submission is intentionally not part of automated verificat
 - live showreel overlay refinement: the labelled `Смотреть шоу-рил · 3:45` action is centred 16px above the lower image edge on a dark translucent glass surface, restoring the music-summary card's even lower edge. Root passed at `1280x720`; seasonal passed at `390x844` with a 46px single-line control, no face covered, no overflow, no console errors and working native playback after click.
 - final showreel control: both routes now use a 62px circular orange Play control centred in the artist photo and a compact `Смотреть шоу-рил · 3:45` caption 14px from the lower-left edge. The redundant visible `Состав третьего пакета` heading is removed. On click the whole custom overlay disappears and native video controls remain; root passed live at `1280x720`, seasonal at `390x844`, with no horizontal overflow or console errors.
 - showreel Play pulse: the same circular control now uses the existing two-second `pulse` animation from the corporate video controls. Both live routes served `style.css?v=astro_15`; root passed at `1280x720` and seasonal at `390x844`, with a centred control, preserved caption placement, no horizontal overflow and no console errors.
-- current runtime source commit: `039e1f2` on `origin/astro-migration`; current production commit: `1072964` on `origin/gh-pages`.
+- current runtime source commit: `3b9f9bf` on `origin/astro-migration`; current production commit: `f061497` on `origin/gh-pages`.
 - current-photo evening-flow release: both `/` and `/novogodniy-korporativ/` now show the same current photo of Timur after the five `Как проходит корпоратив` stages and before the existing CTA. Only responsive AVIF/WebP derivatives are public; the original stays outside `public/`. Local build, seasonal contract, strict media audit and breakpoint review passed. Fresh production checks at `1440x900` and `390x844` on both routes confirmed the decoded AVIF, preserved CTA, no horizontal overflow and no console errors; no form was submitted.
 - evening-flow crop correction released: the first desktop crop incorrectly used `object-position: 50% 25%` and clipped the central subject's head in the wide banner. Both routes now serve `50% 5%` on desktop; mobile remains full-frame at `50% 50%`. Local checks covered `769x900`, `1440x900`, `1984x1046`, `390x844` and the complete two-route boundary matrix. Fresh production visual checks passed on both routes at `390x844`, the seasonal route at `1440x900` and the root route at `1984x1046`: complete heads, preserved CTA, no horizontal overflow and no console errors.
 - self-hosted corporate-video check: both routes now contain the same four `https://media.213-176-94-245.sslip.io/corporate-ground/*.mp4` URLs and contain no Boomstream URL or SDK. The first video loaded and played on both routes with `readyState=4`, `paused=false` and no console errors; public range requests return `206 video/mp4`. The `corporate-ground` directory occupies `404M` on the VPS, which has `23G` free.
