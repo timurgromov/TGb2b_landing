@@ -10,10 +10,33 @@
 - framework: Astro, static output;
 - production domain: `https://corp.timurgromov.ru/`.
 
+## Expanded pre-packages photo live
+
+- On both `/` and `/novogodniy-korporativ/`, the owner-supplied expanded
+  photograph is placed after the benefits CTA and immediately before the three
+  package cards.
+- The photo keeps the existing outer container. Desktop shows the wider sharp
+  frame over a subdued backdrop from the same image; mobile uses the full `3:2`
+  frame, so more of the subject is visible without changing the section width.
+- The former standalone photograph between `Порядок работы` and `Моменты с
+  событий` is removed completely; the gallery now follows the workflow section
+  directly.
+- The original remains outside `public/`. Responsive `768/1536` AVIF/WebP
+  derivatives are between `25 KiB` and `71 KiB`.
+- Local build, seasonal contract, diff check and UI-evidence validation passed.
+  The complete local two-route matrix passed at `390`, `768`, `769`, `1024`,
+  `1180`, `1440` and `1984` CSS widths with horizontal overflow `0`.
+- Fresh production checks passed on both routes at `1440x900` and `390x844`:
+  the expanded AVIF renders before `#formats`, the retired workflow photo is
+  absent, `#photos` follows the workflow section directly, horizontal overflow
+  and console errors are `0`; no form was submitted.
+- Runtime source commit `eccdbda` is live as production commit `b96f6c7`.
+
 ## Curated corporate gallery live
 
-- Both corporate routes now share two additional current-photo context blocks:
-  one between benefits and packages, and one between workflow and the gallery.
+- Both corporate routes share one current-photo context block between benefits
+  and packages. The former second context block between workflow and the
+  gallery has been removed.
 - The 14-frame gallery no longer starts with six similar photoshoot images.
   Current portraits are mixed with documentary event frames; the first four
   are the new full-height stage photograph, a guest-interaction frame, the
