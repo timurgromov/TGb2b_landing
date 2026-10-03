@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "change_id": "2026-10-03-current-photo-content-rollout",
+  "change_kind": "shared-responsive-photo-rollout",
+  "requested_visible_change": "Publish the complete previously approved current-photo selection instead of only one photograph.",
+  "expected_visible_delta": "Both corporate routes gain two wide contextual photographs and six current gallery frames while preserving all existing copy and actions.",
+  "checked_after_last_edit": true,
+  "attempt_number": 2,
+  "candidate_diff_sha256": "470c1978fb8241902c7e10bd54f00bb5a7dd87763f6c55f44882b01a11179a66",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/ and http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "staged Astro candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public pages without form submission",
+    "selector_or_slide_id": "#corporate-format-photo, #corporate-workflow-photo and #photos",
+    "action": "Review both context photographs and all six new gallery frames on both routes."
+  },
+  "must_remain_unchanged": [
+    "hero slider and route-specific hero copy",
+    "packages, music program, cases, letters, FAQ and forms",
+    "existing evening-flow photograph and CTA",
+    "route parity for shared corporate content"
+  ],
+  "required_viewports": [
+    "390x844", "767x900", "768x900", "769x900", "1023x820",
+    "1024x820", "1025x820", "1180x820", "1366x768", "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {"viewport":"390x844","observed_visible_result":"Both routes render complete 3:2 context photos and a contained first gallery portrait; overflow 0.","delta_visible":true,"target_visible":true,"preserved_invariants_passed":true,"console_errors":[]},
+    {"viewport":"767x900","observed_visible_result":"Both routes keep both photo blocks and all six current gallery sources; overflow 0.","delta_visible":true,"target_visible":true,"preserved_invariants_passed":true,"console_errors":[]},
+    {"viewport":"768x900","observed_visible_result":"The mobile breakpoint keeps the complete photo composition on both routes; overflow 0.","delta_visible":true,"target_visible":true,"preserved_invariants_passed":true,"console_errors":[]},
+    {"viewport":"769x900","observed_visible_result":"The wide crop begins cleanly above the mobile breakpoint; both heads remain in frame; overflow 0.","delta_visible":true,"target_visible":true,"preserved_invariants_passed":true,"console_errors":[]},
+    {"viewport":"1023x820","observed_visible_result":"Both context photos and the current gallery remain contained on both routes; overflow 0.","delta_visible":true,"target_visible":true,"preserved_invariants_passed":true,"console_errors":[]},
+    {"viewport":"1024x820","observed_visible_result":"Both context photos and the current gallery remain contained on both routes; overflow 0.","delta_visible":true,"target_visible":true,"preserved_invariants_passed":true,"console_errors":[]},
+    {"viewport":"1025x820","observed_visible_result":"The desktop interval starts without a geometry jump or crop regression; overflow 0.","delta_visible":true,"target_visible":true,"preserved_invariants_passed":true,"console_errors":[]},
+    {"viewport":"1180x820","observed_visible_result":"Both routes retain the two context photos and six current gallery sources; overflow 0.","delta_visible":true,"target_visible":true,"preserved_invariants_passed":true,"console_errors":[]},
+    {"viewport":"1366x768","observed_visible_result":"Wide photos remain within the content lane and all portrait gallery frames are contained; overflow 0.","delta_visible":true,"target_visible":true,"preserved_invariants_passed":true,"console_errors":[]},
+    {"viewport":"1440x900","observed_visible_result":"Rendered review confirms natural headroom at object-position 50% 18% and a balanced four-card gallery viewport; overflow 0.","delta_visible":true,"target_visible":true,"preserved_invariants_passed":true,"console_errors":[]},
+    {"viewport":"1984x1046","observed_visible_result":"Both routes stay capped at the page maximum with all targets present; overflow 0.","delta_visible":true,"target_visible":true,"preserved_invariants_passed":true,"console_errors":[]}
+  ],
+  "responsive_matrix": {
+    "checked_viewports": 22,
+    "routes": 2,
+    "horizontal_overflow_failures": 0,
+    "mechanical_runner_note": "One reused Codex in-app browser tab checked 11 exact viewports on each route; the temporary viewport was reset afterward."
+  },
+  "media_audit": "Strict media-budget audit passed; originals remain outside public and all derivatives are below 125 KiB.",
+  "production_submission": "not performed"
+}

@@ -165,8 +165,8 @@ expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 бло�
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист', 'seasonal guitar package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_16', 'main site stylesheet');
-expectText(seasonalHtml, '/mobile.css?v=astro_6', 'main site mobile stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_17', 'main site stylesheet');
+expectText(seasonalHtml, '/mobile.css?v=astro_7', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/script.js?v=astro_5', 'main site script');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
 expectText(seasonalHtml, '/seasonal.js?v=20261001b', 'seasonal script');
@@ -177,6 +177,14 @@ expectText(rootHtml, 'aria-label="Новогодние корпоративы"',
 expectText(rootHtml, '>Новогодний сезон</p>', 'root seasonal promo');
 rejectText(rootHtml, 'Новогодние корпоративы 2026', 'root seasonal promo');
 rejectText(rootHtml, 'Новогодний сезон 2026', 'root seasonal promo');
+
+for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
+  expectText(html, 'data-testid="corporate-format-photo"', `${label} current format photograph`);
+  expectText(html, 'data-testid="corporate-workflow-photo"', `${label} current workflow photograph`);
+  expectText(html, '/assets/photos/feature/corporate-format-768.avif', `${label} responsive format photograph`);
+  expectText(html, '/assets/photos/feature/corporate-workflow-768.avif', `${label} responsive workflow photograph`);
+  expectText(html, '/assets/photos/gal/current/current-01-stage-640.avif', `${label} current gallery photographs`);
+}
 
 expectText(privacyHtml, 'Политика конфиденциальности', 'privacy route');
 expectText(privacyHtml, 'Согласие на обработку персональных данных', 'privacy route');

@@ -181,3 +181,37 @@ Required regression viewports: `390x844`, `767/768/769x900`,
 `1023/1024/1025x820`, `1180x820`, `1366x768`, `1440x900`, `1984x1046`.
 Both routes must show five slides, preserve their exact H1/CTA context and have
 no horizontal overflow or console errors.
+
+## Current-photo content rollout
+
+- Change ID: `2026-10-03-current-photo-content-rollout`.
+- Requested visible change: use every owner-approved current photograph from
+  the reviewed `1. Корп` shortlist instead of stopping after the first
+  evening-flow image.
+- Surfaces: `/` and `/novogodniy-korporativ/`; anonymous public state.
+- Canonical source: existing `EveningFlow` wide-media treatment and existing
+  `Gallery` scroll-snap/lightbox mechanics. No new card or slider system is
+  introduced.
+- Exact targets:
+  - a wide current photo between benefits and packages;
+  - a second wide current photo between workflow and gallery;
+  - the first six gallery positions use the six approved current portraits;
+  - existing `Как проходит корпоратив`, packages, copy, CTAs and the final
+    eight gallery photographs remain unchanged.
+- Baseline visible signature: both routes contain no
+  `[data-testid="corporate-format-photo"]` or
+  `[data-testid="corporate-workflow-photo"]`; gallery positions 1–6 resolve to
+  `/assets/photos/gal/P1.webp` through `P6.webp`.
+- Expected visible signature: both routes render the two shared wide photos and
+  gallery positions 1–6 resolve to responsive AVIF/WebP files under
+  `/assets/photos/gal/current/`.
+- Media contract: originals remain outside `public/`; wide inserts use
+  `768/1536` derivatives and gallery images use `640/1024` derivatives.
+- Crop contract: mobile wide inserts show the complete `3:2` frame; desktop may
+  use a shallow crop only after head, hair, hands, focal point and breathing
+  space have been visually checked. Portrait gallery images use `contain`, so
+  the complete person remains visible.
+- Required viewports after the last edit: `390x844`, `767x900`, `768x900`,
+  `769x900`, `1023x820`, `1024x820`, `1025x820`, `1180x820`, `1366x768`,
+  `1440x900`, `1984x1046` on both routes. No horizontal overflow or console
+  errors are allowed.

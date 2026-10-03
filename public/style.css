@@ -952,12 +952,51 @@ body {
   box-shadow:0 8px 32px rgba(255,106,61,0.2);
   transform:translateY(-2px);
 }
+.photo-card picture{
+  display:block;
+  width:100%;
+  height:100%;
+}
 .photo-card img{
   width:100%; height:100%;
   object-fit:contain;                     /* без обрезки */
   background:transparent;                 /* УБИРАЕМ ЧЁРНЫЙ ФОН */
   display:block;
   transition: opacity 0.2s ease;         /* ПЛАВНАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ */
+}
+
+.section-photo-wrap {
+  width: min(100%, calc(var(--content-max-wide) + 36px));
+  margin: -12px auto 28px;
+  padding: 0 18px;
+  box-sizing: border-box;
+}
+
+.section-photo {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+  border-radius: 20px;
+  background: #15161a;
+}
+
+.section-photo picture,
+.section-photo img {
+  display: block;
+  width: 100%;
+}
+
+.section-photo img {
+  height: clamp(300px, 32vw, 430px);
+  object-fit: cover;
+}
+
+.section-photo-wrap--formats .section-photo img {
+  object-position: 50% 18%;
+}
+
+.section-photo-wrap--workflow .section-photo img {
+  object-position: 50% 18%;
 }
 
 .photos-btn{

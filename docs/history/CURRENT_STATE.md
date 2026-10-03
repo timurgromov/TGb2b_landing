@@ -10,6 +10,18 @@
 - framework: Astro, static output;
 - production domain: `https://corp.timurgromov.ru/`.
 
+## Current-photo content rollout pending release
+
+- Both corporate routes now share two additional current-photo context blocks:
+  one between benefits and packages, and one between workflow and the gallery.
+- The first six gallery positions use the approved current-photo selection;
+  the remaining existing archive frames stay in place.
+- Originals remain outside `public/`; responsive AVIF/WebP delivery files pass
+  the strict media budget.
+- Local build, seasonal contract, two-route 11-view responsive matrix and
+  rendered mobile/desktop crop review passed. Release and fresh production
+  verification are still pending.
+
 ## Shared current-photo hero slider
 
 - `/` and `/novogodniy-korporativ/` use one shared five-frame portrait slider in the existing hero photo area;

@@ -10,7 +10,15 @@ import { photos } from '@data/corporate';
     <div class="photos-track" tabindex="0">
       {photos.map((photo) => (
         <figure class="photo-card" data-image-modal>
-          <img src={photo.src} alt={photo.alt} loading={photo.loading as 'eager' | 'lazy'} decoding="async" fetchpriority={photo.fetchpriority as 'high' | undefined} />
+          {'avifSrcset' in photo ? (
+            <picture>
+              <source srcset={photo.avifSrcset} sizes={photo.sizes} type="image/avif" />
+              <source srcset={photo.srcset} sizes={photo.sizes} type="image/webp" />
+              <img src={photo.src} srcset={photo.srcset} sizes={photo.sizes} alt={photo.alt} loading={photo.loading as 'eager' | 'lazy'} decoding="async" fetchpriority={photo.fetchpriority as 'high' | undefined} />
+            </picture>
+          ) : (
+            <img src={photo.src} alt={photo.alt} loading={photo.loading as 'eager' | 'lazy'} decoding="async" fetchpriority={photo.fetchpriority as 'high' | undefined} />
+          )}
         </figure>
       ))}
     </div>

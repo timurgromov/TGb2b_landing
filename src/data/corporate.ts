@@ -170,15 +170,35 @@ export const workflowSteps = [
   ['Мероприятие', 'Всё по плану: комфорт, атмосфера и результат.']
 ];
 
-export const photos = Array.from({ length: 14 }, (_, index) => {
-  const number = index + 1;
-  return {
-    src: `/assets/photos/gal/P${number}.webp`,
-    alt: `Момент ${number}`,
-    loading: number === 1 ? 'eager' : 'lazy',
-    fetchpriority: number === 1 ? 'high' : undefined
-  };
-});
+const currentPhotos = [
+  ['current-01-stage', 'Тимур Громов ведёт программу на сцене'],
+  ['current-02-smile-mic', 'Тимур Громов с микрофоном во время корпоратива'],
+  ['current-03-gesture', 'Тимур Громов обращается к гостям'],
+  ['current-04-door', 'Тимур Громов встречает гостей перед программой'],
+  ['current-05-portrait', 'Тимур Громов на площадке мероприятия'],
+  ['current-06-closeup', 'Портрет Тимура Громова на корпоративной площадке']
+] as const;
+
+export const photos = [
+  ...currentPhotos.map(([file, alt], index) => ({
+    src: `/assets/photos/gal/current/${file}-1024.webp`,
+    srcset: `/assets/photos/gal/current/${file}-640.webp 640w, /assets/photos/gal/current/${file}-1024.webp 1024w`,
+    avifSrcset: `/assets/photos/gal/current/${file}-640.avif 640w, /assets/photos/gal/current/${file}-1024.avif 1024w`,
+    sizes: '(max-width: 768px) calc(100vw - 36px), 420px',
+    alt,
+    loading: index === 0 ? 'eager' : 'lazy',
+    fetchpriority: index === 0 ? 'high' : undefined
+  })),
+  ...Array.from({ length: 8 }, (_, index) => {
+    const number = index + 7;
+    return {
+      src: `/assets/photos/gal/P${number}.webp`,
+      alt: `Момент ${number}`,
+      loading: 'lazy' as const,
+      fetchpriority: undefined
+    };
+  })
+];
 
 const letterOrder = [1, 2, 11, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13];
 

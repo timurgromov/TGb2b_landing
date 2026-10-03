@@ -1,0 +1,49 @@
+---
+interface Props {
+  variant: 'formats' | 'workflow';
+}
+
+const { variant } = Astro.props;
+
+const photos = {
+  formats: {
+    base: '/assets/photos/feature/corporate-format',
+    alt: 'Тимур Громов ведёт корпоративную программу',
+    testId: 'corporate-format-photo'
+  },
+  workflow: {
+    base: '/assets/photos/feature/corporate-workflow',
+    alt: 'Тимур Громов с микрофоном на мероприятии',
+    testId: 'corporate-workflow-photo'
+  }
+} as const;
+
+const photo = photos[variant];
+---
+
+<div id={photo.testId} class={`section-photo-wrap section-photo-wrap--${variant}`} data-testid={photo.testId}>
+  <figure class="section-photo sr">
+    <picture>
+      <source
+        type="image/avif"
+        srcset={`${photo.base}-768.avif 768w, ${photo.base}-1536.avif 1536w`}
+        sizes="(max-width: 768px) calc(100vw - 36px), 1180px"
+      />
+      <source
+        type="image/webp"
+        srcset={`${photo.base}-768.webp 768w, ${photo.base}-1536.webp 1536w`}
+        sizes="(max-width: 768px) calc(100vw - 36px), 1180px"
+      />
+      <img
+        src={`${photo.base}-1536.webp`}
+        srcset={`${photo.base}-768.webp 768w, ${photo.base}-1536.webp 1536w`}
+        sizes="(max-width: 768px) calc(100vw - 36px), 1180px"
+        width="1536"
+        height="1024"
+        loading="lazy"
+        decoding="async"
+        alt={photo.alt}
+      />
+    </picture>
+  </figure>
+</div>

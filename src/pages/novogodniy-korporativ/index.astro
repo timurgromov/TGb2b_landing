@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Benefits from '@components/Benefits.astro';
 import CaseProofs from '@components/CaseProofs.astro';
+import ContextPhoto from '@components/ContextPhoto.astro';
 import EveningFlow from '@components/EveningFlow.astro';
 import FAQ from '@components/FAQ.astro';
 import Footer from '@components/Footer.astro';
@@ -86,6 +87,7 @@ const serviceSchema = {
     <VideoCases />
     <EveningFlow seasonal />
     <Benefits />
+    <ContextPhoto variant="formats" />
     <ServiceFormats seasonal />
     <MusicProgram seasonal />
     <CaseProofs seasonal />
@@ -120,6 +122,7 @@ const serviceSchema = {
       </div>
     </section>
 
+    <ContextPhoto variant="workflow" />
     <Gallery />
     <Letters />
     <FAQ />
