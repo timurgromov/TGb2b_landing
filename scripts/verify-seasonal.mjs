@@ -183,7 +183,12 @@ for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   expectText(html, 'data-testid="corporate-workflow-photo"', `${label} current workflow photograph`);
   expectText(html, '/assets/photos/feature/corporate-format-768.avif', `${label} responsive format photograph`);
   expectText(html, '/assets/photos/feature/corporate-workflow-768.avif', `${label} responsive workflow photograph`);
-  expectText(html, '/assets/photos/gal/current/current-01-stage-640.avif', `${label} current gallery photographs`);
+  expectText(html, '/assets/photos/gal/current/current-07-stage-floor-640.avif', `${label} first gallery photograph`);
+  expectText(html, '/assets/photos/gal/P2.webp', `${label} documentary gallery photograph`);
+  expectText(html, '/assets/photos/gal/current/current-09-with-guests-640.avif', `${label} third gallery photograph`);
+  expectText(html, '/assets/photos/gal/current/current-08-gray-mic-640.avif', `${label} current gallery portrait`);
+  rejectText(html, '/assets/photos/gal/current/current-02-smile-mic-', `${label} duplicate smiling portrait`);
+  rejectText(html, '/assets/photos/gal/current/current-06-closeup-', `${label} duplicate close-up portrait`);
 }
 
 expectText(privacyHtml, 'Политика конфиденциальности', 'privacy route');

@@ -182,12 +182,11 @@ Required regression viewports: `390x844`, `767/768/769x900`,
 Both routes must show five slides, preserve their exact H1/CTA context and have
 no horizontal overflow or console errors.
 
-## Current-photo content rollout
+## Curated current-photo gallery
 
-- Change ID: `2026-10-03-current-photo-content-rollout`.
-- Requested visible change: use every owner-approved current photograph from
-  the reviewed `1. Корп` shortlist instead of stopping after the first
-  evening-flow image.
+- Change ID: `2026-10-03-curated-current-photo-gallery`.
+- Requested visible change: mix current portraits with documentary event
+  photographs instead of showing a visually repetitive photoshoot sequence.
 - Surfaces: `/` and `/novogodniy-korporativ/`; anonymous public state.
 - Canonical source: existing `EveningFlow` wide-media treatment and existing
   `Gallery` scroll-snap/lightbox mechanics. No new card or slider system is
@@ -195,16 +194,17 @@ no horizontal overflow or console errors.
 - Exact targets:
   - a wide current photo between benefits and packages;
   - a second wide current photo between workflow and gallery;
-  - the first six gallery positions use the six approved current portraits;
-  - existing `Как проходит корпоратив`, packages, copy, CTAs and the final
-    eight gallery photographs remain unchanged.
-- Baseline visible signature: both routes contain no
-  `[data-testid="corporate-format-photo"]` or
-  `[data-testid="corporate-workflow-photo"]`; gallery positions 1–6 resolve to
-  `/assets/photos/gal/P1.webp` through `P6.webp`.
-- Expected visible signature: both routes render the two shared wide photos and
-  gallery positions 1–6 resolve to responsive AVIF/WebP files under
-  `/assets/photos/gal/current/`.
+  - the gallery opens with the current full-height stage photograph;
+  - position 2 is a documentary guest-interaction photograph;
+  - position 3 is the black-and-white portrait with two guests;
+  - current portraits and documentary event frames continue in a varied rhythm;
+  - near-duplicate smiling/gesturing portraits are reduced to one gesturing
+    frame, and the repeated close-up portrait is not rendered.
+- Expected visible signature: both routes render the same curated 14-image
+  sequence. The first four frames are current stage, documentary guests,
+  current group portrait and documentary dance floor. No more than one current
+  portrait appears without an event photograph separating it from the next
+  current portrait.
 - Media contract: originals remain outside `public/`; wide inserts use
   `768/1536` derivatives and gallery images use `640/1024` derivatives.
 - Crop contract: mobile wide inserts show the complete `3:2` frame; desktop may
