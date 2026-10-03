@@ -156,6 +156,14 @@ An actual production submission is intentionally not part of automated verificat
   at `390x844` and `1440x900` on both routes confirmed the original AVIF,
   absent backdrop and unchanged block order. Runtime source commit: `948d026`;
   production commit: `fa5b3ad`.
+- full-width corporate format photo correction: both corporate routes now use
+  responsive derivatives of the owner-supplied wide `4444.png` composition in
+  the same pre-packages container. Desktop keeps the full left/right source
+  edges and crops only vertically; mobile preserves the complete 2:1 frame.
+  Fresh production checks at `390x844` and `1440x900` on both routes confirmed
+  horizontal crop `0`, horizontal overflow `0`, no console errors, the removed
+  pre-gallery photograph stayed absent, and no form was submitted. Runtime
+  source commit: `481aff1`; production commit: `a13ebe9`.
 
 ## YandexDirectGrowth handoff
 
