@@ -173,6 +173,15 @@ An actual production submission is intentionally not part of automated verificat
   new AVIF, horizontal crop `0`, horizontal overflow `0`, no browser console
   warnings or errors and no form submission. Runtime source commit: `8643a86`;
   production commit: `391287c`.
+- evening-flow photograph replacement: the same shared position on both
+  corporate routes now uses responsive derivatives of the owner-supplied
+  `232323.png` instead of the preceding `wide-v2` composition. Mobile preserves
+  the complete 2:1 frame; desktop retains both horizontal source edges and
+  crops only vertically at `50% 30%`. Local checks covered nine viewports from
+  `390x844` through `1984x1046` on both routes. Fresh production checks at
+  `390x844` and `1440x900` on both routes confirmed `wide-v3`, horizontal crop
+  `0`, horizontal overflow `0`, no console warnings or errors and no form
+  submission. Runtime source commit: `8c00d61`; production commit: `477cb20`.
 
 ## YandexDirectGrowth handoff
 
