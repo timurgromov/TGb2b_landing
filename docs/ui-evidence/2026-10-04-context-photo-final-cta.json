@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-04-context-photo-final-cta",
+  "change_kind": "shared-responsive-section-reorder",
+  "status": "passed",
+  "requested_visible_change": "Move the second solo corporate event photograph away from the package comparison and place it after FAQ immediately before each corporate route's final CTA.",
+  "expected_visible_delta": "Benefits lead directly into packages, while the unchanged context photo becomes a visual transition between FAQ and the final CTA.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "fb50ffda783da8788a285f8426ff725b088275eaf01203f92fa988d952189381",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4322/ and http://127.0.0.1:4322/novogodniy-korporativ/",
+    "source_ref": "staged Astro candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public pages without form submission",
+    "selector_or_slide_id": "#corporate-format-photo",
+    "action": "Inspect final DOM order, photo crop contract, final CTA presence and horizontal overflow."
+  },
+  "must_remain_unchanged": [
+    "existing photo derivative and crop rules",
+    "service packages and their direct placement after benefits",
+    "music, cases, workflow, gallery, letters and FAQ",
+    "final CTA copy and form behaviour",
+    "Jubilee event-flow photograph and its stage context"
+  ],
+  "required_viewports": [
+    "390x844",
+    "767x900",
+    "768x900",
+    "769x900",
+    "1024x768",
+    "1440x900"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser candidate matrix",
+      "before_signature": "format photo directly before packages",
+      "after_signature": "benefits, formats, FAQ, context photo, final CTA; photo 390x178; contain 50% 50%",
+      "observed_visible_result": "Both corporate routes preserve the complete 2:1 frame and show the CTA after the photo; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "767x900",
+      "viewport_source": "Codex in-app browser candidate matrix",
+      "before_signature": "format photo directly before packages",
+      "after_signature": "photo after FAQ; 767x367; contain 50% 50%",
+      "observed_visible_result": "Both routes retain the complete source frame at the last sub-tablet width; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x900",
+      "viewport_source": "Codex in-app browser candidate matrix",
+      "before_signature": "format photo directly before packages",
+      "after_signature": "photo after FAQ; 768x367; contain 50% 50%",
+      "observed_visible_result": "Both routes preserve the complete source frame at the breakpoint; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "viewport_source": "Codex in-app browser candidate matrix",
+      "before_signature": "format photo directly before packages",
+      "after_signature": "photo after FAQ; 769x302; cover 50% 18%",
+      "observed_visible_result": "Both routes enter the established desktop crop while keeping the final CTA next; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "Codex in-app browser candidate matrix",
+      "before_signature": "format photo directly before packages",
+      "after_signature": "photo after FAQ; 1024x330; cover 50% 18%",
+      "observed_visible_result": "Both routes retain the existing desktop composition in the final-conversion sequence; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser candidate matrix",
+      "before_signature": "format photo directly before packages",
+      "after_signature": "photo after FAQ; 1156x432; cover 50% 18%",
+      "observed_visible_result": "Desktop visual review confirms the picture introduces the final ask without interrupting the package comparison; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 1,
+    "selected_variant": "Existing corporate-format-wide-v4 photograph in the final-conversion position.",
+    "owner_approval_reference": "Owner instruction in chat on 2026-10-04 to move the second large photograph according to the recommended sequence."
+  },
+  "media_audit": "No new or replacement asset. The existing public AVIF/WebP derivative remains unchanged.",
+  "production_submission": "not performed"
+}

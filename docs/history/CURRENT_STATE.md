@@ -10,6 +10,20 @@
 - framework: Astro, static output;
 - production domain: `https://corp.timurgromov.ru/`.
 
+## Context-photo relocation candidate (pending production)
+
+- On `/` and `/novogodniy-korporativ/`, the second solo event photograph is
+  now after FAQ and immediately before the final CTA. Packages now begin
+  immediately after the benefits section.
+- The asset and crop rules are unchanged: `contain` preserves the complete
+  2:1 frame through `768px`; desktop retains the existing `cover` composition
+  at `50% 18%`.
+- Jubilee was inspected independently and retains its one event-flow image
+  after its five stages. It has no second comparable photograph to move.
+- Local build, contract checks, a six-viewport in-app-browser sweep per
+  corporate route and desktop/mobile visual review passed; production release
+  is pending.
+
 ## Expanded pre-packages photo live
 
 - On both `/` and `/novogodniy-korporativ/`, the owner-supplied expanded
