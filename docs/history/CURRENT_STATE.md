@@ -1,6 +1,6 @@
 # Current state
 
-Дата: 3 октября 2026 года.
+Дата: 4 октября 2026 года.
 
 ## Source
 
@@ -182,6 +182,16 @@ An actual production submission is intentionally not part of automated verificat
   `390x844` and `1440x900` on both routes confirmed `wide-v3`, horizontal crop
   `0`, horizontal overflow `0`, no console warnings or errors and no form
   submission. Runtime source commit: `8c00d61`; production commit: `477cb20`.
+- final evening-flow photograph replacement: the shared photograph immediately
+  before `Ваши преимущества — мои гарантии` now uses responsive derivatives of
+  the owner-supplied final `куку.png` composition on both corporate routes.
+  Mobile preserves the complete 2:1 frame; desktop keeps both horizontal source
+  edges and crops only vertically at `50% 30%`. Local checks covered nine
+  viewports from `390x844` through `1984x1046` on both routes. Fresh production
+  checks at `390x844` and `1440x900` on both routes confirmed `wide-v4`, complete
+  heads, horizontal crop `0`, horizontal overflow `0`, no console warnings or
+  errors and no form submission. Runtime source commit: `976a324`; production
+  commit: `4b5761d`.
 
 ## YandexDirectGrowth handoff
 
