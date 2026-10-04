@@ -60,7 +60,7 @@ Job: за несколько минут убедиться, что ведущи�
 - job: после выбора пакета понять объём музыкальной части, состав и отличие от полной кавер-группы;
 - location: shared section сразу после `#formats`, перед `#proof-cases` на `/` и `/novogodniy-korporativ/`;
 - headline: `Три музыкальных блока по 30 минут`;
-- CTA: `Обсудить музыкальный состав`; на `/` открывает существующую контактную модалку, на сезонной странице ведёт к `#proverit-datu`;
+- CTA: `Обсудить музыкальный состав`; на `/` открывает панель выбора связи, на сезонной странице ведёт к `#proverit-datu`;
 - desktop: две равные колонки в одном широком контейнере — объяснение и подтверждающее фото состава слева, три конфигурации справа; фото не выше `360px`, чтобы не вытеснять сравнение составов; ниже нейтральная строка про бэклайн;
 - mobile: одна колонка; сначала заголовок и объём программы, затем фото высотой около `250px`, три конфигурации, пояснение и CTA во всю ширину;
 - visual direction: существующие тёмные поверхности, тонкая рамка, оранжевый акцент и те же радиусы; фото располагается внутри уже существующей информационной карточки, без новой галереи, градиента, счётчика или отдельной seasonal-стилизации;
@@ -215,3 +215,11 @@ no horizontal overflow or console errors.
   `769x900`, `1023x820`, `1024x820`, `1025x820`, `1180x820`, `1366x768`,
   `1440x900`, `1984x1046` on both routes. No horizontal overflow or console
   errors are allowed.
+
+## CTA stage 1 contract — 2026-10-05
+
+- Target: `/` and `/novogodniy-korporativ/`, sticky contact control after `scrollY > innerHeight`, shared contact panel, in-page contact CTA, and shared materials card immediately after `Порядок работы`.
+- Baseline observed live at actual 1280×720: the sticky control is an icon-only WhatsApp link; seasonal primary CTA goes to `#proverit-datu`; no materials card exists. The existing contact/video forms show success only after backend HTTP 201.
+- Expected visible delta: labelled `Связаться` button; compact desktop dialog or bottom sheet at <=768px containing personal Telegram, phone, and `Оставить номер`; text-only materials card on both routes. The last option opens an existing confirmed form; materials selection is recorded as `materials_request` in the lead comment.
+- Preserved: header WhatsApp, seasonal `Проверить дату` anchor and qualified form, contact details, visual palette, hero/media/layout, other routes.
+- States and access: open, close button/backdrop/Escape, focus return, focus containment, background scroll lock; mobile safe-area padding. No automatic popup, PDF or delivery-time promise. Check 390×844 and 1280×720 plus narrow 320px and windowed 1024px.

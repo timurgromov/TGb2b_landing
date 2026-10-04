@@ -14,7 +14,8 @@ import Modals from '@components/Modals.astro';
 import MusicProgram from '@components/MusicProgram.astro';
 import ServiceFormats from '@components/ServiceFormats.astro';
 import VideoCases from '@components/VideoCases.astro';
-import WhatsAppFab from '@components/WhatsAppFab.astro';
+import ContactChoice from '@components/ContactChoice.astro';
+import MaterialsRequest from '@components/MaterialsRequest.astro';
 import { contact } from '@data/corporate';
 
 const canonical = 'https://corp.timurgromov.ru/novogodniy-korporativ/';
@@ -121,6 +122,7 @@ const serviceSchema = {
       </div>
     </section>
 
+    <MaterialsRequest />
     <Gallery />
     <Letters />
     <FAQ />
@@ -187,5 +189,5 @@ const serviceSchema = {
 
   <Footer />
   <Modals />
-  <WhatsAppFab />
+  <ContactChoice />
 </BaseLayout>

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-05-corporate-cta-stage-1",
+  "change_kind": "contact-cta",
+  "status": "passed",
+  "requested_visible_change": "Contact choices and a materials request on both corporate routes",
+  "expected_visible_delta": "A labelled sticky button, a Telegram/phone/callback choice panel and a shared materials card after workflow",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "696e258aa3cf99c6b8f37e5340d677592bc1e3b94e6388e435a7eff1eda2b5e3",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/ and http://127.0.0.1:4321/novogodniy-korporativ/",
+    "source_ref": "staged working tree",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "hero contact CTA, sticky CTA after scroll, and materials request after workflow",
+    "selector_or_slide_id": "[data-contact-open], [data-materials-card]",
+    "action": "open panel from in-page CTA; close with Escape; choose callback without real submission"
+  },
+  "must_remain_unchanged": [
+    "seasonal Проверить дату anchor and detailed form",
+    "header WhatsApp actions",
+    "corporate confirmed form success only after HTTP 201"
+  ],
+  "required_viewports": ["320x700", "390x844", "1280x720"],
+  "observations": [
+    {
+      "viewport": "320x700",
+      "viewport_source": "isolated Playwright viewport; innerWidth=320; innerHeight=700",
+      "before_signature": "HEAD used icon-only WhatsApp FAB and had no materials card",
+      "after_signature": "bottom sheet x=0 y=235 width=320 height=465; three actions each 58px; overflow=false",
+      "observed_visible_result": "All contact actions fit on the narrow screen and the panel reaches the viewport bottom",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "isolated Playwright viewport; innerWidth=390; innerHeight=844",
+      "before_signature": "HEAD used icon-only WhatsApp FAB and had no contact choice panel",
+      "after_signature": "bottom sheet x=0 y=424 width=390 height=420; three actions each 58px; overflow=false",
+      "observed_visible_result": "Personal Telegram, phone and callback are readable; materials callback opens the existing form with materials_request source",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "viewport_source": "isolated Playwright viewport; innerWidth=1280; innerHeight=720",
+      "before_signature": "live baseline: icon-only sticky WhatsApp link and no materials card",
+      "after_signature": "centered dialog x=420 y=127 width=440 height=466; three actions each 55px; overflow=false",
+      "observed_visible_result": "Compact contact dialog is centered over the existing Hero; closing restores focus and scrolling",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {"variants_shown": 0, "selected_variant": "", "owner_approval_reference": "owner-approved CTA stage 1 plan"}
+}

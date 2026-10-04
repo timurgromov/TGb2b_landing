@@ -1,0 +1,24 @@
+---
+import { contact } from '@data/corporate';
+---
+<button type="button" class="contact-choice-fab" data-contact-open data-contact-fab aria-haspopup="dialog" aria-controls="contact-choice-dialog">
+  <span aria-hidden="true">✦</span><span>Связаться</span>
+</button>
+
+<div class="contact-choice" id="contact-choice-dialog" hidden>
+  <div class="contact-choice__backdrop" data-contact-close></div>
+  <section class="contact-choice__sheet" role="dialog" aria-modal="true" aria-labelledby="contact-choice-title" aria-describedby="contact-choice-description" tabindex="-1">
+    <button type="button" class="contact-choice__close" data-contact-close aria-label="Закрыть панель">×</button>
+    <p class="contact-choice__eyebrow">ТИМУР ГРОМОВ · НАПРЯМУЮ</p>
+    <h2 id="contact-choice-title">Обсудим ваш корпоратив</h2>
+    <p id="contact-choice-description" data-contact-description>Выберите удобный способ связи. Я отвечу лично.</p>
+    <div class="contact-choice__actions">
+      <a class="contact-choice__action contact-choice__action--primary" href={contact.telegramUrl} target="_blank" rel="noopener noreferrer">Написать в Telegram <span aria-hidden="true">↗</span></a>
+      <a class="contact-choice__action" href={contact.phoneHref} data-contact-phone>Позвонить <span>{contact.phoneHuman}</span></a>
+      <button type="button" class="contact-choice__action" data-contact-callback>Оставить номер <span aria-hidden="true">→</span></button>
+    </div>
+    <p class="contact-choice__note">Открытие Telegram не отправляет заявку автоматически.</p>
+  </section>
+</div>
+<button type="button" hidden data-modal="contact-popup" data-contact-form-trigger></button>
+<button type="button" hidden data-modal="video-consult-modal" data-contact-video-trigger></button>

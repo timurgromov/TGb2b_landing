@@ -63,6 +63,7 @@ const {
     )}
 
     {includeMainAssets && <link rel="stylesheet" href="/style.css?v=astro_19" />}
+    {includeMainAssets && <link rel="stylesheet" href="/contact-choice.css?v=2" />}
     {includeMainAssets && <link rel="stylesheet" href="/mobile.css?v=astro_9" media="(max-width: 768px)" />}
     {pageCss && <link rel="stylesheet" href={pageCss} />}
 
@@ -96,7 +97,8 @@ const {
   </head>
   <body>
     <slot />
-    {includeMainAssets && <script src="/script.js?v=astro_5" is:inline></script>}
+    {includeMainAssets && <script src="/script.js?v=astro_7" is:inline></script>}
+    {includeMainAssets && <script src="/contact-choice.js?v=9" is:inline></script>}
     {pageScript && <script src={pageScript} is:inline></script>}
   </body>
 </html>

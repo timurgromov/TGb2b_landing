@@ -777,7 +777,7 @@ async function sendCorporateLead(name, phone, source = 'popup') {
 
   // Добавляем обработчики для всех телефонных ссылок и кнопок
   document.addEventListener('DOMContentLoaded', function() {
-    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]:not([data-contact-phone])');
     
     phoneLinks.forEach(link => {
       link.addEventListener('click', handlePhoneClick);
@@ -1076,150 +1076,6 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   });
 })();
 
-// ===== POP-UP МОДАЛКА "Чек-лист для HR" =====
-(function initArticlePopup() {
-  function init() {
-    const modal = document.getElementById('article-popup-modal');
-    const form = document.getElementById('article-popup-form');
-    const successMsg = document.getElementById('article-popup-success');
-    const nameInput = document.getElementById('article-name');
-    const phoneInput = document.getElementById('article-phone');
-    const status = form?.querySelector('[data-lead-status]');
-    const submit = form?.querySelector('button[type="submit"]');
-    const closeBtn = modal?.querySelector('.modal__close');
-    const overlay = modal?.querySelector('.modal__overlay');
-    const triggers = document.querySelectorAll('[data-modal="article-popup"]');
-    
-    if (!modal || !form) return;
-
-    // Маска для телефона
-    function formatPhone(input) {
-      let value = input.value.replace(/\D/g, '');
-      if (value.startsWith('8')) value = '7' + value.slice(1);
-      if (!value.startsWith('7')) value = '7' + value;
-      value = value.slice(0, 11);
-      
-      let formatted = '+7';
-      if (value.length > 1) formatted += ' (' + value.slice(1, 4);
-      if (value.length > 4) formatted += ') ' + value.slice(4, 7);
-      if (value.length > 7) formatted += '-' + value.slice(7, 9);
-      if (value.length > 9) formatted += '-' + value.slice(9, 11);
-      
-      input.value = formatted;
-      return value;
-    }
-
-    phoneInput?.addEventListener('input', () => formatPhone(phoneInput));
-    phoneInput?.addEventListener('focus', () => {
-      if (!phoneInput.value) phoneInput.value = '+7 (';
-    });
-
-    function openModal() {
-      form.hidden = false;
-      successMsg.hidden = true;
-      if (submit) {
-        submit.disabled = false;
-        submit.textContent = 'Получить чек-лист';
-      }
-      if (status) {
-        status.textContent = '';
-        delete status.dataset.state;
-      }
-      modal.classList.add('active');
-      lockPageScroll();
-    }
-
-    function closeModal() {
-      modal.classList.remove('active');
-      unlockPageScroll();
-      form.hidden = false;
-      successMsg.hidden = true;
-      form.reset();
-      if (submit) {
-        submit.disabled = false;
-        submit.textContent = 'Получить чек-лист';
-      }
-      if (status) {
-        status.textContent = '';
-        delete status.dataset.state;
-      }
-    }
-
-    triggers.forEach((trigger) => {
-      trigger.addEventListener('click', (event) => {
-        event.preventDefault();
-        openModal();
-      });
-    });
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const name = nameInput.value.trim();
-      const phone = phoneInput.value.replace(/\D/g, '');
-      const displayPhone = phoneInput.value.trim() || `+${phone}`;
-      
-      if (!name || phone.length < 11) {
-        if (status) {
-          status.textContent = 'Проверьте имя и номер телефона.';
-          status.dataset.state = 'error';
-        }
-        if (!name) nameInput.focus();
-        else phoneInput.focus();
-        return;
-      }
-
-      if (submit) {
-        submit.disabled = true;
-        submit.textContent = 'Отправляем…';
-      }
-      if (status) {
-        status.textContent = 'Передаём заявку в рабочий контур.';
-        status.dataset.state = 'sending';
-      }
-
-      const created = await sendCorporateLead(name, displayPhone, 'article_popup');
-      if (!created) {
-        if (status) {
-          status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите в WhatsApp.';
-          status.dataset.state = 'error';
-        }
-        if (submit) {
-          submit.disabled = false;
-          submit.textContent = 'Повторить отправку';
-        }
-        if (typeof ym === 'function') ym(104468814, 'reachGoal', 'corporate_form_error');
-        return;
-      }
-
-      form.hidden = true;
-      successMsg.hidden = false;
-      if (status) status.textContent = '';
-      if (typeof ym === 'function') {
-        ym(104468814, 'reachGoal', 'corporate_lead_submit_success');
-        ym(104468814, 'reachGoal', 'article_popup_submit');
-      }
-    });
-
-    closeBtn?.addEventListener('click', closeModal);
-    overlay?.addEventListener('click', closeModal);
-
-    // Закрытие по Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
-      }
-    });
-  }
-
-  // Инициализация после загрузки DOM
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-
 // ===== ПОП-АП "Обсудить корпоратив" =====
 (function initContactPopup() {
   function init() {
@@ -1233,6 +1089,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     const closeBtn = modal?.querySelector('.modal__close');
     const overlay = modal?.querySelector('.modal__overlay');
     const triggers = document.querySelectorAll('[data-modal="contact-popup"]');
+    let currentContactSource = 'contact_popup';
 
     if (!modal || !form || !triggers.length) return;
 
@@ -1291,6 +1148,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   triggers.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      currentContactSource = btn.dataset.formSource || 'contact_popup';
       openModal();
     });
   });
@@ -1330,10 +1188,10 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
         status.dataset.state = 'sending';
       }
 
-      const created = await sendCorporateLead(name, displayPhone, 'contact_popup');
+      const created = await sendCorporateLead(name, displayPhone, currentContactSource);
       if (!created) {
         if (status) {
-          status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите в WhatsApp.';
+          status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь со мной по телефону.';
           status.dataset.state = 'error';
         }
         if (submit) {
@@ -1489,7 +1347,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
       const created = await sendCorporateLead(name, displayPhone, `video_consult:${currentVideoSource}`);
       if (!created) {
         if (status) {
-          status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или напишите в WhatsApp.';
+          status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь со мной по телефону.';
           status.dataset.state = 'error';
         }
         if (submit) {

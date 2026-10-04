@@ -16,7 +16,8 @@ import MusicProgram from '@components/MusicProgram.astro';
 import SeasonalPromo from '@components/SeasonalPromo.astro';
 import ServiceFormats from '@components/ServiceFormats.astro';
 import VideoCases from '@components/VideoCases.astro';
-import WhatsAppFab from '@components/WhatsAppFab.astro';
+import ContactChoice from '@components/ContactChoice.astro';
+import MaterialsRequest from '@components/MaterialsRequest.astro';
 import Workflow from '@components/Workflow.astro';
 import { siteMeta, structuredData } from '@data/corporate';
 ---
@@ -39,6 +40,7 @@ import { siteMeta, structuredData } from '@data/corporate';
     <MusicProgram />
     <CaseProofs />
     <Workflow />
+    <MaterialsRequest />
     <Gallery />
     <Letters />
     <FAQ />
@@ -47,5 +49,5 @@ import { siteMeta, structuredData } from '@data/corporate';
   </main>
   <Footer />
   <Modals />
-  <WhatsAppFab />
+  <ContactChoice />
 </BaseLayout>

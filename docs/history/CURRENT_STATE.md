@@ -1,6 +1,12 @@
 # Current state
 
-Дата: 4 октября 2026 года.
+Дата: 5 октября 2026 года.
+
+## CTA stage 1 — corporate and seasonal
+
+- Both routes use one contact-choice component. The labelled sticky control appears after the first screen; contact CTAs open Telegram, phone, and the existing callback form. The seasonal `Проверить дату` action still leads to the detailed date form; header WhatsApp remains.
+- A shared materials-request card follows `Порядок работы`. Choosing the callback form writes `materials_request` to the existing lead comment. The obsolete checklist preview popup is removed. No new CRM source, Metrika goal, or ad campaign was added.
+- Local build, seasonal contract, mock HTTP-201/error form states, and the responsive matrix passed. The personal Telegram public profile resolves to `Timur Gromov @timurgromovv`; the `tg://` transition into the authenticated native app was blocked by browser policy and is not claimed as verified.
 
 ## Source
 
