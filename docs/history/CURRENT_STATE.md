@@ -10,7 +10,7 @@
 - framework: Astro, static output;
 - production domain: `https://corp.timurgromov.ru/`.
 
-## Context-photo relocation candidate (pending production)
+## Context-photo relocation live
 
 - On `/` and `/novogodniy-korporativ/`, the second solo event photograph is
   now after FAQ and immediately before the final CTA. Packages now begin
@@ -21,8 +21,15 @@
 - Jubilee was inspected independently and retains its one event-flow image
   after its five stages. It has no second comparable photograph to move.
 - Local build, contract checks, a six-viewport in-app-browser sweep per
-  corporate route and desktop/mobile visual review passed; production release
-  is pending.
+  corporate route and desktop/mobile visual review passed.
+- Runtime source commit `cf70dfb` is published as production commit `86152a6`.
+  Fresh production checks on both corporate routes at `390x844`, `768x900`,
+  `769x900` and `1440x900` confirm the new order, expected crop contract,
+  decoded AVIF, final CTA and zero horizontal overflow or console errors. No
+  form was submitted.
+- Fresh Jubilee production check at `390x844` confirms its one flow photo
+  remains inside `#evening-flow`, before that section's CTA; there is no
+  duplicate context image, overflow or console error.
 
 ## Expanded pre-packages photo live
 

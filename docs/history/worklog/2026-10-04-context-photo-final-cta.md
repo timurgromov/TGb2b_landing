@@ -30,4 +30,14 @@
 
 ## Release
 
-- Pending commit, push, production deployment and fresh live verification.
+- Source commit `cf70dfb` is pushed to `origin/astro-migration`.
+- Production commit `86152a6` is pushed to `origin/gh-pages`.
+- Fresh production checks on both corporate routes at `390x844`, `768x900`,
+  `769x900` and `1440x900` confirmed the new order, decoded AVIF, expected
+  crop contract, final CTA, zero horizontal overflow and zero console errors.
+- The root CDN briefly served the preceding HTML after the production push;
+  a fresh reload with `release=86152a6b` then returned the required order.
+- Fresh Jubilee review at `390x844` confirmed one AVIF photo remains inside
+  `#evening-flow` before its section CTA, with no duplicate context photo,
+  overflow or console errors.
+- No form was submitted.
