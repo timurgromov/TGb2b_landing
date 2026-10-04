@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-04-evening-flow-photo-final",
+  "change_kind": "shared-responsive-photo-replacement",
+  "status": "passed",
+  "requested_visible_change": "Replace the photograph immediately before the benefits section with the owner's final куку.png composition after web optimization.",
+  "expected_visible_delta": "Both corporate routes show the final five-person composition; mobile preserves the complete 2:1 frame and desktop keeps both horizontal source edges while cropping only vertically.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "b864d694e5c6cfb12a1dc4f7c45c0dec00910a4b6c75082d282268c1aa94d3e3",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4322/ and http://127.0.0.1:4322/novogodniy-korporativ/",
+    "source_ref": "staged Astro candidate using responsive derivatives of owner-supplied куку.png",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public pages without form submission",
+    "selector_or_slide_id": "#evening-flow .evening-flow__media img",
+    "action": "Inspect the photograph after the five evening-flow stages for source replacement, complete side edges, focal-point visibility and overflow."
+  },
+  "must_remain_unchanged": [
+    "five evening-flow cards and copy",
+    "existing CTA",
+    "following benefits section",
+    "package photograph and gallery",
+    "shared route behavior"
+  ],
+  "required_viewports": [
+    "390x844",
+    "767x900",
+    "768x900",
+    "769x900",
+    "1024x768",
+    "1180x820",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport; innerWidth=390; innerHeight=844",
+      "before_signature": "wide-v3 AVIF in the complete mobile frame",
+      "after_signature": "wide-v4 AVIF; 357x178; object-fit contain; object-position 50% 50%; cropX 0",
+      "observed_visible_result": "Both routes show the complete final composition, all five foreground people and both horizontal source edges; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "767x900",
+      "viewport_source": "Codex in-app browser breakpoint probe; innerWidth=767; innerHeight=900",
+      "before_signature": "wide-v3 mobile/tablet photograph",
+      "after_signature": "wide-v4 AVIF; 729x365; object-fit contain; cropX 0",
+      "observed_visible_result": "The last width below the breakpoint keeps the complete source frame on both routes; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x900",
+      "viewport_source": "Codex in-app browser breakpoint probe; innerWidth=768; innerHeight=900",
+      "before_signature": "wide-v3 breakpoint photograph",
+      "after_signature": "wide-v4 AVIF; 730x365; object-fit contain; cropX 0",
+      "observed_visible_result": "The breakpoint retains all people and both source edges on both routes; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "viewport_source": "Codex in-app browser breakpoint probe; innerWidth=769; innerHeight=900",
+      "before_signature": "wide-v3 desktop photograph",
+      "after_signature": "wide-v4 AVIF; 719x300; object-fit cover; object-position 50% 30%; cropX 0",
+      "observed_visible_result": "Desktop mode begins with vertical-only crop and preserves both source edges; overflow 0 on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "Codex in-app browser tablet landscape probe; innerWidth=1024; innerHeight=768",
+      "before_signature": "wide-v3 desktop photograph",
+      "after_signature": "wide-v4 AVIF; 974x328; object-fit cover; object-position 50% 30%; cropX 0",
+      "observed_visible_result": "Both routes preserve the complete source width and all five foreground people; overflow 0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x820",
+      "viewport_source": "Codex in-app browser compact-desktop probe; innerWidth=1180; innerHeight=820",
+      "before_signature": "wide-v3 desktop photograph",
+      "after_signature": "wide-v4 AVIF; 998x378; object-fit cover; object-position 50% 30%; cropX 0",
+      "observed_visible_result": "The final source fills the unchanged banner using only a vertical crop; overflow 0 on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "viewport_source": "Codex in-app browser desktop probe; innerWidth=1366; innerHeight=768",
+      "before_signature": "wide-v3 desktop photograph",
+      "after_signature": "wide-v4 AVIF; 1118x430; object-fit cover; object-position 50% 30%; cropX 0",
+      "observed_visible_result": "All foreground people and both horizontal source edges remain visible; overflow 0 on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser desktop probe; innerWidth=1440; innerHeight=900",
+      "before_signature": "wide-v3 AVIF; 1118x430; object-fit cover; object-position 50% 30%",
+      "after_signature": "wide-v4 AVIF; 1118x430; object-fit cover; object-position 50% 30%; cropX 0",
+      "observed_visible_result": "Live-browser review shows the final composition with complete heads, balanced headroom, both side edges and unchanged CTA placement.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "viewport_source": "Codex in-app browser wide-desktop probe; innerWidth=1984; innerHeight=1046",
+      "before_signature": "wide-v3 AVIF in the wide banner",
+      "after_signature": "wide-v4 AVIF; 1378x430; object-fit cover; object-position 50% 30%; cropX 0",
+      "observed_visible_result": "Wide desktop preserves both horizontal source edges and crops only top and bottom; overflow 0 on both routes.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 1,
+    "selected_variant": "Owner-supplied final куку.png composition in the existing responsive container.",
+    "owner_approval_reference": "Owner instruction in chat on 2026-10-04 to replace the same photo above the benefits section with the final supplied version."
+  },
+  "media_audit": "Original 2.04 MiB PNG remains outside public. New 768px and 1536px AVIF/WebP derivatives are ready; the largest derivative is 108954 bytes. Two unrelated legacy-format warnings remain.",
+  "production_submission": "not performed"
+}
