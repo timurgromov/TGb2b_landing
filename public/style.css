@@ -3144,6 +3144,30 @@ body { overflow-x: hidden; }
   }
 }
 
+@media (min-width: 769px) and (max-width: 1180px) {
+  .music-program__summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+    grid-template-areas: "media copy";
+    align-items: center;
+  }
+
+  .music-program__summary-copy {
+    grid-area: copy;
+    padding: 24px;
+  }
+
+  .music-program__showreel {
+    grid-area: media;
+    min-width: 0;
+  }
+
+  .music-program__media {
+    height: auto;
+    aspect-ratio: 1200 / 843;
+  }
+}
+
 @media (max-width: 1024px) {
   .proof-cases__grid {
     grid-template-columns: 1fr;

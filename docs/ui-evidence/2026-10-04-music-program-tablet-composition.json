@@ -1,0 +1,46 @@
+{
+  "change": "music-program tablet composition",
+  "date": "2026-10-04",
+  "routes": [
+    "/",
+    "/novogodniy-korporativ/"
+  ],
+  "before": {
+    "viewport": "1180x820",
+    "summary_display": "flex",
+    "poster_size": "998x330",
+    "poster_ratio": 3.024,
+    "finding": "The full-width fixed-height poster cropped the musicians, guitar and saxophone even with top anchoring."
+  },
+  "after": {
+    "tablet_range": "769px-1180px",
+    "summary_display": "grid",
+    "grid_areas": "media copy",
+    "poster_position": "left",
+    "copy_position": "right",
+    "poster_ratio": 1.422,
+    "source_ratio": "1200:843",
+    "mobile_mode": "stacked through 768px",
+    "desktop_mode": "existing section layout from 1181px",
+    "horizontal_overflow": 0
+  },
+  "viewports": [
+    "390x844",
+    "768x1024",
+    "769x1024",
+    "900x900",
+    "1180x820",
+    "1181x820",
+    "1440x900"
+  ],
+  "interaction": {
+    "showreel_started": true,
+    "overlay_hidden_after_start": true,
+    "native_controls_present": true
+  },
+  "asset": {
+    "source": "/assets/music/music-program-max.avif with WebP fallback",
+    "changed": false,
+    "verdict": "ready"
+  }
+}

@@ -58,6 +58,9 @@ const [rootHtml, seasonalHtml, privacyHtml, sharedStyle, sharedScript, seasonalS
 
 expectText(sharedStyle, '.music-program__photo img', 'shared music poster style');
 expectText(sharedStyle, 'object-position: 50% 0;', 'shared music poster head-safe framing');
+expectText(sharedStyle, '@media (min-width: 769px) and (max-width: 1180px)', 'shared music poster tablet breakpoint');
+expectText(sharedStyle, 'grid-template-areas: "media copy";', 'shared music poster tablet composition');
+expectText(sharedStyle, 'aspect-ratio: 1200 / 843;', 'shared music poster source ratio');
 
 expectText(rootHtml, 'Интеллигентный ведущий на корпоратив в Москве', 'root regression');
 expectText(rootHtml, 'Обсудить корпоратив', 'root regression');
@@ -169,8 +172,8 @@ expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 бло�
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист', 'seasonal guitar package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_18', 'main site stylesheet');
-expectText(seasonalHtml, '/mobile.css?v=astro_8', 'main site mobile stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_19', 'main site stylesheet');
+expectText(seasonalHtml, '/mobile.css?v=astro_9', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/script.js?v=astro_5', 'main site script');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
 expectText(seasonalHtml, '/seasonal.js?v=20261001b', 'seasonal script');
