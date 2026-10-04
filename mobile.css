@@ -1544,6 +1544,11 @@
   padding: 20px 20px 16px;
 }
 
+.music-program__media {
+  height: auto;
+  aspect-ratio: 1200 / 843;
+}
+
 .music-program__lead {
   font-size: 22px;
 }
