@@ -46,14 +46,18 @@ async function verifyDistinctHeroAssets() {
 
 await verifyDistinctHeroAssets();
 
-const [rootHtml, seasonalHtml, privacyHtml, sharedScript, seasonalScript, sitemap] = await Promise.all([
+const [rootHtml, seasonalHtml, privacyHtml, sharedStyle, sharedScript, seasonalScript, sitemap] = await Promise.all([
   read('dist/index.html'),
   read('dist/novogodniy-korporativ/index.html'),
   read('dist/privacy/index.html'),
+  read('public/style.css'),
   read('public/script.js'),
   read('public/seasonal.js'),
   read('public/sitemap.xml')
 ]);
+
+expectText(sharedStyle, '.music-program__photo img', 'shared music poster style');
+expectText(sharedStyle, 'object-position: 50% 0;', 'shared music poster head-safe framing');
 
 expectText(rootHtml, 'Интеллигентный ведущий на корпоратив в Москве', 'root regression');
 expectText(rootHtml, 'Обсудить корпоратив', 'root regression');
@@ -165,8 +169,8 @@ expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 бло�
 expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист', 'seasonal guitar package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
-expectText(seasonalHtml, '/style.css?v=astro_17', 'main site stylesheet');
-expectText(seasonalHtml, '/mobile.css?v=astro_7', 'main site mobile stylesheet');
+expectText(seasonalHtml, '/style.css?v=astro_18', 'main site stylesheet');
+expectText(seasonalHtml, '/mobile.css?v=astro_8', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/script.js?v=astro_5', 'main site script');
 expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
 expectText(seasonalHtml, '/seasonal.js?v=20261001b', 'seasonal script');
