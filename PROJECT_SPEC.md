@@ -14,7 +14,7 @@
 - аудитория: HR, офис-менеджер, собственник, внутренний организатор или агентство;
 - задача пользователя: быстро понять формат и проверить доступность даты;
 - primary CTA: `Проверить дату`;
-- form source identifier: `site_meeting_corporate`;
+- form source identifier: `site_meeting_corporate__<page>__<intent>__<placement>`;
 - backend route: `POST https://calcul.timurgromov.ru/api/v1/site/consultation-request`;
 - Metrika counter: `104468814`.
 
@@ -39,6 +39,7 @@
    - необязательное название компании/площадки.
 4. Форма передаёт безопасный payload существующему EventBudjet endpoint:
    - `name`, `phone`, `comment`, `form_source`, `page_url`;
+   - `cta_site`, `cta_page`, `cta_intent`, `cta_placement`;
    - `yclid`;
    - bounded `campaign_params`;
    - bounded `attribution_context`.
@@ -52,6 +53,7 @@
 12. `/` и `/novogodniy-korporativ/` являются двумя контекстными версиями одного корпоративного сайта, а не независимо развиваемыми сайтами. Общие блоки, структура, дизайн, порядок, пакеты, доказательства, FAQ и форма изменяются одновременно через shared-компоненты. Исключения допустимы только для обычного или новогоднего контекста, hero/promo, ограничений дат, source/атрибуции и утверждённых значений цен.
 13. `Как проходит корпоратив` и `Порядок работы` являются разными обязательными блоками и не заменяют друг друга.
 14. Ценовой блок использует одну верстку и одинаковые составы пакетов на обеих страницах, но обычные цены для `/` и более высокие новогодние цены для `/novogodniy-korporativ/` хранятся раздельно. Публикация возможна только после утверждения матрицы и макета владельцем.
+15. Контактная панель доступна из внутренних CTA и плавающей кнопки после первого экрана. Она даёт личный Telegram, звонок и подтверждаемую callback-форму; карточка материалов передаёт `intent=materials` в CRM-контексте.
 
 ## Analytics contract
 
@@ -71,6 +73,19 @@ Shared-site goal:
 Commercial goal:
 
 - `corporate_lead_submit_success` — только после подтверждённого backend response.
+
+Reusable CTA goals in counter `104468814`:
+
+- `cta_open`;
+- `telegram_click`;
+- `phone_click`;
+- `form_start`;
+- `lead_submit_success`;
+- `lead_submit_error`;
+- `materials_request`.
+
+Each receives only `{ cta: { site, page, intent, placement } }`; no name,
+phone, comment, or URL query is passed to Metrika.
 
 Campaign parameters preserved when present:
 

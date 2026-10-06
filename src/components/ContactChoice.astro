@@ -1,11 +1,17 @@
 ---
 import { contact } from '@data/corporate';
+
+interface Props {
+  page?: 'corporate' | 'new_year';
+}
+
+const { page = 'corporate' } = Astro.props;
 ---
-<button type="button" class="contact-choice-fab" data-contact-open data-contact-fab aria-haspopup="dialog" aria-controls="contact-choice-dialog">
+<button type="button" class="contact-choice-fab" data-contact-open data-contact-fab data-contact-source="sticky_contact" data-contact-intent="consultation" data-contact-placement="sticky" data-cta-site="corporate" data-cta-page={page} aria-haspopup="dialog" aria-controls="contact-choice-dialog">
   <span aria-hidden="true">✦</span><span>Связаться</span>
 </button>
 
-<div class="contact-choice" id="contact-choice-dialog" hidden>
+<div class="contact-choice" id="contact-choice-dialog" data-cta-site="corporate" data-cta-page={page} hidden>
   <div class="contact-choice__backdrop" data-contact-close></div>
   <section class="contact-choice__sheet" role="dialog" aria-modal="true" aria-labelledby="contact-choice-title" aria-describedby="contact-choice-description" tabindex="-1">
     <button type="button" class="contact-choice__close" data-contact-close aria-label="Закрыть панель">×</button>
@@ -13,7 +19,7 @@ import { contact } from '@data/corporate';
     <h2 id="contact-choice-title">Обсудим ваш корпоратив</h2>
     <p id="contact-choice-description" data-contact-description>Выберите удобный способ связи. Я отвечу лично.</p>
     <div class="contact-choice__actions">
-      <a class="contact-choice__action contact-choice__action--primary" href={contact.telegramUrl} target="_blank" rel="noopener noreferrer">Написать в Telegram <span aria-hidden="true">↗</span></a>
+      <a class="contact-choice__action contact-choice__action--primary" href={contact.telegramUrl} target="_blank" rel="noopener noreferrer" data-contact-telegram>Написать в Telegram <span aria-hidden="true">↗</span></a>
       <a class="contact-choice__action" href={contact.phoneHref} data-contact-phone>Позвонить <span>{contact.phoneHuman}</span></a>
       <button type="button" class="contact-choice__action" data-contact-callback>Оставить номер <span aria-hidden="true">→</span></button>
     </div>

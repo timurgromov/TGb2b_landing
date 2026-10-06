@@ -2,6 +2,19 @@
 
 Дата: 5 октября 2026 года.
 
+## CTA stages 2–3 — candidate for release (2026-10-06)
+
+- Corporate and new-year forms pass `site`, `page`, `intent` and `placement`
+  with their existing attribution bundle to the EventBudjet callback endpoint.
+  The form only reports success after HTTP `201`.
+- The corporate Metrika counter `104468814` has the seven JS goals
+  `cta_open`, `telegram_click`, `phone_click`, `form_start`,
+  `lead_submit_success`, `lead_submit_error`, `materials_request`. Events
+  contain only the bounded CTA context, never name, phone or comment.
+- Local `build`, `verify:seasonal` and JavaScript syntax checks pass. This
+  source candidate still requires push, Pages publication and a fresh live
+  check; a real callback is deliberately not submitted without owner approval.
+
 ## CTA stage 1 — corporate and seasonal
 
 - Both routes use one contact-choice component. The labelled sticky control appears after the first screen; contact CTAs open Telegram, phone, and the existing callback form. The seasonal `Проверить дату` action still leads to the detailed date form; header WhatsApp remains.

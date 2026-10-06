@@ -180,7 +180,8 @@ rejectText(seasonalHtml, '<option value="host">Только ведущий</opti
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
 expectText(seasonalHtml, '/style.css?v=astro_19', 'main site stylesheet');
 expectText(seasonalHtml, '/mobile.css?v=astro_9', 'main site mobile stylesheet');
-expectText(seasonalHtml, '/script.js?v=astro_7', 'main site script');
+expectText(seasonalHtml, '/script.js?v=astro_8', 'main site script');
+expectText(seasonalHtml, '/cta-analytics.js?v=1', 'CTA analytics script');
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   expectText(html, 'data-contact-fab', `${label} labelled sticky contact`);
   expectText(html, 'Написать в Telegram', `${label} personal Telegram choice`);
@@ -220,7 +221,8 @@ expectText(privacyHtml, 'Политика конфиденциальности',
 expectText(privacyHtml, 'Согласие на обработку персональных данных', 'privacy route');
 
 expectText(seasonalScript, 'https://calcul.timurgromov.ru/api/v1/site/consultation-request', 'lead contract');
-expectText(seasonalScript, "form_source: 'site_meeting_corporate'", 'lead contract');
+expectText(seasonalScript, "form_source: 'site_meeting_corporate__new_year__date_check__seasonal_form'", 'lead contract');
+expectText(seasonalScript, 'cta_site: seasonalCtaContext.site', 'seasonal CRM CTA context');
 expectText(seasonalScript, "host_dj_sound_vocalists: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста'", 'lead vocalists package contract');
 expectText(seasonalScript, "host_dj_sound_vocalists_sax: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста и саксофонист'", 'lead saxophone package contract');
 expectText(seasonalScript, "host_dj_sound_vocalists_sax_guitar: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист'", 'lead guitar package contract');
@@ -229,7 +231,8 @@ expectText(seasonalScript, "reachGoal('corporate_lead_submit_success')", 'confir
 expectText(seasonalScript, 'window.location.origin}${window.location.pathname}', 'sanitized page URL');
 
 expectText(sharedScript, 'https://calcul.timurgromov.ru/api/v1/site/consultation-request', 'shared lead contract');
-expectText(sharedScript, "form_source: 'site_meeting_corporate'", 'shared lead contract');
+expectText(sharedScript, 'form_source: `site_meeting_corporate__${context.page}__${context.intent}__${context.placement}`', 'shared lead contract');
+expectText(sharedScript, 'cta_placement: context.placement', 'shared CRM CTA context');
 expectText(sharedScript, 'response.status === 201', 'shared confirmed lead gate');
 expectText(sharedScript, "reachGoal', 'corporate_lead_submit_success'", 'shared confirmed lead goal');
 expectText(sharedScript, '[data-proof-cases-grid]', 'shared proof lightbox contract');
