@@ -696,24 +696,63 @@ function normalizeCorporatePhone(value) {
   return digits ? `+${digits}` : '';
 }
 
-async function sendCorporateLead(name, phone, source = 'popup') {
+function normalizeCtaToken(value, fallback) {
+  const normalized = String(value || '').trim().toLowerCase();
+  return /^[a-z0-9][a-z0-9_-]{0,63}$/.test(normalized) ? normalized : fallback;
+}
+
+function corporateCtaContext(source, supplied = {}) {
+  const seasonalPage = window.location.pathname.includes('novogodniy-korporativ') ? 'new_year' : 'corporate';
+  const sourceText = String(source || '').toLowerCase();
+  const inferredIntent = sourceText.includes('materials') ? 'materials'
+    : sourceText.includes('video') || sourceText.includes('meeting') ? 'meeting'
+      : 'consultation';
+  const inferredPlacement = sourceText.includes('materials') ? 'materials'
+    : sourceText.includes('hero') ? 'hero'
+      : sourceText.includes('workflow') ? 'workflow'
+        : sourceText.includes('cta') ? 'final_cta'
+          : 'contact_popup';
+  const context = {
+    site: supplied.site || supplied.ctaSite || 'corporate',
+    page: supplied.page || supplied.ctaPage || seasonalPage,
+    intent: supplied.intent || supplied.ctaIntent || inferredIntent,
+    placement: supplied.placement || supplied.ctaPlacement || inferredPlacement
+  };
+  return window.tgCtaAnalytics?.normalize(context) || {
+    site: normalizeCtaToken(context.site, 'corporate'),
+    page: normalizeCtaToken(context.page, seasonalPage),
+    intent: normalizeCtaToken(context.intent, inferredIntent),
+    placement: normalizeCtaToken(context.placement, inferredPlacement)
+  };
+}
+
+function trackCorporateCtaGoal(goal, context) {
+  window.tgCtaAnalytics?.track(goal, context);
+}
+
+async function sendCorporateLead(name, phone, source = 'popup', suppliedContext = {}) {
   const previewState = new URLSearchParams(window.location.search).get('preview_lead_state');
   const isLocalPreview = ['127.0.0.1', 'localhost'].includes(window.location.hostname);
   if (isLocalPreview && previewState === 'success') return true;
   if (isLocalPreview && previewState === 'error') return false;
 
   const tracking = collectCorporateTracking();
+  const context = corporateCtaContext(source, suppliedContext);
   const controller = new AbortController();
   const timeoutId = window.setTimeout(() => controller.abort(), 12000);
   const payload = {
     name: String(name || '').trim(),
     phone: normalizeCorporatePhone(phone),
     comment: `Запрос с корпоративного сайта\nФорма: ${String(source).slice(0, 120)}`,
-    form_source: 'site_meeting_corporate',
+    form_source: `site_meeting_corporate__${context.page}__${context.intent}__${context.placement}`,
     page_url: `${window.location.origin}${window.location.pathname}`.slice(0, 500),
     yclid: tracking.yclid || null,
     campaign_params: Object.keys(tracking.campaignParams).length ? tracking.campaignParams : null,
-    attribution_context: tracking.attributionContext
+    attribution_context: tracking.attributionContext,
+    cta_site: context.site,
+    cta_page: context.page,
+    cta_intent: context.intent,
+    cta_placement: context.placement
   };
 
   try {
@@ -1090,6 +1129,8 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     const overlay = modal?.querySelector('.modal__overlay');
     const triggers = document.querySelectorAll('[data-modal="contact-popup"]');
     let currentContactSource = 'contact_popup';
+    let currentContactContext = corporateCtaContext(currentContactSource);
+    let contactFormStarted = false;
 
     if (!modal || !form || !triggers.length) return;
 
@@ -1112,6 +1153,11 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   phoneInput?.addEventListener('input', () => formatPhone(phoneInput));
   phoneInput?.addEventListener('focus', () => {
     if (!phoneInput.value) phoneInput.value = '+7 (';
+  });
+  form.addEventListener('input', () => {
+    if (contactFormStarted) return;
+    contactFormStarted = true;
+    trackCorporateCtaGoal('form_start', currentContactContext);
   });
 
   function openModal() {
@@ -1149,6 +1195,8 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       currentContactSource = btn.dataset.formSource || 'contact_popup';
+      currentContactContext = corporateCtaContext(currentContactSource, btn.dataset);
+      contactFormStarted = false;
       openModal();
     });
   });
@@ -1188,7 +1236,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
         status.dataset.state = 'sending';
       }
 
-      const created = await sendCorporateLead(name, displayPhone, currentContactSource);
+      const created = await sendCorporateLead(name, displayPhone, currentContactSource, currentContactContext);
       if (!created) {
         if (status) {
           status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь со мной по телефону.';
@@ -1198,6 +1246,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
           submit.disabled = false;
           submit.textContent = 'Повторить отправку';
         }
+        trackCorporateCtaGoal('lead_submit_error', currentContactContext);
         if (typeof ym === 'function') ym(104468814, 'reachGoal', 'corporate_form_error');
         return;
       }
@@ -1210,6 +1259,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
         ym(104468814, 'reachGoal', 'corporate_lead_submit_success');
         ym(104468814, 'reachGoal', 'contact_popup_submit');
       }
+      trackCorporateCtaGoal('lead_submit_success', currentContactContext);
     });
   }
 
@@ -1225,6 +1275,8 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   // PATCH BEGIN: VIDEO_MODAL_SOURCES
   const SOURCE_DEFAULT = 'hero_video';
   let currentVideoSource = SOURCE_DEFAULT;
+  let currentVideoContext = corporateCtaContext(`video_consult:${SOURCE_DEFAULT}`);
+  let videoFormStarted = false;
   // PATCH END: VIDEO_MODAL_SOURCES
   const modal = document.getElementById('video-consult-modal');
   const form = document.getElementById('video-consult-form');
@@ -1260,10 +1312,17 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
   phoneInput?.addEventListener('focus', () => {
     if (!phoneInput.value) phoneInput.value = '+7 (';
   });
+  form?.addEventListener('input', () => {
+    if (videoFormStarted) return;
+    videoFormStarted = true;
+    trackCorporateCtaGoal('form_start', currentVideoContext);
+  });
 
   // PATCH BEGIN: VIDEO_MODAL_SOURCES
-  function openModal(source = SOURCE_DEFAULT) {
+  function openModal(source = SOURCE_DEFAULT, suppliedContext = {}) {
     currentVideoSource = source;
+    currentVideoContext = corporateCtaContext(`video_consult:${source}`, suppliedContext);
+    videoFormStarted = false;
     if (form) form.hidden = false;
     if (successMsg) successMsg.hidden = true;
     if (submit) {
@@ -1301,7 +1360,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const source = btn.dataset.formSource || SOURCE_DEFAULT;
-      openModal(source);
+      openModal(source, btn.dataset);
     });
   });
   // PATCH END: VIDEO_MODAL_SOURCES
@@ -1344,7 +1403,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
         status.dataset.state = 'sending';
       }
 
-      const created = await sendCorporateLead(name, displayPhone, `video_consult:${currentVideoSource}`);
+      const created = await sendCorporateLead(name, displayPhone, `video_consult:${currentVideoSource}`, currentVideoContext);
       if (!created) {
         if (status) {
           status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь со мной по телефону.';
@@ -1354,6 +1413,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
           submit.disabled = false;
           submit.textContent = 'Повторить отправку';
         }
+        trackCorporateCtaGoal('lead_submit_error', currentVideoContext);
         if (typeof ym === 'function') ym(104468814, 'reachGoal', 'corporate_form_error');
         return;
       }
@@ -1373,6 +1433,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
           ym(104468814, 'reachGoal', 'cta_popup_submit');
         }
       }
+      trackCorporateCtaGoal('lead_submit_success', currentVideoContext);
       // PATCH END: VIDEO_MODAL_SOURCES
     });
   }

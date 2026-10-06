@@ -4,6 +4,8 @@ function initContactChoice() {
   const fab = document.querySelector('[data-contact-fab]');
   const description = dialog?.querySelector('[data-contact-description]');
   const callback = dialog?.querySelector('[data-contact-callback]');
+  const telegram = dialog?.querySelector('[data-contact-telegram]');
+  const phone = dialog?.querySelector('[data-contact-phone]');
   const contactFormTrigger = document.querySelector('[data-contact-form-trigger]');
   const videoFormTrigger = document.querySelector('[data-contact-video-trigger]');
   if (!dialog || !sheet || !fab || !callback) return;
@@ -11,6 +13,21 @@ function initContactChoice() {
   let opener = null;
   let formSource = 'contact_popup';
   let formKind = 'contact';
+  let ctaContext = { site: 'corporate', page: 'corporate', intent: 'consultation', placement: 'contact_panel' };
+
+  function track(goal) {
+    window.tgCtaAnalytics?.track(goal, ctaContext);
+  }
+
+  function contextFrom(trigger) {
+    const base = {
+      site: trigger.dataset.ctaSite || 'corporate',
+      page: trigger.dataset.ctaPage || dialog.dataset.ctaPage || 'corporate',
+      intent: trigger.dataset.contactIntent || 'consultation',
+      placement: trigger.dataset.contactPlacement || 'contact_panel'
+    };
+    return window.tgCtaAnalytics?.normalize(base) || base;
+  }
 
   function updateFab() {
     fab.classList.toggle('is-visible', window.scrollY > window.innerHeight);
@@ -32,12 +49,15 @@ function initContactChoice() {
     opener = trigger;
     formSource = trigger.dataset.contactSource || trigger.dataset.formSource || 'contact_popup';
     formKind = trigger.dataset.contactForm || 'contact';
+    ctaContext = contextFrom(trigger);
     description.textContent = trigger.dataset.contactIntent === 'materials'
       ? 'Напишите мне, позвоните или оставьте номер. Я лично отвечу и поделюсь подходящими материалами.'
       : 'Выберите удобный способ связи. Я отвечу лично.';
     dialog.hidden = false;
     lockPageScroll();
     sheet.focus();
+    track('cta_open');
+    if (ctaContext.intent === 'materials') track('materials_request');
   }
 
   document.addEventListener('click', event => {
@@ -53,12 +73,18 @@ function initContactChoice() {
     const trigger = formKind === 'video' ? videoFormTrigger : contactFormTrigger;
     if (!trigger) return;
     trigger.dataset.formSource = formSource;
+    trigger.dataset.ctaSite = ctaContext.site;
+    trigger.dataset.ctaPage = ctaContext.page;
+    trigger.dataset.ctaIntent = ctaContext.intent;
+    trigger.dataset.ctaPlacement = ctaContext.placement;
     close({ restoreFocus: false });
     trigger.click();
     window.setTimeout(() => {
       document.querySelector(formKind === 'video' ? '#video-consult-name' : '#contact-name')?.focus();
     }, 80);
   });
+  telegram?.addEventListener('click', () => track('telegram_click'));
+  phone?.addEventListener('click', () => track('phone_click'));
   document.addEventListener('keydown', event => {
     if (dialog.hidden) return;
     if (event.key === 'Escape') { event.preventDefault(); close(); return; }

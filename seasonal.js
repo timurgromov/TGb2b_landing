@@ -23,6 +23,17 @@
     }
   }
 
+  const seasonalCtaContext = {
+    site: 'corporate',
+    page: 'new_year',
+    intent: 'date_check',
+    placement: 'seasonal_form'
+  };
+
+  function trackCtaGoal(name, context = seasonalCtaContext) {
+    window.tgCtaAnalytics?.track(name, context);
+  }
+
   function getReferrerHost() {
     if (!document.referrer) return '';
     try {
@@ -120,6 +131,7 @@
     if (formStarted) return;
     formStarted = true;
     reachGoal('corporate_form_start');
+    trackCtaGoal('form_start');
   });
 
   form.addEventListener('invalid', () => {
@@ -160,11 +172,15 @@
       name: String(data.get('name') || '').trim(),
       phone,
       comment: commentLines.join('\n'),
-      form_source: 'site_meeting_corporate',
+      form_source: 'site_meeting_corporate__new_year__date_check__seasonal_form',
       page_url: `${window.location.origin}${window.location.pathname}`.slice(0, 500),
       yclid: tracking.yclid || null,
       campaign_params: Object.keys(tracking.campaignParams || {}).length ? tracking.campaignParams : null,
-      attribution_context: tracking.attributionContext || null
+      attribution_context: tracking.attributionContext || null,
+      cta_site: seasonalCtaContext.site,
+      cta_page: seasonalCtaContext.page,
+      cta_intent: seasonalCtaContext.intent,
+      cta_placement: seasonalCtaContext.placement
     };
 
     const controller = new AbortController();
@@ -189,12 +205,14 @@
       form.hidden = true;
       success.hidden = false;
       reachGoal('corporate_lead_submit_success');
+      trackCtaGoal('lead_submit_success');
     } catch (_) {
       status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или позвоните по номеру выше.';
       status.dataset.state = 'error';
       submit.disabled = false;
       submit.textContent = 'Повторить отправку';
       reachGoal('corporate_form_error');
+      trackCtaGoal('lead_submit_error');
     } finally {
       window.clearTimeout(timeoutId);
     }
