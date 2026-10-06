@@ -1,6 +1,6 @@
 # Current state
 
-Дата: 5 октября 2026 года.
+Дата: 6 октября 2026 года.
 
 ## CTA stages 2–3 — live (2026-10-06)
 
@@ -13,9 +13,23 @@
   contain only the bounded CTA context, never name, phone or comment.
 - Local `build`, `verify:seasonal` and JavaScript syntax checks pass. Source
   commit `8d27478` is pushed; static production commit `d17f71b` is live on
-  `gh-pages`. Fresh browser checks confirmed the corporate contact panel,
-  callback entry and the preserved new-year date form. A real callback is
-  deliberately not submitted without owner approval.
+  `gh-pages`.
+- Owner-authorized synthetic forms proved both live routes end to end:
+  corporate `/` created CRM `#153` (`corporate / corporate / consultation /
+  hero`); new-year `/novogodniy-korporativ/` created `#154` (`corporate /
+  new_year / date_check / seasonal_form`). Both UI flows showed success after
+  HTTP `201`, both records have their readable source and full CTA context, and
+  both matching messages appeared in authenticated `CRM заявки` Telegram.
+  The cards are explicitly marked as tests and remain in CRM until a separate
+  owner deletion instruction.
+- Live page inspection confirms `104468814`'s Metrika tag and
+  `cta-analytics.js` load without console errors. After processing, the
+  provider report for goal `670110144` (`Подтверждённая заявка`) reports one
+  goal visit and one reach on 2026-10-06. Both corporate forms ran from one
+  browser session, so this proves the goal for the successful session rather
+  than assigning the aggregate reach to `#153` or `#154` individually.
+  UTM/`yclid`, referrer and paid-click attribution remain a separate campaign
+  preflight in `YandexDirectGrowth`.
 
 ## CTA stage 1 — corporate and seasonal
 
