@@ -2,7 +2,7 @@
 
 Дата: 5 октября 2026 года.
 
-## CTA stages 2–3 — candidate for release (2026-10-06)
+## CTA stages 2–3 — live (2026-10-06)
 
 - Corporate and new-year forms pass `site`, `page`, `intent` and `placement`
   with their existing attribution bundle to the EventBudjet callback endpoint.
@@ -11,9 +11,11 @@
   `cta_open`, `telegram_click`, `phone_click`, `form_start`,
   `lead_submit_success`, `lead_submit_error`, `materials_request`. Events
   contain only the bounded CTA context, never name, phone or comment.
-- Local `build`, `verify:seasonal` and JavaScript syntax checks pass. This
-  source candidate still requires push, Pages publication and a fresh live
-  check; a real callback is deliberately not submitted without owner approval.
+- Local `build`, `verify:seasonal` and JavaScript syntax checks pass. Source
+  commit `8d27478` is pushed; static production commit `d17f71b` is live on
+  `gh-pages`. Fresh browser checks confirmed the corporate contact panel,
+  callback entry and the preserved new-year date form. A real callback is
+  deliberately not submitted without owner approval.
 
 ## CTA stage 1 — corporate and seasonal
 
