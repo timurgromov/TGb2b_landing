@@ -1,5 +1,28 @@
 # Current state
 
+## Seasonal date pricing — live (2026-10-08)
+
+- Только `/novogodniy-korporativ/` получил выбор декабрьской даты, цены трёх
+  составов, ставку дополнительного часа и раскрываемую клиентскую матрицу из
+  14 диапазонов. Обычный корпоративный `/` и юбилейный маршрут не изменены.
+- Программа рассчитана до 5 часов. Два фиксированных пакета показывают цену
+  выбранной даты; музыкальный пакет показывает `от` и добавляет минимум
+  `150 000 ₽` к варианту с оборудованием. На 31 декабря все пакеты показывают
+  `от`.
+- Выбранная дата и состав переносятся в подробную форму. При отправке формы
+  публичный ориентир и ставка продления добавляются в комментарий заявки;
+  success по-прежнему возможен только после backend HTTP `201`.
+- Source commit `6f817dc` опубликован на `astro-migration`; static production
+  commit `aaf089d` опубликован на `gh-pages`.
+- Local build, `verify:seasonal`, JavaScript syntax, diff check и UI-evidence
+  validation прошли. Fresh production QA подтвердил на `390x844` и
+  `1440x900` цены 25 декабря `220 000 / 250 000 / от 400 000 ₽`, продление
+  `25 000 ₽`; 31 декабря `от 280 000 / от 330 000 / от 480 000 ₽`, продление
+  `35 000 ₽`; 14 строк, отсутствие overflow и console errors. На `/` ценового
+  блока нет. Реальная форма не отправлялась.
+- Release note:
+  `docs/history/worklog/2026-10-08-seasonal-pricing-live.md`.
+
 ## «Калькулятор мероприятий» — live (2026-10-07)
 
 - Source `e64f869` is pushed to `astro-migration`; static production
@@ -47,7 +70,7 @@
   personal-click goal `670526622` was deleted; API read-back excludes it.
 - Prices and Direct campaigns are unchanged.
 
-Дата: 7 октября 2026 года.
+Дата: 8 октября 2026 года.
 
 ## CTA stages 2–3 — live (2026-10-06)
 
@@ -194,7 +217,7 @@ Implemented locally:
 - the technical proof subtitle has been removed from both `/` and `/novogodniy-korporativ/`; the shared heading remains `Корпоративы глазами заказчиков` without a year;
 - `2026` has been removed from the public seasonal offer: seasonal H1/title/description/schema name, the `Декабрь` hero tag and the root seasonal promo are year-free; December 2026 form bounds and the internal CRM marker remain operationally unchanged;
 - shared non-seasonal corporate improvements now have an implemented parity rule: benefits, packages, cases, letters, video and FAQ reach both routes through shared components and in the same order; seasonal hero/promo-context, copy, dates, CTA, form and future pricing remain route-specific;
-- pricing remains unimplemented until the owner separately approves the New Year price matrix and the price-block layout;
+- New Year pricing is live only on `/novogodniy-korporativ/`; ordinary corporate pricing remains deferred by the owner;
 - next implementation sequence is fixed in `TASKS.md`: the evening-flow and music-program blocks are complete; next comes pricing, the shared lead form, one authorized end-to-end production lead test, final QA and only then the Direct handoff;
 - the original hero subtitle has been restored verbatim after an unapproved copy change;
 - the original responsive package grid has been restored after the proof-section CSS edit accidentally removed its grid declaration;
