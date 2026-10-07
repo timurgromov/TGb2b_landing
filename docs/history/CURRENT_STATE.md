@@ -16,7 +16,12 @@
   `header` and maps both corporate routes to counter `104468814`.
 - A live New Year materials bot start previously created CRM `#155`, sent an
   operator alert and uploaded an offline conversion. A fresh normal corporate
-  bot start after this header release and paid-visit matching remain unproved.
+  header start in the authorized native Telegram client created lead `55` /
+  CRM `#158`; the matching `CRM заявки` alert is visible and logged as `sent`.
+  Attribution `888` was accepted by counter `104468814` as `order_confirmed`,
+  has provider upload ID `1214978805`, one attempt and no error. The bot showed
+  the corporate reply without the persistent wedding keyboard/Web App menu.
+  Matching to a real paid Direct visit remains part of campaign preflight.
 
 - Shared corporate and new-year contact panels use Event Calculator as their
   only Telegram action; the contact page also enters the bot.
