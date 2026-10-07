@@ -185,6 +185,9 @@ expectText(seasonalHtml, '/script.js?v=astro_9', 'main site script');
 expectText(seasonalHtml, '/cta-analytics.js?v=1', 'CTA analytics script');
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   expectText(html, 'data-contact-fab', `${label} labelled sticky contact`);
+  expectText(html, 'КАЛЬКУЛЯТОР МЕРОПРИЯТИЙ · ТИМУР ГРОМОВ', `${label} calculator brand`);
+  expectText(html, 'https://calcul.timurgromov.ru/api/v1/site/messenger-start?provider=telegram', `${label} stable Telegram redirect`);
+  rejectText(html, 'gromov_wedding_bot', `${label} retired Telegram handle`);
   expectText(html, 'data-contact-placement="header"', `${label} header contact button`);
   expectText(html, 'header-contact-btn', `${label} header contact style`);
   rejectText(html, 'wa.me/', `${label} must not expose WhatsApp CTA`);

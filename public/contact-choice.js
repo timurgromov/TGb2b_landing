@@ -52,7 +52,7 @@ function initContactChoice() {
     ctaContext = contextFrom(trigger);
     const source = `site_meeting_corporate__${ctaContext.page === 'new_year' ? 'new_year' : 'corporate'}__${ctaContext.placement}`;
     telegram.dataset.botSource = source;
-    telegram.href = `https://t.me/gromov_wedding_bot?start=${source}`;
+    telegram.href = `https://calcul.timurgromov.ru/api/v1/site/messenger-start?provider=telegram&mode=start&payload=${encodeURIComponent(source)}`;
     description.textContent = trigger.dataset.contactIntent === 'materials'
       ? 'Запустите бот, позвоните или оставьте номер. Я лично отвечу и поделюсь подходящими материалами.'
       : 'Запустите бот, позвоните или оставьте номер. Я лично отвечу на запрос.';
