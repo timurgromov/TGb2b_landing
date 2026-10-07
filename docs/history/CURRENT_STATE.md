@@ -1,6 +1,22 @@
 # Current state
 
-## Event Calculator CTA — implementation in progress (2026-10-07)
+## Contact CTA and Event Calculator — live (2026-10-07)
+
+- The shared corporate and New Year header now uses a white-text `Связаться`
+  button instead of WhatsApp. It opens the same contact panel as in-page CTAs;
+  the labelled sticky button appears only after the first screen. The New Year
+  hero says `Обсудить корпоратив` and `Назначить встречу`; the detailed
+  `Проверить дату` form remains lower on the page. Phone controls use `tel:`.
+- Runtime source `0a4ee13` was pushed on `astro-migration`; static production
+  `32091cf` was built on `gh-pages`. Local build, `verify:seasonal` and UI
+  evidence validation passed. Fresh live mobile checks on both routes and a
+  desktop check on New Year confirm the header, panel, bot source, phone,
+  white labels and no horizontal overflow or JavaScript console errors.
+- EventBudjet backend `3f90b24` is deployed. Its source registry recognizes
+  `header` and maps both corporate routes to counter `104468814`.
+- A live New Year materials bot start previously created CRM `#155`, sent an
+  operator alert and uploaded an offline conversion. A fresh normal corporate
+  bot start after this header release and paid-visit matching remain unproved.
 
 - Shared corporate and new-year contact panels use Event Calculator as their
   only Telegram action; the contact page also enters the bot.
@@ -9,8 +25,7 @@
   the source-bearing deep link still opens the bot. Forms still require HTTP 201.
 - Metrika `104468814`: `order_confirmed` goal `670525250`. The temporary
   personal-click goal `670526622` was deleted; API read-back excludes it.
-- Local build and `verify:seasonal` pass. Release and live Telegram/CRM
-  acceptance remain to be recorded. Prices and Direct campaigns are unchanged.
+- Prices and Direct campaigns are unchanged.
 
 Дата: 7 октября 2026 года.
 
@@ -45,7 +60,7 @@
 
 ## CTA stage 1 — corporate and seasonal
 
-- Both routes use one contact-choice component. The labelled sticky control appears after the first screen; contact CTAs open Telegram, phone, and the existing callback form. The seasonal `Проверить дату` action still leads to the detailed date form; header WhatsApp remains.
+- Both routes use one contact-choice component. The labelled sticky control appears after the first screen; contact CTAs open Telegram, phone, and the existing callback form. The seasonal detailed `Проверить дату` form remains. The header WhatsApp mentioned in the original stage-1 release was replaced by `Связаться` on 2026-10-07.
 - A shared materials-request card follows `Порядок работы`. Choosing the callback form writes `materials_request` to the existing lead comment. The obsolete checklist preview popup is removed. No new CRM source, Metrika goal, or ad campaign was added.
 - Local build, seasonal contract, mock HTTP-201/error form states, and the responsive matrix passed. The personal Telegram public profile resolves to `Timur Gromov @timurgromovv`; the `tg://` transition into the authenticated native app was blocked by browser policy and is not claimed as verified.
 
