@@ -4,6 +4,22 @@ import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const heroSlideIds = ['01-smile', '02-microphone', '03-full-length', '04-grey-suit', '05-gesture'];
+const seasonalPriceRows = [
+  [1, 2, 135000, 160000, 20000],
+  [3, 3, 140000, 165000, 20000],
+  [4, 5, 155000, 180000, 25000],
+  [6, 9, 145000, 170000, 20000],
+  [10, 10, 155000, 180000, 20000],
+  [11, 12, 170000, 195000, 25000],
+  [13, 16, 160000, 185000, 20000],
+  [17, 17, 175000, 200000, 20000],
+  [18, 19, 200000, 230000, 25000],
+  [20, 23, 175000, 205000, 25000],
+  [24, 24, 190000, 220000, 25000],
+  [25, 26, 220000, 250000, 25000],
+  [27, 30, 190000, 220000, 25000],
+  [31, 31, 280000, 330000, 35000]
+];
 
 async function read(relativePath) {
   return readFile(resolve(root, relativePath), 'utf8');
@@ -132,6 +148,23 @@ for (const slideId of heroSlideIds.slice(1)) {
   expectText(seasonalHtml, `hero-${slideId}-1024.avif?v=crop-20261003a`, `seasonal hero cache-busted crop ${slideId}`);
 }
 expectText(seasonalHtml, 'data-testid="service-formats"', 'seasonal formats');
+expectText(seasonalHtml, 'data-testid="seasonal-pricing"', 'seasonal pricing picker');
+expectText(seasonalHtml, 'Посмотреть цены на все даты декабря', 'seasonal full pricing disclosure');
+expectText(seasonalHtml, 'data-pricing-package="hostDj"', 'seasonal host DJ live price');
+expectText(seasonalHtml, 'data-pricing-package="hostDjSound"', 'seasonal sound live price');
+expectText(seasonalHtml, 'data-pricing-package="liveMusic"', 'seasonal music live price');
+expectCount(seasonalHtml, 'data-pricing-row', 14, 'seasonal public pricing row count');
+for (const [fromDay, toDay, hostDj, hostDjSound, extension] of seasonalPriceRows) {
+  expectText(
+    seasonalHtml,
+    `data-date-from="${fromDay}" data-date-to="${toDay}" data-host-dj="${hostDj}" data-host-dj-sound="${hostDjSound}" data-extension="${extension}"`,
+    `seasonal price row ${fromDay}-${toDay}`
+  );
+}
+expectText(seasonalHtml, 'Пакет с двумя вокалистами — от 150 000 ₽ сверх стоимости варианта с оборудованием.', 'seasonal live music addon');
+expectText(seasonalHtml, 'В цену второго и третьего пакета входит комплект звука и DJ-оборудования.', 'seasonal equipment boundary');
+rejectText(rootHtml, 'data-testid="seasonal-pricing"', 'root pricing scope');
+rejectText(rootHtml, 'data-pricing-row', 'root pricing scope');
 expectText(seasonalHtml, 'Ведущий + DJ + звук + два вокалиста', 'seasonal vocalists package title');
 expectText(seasonalHtml, 'С живой музыкой', 'seasonal live music package name');
 expectText(seasonalHtml, 'Подробнее о живой музыке', 'seasonal live music package link');
@@ -200,8 +233,8 @@ for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta">Обсудить корпоратив', 'seasonal primary CTA');
 expectText(seasonalHtml, 'data-contact-form="video" data-form-source="hero_video"', 'seasonal meeting CTA');
 expectText(seasonalHtml, '>Назначить встречу</button>', 'seasonal meeting CTA label');
-expectText(seasonalHtml, '/seasonal.css?v=20260930c', 'seasonal form stylesheet');
-expectText(seasonalHtml, '/seasonal.js?v=20261001b', 'seasonal script');
+expectText(seasonalHtml, '/seasonal.css?v=20261008a', 'seasonal form stylesheet');
+expectText(seasonalHtml, '/seasonal.js?v=20261008a', 'seasonal script');
 expectText(seasonalHtml, '/privacy/', 'seasonal privacy link');
 rejectText(seasonalHtml, 'TELEGRAM_LEAD_ENDPOINT', 'seasonal route');
 
@@ -236,6 +269,10 @@ expectText(seasonalScript, "host_dj_sound_vocalists: 'Ведущий + DJ + ап
 expectText(seasonalScript, "host_dj_sound_vocalists_sax: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста и саксофонист'", 'lead saxophone package contract');
 expectText(seasonalScript, "host_dj_sound_vocalists_sax_guitar: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист'", 'lead guitar package contract');
 expectText(seasonalScript, 'response.status !== 201', 'confirmed lead gate');
+expectText(seasonalScript, 'Ориентир на сайте:', 'seasonal public quote in CRM comment');
+expectText(seasonalScript, 'Продление:', 'seasonal extension quote in CRM comment');
+expectText(seasonalScript, "let selectedPackage = '';", 'seasonal package requires an explicit choice');
+rejectText(seasonalScript, 'const defaultCard', 'seasonal package must not be preselected');
 expectText(seasonalScript, "reachGoal('corporate_lead_submit_success')", 'confirmed lead goal');
 expectText(seasonalScript, 'window.location.origin}${window.location.pathname}', 'sanitized page URL');
 

@@ -121,6 +121,166 @@
     }, { once: true });
   });
 
+  function formatRubles(value) {
+    return `${new Intl.NumberFormat('ru-RU').format(value)} ₽`;
+  }
+
+  function initSeasonalPricing() {
+    const root = document.querySelector('[data-seasonal-pricing]');
+    if (!root) return null;
+
+    const dateInput = root.querySelector('[data-pricing-date]');
+    const selectedDate = root.querySelector('[data-pricing-selected-date]');
+    const rows = Array.from(document.querySelectorAll('[data-pricing-row]')).map((row) => ({
+      fromDay: Number(row.dataset.dateFrom),
+      toDay: Number(row.dataset.dateTo),
+      hostDj: Number(row.dataset.hostDj),
+      hostDjSound: Number(row.dataset.hostDjSound),
+      extension: Number(row.dataset.extension)
+    }));
+    const cards = Array.from(document.querySelectorAll('[data-pricing-package]'));
+    const extensionOutput = document.querySelector('[data-pricing-extension]');
+    const cta = document.querySelector('[data-pricing-check-date]');
+    const ctaLabel = document.querySelector('[data-pricing-cta-label]');
+    const leadDate = document.querySelector('[data-seasonal-form] [name="event_date"]');
+    const leadPackage = document.querySelector('[data-seasonal-form] [name="equipment_needed"]');
+    const liveMusicAddon = 150000;
+    let selectedPackage = '';
+    let currentQuote = null;
+
+    function readDay(value) {
+      const match = /^2026-12-(\d{2})$/.exec(String(value || ''));
+      if (!match) return null;
+      const day = Number(match[1]);
+      return day >= 1 && day <= 31 ? day : null;
+    }
+
+    function getQuote(value) {
+      const day = readDay(value);
+      if (!day) return null;
+      const row = rows.find((item) => day >= item.fromDay && day <= item.toDay);
+      if (!row) return null;
+      return {
+        ...row,
+        day,
+        liveMusic: row.hostDjSound + liveMusicAddon,
+        fromPrice: day === 31
+      };
+    }
+
+    function getPublicPrice(value, packageValue) {
+      const quote = getQuote(value);
+      if (!quote) return null;
+      if (packageValue === 'host_dj') return { value: quote.hostDj, fromPrice: quote.fromPrice };
+      if (packageValue === 'host_dj_sound') return { value: quote.hostDjSound, fromPrice: quote.fromPrice };
+      if (String(packageValue || '').startsWith('host_dj_sound_vocalists')) return { value: quote.liveMusic, fromPrice: true };
+      return null;
+    }
+
+    function formatSelectedDate(day) {
+      const formatted = new Intl.DateTimeFormat('ru-RU', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        timeZone: 'UTC'
+      }).format(new Date(Date.UTC(2026, 11, day)));
+      return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+    }
+
+    function setSelectedPackage(card) {
+      selectedPackage = card.dataset.pricingFormValue || 'host_dj_sound';
+      cards.forEach((item) => {
+        const selected = item === card;
+        item.classList.toggle('service-format--selected', selected);
+        const button = item.querySelector('[data-pricing-package-select]');
+        if (button) {
+          button.setAttribute('aria-pressed', String(selected));
+          button.textContent = selected ? 'Выбрано' : 'Выбрать состав';
+        }
+      });
+      if (leadPackage) leadPackage.value = selectedPackage;
+    }
+
+    function syncSelectedPackageFromLead() {
+      selectedPackage = leadPackage?.value || '';
+      cards.forEach((item) => {
+        const cardValue = item.dataset.pricingFormValue || '';
+        const selected = cardValue === selectedPackage
+          || (cardValue === 'host_dj_sound_vocalists' && selectedPackage.startsWith('host_dj_sound_vocalists'));
+        item.classList.toggle('service-format--selected', selected);
+        const button = item.querySelector('[data-pricing-package-select]');
+        if (button) {
+          button.setAttribute('aria-pressed', String(selected));
+          button.textContent = selected ? 'Выбрано' : 'Выбрать состав';
+        }
+      });
+    }
+
+    function update(value, { syncLead = true } = {}) {
+      currentQuote = getQuote(value);
+      if (!currentQuote) {
+        selectedDate.textContent = 'Выберите дату — покажем точную цену';
+        if (extensionOutput) extensionOutput.textContent = 'после выбора даты';
+        if (ctaLabel) ctaLabel.textContent = 'Сначала выберите дату';
+        cards.forEach((card) => {
+          const price = card.querySelector('[data-pricing-value]');
+          const caption = card.querySelector('[data-pricing-caption]');
+          if (price) price.textContent = '—';
+          if (caption) caption.textContent = 'Цена после выбора даты';
+        });
+        return;
+      }
+
+      const dateLabel = formatSelectedDate(currentQuote.day);
+      selectedDate.textContent = dateLabel;
+      if (extensionOutput) extensionOutput.textContent = formatRubles(currentQuote.extension);
+      if (ctaLabel) ctaLabel.textContent = `Проверить ${currentQuote.day} декабря`;
+
+      cards.forEach((card) => {
+        const key = card.dataset.pricingPackage;
+        const amount = currentQuote[key];
+        const prefix = key === 'liveMusic' || currentQuote.fromPrice ? 'от ' : '';
+        const price = card.querySelector('[data-pricing-value]');
+        const caption = card.querySelector('[data-pricing-caption]');
+        if (price) price.textContent = `${prefix}${formatRubles(amount)}`;
+        if (caption) caption.textContent = dateLabel;
+      });
+
+      if (syncLead && leadDate) leadDate.value = value;
+    }
+
+    cards.forEach((card) => {
+      card.querySelector('[data-pricing-package-select]')?.addEventListener('click', () => setSelectedPackage(card));
+    });
+
+    dateInput?.addEventListener('input', () => update(dateInput.value));
+    leadDate?.addEventListener('input', () => {
+      if (dateInput) dateInput.value = leadDate.value;
+      update(leadDate.value, { syncLead: false });
+    });
+    leadPackage?.addEventListener('change', syncSelectedPackageFromLead);
+
+    cta?.addEventListener('click', (event) => {
+      if (!currentQuote) {
+        event.preventDefault();
+        dateInput?.focus();
+        return;
+      }
+      if (leadDate) leadDate.value = dateInput.value;
+      if (leadPackage) leadPackage.value = selectedPackage;
+    });
+
+    if (leadDate?.value && dateInput) {
+      dateInput.value = leadDate.value;
+      update(leadDate.value, { syncLead: false });
+    }
+    if (leadPackage?.value) syncSelectedPackageFromLead();
+
+    return { getQuote, getPublicPrice };
+  }
+
+  const pricingController = initSeasonalPricing();
+
   const form = document.querySelector('[data-seasonal-form]');
   const status = document.querySelector('[data-form-status]');
   const success = document.querySelector('[data-form-success]');
@@ -166,6 +326,12 @@
       `Гостей: ${data.get('guests_count')}`,
       `Комплект: ${equipmentLabel(data.get('equipment_needed'))}`
     ];
+    const quote = pricingController?.getQuote(data.get('event_date'));
+    const publicPrice = pricingController?.getPublicPrice(data.get('event_date'), data.get('equipment_needed'));
+    if (quote && publicPrice) {
+      commentLines.push(`Ориентир на сайте: ${publicPrice.fromPrice ? 'от ' : ''}${formatRubles(publicPrice.value)}`);
+      commentLines.push(`Продление: ${formatRubles(quote.extension)} за каждый начатый дополнительный час`);
+    }
     if (company) commentLines.push(`Компания / площадка: ${company}`);
 
     const payload = {

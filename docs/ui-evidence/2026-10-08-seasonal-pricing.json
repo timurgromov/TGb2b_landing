@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-08-seasonal-pricing",
+  "change_kind": "seasonal-date-pricing",
+  "status": "passed",
+  "requested_visible_change": "Добавить ценовую матрицу только на новогодний корпоративный маршрут, не меняя обычный корпоратив и юбилей.",
+  "expected_visible_delta": "После выбора даты три сезонных пакета показывают цену, ниже видна ставка дополнительного часа и раскрывается матрица из 14 диапазонов декабря.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "fc96ed9caf4a3b0cb40a128e6044d78a9c296b02190f32cce1d405390d6f3cc9",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4323/novogodniy-korporativ/?qa=matrix#formats",
+    "source_ref": "staged astro-migration candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/",
+    "state": "25 декабря, три цены, продление, выбранный состав и раскрываемая матрица",
+    "selector_or_slide_id": "[data-testid=seasonal-pricing], [data-pricing-value], .seasonal-pricing-table",
+    "action": "выбрать 25 декабря, выбрать состав, раскрыть полную матрицу и проверить перенос в форму"
+  },
+  "must_remain_unchanged": [
+    "обычный корпоративный маршрут не содержит сезонного ценового блока",
+    "юбилейная страница находится в другом репозитории и не затрагивается",
+    "успех сезонной формы по-прежнему показывается только после HTTP 201"
+  ],
+  "required_viewports": [
+    "390x844",
+    "768x900",
+    "769x900",
+    "1180x900",
+    "1440x900"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=390; innerHeight=844",
+      "before_signature": "live baseline: три карточки без поля даты, цен, продления и матрицы",
+      "after_signature": "220 000 ₽; 250 000 ₽; от 400 000 ₽; продление 25 000 ₽; 14 мобильных строк; scrollWidth=390",
+      "observed_visible_result": "Поле даты и карточки идут в одну колонку; матрица раскрывается без горизонтальной прокрутки; до явного выбора состав не подставлен.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=768; innerHeight=900",
+      "before_signature": "live baseline: сезонный ценовой интерфейс отсутствует",
+      "after_signature": "одна колонка карточек; три ожидаемые цены; 14 строк; scrollWidth=768",
+      "observed_visible_result": "Граница 768px сохраняет читаемую одноколоночную композицию без overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=769; innerHeight=900",
+      "before_signature": "live baseline: сезонный ценовой интерфейс отсутствует",
+      "after_signature": "две колонки карточек; три ожидаемые цены; 14 строк; scrollWidth=769",
+      "observed_visible_result": "Сразу после mobile breakpoint карточки переходят в две колонки без горизонтальной прокрутки.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1180; innerHeight=900",
+      "before_signature": "live baseline: сезонный ценовой интерфейс отсутствует",
+      "after_signature": "две колонки карточек; три ожидаемые цены; 14 строк; scrollWidth=1180",
+      "observed_visible_result": "Промежуточная desktop ширина сохраняет равномерную сетку и полный ценовой контент без overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1440; innerHeight=900",
+      "before_signature": "live baseline: сезонный ценовой интерфейс отсутствует",
+      "after_signature": "три колонки карточек; 220 000 ₽; 250 000 ₽; от 400 000 ₽; scrollWidth=1440",
+      "observed_visible_result": "Desktop показывает три пакета в одной строке; дата и выбранный состав переносятся в подробную форму.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "интерактивная цена по дате с раскрываемой полной матрицей",
+    "owner_approval_reference": "сообщение владельца от 8 октября 2026 года: сделать только для новогоднего сайта"
+  }
+}

@@ -3,17 +3,23 @@ interface Props {
   seasonal?: boolean;
 }
 
+import { formatRubles, liveMusicAddon, seasonalPriceRows } from '@data/seasonalPricing';
+
 const { seasonal = false } = Astro.props;
 
 const formats = [
   {
     name: 'Базовый',
     title: 'Ведущий + DJ',
+    priceKey: 'hostDj',
+    formValue: 'host_dj',
     items: ['Подготовка программы', 'Ведение вечера', 'DJ и музыкальное сопровождение']
   },
   {
     name: 'С техникой',
     title: 'Ведущий + DJ + звук',
+    priceKey: 'hostDjSound',
+    formValue: 'host_dj_sound',
     items: [
       'Подготовка программы',
       'Ведение вечера',
@@ -24,6 +30,8 @@ const formats = [
   {
     name: 'С живой музыкой',
     title: 'Ведущий + DJ + звук + два вокалиста',
+    priceKey: 'liveMusic',
+    formValue: 'host_dj_sound_vocalists',
     detailsHref: '#music-program',
     items: [
       'Подготовка программы',
@@ -42,21 +50,92 @@ const formats = [
     <p class="section__eyebrow sr">Без лишнего в смете</p>
     <h2 class="section__title sr">Выберите подходящий состав</h2>
     <p class="section__subtitle service-formats__intro sr">DJ всегда работает со мной в связке. Остальной состав зависит от площадки, числа гостей и программы.</p>
+    {seasonal && (
+      <div class="seasonal-pricing-picker sr" data-seasonal-pricing data-testid="seasonal-pricing">
+        <label class="seasonal-pricing-picker__field" for="seasonal-pricing-date">
+          <span>Дата корпоратива</span>
+          <input id="seasonal-pricing-date" type="date" min="2026-12-01" max="2026-12-31" data-pricing-date aria-describedby="seasonal-pricing-hint" />
+        </label>
+        <div class="seasonal-pricing-picker__summary" id="seasonal-pricing-hint">
+          <span>Стоимость программы до 5 часов</span>
+          <strong data-pricing-selected-date>Выберите дату — покажем точную цену</strong>
+        </div>
+      </div>
+    )}
     <div class="service-formats__grid">
       {formats.map((format, index) => (
-        <article class:list={['service-format', 'sr', { 'service-format--featured': index === 1 }]}>
+        <article
+          class:list={['service-format', 'sr', { 'service-format--featured': index === 1 }]}
+          data-pricing-package={seasonal ? format.priceKey : undefined}
+          data-pricing-form-value={seasonal ? format.formValue : undefined}
+        >
           <p class="service-format__number">0{index + 1} · {format.name}</p>
           <h3>{format.title}</h3>
           <ul>
             {format.items.map((item) => <li>{item}</li>)}
           </ul>
           {format.detailsHref && <a class="service-format__details" href={format.detailsHref}>Подробнее о живой музыке <span aria-hidden="true">→</span></a>}
+          {seasonal && (
+            <div class="service-format__price" aria-live="polite">
+              <span class="service-format__price-caption" data-pricing-caption>Цена после выбора даты</span>
+              <output class="service-format__price-value" data-pricing-value>—</output>
+              <span class="service-format__price-note">{format.priceKey === 'liveMusic' ? 'Два вокалиста; саксофон и гитара рассчитываются отдельно' : 'Программа до 5 часов'}</span>
+              <button
+                class="service-format__select"
+                type="button"
+                data-pricing-package-select
+                aria-pressed="false"
+              >
+                Выбрать состав
+              </button>
+            </div>
+          )}
         </article>
       ))}
     </div>
+    {seasonal && (
+      <div class="seasonal-pricing-result sr">
+        <p class="seasonal-pricing-result__extension"><span>Дополнительный час:</span> <strong data-pricing-extension>после выбора даты</strong></p>
+        <p class="seasonal-pricing-result__equipment">В цену второго и третьего пакета входит комплект звука и DJ-оборудования. Точный состав подтверждаем после проверки площадки.</p>
+      </div>
+      <details class="seasonal-pricing-table sr">
+        <summary>Посмотреть цены на все даты декабря</summary>
+        <div class="seasonal-pricing-table__wrap">
+          <table>
+            <caption class="seasonal-pricing-table__caption">Стоимость новогоднего корпоратива по датам декабря 2026 года</caption>
+            <thead>
+              <tr>
+                <th scope="col">Даты</th>
+                <th scope="col">Ведущий + DJ</th>
+                <th scope="col">С оборудованием</th>
+                <th scope="col">Доп. час</th>
+              </tr>
+            </thead>
+            <tbody>
+              {seasonalPriceRows.map((row) => (
+                <tr
+                  data-pricing-row
+                  data-date-from={row.fromDay}
+                  data-date-to={row.toDay}
+                  data-host-dj={row.hostDj}
+                  data-host-dj-sound={row.hostDjSound}
+                  data-extension={row.extension}
+                >
+                  <th scope="row" data-label="Даты"><span>{row.label}</span><small>{row.weekdays}</small></th>
+                  <td data-label="Ведущий + DJ">{row.fromDay === 31 ? 'от ' : ''}{formatRubles(row.hostDj)}</td>
+                  <td data-label="С оборудованием">{row.fromDay === 31 ? 'от ' : ''}{formatRubles(row.hostDjSound)}</td>
+                  <td data-label="Доп. час">{formatRubles(row.extension)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="seasonal-pricing-table__note">Пакет с двумя вокалистами — от {formatRubles(liveMusicAddon)} сверх стоимости варианта с оборудованием. Саксофон и гитара рассчитываются отдельно.</p>
+      </details>
+    )}
     <div class="service-formats__cta">
       {seasonal ? (
-        <a class="btn btn-outline" href="#proverit-datu">Проверить дату и состав</a>
+        <a class="btn btn-outline" href="#proverit-datu" data-pricing-check-date><span data-pricing-cta-label>Сначала выберите дату</span></a>
       ) : (
         <button class="btn btn-outline" type="button" data-contact-open data-contact-source="formats_consultation" data-contact-intent="consultation" data-contact-placement="formats">Обсудить дату и состав</button>
       )}
