@@ -620,11 +620,6 @@ function unlockPageScroll() {
   requestAnimationFrame(updateArrows);
 })();
 
-// PATCH BEGIN: WHATSAPP_DEFAULT_MESSAGE
-const DEFAULT_WA_MESSAGE = 'Здравствуйте, хочу обсудить корпоратив!';
-const DEFAULT_WA_URL = `https://wa.me/79253900772?text=${encodeURIComponent(DEFAULT_WA_MESSAGE)}`;
-// PATCH END: WHATSAPP_DEFAULT_MESSAGE
-
 // PATCH BEGIN: CONFIRMED_CORPORATE_LEAD_HELPER
 const CORPORATE_LEAD_ENDPOINT = 'https://calcul.timurgromov.ru/api/v1/site/consultation-request';
 const CORPORATE_TRACKING_KEYS = [
@@ -772,67 +767,6 @@ async function sendCorporateLead(name, phone, source = 'popup', suppliedContext 
 }
 // PATCH END: CONFIRMED_CORPORATE_LEAD_HELPER
 
-// ===== УМНОЕ ПЕРЕНАПРАВЛЕНИЕ ТЕЛЕФОННЫХ ССЫЛОК =====
-(function initSmartPhoneRedirect() {
-  // Определяем тип устройства
-  function isMobilePhone() {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    
-    // Проверяем на мобильные телефоны (не планшеты)
-    const isMobile = /android|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-    const isTablet = /ipad|android(?=.*tablet)|kindle|silk/i.test(userAgent);
-    
-    // Возвращаем true только для телефонов, не для планшетов
-    return isMobile && !isTablet;
-  }
-
-  // Функция для обработки клика по телефонной ссылке
-  function handlePhoneClick(e) {
-    const isMobile = isMobilePhone();
-    
-    if (isMobile) {
-      // На мобильном телефоне - обычный звонок по GSM
-      // Ничего не делаем, позволяем браузеру обработать tel: ссылку
-      return;
-    } else {
-      // На планшете/компьютере - переходим в WhatsApp
-      e.preventDefault();
-      
-      const phoneNumber = '+79253900772';
-      // Открываем WhatsApp в новой вкладке
-      window.open(DEFAULT_WA_URL, '_blank', 'noopener,noreferrer');
-      
-      // Логируем событие для аналитики
-      if (window.dataLayer) {
-        window.dataLayer.push({
-          event: 'phone_redirect',
-          device_type: 'tablet_desktop',
-          redirect_to: 'whatsapp',
-          phone_number: phoneNumber
-        });
-      }
-    }
-  }
-
-  // Добавляем обработчики для всех телефонных ссылок и кнопок
-  document.addEventListener('DOMContentLoaded', function() {
-    const phoneLinks = document.querySelectorAll('a[href^="tel:"]:not([data-contact-phone])');
-    
-    phoneLinks.forEach(link => {
-      link.addEventListener('click', handlePhoneClick);
-    });
-    
-    // Добавляем обработчик для кнопки "Позвонить"
-    const callBtn = document.querySelector('.call-btn');
-    if (callBtn) {
-      callBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        handlePhoneClick(e);
-      });
-    }
-  });
-})();
-
 // ===== HEADER: HIDE ON SCROLL DOWN, SHOW ON SCROLL UP =====
 (function initHeaderScroll() {
   const header = document.querySelector('.site-header.glass.fixed');
@@ -865,64 +799,6 @@ async function sendCorporateLead(name, phone, source = 'popup', suppliedContext 
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll(); // применить состояние при загрузке
-})();
-
-// ===== УМНАЯ ПЛАВАЮЩАЯ КНОПКА WHATSAPP/ТЕЛЕФОН =====
-(function initSmartWhatsAppFAB() {
-  const waFab = document.querySelector('.wa-fab');
-  if (!waFab) return;
-
-  // На мобилке меняем поведение на телефон
-  function initMobileBehavior() {
-    if (window.innerWidth <= 768) {
-      // Меняем ссылку на телефон
-      waFab.href = 'tel:+79253900772';
-      waFab.setAttribute('aria-label', 'Позвонить');
-      waFab.setAttribute('data-cta', 'tel_fab');
-      waFab.removeAttribute('target');
-      waFab.removeAttribute('rel');
-    } else {
-      // На десктопе возвращаем WhatsApp
-      waFab.href = DEFAULT_WA_URL;
-      waFab.setAttribute('aria-label', 'Написать в WhatsApp');
-      waFab.setAttribute('data-cta', 'whatsapp_fab');
-      waFab.setAttribute('target', '_blank');
-      waFab.setAttribute('rel', 'noopener');
-    }
-  }
-
-  // Показываем FAB только когда пользователь прокрутил > 1 экрана
-  // Это убирает дублирование с header на первом экране
-  function toggleFab() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const windowHeight = window.innerHeight;
-    
-    // Появляется после 100vh (полный экран)
-    if (scrollTop > windowHeight) {
-      waFab.classList.add('show');
-    } else {
-      waFab.classList.remove('show');
-    }
-  }
-
-  // Throttled scroll с requestAnimationFrame для производительности
-  let ticking = false;
-  function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        toggleFab();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }
-
-  // Инициализируем поведение при загрузке и изменении размера
-  initMobileBehavior();
-  window.addEventListener('resize', initMobileBehavior);
-  
-  window.addEventListener('scroll', onScroll, { passive: true });
-  toggleFab(); // проверка при загрузке
 })();
 
 // Анимации отключены - фото всегда видны
