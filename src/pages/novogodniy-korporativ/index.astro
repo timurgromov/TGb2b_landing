@@ -58,7 +58,7 @@ const serviceSchema = {
   pageScript="/seasonal.js?v=20261001b"
   structuredData={serviceSchema}
 >
-  <Header />
+  <Header page="new_year" />
 
   <main class="page seasonal-page">
     <section class="hero">
@@ -76,8 +76,8 @@ const serviceSchema = {
             <span class="tag">Договор ИП</span>
           </div>
           <div class="hero__cta hero-actions" id="hero-actions">
-            <a class="btn btn-primary" href="#proverit-datu" data-testid="seasonal-primary-cta">Проверить дату</a>
-            <a class="btn btn-outline" href="#cases">Посмотреть видео</a>
+            <button type="button" class="btn btn-primary" data-contact-open data-contact-source="hero_consultation" data-contact-intent="consultation" data-contact-placement="hero" data-testid="seasonal-primary-cta">Обсудить корпоратив</button>
+            <button type="button" class="btn btn-outline" data-contact-open data-contact-form="video" data-form-source="hero_video" data-contact-intent="meeting" data-contact-placement="hero">Назначить встречу</button>
           </div>
         </div>
 

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-07-three-page-contact-cta",
+  "change_kind": "header-hero-contact",
+  "status": "passed",
+  "requested_visible_change": "На корпоративном и новогоднем маршрутах кнопка Связаться в шапке и белая надпись на плавающей кнопке; в новогоднем Hero — Обсудить корпоратив и Назначить встречу.",
+  "expected_visible_delta": "WhatsApp в шапке заменён общей контактной панелью, сезонные Hero CTA совпадают по смыслу с корпоративным маршрутом; телефон остаётся tel: и подробная форма проверки даты остаётся ниже.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "fabdd25803e51255187f17f2588a8ade0a70e4ae05884ebff0b9a33fd10d6704",
+  "served_candidate": {
+    "url": "http://localhost:4324/novogodniy-korporativ/",
+    "source_ref": "staged astro-migration candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public first screen and contact panel",
+    "selector_or_slide_id": ".header-contact-btn, .hero-actions, .contact-choice-fab",
+    "action": "load first screen; click header contact; scroll beyond first viewport"
+  },
+  "must_remain_unchanged": [
+    "Seasonal detailed date form",
+    "H1 and hero image",
+    "Corporate materials card"
+  ],
+  "required_viewports": [
+    "1280x720",
+    "390x844"
+  ],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "viewport_source": "IAB window.innerWidth/innerHeight",
+      "before_signature": "live seasonal: header WhatsApp; Hero Проверить дату / Посмотреть видео; sticky color rgb(16,16,20)",
+      "after_signature": "local: header Связаться; Hero Обсудить корпоратив / Назначить встречу; sticky color rgb(255,255,255)",
+      "observed_visible_result": "Desktop screenshot shows new header and Hero, compact panel opens with bot, phone and callback, sticky button appears after scroll with white label.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "IAB viewport override and window.innerWidth/innerHeight",
+      "before_signature": "live seasonal: visible header WhatsApp; Hero Проверить дату / Посмотреть видео; sticky color rgb(16,16,20)",
+      "after_signature": "local: visible header Связаться; Hero Обсудить корпоратив / Назначить встречу; sticky color rgb(255,255,255)",
+      "observed_visible_result": "Mobile screenshot shows header CTA and bottom contact sheet; bot source ends new_year__header; phone href is tel:.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "IAB viewport override and window.innerWidth/innerHeight",
+      "before_signature": "live root: header WhatsApp and old dark sticky label",
+      "after_signature": "local root: header Связаться; white header and sticky labels; Hero Обсудить корпоратив / Назначить встречу",
+      "observed_visible_result": "Corporate mobile Hero and header render without overflow; contact panel bot source ends corporate__header and phone href is tel:.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": ""
+  }
+}

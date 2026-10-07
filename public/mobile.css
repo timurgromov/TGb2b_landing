@@ -54,7 +54,7 @@
   }
   
   /* Общее свечение для всех оранжевых кнопок (кроме header) */
-  .btn-primary:not(.workflow__cta .btn):not(.wa-btn),
+  .btn-primary:not(.workflow__cta .btn):not(.header-contact-btn),
   .benefits__cta .btn-outline,
   .workflow__cta .btn-outline,
   .hero-actions .btn-outline {
@@ -65,14 +65,14 @@
   }
 
   /* Свечение header кнопки исчезает вместе с header на мобилке */
-  .site-header:not(.header-hidden) .header__cta .wa-btn {
+  .site-header:not(.header-hidden) .header__cta .header-contact-btn {
     box-shadow: 
       0 4px 14px rgba(255,122,51,0.25),
       0 0 20px rgba(255, 106, 61, 0.20),
       0 0 40px rgba(255, 122, 69, 0.10) !important;
   }
 
-  .site-header.header-hidden .header__cta .wa-btn {
+  .site-header.header-hidden .header__cta .header-contact-btn {
     box-shadow: none !important;
   }
   :root {

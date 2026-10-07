@@ -241,10 +241,11 @@ button{font-family:inherit;cursor:pointer}
   transition: transform .15s ease, background-color .2s ease, border-color .2s ease;
   will-change: transform;
   cursor: pointer;
+  font-family: inherit;
 }
 
 /* Общее свечение для всех оранжевых кнопок (кроме header) */
-.btn-primary:not(.wa-btn),
+.btn-primary:not(.header-contact-btn),
 .benefits__cta .btn-outline,
 .workflow__cta .btn-outline,
 .hero-actions .btn-outline {
@@ -255,14 +256,14 @@ button{font-family:inherit;cursor:pointer}
 }
 
 /* Свечение header кнопки исчезает вместе с header */
-.site-header:not(.header-hidden) .header__cta .wa-btn {
+.site-header:not(.header-hidden) .header__cta .header-contact-btn {
   box-shadow: 
     0 10px 28px color-mix(in oklab, var(--accent) 45%, transparent),
     0 0 20px rgba(255, 106, 61, 0.20),
     0 0 40px rgba(255, 122, 69, 0.10);
 }
 
-.site-header.header-hidden .header__cta .wa-btn {
+.site-header.header-hidden .header__cta .header-contact-btn {
   box-shadow: none !important;
 }
 
@@ -355,9 +356,6 @@ button{font-family:inherit;cursor:pointer}
     gap: 8px;
   }
   
-  .wa-btn--mobile {
-    display: inline-flex;
-  }
 }
 
 body {
@@ -2203,7 +2201,7 @@ body { overflow-x: hidden; }
     gap:10px; 
     flex-wrap:nowrap; 
   }
-  .header__cta .wa-btn{ 
+  .header__cta .header-contact-btn{
     height:40px; 
     padding:0 16px; 
     white-space:nowrap; 
