@@ -3,6 +3,7 @@
   const endpoint = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
     ? 'http://127.0.0.1:8000/api/v1/site/metrika-attribution'
     : 'https://calcul.timurgromov.ru/api/v1/site/metrika-attribution';
+  const messengerEndpoint = 'https://calcul.timurgromov.ru/api/v1/site/messenger-start';
   const campaignKeys = [
     'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
     'direct_campaign_id', 'direct_source_type', 'direct_region_id'
@@ -49,7 +50,7 @@
   }
 
   async function attributedUrl(source) {
-    const fallback = `https://t.me/gromov_wedding_bot?start=${encodeURIComponent(source)}`;
+    const fallback = `${messengerEndpoint}?provider=telegram&mode=start&payload=${encodeURIComponent(source)}`;
     const info = tracking();
     const cid = await clientId();
     if (!cid && !info.yclid) return fallback;
@@ -65,6 +66,7 @@
           visit_key: visitKey(),
           source_code: source,
           provider: 'telegram',
+          mode: 'start',
           client_id: cid || null,
           yclid: info.yclid || null,
           campaign_params: info.campaign,
@@ -74,9 +76,14 @@
       });
       if (!response.ok) return fallback;
       const payload = await response.json();
-      return /^yd_[A-Za-z0-9_-]{20,40}$/.test(payload.start_payload || '')
-        ? `https://t.me/gromov_wedding_bot?start=${payload.start_payload}`
-        : fallback;
+      if (!/^yd_[A-Za-z0-9_-]{20,40}$/.test(payload.start_payload || '')) return fallback;
+      const destination = String(payload.destination_url || '');
+      try {
+        const host = new URL(destination).hostname.toLowerCase();
+        return host === 't.me' || host.endsWith('.t.me') ? destination : fallback;
+      } catch (_) {
+        return fallback;
+      }
     } catch (_) {
       return fallback;
     } finally {
