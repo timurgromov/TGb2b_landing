@@ -14,6 +14,249 @@
   min-width: 210px;
 }
 
+.seasonal-pricing-picker {
+  display: grid;
+  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+  gap: 18px;
+  align-items: center;
+  max-width: 920px;
+  margin: 0 auto 26px;
+  padding: 20px;
+  border: 1px solid rgba(255, 122, 69, .32);
+  border-radius: 16px;
+  background: linear-gradient(155deg, rgba(255, 122, 69, .09), rgba(255, 255, 255, .025) 64%);
+}
+
+.seasonal-pricing-picker__field {
+  display: grid;
+  gap: 8px;
+}
+
+.seasonal-pricing-picker__field span,
+.seasonal-pricing-picker__summary span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.seasonal-pricing-picker__field input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 12px;
+  outline: none;
+  background: rgba(0, 0, 0, .18);
+  color: var(--text);
+  color-scheme: dark;
+  font: inherit;
+  font-weight: 700;
+}
+
+.seasonal-pricing-picker__field input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 122, 69, .14);
+}
+
+.seasonal-pricing-picker__summary {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.seasonal-pricing-picker__summary strong {
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.25;
+}
+
+.seasonal-page .service-format[data-pricing-package] {
+  display: flex;
+  flex-direction: column;
+}
+
+.seasonal-page .service-format--selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(255, 122, 69, .12), 0 18px 44px rgba(0, 0, 0, .2);
+}
+
+.service-format__price {
+  display: grid;
+  gap: 7px;
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.service-format__price-caption,
+.service-format__price-note {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.service-format__price-value {
+  color: var(--text);
+  font-size: clamp(25px, 2.3vw, 34px);
+  font-weight: 850;
+  letter-spacing: -.025em;
+  line-height: 1.08;
+}
+
+.service-format__select {
+  min-height: 44px;
+  margin-top: 10px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 122, 69, .72);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 750;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+
+.service-format__select:hover,
+.service-format__select:focus-visible,
+.service-format__select[aria-pressed="true"] {
+  border-color: var(--accent);
+  outline: none;
+  background: var(--accent);
+  color: #111216;
+}
+
+.seasonal-pricing-result {
+  max-width: 900px;
+  margin: 24px auto 0;
+  text-align: center;
+}
+
+.seasonal-pricing-result__extension {
+  margin: 0;
+  font-size: 16px;
+}
+
+.seasonal-pricing-result__extension span,
+.seasonal-pricing-result__equipment {
+  color: var(--muted);
+}
+
+.seasonal-pricing-result__equipment {
+  max-width: 720px;
+  margin: 8px auto 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.seasonal-pricing-table {
+  max-width: 1080px;
+  margin: 24px auto 0;
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .022);
+  overflow: hidden;
+}
+
+.seasonal-pricing-table summary {
+  position: relative;
+  padding: 18px 54px 18px 20px;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 750;
+  list-style: none;
+}
+
+.seasonal-pricing-table summary::-webkit-details-marker {
+  display: none;
+}
+
+.seasonal-pricing-table summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  color: var(--accent);
+  font-size: 24px;
+  transform: translateY(-50%);
+}
+
+.seasonal-pricing-table[open] summary::after {
+  content: "−";
+}
+
+.seasonal-pricing-table summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+}
+
+.seasonal-pricing-table__wrap {
+  padding: 0 18px 16px;
+}
+
+.seasonal-pricing-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.seasonal-pricing-table__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.seasonal-pricing-table th,
+.seasonal-pricing-table td {
+  padding: 13px 12px;
+  border-top: 1px solid rgba(255, 255, 255, .075);
+  text-align: right;
+  vertical-align: middle;
+}
+
+.seasonal-pricing-table thead th {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.seasonal-pricing-table th:first-child,
+.seasonal-pricing-table td:first-child {
+  text-align: left;
+}
+
+.seasonal-pricing-table tbody th {
+  font-size: 14px;
+}
+
+.seasonal-pricing-table tbody th small {
+  display: inline-block;
+  margin-left: 7px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.seasonal-pricing-table tbody td {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.seasonal-pricing-table__note {
+  margin: 0;
+  padding: 0 20px 20px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
 .seasonal-lead-section {
   scroll-margin-top: calc(var(--header-h) + 24px);
 }
@@ -138,6 +381,92 @@
 }
 
 @media (max-width: 768px) {
+  .seasonal-pricing-picker {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding: 18px;
+  }
+
+  .seasonal-pricing-picker__summary strong {
+    font-size: 19px;
+  }
+
+  .service-format__price-value {
+    font-size: 30px;
+  }
+
+  .seasonal-pricing-table__wrap {
+    padding: 0 12px 14px;
+  }
+
+  .seasonal-pricing-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .seasonal-pricing-table table,
+  .seasonal-pricing-table tbody {
+    display: block;
+  }
+
+  .seasonal-pricing-table tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  .seasonal-pricing-table tbody tr {
+    display: grid;
+    gap: 8px;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, .075);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, .12);
+  }
+
+  .seasonal-pricing-table tbody th,
+  .seasonal-pricing-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 0;
+    border: 0;
+    text-align: right;
+  }
+
+  .seasonal-pricing-table tbody th::before,
+  .seasonal-pricing-table tbody td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .seasonal-pricing-table tbody th span {
+    margin-left: auto;
+  }
+
+  .seasonal-pricing-table tbody th small {
+    margin-left: 5px;
+  }
+
+  .seasonal-pricing-table__note {
+    padding: 0 16px 18px;
+  }
+
+  .service-formats__cta [data-pricing-check-date] {
+    width: 100%;
+    white-space: normal;
+  }
+
   .seasonal-form__grid {
     grid-template-columns: 1fr;
     gap: 14px;
