@@ -1,5 +1,20 @@
 # Current state
 
+## «Калькулятор мероприятий» — live (2026-10-07)
+
+- Source `e64f869` is pushed to `astro-migration`; static production
+  `14f5020` is live on `gh-pages` for corporate and New Year routes.
+- Both routes use the Russian product name and stable EventBudjet messenger
+  redirects. Active source no longer embeds the legacy bot username.
+- Authorized Telegram corporate/New Year entries and the authorized MAX
+  corporate entry reached CRM with their exact sources. Event flows do not
+  expose a personal messenger CTA.
+- Metrika goal `670525250` in counter `104468814` is now named
+  `Старт Калькулятора мероприятий офлайн`; its ID, `action` type and exact
+  `order_confirmed` condition are unchanged.
+- Release note:
+  `docs/history/worklog/2026-10-07-event-calculator-rebrand-final.md`.
+
 ## Contact CTA and Event Calculator — live (2026-10-07)
 
 - The shared corporate and New Year header now uses a white-text `Связаться`
