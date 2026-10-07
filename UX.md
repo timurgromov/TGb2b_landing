@@ -15,7 +15,7 @@ Job: за несколько минут убедиться, что ведущи�
 ## CTA and callback contract
 
 После первого экрана доступна подписанная плавающая кнопка `Связаться`. Все
-контактные CTA на `/` открывают одну панель: личный Telegram, звонок и
+контактные CTA на `/` открывают одну панель: Event Calculator, звонок и
 подтверждаемая callback-форма. На `/novogodniy-korporativ/` тот же выбор связи
 сохраняется для контактных CTA, а `Проверить дату` ведёт к подробной форме.
 
@@ -233,8 +233,17 @@ no horizontal overflow or console errors.
 
 ## CTA stage 1 contract — 2026-10-05
 
+### Event Calculator routing — 2026-10-07
+
+On both corporate routes the first Telegram action in the shared panel opens
+Event Calculator with a source specific to route and placement. Opening Telegram does not itself
+prove a lead; CRM request and offline conversion begin only after the visitor
+starts the bot. A request for a corporate preparation selection remains a
+personal request, not a wedding-material flow. The mobile panel scrolls inside
+its safe-area bounded bottom sheet.
+
 - Target: `/` and `/novogodniy-korporativ/`, sticky contact control after `scrollY > innerHeight`, shared contact panel, in-page contact CTA, and shared materials card immediately after `Порядок работы`.
 - Baseline observed live at actual 1280×720: the sticky control is an icon-only WhatsApp link; seasonal primary CTA goes to `#proverit-datu`; no materials card exists. The existing contact/video forms show success only after backend HTTP 201.
-- Expected visible delta: labelled `Связаться` button; compact desktop dialog or bottom sheet at <=768px containing personal Telegram, phone, and `Оставить номер`; text-only materials card on both routes. The last option opens an existing confirmed form; materials selection is recorded as `materials_request` in the lead comment.
+- Expected visible delta: labelled `Связаться` button; compact desktop dialog or bottom sheet at <=768px containing Event Calculator, phone, and `Оставить номер`; text-only materials card on both routes. The last option opens an existing confirmed form; materials selection is recorded as `materials_request` in the lead comment.
 - Preserved: header WhatsApp, seasonal `Проверить дату` anchor and qualified form, contact details, visual palette, hero/media/layout, other routes.
 - States and access: open, close button/backdrop/Escape, focus return, focus containment, background scroll lock; mobile safe-area padding. No automatic popup, PDF or delivery-time promise. Check 390×844 and 1280×720 plus narrow 320px and windowed 1024px.

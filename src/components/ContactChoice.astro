@@ -15,15 +15,15 @@ const { page = 'corporate' } = Astro.props;
   <div class="contact-choice__backdrop" data-contact-close></div>
   <section class="contact-choice__sheet" role="dialog" aria-modal="true" aria-labelledby="contact-choice-title" aria-describedby="contact-choice-description" tabindex="-1">
     <button type="button" class="contact-choice__close" data-contact-close aria-label="Закрыть панель">×</button>
-    <p class="contact-choice__eyebrow">ТИМУР ГРОМОВ · НАПРЯМУЮ</p>
-    <h2 id="contact-choice-title">Обсудим ваш корпоратив</h2>
+    <p class="contact-choice__eyebrow">EVENT CALCULATOR · ТИМУР ГРОМОВ</p>
+    <h2 id="contact-choice-title">{page === 'new_year' ? 'Обсудим новогодний корпоратив' : 'Обсудим ваш корпоратив'}</h2>
     <p id="contact-choice-description" data-contact-description>Выберите удобный способ связи. Я отвечу лично.</p>
     <div class="contact-choice__actions">
-      <a class="contact-choice__action contact-choice__action--primary" href={contact.telegramUrl} target="_blank" rel="noopener noreferrer" data-contact-telegram>Написать в Telegram <span aria-hidden="true">↗</span></a>
+      <a class="contact-choice__action contact-choice__action--primary" href={`https://t.me/gromov_wedding_bot?start=site_meeting_corporate__${page}__hero`} target="_blank" rel="noopener noreferrer" data-contact-telegram>Написать в Telegram-бот <span aria-hidden="true">↗</span></a>
       <a class="contact-choice__action" href={contact.phoneHref} data-contact-phone>Позвонить <span>{contact.phoneHuman}</span></a>
       <button type="button" class="contact-choice__action" data-contact-callback>Оставить номер <span aria-hidden="true">→</span></button>
     </div>
-    <p class="contact-choice__note">Открытие Telegram не отправляет заявку автоматически.</p>
+    <p class="contact-choice__note">Заявка появится после запуска бота. Можно также позвонить или оставить номер.</p>
   </section>
 </div>
 <button type="button" hidden data-modal="contact-popup" data-contact-form-trigger></button>

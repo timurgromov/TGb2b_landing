@@ -1,6 +1,18 @@
 # Current state
 
-Дата: 6 октября 2026 года.
+## Event Calculator CTA — implementation in progress (2026-10-07)
+
+- Shared corporate and new-year contact panels use Event Calculator as their
+  only Telegram action; the contact page also enters the bot.
+- Every bot CTA sends route and placement in its source. `ClientID` or
+  `yclid` gets a server-issued `yd_...` token; when attribution is unavailable,
+  the source-bearing deep link still opens the bot. Forms still require HTTP 201.
+- Metrika `104468814`: `order_confirmed` goal `670525250`. The temporary
+  personal-click goal `670526622` was deleted; API read-back excludes it.
+- Local build and `verify:seasonal` pass. Release and live Telegram/CRM
+  acceptance remain to be recorded. Prices and Direct campaigns are unchanged.
+
+Дата: 7 октября 2026 года.
 
 ## CTA stages 2–3 — live (2026-10-06)
 

@@ -50,9 +50,12 @@ function initContactChoice() {
     formSource = trigger.dataset.contactSource || trigger.dataset.formSource || 'contact_popup';
     formKind = trigger.dataset.contactForm || 'contact';
     ctaContext = contextFrom(trigger);
+    const source = `site_meeting_corporate__${ctaContext.page === 'new_year' ? 'new_year' : 'corporate'}__${ctaContext.placement}`;
+    telegram.dataset.botSource = source;
+    telegram.href = `https://t.me/gromov_wedding_bot?start=${source}`;
     description.textContent = trigger.dataset.contactIntent === 'materials'
-      ? 'Напишите мне, позвоните или оставьте номер. Я лично отвечу и поделюсь подходящими материалами.'
-      : 'Выберите удобный способ связи. Я отвечу лично.';
+      ? 'Запустите бот, позвоните или оставьте номер. Я лично отвечу и поделюсь подходящими материалами.'
+      : 'Запустите бот, позвоните или оставьте номер. Я лично отвечу на запрос.';
     dialog.hidden = false;
     lockPageScroll();
     sheet.focus();
