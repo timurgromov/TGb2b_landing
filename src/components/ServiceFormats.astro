@@ -62,16 +62,16 @@ const formats = [
     <p class="section__subtitle service-formats__intro sr">DJ всегда работает со мной в связке. Остальной состав зависит от площадки, числа гостей и программы.</p>
     {seasonal ? (
       <>
-        <div class="seasonal-pricing-calculator sr" data-seasonal-pricing data-testid="seasonal-pricing">
+        <div class="seasonal-pricing-calculator sr" data-seasonal-pricing data-testid="seasonal-pricing" data-annual-host-dj={seasonalMinimums.hostDj} data-annual-host-dj-sound={seasonalMinimums.hostDjSound} data-annual-extension={seasonalMinimums.extension}>
           <div class="seasonal-pricing-picker">
             <div class="seasonal-pricing-picker__summary" id="seasonal-pricing-hint">
-              <strong data-pricing-selected-date>Сейчас показана минимальная цена декабря</strong>
-              <span>Программа до 5 часов · Дополнительный час <b data-pricing-extension data-pricing-initial={`от ${formatRubles(seasonalMinimums.extension)}`}>от {formatRubles(seasonalMinimums.extension)}</b></span>
+              <strong data-pricing-selected-date>Базовая цена на даты вне декабря 2026</strong>
+              <span>Все цены — за 5 часов · Дополнительный час <b data-pricing-extension data-pricing-initial={`от ${formatRubles(seasonalMinimums.extension)}`}>от {formatRubles(seasonalMinimums.extension)}</b></span>
             </div>
             <label class="seasonal-pricing-picker__control" for="seasonal-pricing-date">
               <span data-pricing-date-action>Выбрать дату</span>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1 1-1V6a1 1 0 0 1 1-1Z" /></svg>
-              <input id="seasonal-pricing-date" type="date" min="2026-12-01" max="2026-12-31" data-pricing-date aria-label="Выбрать дату корпоратива в декабре" aria-describedby="seasonal-pricing-hint" />
+              <input id="seasonal-pricing-date" type="date" data-pricing-date aria-label="Выбрать дату корпоратива" aria-describedby="seasonal-pricing-hint" />
             </label>
           </div>
 
@@ -123,7 +123,7 @@ const formats = [
         <summary>Посмотреть цены на все даты декабря</summary>
         <div class="seasonal-pricing-table__wrap">
           <table>
-            <caption class="seasonal-pricing-table__caption">Стоимость новогоднего корпоратива по датам декабря 2026 года</caption>
+            <caption class="seasonal-pricing-table__caption">Стоимость пятичасовой программы новогоднего корпоратива по датам декабря 2026 года</caption>
             <thead>
               <tr>
                 <th scope="col">Даты</th>

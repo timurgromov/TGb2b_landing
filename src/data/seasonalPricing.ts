@@ -11,8 +11,8 @@ export interface SeasonalPriceRow {
 export const liveMusicAddon = 150_000;
 
 export const seasonalPriceRows: SeasonalPriceRow[] = [
-  { label: '1–2 декабря', weekdays: 'вт–ср', fromDay: 1, toDay: 2, hostDj: 135_000, hostDjSound: 160_000, extension: 20_000 },
-  { label: '3 декабря', weekdays: 'чт', fromDay: 3, toDay: 3, hostDj: 140_000, hostDjSound: 165_000, extension: 20_000 },
+  { label: '1–2 декабря', weekdays: 'вт–ср', fromDay: 1, toDay: 2, hostDj: 145_000, hostDjSound: 170_000, extension: 20_000 },
+  { label: '3 декабря', weekdays: 'чт', fromDay: 3, toDay: 3, hostDj: 145_000, hostDjSound: 170_000, extension: 20_000 },
   { label: '4–5 декабря', weekdays: 'пт–сб', fromDay: 4, toDay: 5, hostDj: 155_000, hostDjSound: 180_000, extension: 25_000 },
   { label: '6–9 декабря', weekdays: 'вс–ср', fromDay: 6, toDay: 9, hostDj: 145_000, hostDjSound: 170_000, extension: 20_000 },
   { label: '10 декабря', weekdays: 'чт', fromDay: 10, toDay: 10, hostDj: 155_000, hostDjSound: 180_000, extension: 20_000 },

@@ -5,8 +5,8 @@ import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const heroSlideIds = ['01-smile', '02-microphone', '03-full-length', '04-grey-suit', '05-gesture'];
 const seasonalPriceRows = [
-  [1, 2, 135000, 160000, 20000],
-  [3, 3, 140000, 165000, 20000],
+  [1, 2, 145000, 170000, 20000],
+  [3, 3, 145000, 170000, 20000],
   [4, 5, 155000, 180000, 25000],
   [6, 9, 145000, 170000, 20000],
   [10, 10, 155000, 180000, 20000],
@@ -233,16 +233,19 @@ for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta">Обсудить корпоратив', 'seasonal primary CTA');
 expectText(seasonalHtml, 'data-contact-form="video" data-form-source="hero_video"', 'seasonal meeting CTA');
 expectText(seasonalHtml, '>Назначить встречу</button>', 'seasonal meeting CTA label');
-expectText(seasonalHtml, '/seasonal.css?v=20261008e', 'seasonal form stylesheet');
-expectText(seasonalHtml, '/seasonal.js?v=20261008e', 'seasonal script');
+expectText(seasonalHtml, '/seasonal.css?v=20261008f', 'seasonal form stylesheet');
+expectText(seasonalHtml, '/seasonal.js?v=20261008f', 'seasonal script');
 rejectText(seasonalHtml, 'data-testid="seasonal-package-details"', 'seasonal retired separate package details');
 rejectText(seasonalHtml, 'Что входит в каждый пакет', 'seasonal retired shared package disclosure');
 expectText(seasonalHtml, 'Стоимость трёх вариантов на выбранную дату', 'seasonal compact price comparison');
 expectText(seasonalHtml, 'Выбрать дату', 'seasonal date action');
-expectText(seasonalHtml, 'Сейчас показана минимальная цена декабря', 'seasonal initial price explanation');
-expectText(seasonalHtml, 'data-pricing-initial="от 135 000 ₽"', 'seasonal initial host DJ price');
-expectText(seasonalHtml, 'data-pricing-initial="от 160 000 ₽"', 'seasonal initial sound price');
-expectText(seasonalHtml, 'data-pricing-initial="от 310 000 ₽"', 'seasonal initial live music price');
+expectText(seasonalHtml, 'Базовая цена на даты вне декабря 2026', 'seasonal initial price explanation');
+expectText(seasonalHtml, 'data-annual-host-dj="145000" data-annual-host-dj-sound="170000" data-annual-extension="20000"', 'year-round pricing baseline');
+rejectText(seasonalHtml, 'name="event_date" min="2026-12-01"', 'lead date must accept non-December dates');
+rejectText(seasonalHtml, 'id="seasonal-pricing-date" type="date" min=', 'pricing date must accept non-December dates');
+expectText(seasonalHtml, 'data-pricing-initial="от 145 000 ₽"', 'seasonal initial host DJ price');
+expectText(seasonalHtml, 'data-pricing-initial="от 170 000 ₽"', 'seasonal initial sound price');
+expectText(seasonalHtml, 'data-pricing-initial="от 320 000 ₽"', 'seasonal initial live music price');
 expectCount(seasonalHtml, 'data-pricing-package=', 3, 'seasonal compact price options');
 expectCount(seasonalHtml, 'data-pricing-value', 3, 'seasonal compact price values');
 expectCount(seasonalHtml, 'data-pricing-extension', 1, 'seasonal shared extension price');
@@ -287,8 +290,9 @@ expectText(seasonalScript, "host_dj_sound_vocalists: 'Ведущий + DJ + ап
 expectText(seasonalScript, "host_dj_sound_vocalists_sax: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста и саксофонист'", 'lead saxophone package contract');
 expectText(seasonalScript, "host_dj_sound_vocalists_sax_guitar: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист'", 'lead guitar package contract');
 expectText(seasonalScript, 'response.status !== 201', 'confirmed lead gate');
-expectText(seasonalScript, 'Ориентир на сайте:', 'seasonal public quote in CRM comment');
-expectText(seasonalScript, 'Продление:', 'seasonal extension quote in CRM comment');
+expectText(seasonalScript, 'Ориентир на сайте за 5 часов:', 'seasonal public quote in CRM comment');
+expectText(seasonalScript, 'Ориентир за 6 часов:', 'seasonal six-hour quote in CRM comment');
+expectText(seasonalScript, 'Дополнительный час:', 'seasonal extension quote in CRM comment');
 rejectText(seasonalScript, 'selectedPackage', 'seasonal redundant package selection state');
 rejectText(seasonalScript, 'data-pricing-package-select', 'seasonal redundant package selection handler');
 expectText(seasonalScript, "reachGoal('corporate_lead_submit_success')", 'confirmed lead goal');

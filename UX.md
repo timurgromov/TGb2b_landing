@@ -83,20 +83,28 @@ safe-area отступом. Закрытие работает по кнопке,
 
 ## Сезонная цена по дате
 
-- job: выбрать декабрьскую дату и сразу увидеть стоимость каждого доступного состава, продолжительность и цену дополнительного часа;
+- job: выбрать дату любого будущего корпоративного мероприятия и сразу увидеть стоимость каждого доступного состава, продолжительность и цену дополнительного часа; для декабря 2026 применяется отдельная матрица;
 - location: внутри `#formats` только на `/novogodniy-korporativ/`;
-- initial state: команда `Введите дату своего мероприятия`, native date input и три компактные закрытые карточки сразу показывают минимальные декабрьские значения `от`; у каждой карточки есть кнопка календаря и свой контрол `Что входит`;
-- selected state: выбор даты в верхнем поле или через календарь любой карточки одновременно пересчитывает все пакеты; внутри каждой карточки рядом показываются основная цена и меньшая строка `Доп. час`; единственный общий CTA переносит дату в форму `#proverit-datu`, где состав выбирается один раз;
+- initial state: одна кнопка `Выбрать дату` над тремя компактными карточками; без даты видны круглогодичные базовые цены за 5 часов `от 145 000 / 170 000 / 320 000 ₽`;
+- selected state: дата вне декабря 2026 оставляет базовые цены `от`, дата декабря 2026 подставляет строку декабрьской матрицы во все три карточки; рядом с выбранной датой показывается день недели. Дополнительный час составляет от 20 000 ₽ в обычные и недорогие дни, 25 000 ₽ на дорогие декабрьские даты, 35 000 ₽ 31 декабря. Единственный общий CTA переносит дату в форму `#proverit-datu`, где состав выбирается один раз;
 - package details: каждая карточка раскрывает собственный состав внутри своих границ и меняет контрол на `Скрыть состав`; отдельного общего блока с повтором трёх пакетов нет;
 - full matrix: `details` раскрывает 14 публичных диапазонов с итоговыми ценами двух фиксированных составов и продлением; музыкальный пакет считается как минимум `+150 000 ₽` к варианту с оборудованием;
 - public boundary: скидки, минимальная цена для торга, повышение при второй заявке и внутренняя экономика не публикуются;
 - equipment boundary: второй и третий пакеты включают комплект звука и DJ-оборудования; точный состав подтверждается после проверки площадки;
 - desktop: дата и три закрытые карточки помещаются в одну обзорную панель; каждая карточка раскрывается независимо, полная таблица остаётся отдельным disclosure;
-- mobile: карточки идут сразу под датой; цена и `Доп. час` находятся на одной строке, а состав раскрывается прямо под ними в той же карточке; горизонтальной прокрутки нет;
+- mobile: карточки идут сразу под общим выбором даты; цена за 5 часов указана внутри карточки, ставка дополнительного часа — в общей строке над карточками, а состав раскрывается прямо внутри выбранной карточки; горизонтальной прокрутки нет;
 - accessibility: native date input, единый `aria-live` для цен, три независимых `details/summary` для пакетов и отдельный `details/summary` для полной матрицы;
 - no-JS: состав каждого пакета и полная таблица доступны через нативные disclosure; интерактивные значения требуют JavaScript.
 
 ## Form states
+
+### Seasonal date form repair (2026-10-08)
+
+- Scope: `/novogodniy-korporativ/#proverit-datu`; the ordinary corporate and jubilee routes stay as they are.
+- A future event date in any month is valid for a request. Outside December 2026, all three displayed packages use the lowest December 2026 prices as the year-round starting prices: 145 000 ₽, 170 000 ₽ and from 320 000 ₽ for five hours. Each extra hour starts at 20 000 ₽, so the baseline host-and-DJ package for six hours is from 165 000 ₽. The more expensive December dates retain 25 000 ₽ per extra hour and 31 December retains 35 000 ₽. December 2026 keeps its date matrix with a 145 000 ₽ five-hour floor.
+- The top date control and the lead form share the selected date and price. The confirmation message names the field to fix. No success state or conversion goal appears before HTTP 201.
+- Mobile layout: the date, number, composition, company, name and phone controls must each remain within the same inner edges of the form card at 320, 375 and 390 CSS pixels. The submitted date and a focused date field must not expand the card. The floating contact button disappears while the detailed form is in view so it cannot cover a field or submit action. The desktop two-column layout remains.
+- Acceptance: reproduce the former 13 November 2026 failure before editing; after editing, the same completed form must reach the HTTP request path, and a mocked 201 must show success. Check 320/375/390, 768/769, 1024/1025, 1366/1440 and a wide desktop viewport; inspect the live seasonal form in the browser. Check the ordinary corporate route for regression.
 
 - `idle`: поля доступны, кнопка `Проверить дату`;
 - `invalid`: браузерная валидация и конкретная ошибка рядом со статусом;

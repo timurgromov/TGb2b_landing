@@ -2,6 +2,7 @@ function initContactChoice() {
   const dialog = document.getElementById('contact-choice-dialog');
   const sheet = dialog?.querySelector('.contact-choice__sheet');
   const fab = document.querySelector('[data-contact-fab]');
+  const detailedLeadSection = document.getElementById('proverit-datu');
   const description = dialog?.querySelector('[data-contact-description]');
   const callback = dialog?.querySelector('[data-contact-callback]');
   const telegram = dialog?.querySelector('[data-contact-telegram]');
@@ -30,7 +31,9 @@ function initContactChoice() {
   }
 
   function updateFab() {
-    fab.classList.toggle('is-visible', window.scrollY > window.innerHeight);
+    const leadBounds = detailedLeadSection?.getBoundingClientRect();
+    const leadFormVisible = leadBounds && leadBounds.top < window.innerHeight && leadBounds.bottom > 0;
+    fab.classList.toggle('is-visible', window.scrollY > window.innerHeight && !leadFormVisible);
   }
 
   function close({ restoreFocus = true } = {}) {

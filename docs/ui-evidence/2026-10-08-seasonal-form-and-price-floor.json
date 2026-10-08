@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-08-seasonal-form-and-price-floor",
+  "change_kind": "seasonal-form-mobile-and-price-floor",
+  "status": "passed",
+  "requested_visible_change": "Ноябрьская дата проходит проверку формы, мобильные поля находятся внутри карточки, а минимальная цена начинается с 145 000 ₽ за 5 часов.",
+  "expected_visible_delta": "Форма принимает будущую дату вне декабря, видит базовые цены 145/170/320 тысяч рублей, не перекрывается плавающей кнопкой и показывает успех только после HTTP 201.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "29f7ba6639103cbaecc4430b3217001075b74969008e8c5d2070721e3d2d9d0a",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4325/novogodniy-korporativ/#proverit-datu",
+    "source_ref": "clean codex/seasonal-form-repair worktree from astro-migration a34121e",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/",
+    "state": "13 November 2026 in detailed form, starting prices and selected December examples",
+    "selector_or_slide_id": "[data-seasonal-form], [data-pricing-value], [data-contact-fab]",
+    "action": "enter 13 November, inspect form validity, controls and prices; use local HTTP 201/500 substitute for submit-state checks"
+  },
+  "must_remain_unchanged": [
+    "December 25 and 31 premium price rows and 14-row matrix",
+    "package disclosures and ordinary corporate route content",
+    "CRM source and HTTP 201 success gate"
+  ],
+  "required_viewports": ["320x844", "375x812", "390x844", "768x844", "769x900", "1024x900", "1025x900", "1366x900", "1440x900", "1984x900"],
+  "observations": [
+    {
+      "viewport": "320x844",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=320, innerHeight=844",
+      "before_signature": "owner screenshot reported the selected native date field protruding from its mobile column",
+      "after_signature": "form card x=26..294, all form controls x=47..273, horizontal scrollWidth=320, floating contact control hidden over form",
+      "observed_visible_result": "The selected date field stays inside the same inner edges as the other controls.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "375x812",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=375, innerHeight=812",
+      "before_signature": "live form had date min=2026-12-01; entering 2026-11-13 produced rangeUnderflow and generic required-fields text",
+      "after_signature": "selected 2026-11-13 valid; form card x=33..342, all fields x=58..317, prices from 145000/170000/320000, no sticky overlay, scrollWidth=375",
+      "observed_visible_result": "The iPhone-width form shows a complete date field and specific phone error after the valid November date.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=390, innerHeight=844",
+      "before_signature": "live November form rejected the date before the HTTP request path",
+      "after_signature": "2026-11-13 accepted with baseline 145000/170000/from320000 and extra hour from20000; local mocked 201 showed success and mocked 500 kept form open with error; scrollWidth=390",
+      "observed_visible_result": "The date now reaches the submission path and response-specific UI states.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x844",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=768, innerHeight=844",
+      "before_signature": "date was limited to December 2026",
+      "after_signature": "card x=36..732, all controls x=61..707, scrollWidth=768",
+      "observed_visible_result": "The one-column tablet form keeps controls aligned.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=769, innerHeight=900",
+      "before_signature": "date was limited to December 2026",
+      "after_signature": "card x=24..745, all controls x=53..716, scrollWidth=769",
+      "observed_visible_result": "The mobile-to-tablet breakpoint does not clip either column.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x900",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=1024, innerHeight=900",
+      "before_signature": "date was limited to December 2026",
+      "after_signature": "card x=24..1000, controls x=102..922, scrollWidth=1024",
+      "observed_visible_result": "The form remains within the panel at the price-grid boundary.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1025x900",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=1025, innerHeight=900",
+      "before_signature": "date was limited to December 2026",
+      "after_signature": "card x=24..1001, controls x=103..923, scrollWidth=1025",
+      "observed_visible_result": "The form and three-column price layout have no horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x900",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=1366, innerHeight=900",
+      "before_signature": "date was limited to December 2026",
+      "after_signature": "card x=193..1173, controls x=273..1093, scrollWidth=1366",
+      "observed_visible_result": "The desktop two-column form stays inside the card.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=1440, innerHeight=900",
+      "before_signature": "early December starting price was 135000/160000/310000",
+      "after_signature": "starting price 145000/170000/320000; 25 December 220000/250000/from400000, 31 December from280000/from330000/from480000; scrollWidth=1440",
+      "observed_visible_result": "The revised floor and unchanged premium dates appear in one three-column comparison.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x900",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=1984, innerHeight=900",
+      "before_signature": "date was limited to December 2026",
+      "after_signature": "card x=502..1482, controls x=582..1402, scrollWidth=1984",
+      "observed_visible_result": "The wide desktop form remains centred and contained.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "year-round five-hour floor with date-specific December premium, mobile controls contained in the form card",
+    "owner_approval_reference": "owner messages on 8 October 2026: minimum 145000 for five hours all year, extra hour 20000 in ordinary and cheaper December days, repair the form"
+  }
+}
