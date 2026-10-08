@@ -1,5 +1,28 @@
 # Current state
 
+## Seasonal single date control — live (2026-10-08)
+
+- Only `/novogodniy-korporativ/` changed. One visible `Выбрать дату` action now
+  sits above the three prices. The native date input remains under that action,
+  opens the system picker, and no longer overflows the mobile panel. The three
+  card calendars and the lower duplicate date button are removed.
+- Before a date is chosen, the panel explains that the December minimums are
+  shown. After selection, each card shows the day and weekday above its updated
+  price; the top action becomes `Изменить дату`. The extension price is shown
+  once beside the five-hour programme explanation. The equipment qualification
+  sits inside the two relevant package disclosures.
+- Source runtime `ca84303` is on `origin/astro-migration`; static output
+  `be2e101` is on `origin/gh-pages`, and GitHub Pages reports `built` for that
+  exact production commit. Local `build`, `verify:seasonal`, syntax and staged
+  UI-evidence checks passed. Fresh live checks at `320x844`, `390x844`, and
+  `1440x900` found no horizontal overflow or console errors. Selecting
+  25 December showed `220 000 / 250 000 / от 400 000 ₽` and extension
+  `25 000 ₽`; 31 December showed `от 280 000 / от 330 000 / от 480 000 ₽`
+  and extension `35 000 ₽`. The selected date reached the existing form; no
+  real form was submitted. The ordinary corporate page still has no seasonal
+  pricing block.
+- Release note: `docs/history/worklog/2026-10-08-seasonal-single-date-control.md`.
+
 ## Seasonal date pricing — live (2026-10-08)
 
 - Только `/novogodniy-korporativ/` получил выбор декабрьской даты, цены трёх
@@ -15,9 +38,9 @@
   отправке формы публичный ориентир и ставка продления добавляются в комментарий заявки;
   success по-прежнему возможен только после backend HTTP `201`.
 - Ценовой блок собран в одну панель. До выбора даты три карточки показывают
-  минимальные декабрьские цены `от 135 000 / 160 000 / 310 000 ₽` и допчас
-  `от 20 000 ₽`. В каждой карточке есть кнопка календаря; дата пересчитывает
-  все три варианта одновременно. Цена и допчас стоят рядом.
+  минимальные декабрьские цены `от 135 000 / 160 000 / 310 000 ₽` и одну
+  общую ставку допчаса `от 20 000 ₽`. Кнопка выбора даты находится над
+  карточками; дата пересчитывает все три варианта одновременно.
 - Состав каждого пакета раскрывается внутри собственной карточки через
   `Что входит`; отдельного общего disclosure с повтором трёх пакетов больше
   нет. До `1024px` карточки идут в один столбец, с `1025px` — в три колонки.
@@ -32,7 +55,7 @@
   блока нет. После удаления лишнего выбора повторный fresh QA на `390x844` и
   `1440x900` подтвердил `0` кнопок, автоматические цены, перенос даты в форму
   и пустое поле состава до выбора в форме. Реальная форма не отправлялась.
-- После финальной переделки fresh production QA на `320x844`, `390x844` и
+- На предыдущем выпуске fresh production QA на `320x844`, `390x844` и
   `1440x900` подтвердил стартовые цены `от`, три календаря, независимые
   раскрытия составов на `3 / 4 / 6` пунктов и точные значения на 25 декабря
   `220 000 / 250 000 / от 400 000 ₽`, допчас `25 000 ₽`. Пересечений,
