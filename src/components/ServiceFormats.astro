@@ -10,7 +10,7 @@ const { seasonal = false } = Astro.props;
 const seasonalMinimums = {
   hostDj: Math.min(...seasonalPriceRows.map((row) => row.hostDj)),
   hostDjSound: Math.min(...seasonalPriceRows.map((row) => row.hostDjSound)),
-  liveMusic: Math.min(...seasonalPriceRows.map((row) => row.hostDjSound)) + liveMusicAddon,
+  liveMusic: Math.min(...seasonalPriceRows.map((row) => row.hostDjSound + row.liveMusicAddon)),
   extension: Math.min(...seasonalPriceRows.map((row) => row.extension))
 };
 
@@ -62,7 +62,7 @@ const formats = [
     <p class="section__subtitle service-formats__intro sr">DJ всегда работает со мной в связке. Остальной состав зависит от площадки, числа гостей и программы.</p>
     {seasonal ? (
       <>
-        <div class="seasonal-pricing-calculator sr" data-seasonal-pricing data-testid="seasonal-pricing" data-annual-host-dj={seasonalMinimums.hostDj} data-annual-host-dj-sound={seasonalMinimums.hostDjSound} data-annual-extension={seasonalMinimums.extension}>
+        <div class="seasonal-pricing-calculator sr" data-seasonal-pricing data-testid="seasonal-pricing" data-annual-host-dj={seasonalMinimums.hostDj} data-annual-host-dj-sound={seasonalMinimums.hostDjSound} data-annual-live-music-addon={liveMusicAddon} data-annual-extension={seasonalMinimums.extension}>
           <div class="seasonal-pricing-picker">
             <div class="seasonal-pricing-picker__summary" id="seasonal-pricing-hint">
               <strong data-pricing-selected-date>Базовая цена на даты вне декабря 2026</strong>
@@ -135,6 +135,7 @@ const formats = [
                 <th scope="col">Даты</th>
                 <th scope="col">Ведущий + DJ</th>
                 <th scope="col">С оборудованием</th>
+                <th scope="col">С живой музыкой</th>
                 <th scope="col">Доп. час</th>
               </tr>
             </thead>
@@ -146,18 +147,20 @@ const formats = [
                   data-date-to={row.toDay}
                   data-host-dj={row.hostDj}
                   data-host-dj-sound={row.hostDjSound}
+                  data-live-music-addon={row.liveMusicAddon}
                   data-extension={row.extension}
                 >
                   <th scope="row" data-label="Даты"><span>{row.label}</span><small>{row.weekdays}</small></th>
                   <td data-label="Ведущий + DJ">{row.fromDay === 31 ? 'от ' : ''}{formatRubles(row.hostDj)}</td>
                   <td data-label="С оборудованием">{row.fromDay === 31 ? 'от ' : ''}{formatRubles(row.hostDjSound)}</td>
+                  <td data-label="С живой музыкой">от {formatRubles(row.hostDjSound + row.liveMusicAddon)}</td>
                   <td data-label="Доп. час">{formatRubles(row.extension)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p class="seasonal-pricing-table__note">Пакет с двумя вокалистами — от {formatRubles(liveMusicAddon)} сверх стоимости варианта с оборудованием. Саксофон и гитара рассчитываются отдельно.</p>
+        <p class="seasonal-pricing-table__note">Цена пакета с двумя вокалистами уже учитывает декабрьскую ставку музыкального состава на выбранную дату. Саксофон и гитара рассчитываются отдельно.</p>
       </details>
       </>
     ) : (

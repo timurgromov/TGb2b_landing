@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-09-seasonal-music-pricing",
+  "change_kind": "seasonal-date-indexed-music-pricing",
+  "status": "passed",
+  "requested_visible_change": "Внедрить отдельную декабрьскую матрицу цены музыкального состава, не изменяя цены ведущего.",
+  "expected_visible_delta": "Третий пакет меняется по собственной ставке состава; подробная таблица показывает итоговую цену третьего пакета и отдельно различает 27–28 и 29–30 декабря.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "82820bcc1dfe40e62633466a3423a8243fb934678bbf89d67494cd174b660e11",
+  "served_candidate": {
+    "url": "http://localhost:4325/novogodniy-korporativ/#formats",
+    "source_ref": "codex/seasonal-music-pricing from origin/astro-migration 36727fe",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/#formats",
+    "state": "selected 1, 4, 25, 29, 30 and 31 December 2026 with the full matrix expanded",
+    "selector_or_slide_id": "[data-pricing-package=liveMusic], .seasonal-pricing-table",
+    "action": "select representative December dates and compare the third-package result with the expanded 14-row matrix"
+  },
+  "must_remain_unchanged": [
+    "host and DJ prices",
+    "equipment prices",
+    "additional-hour prices",
+    "ordinary corporate route",
+    "form submission and CRM payload behavior"
+  ],
+  "required_viewports": ["320x844", "390x844", "767x844", "768x1024", "1024x768", "1025x900", "1440x900"],
+  "observations": [
+    {
+      "viewport": "320x844",
+      "viewport_source": "Codex in-app browser exact viewport after the last edit",
+      "before_signature": "production had 13 rows and added the same 150000 to the sound package on every December date",
+      "after_signature": "expanded matrix has 14 rows, includes the third-package column, ends with 470000 and 630000, and document scrollWidth equals 320",
+      "observed_visible_result": "The date-indexed musical package remains readable as stacked mobile matrix cards.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser exact viewport after the last edit",
+      "before_signature": "production showed 400000 on 25 December, 370000 on 29 December and 480000 on 31 December",
+      "after_signature": "candidate shows 500000 on 25 December, 470000 on 29–30 December and 630000 on 31 December; expanded matrix width is 359 inside a 390 viewport",
+      "observed_visible_result": "The revised third-package prices and full matrix fit the primary mobile width without clipping.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "767x844",
+      "viewport_source": "Codex in-app browser exact viewport after the last edit",
+      "before_signature": "the detailed matrix omitted a third-package column and used one fixed addon",
+      "after_signature": "the expanded 14-row matrix stays within x=18..749 and document scrollWidth equals 767",
+      "observed_visible_result": "The new music-price row remains contained at the last narrow breakpoint width.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "viewport_source": "Codex in-app browser exact viewport after the last edit",
+      "before_signature": "the detailed matrix omitted a third-package column and used one fixed addon",
+      "after_signature": "the expanded 14-row matrix stays within x=18..750 and document scrollWidth equals 768",
+      "observed_visible_result": "The new matrix remains contained at the 768 CSS px breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "Codex in-app browser exact viewport after the last edit",
+      "before_signature": "the desktop table contained two package prices and extension only",
+      "after_signature": "the expanded table includes all three package prices, stays within x=24..1000 and document scrollWidth equals 1024",
+      "observed_visible_result": "The five-column desktop matrix fits the full breakpoint without page overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1025x900",
+      "viewport_source": "Codex in-app browser exact viewport after the last edit",
+      "before_signature": "the desktop table contained two package prices and extension only",
+      "after_signature": "the expanded table stays within x=24..1001 and document scrollWidth equals 1025",
+      "observed_visible_result": "The complete matrix fits immediately above the desktop card breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser exact viewport after the last edit",
+      "before_signature": "production used one 150000 addon and a 13-row table without the third package",
+      "after_signature": "the expanded five-column table is 1080 wide at x=180..1260; representative totals are 320000, 350000, 500000, 470000 and 630000 with no console errors",
+      "observed_visible_result": "Desktop presents the revised price ladder in one aligned table and keeps the three-card comparison unchanged.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ]
+}

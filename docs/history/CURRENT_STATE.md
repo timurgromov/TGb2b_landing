@@ -1,5 +1,11 @@
 # Current state
 
+## Date-indexed musical composition — local candidate (2026-10-09)
+
+- Only `/novogodniy-korporativ/` changes. Host, DJ, equipment and extension prices remain unchanged. The third package now uses a separate provisional musical-composition rate for each December range instead of adding the same 150 000 ₽ to every date.
+- The composition rate is 150 000 ₽ on 1–3 and 6 December, 160 000 ₽ on 7–10, 170 000 ₽ on 4–5 and 13, 190 000 ₽ on 11–12 and 14–17, 200 000 ₽ on 20, 220 000 ₽ on 18–19, 21–24 and 27–28, 250 000 ₽ on 25–26 and 29–30, and 300 000 ₽ on 31 December.
+- The detailed matrix now has 14 rows and shows the complete third-package price. Local rendered checks produced 320 000 ₽ on 1 December, 350 000 ₽ on 4 December, 500 000 ₽ on 25 December, 470 000 ₽ on 29–30 December and 630 000 ₽ on 31 December. The expanded matrix fit 320, 390, 767, 768, 1024, 1025 and 1440 CSS px without horizontal overflow or console errors. Release is pending.
+
 ## Per-card extension price — live (2026-10-08)
 
 - On `/novogodniy-korporativ/`, each of the three price cards now places `Доп. час` beside its five-hour price. The top picker only explains that displayed package prices cover up to five hours and no longer carries a detached extension rate.

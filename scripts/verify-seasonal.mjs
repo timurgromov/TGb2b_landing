@@ -5,19 +5,20 @@ import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const heroSlideIds = ['01-smile', '02-microphone', '03-full-length', '04-grey-suit', '05-gesture'];
 const seasonalPriceRows = [
-  [1, 3, 145000, 170000, 20000],
-  [4, 5, 155000, 180000, 25000],
-  [6, 6, 145000, 170000, 20000],
-  [7, 10, 155000, 180000, 20000],
-  [11, 12, 175000, 200000, 25000],
-  [13, 13, 155000, 180000, 20000],
-  [14, 17, 175000, 205000, 25000],
-  [18, 19, 200000, 230000, 25000],
-  [20, 20, 175000, 205000, 25000],
-  [21, 24, 190000, 220000, 25000],
-  [25, 26, 220000, 250000, 25000],
-  [27, 30, 190000, 220000, 25000],
-  [31, 31, 280000, 330000, 35000]
+  [1, 3, 145000, 170000, 150000, 20000],
+  [4, 5, 155000, 180000, 170000, 25000],
+  [6, 6, 145000, 170000, 150000, 20000],
+  [7, 10, 155000, 180000, 160000, 20000],
+  [11, 12, 175000, 200000, 190000, 25000],
+  [13, 13, 155000, 180000, 170000, 20000],
+  [14, 17, 175000, 205000, 190000, 25000],
+  [18, 19, 200000, 230000, 220000, 25000],
+  [20, 20, 175000, 205000, 200000, 25000],
+  [21, 24, 190000, 220000, 220000, 25000],
+  [25, 26, 220000, 250000, 250000, 25000],
+  [27, 28, 190000, 220000, 220000, 25000],
+  [29, 30, 190000, 220000, 250000, 25000],
+  [31, 31, 280000, 330000, 300000, 35000]
 ];
 
 async function read(relativePath) {
@@ -156,14 +157,17 @@ expectCount(seasonalHtml, 'data-pricing-extension', 3, 'extension price shown in
 expectCount(seasonalHtml, '<span>Доп. час</span>', 3, 'extension label shown inside every seasonal package');
 rejectText(seasonalHtml, 'Все цены — за 5 часов · Дополнительный час', 'retired shared extension line');
 expectCount(seasonalHtml, 'data-pricing-row', seasonalPriceRows.length, 'seasonal public pricing row count');
-for (const [fromDay, toDay, hostDj, hostDjSound, extension] of seasonalPriceRows) {
+for (const [fromDay, toDay, hostDj, hostDjSound, liveMusicAddon, extension] of seasonalPriceRows) {
   expectText(
     seasonalHtml,
-    `data-date-from="${fromDay}" data-date-to="${toDay}" data-host-dj="${hostDj}" data-host-dj-sound="${hostDjSound}" data-extension="${extension}"`,
+    `data-date-from="${fromDay}" data-date-to="${toDay}" data-host-dj="${hostDj}" data-host-dj-sound="${hostDjSound}" data-live-music-addon="${liveMusicAddon}" data-extension="${extension}"`,
     `seasonal price row ${fromDay}-${toDay}`
   );
 }
-expectText(seasonalHtml, 'Пакет с двумя вокалистами — от 150 000 ₽ сверх стоимости варианта с оборудованием.', 'seasonal live music addon');
+expectText(seasonalHtml, '<th scope="col">С живой музыкой</th>', 'seasonal live music matrix column');
+expectText(seasonalHtml, 'data-label="С живой музыкой">от 470 000 ₽', 'seasonal 29-30 live music total');
+expectText(seasonalHtml, 'data-label="С живой музыкой">от 630 000 ₽', 'seasonal 31 December live music total');
+expectText(seasonalHtml, 'Цена пакета с двумя вокалистами уже учитывает декабрьскую ставку музыкального состава на выбранную дату.', 'seasonal live music matrix explanation');
 expectCount(seasonalHtml, 'В цену входит комплект звука и DJ-оборудования.', 2, 'seasonal equipment boundary in relevant cards');
 rejectText(rootHtml, 'data-testid="seasonal-pricing"', 'root pricing scope');
 rejectText(rootHtml, 'data-pricing-row', 'root pricing scope');
@@ -236,13 +240,13 @@ expectText(seasonalHtml, 'data-testid="seasonal-primary-cta">Обсудить к
 expectText(seasonalHtml, 'data-contact-form="video" data-form-source="hero_video"', 'seasonal meeting CTA');
 expectText(seasonalHtml, '>Назначить встречу</button>', 'seasonal meeting CTA label');
 expectText(seasonalHtml, '/seasonal.css?v=20261008g', 'seasonal form stylesheet');
-expectText(seasonalHtml, '/seasonal.js?v=20261008g', 'seasonal script');
+expectText(seasonalHtml, '/seasonal.js?v=20261009a', 'seasonal script');
 rejectText(seasonalHtml, 'data-testid="seasonal-package-details"', 'seasonal retired separate package details');
 rejectText(seasonalHtml, 'Что входит в каждый пакет', 'seasonal retired shared package disclosure');
 expectText(seasonalHtml, 'Стоимость трёх вариантов на выбранную дату', 'seasonal compact price comparison');
 expectText(seasonalHtml, 'Выбрать дату', 'seasonal date action');
 expectText(seasonalHtml, 'Базовая цена на даты вне декабря 2026', 'seasonal initial price explanation');
-expectText(seasonalHtml, 'data-annual-host-dj="145000" data-annual-host-dj-sound="170000" data-annual-extension="20000"', 'year-round pricing baseline');
+expectText(seasonalHtml, 'data-annual-host-dj="145000" data-annual-host-dj-sound="170000" data-annual-live-music-addon="150000" data-annual-extension="20000"', 'year-round pricing baseline');
 rejectText(seasonalHtml, 'name="event_date" min="2026-12-01"', 'lead date must accept non-December dates');
 rejectText(seasonalHtml, 'id="seasonal-pricing-date" type="date" min=', 'pricing date must accept non-December dates');
 expectText(seasonalHtml, 'data-pricing-initial="от 145 000 ₽"', 'seasonal initial host DJ price');
