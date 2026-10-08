@@ -166,6 +166,14 @@
   font-weight: 650;
 }
 
+.seasonal-price-option__amount-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: end;
+  min-width: 0;
+}
+
 .seasonal-price-option__value {
   display: block;
   color: var(--text);
@@ -174,6 +182,25 @@
   letter-spacing: -.025em;
   line-height: 1.08;
   white-space: nowrap;
+}
+
+.seasonal-price-option__extension {
+  display: grid;
+  gap: 2px;
+  min-width: 74px;
+  padding-bottom: 1px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.seasonal-price-option__extension output {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 800;
 }
 
 .seasonal-price-option__disclosure {

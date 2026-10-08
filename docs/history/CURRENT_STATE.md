@@ -1,5 +1,11 @@
 # Current state
 
+## Per-card extension price — local candidate (2026-10-08)
+
+- On `/novogodniy-korporativ/`, each of the three price cards now places `Доп. час` beside its five-hour price. The top picker only explains that displayed package prices cover up to five hours and no longer carries a detached extension rate.
+- The three extension values use the existing date quote: from 20 000 ₽ before a date or outside December 2026, 20 000 ₽ on ordinary December dates, 25 000 ₽ on premium dates and 35 000 ₽ on 31 December. No pricing values or CRM calculation rules changed.
+- Local build and `verify:seasonal` pass. The final responsive gate passed 390, 767–769, 896, 1023–1025, 1366, 1440 and 1984 CSS px without horizontal overflow or console errors. In the Codex browser, 320 and 390 px kept price and extension inside every card; 1440 px kept three equal columns. Release is pending.
+
 ## Seasonal form and year-round floor — live (2026-10-08)
 
 - The reported 13 November 2026 submission failed because the seasonal form's native date input had a hidden `2026-12-01` minimum. The former generic error hid the actual reason. The form and package date picker now accept any future date; past dates and invalid phone numbers have specific visible errors. Success remains gated on backend HTTP `201`.

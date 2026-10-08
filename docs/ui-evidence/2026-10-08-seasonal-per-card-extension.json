@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-08-seasonal-per-card-extension",
+  "change_kind": "seasonal-pricing-extension-placement",
+  "status": "passed",
+  "requested_visible_change": "Показывать цену дополнительного часа непосредственно рядом с ценой каждого пакета.",
+  "expected_visible_delta": "Верхняя строка больше не содержит общую ставку продления; каждая из трёх карточек показывает Доп. час и синхронно обновляет сумму после выбора даты.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "47e919636a1f02f4378368014f817e64e2a72ba1aa22f4d96e637360393c1c82",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4325/novogodniy-korporativ/#formats",
+    "source_ref": "clean codex/seasonal-card-extension worktree from origin/astro-migration b9fdac7",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/",
+    "state": "initial annual prices, then selected 1 and 25 December 2026",
+    "selector_or_slide_id": ".seasonal-price-option__amount-row, [data-pricing-extension]",
+    "action": "choose 1 and 25 December and inspect the five-hour price and extension rate inside all three cards"
+  },
+  "must_remain_unchanged": [
+    "approved 13-range December matrix and five-hour package prices",
+    "single top date picker and form date synchronization",
+    "package disclosures, CRM payload and HTTP 201 lead gate",
+    "ordinary corporate route without seasonal pricing"
+  ],
+  "required_viewports": ["320x844", "390x844", "767x844", "768x1024", "769x1024", "896x1024", "1023x1024", "1024x768", "1025x900", "1366x768", "1440x900", "1984x1046"],
+  "observations": [
+    {
+      "viewport": "320x844",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=320 and innerHeight=844",
+      "before_signature": "production displayed the extension once in the picker summary and no extension value inside any package card",
+      "after_signature": "three amount rows fit between x=31 and x=289 inside cards x=24..296; selected 25 December shows 220000/250000/from400000 with Доп. час 25000 in every card; scrollWidth=320",
+      "observed_visible_result": "Each narrow card presents its package price and extension rate together without clipping.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=390 and innerHeight=844",
+      "before_signature": "production summary read Все цены — за 5 часов · Дополнительный час от 20000; cards showed only package prices",
+      "after_signature": "summary only explains the five-hour programme; selected 1 December shows 145000/170000/from320000 and Доп. час 20000 inside all three cards; scrollWidth=390",
+      "observed_visible_result": "The extension rate is visible beside each price at the reported mobile width.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "767x844",
+      "viewport_source": "responsive-qa-gate exact viewport after the last edit",
+      "before_signature": "one detached extension value above package cards",
+      "after_signature": "pricing panel, option grid and amount rows remained visible with horizontalOverflow=false",
+      "observed_visible_result": "The per-card price row fits the last mobile width before the breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "viewport_source": "responsive-qa-gate exact viewport after the last edit",
+      "before_signature": "one detached extension value above package cards",
+      "after_signature": "pricing panel, option grid and amount rows remained visible with horizontalOverflow=false",
+      "observed_visible_result": "The per-card price row fits at the 768 CSS px breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x1024",
+      "viewport_source": "responsive-qa-gate exact viewport after the last edit",
+      "before_signature": "one detached extension value above package cards",
+      "after_signature": "pricing panel, option grid and amount rows remained visible with horizontalOverflow=false",
+      "observed_visible_result": "The per-card price row fits immediately above the 768 CSS px breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "896x1024",
+      "viewport_source": "responsive-qa-gate exact viewport after the last edit",
+      "before_signature": "one detached extension value above package cards",
+      "after_signature": "pricing panel, option grid and amount rows remained visible with horizontalOverflow=false",
+      "observed_visible_result": "The per-card price row remains readable at a compact tablet width.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1023x1024",
+      "viewport_source": "responsive-qa-gate exact viewport after the last edit",
+      "before_signature": "one detached extension value above package cards",
+      "after_signature": "pricing panel, option grid and amount rows remained visible with horizontalOverflow=false",
+      "observed_visible_result": "The per-card price row fits the last width before the desktop breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "responsive-qa-gate exact viewport after the last edit",
+      "before_signature": "one detached extension value above package cards",
+      "after_signature": "pricing panel, three-column option grid and amount rows remained visible with horizontalOverflow=false",
+      "observed_visible_result": "The per-card price row fits at the desktop breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1025x900",
+      "viewport_source": "responsive-qa-gate exact viewport after the last edit",
+      "before_signature": "one detached extension value above package cards",
+      "after_signature": "pricing panel, three-column option grid and amount rows remained visible with horizontalOverflow=false",
+      "observed_visible_result": "The per-card price row fits immediately above the desktop breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser override; measured innerWidth=1440 and innerHeight=900",
+      "before_signature": "three cards contained only the five-hour price while extension was shown in the picker summary",
+      "after_signature": "three equal 335px columns; selected 25 December shows each five-hour amount and its Доп. час 25000 in the same card; scrollWidth=1440",
+      "observed_visible_result": "Desktop keeps a compact aligned price and extension row in all three cards.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "viewport_source": "responsive-qa-gate exact viewport after the last edit",
+      "before_signature": "extension rate detached from each card",
+      "after_signature": "all watched elements visible with horizontalOverflow=false",
+      "observed_visible_result": "The three-column comparison remains aligned at the desktop anchor.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "viewport_source": "responsive-qa-gate exact viewport after the last edit",
+      "before_signature": "extension rate detached from each card",
+      "after_signature": "all watched elements visible with horizontalOverflow=false",
+      "observed_visible_result": "The three-column comparison remains aligned at the wide desktop anchor.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "per-card price with right-aligned two-line extension rate",
+    "owner_approval_reference": "owner message on 8 October 2026: place the additional-hour price directly next to 145000 in the package blocks"
+  }
+}

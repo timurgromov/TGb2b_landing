@@ -152,6 +152,9 @@ expectText(seasonalHtml, 'Посмотреть цены на все даты д�
 expectText(seasonalHtml, 'data-pricing-package="hostDj"', 'seasonal host DJ live price');
 expectText(seasonalHtml, 'data-pricing-package="hostDjSound"', 'seasonal sound live price');
 expectText(seasonalHtml, 'data-pricing-package="liveMusic"', 'seasonal music live price');
+expectCount(seasonalHtml, 'data-pricing-extension', 3, 'extension price shown inside every seasonal package');
+expectCount(seasonalHtml, '<span>Доп. час</span>', 3, 'extension label shown inside every seasonal package');
+rejectText(seasonalHtml, 'Все цены — за 5 часов · Дополнительный час', 'retired shared extension line');
 expectCount(seasonalHtml, 'data-pricing-row', seasonalPriceRows.length, 'seasonal public pricing row count');
 for (const [fromDay, toDay, hostDj, hostDjSound, extension] of seasonalPriceRows) {
   expectText(
@@ -232,8 +235,8 @@ for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta">Обсудить корпоратив', 'seasonal primary CTA');
 expectText(seasonalHtml, 'data-contact-form="video" data-form-source="hero_video"', 'seasonal meeting CTA');
 expectText(seasonalHtml, '>Назначить встречу</button>', 'seasonal meeting CTA label');
-expectText(seasonalHtml, '/seasonal.css?v=20261008f', 'seasonal form stylesheet');
-expectText(seasonalHtml, '/seasonal.js?v=20261008f', 'seasonal script');
+expectText(seasonalHtml, '/seasonal.css?v=20261008g', 'seasonal form stylesheet');
+expectText(seasonalHtml, '/seasonal.js?v=20261008g', 'seasonal script');
 rejectText(seasonalHtml, 'data-testid="seasonal-package-details"', 'seasonal retired separate package details');
 rejectText(seasonalHtml, 'Что входит в каждый пакет', 'seasonal retired shared package disclosure');
 expectText(seasonalHtml, 'Стоимость трёх вариантов на выбранную дату', 'seasonal compact price comparison');
@@ -247,7 +250,7 @@ expectText(seasonalHtml, 'data-pricing-initial="от 170 000 ₽"', 'seasonal i
 expectText(seasonalHtml, 'data-pricing-initial="от 320 000 ₽"', 'seasonal initial live music price');
 expectCount(seasonalHtml, 'data-pricing-package=', 3, 'seasonal compact price options');
 expectCount(seasonalHtml, 'data-pricing-value', 3, 'seasonal compact price values');
-expectCount(seasonalHtml, 'data-pricing-extension', 1, 'seasonal shared extension price');
+expectCount(seasonalHtml, 'data-pricing-extension', 3, 'seasonal per-card extension prices');
 expectCount(seasonalHtml, 'data-pricing-date', 2, 'seasonal single date control and action label');
 rejectText(seasonalHtml, 'data-pricing-date-trigger', 'seasonal redundant inline date buttons');
 rejectText(seasonalHtml, 'data-pricing-check-date', 'seasonal redundant lower date button');

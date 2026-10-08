@@ -66,7 +66,7 @@ const formats = [
           <div class="seasonal-pricing-picker">
             <div class="seasonal-pricing-picker__summary" id="seasonal-pricing-hint">
               <strong data-pricing-selected-date>Базовая цена на даты вне декабря 2026</strong>
-              <span>Все цены — за 5 часов · Дополнительный час <b data-pricing-extension data-pricing-initial={`от ${formatRubles(seasonalMinimums.extension)}`}>от {formatRubles(seasonalMinimums.extension)}</b></span>
+              <span>Все цены указаны за программу до 5 часов</span>
             </div>
             <label class="seasonal-pricing-picker__control" for="seasonal-pricing-date">
               <span data-pricing-date-action>Выбрать дату</span>
@@ -89,11 +89,17 @@ const formats = [
                 <div class="seasonal-price-option__quote">
                   <div class="seasonal-price-option__price-line">
                     <span class="seasonal-price-option__date" data-pricing-caption hidden></span>
-                    <output
-                      class="seasonal-price-option__value"
-                      data-pricing-value
-                      data-pricing-initial={`от ${formatRubles(seasonalMinimums[format.priceKey])}`}
-                    >от {formatRubles(seasonalMinimums[format.priceKey])}</output>
+                    <div class="seasonal-price-option__amount-row">
+                      <output
+                        class="seasonal-price-option__value"
+                        data-pricing-value
+                        data-pricing-initial={`от ${formatRubles(seasonalMinimums[format.priceKey])}`}
+                      >от {formatRubles(seasonalMinimums[format.priceKey])}</output>
+                      <span class="seasonal-price-option__extension">
+                        <span>Доп. час</span>
+                        <output data-pricing-extension data-pricing-initial={`от ${formatRubles(seasonalMinimums.extension)}`}>от {formatRubles(seasonalMinimums.extension)}</output>
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <details class="seasonal-price-option__disclosure">
