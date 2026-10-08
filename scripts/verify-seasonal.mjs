@@ -233,8 +233,13 @@ for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta">Обсудить корпоратив', 'seasonal primary CTA');
 expectText(seasonalHtml, 'data-contact-form="video" data-form-source="hero_video"', 'seasonal meeting CTA');
 expectText(seasonalHtml, '>Назначить встречу</button>', 'seasonal meeting CTA label');
-expectText(seasonalHtml, '/seasonal.css?v=20261008b', 'seasonal form stylesheet');
-expectText(seasonalHtml, '/seasonal.js?v=20261008b', 'seasonal script');
+expectText(seasonalHtml, '/seasonal.css?v=20261008c', 'seasonal form stylesheet');
+expectText(seasonalHtml, '/seasonal.js?v=20261008c', 'seasonal script');
+expectText(seasonalHtml, 'data-testid="seasonal-package-details"', 'seasonal compact package details');
+expectText(seasonalHtml, 'Что входит в каждый пакет', 'seasonal progressive package disclosure');
+expectText(seasonalHtml, 'Стоимость трёх вариантов на выбранную дату', 'seasonal compact price comparison');
+expectCount(seasonalHtml, 'data-pricing-package=', 3, 'seasonal compact price options');
+expectCount(seasonalHtml, 'data-pricing-value', 3, 'seasonal compact price values');
 rejectText(seasonalHtml, 'data-pricing-package-select', 'seasonal package selection button');
 rejectText(seasonalHtml, 'Выбрать состав', 'seasonal redundant package selection label');
 expectText(seasonalHtml, '/privacy/', 'seasonal privacy link');

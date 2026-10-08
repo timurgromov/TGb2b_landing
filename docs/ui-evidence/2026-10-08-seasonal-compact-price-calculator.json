@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-08-seasonal-compact-price-calculator",
+  "change_kind": "responsive-seasonal-pricing-redesign",
+  "status": "passed",
+  "requested_visible_change": "После выбора даты сразу показать все три варианта и цены в компактном понятном блоке, особенно на мобильном.",
+  "expected_visible_delta": "Вместо трёх длинных карточек дата, три цены, дополнительный час и единый CTA собраны в одной панели; длинные составы пакетов и полная матрица открываются отдельно.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "f205de30256f4a104311009aca7b1481c5b7722a8ffdb3a89a9709a03d30af6b",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4323/novogodniy-korporativ/?qa=compact-final2#formaty",
+    "source_ref": "staged astro-migration candidate based on dfa857f",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/",
+    "state": "25 декабря 2026 года, три цены, дополнительный час и единый CTA",
+    "selector_or_slide_id": ".seasonal-pricing-calculator, [data-pricing-package], [data-pricing-value]",
+    "action": "выбрать 25 декабря 2026 года и проверить результат без дополнительных действий"
+  },
+  "must_remain_unchanged": [
+    "цены и диапазоны сезонной матрицы",
+    "подробные составы трёх пакетов и блок живой музыки",
+    "форма и HTTP 201 success gate",
+    "обычный корпоративный маршрут и юбилейная страница"
+  ],
+  "required_viewports": [
+    "320x844",
+    "390x844",
+    "768x1024",
+    "769x900",
+    "1023x768",
+    "1024x768",
+    "1025x768",
+    "1180x820",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "320x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=320; innerHeight=844",
+      "before_signature": "три длинные карточки; цены находились далеко ниже поля даты",
+      "after_signature": "три компактные строки показывают 220 000 ₽, 250 000 ₽ и от 400 000 ₽; scrollWidth=320",
+      "observed_visible_result": "Все три цены доступны последовательным взглядом сразу под датой; горизонтальной прокрутки нет.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=390; innerHeight=844",
+      "before_signature": "цены начинались на Y 744, 1109 и 1675; CTA находился около Y 2055",
+      "after_signature": "цены заканчиваются на Y 611, 686 и 797; CTA начинается на Y 869; scrollWidth=390",
+      "observed_visible_result": "После выбора даты экран одновременно показывает дату и все три цены; третий вариант больше не растягивает блок длинным составом.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=768; innerHeight=1024",
+      "before_signature": "длинные карточки с разной высотой",
+      "after_signature": "три компактные строки в одном столбце; overflow=0",
+      "observed_visible_result": "Планшетная ширина сохраняет один читаемый столбец.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=769; innerHeight=900",
+      "before_signature": "длинные карточки с разной высотой",
+      "after_signature": "три компактные строки в одном столбце; overflow=0",
+      "observed_visible_result": "Первый пограничный viewport сохраняет цельную панель.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1023x768",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1023; innerHeight=768",
+      "before_signature": "неустойчивая сетка длинных карточек",
+      "after_signature": "три компактные строки в одном столбце; overflow=0",
+      "observed_visible_result": "Ширина перед breakpoint не создаёт случайного переноса карточек.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1024; innerHeight=768",
+      "before_signature": "неустойчивая сетка длинных карточек",
+      "after_signature": "три компактные строки в одном столбце; overflow=0",
+      "observed_visible_result": "Последняя ширина мобильного layout соответствует контракту.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1025x768",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1025; innerHeight=768",
+      "before_signature": "длинные карточки могли переноситься",
+      "after_signature": "три компактные колонки в одной строке; overflow=0",
+      "observed_visible_result": "Первый desktop breakpoint показывает все три варианта рядом.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x820",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1180; innerHeight=820",
+      "before_signature": "третий длинный пакет переносился во второй ряд",
+      "after_signature": "три равные колонки Y 518-692; CTA Y 729-773; overflow=0",
+      "observed_visible_result": "Все варианты остаются в одной строке на проблемной laptop ширине.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1366; innerHeight=768",
+      "before_signature": "цены располагались значительно ниже поля даты",
+      "after_signature": "три колонки Y 496-670; CTA Y 707-751; overflow=0",
+      "observed_visible_result": "Компактная панель помещает сравнение и CTA в рабочий экран ноутбука.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1440; innerHeight=900",
+      "before_signature": "цены начинались около Y 948, ниже viewport",
+      "after_signature": "три колонки Y 514-688 и CTA Y 725-769; overflow=0",
+      "observed_visible_result": "На desktop одновременно видны дата, три цены, допчас и CTA.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1984; innerHeight=1046",
+      "before_signature": "широкий layout сохранял длинные карточки",
+      "after_signature": "три равные компактные колонки; overflow=0",
+      "observed_visible_result": "Широкий desktop сохраняет ограниченную ширину и читаемую иерархию.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "interaction contract",
+      "viewport_source": "Codex in-app browser at 390x844",
+      "before_signature": "подробные составы постоянно занимали место в основных карточках",
+      "after_signature": "details «Что входит в каждый пакет» содержит 3 карточки; details матрицы содержит 14 строк",
+      "observed_visible_result": "Оба disclosure открываются; CTA переносит 2026-12-25 в подробную форму, ставит #proverit-datu и не отправляет заявку.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "единая компактная панель без слайдера",
+    "owner_approval_reference": "сообщение владельца от 8 октября 2026 года: сделать более изящное решение и максимально удобный просмотр вариантов"
+  }
+}

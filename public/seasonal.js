@@ -188,8 +188,8 @@
     function update(value, { syncLead = true } = {}) {
       currentQuote = getQuote(value);
       if (!currentQuote) {
-        selectedDate.textContent = 'Выберите дату — покажем точную цену';
-        if (extensionOutput) extensionOutput.textContent = 'после выбора даты';
+        selectedDate.textContent = 'Выберите дату — цены появятся здесь';
+        if (extensionOutput) extensionOutput.textContent = '—';
         if (ctaLabel) ctaLabel.textContent = 'Сначала выберите дату';
         cards.forEach((card) => {
           const price = card.querySelector('[data-pricing-value]');
@@ -201,7 +201,7 @@
       }
 
       const dateLabel = formatSelectedDate(currentQuote.day);
-      selectedDate.textContent = dateLabel;
+      selectedDate.textContent = `Три цены рассчитаны: ${dateLabel.toLowerCase()}`;
       if (extensionOutput) extensionOutput.textContent = formatRubles(currentQuote.extension);
       if (ctaLabel) ctaLabel.textContent = `Проверить ${currentQuote.day} декабря`;
 
