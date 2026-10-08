@@ -8,7 +8,7 @@
 - Local build, seasonal contract and JavaScript syntax pass. Browser checks at 320, 375, 390, 767, 768, 769, 1023, 1024, 1025, 1366, 1440 and 1984 CSS px showed every form control inside the card, no horizontal overflow, and no sticky overlay on the detailed form. In a local server with the external POST replaced by a mock, the same November form showed success after HTTP 201 and stayed open with an error after HTTP 500. No real CRM lead was created by this candidate check.
 - Source commits `99877b9` and `e934253` are on `origin/astro-migration`; static commit `6250bca` is on `origin/gh-pages` and GitHub Pages reported `built` for that exact commit. Fresh live `390x844` showed 13 price rows, no horizontal overflow, the November date valid and synced into the detailed form, form controls within the card, and the floating contact control hidden while the form is in view. Live prices for 4/18/25/31 December matched 155/200/220/from 280 thousand rubles for host + DJ, respectively. The ordinary corporate route has no seasonal pricing and no browser console errors. A production lead was not submitted in this release check; backend HTTP `201` and `500` UI states were verified against the local substitute.
 
-## Seasonal single date control — live (2026-10-08)
+## Seasonal single date control — prior release snapshot (2026-10-08)
 
 - Only `/novogodniy-korporativ/` changed. One visible `Выбрать дату` action now
   sits above the three prices. The native date input remains under that action,
@@ -31,7 +31,7 @@
   pricing block.
 - Release note: `docs/history/worklog/2026-10-08-seasonal-single-date-control.md`.
 
-## Seasonal date pricing — live (2026-10-08)
+## Seasonal date pricing — prior release snapshot (2026-10-08)
 
 - Только `/novogodniy-korporativ/` получил выбор декабрьской даты, цены трёх
   составов, ставку дополнительного часа и раскрываемую клиентскую матрицу из
