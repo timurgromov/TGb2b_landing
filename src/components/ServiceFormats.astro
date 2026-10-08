@@ -64,20 +64,21 @@ const formats = [
       <>
         <div class="seasonal-pricing-calculator sr" data-seasonal-pricing data-testid="seasonal-pricing">
           <div class="seasonal-pricing-picker">
-            <label class="seasonal-pricing-picker__field" for="seasonal-pricing-date">
-              <span>Введите дату своего мероприятия</span>
-              <input id="seasonal-pricing-date" type="date" min="2026-12-01" max="2026-12-31" data-pricing-date aria-describedby="seasonal-pricing-hint" />
-            </label>
             <div class="seasonal-pricing-picker__summary" id="seasonal-pricing-hint">
-              <span>Программа до 5 часов</span>
-              <strong data-pricing-selected-date>Сейчас указана минимальная цена декабря</strong>
+              <strong data-pricing-selected-date>Сейчас показана минимальная цена декабря</strong>
+              <span>Программа до 5 часов · Дополнительный час <b data-pricing-extension data-pricing-initial={`от ${formatRubles(seasonalMinimums.extension)}`}>от {formatRubles(seasonalMinimums.extension)}</b></span>
             </div>
+            <label class="seasonal-pricing-picker__control" for="seasonal-pricing-date">
+              <span data-pricing-date-action>Выбрать дату</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1 1-1V6a1 1 0 0 1 1-1Z" /></svg>
+              <input id="seasonal-pricing-date" type="date" min="2026-12-01" max="2026-12-31" data-pricing-date aria-label="Выбрать дату корпоратива в декабре" aria-describedby="seasonal-pricing-hint" />
+            </label>
           </div>
 
           <div class="seasonal-pricing-options" aria-live="polite" aria-label="Стоимость трёх вариантов на выбранную дату">
             {formats.map((format, index) => (
               <article
-                class:list={['seasonal-price-option', { 'seasonal-price-option--featured': index === 1 }]}
+                class="seasonal-price-option"
                 data-pricing-package={format.priceKey}
               >
                 <div class="seasonal-price-option__copy">
@@ -87,16 +88,13 @@ const formats = [
                 </div>
                 <div class="seasonal-price-option__quote">
                   <div class="seasonal-price-option__price-line">
+                    <span class="seasonal-price-option__date" data-pricing-caption hidden></span>
                     <output
                       class="seasonal-price-option__value"
                       data-pricing-value
                       data-pricing-initial={`от ${formatRubles(seasonalMinimums[format.priceKey])}`}
                     >от {formatRubles(seasonalMinimums[format.priceKey])}</output>
-                    <span class="seasonal-price-option__extension">Доп. час <strong data-pricing-extension data-pricing-initial={`от ${formatRubles(seasonalMinimums.extension)}`}>от {formatRubles(seasonalMinimums.extension)}</strong></span>
                   </div>
-                  <button class="seasonal-price-option__calendar" type="button" data-pricing-date-trigger aria-label={`Выбрать дату для пакета «${format.name}»`} title="Выбрать дату">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" /></svg>
-                  </button>
                 </div>
                 <details class="seasonal-price-option__disclosure">
                   <summary class="seasonal-price-option__toggle">
@@ -108,6 +106,7 @@ const formats = [
                     <ul>
                       {format.items.map((item) => <li>{item}</li>)}
                     </ul>
+                    {index > 0 && <p class="seasonal-price-option__equipment">В цену входит комплект звука и DJ-оборудования. Точный состав подтвердим после проверки площадки.</p>}
                     {format.detailsHref && <a class="seasonal-price-option__details-link" href={format.detailsHref}>Подробнее о живой музыке <span aria-hidden="true">→</span></a>}
                   </div>
                 </details>
@@ -116,9 +115,8 @@ const formats = [
           </div>
 
           <div class="seasonal-pricing-result">
-            <a class="btn btn-outline" href="#proverit-datu" data-pricing-check-date><span data-pricing-cta-label>Выбрать дату</span></a>
+            <a href="#proverit-datu">Уточнить доступность даты и состав <span aria-hidden="true">→</span></a>
           </div>
-          <p class="seasonal-pricing-result__equipment">В цену второго и третьего пакета входит комплект звука и DJ-оборудования. Точный состав подтверждаем после проверки площадки.</p>
         </div>
 
       <details class="seasonal-pricing-table sr">

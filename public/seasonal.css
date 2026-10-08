@@ -26,42 +26,17 @@
 
 .seasonal-pricing-picker {
   display: grid;
-  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 18px;
   align-items: center;
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, .08);
 }
 
-.seasonal-pricing-picker__field {
-  display: grid;
-  gap: 8px;
-}
-
-.seasonal-pricing-picker__field span,
 .seasonal-pricing-picker__summary span {
   color: var(--muted);
   font-size: 13px;
   font-weight: 650;
-}
-
-.seasonal-pricing-picker__field input {
-  width: 100%;
-  min-height: 50px;
-  padding: 0 14px;
-  border: 1px solid rgba(255, 255, 255, .14);
-  border-radius: 12px;
-  outline: none;
-  background: rgba(0, 0, 0, .18);
-  color: var(--text);
-  color-scheme: dark;
-  font: inherit;
-  font-weight: 700;
-}
-
-.seasonal-pricing-picker__field input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(255, 122, 69, .14);
 }
 
 .seasonal-pricing-picker__summary {
@@ -71,8 +46,56 @@
 }
 
 .seasonal-pricing-picker__summary strong {
-  font-size: clamp(18px, 2vw, 24px);
+  font-size: clamp(17px, 1.6vw, 21px);
   line-height: 1.25;
+}
+
+.seasonal-pricing-picker__summary b {
+  color: var(--text);
+}
+
+.seasonal-pricing-picker__control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 190px;
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.seasonal-pricing-picker__control svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.seasonal-pricing-picker__control input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.seasonal-pricing-picker__control:focus-within {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .seasonal-pricing-options {
@@ -92,11 +115,6 @@
   background: rgba(0, 0, 0, .14);
   flex-direction: column;
   overflow: hidden;
-}
-
-.seasonal-price-option--featured {
-  border-color: rgba(255, 122, 69, .5);
-  background: rgba(255, 122, 69, .075);
 }
 
 .seasonal-price-option__copy {
@@ -136,12 +154,16 @@
 }
 
 .seasonal-price-option__price-line {
-  display: flex;
-  gap: 8px;
-  align-items: baseline;
-  justify-content: space-between;
+  display: grid;
+  gap: 5px;
   min-width: 0;
   flex: 1;
+}
+
+.seasonal-price-option__date {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
 }
 
 .seasonal-price-option__value {
@@ -152,56 +174,6 @@
   letter-spacing: -.025em;
   line-height: 1.08;
   white-space: nowrap;
-}
-
-.seasonal-price-option__extension {
-  display: grid;
-  gap: 2px;
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 650;
-  line-height: 1.05;
-  text-align: right;
-  white-space: nowrap;
-}
-
-.seasonal-price-option__extension strong {
-  display: block;
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.seasonal-price-option__calendar {
-  display: inline-grid;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border: 1px solid rgba(255, 122, 69, .55);
-  border-radius: 10px;
-  background: rgba(255, 122, 69, .09);
-  color: var(--accent);
-  cursor: pointer;
-  place-items: center;
-}
-
-.seasonal-price-option__calendar:hover {
-  background: rgba(255, 122, 69, .18);
-}
-
-.seasonal-price-option__calendar:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.seasonal-price-option__calendar svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.8;
 }
 
 .seasonal-price-option__disclosure {
@@ -290,6 +262,13 @@
   font-weight: 800;
 }
 
+.seasonal-price-option__equipment {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 .seasonal-price-option__details-link {
   display: inline-flex;
   gap: 8px;
@@ -303,25 +282,20 @@
 .seasonal-pricing-result {
   display: flex;
   justify-content: flex-end;
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, .08);
+  margin-top: 16px;
 }
 
-.seasonal-pricing-result .btn {
-  min-width: 230px;
-  text-align: center;
+.seasonal-pricing-result a {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 750;
+  text-decoration: none;
 }
 
-.seasonal-pricing-result__equipment {
-  color: var(--muted);
-}
-
-.seasonal-pricing-result__equipment {
-  margin: 12px 0 0;
-  font-size: 13px;
-  line-height: 1.55;
-  text-align: center;
+.seasonal-pricing-result a:hover,
+.seasonal-pricing-result a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .seasonal-pricing-table {
@@ -578,8 +552,9 @@
     padding-bottom: 14px;
   }
 
-  .seasonal-pricing-picker__summary strong {
-    font-size: 19px;
+  .seasonal-pricing-picker__control {
+    width: 100%;
+    min-width: 0;
   }
 
   .seasonal-pricing-options {
@@ -619,14 +594,6 @@
     padding: 12px 14px;
   }
 
-  .seasonal-price-option__extension {
-    font-size: 10px;
-  }
-
-  .seasonal-price-option__extension strong {
-    font-size: 13px;
-  }
-
   .seasonal-price-option__toggle {
     padding: 10px 14px;
   }
@@ -636,19 +603,7 @@
   }
 
   .seasonal-pricing-result {
-    margin-top: 14px;
-    padding-top: 14px;
-  }
-
-  .seasonal-pricing-result .btn {
-    width: 100%;
-    min-width: 0;
-    white-space: normal;
-  }
-
-  .seasonal-pricing-result__equipment {
-    margin-top: 10px;
-    font-size: 11px;
+    justify-content: flex-start;
   }
 
   .seasonal-pricing-table summary {
@@ -769,20 +724,6 @@
 
   .seasonal-price-option__quote {
     gap: 5px;
-  }
-
-  .seasonal-price-option__calendar {
-    width: 32px;
-    height: 32px;
-    border-radius: 9px;
-  }
-
-  .seasonal-price-option__extension {
-    font-size: 9px;
-  }
-
-  .seasonal-price-option__extension strong {
-    font-size: 11px;
   }
 
 }

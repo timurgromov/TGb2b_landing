@@ -131,6 +131,7 @@
 
     const dateInput = root.querySelector('[data-pricing-date]');
     const selectedDate = root.querySelector('[data-pricing-selected-date]');
+    const dateAction = root.querySelector('[data-pricing-date-action]');
     const rows = Array.from(document.querySelectorAll('[data-pricing-row]')).map((row) => ({
       fromDay: Number(row.dataset.dateFrom),
       toDay: Number(row.dataset.dateTo),
@@ -140,9 +141,6 @@
     }));
     const cards = Array.from(document.querySelectorAll('[data-pricing-package]'));
     const extensionOutputs = Array.from(root.querySelectorAll('[data-pricing-extension]'));
-    const dateTriggers = Array.from(root.querySelectorAll('[data-pricing-date-trigger]'));
-    const cta = document.querySelector('[data-pricing-check-date]');
-    const ctaLabel = document.querySelector('[data-pricing-cta-label]');
     const leadDate = document.querySelector('[data-seasonal-form] [name="event_date"]');
     const liveMusicAddon = 150000;
     let currentQuote = null;
@@ -177,34 +175,38 @@
     }
 
     function formatSelectedDate(day) {
-      const formatted = new Intl.DateTimeFormat('ru-RU', {
-        weekday: 'long',
+      const date = new Date(Date.UTC(2026, 11, day));
+      const dayAndMonth = new Intl.DateTimeFormat('ru-RU', {
         day: 'numeric',
         month: 'long',
         timeZone: 'UTC'
-      }).format(new Date(Date.UTC(2026, 11, day)));
-      return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+      }).format(date);
+      const weekday = new Intl.DateTimeFormat('ru-RU', { weekday: 'long', timeZone: 'UTC' }).format(date);
+      return `${dayAndMonth}, ${weekday}`;
     }
 
     function update(value, { syncLead = true } = {}) {
       currentQuote = getQuote(value);
       if (!currentQuote) {
-        selectedDate.textContent = 'Сейчас указана минимальная цена декабря';
+        selectedDate.textContent = 'Сейчас показана минимальная цена декабря';
+        if (dateAction) dateAction.textContent = 'Выбрать дату';
         extensionOutputs.forEach((output) => { output.textContent = output.dataset.pricingInitial || '—'; });
-        if (ctaLabel) ctaLabel.textContent = 'Выбрать дату';
         cards.forEach((card) => {
           const price = card.querySelector('[data-pricing-value]');
           const caption = card.querySelector('[data-pricing-caption]');
           if (price) price.textContent = price.dataset.pricingInitial || '—';
-          if (caption) caption.textContent = 'Минимальная цена декабря';
+          if (caption) {
+            caption.textContent = '';
+            caption.hidden = true;
+          }
         });
         return;
       }
 
       const dateLabel = formatSelectedDate(currentQuote.day);
-      selectedDate.textContent = `Точная стоимость: ${dateLabel.toLowerCase()}`;
+      selectedDate.textContent = `Выбрана дата: ${dateLabel}`;
+      if (dateAction) dateAction.textContent = 'Изменить дату';
       extensionOutputs.forEach((output) => { output.textContent = formatRubles(currentQuote.extension); });
-      if (ctaLabel) ctaLabel.textContent = `Проверить ${currentQuote.day} декабря`;
 
       cards.forEach((card) => {
         const key = card.dataset.pricingPackage;
@@ -213,7 +215,10 @@
         const price = card.querySelector('[data-pricing-value]');
         const caption = card.querySelector('[data-pricing-caption]');
         if (price) price.textContent = `${prefix}${formatRubles(amount)}`;
-        if (caption) caption.textContent = dateLabel;
+        if (caption) {
+          caption.textContent = dateLabel;
+          caption.hidden = false;
+        }
       });
 
       if (syncLead && leadDate) leadDate.value = value;
@@ -230,18 +235,17 @@
     }
 
     dateInput?.addEventListener('input', () => update(dateInput.value));
-    dateTriggers.forEach((trigger) => trigger.addEventListener('click', openDatePicker));
+    dateInput?.addEventListener('change', () => update(dateInput.value));
+    dateInput?.addEventListener('click', openDatePicker);
+    dateInput?.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openDatePicker();
+      }
+    });
     leadDate?.addEventListener('input', () => {
       if (dateInput) dateInput.value = leadDate.value;
       update(leadDate.value, { syncLead: false });
-    });
-    cta?.addEventListener('click', (event) => {
-      if (!currentQuote) {
-        event.preventDefault();
-        openDatePicker();
-        return;
-      }
-      if (leadDate) leadDate.value = dateInput.value;
     });
 
     if (leadDate?.value && dateInput) {

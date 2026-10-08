@@ -248,6 +248,16 @@ no horizontal overflow or console errors.
 
 ## CTA stage 1 contract — 2026-10-05
 
+## Seasonal price date control — 2026-10-08
+
+- Surface: only `/novogodniy-korporativ/`, `#formats`; the ordinary corporate route has no approved price matrix.
+- Job: compare three December prices, choose one date once, then discuss availability via the existing form.
+- Initial state: a concise explanation says the minimum December prices are shown; one visible `Выбрать дату` control sits before all three cards. Cards show their `от` prices.
+- Selected state: the control becomes `Изменить дату`; each card shows the selected day and weekday immediately above its updated price. The live music price stays `от`; 31 December prices stay `от`.
+- Remove all per-card calendar controls and the lower `Выбрать дату` action. Keep one unobtrusive link to the existing date-check form after the cards. Keep package disclosures and the full December matrix.
+- Mobile contract at `320x844` and `390x844`: the date action is visible before the first card, text and control remain within the viewport, and tapping the action opens the native date picker. Desktop contract at `1440x900`: the action remains beside the explanation above the three-card grid.
+- Preserved: approved price ranges, 5-hour duration, extension rate, form date sync, CRM comment and HTTP 201 success gate, ordinary corporate route and Jubilee.
+
 ### Калькулятор мероприятий routing — 2026-10-07
 
 On both corporate routes the first Telegram action in the shared panel opens

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-08-seasonal-single-date-control",
+  "change_kind": "seasonal-pricing-mobile-date-action",
+  "status": "passed",
+  "requested_visible_change": "Одна понятная кнопка выбора даты над пакетами без переполнения на телефоне; после выбора дата и цена видны в каждой карточке.",
+  "expected_visible_delta": "Нативный input остаётся доступным через одну текстовую кнопку; три карточных календаря и нижняя кнопка даты исчезают; выбранная дата появляется над каждой ценой.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "e1de38f0af8d32ee06ce2d9657eb2895c6a53cea78227a4cc5f97c51ffcb8d89",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4325/novogodniy-korporativ/#formats",
+    "source_ref": "clean codex/seasonal-date-control worktree from origin/astro-migration a7a797a",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/",
+    "state": "minimum December prices, then selected 25 and 31 December 2026",
+    "selector_or_slide_id": "[data-seasonal-pricing], [data-pricing-date], [data-pricing-caption]",
+    "action": "click the single date action, choose a date, inspect three updated cards, follow the non-submitting availability link"
+  },
+  "must_remain_unchanged": [
+    "approved 14-row December price matrix and five-hour programme",
+    "native date picker and form date sync",
+    "package composition disclosures, CRM payload, HTTP 201 lead gate",
+    "ordinary corporate route without a seasonal pricing block"
+  ],
+  "required_viewports": ["320x844", "390x844", "768x1024", "769x900", "1024x768", "1025x768", "1440x900"],
+  "observations": [
+    {
+      "viewport": "320x844",
+      "viewport_source": "Codex in-app browser override, measured innerWidth=320 and innerHeight=844",
+      "before_signature": "live page exposes the date field plus three card calendars and the lower Выбрать дату action; owner reports field overflow on mobile",
+      "after_signature": "one 272px labelled action between x=24 and x=296, before the first 272px card; zero per-card calendars and zero lower date buttons; overflow=0",
+      "observed_visible_result": "The visible Выбрать дату control fits the narrow panel and opens the native calendar.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser override, measured innerWidth=390 and innerHeight=844",
+      "before_signature": "the page has repeated calendars and a date action after all cards",
+      "after_signature": "one 325px white-text action before cards; after choosing 25 December all three cards show 25 декабря, пятница and 220000/250000/from 400000; extension=25000; overflow=0",
+      "observed_visible_result": "The selected day and weekday sit directly above the prices; the date is copied into the existing form without submission.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "viewport_source": "Codex in-app browser override, measured innerWidth=768 and innerHeight=1024",
+      "before_signature": "native date input and repeated per-card calendars",
+      "after_signature": "single 698px action inside the picker, one card column, overflow=0",
+      "observed_visible_result": "Tablet portrait keeps the action above the stacked cards and inside its container.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x900",
+      "viewport_source": "Codex in-app browser override, measured innerWidth=769 and innerHeight=900",
+      "before_signature": "native date input and repeated per-card calendars",
+      "after_signature": "single 190px action beside the summary and before the one-column grid; overflow=0",
+      "observed_visible_result": "At the mobile-to-desktop boundary, the date action and summary do not collide.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "Codex in-app browser override, measured innerWidth=1024 and innerHeight=768",
+      "before_signature": "native date input and repeated per-card calendars",
+      "after_signature": "single 190px action beside the summary, still one card column; overflow=0",
+      "observed_visible_result": "The last single-column width remains legible with no clipped action.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1025x768",
+      "viewport_source": "Codex in-app browser override, measured innerWidth=1025 and innerHeight=768",
+      "before_signature": "native date input and repeated per-card calendars",
+      "after_signature": "single 190px action before three 301px price columns; overflow=0",
+      "observed_visible_result": "At the first three-column width the action remains within the picker and cards remain aligned.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser override, measured innerWidth=1440 and innerHeight=900",
+      "before_signature": "wide date input plus calendars on each price card and a lower date CTA",
+      "after_signature": "one white-text orange action at the upper right of the pricing panel; three aligned cards show 31 December from 280000/from 330000/from 480000 and extension=35000; overflow=0",
+      "observed_visible_result": "Desktop presents the date choice once, keeps three prices in one row, and leaves a small link to the existing form.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "one top date action and date labels inside each package",
+    "owner_approval_reference": "owner message on 8 October 2026: move date action above packages, remove card calendars, show selected weekday and price in cards"
+  }
+}
