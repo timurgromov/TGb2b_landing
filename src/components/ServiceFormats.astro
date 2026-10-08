@@ -12,14 +12,12 @@ const formats = [
     name: 'Базовый',
     title: 'Ведущий + DJ',
     priceKey: 'hostDj',
-    formValue: 'host_dj',
     items: ['Подготовка программы', 'Ведение вечера', 'DJ и музыкальное сопровождение']
   },
   {
     name: 'С техникой',
     title: 'Ведущий + DJ + звук',
     priceKey: 'hostDjSound',
-    formValue: 'host_dj_sound',
     items: [
       'Подготовка программы',
       'Ведение вечера',
@@ -31,7 +29,6 @@ const formats = [
     name: 'С живой музыкой',
     title: 'Ведущий + DJ + звук + два вокалиста',
     priceKey: 'liveMusic',
-    formValue: 'host_dj_sound_vocalists',
     detailsHref: '#music-program',
     items: [
       'Подготовка программы',
@@ -67,7 +64,6 @@ const formats = [
         <article
           class:list={['service-format', 'sr', { 'service-format--featured': index === 1 }]}
           data-pricing-package={seasonal ? format.priceKey : undefined}
-          data-pricing-form-value={seasonal ? format.formValue : undefined}
         >
           <p class="service-format__number">0{index + 1} · {format.name}</p>
           <h3>{format.title}</h3>
@@ -80,14 +76,6 @@ const formats = [
               <span class="service-format__price-caption" data-pricing-caption>Цена после выбора даты</span>
               <output class="service-format__price-value" data-pricing-value>—</output>
               <span class="service-format__price-note">{format.priceKey === 'liveMusic' ? 'Два вокалиста; саксофон и гитара рассчитываются отдельно' : 'Программа до 5 часов'}</span>
-              <button
-                class="service-format__select"
-                type="button"
-                data-pricing-package-select
-                aria-pressed="false"
-              >
-                Выбрать состав
-              </button>
             </div>
           )}
         </article>

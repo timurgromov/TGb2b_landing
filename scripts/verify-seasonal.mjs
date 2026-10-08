@@ -233,8 +233,10 @@ for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta">Обсудить корпоратив', 'seasonal primary CTA');
 expectText(seasonalHtml, 'data-contact-form="video" data-form-source="hero_video"', 'seasonal meeting CTA');
 expectText(seasonalHtml, '>Назначить встречу</button>', 'seasonal meeting CTA label');
-expectText(seasonalHtml, '/seasonal.css?v=20261008a', 'seasonal form stylesheet');
-expectText(seasonalHtml, '/seasonal.js?v=20261008a', 'seasonal script');
+expectText(seasonalHtml, '/seasonal.css?v=20261008b', 'seasonal form stylesheet');
+expectText(seasonalHtml, '/seasonal.js?v=20261008b', 'seasonal script');
+rejectText(seasonalHtml, 'data-pricing-package-select', 'seasonal package selection button');
+rejectText(seasonalHtml, 'Выбрать состав', 'seasonal redundant package selection label');
 expectText(seasonalHtml, '/privacy/', 'seasonal privacy link');
 rejectText(seasonalHtml, 'TELEGRAM_LEAD_ENDPOINT', 'seasonal route');
 
@@ -271,8 +273,8 @@ expectText(seasonalScript, "host_dj_sound_vocalists_sax_guitar: 'Ведущий 
 expectText(seasonalScript, 'response.status !== 201', 'confirmed lead gate');
 expectText(seasonalScript, 'Ориентир на сайте:', 'seasonal public quote in CRM comment');
 expectText(seasonalScript, 'Продление:', 'seasonal extension quote in CRM comment');
-expectText(seasonalScript, "let selectedPackage = '';", 'seasonal package requires an explicit choice');
-rejectText(seasonalScript, 'const defaultCard', 'seasonal package must not be preselected');
+rejectText(seasonalScript, 'selectedPackage', 'seasonal redundant package selection state');
+rejectText(seasonalScript, 'data-pricing-package-select', 'seasonal redundant package selection handler');
 expectText(seasonalScript, "reachGoal('corporate_lead_submit_success')", 'confirmed lead goal');
 expectText(seasonalScript, 'window.location.origin}${window.location.pathname}', 'sanitized page URL');
 

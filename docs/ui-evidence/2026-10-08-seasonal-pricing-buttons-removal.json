@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-08-seasonal-pricing-buttons-removal",
+  "change_kind": "seasonal-pricing-interaction-removal",
+  "status": "passed",
+  "requested_visible_change": "Убрать лишние кнопки выбора состава: после ввода даты все три цены должны появляться сразу.",
+  "expected_visible_delta": "Три кнопки «Выбрать состав» и подсветка выбранной карточки исчезают; дата сразу обновляет цены трёх карточек и ставку продления; остаётся один CTA к форме.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "28a0b0af5be1f4e15b7dbfaaaf51fae1021a08d2c9a08c803a9c7bbd4699bc0f",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4323/novogodniy-korporativ/?qa=no-buttons#formats",
+    "source_ref": "staged astro-migration candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/",
+    "state": "25 декабря, три цены, продление, единый CTA и подробная форма",
+    "selector_or_slide_id": "[data-testid=seasonal-pricing], [data-pricing-value], [data-pricing-lead-cta]",
+    "action": "выбрать 25 декабря и без дополнительных кликов проверить цены и переход к форме"
+  },
+  "must_remain_unchanged": [
+    "обычный корпоративный маршрут не содержит сезонного ценового интерфейса",
+    "юбилейная страница находится в другом репозитории и не затрагивается",
+    "успех сезонной формы по-прежнему показывается только после HTTP 201"
+  ],
+  "required_viewports": [
+    "390x844",
+    "1440x900"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=390; innerHeight=844",
+      "before_signature": "live 20261008a: 3 кнопки «Выбрать состав»; выбранная карточка получает отдельное визуальное состояние",
+      "after_signature": "0 кнопок выбора; 220 000 ₽; 250 000 ₽; от 400 000 ₽; продление 25 000 ₽; CTA «Проверить 25 декабря»; scrollWidth=390",
+      "observed_visible_result": "После выбора даты цены видны во всех карточках сразу; CTA прокручивает к форме и переносит дату 2026-12-25; поле состава остаётся пустым до выбора в форме.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1440; innerHeight=900",
+      "before_signature": "live 20261008a: 3 кнопки «Выбрать состав» под тремя карточками",
+      "after_signature": "0 кнопок выбора; три равные колонки сразу показывают 220 000 ₽, 250 000 ₽ и от 400 000 ₽; scrollWidth=1440",
+      "observed_visible_result": "Desktop сохраняет три карточки в одной строке без лишнего шага и без горизонтальной прокрутки.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "автоматический показ всех цен по выбранной дате",
+    "owner_approval_reference": "сообщение владельца от 8 октября 2026 года: лишнее действие убрать"
+  }
+}
