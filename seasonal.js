@@ -153,15 +153,16 @@
       toDay: Number(row.dataset.dateTo),
       hostDj: Number(row.dataset.hostDj),
       hostDjSound: Number(row.dataset.hostDjSound),
+      liveMusicAddon: Number(row.dataset.liveMusicAddon),
       extension: Number(row.dataset.extension)
     }));
     const cards = Array.from(document.querySelectorAll('[data-pricing-package]'));
     const extensionOutputs = Array.from(root.querySelectorAll('[data-pricing-extension]'));
     const leadDate = document.querySelector('[data-seasonal-form] [name="event_date"]');
-    const liveMusicAddon = 150000;
     const annualQuote = {
       hostDj: Number(root.dataset.annualHostDj),
       hostDjSound: Number(root.dataset.annualHostDjSound),
+      liveMusicAddon: Number(root.dataset.annualLiveMusicAddon),
       extension: Number(root.dataset.annualExtension)
     };
     let currentQuote = null;
@@ -178,7 +179,7 @@
       const day = readDay(value);
       if (!day) return {
         ...annualQuote,
-        liveMusic: annualQuote.hostDjSound + liveMusicAddon,
+        liveMusic: annualQuote.hostDjSound + annualQuote.liveMusicAddon,
         fromPrice: true,
         annual: true
       };
@@ -187,7 +188,7 @@
       return {
         ...row,
         day,
-        liveMusic: row.hostDjSound + liveMusicAddon,
+        liveMusic: row.hostDjSound + row.liveMusicAddon,
         fromPrice: day === 31,
         annual: false
       };
