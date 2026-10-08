@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-08-seasonal-inline-package-details",
+  "change_kind": "seasonal-package-disclosure-redesign",
+  "status": "passed",
+  "requested_visible_change": "Показывать минимальные цены до выбора даты, поставить дополнительный час и календарь рядом с ценой, а состав раскрывать внутри каждой карточки.",
+  "expected_visible_delta": "Три карточки сразу показывают цены от; каждая содержит собственный календарь и disclosure состава; отдельный общий disclosure и общая строка дополнительного часа удалены.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "ea4a2684ccef71bdf8b7f194dc5cf3006453f4bf8c7de3d3739ce3deeb255733",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4323/novogodniy-korporativ/?qa=inline-details#formats",
+    "source_ref": "staged astro-migration candidate based on d950470",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/",
+    "state": "initial prices from December minimums, then 25 December 2026 with independently expanded package details",
+    "selector_or_slide_id": "[data-seasonal-pricing], [data-pricing-package], [data-pricing-date-trigger], .seasonal-price-option__disclosure",
+    "action": "inspect initial values, open a package calendar, choose 25 December, then expand each package composition"
+  },
+  "must_remain_unchanged": [
+    "all approved date ranges and calculated prices",
+    "package contents and live music section",
+    "14-row complete December matrix",
+    "detailed form and HTTP 201 success gate",
+    "ordinary corporate route and Jubilee"
+  ],
+  "required_viewports": [
+    "320x844",
+    "390x844",
+    "768x1024",
+    "1024x768",
+    "1025x768",
+    "1180x820",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "320x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=320; innerHeight=844",
+      "before_signature": "prices were dashes before date; one shared package disclosure and one shared extension row followed all cards",
+      "after_signature": "initial 135000/160000/310000 from prices; three extension minimums of 20000; three calendar buttons inside card bounds; overflow=0",
+      "observed_visible_result": "Narrow mobile keeps the price, smaller extra-hour value and calendar in one card row without collision or clipping.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=390; innerHeight=844",
+      "before_signature": "package contents lived in a separate repeated three-card block",
+      "after_signature": "instruction asks for event date; selected 25 December shows 220000/250000/from 400000 and three 25000 extra-hour values next to prices",
+      "observed_visible_result": "Each package expands in its own bounds; keyboard and pointer opened item counts 3, 4 and 6; labels changed to Hide composition; overflow=0.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=768; innerHeight=1024",
+      "before_signature": "shared package disclosure separated price from composition",
+      "after_signature": "three stacked inline-disclosure cards; all price, extension and calendar rectangles remain separate; overflow=0",
+      "observed_visible_result": "Tablet portrait preserves the single-column card flow and all pricing controls.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1024; innerHeight=768",
+      "before_signature": "shared package disclosure separated price from composition",
+      "after_signature": "last single-column breakpoint retains three independent disclosures and calendars; overflow=0",
+      "observed_visible_result": "No accidental two-column wrap appears at the boundary.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1025x768",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1025; innerHeight=768",
+      "before_signature": "package details were detached from their price cards",
+      "after_signature": "first desktop breakpoint shows three columns; every calendar stays inside its card and price/extension/calendar rectangles do not overlap",
+      "observed_visible_result": "Three-column comparison starts exactly at the documented breakpoint with zero overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1180x820",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1180; innerHeight=820",
+      "before_signature": "one shared extension row and detached package details",
+      "after_signature": "three aligned card columns with embedded extension, calendar and composition control; overflow=0",
+      "observed_visible_result": "Windowed laptop width keeps all card controls inside their boundaries without collision.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1440; innerHeight=900",
+      "before_signature": "initial cards showed no price until input and composition was repeated below",
+      "after_signature": "three equal columns show from 135000/from 160000/from 310000, extra hour from 20000 and visible calendar controls; overflow=0",
+      "observed_visible_result": "Desktop displays the complete initial commercial offer in one panel; all measured controls remain separate and inside each card.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "viewport_source": "Codex in-app browser viewport override; innerWidth=1984; innerHeight=1046",
+      "before_signature": "wide screen retained detached details below the calculator",
+      "after_signature": "bounded three-column calculator with inline disclosures and calendars; overflow=0",
+      "observed_visible_result": "Wide desktop preserves the same hierarchy and does not stretch content beyond the 1080px panel.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "interaction contract",
+      "viewport_source": "Codex in-app browser at 390x844",
+      "before_signature": "one shared package disclosure repeated all three cards",
+      "after_signature": "three independent native disclosures; shared disclosure count 0; calendar focuses the shared date input; matrix has 14 rows",
+      "observed_visible_result": "All three package disclosures opened independently, the date recalculated all prices, and CTA transferred 2026-12-25 to the detailed form without a submission.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "initial from prices plus per-card calendar and inline composition disclosure",
+    "owner_approval_reference": "owner messages on 8 October 2026: package details must open inside the same card; extra hour next to price; initial prices from before date selection"
+  }
+}

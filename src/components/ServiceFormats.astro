@@ -7,6 +7,13 @@ import { formatRubles, liveMusicAddon, seasonalPriceRows } from '@data/seasonalP
 
 const { seasonal = false } = Astro.props;
 
+const seasonalMinimums = {
+  hostDj: Math.min(...seasonalPriceRows.map((row) => row.hostDj)),
+  hostDjSound: Math.min(...seasonalPriceRows.map((row) => row.hostDjSound)),
+  liveMusic: Math.min(...seasonalPriceRows.map((row) => row.hostDjSound)) + liveMusicAddon,
+  extension: Math.min(...seasonalPriceRows.map((row) => row.extension))
+};
+
 const formats = [
   {
     name: 'Базовый',
@@ -58,12 +65,12 @@ const formats = [
         <div class="seasonal-pricing-calculator sr" data-seasonal-pricing data-testid="seasonal-pricing">
           <div class="seasonal-pricing-picker">
             <label class="seasonal-pricing-picker__field" for="seasonal-pricing-date">
-              <span>Дата корпоратива</span>
+              <span>Введите дату своего мероприятия</span>
               <input id="seasonal-pricing-date" type="date" min="2026-12-01" max="2026-12-31" data-pricing-date aria-describedby="seasonal-pricing-hint" />
             </label>
             <div class="seasonal-pricing-picker__summary" id="seasonal-pricing-hint">
-              <span>Стоимость программы до 5 часов</span>
-              <strong data-pricing-selected-date>Выберите дату — цены появятся здесь</strong>
+              <span>Программа до 5 часов</span>
+              <strong data-pricing-selected-date>Сейчас указана минимальная цена декабря</strong>
             </div>
           </div>
 
@@ -78,33 +85,41 @@ const formats = [
                   <h3>{format.calculatorTitle}</h3>
                   <p>{format.calculatorNote}</p>
                 </div>
-                <output class="seasonal-price-option__value" data-pricing-value>—</output>
+                <div class="seasonal-price-option__quote">
+                  <div class="seasonal-price-option__price-line">
+                    <output
+                      class="seasonal-price-option__value"
+                      data-pricing-value
+                      data-pricing-initial={`от ${formatRubles(seasonalMinimums[format.priceKey])}`}
+                    >от {formatRubles(seasonalMinimums[format.priceKey])}</output>
+                    <span class="seasonal-price-option__extension">Доп. час <strong data-pricing-extension data-pricing-initial={`от ${formatRubles(seasonalMinimums.extension)}`}>от {formatRubles(seasonalMinimums.extension)}</strong></span>
+                  </div>
+                  <button class="seasonal-price-option__calendar" type="button" data-pricing-date-trigger aria-label={`Выбрать дату для пакета «${format.name}»`} title="Выбрать дату">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" /></svg>
+                  </button>
+                </div>
+                <details class="seasonal-price-option__disclosure">
+                  <summary class="seasonal-price-option__toggle">
+                    <span class="seasonal-price-option__toggle-closed">Что входит</span>
+                    <span class="seasonal-price-option__toggle-open">Скрыть состав</span>
+                  </summary>
+                  <div class="seasonal-price-option__details">
+                    <p class="seasonal-price-option__details-title">{format.title}</p>
+                    <ul>
+                      {format.items.map((item) => <li>{item}</li>)}
+                    </ul>
+                    {format.detailsHref && <a class="seasonal-price-option__details-link" href={format.detailsHref}>Подробнее о живой музыке <span aria-hidden="true">→</span></a>}
+                  </div>
+                </details>
               </article>
             ))}
           </div>
 
           <div class="seasonal-pricing-result">
-            <p class="seasonal-pricing-result__extension"><span>Дополнительный час</span><strong data-pricing-extension>—</strong></p>
-            <a class="btn btn-outline" href="#proverit-datu" data-pricing-check-date><span data-pricing-cta-label>Сначала выберите дату</span></a>
+            <a class="btn btn-outline" href="#proverit-datu" data-pricing-check-date><span data-pricing-cta-label>Выбрать дату</span></a>
           </div>
           <p class="seasonal-pricing-result__equipment">В цену второго и третьего пакета входит комплект звука и DJ-оборудования. Точный состав подтверждаем после проверки площадки.</p>
         </div>
-
-        <details class="seasonal-package-details sr" data-testid="seasonal-package-details">
-          <summary>Что входит в каждый пакет</summary>
-          <div class="service-formats__grid">
-            {formats.map((format, index) => (
-              <article class:list={['service-format', { 'service-format--featured': index === 1 }]}>
-                <p class="service-format__number">0{index + 1} · {format.name}</p>
-                <h3>{format.title}</h3>
-                <ul>
-                  {format.items.map((item) => <li>{item}</li>)}
-                </ul>
-                {format.detailsHref && <a class="service-format__details" href={format.detailsHref}>Подробнее о живой музыке <span aria-hidden="true">→</span></a>}
-              </article>
-            ))}
-          </div>
-        </details>
 
       <details class="seasonal-pricing-table sr">
         <summary>Посмотреть цены на все даты декабря</summary>
