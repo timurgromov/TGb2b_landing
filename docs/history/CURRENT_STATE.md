@@ -1,12 +1,12 @@
 # Current state
 
-## Seasonal form and year-round floor — local candidate (2026-10-08)
+## Seasonal form and year-round floor — live (2026-10-08)
 
 - The reported 13 November 2026 submission failed because the seasonal form's native date input had a hidden `2026-12-01` minimum. The former generic error hid the actual reason. The form and package date picker now accept any future date; past dates and invalid phone numbers have specific visible errors. Success remains gated on backend HTTP `201`.
 - The owner set the five-hour minimum to 145 000 ₽ for host + DJ, 170 000 ₽ with equipment and from 320 000 ₽ with vocalists. Outside December 2026 these are year-round starting prices, including 2027. December 2026 now has 13 ranges: first-week weekdays stay at 145 000 ₽, ordinary Friday/Saturday starts at 155 000 ₽, then weekday and Friday/Saturday prices rise separately; 25–26 December is 220 000 ₽, and 31 December is from 280 000 ₽. A standard extra hour starts at 20 000 ₽; premium December dates use 25 000 ₽ and 31 December uses 35 000 ₽. Thus the base host + DJ package is from 165 000 ₽ for six hours.
 - Mobile form controls now have explicit intrinsic-width limits. The sticky contact button hides while the detailed form is in view so it cannot cover fields or the submit action. The ordinary corporate route retains its existing content and no pricing panel was added there.
 - Local build, seasonal contract and JavaScript syntax pass. Browser checks at 320, 375, 390, 767, 768, 769, 1023, 1024, 1025, 1366, 1440 and 1984 CSS px showed every form control inside the card, no horizontal overflow, and no sticky overlay on the detailed form. In a local server with the external POST replaced by a mock, the same November form showed success after HTTP 201 and stayed open with an error after HTTP 500. No real CRM lead was created by this candidate check.
-- Release status: source and static output pending. Exact release commits and fresh production proof will be recorded after publication.
+- Source commits `99877b9` and `e934253` are on `origin/astro-migration`; static commit `6250bca` is on `origin/gh-pages` and GitHub Pages reported `built` for that exact commit. Fresh live `390x844` showed 13 price rows, no horizontal overflow, the November date valid and synced into the detailed form, form controls within the card, and the floating contact control hidden while the form is in view. Live prices for 4/18/25/31 December matched 155/200/220/from 280 thousand rubles for host + DJ, respectively. The ordinary corporate route has no seasonal pricing and no browser console errors. A production lead was not submitted in this release check; backend HTTP `201` and `500` UI states were verified against the local substitute.
 
 ## Seasonal single date control — live (2026-10-08)
 

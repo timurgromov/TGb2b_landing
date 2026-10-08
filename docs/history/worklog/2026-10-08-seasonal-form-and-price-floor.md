@@ -17,4 +17,7 @@ Future dates in any month can be requested. Outside December 2026 the five-hour 
 
 ## Release
 
-Pending source/static commits and production verification.
+- Source commits `99877b9` and `e934253` pushed to `astro-migration`; static commit `6250bca` pushed to `gh-pages`. GitHub Pages returned `built` for `6250bca`.
+- Fresh production check at `390x844`: 13 date ranges; 13 November valid in the detailed form and annual prices from 145 000 / 170 000 / 320 000 ₽; no horizontal overflow; all form controls within the card; floating contact button hidden when the form enters the viewport. 4, 18, 25 and 31 December showed the new weekday/weekend ladder and synced the selected date to the form. The ordinary corporate page remained without the seasonal pricing component. No browser console errors.
+- A real production lead was not submitted in this release check. The local browser test did exercise the complete submission UI with simulated backend HTTP 201 and 500 responses.
+- Published comparison prices vary widely: [Kebsh Event](https://kebshevent.ru/ceny) lists host + DJ for 5 hours at 90 000–115 000 ₽, and [MUR](https://mur.ru/uslugi/organizatsiya-korporativa/vedushhie-na-svadbu-i-korporativnye-meropriyatiya/) lists a 5-hour host + DJ + sound package at 139 900 ₽. These offers do not establish a comparable-market mean. The published price floor follows the owner's business constraint and is not labelled "below market" on the site.
