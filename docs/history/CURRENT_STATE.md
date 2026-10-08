@@ -1,10 +1,12 @@
 # Current state
 
-## Per-card extension price — local candidate (2026-10-08)
+## Per-card extension price — live (2026-10-08)
 
 - On `/novogodniy-korporativ/`, each of the three price cards now places `Доп. час` beside its five-hour price. The top picker only explains that displayed package prices cover up to five hours and no longer carries a detached extension rate.
 - The three extension values use the existing date quote: from 20 000 ₽ before a date or outside December 2026, 20 000 ₽ on ordinary December dates, 25 000 ₽ on premium dates and 35 000 ₽ on 31 December. No pricing values or CRM calculation rules changed.
-- Local build and `verify:seasonal` pass. The final responsive gate passed 390, 767–769, 896, 1023–1025, 1366, 1440 and 1984 CSS px without horizontal overflow or console errors. In the Codex browser, 320 and 390 px kept price and extension inside every card; 1440 px kept three equal columns. Release is pending.
+- Source commit `57831f1` is pushed to `astro-migration`; static commit `2821e0d` is pushed to `gh-pages`, and the exact GitHub Pages build reports `built`.
+- Local build and `verify:seasonal` pass. The final responsive gate passed 390, 767–769, 896, 1023–1025, 1366, 1440 and 1984 CSS px without horizontal overflow or console errors. Local rendered checks at 320 and 390 px kept price and extension inside every card; 1440 px kept three equal columns.
+- Fresh production verification confirmed the new `20261008g` stylesheet, three per-card extension outputs and no detached top rate. Selecting 1 December produced 145 000 / 170 000 / from 320 000 ₽ with 20 000 ₽ extension in every card; selecting 25 December produced 220 000 / 250 000 / from 400 000 ₽ with 25 000 ₽ extension in every card. All rows stayed inside their cards, with no horizontal overflow or console errors. No lead was submitted.
 
 ## Seasonal form and year-round floor — live (2026-10-08)
 
