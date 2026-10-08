@@ -79,18 +79,19 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+  align-items: start;
   margin-top: 18px;
 }
 
 .seasonal-price-option {
   display: flex;
   min-width: 0;
-  min-height: 174px;
-  padding: 18px;
+  min-height: 218px;
   border: 1px solid var(--stroke);
   border-radius: 14px;
   background: rgba(0, 0, 0, .14);
   flex-direction: column;
+  overflow: hidden;
 }
 
 .seasonal-price-option--featured {
@@ -100,6 +101,7 @@
 
 .seasonal-price-option__copy {
   min-width: 0;
+  padding: 18px 18px 0;
 }
 
 .seasonal-price-option__number {
@@ -125,40 +127,185 @@
   line-height: 1.45;
 }
 
+.seasonal-price-option__quote {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: auto;
+  padding: 16px 18px;
+}
+
+.seasonal-price-option__price-line {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  justify-content: space-between;
+  min-width: 0;
+  flex: 1;
+}
+
 .seasonal-price-option__value {
   display: block;
-  margin-top: auto;
-  padding-top: 18px;
   color: var(--text);
-  font-size: clamp(24px, 2.2vw, 32px);
+  font-size: clamp(22px, 1.9vw, 28px);
   font-weight: 850;
   letter-spacing: -.025em;
   line-height: 1.08;
   white-space: nowrap;
 }
 
-.seasonal-pricing-result {
+.seasonal-price-option__extension {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 18px;
-  align-items: center;
-  margin-top: 18px;
-  padding-top: 18px;
+  gap: 2px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1.05;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.seasonal-price-option__extension strong {
+  display: block;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.seasonal-price-option__calendar {
+  display: inline-grid;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(255, 122, 69, .55);
+  border-radius: 10px;
+  background: rgba(255, 122, 69, .09);
+  color: var(--accent);
+  cursor: pointer;
+  place-items: center;
+}
+
+.seasonal-price-option__calendar:hover {
+  background: rgba(255, 122, 69, .18);
+}
+
+.seasonal-price-option__calendar:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.seasonal-price-option__calendar svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.seasonal-price-option__disclosure {
   border-top: 1px solid rgba(255, 255, 255, .08);
 }
 
-.seasonal-pricing-result__extension {
+.seasonal-price-option__toggle {
   display: flex;
-  gap: 10px;
-  align-items: baseline;
-  margin: 0;
-  font-size: 15px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 750;
+  list-style: none;
 }
 
-.seasonal-pricing-result__extension strong {
-  color: var(--text);
+.seasonal-price-option__toggle::-webkit-details-marker {
+  display: none;
+}
+
+.seasonal-price-option__toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+}
+
+.seasonal-price-option__toggle::after {
+  content: "+";
   font-size: 19px;
-  white-space: nowrap;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.seasonal-price-option__toggle-open {
+  display: none;
+}
+
+.seasonal-price-option__disclosure[open] .seasonal-price-option__toggle-closed {
+  display: none;
+}
+
+.seasonal-price-option__disclosure[open] .seasonal-price-option__toggle-open {
+  display: inline;
+}
+
+.seasonal-price-option__disclosure[open] .seasonal-price-option__toggle::after {
+  content: "−";
+}
+
+.seasonal-price-option__details {
+  padding: 16px 18px 18px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  background: rgba(0, 0, 0, .1);
+}
+
+.seasonal-price-option__details ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.seasonal-price-option__details-title {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.seasonal-price-option__details li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.seasonal-price-option__details li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.seasonal-price-option__details-link {
+  display: inline-flex;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.seasonal-pricing-result {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
 }
 
 .seasonal-pricing-result .btn {
@@ -166,7 +313,6 @@
   text-align: center;
 }
 
-.seasonal-pricing-result__extension span,
 .seasonal-pricing-result__equipment {
   color: var(--muted);
 }
@@ -178,7 +324,6 @@
   text-align: center;
 }
 
-.seasonal-package-details,
 .seasonal-pricing-table {
   max-width: 1080px;
   margin: 14px auto 0;
@@ -188,7 +333,6 @@
   overflow: hidden;
 }
 
-.seasonal-package-details summary,
 .seasonal-pricing-table summary {
   position: relative;
   padding: 18px 54px 18px 20px;
@@ -199,12 +343,10 @@
   list-style: none;
 }
 
-.seasonal-package-details summary::-webkit-details-marker,
 .seasonal-pricing-table summary::-webkit-details-marker {
   display: none;
 }
 
-.seasonal-package-details summary::after,
 .seasonal-pricing-table summary::after {
   content: "+";
   position: absolute;
@@ -215,19 +357,13 @@
   transform: translateY(-50%);
 }
 
-.seasonal-package-details[open] summary::after,
 .seasonal-pricing-table[open] summary::after {
   content: "−";
 }
 
-.seasonal-package-details summary:focus-visible,
 .seasonal-pricing-table summary:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: -4px;
-}
-
-.seasonal-package-details .service-formats__grid {
-  padding: 0 18px 18px;
 }
 
 .seasonal-pricing-table__wrap {
@@ -426,17 +562,7 @@
   }
 
   .seasonal-price-option {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 18px;
-    align-items: center;
     min-height: 0;
-    padding: 16px 18px;
-  }
-
-  .seasonal-price-option__value {
-    margin-top: 0;
-    padding-top: 0;
   }
 }
 
@@ -463,12 +589,11 @@
   }
 
   .seasonal-price-option {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 12px;
-    align-items: center;
     min-height: 0;
-    padding: 13px 14px;
+  }
+
+  .seasonal-price-option__copy {
+    padding: 13px 14px 0;
   }
 
   .seasonal-price-option__number {
@@ -486,20 +611,33 @@
   }
 
   .seasonal-price-option__value {
-    margin-top: 0;
-    padding-top: 0;
     font-size: 22px;
   }
 
-  .seasonal-pricing-result {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-top: 14px;
-    padding-top: 14px;
+  .seasonal-price-option__quote {
+    gap: 8px;
+    padding: 12px 14px;
   }
 
-  .seasonal-pricing-result__extension {
-    justify-content: space-between;
+  .seasonal-price-option__extension {
+    font-size: 10px;
+  }
+
+  .seasonal-price-option__extension strong {
+    font-size: 13px;
+  }
+
+  .seasonal-price-option__toggle {
+    padding: 10px 14px;
+  }
+
+  .seasonal-price-option__details {
+    padding: 14px;
+  }
+
+  .seasonal-pricing-result {
+    margin-top: 14px;
+    padding-top: 14px;
   }
 
   .seasonal-pricing-result .btn {
@@ -513,13 +651,8 @@
     font-size: 11px;
   }
 
-  .seasonal-package-details summary,
   .seasonal-pricing-table summary {
     padding: 16px 48px 16px 16px;
-  }
-
-  .seasonal-package-details .service-formats__grid {
-    padding: 0 12px 14px;
   }
 
   .seasonal-pricing-table__wrap {
@@ -618,13 +751,38 @@
     padding: 13px;
   }
 
-  .seasonal-price-option {
-    gap: 8px;
-    padding: 12px;
+  .seasonal-price-option__copy {
+    padding: 12px 12px 0;
+  }
+
+  .seasonal-price-option__quote {
+    padding: 11px 6px;
+  }
+
+  .seasonal-price-option__toggle {
+    padding-inline: 12px;
   }
 
   .seasonal-price-option__value {
-    font-size: 20px;
+    font-size: 19px;
+  }
+
+  .seasonal-price-option__quote {
+    gap: 5px;
+  }
+
+  .seasonal-price-option__calendar {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+  }
+
+  .seasonal-price-option__extension {
+    font-size: 9px;
+  }
+
+  .seasonal-price-option__extension strong {
+    font-size: 11px;
   }
 
 }

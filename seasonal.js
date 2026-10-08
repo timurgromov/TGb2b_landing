@@ -139,7 +139,8 @@
       extension: Number(row.dataset.extension)
     }));
     const cards = Array.from(document.querySelectorAll('[data-pricing-package]'));
-    const extensionOutput = document.querySelector('[data-pricing-extension]');
+    const extensionOutputs = Array.from(root.querySelectorAll('[data-pricing-extension]'));
+    const dateTriggers = Array.from(root.querySelectorAll('[data-pricing-date-trigger]'));
     const cta = document.querySelector('[data-pricing-check-date]');
     const ctaLabel = document.querySelector('[data-pricing-cta-label]');
     const leadDate = document.querySelector('[data-seasonal-form] [name="event_date"]');
@@ -188,21 +189,21 @@
     function update(value, { syncLead = true } = {}) {
       currentQuote = getQuote(value);
       if (!currentQuote) {
-        selectedDate.textContent = 'Выберите дату — цены появятся здесь';
-        if (extensionOutput) extensionOutput.textContent = '—';
-        if (ctaLabel) ctaLabel.textContent = 'Сначала выберите дату';
+        selectedDate.textContent = 'Сейчас указана минимальная цена декабря';
+        extensionOutputs.forEach((output) => { output.textContent = output.dataset.pricingInitial || '—'; });
+        if (ctaLabel) ctaLabel.textContent = 'Выбрать дату';
         cards.forEach((card) => {
           const price = card.querySelector('[data-pricing-value]');
           const caption = card.querySelector('[data-pricing-caption]');
-          if (price) price.textContent = '—';
-          if (caption) caption.textContent = 'Цена после выбора даты';
+          if (price) price.textContent = price.dataset.pricingInitial || '—';
+          if (caption) caption.textContent = 'Минимальная цена декабря';
         });
         return;
       }
 
       const dateLabel = formatSelectedDate(currentQuote.day);
-      selectedDate.textContent = `Три цены рассчитаны: ${dateLabel.toLowerCase()}`;
-      if (extensionOutput) extensionOutput.textContent = formatRubles(currentQuote.extension);
+      selectedDate.textContent = `Точная стоимость: ${dateLabel.toLowerCase()}`;
+      extensionOutputs.forEach((output) => { output.textContent = formatRubles(currentQuote.extension); });
       if (ctaLabel) ctaLabel.textContent = `Проверить ${currentQuote.day} декабря`;
 
       cards.forEach((card) => {
@@ -218,7 +219,18 @@
       if (syncLead && leadDate) leadDate.value = value;
     }
 
+    function openDatePicker() {
+      if (!dateInput) return;
+      dateInput.focus({ preventScroll: false });
+      if (typeof dateInput.showPicker === 'function') {
+        try {
+          dateInput.showPicker();
+        } catch {}
+      }
+    }
+
     dateInput?.addEventListener('input', () => update(dateInput.value));
+    dateTriggers.forEach((trigger) => trigger.addEventListener('click', openDatePicker));
     leadDate?.addEventListener('input', () => {
       if (dateInput) dateInput.value = leadDate.value;
       update(leadDate.value, { syncLead: false });
@@ -226,7 +238,7 @@
     cta?.addEventListener('click', (event) => {
       if (!currentQuote) {
         event.preventDefault();
-        dateInput?.focus();
+        openDatePicker();
         return;
       }
       if (leadDate) leadDate.value = dateInput.value;
