@@ -3,11 +3,11 @@
   "change_id": "2026-10-08-seasonal-form-and-price-floor",
   "change_kind": "seasonal-form-mobile-and-price-floor",
   "status": "passed",
-  "requested_visible_change": "Ноябрьская дата проходит проверку формы, мобильные поля находятся внутри карточки, а минимальная цена начинается с 145 000 ₽ за 5 часов.",
-  "expected_visible_delta": "Форма принимает будущую дату вне декабря, видит базовые цены 145/170/320 тысяч рублей, не перекрывается плавающей кнопкой и показывает успех только после HTTP 201.",
+  "requested_visible_change": "Ноябрьская дата проходит проверку формы, мобильные поля находятся внутри карточки, минимальная цена начинается с 145 000 ₽ за 5 часов, а декабрь дорожает по будням и пятницам с субботами.",
+  "expected_visible_delta": "Форма принимает будущую дату вне декабря, видит базовые цены 145/170/320 тысяч рублей, не перекрывается плавающей кнопкой и показывает успех только после HTTP 201; мобильная панель показывает 13 декабрьских интервалов.",
   "attempt_number": 1,
   "checked_after_last_edit": true,
-  "candidate_diff_sha256": "29f7ba6639103cbaecc4430b3217001075b74969008e8c5d2070721e3d2d9d0a",
+  "candidate_diff_sha256": "d756a1c1bcf5b80ec82a95e583d007127f815672d0b7e538f4106d5a988b845d",
   "served_candidate": {
     "url": "http://127.0.0.1:4325/novogodniy-korporativ/#proverit-datu",
     "source_ref": "clean codex/seasonal-form-repair worktree from astro-migration a34121e",
@@ -15,12 +15,12 @@
   },
   "target": {
     "surface": "/novogodniy-korporativ/",
-    "state": "13 November 2026 in detailed form, starting prices and selected December examples",
+    "state": "13 November 2026 in detailed form, starting prices and selected weekday and Friday/Saturday December examples",
     "selector_or_slide_id": "[data-seasonal-form], [data-pricing-value], [data-contact-fab]",
     "action": "enter 13 November, inspect form validity, controls and prices; use local HTTP 201/500 substitute for submit-state checks"
   },
   "must_remain_unchanged": [
-    "December 25 and 31 premium price rows and 14-row matrix",
+    "December 25 and 31 premium price rows, with the updated 13-row ladder",
     "package disclosures and ordinary corporate route content",
     "CRM source and HTTP 201 success gate"
   ],
@@ -52,8 +52,8 @@
       "viewport": "390x844",
       "viewport_source": "Codex in-app browser override; measured innerWidth=390, innerHeight=844",
       "before_signature": "live November form rejected the date before the HTTP request path",
-      "after_signature": "2026-11-13 accepted with baseline 145000/170000/from320000 and extra hour from20000; local mocked 201 showed success and mocked 500 kept form open with error; scrollWidth=390",
-      "observed_visible_result": "The date now reaches the submission path and response-specific UI states.",
+      "after_signature": "2026-11-13 accepted with baseline 145000/170000/from320000 and extra hour from20000; local mocked 201 showed success and mocked 500 kept form open with error; after final price edit 2026-12-04 shows 155000/180000/from330000, 2026-12-18 shows 200000/230000/from380000, with 13 public price rows and scrollWidth=390",
+      "observed_visible_result": "The date reaches the submission path and response-specific UI states; the December ladder updates all three mobile cards without horizontal overflow.",
       "delta_visible": true,
       "target_visible": true,
       "preserved_invariants_passed": true,

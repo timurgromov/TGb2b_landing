@@ -5,17 +5,16 @@ import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const heroSlideIds = ['01-smile', '02-microphone', '03-full-length', '04-grey-suit', '05-gesture'];
 const seasonalPriceRows = [
-  [1, 2, 145000, 170000, 20000],
-  [3, 3, 145000, 170000, 20000],
+  [1, 3, 145000, 170000, 20000],
   [4, 5, 155000, 180000, 25000],
-  [6, 9, 145000, 170000, 20000],
-  [10, 10, 155000, 180000, 20000],
-  [11, 12, 170000, 195000, 25000],
-  [13, 16, 160000, 185000, 20000],
-  [17, 17, 175000, 200000, 20000],
+  [6, 6, 145000, 170000, 20000],
+  [7, 10, 155000, 180000, 20000],
+  [11, 12, 175000, 200000, 25000],
+  [13, 13, 155000, 180000, 20000],
+  [14, 17, 175000, 205000, 25000],
   [18, 19, 200000, 230000, 25000],
-  [20, 23, 175000, 205000, 25000],
-  [24, 24, 190000, 220000, 25000],
+  [20, 20, 175000, 205000, 25000],
+  [21, 24, 190000, 220000, 25000],
   [25, 26, 220000, 250000, 25000],
   [27, 30, 190000, 220000, 25000],
   [31, 31, 280000, 330000, 35000]
@@ -153,7 +152,7 @@ expectText(seasonalHtml, 'Посмотреть цены на все даты д�
 expectText(seasonalHtml, 'data-pricing-package="hostDj"', 'seasonal host DJ live price');
 expectText(seasonalHtml, 'data-pricing-package="hostDjSound"', 'seasonal sound live price');
 expectText(seasonalHtml, 'data-pricing-package="liveMusic"', 'seasonal music live price');
-expectCount(seasonalHtml, 'data-pricing-row', 14, 'seasonal public pricing row count');
+expectCount(seasonalHtml, 'data-pricing-row', seasonalPriceRows.length, 'seasonal public pricing row count');
 for (const [fromDay, toDay, hostDj, hostDjSound, extension] of seasonalPriceRows) {
   expectText(
     seasonalHtml,
