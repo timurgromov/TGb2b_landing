@@ -143,9 +143,7 @@
     const cta = document.querySelector('[data-pricing-check-date]');
     const ctaLabel = document.querySelector('[data-pricing-cta-label]');
     const leadDate = document.querySelector('[data-seasonal-form] [name="event_date"]');
-    const leadPackage = document.querySelector('[data-seasonal-form] [name="equipment_needed"]');
     const liveMusicAddon = 150000;
-    let selectedPackage = '';
     let currentQuote = null;
 
     function readDay(value) {
@@ -187,35 +185,6 @@
       return formatted.charAt(0).toUpperCase() + formatted.slice(1);
     }
 
-    function setSelectedPackage(card) {
-      selectedPackage = card.dataset.pricingFormValue || 'host_dj_sound';
-      cards.forEach((item) => {
-        const selected = item === card;
-        item.classList.toggle('service-format--selected', selected);
-        const button = item.querySelector('[data-pricing-package-select]');
-        if (button) {
-          button.setAttribute('aria-pressed', String(selected));
-          button.textContent = selected ? 'Выбрано' : 'Выбрать состав';
-        }
-      });
-      if (leadPackage) leadPackage.value = selectedPackage;
-    }
-
-    function syncSelectedPackageFromLead() {
-      selectedPackage = leadPackage?.value || '';
-      cards.forEach((item) => {
-        const cardValue = item.dataset.pricingFormValue || '';
-        const selected = cardValue === selectedPackage
-          || (cardValue === 'host_dj_sound_vocalists' && selectedPackage.startsWith('host_dj_sound_vocalists'));
-        item.classList.toggle('service-format--selected', selected);
-        const button = item.querySelector('[data-pricing-package-select]');
-        if (button) {
-          button.setAttribute('aria-pressed', String(selected));
-          button.textContent = selected ? 'Выбрано' : 'Выбрать состав';
-        }
-      });
-    }
-
     function update(value, { syncLead = true } = {}) {
       currentQuote = getQuote(value);
       if (!currentQuote) {
@@ -249,17 +218,11 @@
       if (syncLead && leadDate) leadDate.value = value;
     }
 
-    cards.forEach((card) => {
-      card.querySelector('[data-pricing-package-select]')?.addEventListener('click', () => setSelectedPackage(card));
-    });
-
     dateInput?.addEventListener('input', () => update(dateInput.value));
     leadDate?.addEventListener('input', () => {
       if (dateInput) dateInput.value = leadDate.value;
       update(leadDate.value, { syncLead: false });
     });
-    leadPackage?.addEventListener('change', syncSelectedPackageFromLead);
-
     cta?.addEventListener('click', (event) => {
       if (!currentQuote) {
         event.preventDefault();
@@ -267,15 +230,12 @@
         return;
       }
       if (leadDate) leadDate.value = dateInput.value;
-      if (leadPackage) leadPackage.value = selectedPackage;
     });
 
     if (leadDate?.value && dateInput) {
       dateInput.value = leadDate.value;
       update(leadDate.value, { syncLead: false });
     }
-    if (leadPackage?.value) syncSelectedPackageFromLead();
-
     return { getQuote, getPublicPrice };
   }
 
