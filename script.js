@@ -1141,7 +1141,6 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
           submit.textContent = 'Повторить отправку';
         }
         trackCorporateCtaGoal('lead_submit_error', currentContactContext);
-        if (typeof ym === 'function') ym(104468814, 'reachGoal', 'corporate_form_error');
         return;
       }
 
@@ -1150,7 +1149,6 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
       if (status) status.textContent = '';
 
       if (typeof ym === 'function') {
-        ym(104468814, 'reachGoal', 'corporate_lead_submit_success');
         ym(104468814, 'reachGoal', 'contact_popup_submit');
       }
       trackCorporateCtaGoal('lead_submit_success', currentContactContext);
@@ -1308,7 +1306,6 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
           submit.textContent = 'Повторить отправку';
         }
         trackCorporateCtaGoal('lead_submit_error', currentVideoContext);
-        if (typeof ym === 'function') ym(104468814, 'reachGoal', 'corporate_form_error');
         return;
       }
 
@@ -1318,7 +1315,6 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
 
       // PATCH BEGIN: VIDEO_MODAL_SOURCES
       if (typeof ym === 'function') {
-        ym(104468814, 'reachGoal', 'corporate_lead_submit_success');
         ym(104468814, 'reachGoal', 'video_consult_submit');
         if (currentVideoSource === 'workflow_popup') {
           ym(104468814, 'reachGoal', 'workflow_popup_submit');

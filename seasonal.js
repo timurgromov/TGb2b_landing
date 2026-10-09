@@ -292,7 +292,6 @@
   form.addEventListener('input', () => {
     if (formStarted) return;
     formStarted = true;
-    reachGoal('corporate_form_start');
     trackCtaGoal('form_start');
   });
 
@@ -396,14 +395,12 @@
 
       form.hidden = true;
       success.hidden = false;
-      reachGoal('corporate_lead_submit_success');
       trackCtaGoal('lead_submit_success');
     } catch (_) {
       status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или позвоните по номеру выше.';
       status.dataset.state = 'error';
       submit.disabled = false;
       submit.textContent = 'Повторить отправку';
-      reachGoal('corporate_form_error');
       trackCtaGoal('lead_submit_error');
     } finally {
       window.clearTimeout(timeoutId);
