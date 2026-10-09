@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-09-header-navigation-symmetry",
+  "change_kind": "responsive-header-alignment",
+  "status": "passed",
+  "requested_visible_change": "Сделать меню симметричным на мобильной и desktop версиях корпоративных страниц.",
+  "expected_visible_delta": "Мобильные ссылки равномерно занимают строку с одинаковыми краями; desktop группа ссылок центрируется относительно экрана.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "2d378e0f4351d37245aebe6e54ca1f50d06289b56ea8b623613f31bd63dd37c8",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4325/",
+    "source_ref": "staged codex/header-nav-symmetry candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "first-screen header navigation",
+    "selector_or_slide_id": ".site-header [data-section-nav]",
+    "action": "load at mobile, breakpoint and desktop widths"
+  },
+  "required_viewports": [
+    "390x844",
+    "1440x900"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "before_signature": "live: left outer gap 0px, right outer gap 60.9px, 4px item gaps",
+      "after_signature": "candidate: left and right outer gaps 0px, three equal 24.3px item gaps",
+      "observed_visible_result": "Цены, Программа, Видео and Отзывы are distributed across the full inner header width with matching edges and no document overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "before_signature": "live: menu center 617.1px while viewport center is 720px",
+      "after_signature": "candidate: menu center and viewport center are both exactly 720px",
+      "observed_visible_result": "The link group is horizontally and vertically centered; logo and phone/contact controls remain at their own edges.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ]
+}

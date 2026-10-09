@@ -34,10 +34,12 @@ to `#formats`, `#evening-flow`, `#cases` and `#letters`. The navigation does
 not include route switching, FAQ, gallery or a duplicate contacts link.
 
 On desktop the anchors are quiet text links in the existing glass header, with
-an orange active underline. Between 769 and 1180 px the phone is hidden so the
-navigation and contact action keep one row. On mobile the brand and contact
-button occupy the first 56 px row; the second 48 px row keeps all four anchors
-visible and becomes horizontally scrollable only when the viewport is too
+an orange active underline. A symmetric three-column grid keeps the link group
+on the viewport center independently of the logo and contact controls. Between
+769 and 1180 px the phone is hidden so the navigation and contact action keep
+one row. On mobile the brand and contact button occupy the first 56 px row; the
+second 48 px row distributes all four anchors across the full width with equal
+outer edges and becomes horizontally scrollable only when the viewport is too
 narrow. The header hides while scrolling down and returns while scrolling up.
 
 ## CTA and callback contract

@@ -229,8 +229,8 @@ for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   expectText(html, 'href="#evening-flow" data-nav-target="evening-flow">Программа</a>', `${label} programme navigation`);
   expectText(html, 'href="#cases" data-nav-target="cases">Видео</a>', `${label} video navigation`);
   expectText(html, 'href="#letters" data-nav-target="letters">Отзывы</a>', `${label} reviews navigation`);
-  expectText(html, '/header-nav.css?v=20261009a', `${label} header navigation stylesheet`);
-  expectText(html, '/header-nav.js?v=20261009a', `${label} header navigation behavior`);
+  expectText(html, '/header-nav.css?v=20261009d', `${label} header navigation stylesheet`);
+  expectText(html, '/header-nav.js?v=20261009d', `${label} header navigation behavior`);
   expectText(html, 'data-contact-fab', `${label} labelled sticky contact`);
   expectText(html, '<p class="contact-choice__eyebrow">ТИМУР ГРОМОВ</p>', `${label} contact owner`);
   rejectText(html, 'КАЛЬКУЛЯТОР МЕРОПРИЯТИЙ · ТИМУР ГРОМОВ', `${label} removed calculator label`);
