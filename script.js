@@ -735,10 +735,15 @@ async function sendCorporateLead(name, phone, source = 'popup', suppliedContext 
   const context = corporateCtaContext(source, suppliedContext);
   const controller = new AbortController();
   const timeoutId = window.setTimeout(() => controller.abort(), 12000);
+  const selectionSummary = String(suppliedContext.selectionSummary || '').trim();
   const payload = {
     name: String(name || '').trim(),
     phone: normalizeCorporatePhone(phone),
-    comment: `Запрос с корпоративного сайта\nФорма: ${String(source).slice(0, 120)}`,
+    comment: [
+      'Запрос с корпоративного сайта',
+      selectionSummary,
+      `Форма: ${String(source).slice(0, 120)}`
+    ].filter(Boolean).join('\n'),
     form_source: `site_meeting_corporate__${context.page}__${context.intent}__${context.placement}`,
     page_url: `${window.location.origin}${window.location.pathname}`.slice(0, 500),
     yclid: tracking.yclid || null,
@@ -765,6 +770,7 @@ async function sendCorporateLead(name, phone, source = 'popup', suppliedContext 
     window.clearTimeout(timeoutId);
   }
 }
+window.sendCorporateLead = sendCorporateLead;
 // PATCH END: CONFIRMED_CORPORATE_LEAD_HELPER
 
 // ===== HEADER: HIDE ON SCROLL DOWN, SHOW ON SCROLL UP =====
@@ -1013,6 +1019,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
     const triggers = document.querySelectorAll('[data-modal="contact-popup"]');
     let currentContactSource = 'contact_popup';
     let currentContactContext = corporateCtaContext(currentContactSource);
+    let currentContactSelectionSummary = '';
     let contactFormStarted = false;
 
     if (!modal || !form || !triggers.length) return;
@@ -1079,6 +1086,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
       e.preventDefault();
       currentContactSource = btn.dataset.formSource || 'contact_popup';
       currentContactContext = corporateCtaContext(currentContactSource, btn.dataset);
+      currentContactSelectionSummary = btn.dataset.contactSelectionSummary || '';
       contactFormStarted = false;
       openModal();
     });
@@ -1119,7 +1127,10 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
         status.dataset.state = 'sending';
       }
 
-      const created = await sendCorporateLead(name, displayPhone, currentContactSource, currentContactContext);
+      const created = await sendCorporateLead(name, displayPhone, currentContactSource, {
+        ...currentContactContext,
+        selectionSummary: currentContactSelectionSummary
+      });
       if (!created) {
         if (status) {
           status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь со мной по телефону.';
