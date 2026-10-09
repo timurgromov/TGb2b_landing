@@ -1,5 +1,14 @@
 # Current state
 
+## Shared corporate pricing UX — live (2026-10-09)
+
+- `/` and `/novogodniy-korporativ/` now use the same date-first pricing and lead-form component: one date action above three compact cards, the additional-hour rate beside each main price, and an in-card `Что входит` disclosure. Event copy, source attribution and approved price values remain route-specific.
+- The ordinary corporate route uses the year-round floor outside December 2026: 145 000 ₽ for host + DJ, 170 000 ₽ with equipment and from 320 000 ₽ with live music. In December it uses the approved seasonal matrix already used by the New Year route.
+- Both detailed forms keep success behind backend HTTP `201`, use separate structured source codes and receive the selected pricing date. The final live check did not submit a lead.
+- The contact panel eyebrow is `ТИМУР ГРОМОВ`; the old calculator label is absent. Vocalist options now read `два вокалиста: 3 блока по 30 минут` after the composition.
+- Runtime source `711ca44` is pushed to `origin/astro-migration`; static production `b49e056` is pushed to `origin/gh-pages`, and GitHub Pages reports that exact build as `built`.
+- Local `npm run build`, `npm run verify:seasonal`, JavaScript syntax and `git diff --check` passed. Fresh live checks at 390 CSS px found no horizontal overflow or console errors on either route. On `/`, selecting 25 December produced 220 000 / 250 000 / from 500 000 ₽, 25 000 ₽ extension and the same date in the detailed form.
+
 ## 29–30 December price correction — live (2026-10-09)
 
 - Only `/novogodniy-korporativ/` changes. The 29–30 December host + DJ price is now 210 000 ₽ and the package with equipment is 240 000 ₽. The musical-composition addon remains 250 000 ₽, so the complete third package is now from 490 000 ₽. The additional hour remains 25 000 ₽.
