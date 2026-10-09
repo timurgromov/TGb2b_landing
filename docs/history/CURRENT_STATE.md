@@ -1,5 +1,12 @@
 # Current state
 
+## 29–30 December price correction — live (2026-10-09)
+
+- Only `/novogodniy-korporativ/` changes. The 29–30 December host + DJ price is now 210 000 ₽ and the package with equipment is 240 000 ₽. The musical-composition addon remains 250 000 ₽, so the complete third package is now from 490 000 ₽. The additional hour remains 25 000 ₽.
+- Source commit `12a2876` is pushed to `astro-migration`; static commit `131f91c` is pushed to `gh-pages`, and GitHub Pages reports that exact build as `built`.
+- Local `npm run build`, `npm run verify:seasonal`, staged UI-evidence validation and `git diff --check` passed. The pricing panel passed 390, 767–769, 896, 1023–1025, 1366, 1440 and 1984 CSS px without horizontal overflow or console errors.
+- Fresh production verification selected both 29 and 30 December and confirmed 210 000 / 240 000 / from 490 000 ₽ in the three cards, 25 000 ₽ in the additional-hour field, the same values in the expanded matrix and synchronization into the detailed form. No form was submitted.
+
 ## Date-indexed musical composition — live (2026-10-09)
 
 - Only `/novogodniy-korporativ/` changes. Host, DJ, equipment and extension prices remain unchanged. The third package now uses a separate provisional musical-composition rate for each December range instead of adding the same 150 000 ₽ to every date.
