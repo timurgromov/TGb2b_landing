@@ -16,6 +16,7 @@ import ServiceFormats from '@components/ServiceFormats.astro';
 import VideoCases from '@components/VideoCases.astro';
 import ContactChoice from '@components/ContactChoice.astro';
 import MaterialsRequest from '@components/MaterialsRequest.astro';
+import CorporateLeadForm from '@components/CorporateLeadForm.astro';
 import { contact } from '@data/corporate';
 
 const canonical = 'https://corp.timurgromov.ru/novogodniy-korporativ/';
@@ -54,8 +55,8 @@ const serviceSchema = {
   canonical={canonical}
   ogImage="https://corp.timurgromov.ru/assets/og_og.jpg?v=4"
   includeMainAssets
-  pageCss="/seasonal.css?v=20261008g"
-  pageScript="/seasonal.js?v=20261009a"
+  pageCss="/seasonal.css?v=20261009b"
+  pageScript="/seasonal.js?v=20261009b"
   structuredData={serviceSchema}
 >
   <Header page="new_year" />
@@ -88,7 +89,7 @@ const serviceSchema = {
     <VideoCases />
     <EveningFlow seasonal />
     <Benefits />
-    <ServiceFormats seasonal />
+    <ServiceFormats pricing />
     <MusicProgram seasonal />
     <CaseProofs seasonal />
 
@@ -128,63 +129,7 @@ const serviceSchema = {
     <FAQ />
     <ContextPhoto variant="formats" />
 
-    <section id="proverit-datu" class="section cta seasonal-lead-section">
-      <div class="container">
-        <div class="cta__box sr seasonal-lead-card">
-          <h2 class="cta__title">Проверьте дату и получите расчёт</h2>
-          <p class="cta__subtitle">Укажите основные параметры корпоратива. Я сверю календарь и отвечу лично.</p>
-
-          <form class="seasonal-form" data-testid="seasonal-lead-form" data-seasonal-form novalidate>
-            <div class="seasonal-form__grid">
-              <label>
-                <span>Дата мероприятия</span>
-                <input type="date" name="event_date" required />
-              </label>
-              <label>
-                <span>Количество гостей</span>
-                <input type="number" name="guests_count" min="10" max="1000" inputmode="numeric" placeholder="Например, 80" required />
-              </label>
-              <label>
-                <span>Какой состав нужен?</span>
-                <select name="equipment_needed" required>
-                  <option value="">Выберите вариант</option>
-                  <option value="host_dj">Ведущий + DJ</option>
-                  <option value="host_dj_sound">Ведущий + DJ + аппаратура</option>
-                  <option value="host_dj_sound_vocalists">Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста</option>
-                  <option value="host_dj_sound_vocalists_sax">Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста и саксофонист</option>
-                  <option value="host_dj_sound_vocalists_sax_guitar">Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист</option>
-                  <option value="unknown">Пока не знаю</option>
-                </select>
-              </label>
-              <label>
-                <span>Компания или площадка <small>необязательно</small></span>
-                <input type="text" name="company" maxlength="160" autocomplete="organization" placeholder="Название компании или площадки" />
-              </label>
-              <label>
-                <span>Как к вам обращаться</span>
-                <input type="text" name="name" maxlength="120" autocomplete="name" placeholder="Имя" required />
-              </label>
-              <label>
-                <span>Телефон</span>
-                <input type="tel" name="phone" maxlength="30" autocomplete="tel" inputmode="tel" placeholder="+7 999 000-00-00" required />
-              </label>
-            </div>
-
-            <div class="cta__actions seasonal-form__actions">
-              <button class="btn btn-primary" type="submit">Проверить дату</button>
-            </div>
-            <p class="seasonal-form__status" data-form-status role="status" aria-live="polite"></p>
-            <p class="seasonal-form__consent">Нажимая «Проверить дату», вы соглашаетесь с <a href="/privacy/" target="_blank" rel="nofollow">политикой конфиденциальности</a> и <a href="/privacy/#consent" target="_blank" rel="nofollow">обработкой персональных данных</a>.</p>
-          </form>
-
-          <div class="seasonal-form-success" data-form-success hidden>
-            <h3>Спасибо, заявка принята</h3>
-            <p>Я проверю дату и свяжусь с вами лично по указанному телефону.</p>
-            <a class="btn btn-outline" href={contact.phoneHref} data-seasonal-goal="corporate_phone_click">Позвонить</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CorporateLeadForm page="new_year" />
   </main>
 
   <Footer />

@@ -19,6 +19,7 @@ import VideoCases from '@components/VideoCases.astro';
 import ContactChoice from '@components/ContactChoice.astro';
 import MaterialsRequest from '@components/MaterialsRequest.astro';
 import Workflow from '@components/Workflow.astro';
+import CorporateLeadForm from '@components/CorporateLeadForm.astro';
 import { siteMeta, structuredData } from '@data/corporate';
 ---
 <BaseLayout
@@ -27,6 +28,8 @@ import { siteMeta, structuredData } from '@data/corporate';
   canonical={siteMeta.url}
   ogImage={siteMeta.ogImage}
   includeMainAssets
+  pageCss="/seasonal.css?v=20261009b"
+  pageScript="/seasonal.js?v=20261009b"
   structuredData={structuredData}
 >
   <Header />
@@ -36,7 +39,7 @@ import { siteMeta, structuredData } from '@data/corporate';
     <VideoCases />
     <EveningFlow />
     <Benefits />
-    <ServiceFormats />
+    <ServiceFormats pricing />
     <MusicProgram />
     <CaseProofs />
     <Workflow />
@@ -45,6 +48,7 @@ import { siteMeta, structuredData } from '@data/corporate';
     <Letters />
     <FAQ />
     <ContextPhoto variant="formats" />
+    <CorporateLeadForm page="corporate" />
     <CTA />
   </main>
   <Footer />

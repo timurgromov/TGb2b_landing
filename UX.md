@@ -12,10 +12,24 @@ Job: за несколько минут убедиться, что ведущи�
 
 Первичное действие на всей сезонной странице одно: `Проверить дату`.
 
+## Three-route parity contract — 2026-10-09
+
+The ordinary corporate, New Year corporate and Jubilee routes use one customer
+interaction pattern: date action above the packages, three compact package
+cards, extension rate beside the main price, in-card `Что входит` disclosure,
+and the same contact-panel behavior. Event copy, base prices and seasonal date
+rules may differ. A shared UX change is incomplete until all three routes have
+been reviewed.
+
+The two corporate routes share components and assets. `/` uses the ordinary
+five-hour prices outside December and the approved seasonal matrix for December
+2026. `/novogodniy-korporativ/` uses the same component and matrix. Both routes
+synchronize date and package into the confirmed HTTP-201 lead form.
+
 ## CTA and callback contract
 
 После первого экрана доступна подписанная плавающая кнопка `Связаться`. Все
-контактные CTA на `/` открывают одну панель: Калькулятор мероприятий, звонок и
+контактные CTA на `/` открывают одну панель: Telegram-бот, звонок и
 подтверждаемая callback-форма. На `/novogodniy-korporativ/` тот же выбор связи
 сохраняется для контактных CTA, а `Проверить дату` ведёт к подробной форме.
 

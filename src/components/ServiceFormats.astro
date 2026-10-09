@@ -1,11 +1,11 @@
 ---
 interface Props {
-  seasonal?: boolean;
+  pricing?: boolean;
 }
 
 import { formatRubles, liveMusicAddon, seasonalPriceRows } from '@data/seasonalPricing';
 
-const { seasonal = false } = Astro.props;
+const { pricing = false } = Astro.props;
 
 const seasonalMinimums = {
   hostDj: Math.min(...seasonalPriceRows.map((row) => row.hostDj)),
@@ -60,7 +60,7 @@ const formats = [
     <p class="section__eyebrow sr">Без лишнего в смете</p>
     <h2 class="section__title sr">Выберите подходящий состав</h2>
     <p class="section__subtitle service-formats__intro sr">DJ всегда работает со мной в связке. Остальной состав зависит от площадки, числа гостей и программы.</p>
-    {seasonal ? (
+    {pricing ? (
       <>
         <div class="seasonal-pricing-calculator sr" data-seasonal-pricing data-testid="seasonal-pricing" data-annual-host-dj={seasonalMinimums.hostDj} data-annual-host-dj-sound={seasonalMinimums.hostDjSound} data-annual-live-music-addon={liveMusicAddon} data-annual-extension={seasonalMinimums.extension}>
           <div class="seasonal-pricing-picker">
@@ -129,7 +129,7 @@ const formats = [
         <summary>Посмотреть цены на все даты декабря</summary>
         <div class="seasonal-pricing-table__wrap">
           <table>
-            <caption class="seasonal-pricing-table__caption">Стоимость пятичасовой программы новогоднего корпоратива по датам декабря 2026 года</caption>
+            <caption class="seasonal-pricing-table__caption">Стоимость пятичасовой программы корпоратива по датам декабря 2026 года</caption>
             <thead>
               <tr>
                 <th scope="col">Даты</th>

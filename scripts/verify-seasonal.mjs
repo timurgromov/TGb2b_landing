@@ -169,8 +169,9 @@ expectText(seasonalHtml, 'data-label="С живой музыкой">от 490 00
 expectText(seasonalHtml, 'data-label="С живой музыкой">от 630 000 ₽', 'seasonal 31 December live music total');
 expectText(seasonalHtml, 'Цена пакета с двумя вокалистами уже учитывает декабрьскую ставку музыкального состава на выбранную дату.', 'seasonal live music matrix explanation');
 expectCount(seasonalHtml, 'В цену входит комплект звука и DJ-оборудования.', 2, 'seasonal equipment boundary in relevant cards');
-rejectText(rootHtml, 'data-testid="seasonal-pricing"', 'root pricing scope');
-rejectText(rootHtml, 'data-pricing-row', 'root pricing scope');
+expectText(rootHtml, 'data-testid="seasonal-pricing"', 'root shared pricing picker');
+expectText(rootHtml, 'data-testid="seasonal-lead-form"', 'root shared lead form');
+expectCount(rootHtml, 'data-pricing-row', seasonalPriceRows.length, 'root December pricing row count');
 expectText(seasonalHtml, 'Ведущий + DJ + звук + два вокалиста', 'seasonal vocalists package title');
 expectText(seasonalHtml, 'С живой музыкой', 'seasonal live music package name');
 expectText(seasonalHtml, 'Подробнее о живой музыке', 'seasonal live music package link');
@@ -212,9 +213,9 @@ expectText(seasonalHtml, '/assets/music/music-program-max.avif', 'seasonal music
 expectText(seasonalHtml, '/assets/music/music-program-max.webp', 'seasonal music program image fallback');
 expectText(seasonalHtml, 'href="#proverit-datu">Обсудить музыкальный состав', 'seasonal music CTA');
 expectBefore(seasonalHtml, 'data-testid="music-program"', 'data-testid="proof-cases"', 'seasonal music program placement');
-expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста', 'seasonal vocalists package');
-expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста и саксофонист', 'seasonal saxophone package');
-expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист', 'seasonal guitar package');
+expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + два вокалиста: 3 блока по 30 минут', 'seasonal vocalists package');
+expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + два вокалиста и саксофонист: 3 блока по 30 минут', 'seasonal saxophone package');
+expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + два вокалиста, саксофонист и гитарист: 3 блока по 30 минут', 'seasonal guitar package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
 expectText(seasonalHtml, '/style.css?v=astro_20', 'main site stylesheet');
@@ -224,7 +225,8 @@ expectText(seasonalHtml, '/script.js?v=astro_9', 'main site script');
 expectText(seasonalHtml, '/cta-analytics.js?v=1', 'CTA analytics script');
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   expectText(html, 'data-contact-fab', `${label} labelled sticky contact`);
-  expectText(html, 'КАЛЬКУЛЯТОР МЕРОПРИЯТИЙ · ТИМУР ГРОМОВ', `${label} calculator brand`);
+  expectText(html, '<p class="contact-choice__eyebrow">ТИМУР ГРОМОВ</p>', `${label} contact owner`);
+  rejectText(html, 'КАЛЬКУЛЯТОР МЕРОПРИЯТИЙ · ТИМУР ГРОМОВ', `${label} removed calculator label`);
   expectText(html, 'https://calcul.timurgromov.ru/api/v1/site/messenger-start?provider=telegram', `${label} stable Telegram redirect`);
   rejectText(html, 'gromov_wedding_bot', `${label} retired Telegram handle`);
   expectText(html, 'data-contact-placement="header"', `${label} header contact button`);
@@ -239,8 +241,11 @@ for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta">Обсудить корпоратив', 'seasonal primary CTA');
 expectText(seasonalHtml, 'data-contact-form="video" data-form-source="hero_video"', 'seasonal meeting CTA');
 expectText(seasonalHtml, '>Назначить встречу</button>', 'seasonal meeting CTA label');
-expectText(seasonalHtml, '/seasonal.css?v=20261008g', 'seasonal form stylesheet');
-expectText(seasonalHtml, '/seasonal.js?v=20261009a', 'seasonal script');
+for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
+  expectText(html, '/seasonal.css?v=20261009b', `${label} pricing stylesheet`);
+  expectText(html, '/seasonal.js?v=20261009b', `${label} pricing script`);
+}
+expectText(rootHtml, 'Праздники проходят, впечатления остаются.', 'root corrected CTA punctuation');
 rejectText(seasonalHtml, 'data-testid="seasonal-package-details"', 'seasonal retired separate package details');
 rejectText(seasonalHtml, 'Что входит в каждый пакет', 'seasonal retired shared package disclosure');
 expectText(seasonalHtml, 'Стоимость трёх вариантов на выбранную дату', 'seasonal compact price comparison');
@@ -290,11 +295,12 @@ expectText(privacyHtml, 'Политика конфиденциальности',
 expectText(privacyHtml, 'Согласие на обработку персональных данных', 'privacy route');
 
 expectText(seasonalScript, 'https://calcul.timurgromov.ru/api/v1/site/consultation-request', 'lead contract');
-expectText(seasonalScript, "form_source: 'site_meeting_corporate__new_year__date_check__seasonal_form'", 'lead contract');
+expectText(seasonalScript, "'site_meeting_corporate__new_year__date_check__seasonal_form'", 'preserved New Year lead source');
+expectText(seasonalScript, "'site_meeting_corporate__corporate__date_check__pricing_form'", 'ordinary corporate pricing lead source');
 expectText(seasonalScript, 'cta_site: seasonalCtaContext.site', 'seasonal CRM CTA context');
-expectText(seasonalScript, "host_dj_sound_vocalists: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста'", 'lead vocalists package contract');
-expectText(seasonalScript, "host_dj_sound_vocalists_sax: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста и саксофонист'", 'lead saxophone package contract');
-expectText(seasonalScript, "host_dj_sound_vocalists_sax_guitar: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист'", 'lead guitar package contract');
+expectText(seasonalScript, "host_dj_sound_vocalists: 'Ведущий + DJ + аппаратура + два вокалиста: 3 блока по 30 минут'", 'lead vocalists package contract');
+expectText(seasonalScript, "host_dj_sound_vocalists_sax: 'Ведущий + DJ + аппаратура + два вокалиста и саксофонист: 3 блока по 30 минут'", 'lead saxophone package contract');
+expectText(seasonalScript, "host_dj_sound_vocalists_sax_guitar: 'Ведущий + DJ + аппаратура + два вокалиста, саксофонист и гитарист: 3 блока по 30 минут'", 'lead guitar package contract');
 expectText(seasonalScript, 'response.status !== 201', 'confirmed lead gate');
 expectText(seasonalScript, 'Ориентир на сайте за 5 часов:', 'seasonal public quote in CRM comment');
 expectText(seasonalScript, 'Ориентир за 6 часов:', 'seasonal six-hour quote in CRM comment');
