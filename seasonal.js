@@ -23,9 +23,10 @@
     }
   }
 
+  const pricingPage = window.location.pathname.startsWith('/novogodniy-korporativ') ? 'new_year' : 'corporate';
   const seasonalCtaContext = {
     site: 'corporate',
-    page: 'new_year',
+    page: pricingPage,
     intent: 'date_check',
     placement: 'seasonal_form'
   };
@@ -101,15 +102,15 @@
     return {
       host_dj: 'Ведущий + DJ',
       host_dj_sound: 'Ведущий + DJ + аппаратура',
-      host_dj_sound_vocalists: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста',
-      host_dj_sound_vocalists_sax: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста и саксофонист',
-      host_dj_sound_vocalists_sax_guitar: 'Ведущий + DJ + аппаратура + 3 блока по 30 минут: два вокалиста, саксофонист и гитарист',
+      host_dj_sound_vocalists: 'Ведущий + DJ + аппаратура + два вокалиста: 3 блока по 30 минут',
+      host_dj_sound_vocalists_sax: 'Ведущий + DJ + аппаратура + два вокалиста и саксофонист: 3 блока по 30 минут',
+      host_dj_sound_vocalists_sax_guitar: 'Ведущий + DJ + аппаратура + два вокалиста, саксофонист и гитарист: 3 блока по 30 минут',
       unknown: 'Нужна консультация по составу'
     }[value] || 'Не указано';
   }
 
   const tracking = collectTracking();
-  reachGoal('corporate_seasonal_view');
+  if (pricingPage === 'new_year') reachGoal('corporate_seasonal_view');
 
   document.querySelectorAll('[data-seasonal-goal]').forEach((element) => {
     element.addEventListener('click', () => reachGoal(element.dataset.seasonalGoal));
@@ -343,7 +344,7 @@
     const submit = form.querySelector('button[type="submit"]');
     const company = String(data.get('company') || '').trim();
     const commentLines = [
-      'Запрос: новогодний корпоратив',
+      `Запрос: ${pricingPage === 'new_year' ? 'новогодний корпоратив' : 'корпоратив'}`,
       `Дата: ${data.get('event_date')}`,
       `Гостей: ${data.get('guests_count')}`,
       `Комплект: ${equipmentLabel(data.get('equipment_needed'))}`
@@ -361,7 +362,9 @@
       name: String(data.get('name') || '').trim(),
       phone,
       comment: commentLines.join('\n'),
-      form_source: 'site_meeting_corporate__new_year__date_check__seasonal_form',
+      form_source: pricingPage === 'new_year'
+        ? 'site_meeting_corporate__new_year__date_check__seasonal_form'
+        : 'site_meeting_corporate__corporate__date_check__pricing_form',
       page_url: `${window.location.origin}${window.location.pathname}`.slice(0, 500),
       yclid: tracking.yclid || null,
       campaign_params: Object.keys(tracking.campaignParams || {}).length ? tracking.campaignParams : null,
