@@ -25,3 +25,10 @@ remain unchanged.
   on desktop and 390x844 mobile, including a dated New Year package and local
   HTTP 201/error states.
 - No production lead was created during candidate UI verification.
+
+## Release
+
+- Source: `38f4552` on `origin/astro-migration`.
+- Production: `8e41a54` on `origin/gh-pages`; GitHub Pages status `built`.
+- Fresh live checks repeated package selection, the dated New Year summary,
+  mobile form geometry, Escape/focus return, overflow and console checks.

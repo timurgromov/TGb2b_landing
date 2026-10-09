@@ -1,6 +1,6 @@
 # Current state
 
-## Shared fast package CTA — release candidate (2026-10-09)
+## Shared fast package CTA — live (2026-10-09)
 
 - Both `/` and `/novogodniy-korporativ/` now use a single fast contact
   panel. Every price card has `Обсудить этот вариант`; the former aggregate
@@ -8,9 +8,12 @@
 - The panel carries the selected package, date, displayed price and extension
   rate into the attributed Telegram bot and the confirmed two-field callback
   request. Generic CTA buttons open the same panel without a package.
-- Build and `verify:seasonal` pass. Desktop and 390x844 candidate checks
-  confirmed package context, focus/close behavior and local HTTP 201/error
-  states without a real production submission.
+- Source commit `38f4552` is pushed to `origin/astro-migration`; static commit
+  `8e41a54` is on `origin/gh-pages`, and GitHub Pages reports it as `built`.
+- Build and `verify:seasonal` pass. Fresh production checks on both routes at
+  desktop and 390x844 confirmed package context, dated New Year prices,
+  focus/close behavior, no horizontal overflow and no console errors. Local
+  HTTP 201/error states passed without a real production submission.
 - Release note:
   `docs/history/worklog/2026-10-09-package-contact-cta.md`.
 
