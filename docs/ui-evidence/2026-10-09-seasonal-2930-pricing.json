@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-09-seasonal-2930-pricing",
+  "change_kind": "seasonal-date-price-correction",
+  "status": "passed",
+  "requested_visible_change": "Повысить цену ведущего на 29–30 декабря, сохранив утверждённые ставки музыкантов и дополнительного часа.",
+  "expected_visible_delta": "На 29 и 30 декабря три карточки и полная матрица показывают 210 000 ₽, 240 000 ₽ и от 490 000 ₽; дополнительный час остаётся 25 000 ₽.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "e4b1ff33df7f6fd0497349b6c85312b4f632ef8f87ed5739f3a866430c38df8f",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4325/novogodniy-korporativ/?verify=2930-candidate#formats",
+    "source_ref": "codex/seasonal-2930-pricing from astro-migration 5007186",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/novogodniy-korporativ/#formats",
+    "state": "29 and 30 December 2026 selected; complete December matrix expanded",
+    "selector_or_slide_id": "[data-testid=seasonal-pricing], [data-pricing-row][data-date-from=29]",
+    "action": "select 29 and 30 December and compare all three cards with the expanded matrix row"
+  },
+  "must_remain_unchanged": [
+    "29–30 December additional hour remains 25 000 ₽",
+    "29–30 December musical-composition addon remains 250 000 ₽",
+    "all other December ranges",
+    "ordinary corporate route",
+    "form and CRM submission behavior"
+  ],
+  "required_viewports": [
+    "390x844",
+    "767x844",
+    "768x1024",
+    "769x1024",
+    "896x1024",
+    "1023x1024",
+    "1024x768",
+    "1025x900",
+    "1366x768",
+    "1440x900",
+    "1984x1046"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "isolated responsive QA browser after the last edit",
+      "before_signature": "production cards showed 190000, 220000 and 470000 for 29 December",
+      "after_signature": "candidate prices are 210000, 240000 and 490000; document scrollWidth equals 390",
+      "observed_visible_result": "The pricing panel remains contained at the primary mobile width with no horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "767x844",
+      "viewport_source": "isolated responsive QA browser after the last edit",
+      "before_signature": "the existing single-column pricing layout fit the viewport",
+      "after_signature": "candidate pricing panel and cards remain within the viewport; document scrollWidth equals 767",
+      "observed_visible_result": "The revised price strings do not create overflow immediately below the 768 CSS px breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "768x1024",
+      "viewport_source": "isolated responsive QA browser after the last edit",
+      "before_signature": "the existing single-column pricing layout fit the viewport",
+      "after_signature": "candidate pricing panel and cards remain within the viewport; document scrollWidth equals 768",
+      "observed_visible_result": "The revised price strings stay contained at the 768 CSS px breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "769x1024",
+      "viewport_source": "isolated responsive QA browser after the last edit",
+      "before_signature": "the existing single-column pricing layout fit the viewport",
+      "after_signature": "candidate pricing panel and cards remain within the viewport; document scrollWidth equals 769",
+      "observed_visible_result": "The revised price strings stay contained immediately above the 768 CSS px breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "896x1024",
+      "viewport_source": "isolated responsive QA browser after the last edit",
+      "before_signature": "the existing intermediate-width pricing layout fit the viewport",
+      "after_signature": "candidate pricing panel and cards remain within the viewport; document scrollWidth equals 896",
+      "observed_visible_result": "The revised prices remain readable at the interval midpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1023x1024",
+      "viewport_source": "isolated responsive QA browser after the last edit",
+      "before_signature": "the existing single-column pricing layout fit the viewport",
+      "after_signature": "candidate pricing panel and cards remain within the viewport; document scrollWidth equals 1023",
+      "observed_visible_result": "The revised prices remain contained immediately below the desktop-card breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1024x768",
+      "viewport_source": "isolated responsive QA browser after the last edit",
+      "before_signature": "the existing pricing layout fit the viewport",
+      "after_signature": "candidate pricing panel and cards remain within the viewport; document scrollWidth equals 1024",
+      "observed_visible_result": "The revised prices remain contained at the 1024 CSS px breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1025x900",
+      "viewport_source": "isolated responsive QA browser after the last edit",
+      "before_signature": "the existing three-column pricing layout fit the viewport",
+      "after_signature": "candidate pricing panel and cards remain within the viewport; document scrollWidth equals 1025",
+      "observed_visible_result": "The revised prices remain contained immediately above the desktop-card breakpoint.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1366x768",
+      "viewport_source": "isolated responsive QA browser after the last edit",
+      "before_signature": "the existing three-column pricing layout fit the viewport",
+      "after_signature": "candidate pricing panel and cards remain within the viewport; document scrollWidth equals 1366",
+      "observed_visible_result": "The revised prices remain aligned at the compact desktop anchor.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Codex in-app browser exact viewport after the last edit",
+      "before_signature": "production selected-date state showed 190000, 220000 and 470000; the matrix repeated those values",
+      "after_signature": "29 and 30 December each show 210000, 240000 and 490000 in the cards; the expanded matrix row shows the same three values and 25000 for the extra hour",
+      "observed_visible_result": "All three cards and the complete matrix display the revised late-December prices consistently.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "isolated responsive QA browser after the last edit",
+      "before_signature": "production desktop used 190000, 220000 and 470000 for 29–30 December",
+      "after_signature": "candidate pricing panel is 1080 CSS px wide inside a 1440 viewport and the new price row does not change its geometry",
+      "observed_visible_result": "The three-column price comparison remains aligned with no horizontal overflow or console errors.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1984x1046",
+      "viewport_source": "isolated responsive QA browser after the last edit",
+      "before_signature": "the existing 1080 CSS px pricing panel was centered in the wide viewport",
+      "after_signature": "candidate pricing panel remains 1080 CSS px wide and document scrollWidth equals 1984",
+      "observed_visible_result": "The revised prices preserve the wide-desktop composition with no overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ]
+}

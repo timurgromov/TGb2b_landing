@@ -24,7 +24,7 @@ export const seasonalPriceRows: SeasonalPriceRow[] = [
   { label: '21–24 декабря', weekdays: 'пн–чт', fromDay: 21, toDay: 24, hostDj: 190_000, hostDjSound: 220_000, liveMusicAddon: 220_000, extension: 25_000 },
   { label: '25–26 декабря', weekdays: 'пт–сб', fromDay: 25, toDay: 26, hostDj: 220_000, hostDjSound: 250_000, liveMusicAddon: 250_000, extension: 25_000 },
   { label: '27–28 декабря', weekdays: 'вс–пн', fromDay: 27, toDay: 28, hostDj: 190_000, hostDjSound: 220_000, liveMusicAddon: 220_000, extension: 25_000 },
-  { label: '29–30 декабря', weekdays: 'вт–ср', fromDay: 29, toDay: 30, hostDj: 190_000, hostDjSound: 220_000, liveMusicAddon: 250_000, extension: 25_000 },
+  { label: '29–30 декабря', weekdays: 'вт–ср', fromDay: 29, toDay: 30, hostDj: 210_000, hostDjSound: 240_000, liveMusicAddon: 250_000, extension: 25_000 },
   { label: '31 декабря', weekdays: 'чт', fromDay: 31, toDay: 31, hostDj: 280_000, hostDjSound: 330_000, liveMusicAddon: 300_000, extension: 35_000 }
 ];
 

@@ -17,7 +17,7 @@ const seasonalPriceRows = [
   [21, 24, 190000, 220000, 220000, 25000],
   [25, 26, 220000, 250000, 250000, 25000],
   [27, 28, 190000, 220000, 220000, 25000],
-  [29, 30, 190000, 220000, 250000, 25000],
+  [29, 30, 210000, 240000, 250000, 25000],
   [31, 31, 280000, 330000, 300000, 35000]
 ];
 
@@ -165,7 +165,7 @@ for (const [fromDay, toDay, hostDj, hostDjSound, liveMusicAddon, extension] of s
   );
 }
 expectText(seasonalHtml, '<th scope="col">С живой музыкой</th>', 'seasonal live music matrix column');
-expectText(seasonalHtml, 'data-label="С живой музыкой">от 470 000 ₽', 'seasonal 29-30 live music total');
+expectText(seasonalHtml, 'data-label="С живой музыкой">от 490 000 ₽', 'seasonal 29-30 live music total');
 expectText(seasonalHtml, 'data-label="С живой музыкой">от 630 000 ₽', 'seasonal 31 December live music total');
 expectText(seasonalHtml, 'Цена пакета с двумя вокалистами уже учитывает декабрьскую ставку музыкального состава на выбранную дату.', 'seasonal live music matrix explanation');
 expectCount(seasonalHtml, 'В цену входит комплект звука и DJ-оборудования.', 2, 'seasonal equipment boundary in relevant cards');
