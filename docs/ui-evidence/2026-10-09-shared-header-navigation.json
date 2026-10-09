@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-09-shared-header-navigation",
+  "change_kind": "responsive-header-navigation",
+  "status": "passed",
+  "requested_visible_change": "Добавить единое меню Цены, Программа, Видео, Отзывы на обычную и новогоднюю корпоративные страницы.",
+  "expected_visible_delta": "Пустая область шапки становится рабочей навигацией; mobile получает отдельную вторую строку, desktop сохраняет одну строку.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "351d9de46715a4b815d9ebec70a66fcf53ff61de40378d7042b7ce9abaf11a56",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4325/",
+    "source_ref": "staged codex/shared-header-nav candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "first screen, section navigation and scrolled header",
+    "selector_or_slide_id": ".site-header [data-section-nav]",
+    "action": "load; click Цены; page down; page up"
+  },
+  "must_remain_unchanged": [
+    "Existing Связаться action",
+    "Phone tel link",
+    "Hero content and CTA",
+    "Lead forms and attribution"
+  ],
+  "required_viewports": [
+    "390x844",
+    "1440x900"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "IAB viewport override and window.innerWidth/innerHeight",
+      "before_signature": "live corporate: 56px header, hidden empty main-nav, no section links",
+      "after_signature": "local corporate and New Year: 104px two-row header with four visible section links",
+      "observed_visible_result": "Both routes show Цены, Программа, Видео and Отзывы without page overflow. Цены sets #formats and lands the section below the header. PageDown hides the header; PageUp returns it.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "IAB viewport override and window.innerWidth/innerHeight",
+      "before_signature": "live corporate: 72px header with an empty main-nav area",
+      "after_signature": "local corporate: 72px header with four centered text links, phone and Связаться",
+      "observed_visible_result": "Desktop first screen keeps a single-row header, all controls fit and document scrollWidth equals 1440.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": ""
+  }
+}

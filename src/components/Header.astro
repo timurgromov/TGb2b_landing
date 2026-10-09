@@ -6,12 +6,23 @@ interface Props {
 }
 
 const { page = 'corporate' } = Astro.props;
+
+const navItems = [
+  ['#formats', 'Цены'],
+  ['#evening-flow', 'Программа'],
+  ['#cases', 'Видео'],
+  ['#letters', 'Отзывы']
+];
 ---
 <header class="site-header glass fixed" role="banner">
   <div class="container header-row">
     <a class="logo" href="/">Тимур Громов</a>
 
-    <nav class="main-nav" aria-label="Главное меню"></nav>
+    <nav class="main-nav" aria-label="Разделы страницы" data-section-nav>
+      {navItems.map(([href, label]) => (
+        <a class="main-nav__link" href={href} data-nav-target={href.slice(1)}>{label}</a>
+      ))}
+    </nav>
 
     <div class="header__cta">
       <a href={contact.phoneHref} class="btn btn-ghost header__phone" data-cta="tel_header_phone" data-seasonal-goal="corporate_phone_click">

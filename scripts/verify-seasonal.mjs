@@ -224,6 +224,13 @@ expectText(seasonalHtml, '/mobile.css?v=astro_10', 'main site mobile stylesheet'
 expectText(seasonalHtml, '/script.js?v=astro_9', 'main site script');
 expectText(seasonalHtml, '/cta-analytics.js?v=1', 'CTA analytics script');
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
+  expectText(html, 'data-section-nav', `${label} shared section navigation`);
+  expectText(html, 'href="#formats" data-nav-target="formats">Цены</a>', `${label} prices navigation`);
+  expectText(html, 'href="#evening-flow" data-nav-target="evening-flow">Программа</a>', `${label} programme navigation`);
+  expectText(html, 'href="#cases" data-nav-target="cases">Видео</a>', `${label} video navigation`);
+  expectText(html, 'href="#letters" data-nav-target="letters">Отзывы</a>', `${label} reviews navigation`);
+  expectText(html, '/header-nav.css?v=20261009a', `${label} header navigation stylesheet`);
+  expectText(html, '/header-nav.js?v=20261009a', `${label} header navigation behavior`);
   expectText(html, 'data-contact-fab', `${label} labelled sticky contact`);
   expectText(html, '<p class="contact-choice__eyebrow">ТИМУР ГРОМОВ</p>', `${label} contact owner`);
   rejectText(html, 'КАЛЬКУЛЯТОР МЕРОПРИЯТИЙ · ТИМУР ГРОМОВ', `${label} removed calculator label`);

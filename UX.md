@@ -26,6 +26,20 @@ five-hour prices outside December and the approved seasonal matrix for December
 2026. `/novogodniy-korporativ/` uses the same component and matrix. Both routes
 synchronize date and package into the confirmed HTTP-201 lead form.
 
+### Shared header navigation
+
+All three routes use the same four section anchors: `Цены`, `Программа`,
+`Видео`, `Отзывы`, followed by the existing `Связаться` action. The links map
+to `#formats`, `#evening-flow`, `#cases` and `#letters`. The navigation does
+not include route switching, FAQ, gallery or a duplicate contacts link.
+
+On desktop the anchors are quiet text links in the existing glass header, with
+an orange active underline. Between 769 and 1180 px the phone is hidden so the
+navigation and contact action keep one row. On mobile the brand and contact
+button occupy the first 56 px row; the second 48 px row keeps all four anchors
+visible and becomes horizontally scrollable only when the viewport is too
+narrow. The header hides while scrolling down and returns while scrolling up.
+
 ## CTA and callback contract
 
 После первого экрана доступна подписанная плавающая кнопка `Связаться`. Все
