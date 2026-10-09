@@ -317,14 +317,16 @@ expectText(seasonalScript, 'Ориентир за 6 часов:', 'seasonal six-
 expectText(seasonalScript, 'Дополнительный час:', 'seasonal extension quote in CRM comment');
 rejectText(seasonalScript, 'selectedPackage', 'seasonal redundant package selection state');
 rejectText(seasonalScript, 'data-pricing-package-select', 'seasonal redundant package selection handler');
-expectText(seasonalScript, "reachGoal('corporate_lead_submit_success')", 'confirmed lead goal');
+expectText(seasonalScript, "trackCtaGoal('lead_submit_success')", 'confirmed lead goal');
+rejectText(seasonalScript, "reachGoal('corporate_lead_submit_success')", 'duplicate legacy confirmed lead goal');
 expectText(seasonalScript, 'window.location.origin}${window.location.pathname}', 'sanitized page URL');
 
 expectText(sharedScript, 'https://calcul.timurgromov.ru/api/v1/site/consultation-request', 'shared lead contract');
 expectText(sharedScript, 'form_source: `site_meeting_corporate__${context.page}__${context.intent}__${context.placement}`', 'shared lead contract');
 expectText(sharedScript, 'cta_placement: context.placement', 'shared CRM CTA context');
 expectText(sharedScript, 'response.status === 201', 'shared confirmed lead gate');
-expectText(sharedScript, "reachGoal', 'corporate_lead_submit_success'", 'shared confirmed lead goal');
+expectText(sharedScript, "trackCorporateCtaGoal('lead_submit_success'", 'shared confirmed lead goal');
+rejectText(sharedScript, "reachGoal', 'corporate_lead_submit_success'", 'shared duplicate legacy confirmed lead goal');
 expectText(sharedScript, '[data-proof-cases-grid]', 'shared proof lightbox contract');
 rejectText(sharedScript, 'TELEGRAM_LEAD_ENDPOINT', 'shared lead contract');
 
