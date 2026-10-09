@@ -49,11 +49,10 @@
     });
   }
 
-  async function attributedUrl(source) {
+  async function attributedUrl(source, ctaCode) {
     const fallback = `${messengerEndpoint}?provider=telegram&mode=start&payload=${encodeURIComponent(source)}`;
     const info = tracking();
     const cid = await clientId();
-    if (!cid && !info.yclid) return fallback;
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 6000);
     try {
@@ -71,7 +70,7 @@
           yclid: info.yclid || null,
           campaign_params: info.campaign,
           landing_url: location.href,
-          cta_code: source
+          cta_code: ctaCode || source
         })
       });
       if (!response.ok) return fallback;
@@ -100,7 +99,7 @@
     event.preventDefault();
     const popup = window.open('about:blank', '_blank');
     if (popup) popup.opener = null;
-    attributedUrl(source).then(url => {
+    attributedUrl(source, anchor.dataset.botContext || '').then(url => {
       if (popup && !popup.closed) popup.location.href = url;
       else location.href = url;
     });

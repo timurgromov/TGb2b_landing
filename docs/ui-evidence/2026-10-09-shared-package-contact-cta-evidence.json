@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-09-shared-package-contact-cta",
+  "change_kind": "conversion-flow-simplification",
+  "status": "passed",
+  "requested_visible_change": "Use one fast contact panel on the ordinary corporate and New Year routes and place a contextual contact action on every price card.",
+  "expected_visible_delta": "Each package card opens the shared panel with its package, date, displayed price and extension rate; the detailed six-field form is absent.",
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "1eb5b3258f95eb02c8a77c0856e0056e8ae3b7fe81ce465b5790a3d56599b89b",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4324/",
+    "source_ref": "astro-migration working tree",
+    "fresh_reload": true
+  },
+  "required_viewports": ["390x844", "desktop"],
+  "observations": [
+    {
+      "surface": "/",
+      "result": "The ordinary corporate package opened the corporate contact panel with its displayed price and short callback form."
+    },
+    {
+      "surface": "/novogodniy-korporativ/",
+      "result": "A dated package showed the selected date, package price and extension rate in the same panel; local HTTP 201 and error states behaved correctly."
+    },
+    {
+      "viewport": "390x844",
+      "result": "The bottom sheet, selection summary and short form stayed within the viewport without horizontal overflow."
+    }
+  ],
+  "automated_checks": ["npm run build", "npm run verify:seasonal"],
+  "production_submission": false
+}

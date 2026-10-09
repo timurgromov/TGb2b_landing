@@ -18,13 +18,33 @@ const { page = 'corporate' } = Astro.props;
     <p class="contact-choice__eyebrow">ТИМУР ГРОМОВ</p>
     <h2 id="contact-choice-title">{page === 'new_year' ? 'Обсудим новогодний корпоратив' : 'Обсудим ваш корпоратив'}</h2>
     <p id="contact-choice-description" data-contact-description>Выберите удобный способ связи. Я отвечу лично.</p>
-    <div class="contact-choice__actions">
+    <div class="contact-choice__selection" data-contact-selection hidden>
+      <strong data-contact-selection-title></strong>
+      <span data-contact-selection-date></span>
+      <span data-contact-selection-price></span>
+    </div>
+    <div class="contact-choice__actions" data-contact-actions>
       <a class="contact-choice__action contact-choice__action--primary" href={`https://calcul.timurgromov.ru/api/v1/site/messenger-start?provider=telegram&mode=start&payload=site_meeting_corporate__${page}__hero`} target="_blank" rel="noopener noreferrer" data-contact-telegram>Написать в Telegram-бот <span aria-hidden="true">↗</span></a>
       <a class="contact-choice__action" href={contact.phoneHref} data-contact-phone>Позвонить <span>{contact.phoneHuman}</span></a>
       <button type="button" class="contact-choice__action" data-contact-callback>Оставить номер <span aria-hidden="true">→</span></button>
     </div>
-    <p class="contact-choice__note">Заявка появится после запуска бота. Можно также позвонить или оставить номер.</p>
+    <form class="contact-choice__form" data-contact-lead-form hidden>
+      <p class="contact-choice__form-title">Оставьте номер — я свяжусь лично</p>
+      <label class="contact-choice__field">
+        <span>Как к вам обращаться</span>
+        <input type="text" name="name" maxlength="120" autocomplete="name" required />
+      </label>
+      <label class="contact-choice__field">
+        <span>Телефон</span>
+        <input type="tel" name="phone" maxlength="80" autocomplete="tel" inputmode="tel" required />
+      </label>
+      <button type="submit" class="contact-choice__submit">Отправить номер</button>
+      <p class="contact-choice__status" data-contact-form-status role="status" aria-live="polite"></p>
+      <p class="contact-choice__consent">Нажимая «Отправить номер», вы соглашаетесь с <a href="/privacy/" target="_blank" rel="nofollow">политикой конфиденциальности</a> и <a href="/privacy/#consent" target="_blank" rel="nofollow">обработкой персональных данных</a>.</p>
+    </form>
+    <div class="contact-choice__success" data-contact-success hidden>
+      <p>Спасибо, номер получен. Я свяжусь с вами лично.</p>
+    </div>
+    <p class="contact-choice__note" data-contact-note>Заявка появится после запуска бота. Можно также позвонить или оставить номер.</p>
   </section>
 </div>
-<button type="button" hidden data-modal="contact-popup" data-contact-form-trigger></button>
-<button type="button" hidden data-modal="video-consult-modal" data-contact-video-trigger></button>

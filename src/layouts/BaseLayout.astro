@@ -63,7 +63,7 @@ const {
     )}
 
     {includeMainAssets && <link rel="stylesheet" href="/style.css?v=astro_20" />}
-    {includeMainAssets && <link rel="stylesheet" href="/contact-choice.css?v=3" />}
+    {includeMainAssets && <link rel="stylesheet" href="/contact-choice.css?v=4" />}
     {includeMainAssets && <link rel="stylesheet" href="/mobile.css?v=astro_10" media="(max-width: 768px)" />}
     {pageCss && <link rel="stylesheet" href={pageCss} />}
     {includeMainAssets && <link rel="stylesheet" href="/header-nav.css?v=20261009d" />}
@@ -98,10 +98,10 @@ const {
   </head>
   <body>
     <slot />
-    {includeMainAssets && <script src="/script.js?v=astro_9" is:inline></script>}
+    {includeMainAssets && <script src="/script.js?v=astro_10" is:inline></script>}
     {includeMainAssets && <script src="/cta-analytics.js?v=1" is:inline></script>}
-    {includeMainAssets && <script src="/contact-choice.js?v=12" is:inline></script>}
-    <script src="/bot-attribution.js?v=1" is:inline></script>
+    {includeMainAssets && <script src="/contact-choice.js?v=13" is:inline></script>}
+    <script src="/bot-attribution.js?v=2" is:inline></script>
     {pageScript && <script src={pageScript} is:inline></script>}
     {includeMainAssets && <script src="/header-nav.js?v=20261009d" is:inline></script>}
   </body>

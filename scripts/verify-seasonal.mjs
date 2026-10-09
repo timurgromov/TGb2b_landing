@@ -135,7 +135,7 @@ rejectText(seasonalHtml, 'Декабрь 2026', 'seasonal public offer');
 expectText(seasonalHtml, '<span class="tag">Декабрь</span>', 'seasonal month tag');
 expectText(seasonalHtml, 'Тимур Громов — ведущий, который держит темп вечера, бережно вовлекает гостей и собирает программу под характер вашей компании.', 'seasonal offer');
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta"', 'seasonal route');
-expectText(seasonalHtml, 'data-testid="seasonal-lead-form"', 'seasonal route');
+rejectText(seasonalHtml, 'data-testid="seasonal-lead-form"', 'seasonal retired detailed lead form');
 expectText(seasonalHtml, 'data-hero-slider', 'seasonal hero slider');
 expectCount(seasonalHtml, 'data-hero-slide ', 5, 'seasonal hero slide count');
 expectText(seasonalHtml, '/assets/hero/slider/hero-01-smile-1024.avif', 'seasonal hero AVIF');
@@ -170,7 +170,7 @@ expectText(seasonalHtml, 'data-label="С живой музыкой">от 630 00
 expectText(seasonalHtml, 'Цена пакета с двумя вокалистами уже учитывает декабрьскую ставку музыкального состава на выбранную дату.', 'seasonal live music matrix explanation');
 expectCount(seasonalHtml, 'В цену входит комплект звука и DJ-оборудования.', 2, 'seasonal equipment boundary in relevant cards');
 expectText(rootHtml, 'data-testid="seasonal-pricing"', 'root shared pricing picker');
-expectText(rootHtml, 'data-testid="seasonal-lead-form"', 'root shared lead form');
+rejectText(rootHtml, 'data-testid="seasonal-lead-form"', 'root retired detailed lead form');
 expectCount(rootHtml, 'data-pricing-row', seasonalPriceRows.length, 'root December pricing row count');
 expectText(seasonalHtml, 'Ведущий + DJ + звук + два вокалиста', 'seasonal vocalists package title');
 expectText(seasonalHtml, 'С живой музыкой', 'seasonal live music package name');
@@ -198,7 +198,7 @@ rejectText(seasonalHtml, 'Четыре мероприятия — коротко
 rejectText(seasonalHtml, 'data-proof-priority="featured"', 'seasonal proof hierarchy');
 expectText(seasonalHtml, 'data-testid="faq-section"', 'seasonal FAQ');
 expectBefore(seasonalHtml, 'data-testid="faq-section"', 'data-testid="corporate-format-photo"', 'seasonal context photo follows FAQ');
-expectBefore(seasonalHtml, 'data-testid="corporate-format-photo"', 'id="proverit-datu"', 'seasonal context photo precedes final CTA');
+expectBefore(seasonalHtml, 'data-testid="corporate-format-photo"', 'id="cta"', 'seasonal context photo precedes final CTA');
 expectBefore(seasonalHtml, 'id="benefits"', 'data-testid="service-formats"', 'seasonal packages follow benefits directly');
 expectText(seasonalHtml, 'data-testid="music-program"', 'seasonal music program');
 expectText(seasonalHtml, 'Два вокалиста: три музыкальных блока по 30 минут', 'seasonal music program');
@@ -211,17 +211,14 @@ expectText(seasonalHtml, 'Два вокалиста + саксофонист + �
 rejectText(seasonalHtml, 'Что такое бэклайн?', 'seasonal obsolete music jargon');
 expectText(seasonalHtml, '/assets/music/music-program-max.avif', 'seasonal music program image');
 expectText(seasonalHtml, '/assets/music/music-program-max.webp', 'seasonal music program image fallback');
-expectText(seasonalHtml, 'href="#proverit-datu">Обсудить музыкальный состав', 'seasonal music CTA');
+expectText(seasonalHtml, 'data-contact-source="music_consultation" data-contact-intent="consultation" data-contact-placement="music">Обсудить музыкальный состав</button>', 'seasonal music CTA');
 expectBefore(seasonalHtml, 'data-testid="music-program"', 'data-testid="proof-cases"', 'seasonal music program placement');
-expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + два вокалиста: 3 блока по 30 минут', 'seasonal vocalists package');
-expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + два вокалиста и саксофонист: 3 блока по 30 минут', 'seasonal saxophone package');
-expectText(seasonalHtml, 'Ведущий + DJ + аппаратура + два вокалиста, саксофонист и гитарист: 3 блока по 30 минут', 'seasonal guitar package');
 rejectText(seasonalHtml, '<option value="host">Только ведущий</option>', 'seasonal package contract');
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
 expectText(seasonalHtml, '/style.css?v=astro_20', 'main site stylesheet');
-expectText(seasonalHtml, '/contact-choice.css?v=3', 'contact panel stylesheet');
+expectText(seasonalHtml, '/contact-choice.css?v=4', 'contact panel stylesheet');
 expectText(seasonalHtml, '/mobile.css?v=astro_10', 'main site mobile stylesheet');
-expectText(seasonalHtml, '/script.js?v=astro_9', 'main site script');
+expectText(seasonalHtml, '/script.js?v=astro_10', 'main site script');
 expectText(seasonalHtml, '/cta-analytics.js?v=1', 'CTA analytics script');
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   expectText(html, 'data-section-nav', `${label} shared section navigation`);
@@ -246,10 +243,10 @@ for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   rejectText(html, 'id="article-popup-modal"', `${label} obsolete checklist popup`);
 }
 expectText(seasonalHtml, 'data-testid="seasonal-primary-cta">Обсудить корпоратив', 'seasonal primary CTA');
-expectText(seasonalHtml, 'data-contact-form="video" data-form-source="hero_video"', 'seasonal meeting CTA');
+expectText(seasonalHtml, 'data-contact-source="hero_meeting" data-contact-intent="meeting"', 'seasonal meeting CTA');
 expectText(seasonalHtml, '>Назначить встречу</button>', 'seasonal meeting CTA label');
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
-  expectText(html, '/seasonal.css?v=20261009b', `${label} pricing stylesheet`);
+  expectText(html, '/seasonal.css?v=20261009c', `${label} pricing stylesheet`);
   expectText(html, '/seasonal.js?v=20261009b', `${label} pricing script`);
 }
 expectText(rootHtml, 'Праздники проходят, впечатления остаются.', 'root corrected CTA punctuation');
@@ -272,6 +269,12 @@ rejectText(seasonalHtml, 'data-pricing-date-trigger', 'seasonal redundant inline
 rejectText(seasonalHtml, 'data-pricing-check-date', 'seasonal redundant lower date button');
 expectCount(seasonalHtml, 'seasonal-price-option__toggle-closed', 3, 'seasonal package detail toggles');
 expectCount(seasonalHtml, 'seasonal-price-option__details"', 3, 'seasonal inline package details');
+expectCount(seasonalHtml, 'data-contact-placement="package_card"', 3, 'seasonal package contact actions');
+expectCount(seasonalHtml, '>Обсудить этот вариант</button>', 3, 'seasonal package contact labels');
+expectText(seasonalHtml, 'data-contact-lead-form', 'seasonal short callback form');
+expectText(seasonalHtml, 'name="name"', 'seasonal short callback name');
+expectText(seasonalHtml, 'name="phone"', 'seasonal short callback phone');
+rejectText(seasonalHtml, 'name="guest_count"', 'seasonal retired callback guest count');
 rejectText(seasonalHtml, 'data-pricing-package-select', 'seasonal package selection button');
 rejectText(seasonalHtml, 'Выбрать состав', 'seasonal redundant package selection label');
 expectText(seasonalHtml, '/privacy/', 'seasonal privacy link');

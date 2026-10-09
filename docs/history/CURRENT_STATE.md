@@ -1,5 +1,19 @@
 # Current state
 
+## Shared fast package CTA — release candidate (2026-10-09)
+
+- Both `/` and `/novogodniy-korporativ/` now use a single fast contact
+  panel. Every price card has `Обсудить этот вариант`; the former aggregate
+  availability action and rendered six-field form are removed.
+- The panel carries the selected package, date, displayed price and extension
+  rate into the attributed Telegram bot and the confirmed two-field callback
+  request. Generic CTA buttons open the same panel without a package.
+- Build and `verify:seasonal` pass. Desktop and 390x844 candidate checks
+  confirmed package context, focus/close behavior and local HTTP 201/error
+  states without a real production submission.
+- Release note:
+  `docs/history/worklog/2026-10-09-package-contact-cta.md`.
+
 ## Shared corporate pricing UX — live (2026-10-09)
 
 - `/` and `/novogodniy-korporativ/` now use the same date-first pricing and lead-form component: one date action above three compact cards, the additional-hour rate beside each main price, and an in-card `Что входит` disclosure. Event copy, source attribution and approved price values remain route-specific.

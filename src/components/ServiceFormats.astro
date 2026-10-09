@@ -80,6 +80,7 @@ const formats = [
               <article
                 class="seasonal-price-option"
                 data-pricing-package={format.priceKey}
+                data-package-label={format.name}
               >
                 <div class="seasonal-price-option__copy">
                   <p class="seasonal-price-option__number">0{index + 1} · {format.name}</p>
@@ -116,12 +117,18 @@ const formats = [
                     {format.detailsHref && <a class="seasonal-price-option__details-link" href={format.detailsHref}>Подробнее о живой музыке <span aria-hidden="true">→</span></a>}
                   </div>
                 </details>
+                <button
+                  class="seasonal-price-option__contact"
+                  type="button"
+                  data-contact-open
+                  data-contact-source={`package_${format.priceKey}`}
+                  data-contact-intent="package_discussion"
+                  data-contact-placement="package_card"
+                  data-package-code={format.priceKey}
+                  data-package-label={format.name}
+                >Обсудить этот вариант</button>
               </article>
             ))}
-          </div>
-
-          <div class="seasonal-pricing-result">
-            <a href="#proverit-datu">Уточнить доступность даты и состав <span aria-hidden="true">→</span></a>
           </div>
         </div>
 

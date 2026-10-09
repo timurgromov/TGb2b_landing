@@ -53,7 +53,7 @@ const { seasonal = false } = Astro.props;
 
     <div class="evening-flow__cta">
       {seasonal ? (
-        <a class="btn btn-outline" href="#proverit-datu">Обсудить программу корпоратива</a>
+        <button class="btn btn-outline" type="button" data-contact-open data-contact-source="program_consultation" data-contact-intent="consultation" data-contact-placement="program">Обсудить программу корпоратива</button>
       ) : (
         <button class="btn btn-outline" type="button" data-contact-open data-contact-source="program_consultation" data-contact-intent="consultation" data-contact-placement="program">Обсудить программу корпоратива</button>
       )}

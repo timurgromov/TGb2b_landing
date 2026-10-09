@@ -76,7 +76,7 @@ const { seasonal = false } = Astro.props;
 
     <div class="music-program__cta sr">
       {seasonal ? (
-        <a class="btn btn-outline" href="#proverit-datu">Обсудить музыкальный состав</a>
+        <button class="btn btn-outline" type="button" data-contact-open data-contact-source="music_consultation" data-contact-intent="consultation" data-contact-placement="music">Обсудить музыкальный состав</button>
       ) : (
         <button class="btn btn-outline" type="button" data-contact-open data-contact-source="music_consultation" data-contact-intent="consultation" data-contact-placement="music">Обсудить музыкальный состав</button>
       )}
