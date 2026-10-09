@@ -772,24 +772,31 @@ async function sendCorporateLead(name, phone, source = 'popup', suppliedContext 
   const header = document.querySelector('.site-header.glass.fixed');
   if (!header) return;
 
-  const HIDE_AFTER = window.innerHeight; // скрывать после первого экрана
-  let lastScroll = 0;
+  const DELTA = 8;
+  let lastScroll = window.scrollY || window.pageYOffset;
+  let pinnedUntil = 0;
   let ticking = false;
+
+  header.querySelectorAll('[data-section-nav] a').forEach((link) => {
+    link.addEventListener('click', () => {
+      pinnedUntil = Date.now() + 900;
+      header.classList.remove('header-hidden');
+    });
+  });
 
   function onScroll() {
     if (!ticking) {
       window.requestAnimationFrame(() => {
         const currentScroll = window.scrollY || window.pageYOffset;
-        
-        // Показываем header ТОЛЬКО на первом экране (до HIDE_AFTER)
-        if (currentScroll <= HIDE_AFTER) {
-          // На первом экране — всегда показываем
+
+        if (currentScroll <= 16 || Date.now() < pinnedUntil) {
           header.classList.remove('header-hidden');
-        } else {
-          // После первого экрана — всегда скрываем
+        } else if (currentScroll > lastScroll + DELTA && currentScroll > header.offsetHeight) {
           header.classList.add('header-hidden');
+        } else if (currentScroll < lastScroll - DELTA) {
+          header.classList.remove('header-hidden');
         }
-        
+
         lastScroll = currentScroll;
         ticking = false;
       });
