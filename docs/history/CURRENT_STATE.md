@@ -1,5 +1,19 @@
 # Current state
 
+## Metrika goal deduplication — live (2026-10-10)
+
+- Ordinary corporate and New Year forms now emit one canonical
+  `lead_submit_success` event only after EventBudjet returns HTTP `201`.
+  Legacy duplicate calls that could match the same Metrika contains-condition
+  were removed.
+- `verify:seasonal` now rejects a return of the legacy duplicate event.
+- Build, seasonal verification, JavaScript syntax and diff checks passed.
+- Source `6191375` is on `origin/astro-migration`; production `76e1504` is on
+  `origin/gh-pages`. Fresh live source checks and HTTP checks for both routes
+  passed.
+- Release note:
+  `docs/history/worklog/2026-10-10-metrika-goal-deduplication.md`.
+
 ## Shared fast package CTA — live (2026-10-09)
 
 - Both `/` and `/novogodniy-korporativ/` now use a single fast contact
