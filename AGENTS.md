@@ -14,6 +14,8 @@ production/deploy/database не основание; при экономии вы
 <!-- ruslan-project-workflows:start -->
 ## Reusable skills, media and release state
 
+Version: 0.1.3
+
 Root `AGENTS.md` хранит global policy/router; scoped `AGENTS.md` наследуют его и
 содержат только domain rules. Используй только релевантные
 `ruslan-project-workflows:<skill-name>`; без plugin — `skills/<skill-name>/SKILL.md`.
@@ -28,9 +30,11 @@ viewport constraints в `PROJECT_SPEC.md`/`UX.md`); для обычного UI �
 после этого UX-этапа и до кода обязательно `ui-ux-pro-max`, затем весь
 указанный design/audit/acceptance route обязателен, а не «по риску».
 Если direction открыт, сначала `design-atlas`: public reference → 3–5 решений,
-не копия. Только в React+Tailwind/shadcn можно через global `21st-ui-explore`
-показать варианты; сначала owner choice и dependency/diff review, без framework
-migration для static/vanilla surface.
+не копия. Только в React+Tailwind/shadcn current 21st MCP/`21st-ui-explore`
+может показать варианты; `21st-ai` даёт 2–3 takes после brief только при
+`get_usage.aiGenerationEnabled=true`. Owner выбирает до code retrieval/write;
+copy-prompt адаптируется в реальный стек, generated HTML не production-код.
+Без framework migration для static/vanilla surface.
 Это не блокирует docs-only, backend-only или узкий incident repair.
 
 Browser lifecycle v1.1: для desk-research, поиска по файлам/чатам и чтения
@@ -43,16 +47,32 @@ filesystem, Codex task tools и web-search. Для UI QA сначала испо
 том числе при ошибке; перед финалом проверь отсутствие этих процессов. Обычный
 Chrome пользователя не закрывай.
 
+Telegram surface access v1.0: до вывода «доступа нет» проверь уже открытые и
+авторизованные Telegram/MAX Desktop и Web. Native app и Web равноправны; сбой
+browser connector, iframe или одной вкладки не доказывает отсутствие доступа.
+Не проси manual screenshots, пока не испробованы доступные поверхности и не
+записан точный blocker. Не открывай посторонние чаты и не сохраняй session data.
+
 Перед добавлением site photo/video используй `media-asset-optimization`: original
 не клади в public, публикуй AVIF/WebP derivative и responsive sizes. Warn: image
 >500 KiB (hero >800 KiB), video >5 MiB desktop/>2.5 MiB mobile; >=10 MiB —
 stop-and-review. Inline video: MP4/WebM, максимум 1080p/30 fps, poster и lazy
-loading; длинное видео — streaming/embed.
+loading; длинное видео — streaming/embed. До integration/commit/release дай
+owner короткий verdict по каждому новому/заменённому asset: `ready`, `needs
+compression or derivative` или `owner decision needed`; original всегда второй
+статус до создания и audit delivery-файла. В handoff явно назови все warnings и
+stop-and-review, либо прямо скажи, что audit чистый.
 
 В release/status разделяй feature/local/origin и live commit каждой поверхности:
 backend passport не доказывает frontend; docs/tests могут быть
 `non_runtime_ahead`, unknown path — fail-closed. Не трогай чужие untracked
 файлы; secrets, конфликты и unknown runtime-files блокируют release.
+
+Runtime image/PDF/font/media, на которые ссылается код, обязаны быть tracked в
+том же commit. Untracked runtime asset — release blocker, а не допустимый local
+artifact. Не говори «готово», «исправлено» или «опубликовано», пока нет local
+checks, exact pushed commit, successful deploy и fresh live-check изменённого
+flow и добавленных assets.
 <!-- ruslan-project-workflows:end -->
 
 ## Corporate route parity
