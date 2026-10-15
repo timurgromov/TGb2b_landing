@@ -185,6 +185,7 @@ function initContactChoice() {
     status.dataset.state = 'sending';
     const created = await window.sendCorporateLead?.(name, phone, formSource, {
       ...ctaContext,
+      privacyReceipt: window.tgConsentReceipt(form),
       selectionSummary: currentSelection?.summary || ''
     });
     if (!created) {

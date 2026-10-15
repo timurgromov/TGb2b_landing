@@ -311,7 +311,8 @@
         guests_count: 'Укажите количество гостей от 10 до 1000.',
         equipment_needed: 'Выберите состав или вариант «Пока не знаю».',
         name: 'Укажите, как к вам обращаться.',
-        phone: 'Укажите номер телефона.'
+        phone: 'Укажите номер телефона.',
+        personal_data_consent: 'Подтвердите согласие на обработку персональных данных.'
       }[invalidField?.name] || 'Проверьте заполненные поля.';
       status.dataset.state = 'error';
       return;
@@ -356,6 +357,7 @@
       commentLines.push(`Дополнительный час: ${quote.annual ? 'от ' : ''}${formatRubles(quote.extension)} за каждый начатый час`);
     }
     if (company) commentLines.push(`Компания / площадка: ${company}`);
+    commentLines.push(window.tgConsentReceipt(form));
 
     const payload = {
       name: String(data.get('name') || '').trim(),
