@@ -478,5 +478,5 @@ UX-требования:
 ## Персональные данные — 2026-10-15
 
 - [x] Реализовать отдельный `/consent/`, расширить `/privacy/`, добавить пустой обязательный чекбокс и legal footer на обе корпоративные версии.
-- [ ] Завершить публикацию и fresh live/browser verification без настоящей заявки.
+- [x] Публикация и fresh live/browser verification без настоящей заявки: runtime `0381ea6`, static `5b79b2b`.
 - [ ] Подтвердить операторские реквизиты/адрес и отдельно решить analytics/cookie consent; см. `docs/privacy-and-consent.md`.
