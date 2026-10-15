@@ -111,3 +111,7 @@ Campaign parameters preserved when present:
 - `390`, `767/768/769`, `1023/1024/1025`, `1179/1180/1181`, `1279/1280/1281`, `1366`, `1440` and `1984` widths have no document overflow;
 - commit, push, deploy and fresh production verification are separate recorded states;
 - Yandex Direct campaign work starts only after the live route and tracking contract pass this gate.
+
+## Данные публичных форм — 2026-10-15
+
+Для `corp.timurgromov.ru/` и `/novogodniy-korporativ/` действуют `/privacy/` и отдельный `/consent/`; required opt-in перед отправкой. Клиентская отметка версии передаётся существующим CRM-полем. Полный контракт и незакрытые вопросы: [privacy-and-consent.md](docs/privacy-and-consent.md). Аналитический opt-in этой задачей не реализуется.

@@ -319,3 +319,13 @@ its safe-area bounded bottom sheet.
 - Updated on 2026-10-07: the header WhatsApp action is now `Связаться` on both routes and opens the same panel. Its label and the sticky button label are white. The seasonal Hero now uses `Обсудить корпоратив` and `Назначить встречу`; the detailed `Проверить дату` form remains below. Header and panel phone links stay `tel:` on desktop and mobile.
 - Preserved: seasonal detailed `Проверить дату` form, contact details, visual palette, hero media/layout, and other routes.
 - States and access: open, close button/backdrop/Escape, focus return, focus containment, background scroll lock; mobile safe-area padding. No automatic popup, PDF or delivery-time promise. Check 390×844 and 1280×720 plus narrow 320px and windowed 1024px.
+
+## Политика и отдельное согласие — 2026-10-15
+
+- Surface: `corp.timurgromov.ru/` и `/novogodniy-korporativ/`. `/privacy/` описывает обработку; `/consent/` содержит отдельный текст согласия, версия `2026-10-15`. Старая ссылка `/privacy/#consent` ведёт к ссылке на отдельный документ.
+- Baseline: объединённая фраза «Нажимая кнопку…», без отдельного чекбокса; корпоративный/юбилейный footer без документов.
+- Candidate: изначально пустой required-чекбокс; ссылки на согласие и политику читаются отдельно. Без отметки submit блокируется, в том числе на форме с `novalidate` и при dispatch события submit. Повторное открытие формы требует нового согласия после её reset.
+- Receipt: версия, URL документа и browser ISO timestamp добавляются в существующий `comment`/`details`, который EventBudjet сохраняет в заявке. Это клиентская отметка, не серверная аттестация личности и не отдельный неизменяемый журнал согласий. Backend-контракт не меняется.
+- Никаких рекламных согласий и акцепта оферты в этом чекбоксе. Источники, цены, provider links, Метрика и цели остаются прежними.
+- Проверка: 390×900 и 1440×900; пустая/отмеченная галочка, mock HTTP 500/201, версия и URL в POST, отсутствие overflow и uncaught runtime errors. Реальные заявки не отправляются.
+- Границы: отдельный механизм opt-in аналитики/cookie ещё не внедрён. Подтверждение реквизитов/публичного адреса, уведомления РКН и оснований передачи сервисам остаются задачей владельца; документы не являются подтверждением полного соответствия 152-ФЗ.

@@ -731,6 +731,7 @@ async function sendCorporateLead(name, phone, source = 'popup', suppliedContext 
   if (isLocalPreview && previewState === 'success') return true;
   if (isLocalPreview && previewState === 'error') return false;
 
+  if (!suppliedContext.privacyReceipt) return false;
   const tracking = collectCorporateTracking();
   const context = corporateCtaContext(source, suppliedContext);
   const controller = new AbortController();
@@ -742,6 +743,7 @@ async function sendCorporateLead(name, phone, source = 'popup', suppliedContext 
     comment: [
       'Запрос с корпоративного сайта',
       selectionSummary,
+      suppliedContext.privacyReceipt,
       `Форма: ${String(source).slice(0, 120)}`
     ].filter(Boolean).join('\n'),
     form_source: `site_meeting_corporate__${context.page}__${context.intent}__${context.placement}`,
@@ -1129,6 +1131,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
 
       const created = await sendCorporateLead(name, displayPhone, currentContactSource, {
         ...currentContactContext,
+        privacyReceipt: window.tgConsentReceipt(form),
         selectionSummary: currentContactSelectionSummary
       });
       if (!created) {
@@ -1295,7 +1298,7 @@ setTimeout(()=>sendGoal('engaged_30s'), 30000);
         status.dataset.state = 'sending';
       }
 
-      const created = await sendCorporateLead(name, displayPhone, `video_consult:${currentVideoSource}`, currentVideoContext);
+      const created = await sendCorporateLead(name, displayPhone, `video_consult:${currentVideoSource}`, { ...currentVideoContext, privacyReceipt: window.tgConsentReceipt(form) });
       if (!created) {
         if (status) {
           status.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь со мной по телефону.';

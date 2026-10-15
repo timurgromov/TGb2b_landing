@@ -27,6 +27,8 @@ const {
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/legal-consent.css?v=20261015" />
+    <script src="/legal-consent.js?v=20261015" is:inline></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="yandex-verification" content="317a3078884fb3f9" />
     <title>{title}</title>
@@ -98,9 +100,9 @@ const {
   </head>
   <body>
     <slot />
-    {includeMainAssets && <script src="/script.js?v=astro_10" is:inline></script>}
+    {includeMainAssets && <script src="/script.js?v=20261015" is:inline></script>}
     {includeMainAssets && <script src="/cta-analytics.js?v=1" is:inline></script>}
-    {includeMainAssets && <script src="/contact-choice.js?v=13" is:inline></script>}
+    {includeMainAssets && <script src="/contact-choice.js?v=20261015" is:inline></script>}
     <script src="/bot-attribution.js?v=2" is:inline></script>
     {pageScript && <script src={pageScript} is:inline></script>}
     {includeMainAssets && <script src="/header-nav.js?v=20261009d" is:inline></script>}

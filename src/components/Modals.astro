@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <form id="video-consult-form" class="article-popup-form">
+    <form method="post" id="video-consult-form" class="article-popup-form">
       <div class="form-group">
         <label for="video-consult-name" class="visually-hidden">Ваше имя</label>
         <input type="text" id="video-consult-name" name="name" class="form-input" placeholder="Ваше имя" required autocomplete="name" />
@@ -25,9 +25,10 @@
         <input type="tel" id="video-consult-phone" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required autocomplete="tel" />
       </div>
 
+      <div class="lead-form-consent"><label class="legal-consent"><input type="checkbox" name="personal_data_consent" value="2026-10-15" data-legal-consent data-consent-url="/consent/" required /><span>Даю <a href="/consent/" target="_blank" rel="noopener noreferrer">согласие на обработку персональных данных</a> для ответа на моё обращение.</span></label><p class="legal-policy-note">Как используются данные: <a href="/privacy/" target="_blank" rel="noopener noreferrer">политика конфиденциальности</a>.</p></div>
       <button type="submit" class="btn btn-primary" data-cta="video_consult_submit">Назначить встречу</button>
       <p class="lead-form-status" data-lead-status role="status" aria-live="polite"></p>
-      <p class="lead-form-consent">Нажимая кнопку, вы соглашаетесь с <a href="/privacy/" target="_blank" rel="nofollow">политикой конфиденциальности</a> и <a href="/privacy/#consent" target="_blank" rel="nofollow">обработкой персональных данных</a>.</p>
+
     </form>
 
     <p class="article-popup-footnote">Без спама. Пишу лично.</p>
@@ -62,7 +63,7 @@
       </div>
     </div>
 
-    <form id="contact-popup-form" class="article-popup-form">
+    <form method="post" id="contact-popup-form" class="article-popup-form">
       <div class="form-group">
         <label for="contact-name" class="visually-hidden">Ваше имя</label>
         <input type="text" id="contact-name" name="name" class="form-input" placeholder="Ваше имя" required autocomplete="name" />
@@ -73,9 +74,10 @@
         <input type="tel" id="contact-phone" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required autocomplete="tel" />
       </div>
 
+      <div class="lead-form-consent"><label class="legal-consent"><input type="checkbox" name="personal_data_consent" value="2026-10-15" data-legal-consent data-consent-url="/consent/" required /><span>Даю <a href="/consent/" target="_blank" rel="noopener noreferrer">согласие на обработку персональных данных</a> для ответа на моё обращение.</span></label><p class="legal-policy-note">Как используются данные: <a href="/privacy/" target="_blank" rel="noopener noreferrer">политика конфиденциальности</a>.</p></div>
       <button type="submit" class="btn btn-primary" data-cta="contact_popup_submit">Отправить</button>
       <p class="lead-form-status" data-lead-status role="status" aria-live="polite"></p>
-      <p class="lead-form-consent">Нажимая кнопку, вы соглашаетесь с <a href="/privacy/" target="_blank" rel="nofollow">политикой конфиденциальности</a> и <a href="/privacy/#consent" target="_blank" rel="nofollow">обработкой персональных данных</a>.</p>
+
     </form>
 
     <p class="article-popup-footnote">Без спама. Пишу лично.</p>

@@ -1,5 +1,9 @@
 # Current state
 
+## Политика и согласия — candidate 2026-10-15
+
+Обновлены `/privacy/`, отдельный `/consent/`, required-чекбоксы и footer links. Версия согласия передаётся с заявкой в существующем поле CRM. Build, статические контракты и 16 focused form/document cases проходят; основной сайт также проходит contact и 294-case responsive gate. Публикация ещё выполняется. Аналитический opt-in и подтверждение оператором реквизитов/публичного адреса остаются открытыми. Подробности: `docs/privacy-and-consent.md`, `docs/history/worklog/2026-10-15-privacy-and-consent.md`.
+
 ## Metrika goal deduplication — live (2026-10-10)
 
 - Ordinary corporate and New Year forms now emit one canonical

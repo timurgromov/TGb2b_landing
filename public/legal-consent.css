@@ -1,0 +1,9 @@
+/* Shared small control; preserve each site's existing form and typography. */
+label.legal-consent{display:grid!important;grid-template-columns:22px minmax(0,1fr)!important;align-items:start!important;gap:10px!important;width:100%!important;margin:12px 0!important;padding:0!important;color:inherit!important;font:inherit!important;font-size:13px!important;line-height:1.45!important;text-transform:none!important;letter-spacing:normal!important;cursor:pointer;box-sizing:border-box}
+label.legal-consent input[type=checkbox]{appearance:auto!important;display:block!important;position:static!important;width:22px!important;height:22px!important;min-width:22px!important;min-height:22px!important;max-width:22px!important;margin:0!important;padding:0!important;opacity:1!important;accent-color:#fa4604;cursor:pointer}
+label.legal-consent span{min-width:0;white-space:normal!important;overflow-wrap:anywhere}
+label.legal-consent a,.legal-policy-note a,.legal-footer-links a{color:inherit!important;text-decoration:underline!important;text-underline-offset:3px}
+.legal-policy-note{margin:8px 0!important;font-size:12px!important;line-height:1.45!important;color:inherit!important;opacity:.85}
+.legal-footer-links{display:flex;flex-wrap:wrap;gap:10px 22px;margin:14px 0;font:inherit;font-size:13px;line-height:1.5}
+.contact-choice__sheet{max-height:calc(100dvh - 40px);overflow-y:auto}
+[data-legal-consent]:focus-visible{outline:3px solid #fa4604!important;outline-offset:3px}

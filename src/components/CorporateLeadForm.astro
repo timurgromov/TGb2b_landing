@@ -15,7 +15,7 @@ const isNewYear = page === 'new_year';
       <h2 class="cta__title">Проверьте дату и получите расчёт</h2>
       <p class="cta__subtitle">Укажите основные параметры {isNewYear ? 'новогоднего корпоратива' : 'корпоратива'}. Я сверю календарь и отвечу лично.</p>
 
-      <form class="seasonal-form" data-testid="seasonal-lead-form" data-seasonal-form novalidate>
+      <form method="post" class="seasonal-form" data-testid="seasonal-lead-form" data-seasonal-form novalidate>
         <div class="seasonal-form__grid">
           <label>
             <span>Дата мероприятия</span>
@@ -51,11 +51,12 @@ const isNewYear = page === 'new_year';
           </label>
         </div>
 
-        <div class="cta__actions seasonal-form__actions">
+        <div class="seasonal-form__consent"><label class="legal-consent"><input type="checkbox" name="personal_data_consent" value="2026-10-15" data-legal-consent data-consent-url="/consent/" required /><span>Даю <a href="/consent/" target="_blank" rel="noopener noreferrer">согласие на обработку персональных данных</a> для ответа на моё обращение.</span></label><p class="legal-policy-note">Как используются данные: <a href="/privacy/" target="_blank" rel="noopener noreferrer">политика конфиденциальности</a>.</p></div>
+      <div class="cta__actions seasonal-form__actions">
           <button class="btn btn-primary" type="submit">Проверить дату</button>
         </div>
         <p class="seasonal-form__status" data-form-status role="status" aria-live="polite"></p>
-        <p class="seasonal-form__consent">Нажимая «Проверить дату», вы соглашаетесь с <a href="/privacy/" target="_blank" rel="nofollow">политикой конфиденциальности</a> и <a href="/privacy/#consent" target="_blank" rel="nofollow">обработкой персональных данных</a>.</p>
+
       </form>
 
       <div class="seasonal-form-success" data-form-success hidden>

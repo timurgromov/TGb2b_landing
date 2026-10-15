@@ -28,7 +28,7 @@ const { page = 'corporate' } = Astro.props;
       <a class="contact-choice__action" href={contact.phoneHref} data-contact-phone>Позвонить <span>{contact.phoneHuman}</span></a>
       <button type="button" class="contact-choice__action" data-contact-callback>Оставить номер <span aria-hidden="true">→</span></button>
     </div>
-    <form class="contact-choice__form" data-contact-lead-form hidden>
+    <form method="post" class="contact-choice__form" data-contact-lead-form hidden>
       <p class="contact-choice__form-title">Оставьте номер — я свяжусь лично</p>
       <label class="contact-choice__field">
         <span>Как к вам обращаться</span>
@@ -38,9 +38,10 @@ const { page = 'corporate' } = Astro.props;
         <span>Телефон</span>
         <input type="tel" name="phone" maxlength="80" autocomplete="tel" inputmode="tel" required />
       </label>
+      <div class="contact-choice__consent"><label class="legal-consent"><input type="checkbox" name="personal_data_consent" value="2026-10-15" data-legal-consent data-consent-url="/consent/" required /><span>Даю <a href="/consent/" target="_blank" rel="noopener noreferrer">согласие на обработку персональных данных</a> для ответа на моё обращение.</span></label><p class="legal-policy-note">Как используются данные: <a href="/privacy/" target="_blank" rel="noopener noreferrer">политика конфиденциальности</a>.</p></div>
       <button type="submit" class="contact-choice__submit">Отправить номер</button>
       <p class="contact-choice__status" data-contact-form-status role="status" aria-live="polite"></p>
-      <p class="contact-choice__consent">Нажимая «Отправить номер», вы соглашаетесь с <a href="/privacy/" target="_blank" rel="nofollow">политикой конфиденциальности</a> и <a href="/privacy/#consent" target="_blank" rel="nofollow">обработкой персональных данных</a>.</p>
+
     </form>
     <div class="contact-choice__success" data-contact-success hidden>
       <p>Спасибо, номер получен. Я свяжусь с вами лично.</p>

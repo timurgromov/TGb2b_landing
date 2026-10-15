@@ -43,3 +43,5 @@ git diff --check
 - публичные CSS, JS, изображения и sitemap отвечают `200`.
 
 Реальную форму не отправлять без отдельного разрешения: HTTP `201` означает создание рабочей CRM-заявки и может запустить уведомления.
+
+После release 2026-10-15 дополнительно проверять `/consent/`, `/legal-consent.js`, `/legal-consent.css`, footer links и изначально пустой required-чекбокс в callback на обоих route. Production POST не использовать для QA.

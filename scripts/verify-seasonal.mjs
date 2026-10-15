@@ -218,7 +218,7 @@ expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', '
 expectText(seasonalHtml, '/style.css?v=astro_20', 'main site stylesheet');
 expectText(seasonalHtml, '/contact-choice.css?v=4', 'contact panel stylesheet');
 expectText(seasonalHtml, '/mobile.css?v=astro_10', 'main site mobile stylesheet');
-expectText(seasonalHtml, '/script.js?v=astro_10', 'main site script');
+expectText(seasonalHtml, '/script.js?v=20261015', 'main site script');
 expectText(seasonalHtml, '/cta-analytics.js?v=1', 'CTA analytics script');
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   expectText(html, 'data-section-nav', `${label} shared section navigation`);
@@ -247,7 +247,7 @@ expectText(seasonalHtml, 'data-contact-source="hero_meeting" data-contact-intent
 expectText(seasonalHtml, '>Назначить встречу</button>', 'seasonal meeting CTA label');
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   expectText(html, '/seasonal.css?v=20261009c', `${label} pricing stylesheet`);
-  expectText(html, '/seasonal.js?v=20261009b', `${label} pricing script`);
+  expectText(html, '/seasonal.js?v=20261015', `${label} pricing script`);
 }
 expectText(rootHtml, 'Праздники проходят, впечатления остаются.', 'root corrected CTA punctuation');
 rejectText(seasonalHtml, 'data-testid="seasonal-package-details"', 'seasonal retired separate package details');
@@ -334,3 +334,11 @@ expectText(sitemap, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'sitem
 expectText(sitemap, 'https://corp.timurgromov.ru/privacy/', 'sitemap');
 
 console.log('PASS: seasonal landing, lead contract, privacy route, sitemap and root regression');
+
+// A page without the separate opt-in must never pass the release gate.
+for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
+  expectText(html, 'name="personal_data_consent" value="2026-10-15" data-legal-consent', `${label} explicit consent`);
+  expectText(html, 'href="/consent/"', `${label} separate consent route`);
+  expectText(html, 'aria-label="Документы сайта"', `${label} legal footer navigation`);
+  rejectText(html, 'Нажимая кнопку, вы соглашаетесь', `${label} retired bundled consent`);
+}
