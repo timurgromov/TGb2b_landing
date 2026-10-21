@@ -12,67 +12,54 @@ blast radius, необратимый data/finance cutover или live auth/secur
 production/deploy/database не основание; при экономии выбирай дешевле.
 
 <!-- ruslan-project-workflows:start -->
-## Reusable skills, media and release state
+## Reusable workflow router
 
-Version: 0.1.3
+Version: 0.1.4
 
-Root `AGENTS.md` хранит global policy/router; scoped `AGENTS.md` наследуют его и
-содержат только domain rules. Используй только релевантные
-`ruslan-project-workflows:<skill-name>`; без plugin — `skills/<skill-name>/SKILL.md`.
-Новые optional skills остаются в plugin-каталоге, не копируются в каждый root.
-UI: `product-design-ux` до первого flow (P0 user/job, flow, CTA, states и
-viewport constraints в `PROJECT_SPEC.md`/`UX.md`); для обычного UI и UX-аудита
-по риску `frontend-design`/`web-interface-guidelines`; visible delta —
-`ui-change-proof` with rendered exact-diff evidence; responsive —
+Root `AGENTS.md` хранит policy/router; scoped `AGENTS.md` — только domain rules.
+Используй релевантные `ruslan-project-workflows:<skill-name>`; без plugin —
+`skills/<skill-name>/SKILL.md`. Optional skills не копируй в каждый root.
+
+Task ledger v1.0: root `TASKS.md` — единственный canonical active backlog.
+Запрос добавить/обновить задачи означает reconcile всего файла, не append:
+сверь repo, current state и worklog; подтверждённо выполненное убери из active,
+значимый результат запиши в один worklog; obsolete удали, дубли объедини,
+unknown оставь как `needs verification`; новые пункты вставь по priority/
+dependency с acceptance criteria. Не создавай `TASKS-*`, `TASKS_*`, `TODO`,
+`BACKLOG`, `ROADMAP` или phase-plan без явного запроса owner; одобренный
+отдельный план свяжи из `TASKS.md`.
+
+UI route: `product-design-ux`; затем по задаче `design-atlas`/`frontend-design`/
+`web-interface-guidelines`; новый admin/CRM/dashboard без direction —
+`ui-ux-pro-max`. Existing Hero/slider/crop visible delta — `ui-change-proof`
+with rendered exact-diff evidence; responsive —
 `frontend-responsive-layout-audit` + `responsive-qa-gate`; acceptance —
-`web-ui-verify`.
-Новый admin/CRM/dashboard без утверждённой design system или visual direction:
-после этого UX-этапа и до кода обязательно `ui-ux-pro-max`, затем весь
-указанный design/audit/acceptance route обязателен, а не «по риску».
-Если direction открыт, сначала `design-atlas`: public reference → 3–5 решений,
-не копия. Только в React+Tailwind/shadcn current 21st MCP/`21st-ui-explore`
-может показать варианты; `21st-ai` даёт 2–3 takes после brief только при
-`get_usage.aiGenerationEnabled=true`. Owner выбирает до code retrieval/write;
-copy-prompt адаптируется в реальный стек, generated HTML не production-код.
-Без framework migration для static/vanilla surface.
-Это не блокирует docs-only, backend-only или узкий incident repair.
+`web-ui-verify`. Не мигрируй static/vanilla ради 21st/React/Tailwind.
+Только в React+Tailwind/shadcn 21st MCP/`21st-ai` допустим после brief при
+`get_usage.aiGenerationEnabled=true`; generated HTML не production code.
 
-Browser lifecycle v1.1: для desk-research, поиска по файлам/чатам и чтения
-сайтов не запускай локальный Chrome, Chromium или Playwright: используй
-filesystem, Codex task tools и web-search. Для UI QA сначала используй уже
-открытый встроенный browser Codex. Отдельный browser допустим только для
-конкретной непокрываемой UI-проверки: заранее назови причину, не используй
-пользовательский Chrome profile и запусти один bounded-сеанс. Закрой созданные
-агентом browser/Playwright, dev-server и QA-container сразу после проверки, в
-том числе при ошибке; перед финалом проверь отсутствие этих процессов. Обычный
-Chrome пользователя не закрывай.
+Browser lifecycle v1.1: research делай через filesystem/task tools/web-search.
+Для UI QA сначала используй открытый встроенный browser Codex; отдельный browser — один
+bounded-сеанс без user profile. Сразу закрой созданные agent browser/dev-server/
+QA-container, включая путь ошибки; обычный Chrome пользователя не закрывай.
 
-Telegram surface access v1.0: до вывода «доступа нет» проверь уже открытые и
-авторизованные Telegram/MAX Desktop и Web. Native app и Web равноправны; сбой
-browser connector, iframe или одной вкладки не доказывает отсутствие доступа.
-Не проси manual screenshots, пока не испробованы доступные поверхности и не
-записан точный blocker. Не открывай посторонние чаты и не сохраняй session data.
+Telegram access v1.0: до blocker проверь открытые авторизованные Telegram Desktop
+и Telegram Web;
+сбой одной поверхности не доказывает отсутствие доступа. Не проси screenshots,
+не открывай посторонние чаты и не сохраняй session/personal data.
 
-Перед добавлением site photo/video используй `media-asset-optimization`: original
-не клади в public, публикуй AVIF/WebP derivative и responsive sizes. Warn: image
->500 KiB (hero >800 KiB), video >5 MiB desktop/>2.5 MiB mobile; >=10 MiB —
-stop-and-review. Inline video: MP4/WebM, максимум 1080p/30 fps, poster и lazy
-loading; длинное видео — streaming/embed. До integration/commit/release дай
-owner короткий verdict по каждому новому/заменённому asset: `ready`, `needs
-compression or derivative` или `owner decision needed`; original всегда второй
-статус до создания и audit delivery-файла. В handoff явно назови все warnings и
-stop-and-review, либо прямо скажи, что audit чистый.
+Для нового/заменённого site photo/video используй `media-asset-optimization`.
+Original не web-ready до delivery-derivative и audit. Warn: image >500 KiB
+(hero >800 KiB), video >5 MiB desktop/>2.5 MiB mobile; >=10 MiB —
+stop-and-review. До integration/commit/release дай verdict `ready`, `needs
+compression or derivative` или `owner decision needed`; в handoff назови
+warnings/stop-and-review либо чистый audit.
 
-В release/status разделяй feature/local/origin и live commit каждой поверхности:
-backend passport не доказывает frontend; docs/tests могут быть
-`non_runtime_ahead`, unknown path — fail-closed. Не трогай чужие untracked
-файлы; secrets, конфликты и unknown runtime-files блокируют release.
-
-Runtime image/PDF/font/media, на которые ссылается код, обязаны быть tracked в
-том же commit. Untracked runtime asset — release blocker, а не допустимый local
-artifact. Не говори «готово», «исправлено» или «опубликовано», пока нет local
-checks, exact pushed commit, successful deploy и fresh live-check изменённого
-flow и добавленных assets.
+В release/status разделяй feature/local/origin и live commit каждой поверхности;
+docs/tests могут быть `non_runtime_ahead`. Не трогай чужие untracked файлы;
+secrets, конфликты и unknown runtime-files блокируют release. Runtime asset
+обязан быть tracked в том же commit. До «готово/опубликовано» нужны local checks,
+exact pushed commit, successful deploy и fresh live-check изменённого flow/assets.
 <!-- ruslan-project-workflows:end -->
 
 ## Corporate route parity
