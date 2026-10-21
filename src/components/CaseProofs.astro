@@ -1,5 +1,5 @@
 ---
-import { proofCases } from '@data/corporate';
+import { letters, proofCases } from '@data/corporate';
 ---
 
 <section id="proof-cases" class="section proof-cases" data-testid="proof-cases">
@@ -10,7 +10,7 @@ import { proofCases } from '@data/corporate';
         <h2 class="section__title sr">Корпоративы глазами заказчиков</h2>
       </div>
       <a class="btn btn-outline proof-cases__more sr" href="#letters">
-        Все 13 писем
+        Все {letters.length} писем
         <span aria-hidden="true">→</span>
       </a>
     </div>
@@ -26,7 +26,7 @@ import { proofCases } from '@data/corporate';
             data-alt={item.letterAlt}
             aria-label={`Открыть письмо: ${item.company}`}
           >
-            <img src={item.letter} alt="" loading="lazy" decoding="async" />
+            <img src={'thumb' in item ? item.thumb : item.letter} alt="" loading="lazy" decoding="async" />
             <span>Открыть письмо <span aria-hidden="true">↗</span></span>
           </button>
           <div class="proof-case-card__body">

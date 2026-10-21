@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-10-21-rostselmash-letter",
+  "change_kind": "shared-corporate-proof-content",
+  "status": "passed",
+  "requested_visible_change": "Новое письмо Ростсельмаш первым в галерее и первым в коротких кейсах вместо старейшего кейса.",
+  "expected_visible_delta": "Ростсельмаш вместо Раймед Групп в первой карточке; новое письмо вместо L1 первым в архиве; архив содержит 14 писем.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "745bdde05a7c4adf7bc90bd09f849fdfd1f0645d350713bea7458a55c0402d0b",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/ and /novogodniy-korporativ/",
+    "source_ref": "staged astro-migration candidate, freshly built Astro dist",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/ and /novogodniy-korporativ/",
+    "state": "public page, no form submission",
+    "selector_or_slide_id": "#proof-cases [data-proof-case]:first-child; #letters .letter-card:first-child",
+    "action": "open first short case; follow archive link and open first archive letter"
+  },
+  "must_remain_unchanged": [
+    "four short cases total",
+    "other three short cases",
+    "old 13 letters including L3 in archive",
+    "modal interaction and primary CTA"
+  ],
+  "required_viewports": ["1280x720", "390x844"],
+  "observations": [
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Codex in-app browser override; innerWidth=1280; innerHeight=720",
+      "before_signature": "Live /: first case Раймед Групп, fourth НПФ Экопром, archive count 13, first image L1.webp.",
+      "after_signature": "Candidate / and /novogodniy-korporativ/: first case Ростсельмаш, fourth Т Плюс, archive count 14, first image rostselmash-2026-400.webp; full modal rostselmash-2026.webp; scrollWidth=1280.",
+      "observed_visible_result": "First case visibly shows the letter and source-based extract; full-size document opens and is legible on desktop.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser override; innerWidth=390; innerHeight=844",
+      "before_signature": "Previous live content order had Раймед Групп first and a 13-letter archive on both shared routes.",
+      "after_signature": "Candidate / and /novogodniy-korporativ/: first visible case Ростсельмаш, only first three cases visible by existing mobile rule, archive count 14, first image rostselmash-2026-400.webp; full modal rostselmash-2026.webp; scrollWidth=390.",
+      "observed_visible_result": "New first case and 14-letter action are visible on mobile; first archive letter opens the full 793px document without horizontal overflow.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": ""
+  }
+}

@@ -1,5 +1,9 @@
 # Current state
 
+## Письмо Ростсельмаш — 2026-10-21
+
+На обеих корпоративных страницах в первом коротком кейсе теперь показан гала-ужин маркетинговой конференции Ростсельмаш 9 октября 2026 года. Оригинальное письмо опубликовано первым в галерее в WebP; архив содержит 14 писем. Прежний самый старый короткий кейс НПФ «Экопром» убран из четвёрки кейсов, но письмо остаётся в полном архиве. Подробности выпуска: `docs/history/worklog/2026-10-21-rostselmash-letter.md`.
+
 ## Политика и согласия — live 2026-10-15
 
 Обновлены `/privacy/`, отдельный `/consent/`, required-чекбоксы и footer links. Версия согласия передаётся с заявкой в существующем поле CRM. Build, статические контракты и 16 focused form/document cases проходят; основной сайт также проходит contact и 294-case responsive gate. Runtime source `0381ea6` опубликован как static `5b79b2b`; Pages status `built`, fresh проверка 8 маршрутов и SHA-256 четырёх assets пройдена. Live IAB: основная/корпоративная формы 1440×900, юбилейная/новогодняя 390×844; галочка видна перед отправкой, ошибок console нет. Реальные заявки не создавались. Аналитический opt-in и подтверждение оператором реквизитов/публичного адреса остаются открытыми. Подробности: `docs/privacy-and-consent.md`, `docs/history/worklog/2026-10-15-privacy-and-consent.md`.
@@ -328,8 +332,8 @@ Implemented locally:
 - `Как проходит корпоратив` is a shared component placed between video and benefits; it describes the guest experience and remains distinct from the customer-facing `Порядок работы` process;
 - package contract now starts with `Ведущий + DJ`; there is no `Только ведущий` option in the cards, FAQ, form or lead comment mapping;
 - the three offered compositions are `Ведущий + DJ`, `Ведущий + DJ + звук` and `Ведущий + DJ + звук + два вокалиста`; every next card explicitly repeats the included services rather than using an abstract `всё из базового состава`. The third card includes three 30-minute blocks with professional arrangements and explicitly states that the music part can be supplemented with saxophone or guitar;
-- the proof section now shows four available letters (`L1`, `L2`, `L11`, `L3`) as self-contained event cases with a clickable document preview, company/date, event title and short source-backed extract;
-- desktop uses the owner-requested `2 x 2` case grid; mobile shows the first three cases and keeps the `Все 13 писем` archive action visible;
+- the proof section shows four available letters (Ростсельмаш, `L1`, `L2`, `L11`) as self-contained event cases with a clickable document preview, company/date, event title and short source-backed extract;
+- desktop uses the owner-requested `2 x 2` case grid; mobile shows the first three cases and keeps the `Все 14 писем` archive action visible;
 - the technical proof subtitle has been removed from both `/` and `/novogodniy-korporativ/`; the shared heading remains `Корпоративы глазами заказчиков` without a year;
 - `2026` has been removed from the public seasonal offer: seasonal H1/title/description/schema name, the `Декабрь` hero tag and the root seasonal promo are year-free; December 2026 form bounds and the internal CRM marker remain operationally unchanged;
 - shared non-seasonal corporate improvements now have an implemented parity rule: benefits, packages, cases, letters, video and FAQ reach both routes through shared components and in the same order; seasonal hero/promo-context, copy, dates, CTA, form and future pricing remain route-specific;
@@ -363,7 +367,7 @@ An actual production submission is intentionally not part of automated verificat
 - package CTA check: root `Обсудить дату и состав` opens the existing contact modal; seasonal `Проверить дату и состав` lands on `#proverit-datu`; no form was submitted;
 - shared evening-flow production check: passed on both routes at `390x844` and `1440x900`; each route renders five stages, horizontal overflow failures: `0`, browser console errors: `0`; the root CTA opens the contact modal and the seasonal CTA lands on `#proverit-datu`; no form was submitted;
 - production cache delivery check: passed; both public routes return main stylesheet key `astro_12`, mobile stylesheet key `astro_5` and shared script key `astro_4`;
-- latest interaction check: the first case opens `L1`, lightbox next opens `L2`, and `Все 13 писем` lands on the 13-item `#letters` archive; no browser console warnings or errors;
+- prior interaction check: the then-first case opened `L1`, lightbox next opened `L2`, and the archive link landed on `#letters`; current 2026-10-21 case and archive checks are recorded above;
 - interaction verification: video playback, proof-letter lightbox, FAQ disclosure, confirmed-success preview and retryable-error preview passed without a real submission;
 - responsive defect found and fixed: the workflow connector no longer creates `1200px` document width at the `1181px` boundary;
 - runtime source commit: `54e8631` on `origin/astro-migration`;

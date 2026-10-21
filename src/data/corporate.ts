@@ -91,6 +91,16 @@ export const eveningFlowStages = [
 
 export const proofCases = [
   {
+    company: 'Ростсельмаш',
+    meta: 'Гала-ужин · 9 октября 2026',
+    title: 'Гала-ужин маркетинговой конференции',
+    description:
+      'Заказчик отметил сценарий, адаптированный к теме «Технологии vs Человек? Синергия», уместный юмор и тёплую атмосферу вечера.',
+    letter: '/assets/letters/rostselmash-2026.webp',
+    thumb: '/assets/letters/rostselmash-2026-400.webp',
+    letterAlt: 'Благодарственное письмо компании Ростсельмаш по итогам гала-ужина 9 октября 2026 года'
+  },
+  {
     company: 'Раймед Групп',
     meta: 'Письмо от 23 января 2025',
     title: 'Ведущий и DJ в ресторане «Зимний сад»',
@@ -116,15 +126,6 @@ export const proofCases = [
       'Заказчик отметил слаженную организацию, стильный и интеллигентный формат, а также работу команды на подготовительном этапе.',
     letter: '/assets/letters/L11.webp',
     letterAlt: 'Благодарственное письмо группы Т Плюс от 8 февраля 2017 года'
-  },
-  {
-    company: 'НПФ «Экопром»',
-    meta: 'Корпоратив · 24 декабря 2015',
-    title: 'Новогодний праздник для коллектива',
-    description:
-      'Профессионализм, креативность, чувство юмора и слаженная работа команды сделали праздник ярким и запоминающимся.',
-    letter: '/assets/letters/L3.webp',
-    letterAlt: 'Благодарственное письмо компании НПФ Экопром по итогам корпоратива 24 декабря 2015 года'
   }
 ];
 
@@ -205,12 +206,18 @@ export const photos = [
 
 const letterOrder = [1, 2, 11, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13];
 
-export const letters = letterOrder.map((number) => {
-  return {
+export const letters = [
+  {
+    src: '/assets/letters/rostselmash-2026.webp',
+    thumb: '/assets/letters/rostselmash-2026-400.webp',
+    alt: 'Благодарственное письмо компании Ростсельмаш по итогам гала-ужина 9 октября 2026 года'
+  },
+  ...letterOrder.map((number) => ({
     src: `/assets/letters/L${number}.webp`,
+    thumb: `/assets/letters/L${number}.webp`,
     alt: `Благодарственное письмо ${number}`
-  };
-});
+  }))
+];
 
 export const contactPage = {
   title: 'Свяжитесь со мной — Тимур Громов',
