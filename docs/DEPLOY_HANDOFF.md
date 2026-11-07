@@ -45,3 +45,7 @@ git diff --check
 Реальную форму не отправлять без отдельного разрешения: HTTP `201` означает создание рабочей CRM-заявки и может запустить уведомления.
 
 После release 2026-10-15 дополнительно проверять `/consent/`, `/legal-consent.js`, `/legal-consent.css`, footer links и изначально пустой required-чекбокс в callback на обоих route. Production POST не использовать для QA.
+
+## Deploy standard 1.0.0
+
+Run `./scripts/deploy-pages.sh` from the exact pushed `astro-migration` commit. The entrypoint builds an exact Git archive, serializes publication with a local lock, publishes through an isolated `gh-pages` worktree and verifies `deploy-version.json` at the production domain. It records upload, build, checks and total durations. Runtime files must be tracked in the source commit. Rollback publishes the previous verified static commit from the gh-pages history after source/artifact review.
