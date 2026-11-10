@@ -19,7 +19,8 @@ const formats = [
     name: 'Базовый',
     title: 'Ведущий + DJ',
     calculatorTitle: 'Ведущий + DJ',
-    calculatorNote: 'Подготовка и ведение вечера',
+    calculatorNote: 'Подготовка и программа',
+    duration: 5,
     priceKey: 'hostDj',
     items: ['Подготовка программы', 'Ведение вечера', 'DJ и музыкальное сопровождение']
   },
@@ -28,6 +29,7 @@ const formats = [
     title: 'Ведущий + DJ + звук',
     calculatorTitle: 'Ведущий + DJ + звук',
     calculatorNote: 'Оборудование площадки включено',
+    duration: 5,
     priceKey: 'hostDjSound',
     items: [
       'Подготовка программы',
@@ -41,6 +43,7 @@ const formats = [
     title: 'Ведущий + DJ + звук + два вокалиста',
     calculatorTitle: 'Два вокалиста · 3 × 30 минут',
     calculatorNote: 'Ведущий, DJ и звук включены',
+    duration: 6,
     priceKey: 'liveMusic',
     detailsHref: '#music-program',
     items: [
@@ -91,7 +94,7 @@ const formats = [
                     <span class="seasonal-price-option__date" data-pricing-caption hidden></span>
                     <div class="seasonal-price-option__amount-row">
                       <div>
-                        <small>Программа до 5 часов</small>
+                        <small>Программа до {format.duration} часов</small>
                         <output
                           class="seasonal-price-option__value"
                           data-pricing-value
@@ -99,7 +102,7 @@ const formats = [
                         >от {formatRubles(seasonalMinimums[format.priceKey])}</output>
                       </div>
                       <span class="seasonal-price-option__extension">
-                        <span>Доп. час с 6-го</span>
+                        <span>Доп. час</span>
                         <output data-pricing-extension data-pricing-initial={`от ${formatRubles(seasonalMinimums.extension)}`}>от {formatRubles(seasonalMinimums.extension)}</output>
                       </span>
                     </div>
@@ -138,7 +141,7 @@ const formats = [
         <summary>Посмотреть цены на все даты декабря</summary>
         <div class="seasonal-pricing-table__wrap">
           <table>
-            <caption class="seasonal-pricing-table__caption">Стоимость пятичасовой программы корпоратива по датам декабря 2026 года</caption>
+            <caption class="seasonal-pricing-table__caption">Стоимость программ корпоратива по датам декабря 2026 года</caption>
             <thead>
               <tr>
                 <th scope="col">Даты</th>

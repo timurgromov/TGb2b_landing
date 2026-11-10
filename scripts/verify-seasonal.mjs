@@ -250,8 +250,12 @@ expectText(seasonalHtml, '>Назначить встречу</button>', 'seasona
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   expectText(html, '/seasonal.css?v=20261009c', `${label} pricing stylesheet`);
   expectText(html, '/seasonal.js?v=20261015', `${label} pricing script`);
-  expectCount(html, '<small>Программа до 5 часов</small>', 3, `${label} duration shown in each price card`);
-  expectCount(html, '<span>Доп. час с 6-го</span>', 3, `${label} extension starts after five hours in each card`);
+  for (const [packageKey, duration] of [['hostDj', 5], ['hostDjSound', 5], ['liveMusic', 6]]) {
+    const card = html.split(`data-pricing-package="${packageKey}"`)[1]?.split('</article>')[0] || '';
+    expectText(card, `<small>Программа до ${duration} часов</small>`, `${label} ${packageKey} duration`);
+  }
+  expectCount(html, '<span>Доп. час</span>', 3, `${label} extension rate in each card`);
+  rejectText(html, 'Все цены указаны за программу до 5 часов', `${label} retired shared duration`);
 }
 expectText(rootHtml, 'Праздники проходят, впечатления остаются.', 'root corrected CTA punctuation');
 rejectText(seasonalHtml, 'data-testid="seasonal-package-details"', 'seasonal retired separate package details');
