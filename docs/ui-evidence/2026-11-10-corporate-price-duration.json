@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-11-10-corporate-price-duration",
+  "change_kind": "pricing-copy",
+  "status": "passed",
+  "requested_visible_change": "Указать длительность программы у цены каждого корпоративного пакета.",
+  "expected_visible_delta": "«Программа до 5 часов» и «Доп. час с 6-го» видны во всех трёх карточках.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "cc70fcc29c79be8889afa3d0b696f0e18e4a794c216f45c05fa7579ec1f09f48",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4321/#formats",
+    "source_ref": "Astro preview of the staged candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/#formats and /novogodniy-korporativ/#formats",
+    "state": "Without date and after selecting 25 December 2026",
+    "selector_or_slide_id": "[data-pricing-package]",
+    "action": "Open both routes and select 25 December 2026 in the date picker"
+  },
+  "must_remain_unchanged": [
+    "Package contents",
+    "Annual starting prices",
+    "Date-based December pricing and extension rates"
+  ],
+  "required_viewports": [
+    "390x844",
+    "1440x900"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex in-app browser, measured viewport 390x844",
+      "before_signature": "Both live routes: equipment quote «от 170 000 ₽ · Доп. час от 20 000 ₽», no duration at the price.",
+      "after_signature": "Both preview routes: «Программа до 5 часов · от 170 000 ₽ · Доп. час с 6-го от 20 000 ₽».",
+      "observed_visible_result": "All three cards show the two labels. On 25 December the three prices are 220 000 / 250 000 / от 500 000 ₽, with 25 000 ₽ extension. No card or page overflows horizontally.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1440x900",
+      "viewport_source": "Codex in-app browser, measured viewport 1440x900",
+      "before_signature": "Both live routes: equipment quote «от 170 000 ₽ · Доп. час от 20 000 ₽», no duration at the price.",
+      "after_signature": "Both preview routes: «Программа до 5 часов · от 170 000 ₽ · Доп. час с 6-го от 20 000 ₽».",
+      "observed_visible_result": "All three cards show the two labels. On 25 December the three prices are 220 000 / 250 000 / от 500 000 ₽, with 25 000 ₽ extension. No card or page overflows horizontally.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ]
+}
