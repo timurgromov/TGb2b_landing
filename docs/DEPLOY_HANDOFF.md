@@ -49,3 +49,5 @@ git diff --check
 ## Deploy standard 1.0.0
 
 Run `./scripts/deploy-pages.sh` from the exact pushed `astro-migration` commit. The entrypoint builds an exact Git archive, serializes publication with a local lock, publishes through an isolated `gh-pages` worktree and verifies `deploy-version.json` at the production domain. It records upload, build, checks and total durations. Runtime files must be tracked in the source commit. Rollback publishes the previous verified static commit from the gh-pages history after source/artifact review.
+
+The static sync compares file contents so a new release passport is copied even when its size and timestamp match the checkout.

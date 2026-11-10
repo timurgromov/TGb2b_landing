@@ -34,7 +34,8 @@ done
 cd "$repo_root"
 git worktree add --detach "$release_worktree" origin/gh-pages
 upload_started="$(date +%s)"
-rsync -a --delete --exclude=.git "$tmp_dir/source/dist/" "$release_worktree/"
+# A fresh checkout can share timestamps and file sizes with a new build.
+rsync -a --checksum --delete --exclude=.git "$tmp_dir/source/dist/" "$release_worktree/"
 git -C "$release_worktree" add --all
 if ! git -C "$release_worktree" diff --cached --quiet; then
   git -C "$release_worktree" commit -m "Publish corporate site $commit"
