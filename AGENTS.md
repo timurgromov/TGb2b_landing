@@ -11,14 +11,26 @@ blast radius, необратимый data/finance cutover или live auth/secur
 после безопасного разделения понижай до `Высокого`. Сами слова
 production/deploy/database не основание; при экономии выбирай дешевле.
 
+## Дизайн по референсу
+
+Если пользователь прислал публичный сайт или его скриншот как визуальный
+референс для интерфейса, используй `design-atlas` из `ruslan-project-workflows`.
+Выдели 3–5 приёмов и объясни, где они решают задачу этого продукта.
+
+Для редактуры лендинга, схемы клиентского пути и дополнительной проверки важного экрана используй рабочие маршруты из `../../Tamplates/docs/TOOL_REFERENCE.md`.
+
 <!-- ruslan-project-workflows:start -->
 ## Reusable workflow router
 
-Version: 0.1.4
+Version: 0.1.5
 
 Root `AGENTS.md` хранит policy/router; scoped `AGENTS.md` — только domain rules.
 Используй релевантные `ruslan-project-workflows:<skill-name>`; без plugin —
 `skills/<skill-name>/SKILL.md`. Optional skills не копируй в каждый root.
+
+Для разбора YouTube, Instagram Reels или локального видео используй
+`ruslan-project-workflows:watch` или `~/.codex/skills/watch/SKILL.md`.
+Для других задач используй справочник Tamplates `docs/TOOL_REFERENCE.md`.
 
 Task ledger v1.0: root `TASKS.md` — единственный canonical active backlog.
 Запрос добавить/обновить задачи означает reconcile всего файла, не append:
