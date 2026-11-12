@@ -4,6 +4,7 @@
 
 - production: `https://corp.timurgromov.ru/`;
 - сезонная посадочная: `/novogodniy-korporativ/`;
+- портфолио для пересылки клиентам агентств: `/portfolio/` и `/portfolio/novogodniy-korporativ/`;
 - output: `dist/`;
 - production branch: `gh-pages`;
 - source branch: `astro-migration`.

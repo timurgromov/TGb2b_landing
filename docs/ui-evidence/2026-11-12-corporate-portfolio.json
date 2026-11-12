@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-11-12-corporate-portfolio",
+  "change_kind": "portfolio-pricing",
+  "status": "passed",
+  "requested_visible_change": "Сделать корпоративную страницу для пересылки клиентам агентств без цен и калькулятора.",
+  "expected_visible_delta": "В портфолио сохранены разделы, видео и форматы. Нет сумм и переходов на версии с ценами.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "208e0f782c719a7515603c0b43bd478b9090520357d9fdb2813d4bfed5372aeb",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4327/portfolio/",
+    "source_ref": "Astro preview of the staged candidate",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/portfolio/ and /portfolio/novogodniy-korporativ/",
+    "state": "Свежая загрузка, дата не выбрана",
+    "selector_or_slide_id": "#formats",
+    "action": "Открыть корпоративное портфолио, перейти в сезонное из анонса и сравнить обе страницы с версиями с ценами."
+  },
+  "must_remain_unchanged": [
+    "Видео и фотогалерея",
+    "Кейсы и письма",
+    "Три формата",
+    "HTML действующих страниц"
+  ],
+  "required_viewports": [
+    "390x844",
+    "1280x720"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Codex browser, измерено 390x844",
+      "before_signature": "На публичных страницах видны пункт «Цены», три цены и выбор даты.",
+      "after_signature": "В портфолио видны пункт «Форматы», три состава и четыре видео. Нет сумм и калькулятора.",
+      "observed_visible_result": "Переход из новогоднего анонса открывает сезонное портфолио. Кнопка обсуждения открывает контактное окно. Переполнения нет.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "viewport_source": "Codex browser, измерено 1280x720",
+      "before_signature": "На публичных страницах видны пункт «Цены», три цены и выбор даты.",
+      "after_signature": "В портфолио видны пункт «Форматы», три состава и четыре видео. Нет сумм и калькулятора.",
+      "observed_visible_result": "Первый ролик воспроизводится. Новогодний анонс открывает сезонное портфолио. Переполнения нет.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ]
+}

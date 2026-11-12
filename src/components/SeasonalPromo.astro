@@ -1,12 +1,19 @@
+---
+interface Props {
+  portfolio?: boolean;
+}
+
+const { portfolio = false } = Astro.props;
+---
 <aside class="seasonal-promo section" aria-label="Новогодние корпоративы">
   <div class="container">
     <div class="seasonal-promo__box sr">
       <div>
         <p class="section__eyebrow">Новогодний сезон</p>
         <h2>Проверить декабрьскую дату</h2>
-        <p>Отдельная страница с вариантами состава, примерами новогодних корпоративов и формой расчёта.</p>
+        <p>{portfolio ? 'Отдельная страница с вариантами состава и примерами новогодних корпоративов.' : 'Отдельная страница с вариантами состава, примерами новогодних корпоративов и формой расчёта.'}</p>
       </div>
-      <a class="btn btn-primary" href="/novogodniy-korporativ/" data-testid="seasonal-promo-cta">Перейти к новогодним корпоративам</a>
+      <a class="btn btn-primary" href={portfolio ? '/portfolio/novogodniy-korporativ/' : '/novogodniy-korporativ/'} data-testid="seasonal-promo-cta">Перейти к новогодним корпоративам</a>
     </div>
   </div>
 </aside>

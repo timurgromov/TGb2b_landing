@@ -8,6 +8,7 @@ interface Props {
   ogImage?: string;
   pageCss?: string;
   pageScript?: string;
+  noindex?: boolean;
   includeMainAssets?: boolean;
   structuredData?: Record<string, unknown>;
 }
@@ -19,6 +20,7 @@ const {
   ogImage = siteMeta.ogImage,
   pageCss,
   pageScript,
+  noindex = false,
   includeMainAssets = false,
   structuredData
 } = Astro.props;
@@ -33,6 +35,7 @@ const {
     <meta name="yandex-verification" content="317a3078884fb3f9" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content={siteMeta.themeColor} />
     <link rel="canonical" href={canonical} />
 

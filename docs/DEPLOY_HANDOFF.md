@@ -38,6 +38,7 @@ git diff --check
 
 - `/` сохранил исходный H1 и два CTA;
 - `/novogodniy-korporativ/` содержит сезонный H1, CTA и форму;
+- `/portfolio/` и `/portfolio/novogodniy-korporativ/` содержат форматы, видео и отзывы без цен; логотип и сезонный анонс ведут внутри портфолио;
 - `/privacy/` открывается;
 - нет горизонтального overflow и console errors на согласованных ширинах;
 - публичные CSS, JS, изображения и sitemap отвечают `200`.

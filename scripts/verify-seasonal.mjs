@@ -341,7 +341,21 @@ rejectText(sharedScript, 'TELEGRAM_LEAD_ENDPOINT', 'shared lead contract');
 expectText(sitemap, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'sitemap');
 expectText(sitemap, 'https://corp.timurgromov.ru/privacy/', 'sitemap');
 
-console.log('PASS: seasonal landing, lead contract, privacy route, sitemap and root regression');
+for (const path of ['portfolio', 'portfolio/novogodniy-korporativ']) {
+  const html = await read(`dist/${path}/index.html`);
+  expectText(html, 'name="robots" content="noindex"', path);
+  expectText(html, 'class="logo" href="/portfolio/"', path);
+  for (const id of ['cases', 'formats', 'music-program', 'proof-cases', 'letters']) {
+    expectText(html, `id="${id}"`, path);
+  }
+  for (const text of ['₽', 'data-seasonal-pricing', 'seasonal-pricing-table', 'href="/novogodniy-korporativ/"']) {
+    rejectText(html, text, path);
+  }
+  rejectText(sitemap, `https://corp.timurgromov.ru/${path}/`, 'portfolio excluded from sitemap');
+}
+expectText(await read('dist/portfolio/index.html'), 'href="/portfolio/novogodniy-korporativ/"', 'portfolio seasonal link');
+
+console.log('PASS: seasonal landing, portfolio without prices, lead contract, privacy route, sitemap and root regression');
 
 // A page without the separate opt-in must never pass the release gate.
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
