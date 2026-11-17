@@ -22,6 +22,8 @@ npm run preview -- --port 4321
 
 ## Публикация
 
+Карточка ссылки `/novogodniy-korporativ/` использует отдельный JPEG 1200 × 630 из кадра `02-microphone` для совместимости с мессенджерами. При замене обложки обновляйте имя файла, чтобы кэш изображения не сохранял старый кадр.
+
 Production публикуется из отдельной orphan-ветки `gh-pages`. Точная последовательность и проверки описаны в [`docs/DEPLOY_HANDOFF.md`](docs/DEPLOY_HANDOFF.md).
 
 Корпоративные MP4 обслуживаются отдельным каталогом на общем media-host; доступ и безопасный порядок загрузки описаны в [`docs/corporate-media-host.md`](docs/corporate-media-host.md).
