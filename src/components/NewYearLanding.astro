@@ -9,7 +9,7 @@ import FAQ from '@components/FAQ.astro';
 import Footer from '@components/Footer.astro';
 import Gallery from '@components/Gallery.astro';
 import Header from '@components/Header.astro';
-import HeroPortraitSlider from '@components/HeroPortraitSlider.astro';
+import Hero from '@components/Hero.astro';
 import Letters from '@components/Letters.astro';
 import Modals from '@components/Modals.astro';
 import MusicProgram from '@components/MusicProgram.astro';
@@ -71,29 +71,7 @@ const serviceSchema = {
   <Header page="new_year" portfolio={portfolio} />
 
   <main class="page seasonal-page">
-    <section class="hero">
-      <div class="container hero__grid">
-        <div class="hero__text sr" id="hero-left">
-          <h1><span class="h1-prefix">Ведущий на новогодний корпоратив в Москве</span></h1>
-          <p class="sub" id="hero-subtitle">Тимур Громов — ведущий, который держит темп вечера, бережно вовлекает гостей и собирает программу под характер вашей компании.</p>
-          <div class="hero-tags" id="hero-tags">
-            <span class="tag">Декабрь</span>
-            <span class="tag">15+ лет опыта</span>
-            <span class="tag tag-radio">Ведущий Love Radio</span>
-            <span class="tag">10 лет КВН</span>
-            <span class="tag">800+ мероприятий</span>
-            <span class="tag tag-humor">Добрый юмор</span>
-            <span class="tag">Договор ИП</span>
-          </div>
-          <div class="hero__cta hero-actions" id="hero-actions">
-            <button type="button" class="btn btn-primary" data-contact-open data-contact-source="hero_consultation" data-contact-intent="consultation" data-contact-placement="hero" data-testid="seasonal-primary-cta">Обсудить корпоратив</button>
-            <button type="button" class="btn btn-outline" data-contact-open data-contact-source="hero_meeting" data-contact-intent="meeting" data-contact-placement="hero">Назначить встречу</button>
-          </div>
-        </div>
-
-        <HeroPortraitSlider alt="Тимур Громов — ведущий на новогодний корпоратив" />
-      </div>
-    </section>
+    <Hero seasonal />
 
     <VideoCases />
     <EveningFlow seasonal />

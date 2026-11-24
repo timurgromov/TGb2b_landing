@@ -1136,6 +1136,20 @@
 
 /* === Mobile hero: настоящий h1 вместо CSS-псевдотекста === */
 @media (max-width: 768px) {
+  #hero-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  html body #hero-left #hero-actions {
+    order: 0;
+  }
+
+  html body #hero-left #hero-tags {
+    order: 1;
+    margin-bottom: 0 !important;
+  }
+
   html body #hero-left h1 {
     display: block !important;
     max-width: calc(100% - 40px) !important;

@@ -226,7 +226,7 @@ rejectText(seasonalHtml, '<option value="host">Только ведущий</opti
 expectText(seasonalHtml, 'https://corp.timurgromov.ru/novogodniy-korporativ/', 'seasonal canonical');
 expectText(seasonalHtml, '/style.css?v=astro_20', 'main site stylesheet');
 expectText(seasonalHtml, '/contact-choice.css?v=4', 'contact panel stylesheet');
-expectText(seasonalHtml, '/mobile.css?v=astro_10', 'main site mobile stylesheet');
+expectText(seasonalHtml, '/mobile.css?v=astro_11', 'main site mobile stylesheet');
 expectText(seasonalHtml, '/script.js?v=20261015', 'main site script');
 expectText(seasonalHtml, '/cta-analytics.js?v=1', 'CTA analytics script');
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {

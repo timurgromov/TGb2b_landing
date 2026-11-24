@@ -1,22 +1,29 @@
 ---
-import { hero } from '@data/corporate';
+import { hero, newYearHero } from '@data/corporate';
 import HeroPortraitSlider from '@components/HeroPortraitSlider.astro';
+
+interface Props {
+  seasonal?: boolean;
+}
+
+const { seasonal = false } = Astro.props;
+const copy = seasonal ? newYearHero : hero;
 ---
 <section class="hero">
   <div class="container hero__grid">
     <div class="hero__text sr" id="hero-left">
-      <h1><span class="h1-prefix">{hero.title}</span></h1>
-      <p class="sub" id="hero-subtitle">{hero.subtitle}</p>
+      <h1><span class="h1-prefix">{copy.title}</span></h1>
+      <p class="sub" id="hero-subtitle">{copy.subtitle}</p>
       <div class="hero-tags" id="hero-tags">
-        {hero.tags.map((tag) => (
+        {copy.tags.map((tag) => (
           <span class:list={['tag', tag.className]}>{tag.label}</span>
         ))}
       </div>
       <div class="hero__cta hero-actions" id="hero-actions">
-        <button type="button" class="btn btn-primary" data-contact-open data-contact-source="hero_consultation" data-contact-intent="consultation" data-contact-placement="hero">Обсудить корпоратив</button>
-        <button class="btn btn-outline" data-contact-open data-contact-source="hero_meeting" data-contact-intent="meeting" data-contact-placement="hero">Назначить встречу</button>
+        <button type="button" class="btn btn-primary" data-contact-open data-contact-source="hero_consultation" data-contact-intent="consultation" data-contact-placement="hero" data-testid={seasonal ? 'seasonal-primary-cta' : undefined}>Обсудить корпоратив</button>
+        <button type="button" class="btn btn-outline" data-contact-open data-contact-source="hero_meeting" data-contact-intent="meeting" data-contact-placement="hero">Назначить встречу</button>
       </div>
     </div>
-    <HeroPortraitSlider alt={hero.imageAlt} />
+    <HeroPortraitSlider alt={copy.imageAlt} />
   </div>
 </section>

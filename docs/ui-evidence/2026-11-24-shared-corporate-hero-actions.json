@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "change_id": "2026-11-24-shared-corporate-hero-actions",
+  "change_kind": "responsive-hero-actions",
+  "status": "passed",
+  "requested_visible_change": "Поднять обе кнопки первого экрана на четырёх корпоративных версиях",
+  "expected_visible_delta": "На 390×844 обе кнопки целиком видны до чипсов. На десктопе порядок сохранён.",
+  "attempt_number": 1,
+  "checked_after_last_edit": true,
+  "candidate_diff_sha256": "1798c0272fa0a5385e0fe1504bbead5b17e0fc89e6f8dfc358737904938560d9",
+  "served_candidate": {
+    "url": "http://127.0.0.1:4263/",
+    "source_ref": "b4f8b5e with staged candidate diff",
+    "fresh_reload": true
+  },
+  "target": {
+    "surface": "/, /novogodniy-korporativ/, /portfolio/, /portfolio/novogodniy-korporativ/",
+    "state": "Публичный первый экран после загрузки портрета",
+    "selector_or_slide_id": "#hero-actions, 01-smile",
+    "action": "Открыть каждый URL с hero-slide=01-smile, проверить обе кнопки и панель контакта"
+  },
+  "must_remain_unchanged": [
+    "H1 и портрет",
+    "Два CTA и панель контакта",
+    "Цены клиентских версий",
+    "Агентский noindex"
+  ],
+  "required_viewports": [
+    "390x844"
+  ],
+  "observations": [
+    {
+      "viewport": "390x844",
+      "viewport_source": "Chrome viewport override, window.innerWidth/innerHeight",
+      "before_signature": "slide=01-smile; / primary-bottom=815px secondary-bottom=889px; /novogodniy-korporativ/ primary-bottom=867px secondary-bottom=941px; /portfolio/ primary-bottom=815px secondary-bottom=889px; /portfolio/novogodniy-korporativ/ primary-bottom=867px secondary-bottom=941px",
+      "after_signature": "slide=01-smile; / primary-bottom=681px secondary-bottom=755px; /novogodniy-korporativ/ primary-bottom=732px secondary-bottom=806px; /portfolio/ primary-bottom=681px secondary-bottom=755px; /portfolio/novogodniy-korporativ/ primary-bottom=732px secondary-bottom=806px",
+      "observed_visible_result": "Обе кнопки полностью видны на всех четырёх страницах.",
+      "delta_visible": true,
+      "target_visible": true,
+      "preserved_invariants_passed": true,
+      "console_errors": []
+    }
+  ],
+  "additional_checks": "На 767×960 и 768×960 кнопки выше чипсов, при 769×960 и 1440×900 геометрия кнопок совпала с исходной. На всех четырёх URL слайд, H1, цена/noindex и ширина страницы совпали. Обе кнопки открывают прежнюю панель на 390×844 и 1440×900.",
+  "comparison_review": {
+    "variants_shown": 0,
+    "selected_variant": "",
+    "owner_approval_reference": ""
+  }
+}

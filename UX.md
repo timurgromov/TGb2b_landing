@@ -21,7 +21,7 @@ and the same contact-panel behavior. Event copy, base prices and seasonal date
 rules may differ. A shared UX change is incomplete until all three routes have
 been reviewed.
 
-The two corporate routes share components and assets. `/` uses the ordinary
+The two public corporate routes and both agency portfolio routes share components and assets. `/` uses the ordinary
 package prices outside December and the approved seasonal matrix for December
 2026. `/novogodniy-korporativ/` uses the same component and matrix. Both routes
 synchronize date and package into the confirmed HTTP-201 lead form.
@@ -82,7 +82,7 @@ safe-area отступом. Закрытие работает по кнопке,
 13. Shared-форма проверки даты с route-specific текстом, ограничением даты и source.
 14. Footer и существующие modal/lightbox-компоненты.
 
-Главная `/` и `/novogodniy-korporativ/` — две контекстные версии одного корпоративного сайта. Главная сохраняет универсальный оффер, сезонная версия — новогодний. Любое общее изменение структуры, дизайна, порядка блоков, пакетов, доказательств, FAQ или формы применяется сразу к обеим версиям через shared-компоненты. Различаются контекстные формулировки, hero/promo и source/атрибуция. Цены на даты декабря 2026 общие.
+Обычная, новогодняя и обе агентские версии используют общие компоненты сайта. Общее изменение структуры, дизайна, порядка блоков, пакетов, доказательств, FAQ, контактов или формы проверяется на всех четырёх URL. Новогодний контекст меняет формулировки и промо. Клиентские страницы показывают цены, агентское портфолио сохраняет варианты состава без цен и `noindex`.
 
 ## Content boundary: вечер и работа
 
@@ -210,6 +210,21 @@ Invariants:
 - root `/` design and behavior remain unchanged.
 
 ## UI change contract
+
+### Общие кнопки первого экрана — 2026-11-24
+
+- Поверхности: `/`, `/novogodniy-korporativ/`, `/portfolio/`,
+  `/portfolio/novogodniy-korporativ/`. У всех один компонент `Hero`.
+- Цель: в первом экране после загрузки портрета на `390×844` кнопка
+  «Обсудить корпоратив» полностью видна, «Назначить встречу» идёт рядом
+  с ней в порядке действий. На мобильных обе кнопки выше чипсов. На
+  десктопе порядок и размеры сохраняются.
+- Базовый экран `390×844`: нижний край главной кнопки на обычных страницах
+  `815px`, на новогодних `867px`. Второй CTA заканчивается на `889px` и `941px`.
+- Проверить `390×844`, `768×960`, `769×960` и `1440×900`. Сравнить
+  границы CTA после загрузки первого портрета, проверить прокрутку без
+  переполнения и открытие текущей контактной панели из обеих кнопок.
+- Сохраняются H1, портреты, чипсы, варианты контакта, цены и `noindex` портфолио.
 
 Baseline observed on live `https://corp.timurgromov.ru/` at CSS viewport `1280x720`, DPR `2`:
 

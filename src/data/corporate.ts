@@ -22,20 +22,37 @@ export const contact = {
   youtubeUrl: 'https://www.youtube.com/@timurgromovv'
 };
 
+const heroTags = {
+  experience: { label: '15+ лет опыта' },
+  events: { label: '800+ мероприятий' },
+  radio: { label: 'Ведущий Love Radio', className: 'tag-radio' },
+  kvn: { label: '10 лет КВН' },
+  improv: { label: 'Импровизация' },
+  humour: { label: 'Добрый юмор', className: 'tag-humor' },
+  contract: { label: 'Договор ИП' },
+};
+
 export const hero = {
   title: 'Интеллигентный ведущий на корпоратив в Москве',
   subtitle: 'Современный формат — динамика и атмосфера, в которой комфортно каждому.',
   image: '/assets/hero/portrait.webp',
   imageAlt: 'Тимур Громов — ведущий на корпоратив',
+  tags: Object.values(heroTags)
+};
+
+export const newYearHero = {
+  title: 'Ведущий на новогодний корпоратив в Москве',
+  subtitle: 'Тимур Громов — ведущий, который держит темп вечера, бережно вовлекает гостей и собирает программу под характер вашей компании.',
+  imageAlt: 'Тимур Громов — ведущий на новогодний корпоратив',
   tags: [
-    { label: '15+ лет опыта' },
-    { label: '800+ мероприятий' },
-    { label: 'Ведущий Love Radio', className: 'tag-radio' },
-    { label: '10 лет КВН' },
-    { label: 'Импровизация' },
-    { label: 'Добрый юмор', className: 'tag-humor' },
-    { label: 'Договор ИП' }
-  ]
+    { label: 'Декабрь' },
+    heroTags.experience,
+    heroTags.radio,
+    heroTags.kvn,
+    heroTags.events,
+    heroTags.humour,
+    heroTags.contract,
+  ],
 };
 
 export const videos = [
