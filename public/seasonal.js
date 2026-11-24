@@ -155,7 +155,10 @@
       hostDj: Number(row.dataset.hostDj),
       hostDjSound: Number(row.dataset.hostDjSound),
       liveMusicAddon: Number(row.dataset.liveMusicAddon),
-      extension: Number(row.dataset.extension)
+      extension: Number(row.dataset.extension),
+      extensionOverrideFrom: Number(row.dataset.extensionOverrideFrom),
+      extensionOverrideTo: Number(row.dataset.extensionOverrideTo),
+      extensionOverridePrice: Number(row.dataset.extensionOverridePrice)
     }));
     const cards = Array.from(document.querySelectorAll('[data-pricing-package]'));
     const extensionOutputs = Array.from(root.querySelectorAll('[data-pricing-extension]'));
@@ -190,6 +193,9 @@
         ...row,
         day,
         liveMusic: row.hostDjSound + row.liveMusicAddon,
+        extension: day >= row.extensionOverrideFrom && day <= row.extensionOverrideTo
+          ? row.extensionOverridePrice
+          : row.extension,
         fromPrice: day === 31,
         annual: false
       };

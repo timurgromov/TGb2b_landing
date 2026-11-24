@@ -5,20 +5,18 @@ import { resolve } from 'node:path';
 const root = resolve(import.meta.dirname, '..');
 const heroSlideIds = ['01-smile', '02-microphone', '03-full-length', '04-grey-suit', '05-gesture'];
 const seasonalPriceRows = [
-  [1, 3, 145000, 170000, 150000, 20000],
-  [4, 5, 155000, 180000, 170000, 25000],
-  [6, 6, 145000, 170000, 150000, 20000],
-  [7, 10, 155000, 180000, 160000, 20000],
-  [11, 12, 175000, 200000, 190000, 25000],
-  [13, 13, 155000, 180000, 170000, 20000],
-  [14, 17, 175000, 205000, 190000, 25000],
-  [18, 19, 200000, 230000, 220000, 25000],
-  [20, 20, 175000, 205000, 200000, 25000],
-  [21, 24, 190000, 220000, 220000, 25000],
-  [25, 26, 220000, 250000, 250000, 25000],
-  [27, 28, 190000, 220000, 220000, 25000],
-  [29, 30, 210000, 240000, 250000, 25000],
-  [31, 31, 280000, 330000, 300000, 35000]
+  [1, 6, 145000, 170000, 320000, 20000],
+  [7, 10, 145000, 170000, 330000, 20000],
+  [11, 12, 175000, 220000, 410000, 25000],
+  [13, 13, 145000, 170000, 340000, 20000],
+  [14, 17, 155000, 180000, 370000, 25000],
+  [18, 19, 175000, 220000, 440000, 25000],
+  [20, 20, 155000, 180000, 380000, 25000],
+  [21, 24, 165000, 190000, 410000, 25000],
+  [25, 26, 175000, 220000, 470000, 25000],
+  [27, 28, 155000, 180000, 400000, 25000],
+  [29, 30, 165000, 190000, 440000, 25000],
+  [31, 31, 280000, 330000, 630000, 35000]
 ];
 
 async function read(relativePath) {
@@ -158,22 +156,31 @@ expectText(seasonalHtml, 'data-pricing-package="hostDjSound"', 'seasonal sound l
 expectText(seasonalHtml, 'data-pricing-package="liveMusic"', 'seasonal music live price');
 expectCount(seasonalHtml, 'data-pricing-extension', 3, 'extension price shown inside every seasonal package');
 rejectText(seasonalHtml, 'Все цены — за 5 часов · Дополнительный час', 'retired shared extension line');
-expectCount(seasonalHtml, 'data-pricing-row', seasonalPriceRows.length, 'seasonal public pricing row count');
-for (const [fromDay, toDay, hostDj, hostDjSound, liveMusicAddon, extension] of seasonalPriceRows) {
-  expectText(
-    seasonalHtml,
-    `data-date-from="${fromDay}" data-date-to="${toDay}" data-host-dj="${hostDj}" data-host-dj-sound="${hostDjSound}" data-live-music-addon="${liveMusicAddon}" data-extension="${extension}"`,
-    `seasonal price row ${fromDay}-${toDay}`
-  );
+const formatRubles = (value) => `${value.toLocaleString('ru-RU')} ₽`;
+for (const [page, html] of [['root', rootHtml], ['seasonal', seasonalHtml]]) {
+  expectText(html, '<th scope="col">С живой музыкой</th>', `${page} live music matrix column`);
+  const rows = html.match(/<tr data-pricing-row[^>]*>.*?<\/tr>/gs) || [];
+  expectCount(html, 'data-pricing-row', seasonalPriceRows.length, `${page} public pricing row count`);
+
+  for (const [index, [fromDay, toDay, hostDj, hostDjSound, liveMusic, extension]] of seasonalPriceRows.entries()) {
+    const row = rows[index];
+    const label = `${page} price row ${fromDay}–${toDay}`;
+    const prefix = fromDay === 31 ? 'от ' : '';
+    expectText(row, `data-date-from="${fromDay}" data-date-to="${toDay}" data-host-dj="${hostDj}" data-host-dj-sound="${hostDjSound}" data-live-music-addon="${liveMusic - hostDjSound}" data-extension="${extension}"`, label);
+    expectText(row, `data-label="Ведущий + DJ">${prefix}${formatRubles(hostDj)}</td>`, label);
+    expectText(row, `data-label="С оборудованием">${prefix}${formatRubles(hostDjSound)}</td>`, label);
+    expectText(row, `data-label="С живой музыкой">от ${formatRubles(liveMusic)}</td>`, label);
+    expectText(row, `<td data-label="Доп. час"> <span> ${formatRubles(extension)}`, label);
+  }
+
+  expectText(rows[0], 'data-extension-override-from="4" data-extension-override-to="5" data-extension-override-price="25000"', `${page} 4–5 December extension data`);
+  expectText(rows[0], `${formatRubles(25000)} (4–5 декабря)`, `${page} 4–5 December extension price`);
+  expectCount(html, 'data-extension-override-price=', 1, `${page} extension override count`);
 }
-expectText(seasonalHtml, '<th scope="col">С живой музыкой</th>', 'seasonal live music matrix column');
-expectText(seasonalHtml, 'data-label="С живой музыкой">от 490 000 ₽', 'seasonal 29-30 live music total');
-expectText(seasonalHtml, 'data-label="С живой музыкой">от 630 000 ₽', 'seasonal 31 December live music total');
 expectText(seasonalHtml, 'Цена пакета с двумя вокалистами уже учитывает декабрьскую ставку музыкального состава на выбранную дату.', 'seasonal live music matrix explanation');
 expectCount(seasonalHtml, 'В цену входит комплект звука и DJ-оборудования.', 2, 'seasonal equipment boundary in relevant cards');
 expectText(rootHtml, 'data-testid="seasonal-pricing"', 'root shared pricing picker');
 rejectText(rootHtml, 'data-testid="seasonal-lead-form"', 'root retired detailed lead form');
-expectCount(rootHtml, 'data-pricing-row', seasonalPriceRows.length, 'root December pricing row count');
 expectText(seasonalHtml, 'Ведущий + DJ + звук + два вокалиста', 'seasonal vocalists package title');
 expectText(seasonalHtml, 'С живой музыкой', 'seasonal live music package name');
 expectText(seasonalHtml, 'Подробнее о живой музыке', 'seasonal live music package link');
@@ -249,7 +256,7 @@ expectText(seasonalHtml, 'data-contact-source="hero_meeting" data-contact-intent
 expectText(seasonalHtml, '>Назначить встречу</button>', 'seasonal meeting CTA label');
 for (const [html, label] of [[rootHtml, 'root'], [seasonalHtml, 'seasonal']]) {
   expectText(html, '/seasonal.css?v=20261009c', `${label} pricing stylesheet`);
-  expectText(html, '/seasonal.js?v=20261015', `${label} pricing script`);
+  expectText(html, '/seasonal.js?v=20261124', `${label} pricing script`);
   for (const [packageKey, duration] of [['hostDj', 5], ['hostDjSound', 5], ['liveMusic', 6]]) {
     const card = html.split(`data-pricing-package="${packageKey}"`)[1]?.split('</article>')[0] || '';
     expectText(card, `<small>Программа до ${duration} часов</small>`, `${label} ${packageKey} duration`);
